@@ -1,0 +1,100 @@
+{
+  "sha": "a512d22526a75974e5fc18da9c09017cd16dfa27",
+  "node_id": "C_kwDOOWrtWdoAKGE1MTJkMjI1MjZhNzU5NzRlNWZjMThkYTljMDkwMTdjZDE2ZGZhMjc",
+  "commit": {
+    "author": {
+      "name": "WANGXIXI",
+      "email": "88969990+NTUYWANG103@users.noreply.github.com",
+      "date": "2026-03-28T14:15:56Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-03-28T14:15:56Z"
+    },
+    "message": "Add Hand2World (arXiv 2602.09600) (#2)\n\nAdd Hand2World: Autoregressive Egocentric Interaction Generation via\nFree-Space Hand Gestures to General-Purpose / Sequential / Token\nFeature Sequence section.\n\nCo-authored-by: Claude Opus 4.6 (1M context) <noreply@anthropic.com>",
+    "tree": {
+      "sha": "ac2b7a4bfb3d4c6a5568875ff3004809ac7b558b",
+      "url": "https://api.github.com/repos/Li-Zn-H/AwesomeWorldModels/git/trees/ac2b7a4bfb3d4c6a5568875ff3004809ac7b558b"
+    },
+    "url": "https://api.github.com/repos/Li-Zn-H/AwesomeWorldModels/git/commits/a512d22526a75974e5fc18da9c09017cd16dfa27",
+    "comment_count": 0,
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJpx+KcCRC1aQ7uu5UhlAAAqw8QALHrNjGE0WVGssN4aB0g4GyP\nlLMxxejEMesVXMHMWVixG/up75vbRNzdKD8NzBcBralPg4cAXilOZZCxsQCAujUk\nOdDkELaReOxYa8QMB5MNg/UccfrTuPMzdqTM9h/shBDNQwsOOUtItFOc/Te4Xbma\nlGV0SlZ611F8Ac/lrbTGZepyN1fon52D+LoqCrFCwXJlUJBMSAj3wPsx1/2Rc0ZF\nuNWnRgdsZc+IV7JZY5/4fIbi+dtB567CARhn4hRWRp9xJCgBxRr+lgttrfC7DicT\norc877kKnXyQtBoPjZiHVojqXwtR+S6V8BqE16y6Um2tE0dMbhoCfeXC8OfVygE+\n6cMpCKdE3hngj+pVwk5Rs2Mjsr+AflNfg5pMO2axpoOfofyTYUJxGmj/YbUg/OuN\nF40oftNftoM6L0EATdafoTx567u/1huJsevDUeFGnhjOpFya9chKS7Dw4udm1dcK\nuied8j00CrEpOpMK1X37oyLN0kXwJnQiSNojIBPytYdbxJnv8kTuicgTS/y+XVVb\n22eg0ujoNtw9BARf61dDm4BPpe75FWoxhgONa7cE/7r02l0HRdXlqbFmfd31uh8b\nrO34SGu1GuUr4cOKDi4g3RQBK3wkEu0a6dxNPUEWWfvuzHmPSdX6Kf1LrZby+WDF\n3cPuZyMHUJD/Ul0kDNcv\n=2oBK\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree ac2b7a4bfb3d4c6a5568875ff3004809ac7b558b\nparent 0ec96c161b43bd87d8f1e40c11ff6b28c6c898ff\nauthor WANGXIXI <88969990+NTUYWANG103@users.noreply.github.com> 1774707356 +0800\ncommitter GitHub <noreply@github.com> 1774707356 +0800\n\nAdd Hand2World (arXiv 2602.09600) (#2)\n\nAdd Hand2World: Autoregressive Egocentric Interaction Generation via\nFree-Space Hand Gestures to General-Purpose / Sequential / Token\nFeature Sequence section.\n\nCo-authored-by: Claude Opus 4.6 (1M context) <noreply@anthropic.com>",
+      "verified_at": "2026-03-28T14:15:57Z"
+    }
+  },
+  "url": "https://api.github.com/repos/Li-Zn-H/AwesomeWorldModels/commits/a512d22526a75974e5fc18da9c09017cd16dfa27",
+  "html_url": "https://github.com/Li-Zn-H/AwesomeWorldModels/commit/a512d22526a75974e5fc18da9c09017cd16dfa27",
+  "comments_url": "https://api.github.com/repos/Li-Zn-H/AwesomeWorldModels/commits/a512d22526a75974e5fc18da9c09017cd16dfa27/comments",
+  "author": {
+    "login": "NTUYWANG103",
+    "id": 88969990,
+    "node_id": "MDQ6VXNlcjg4OTY5OTkw",
+    "avatar_url": "https://avatars.githubusercontent.com/u/88969990?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/NTUYWANG103",
+    "html_url": "https://github.com/NTUYWANG103",
+    "followers_url": "https://api.github.com/users/NTUYWANG103/followers",
+    "following_url": "https://api.github.com/users/NTUYWANG103/following{/other_user}",
+    "gists_url": "https://api.github.com/users/NTUYWANG103/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/NTUYWANG103/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/NTUYWANG103/subscriptions",
+    "organizations_url": "https://api.github.com/users/NTUYWANG103/orgs",
+    "repos_url": "https://api.github.com/users/NTUYWANG103/repos",
+    "events_url": "https://api.github.com/users/NTUYWANG103/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/NTUYWANG103/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "web-flow",
+    "id": 19864447,
+    "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/web-flow",
+    "html_url": "https://github.com/web-flow",
+    "followers_url": "https://api.github.com/users/web-flow/followers",
+    "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+    "organizations_url": "https://api.github.com/users/web-flow/orgs",
+    "repos_url": "https://api.github.com/users/web-flow/repos",
+    "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/web-flow/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "0ec96c161b43bd87d8f1e40c11ff6b28c6c898ff",
+      "url": "https://api.github.com/repos/Li-Zn-H/AwesomeWorldModels/commits/0ec96c161b43bd87d8f1e40c11ff6b28c6c898ff",
+      "html_url": "https://github.com/Li-Zn-H/AwesomeWorldModels/commit/0ec96c161b43bd87d8f1e40c11ff6b28c6c898ff"
+    }
+  ],
+  "stats": {
+    "total": 0,
+    "additions": 0,
+    "deletions": 0
+  },
+  "files": [
+    {
+      "sha": "ddcc23af83f2831a6a7a2f778a46870fe372988c",
+      "filename": "README.md",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "blob_url": "https://github.com/Li-Zn-H/AwesomeWorldModels/blob/a512d22526a75974e5fc18da9c09017cd16dfa27/README.md",
+      "raw_url": "https://github.com/Li-Zn-H/AwesomeWorldModels/raw/a512d22526a75974e5fc18da9c09017cd16dfa27/README.md",
+      "contents_url": "https://api.github.com/repos/Li-Zn-H/AwesomeWorldModels/contents/README.md?ref=a512d22526a75974e5fc18da9c09017cd16dfa27"
+    }
+  ]
+}

@@ -53,6 +53,7 @@ graph/               # 可选的 generated graph artifacts。
 - 保留 Markdown 结构性换行：frontmatter、headings、lists、tables、block quotes、code fences、Mermaid blocks、LaTeX display blocks。
 - 列表项尽量一条 item 一行；只有嵌套列表、代码块、表格或可读性确实需要时才手动断行。
 - 不要为了 80/100 column width 主动拆中文段落。中文/hybrid 文档的编辑体验优先于终端定宽排版。
+- Quartz 当前通过 `remark-math` + KaTeX 渲染公式；inline math 使用 `$...$`，display math 使用 `$$...$$`。不要使用 `\(...\)` 或 `\[...\]`，它们在发布构建中不会被解析为公式。
 - `raw/` 保持原样，不做 reflow。
 
 ## Depth Standard

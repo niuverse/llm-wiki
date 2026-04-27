@@ -23,3 +23,9 @@ Operations: `ingest`, `query`, `health`, `lint`, `graph`, `maintenance`
 ## [2026-04-27] maintenance | Quartz 发布层与数学深度扩写
 
 ## [2026-04-27] maintenance | Markdown 不硬换行规范迁移
+
+## [2026-04-27] ingest | A Comprehensive Survey on World Models for Embodied AI
+
+## [2026-04-27] ingest | AwesomeWorldModels
+
+## [2026-04-27] maintenance | Quartz LaTeX delimiter 规范化

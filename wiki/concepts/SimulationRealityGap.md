@@ -1,8 +1,8 @@
 ---
 title: "Simulation Reality Gap（仿真现实差距）"
 type: concept
-tags: [robotics, simulation, sim-to-real, reinforcement-learning]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]"]
+tags: [robotics, simulation, sim-to-real, reinforcement-learning, world-models]
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]"]
 last_updated: 2026-04-27
 ---
 
@@ -37,4 +37,10 @@ flowchart LR
 
 对 RL 和 MPC 来说，这提示 simulator choice 应该围绕 hardware 上预期出现的 contact regime 来审计：sliding、impacts、redundant contacts、rough terrain，以及 ill-conditioned mass/contact layouts。
 
-相关页面：[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[MuJoCo]]、[[RaiSim]]。
+## Learned world model lens
+
+[[a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]] 给 simulation reality gap 增加了 learned-simulator lens。[[WorldModelsForEmbodiedAI|World models]] 用 latent dynamics、tokens、spatial grids 或 renderable primitives rollout future states；这些 rollouts 可能帮助 policy optimization、MPC 和 counterfactual reasoning，但也可能把 dataset bias、temporal drift、weak physical consistency 或 pixel-level artifacts 转换成新的 model-reality mismatch。
+
+这个 source 支持一个更一般的判断：sim-to-real gap 不只是 physics engine 参数错了，也可能是 learned dynamics 的 objective 错了。若 [[WorldModelEvaluation|evaluation]] 主要依赖 FID/FVD 这类 pixel fidelity metrics，而没有检查 state-level dynamics、causality、collision、task success 或 real-time closed-loop behavior，model 可能生成视觉上 plausible 但控制上 misleading 的 futures。
+
+相关页面：[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[MuJoCo]]、[[RaiSim]]。

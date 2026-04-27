@@ -15,7 +15,7 @@ Contact models 定义 robot simulator 如何把 collisions、non-penetration、f
 较物理化的 rigid-contact reference 组合了三条 laws：
 
 - Signorini complementarity：用于 unilateral、non-pulling contact；normal force 只能在 active contact 中推开 bodies。
-- Coulomb friction：用于 bounded tangential forces；friction magnitude 受 normal force 与 coefficient \(\mu\) 限制。
+- Coulomb friction：用于 bounded tangential forces；friction magnitude 受 normal force 与 coefficient $\mu$ 限制。
 - Maximum dissipation principle：用于 friction opposing motion；在 friction cone 内选择最耗散 sliding motion 的 tangential force。
 
 三者合在一起会产生困难的 [[ContactComplementarity|contact complementarity]] problem。Simulators 经常用 exactness 换取 speed、robustness、differentiability 或 easier implementation。论文的主要警告是：这些 tradeoffs 在简单任务中可能被隐藏，但会在 sliding contact、redundant contacts、ill-conditioned systems 和 rough locomotion terrain 中显现出来。
