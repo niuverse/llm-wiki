@@ -1,0 +1,11 @@
+.codex
+.obsidian/
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+**/.obsidian/workspace*.json
+.trash/
+.DS_Store
+node_modules/
+public/
+.quartz-cache/
+tsconfig.tsbuildinfo

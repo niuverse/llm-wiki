@@ -1,0 +1,49 @@
+---
+title: "Contact Solvers（接触求解器）"
+type: concept
+tags: [robotics, simulation, optimization, numerical-methods]
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]"]
+last_updated: 2026-04-27
+---
+
+# Contact Solvers（接触求解器）
+
+Contact solvers 是 numerical routines：当 simulator 检测到 contact geometry 并构造出 contact problem 后，它们负责计算 forces 或 impulses。在 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]] 中，solvers 的评估维度包括 physical residuals、robustness to ill-conditioning、internal-force artifacts、self-consistency 和 runtime。
+
+关键点是：solver 不是在孤立地“修正每个接触点”。一个 contact impulse 会通过 rigid-body dynamics 改变整机 velocity，再通过 Jacobian 影响所有其他 contact velocities。因此 contact resolution 本质上是一个 coupled fixed-point problem：找到一组 normal/tangential forces，使 non-penetration、friction bound 和 energy dissipation 的残差同时足够小。
+
+一个简化的数学图像是：
+
+- normal direction：`lambda_n >= 0`、`v_n >= 0`、`lambda_n * v_n = 0`，表示 contact 不能拉住物体，也不能在分离时仍施加 normal force。
+- tangential direction：`||lambda_t|| <= mu * lambda_n`，friction force 被 Coulomb cone 限制。
+- sliding 时：maximum dissipation 要求 friction direction 与 tangential motion 相反。
+
+这些条件共同形成 [[ContactComplementarity|contact complementarity]]。论文比较的 solvers 可以按 formulation 和 numerical strategy 两层理解：
+
+```mermaid
+flowchart TD
+  A["Rigid contact target<br/>Signorini + Coulomb + maximum dissipation"] --> B{"formulation"}
+  B --> C["NCP<br/>更接近 reference model"]
+  B --> D["LCP<br/>polyhedral friction cone"]
+  B --> E["CCP<br/>convex relaxation"]
+  B --> F["RaiSim-style model<br/>contact-state heuristics"]
+  C --> G{"solver strategy"}
+  D --> G
+  E --> G
+  F --> G
+  G --> H["per-contact / local iteration<br/>PGS, RaiSim-style bisection"]
+  G --> I["global / proximal iteration<br/>ADMM, staggered projections"]
+```
+
+论文区分了两个 practical families：
+
+- Per-contact methods，例如 PGS 与 RaiSim-style bisection：每次 iteration 成本低，在温和的 contact scenarios 中通常足够快；但它们可能遗漏 contacts 之间的 global coupling，产生 internal forces，并在 ill-conditioned problems 上失败。
+- Global 或 proximal methods，例如 ADMM 与 staggered projections：使用更多完整 contact problem 的结构。它们通常更 robust，也能产生更干净的 contact forces，但每次 iteration 成本更高。从 previous time step warm-start 可以在 practical simulation loops 中缩小这个差距。
+
+算法直觉上，PGS-style 方法像是在 contact constraints 之间做 sequential projection：更新一个 contact 的 impulse 后，立刻用它修正当前 velocity estimate，再处理下一个 contact。它便宜、incremental，也容易 warm-start；但在 redundant support、sliding 或 bad conditioning 下，局部修正可能互相抵消，留下 self-consistency residuals 或 internal forces。
+
+ADMM 与 staggered projections 这类方法更像是在 whole contact vector 上交替满足 dynamics、cone constraints 和 complementarity-related constraints。它们每步更重，但能更直接处理 contacts 之间的 coupling 与 underdetermination，因此论文把它们描述为更 robust 的方向。
+
+对 robotics 来说，合适的 solver 取决于 task tolerance。某些 MPC 与 RL workloads 可能能接受快速的 approximate answers；而 contact-rich terrain、redundant support、force sensing 和 differentiable objectives 会对 physical consistency 提出更高要求。
+
+相关页面：[[ContactComplementarity]]、[[ContactModelsInRobotics]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]。
