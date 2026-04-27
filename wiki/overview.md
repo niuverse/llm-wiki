@@ -1,27 +1,52 @@
 ---
 title: "Overview（总览）"
 type: synthesis
-tags: []
+tags: [research-dashboard, robotics, embodied-ai]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]"]
 last_updated: 2026-04-27
 ---
 
 # Overview（总览）
 
-这是 personal LLM wiki 的 living synthesis 页面。
+这个页面是 wiki 的 research dashboard。它不按 ingest 顺序复述 source，而是维护当前知识库支持的研究判断、关键问题、证据强弱和后续缺口。完整问题索引见 [[research-questions|Research Questions]]。
 
-已 ingest sources 现在形成五条相连的线索。第一条来自 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]]：contact-rich robot behavior 很大程度上取决于底层 contact model 与 solver choices。rigid contact 应该通过 [[ContactComplementarity|contact complementarity（接触互补）]] 来理解：Signorini unilateral contact、Coulomb friction 和 maximum dissipation 会导向一个 NCP，而 simulators 通常为了 speed、conditioning 或 implementation convenience 对它进行 relaxation。
+## 当前总判断
 
-第二条来自 [[a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]] 及其 companion repo [[awesome-world-models|AwesomeWorldModels]]：learned [[WorldModelsForEmbodiedAI|world models]] 也是 simulators，只是它们用 latent dynamics、tokens、spatial grids 或 differentiable rendering 来生成 future rollouts。论文把这个领域组织成 [[WorldModelTaxonomy|Functionality x Temporal Modeling x Spatial Representation]] 三轴 taxonomy，并强调 [[WorldModelEvaluation|evaluation]] 不能停留在 pixel fidelity，需要检验 physical consistency、state understanding 与 task performance。
+当前 wiki 的中心判断是：robotics systems 中的 model assumptions 会通过 simulator、world model、policy context、training objective 和 benchmark design 进入 downstream decisions 与 reported performance；这些 assumptions 在温和场景里可能被 success rate 掩盖，但在 contact-rich dynamics、long-horizon rollout、heterogeneous data、unseen task composition 和 sim-to-real transfer 中会变成 first-order failure source。
 
-第三条来自 [[pi07-steerable-generalist-robotic-foundation-model|π0.7]]：robot foundation model 可以把 world model 放进 real-time policy stack，而不是让 world model 单独规划。π0.7 的 [[WorldModelsForEmbodiedAI|world model]] 生成 multi-view subgoal images，[[VisionLanguageActionModels|VLA]] 再用 task/subtask language、metadata、control mode 和 visual goals 预测 action chunks。这里的核心不是“模型知道更多”，而是 [[RobotContextConditioning|context conditioning]] 让 heterogeneous data 中的 strategy、quality、speed、mistake 和 embodiment differences 变成可 steering 的条件。
+这条判断把五类材料连成一条主线。[[ContactModelsInRobotics|contact models in robotics]] 说明 low-level contact law 与 [[ContactSolvers|solver]] 不是 implementation detail，而是 task-level modeling assumption；[[WorldModelsForEmbodiedAI|world models]] 说明 learned latent dynamics 也是 simulator，只是 failure 可能表现为 temporal drift、weak physical consistency 或 misleading futures；[[VisionLanguageActionModels|VLA]] 和 [[RobotContextConditioning|context conditioning]] 说明 robot foundation model 的 behavior mode 由 prompt、metadata、subgoal image 和 control mode 选择；[[LatentDynamicsActionModels|latent dynamics action models]] 说明 data quality 的影响取决于 training objective 如何分配 data role；[[TaskGeneralistPolicyEvaluation|task-generalist policy evaluation]] 说明 benchmark predicates、language variants 和 perturbation protocol 决定哪些 failure 会被看见。
 
-第四条来自 [[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]] 与 [[nvlabs-robolab|NVlabs/RoboLab]]：robot foundation models 需要 evaluation substrate，而不是只靠 demo videos 或 seen-task success。RoboLab 把 high-fidelity simulation、task libraries、language variants、predicate-based success checks、wrong-object diagnostics、trajectory metrics 和 [[SimulationSensitivityAnalysis|sensitivity analysis]] 组织成 [[TaskGeneralistPolicyEvaluation|task-generalist policy evaluation]] workflow，用 controlled perturbations 暴露 VLA policies 对 camera、language、object distribution 和 scene factors 的依赖；它的 six-task real/sim verification 也提醒我们，simulation proxy validity 会随 policy/task family 改变。
+## 研究问题面板
 
-第五条来自 [[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]]：robot foundation model scaling 也可以把 dynamics learning 放回中心。[[LatentDynamicsActionModels|Latent Dynamics Action Model]] 不只做 expert behavior cloning，而是在 DINO latent space 中 cotrain policy、forward dynamics、inverse dynamics 和 visual forecasting；[[EI30K|EI-30K]] 则把 high-quality demonstrations、low-quality trajectories 和 actionless egocentric videos 分配到不同 training objectives。这个 source 把“heterogeneous data 是否有害”的问题改写成“data role 是否被正确建模”。
+| 问题 | 当前判断 | 主要入口 |
+| --- | --- | --- |
+| World model 对 robot decision 的价值在哪里？ | 有价值的 world model 不只是生成 plausible future，而是改变 action choice、policy representation 或 evaluation signal。π0.7 把它用作 visual subgoal generator，LDA-1B 把它用作 latent dynamics pretraining。 | [[WorldModelsForEmbodiedAI]], [[WorldModelEvaluation]], [[LatentDynamicsActionModels]] |
+| Simulation benchmark 能证明什么？ | Benchmark 更适合作为 diagnostic instrument，而不是 deployment proof。RoboLab 能定位 task、language、object、camera 和 scene sensitivity，但 real/sim proxy validity 仍随 policy/task family 改变。 | [[TaskGeneralistPolicyEvaluation]], [[SimulationSensitivityAnalysis]], [[SimulationRealityGap]] |
+| Contact solver choices 为什么会影响 learning/control？ | Contact solver 选择会改变 forces、impulses、energy dissipation 和 convergence residuals；这些误差会进入 MPC、RL、system identification 和 differentiable optimization。 | [[ContactModelsInRobotics]], [[ContactComplementarity]], [[ContactSolvers]], [[DifferentiablePhysics]] |
+| Heterogeneous robot data 是噪声还是资源？ | 不是数据混杂本身决定成败，而是系统是否显式建模 data role。π0.7 用 runtime context steering，LDA-1B 用 objective routing 和 DINO latent dynamics。 | [[RobotContextConditioning]], [[LatentDynamicsActionModels]], [[VisionLanguageActionModels]] |
+| 当前证据最薄弱在哪里？ | strongest evidence 来自 source-specific benchmark 和 ablation；weakest link 是跨系统、跨机器人、跨 benchmark 的 independent replication 与真实部署因果验证。 | [[research-questions|Research Questions]], [[SimulationRealityGap]] |
 
-当前 synthesis 是：无论 downstream system 使用 hand-designed contact solver、learned world model、prompt-conditioned VLA、latent dynamics pretraining，还是 high-fidelity benchmark，关键问题都是 model assumptions 如何进入 decisions 与 evaluations。[[ContactModelsInRobotics|contact models in robotics]] 应该被看作 task-level assumptions，而不只是 implementation details；[[WorldModelsForEmbodiedAI|world models]] 的 latent state、temporal rollout 和 spatial representation 决定 agent 能想象什么；[[RobotContextConditioning|context conditioning]] 和 [[LatentDynamicsActionModels|data-role/objective conditioning]] 决定 robot policy 会从 heterogeneous data 中执行哪个 behavior mode；[[TaskGeneralistPolicyEvaluation|benchmark task design]] 则决定我们会观察到哪些 failure modes，以及哪些 failure 会被 aggregate success 掩盖。
+## Evidence Map
 
-在温和场景中，例如 flat、high-friction 的 quadruped MPC、short-horizon video prediction、seen-task imitation、expert-only BC 或 benchmark-overlap-heavy evaluation，不同 modeling choices 可能看起来等价。但在 sliding、redundant contacts、ill-conditioning、rough terrain、low friction、long-horizon rollouts、cross-embodiment transfer、unseen task composition、vague language、visual distractors、camera perturbations 或 mixed-quality training data 中，solver/model/context/evaluation approximations 可能产生 internal forces、energy artifacts、failed convergence、temporal drift、physically inconsistent futures、dataset-bias behavior、wrong-object grasp、language grounding failure、bad-action imitation 或 unrecoverable task-plan errors，并扩大 [[SimulationRealityGap|simulation reality gap]]。
+| 判断层级 | 支持较强的 evidence | 证据边界 |
+| --- | --- | --- |
+| Contact assumptions affect downstream behavior | [[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics]] 系统比较 NCP、LCP、CCP、RaiSim-style models、PGS、ADMM 和 staggered projections，并报告 rough/slippery terrain 中 solver differences 更明显。 | 主要证据来自 controlled simulation/benchmark；真实 robot transfer 仍需要具体 task validation。 |
+| World model evaluation must be decision-coupled | [[a-comprehensive-survey-on-world-models-for-embodied-ai|World Models survey]] 明确区分 pixel prediction、state understanding 和 task performance；[[awesome-world-models|AwesomeWorldModels]] 提供 taxonomy-oriented bibliography。 | Survey 是组织框架，不等于每个收录方法都有 closed-loop robotics evidence。 |
+| Context conditioning can turn data heterogeneity into controllable behavior | [[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 把 task/subtask language、metadata、control mode 和 subgoal images 纳入 context，展示 dexterity、instruction following 和 compositional generalization。 | 证据主要来自发布方实验；prompt/context label 与真实 state mismatch 的 failure 尚需外部验证。 |
+| Latent dynamics can reuse mixed-quality embodied data | [[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 用 policy、forward dynamics、inverse dynamics 和 visual forecasting objective 区分 high-quality demonstrations、low-quality trajectories 和 actionless egocentric video。 | DINO latent 可能漏掉 tactile、force、material 或 small-contact state；code/data reproducibility 仍需跟进。 |
+| High-fidelity sim can expose policy sensitivity | [[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab paper]] 与 [[nvlabs-robolab|NVlabs/RoboLab repo]] 提供 task library、predicate/subtask scoring、wrong-object diagnostics 和 sensitivity analysis workflow。 | Simulation proxy validity 不是自动成立；benchmark success 不能单独证明 real-world reliability。 |
 
-这也留下了一个关于 [[DifferentiablePhysics|differentiable physics]]、prompt-conditioned robot policies 与 simulation benchmarks 的共同问题：如果 forward simulator 使用 artificial compliance、产生 spurious contact forces，learned world model 用 perceptual metrics 掩盖 dynamics errors，VLA 通过 metadata/subgoal prompt 执行 idealized behavior mode，或 benchmark predicates 只捕获 easy-to-measure success，那么 gradients、planning signals、action chunks 和 reported scores 都可能反映 artifacts，而不是目标 physical system。
+## 关键张力
+
+- Exactness vs usability：更接近 rigid contact reference model 的 formulation 物理目标更清楚，但 numerical difficulty 更高；relaxation、heuristic per-contact handling 和 warm-starting 提高可用性，也可能引入 artifacts。见 [[ContactComplementarity]]、[[ContactSolvers]]。
+- Fidelity vs decision relevance：world model 生成 future frames 的视觉质量不等于控制价值；对 embodied AI，更关键的是 latent state、rollout horizon、action conditioning 和 downstream policy/evaluation 是否受益。见 [[WorldModelEvaluation]]。
+- Data scale vs data role：更多 robot/human/video data 不自动带来 better policy；π0.7 和 LDA-1B 都把 heterogeneity 的关键放在 conditioning 或 objective routing，而不是单纯扩大 BC corpus。见 [[RobotContextConditioning]]、[[LatentDynamicsActionModels]]。
+- Benchmark coverage vs deployment confidence：RoboLab 这类 benchmark 能系统暴露 task-generalist policy 的 failure modes，但它仍是 measurement substrate；真实 deployment 还需要验证 sim failure factor 是否在 hardware 上 causal。见 [[TaskGeneralistPolicyEvaluation]]、[[SimulationSensitivityAnalysis]]。
+- Differentiability vs physical truth：可微 simulation 与 differentiable rendering 让 gradients 可用，但 contact relaxation、spurious forces 或 learned dynamics artifacts 可能污染 gradient direction。见 [[DifferentiablePhysics]]、[[SimulationRealityGap]]。
+
+## 下一步缺口
+
+- 补充 independent replication 或 follow-up sources：π0.7、LDA-1B、RoboLab 都有强 source-specific claims，但需要更多外部复现、失败案例或对比评测。
+- 给 world model papers 建立更结构化 ingest metadata：horizon、input modality、action coupling、closed-loop validation、real-robot validation、benchmark、code/data availability。这个需求来自 [[WorldModelEvaluation]] 与 [[AwesomeWorldModels]]。
+- 追踪“latent dynamics + runtime context steering”是否会合流：LDA-1B 的 objective routing 与 π0.7 的 runtime steering 看起来互补，但当前 sources 还没有证明组合系统。
+- 对 simulation reality gap 保持多层解释：gap 不只来自 physics engine 参数，也可能来自 learned dynamics objective、policy prompt/context、benchmark predicate 和 evaluation aggregation。见 [[SimulationRealityGap]]。

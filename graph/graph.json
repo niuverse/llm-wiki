@@ -37,6 +37,13 @@
       "path": "wiki/concepts/DifferentiablePhysics.md"
     },
     {
+      "id": "concepts/LatentDynamicsActionModels",
+      "label": "Latent Dynamics Action Models",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/LatentDynamicsActionModels.md"
+    },
+    {
       "id": "concepts/RobotContextConditioning",
       "label": "Robot Context Conditioning",
       "type": "concept",
@@ -49,6 +56,20 @@
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/SimulationRealityGap.md"
+    },
+    {
+      "id": "concepts/SimulationSensitivityAnalysis",
+      "label": "Simulation Sensitivity Analysis",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/SimulationSensitivityAnalysis.md"
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation",
+      "label": "Task-Generalist Policy Evaluation",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/TaskGeneralistPolicyEvaluation.md"
     },
     {
       "id": "concepts/VisionLanguageActionModels",
@@ -93,11 +114,39 @@
       "path": "wiki/entities/ContactBench.md"
     },
     {
+      "id": "entities/EI30K",
+      "label": "EI-30K",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/EI30K.md"
+    },
+    {
+      "id": "entities/Galbot",
+      "label": "Galbot",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/Galbot.md"
+    },
+    {
+      "id": "entities/LDA1B",
+      "label": "LDA-1B",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/LDA1B.md"
+    },
+    {
       "id": "entities/MuJoCo",
       "label": "MuJoCo",
       "type": "entity",
       "color": "#2196F3",
       "path": "wiki/entities/MuJoCo.md"
+    },
+    {
+      "id": "entities/NVIDIA",
+      "label": "NVIDIA",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/NVIDIA.md"
     },
     {
       "id": "entities/PhysicalIntelligence",
@@ -119,6 +168,13 @@
       "type": "entity",
       "color": "#2196F3",
       "path": "wiki/entities/RaiSim.md"
+    },
+    {
+      "id": "entities/RoboLab",
+      "label": "RoboLab",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/RoboLab.md"
     },
     {
       "id": "overview",
@@ -149,11 +205,39 @@
       "path": "wiki/sources/contact-models-in-robotics-a-comparative-analysis.md"
     },
     {
+      "id": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "label": "LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/lda-1b-scaling-latent-dynamics-action-model.md"
+    },
+    {
+      "id": "sources/nvlabs-robolab",
+      "label": "NVlabs/RoboLab",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/nvlabs-robolab.md"
+    },
+    {
       "id": "sources/pi07-steerable-generalist-robotic-foundation-model",
       "label": "π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities",
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/pi07-steerable-generalist-robotic-foundation-model.md"
+    },
+    {
+      "id": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "label": "RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies.md"
+    },
+    {
+      "id": "syntheses/research-questions",
+      "label": "Research Questions",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/research-questions.md"
     }
   ],
   "edges": [
@@ -305,6 +389,55 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/LatentDynamicsActionModels--sources/lda-1b-scaling-latent-dynamics-action-model",
+      "from": "concepts/LatentDynamicsActionModels",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/LatentDynamicsActionModels",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--concepts/VisionLanguageActionModels",
+      "from": "concepts/LatentDynamicsActionModels",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--entities/LDA1B",
+      "from": "concepts/LatentDynamicsActionModels",
+      "to": "entities/LDA1B",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--entities/EI30K",
+      "from": "concepts/LatentDynamicsActionModels",
+      "to": "entities/EI30K",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--concepts/RobotContextConditioning",
+      "from": "concepts/LatentDynamicsActionModels",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--concepts/SimulationRealityGap",
+      "from": "concepts/LatentDynamicsActionModels",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/RobotContextConditioning--sources/pi07-steerable-generalist-robotic-foundation-model",
       "from": "concepts/RobotContextConditioning",
       "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
@@ -396,6 +529,69 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/SimulationSensitivityAnalysis--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "from": "concepts/SimulationSensitivityAnalysis",
+      "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationSensitivityAnalysis--sources/nvlabs-robolab",
+      "from": "concepts/SimulationSensitivityAnalysis",
+      "to": "sources/nvlabs-robolab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationSensitivityAnalysis--entities/RoboLab",
+      "from": "concepts/SimulationSensitivityAnalysis",
+      "to": "entities/RoboLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--concepts/SimulationSensitivityAnalysis",
+      "from": "concepts/SimulationSensitivityAnalysis",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "from": "concepts/TaskGeneralistPolicyEvaluation",
+      "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--sources/nvlabs-robolab",
+      "from": "concepts/TaskGeneralistPolicyEvaluation",
+      "to": "sources/nvlabs-robolab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--entities/RoboLab",
+      "from": "concepts/TaskGeneralistPolicyEvaluation",
+      "to": "entities/RoboLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/TaskGeneralistPolicyEvaluation",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/TaskGeneralistPolicyEvaluation",
+      "to": "concepts/CompositionalGeneralizationInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/VisionLanguageActionModels--sources/pi07-steerable-generalist-robotic-foundation-model",
       "from": "concepts/VisionLanguageActionModels",
       "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
@@ -403,9 +599,23 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/VisionLanguageActionModels--sources/lda-1b-scaling-latent-dynamics-action-model",
+      "from": "concepts/VisionLanguageActionModels",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/VisionLanguageActionModels--entities/Pi07",
       "from": "concepts/VisionLanguageActionModels",
       "to": "entities/Pi07",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--entities/LDA1B",
+      "from": "concepts/VisionLanguageActionModels",
+      "to": "entities/LDA1B",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -515,6 +725,13 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/WorldModelsForEmbodiedAI--sources/lda-1b-scaling-latent-dynamics-action-model",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/VisionLanguageActionModels--concepts/WorldModelsForEmbodiedAI",
       "from": "concepts/WorldModelsForEmbodiedAI",
       "to": "concepts/VisionLanguageActionModels",
@@ -578,6 +795,76 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/EI30K--sources/lda-1b-scaling-latent-dynamics-action-model",
+      "from": "entities/EI30K",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/EI30K--entities/LDA1B",
+      "from": "entities/EI30K",
+      "to": "entities/LDA1B",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--entities/EI30K",
+      "from": "entities/EI30K",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--entities/EI30K",
+      "from": "entities/EI30K",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/Galbot--sources/lda-1b-scaling-latent-dynamics-action-model",
+      "from": "entities/Galbot",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/Galbot--entities/LDA1B",
+      "from": "entities/Galbot",
+      "to": "entities/LDA1B",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/EI30K--entities/Galbot",
+      "from": "entities/Galbot",
+      "to": "entities/EI30K",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--entities/Galbot",
+      "from": "entities/Galbot",
+      "to": "concepts/LatentDynamicsActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/LDA1B--sources/lda-1b-scaling-latent-dynamics-action-model",
+      "from": "entities/LDA1B",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--entities/LDA1B",
+      "from": "entities/LDA1B",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "entities/MuJoCo--sources/contact-models-in-robotics-a-comparative-analysis",
       "from": "entities/MuJoCo",
       "to": "sources/contact-models-in-robotics-a-comparative-analysis",
@@ -595,6 +882,34 @@
       "id": "concepts/ContactSolvers--entities/MuJoCo",
       "from": "entities/MuJoCo",
       "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/NVIDIA--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "from": "entities/NVIDIA",
+      "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/NVIDIA--sources/nvlabs-robolab",
+      "from": "entities/NVIDIA",
+      "to": "sources/nvlabs-robolab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/NVIDIA--entities/RoboLab",
+      "from": "entities/NVIDIA",
+      "to": "entities/RoboLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/NVIDIA",
+      "from": "entities/NVIDIA",
+      "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -669,6 +984,34 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/RoboLab--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "from": "entities/RoboLab",
+      "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/RoboLab--sources/nvlabs-robolab",
+      "from": "entities/RoboLab",
+      "to": "sources/nvlabs-robolab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--entities/RoboLab",
+      "from": "entities/RoboLab",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/RoboLab",
+      "from": "entities/RoboLab",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "overview--sources/contact-models-in-robotics-a-comparative-analysis",
       "from": "overview",
       "to": "sources/contact-models-in-robotics-a-comparative-analysis",
@@ -697,9 +1040,44 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/ContactComplementarity--overview",
+      "id": "overview--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
       "from": "overview",
-      "to": "concepts/ContactComplementarity",
+      "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/nvlabs-robolab",
+      "from": "overview",
+      "to": "sources/nvlabs-robolab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/lda-1b-scaling-latent-dynamics-action-model",
+      "from": "overview",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--syntheses/research-questions",
+      "from": "overview",
+      "to": "syntheses/research-questions",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--overview",
+      "from": "overview",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--overview",
+      "from": "overview",
+      "to": "concepts/ContactSolvers",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -707,20 +1085,6 @@
       "id": "concepts/WorldModelsForEmbodiedAI--overview",
       "from": "overview",
       "to": "concepts/WorldModelsForEmbodiedAI",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/WorldModelTaxonomy--overview",
-      "from": "overview",
-      "to": "concepts/WorldModelTaxonomy",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/WorldModelEvaluation--overview",
-      "from": "overview",
-      "to": "concepts/WorldModelEvaluation",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -739,9 +1103,30 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/ContactModelsInRobotics--overview",
+      "id": "concepts/LatentDynamicsActionModels--overview",
       "from": "overview",
-      "to": "concepts/ContactModelsInRobotics",
+      "to": "concepts/LatentDynamicsActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--overview",
+      "from": "overview",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--overview",
+      "from": "overview",
+      "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationSensitivityAnalysis--overview",
+      "from": "overview",
+      "to": "concepts/SimulationSensitivityAnalysis",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -753,9 +1138,23 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/ContactComplementarity--overview",
+      "from": "overview",
+      "to": "concepts/ContactComplementarity",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/DifferentiablePhysics--overview",
       "from": "overview",
       "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AwesomeWorldModels--overview",
+      "from": "overview",
+      "to": "entities/AwesomeWorldModels",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -770,6 +1169,223 @@
       "id": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai--sources/awesome-world-models",
       "from": "sources/awesome-world-models",
       "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--sources/lda-1b-scaling-latent-dynamics-action-model",
+      "from": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/lda-1b-scaling-latent-dynamics-action-model--sources/pi07-steerable-generalist-robotic-foundation-model",
+      "from": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/nvlabs-robolab--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "from": "sources/nvlabs-robolab",
+      "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--sources/nvlabs-robolab",
+      "from": "sources/nvlabs-robolab",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/nvlabs-robolab",
+      "from": "sources/nvlabs-robolab",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "from": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/Pi07--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "from": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "to": "entities/Pi07",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "from": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/contact-models-in-robotics-a-comparative-analysis--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/pi07-steerable-generalist-robotic-foundation-model--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/nvlabs-robolab--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/nvlabs-robolab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/lda-1b-scaling-latent-dynamics-action-model--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelTaxonomy--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/WorldModelTaxonomy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/LatentDynamicsActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationSensitivityAnalysis--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/SimulationSensitivityAnalysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/RoboLab--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "entities/RoboLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/ContactComplementarity",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/Pi07--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "entities/Pi07",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/LDA1B--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "entities/LDA1B",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/EI30K--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "entities/EI30K",
       "type": "EXTRACTED",
       "confidence": 1.0
     }
