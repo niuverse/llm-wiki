@@ -15,6 +15,7 @@ last_updated: 2026-04-27
 - **当前总判断**：先读 [Overview（总览）](overview.md)。它维护当前 wiki 对 embodied AI、robotics simulation、world models、robot foundation models 与 evaluation 的综合判断。
 - **问题索引**：读 [Research Questions](syntheses/research-questions.md)。它把当前 wiki 能回答的高价值问题连接到相应 concept/source，而不额外引入复杂 map 层。
 - **World model 如何影响 robot decision？** 读 [World Models for Embodied AI](concepts/WorldModelsForEmbodiedAI.md)、[World Model Evaluation](concepts/WorldModelEvaluation.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)。
+- **Inverse dynamics model 怎么从视频学 action？** 读 [Inverse Dynamics Models](concepts/InverseDynamicsModels.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)、[Seer](entities/Seer.md)、[DeFI](entities/DeFI.md)。
 - **Robot foundation model 如何处理 heterogeneous data？** 读 [Vision-Language-Action Models](concepts/VisionLanguageActionModels.md)、[Robot Context Conditioning](concepts/RobotContextConditioning.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)。
 - **Simulation benchmark 能证明什么？** 读 [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md)、[Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
 - **Contact physics 为什么会影响 learning/control？** 读 [Contact Models in Robotics](concepts/ContactModelsInRobotics.md)、[Contact Complementarity（接触互补）](concepts/ContactComplementarity.md)、[Contact Solvers（接触求解器）](concepts/ContactSolvers.md)、[Differentiable Physics（可微物理）](concepts/DifferentiablePhysics.md)。
@@ -40,6 +41,8 @@ last_updated: 2026-04-27
 
 ### Robot Foundation Models
 
+- [Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation](sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation.md) - Seer/PIDM 框架，用 foresight token 和 inverse dynamics action token end-to-end 连接 vision prediction 与 action prediction
+- [Disentangled Robot Learning via Separate Forward and Inverse Dynamics Pretraining](sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining.md) - DeFI 框架，把 visual forward dynamics 和 inverse dynamics 分开预训练，再耦合微调到 robot actions
 - [LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion](sources/lda-1b-scaling-latent-dynamics-action-model.md) - dynamics-centric robot foundation model，用 DINO latent、MM-DiT 和 EI-30K 做 role-aware heterogeneous data ingestion
 - [π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities](sources/pi07-steerable-generalist-robotic-foundation-model.md) - Physical Intelligence 的 steerable VLA model，强调 context conditioning、subgoal images、metadata 与 compositional robot generalization
 
@@ -60,6 +63,7 @@ last_updated: 2026-04-27
 - [World Model Taxonomy](concepts/WorldModelTaxonomy.md) - Functionality、Temporal Modeling、Spatial Representation 三轴分类
 - [World Model Evaluation](concepts/WorldModelEvaluation.md) - world model metrics 从 pixel fidelity 到 state understanding 与 task performance 的评估层次
 - [Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md) - 用 DINO latent、diffusion action chunks 与 multi-task objective routing 学习 robot interaction dynamics
+- [Inverse Dynamics Models](concepts/InverseDynamicsModels.md) - 从 current/future visual transition 推断 action 或 latent action 的模型，包含 DeFI/GIDM 的 self-supervised video pretraining 机制
 
 ### Robot Foundation Models
 
@@ -84,8 +88,10 @@ last_updated: 2026-04-27
 
 ### Models, Datasets, And Benchmarks
 
+- [DeFI](entities/DeFI.md) - decoupled forward/inverse dynamics pretraining framework，用 GFDM、GIDM 和 action adapter 从 videos 到 robot commands
 - [EI-30K](entities/EI30K.md) - LDA-1B source 构建的 30k+ hour heterogeneous embodied interaction dataset
 - [LDA-1B](entities/LDA1B.md) - dynamics-centric robot foundation model，统一 policy、latent dynamics 和 visual forecasting
+- [Seer](entities/Seer.md) - end-to-end PIDM model，用 [FRS] foresight token 和 [INV] action token 做 robot manipulation policy learning
 - [π0.7](entities/Pi07.md) - steerable generalist VLA model，使用 language、metadata、subgoal images 和 control mode conditioning
 - [RoboLab](entities/RoboLab.md) - high-fidelity simulation benchmark/platform for task-generalist robot policy evaluation
 - [ContactBench](entities/ContactBench.md) - source 中的 unified C++ contact-model benchmark framework

@@ -45,3 +45,7 @@ Operations: `ingest`, `query`, `health`, `lint`, `graph`, `maintenance`
 ## [2026-04-27] ingest | LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion
 
 ## [2026-04-27] maintenance | Research dashboard and lightweight question index
+
+## [2026-04-27] ingest | Disentangled Robot Learning via Separate Forward and Inverse Dynamics Pretraining
+
+## [2026-04-27] ingest | Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation

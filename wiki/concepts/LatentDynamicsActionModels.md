@@ -1,14 +1,16 @@
 ---
 title: "Latent Dynamics Action Models"
 type: concept
-tags: [robotics, world-models, vla, diffusion, embodied-data]
-sources: ["[[lda-1b-scaling-latent-dynamics-action-model]]"]
+tags: [robotics, world-models, vla, diffusion, embodied-data, inverse-dynamics]
+sources: ["[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]"]
 last_updated: 2026-04-27
 ---
 
 # Latent Dynamics Action Models
 
 Latent Dynamics Action Model（LDA，潜在动力学动作模型）是 [[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] source 中提出的 robot foundation model training paradigm：它把 action policy、forward dynamics、inverse dynamics 和 visual forecasting 统一到一个 diffusion model 中，但把 future visual state 表示为 DINO latent，而不是 pixel/VAE reconstruction。核心目标是从 heterogeneous embodied data 中学习 action-induced state transitions，并让 mixed-quality data 不再只能作为 noisy imitation data。
+
+[[Seer]] 和 [[DeFI]] 从两个方向强化了同一判断：action representation 不应只靠 behavior cloning。Seer 在 action-labeled robot data 上把 future RGB prediction 与 inverse dynamics action prediction end-to-end 结合；DeFI 则让 [[InverseDynamicsModels|inverse dynamics pretraining]] 从 unlabeled video transitions 中学习 latent action tokens。LDA-1B 把 inverse dynamics 放进 shared diffusion objective；DeFI 则把 forward dynamics 和 inverse dynamics 分开预训练，先让 GIDM 学 latent action tokens，再在 downstream robot data 上用 action adapter grounding 到 executable command。
 
 ## 数学结构
 
@@ -66,6 +68,6 @@ flowchart LR
 
 对 [[WorldModelsForEmbodiedAI|world models]]，LDA 是一个 practical middle ground：它不需要生成 high-fidelity RGB video，也不把 world model 单独拿来做 MPC rollout，而是用 latent forward/inverse dynamics 改善 downstream action policy。
 
-对 [[VisionLanguageActionModels|VLA]]，LDA 提供了 BC 之外的 scaling path。Policy head 仍然输出 action chunks，但训练信号不只来自 expert action likelihood，还来自 action-conditioned future-state prediction 和 inverse dynamics。
+对 [[VisionLanguageActionModels|VLA]]，LDA、Seer 和 DeFI 共同提供了 BC 之外的 scaling path。Policy head 仍然输出 action chunks，但训练信号不只来自 expert action likelihood，还来自 action-conditioned future-state prediction、future-state-to-action inverse dynamics，以及 action-free video transition reconstruction。
 
-相关页面：[[LDA1B]]、[[EI30K]]、[[WorldModelsForEmbodiedAI]]、[[VisionLanguageActionModels]]、[[RobotContextConditioning]]、[[SimulationRealityGap]]。
+相关页面：[[LDA1B]]、[[EI30K]]、[[Seer]]、[[DeFI]]、[[InverseDynamicsModels]]、[[WorldModelsForEmbodiedAI]]、[[VisionLanguageActionModels]]、[[RobotContextConditioning]]、[[SimulationRealityGap]]。
