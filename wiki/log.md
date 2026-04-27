@@ -33,3 +33,7 @@ Operations: `ingest`, `query`, `health`, `lint`, `graph`, `maintenance`
 ## [2026-04-27] ingest | π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities
 
 ## [2026-04-27] maintenance | MarkItDown source extraction, health/graph tools, and knowledge review
+
+## [2026-04-27] ingest | RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies
+
+## [2026-04-27] ingest | NVlabs/RoboLab

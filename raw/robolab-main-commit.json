@@ -1,0 +1,125 @@
+{
+  "sha": "5d3ba41e551aced710b3d585b245a313a9a407ce",
+  "node_id": "C_kwDOR9dt5toAKDVkM2JhNDFlNTUxYWNlZDcxMGIzZDU4NWIyNDVhMzEzYTlhNDA3Y2U",
+  "commit": {
+    "author": {
+      "name": "Xuning Yang",
+      "email": "xuningy@nvidia.com",
+      "date": "2026-04-22T18:31:41Z"
+    },
+    "committer": {
+      "name": "Xuning Yang",
+      "email": "xuningy@nvidia.com",
+      "date": "2026-04-22T18:31:41Z"
+    },
+    "message": "Switch install flow to uv; add CONTRIBUTING.md\n\n- pyproject.toml: pin isaacsim[all,extscache]==5.0.0 and exclude the\n  Linux-less warp-lang 1.13.0.dev20260418 so `uv sync` resolves a\n  working env end-to-end. isaaclab's wheel does not declare isaacsim\n  as a dep but imports it at import time, so without the pin the\n  resolved env was unusable.\n- README.md: drop the Isaac Lab prerequisite line, document the\n  `OMNI_KIT_ACCEPT_EULA=Y` step, note the `uv run` prefix for\n  non-activated shells, and spell out the separate openpi-client\n  install step for the Pi0 family.\n- CONTRIBUTING.md: new. Short, public-facing, not accepting PRs\n  during stabilization. Flags that community scene/task submissions\n  will open in a future release. Moves the acknowledgements block\n  from README.md here.",
+    "tree": {
+      "sha": "ff00b51ee1408977f45b9d8eed152d0000a8061b",
+      "url": "https://api.github.com/repos/NVlabs/RoboLab/git/trees/ff00b51ee1408977f45b9d8eed152d0000a8061b"
+    },
+    "url": "https://api.github.com/repos/NVlabs/RoboLab/git/commits/5d3ba41e551aced710b3d585b245a313a9a407ce",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/NVlabs/RoboLab/commits/5d3ba41e551aced710b3d585b245a313a9a407ce",
+  "html_url": "https://github.com/NVlabs/RoboLab/commit/5d3ba41e551aced710b3d585b245a313a9a407ce",
+  "comments_url": "https://api.github.com/repos/NVlabs/RoboLab/commits/5d3ba41e551aced710b3d585b245a313a9a407ce/comments",
+  "author": {
+    "login": "xuningy",
+    "id": 16854471,
+    "node_id": "MDQ6VXNlcjE2ODU0NDcx",
+    "avatar_url": "https://avatars.githubusercontent.com/u/16854471?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/xuningy",
+    "html_url": "https://github.com/xuningy",
+    "followers_url": "https://api.github.com/users/xuningy/followers",
+    "following_url": "https://api.github.com/users/xuningy/following{/other_user}",
+    "gists_url": "https://api.github.com/users/xuningy/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/xuningy/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/xuningy/subscriptions",
+    "organizations_url": "https://api.github.com/users/xuningy/orgs",
+    "repos_url": "https://api.github.com/users/xuningy/repos",
+    "events_url": "https://api.github.com/users/xuningy/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/xuningy/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "xuningy",
+    "id": 16854471,
+    "node_id": "MDQ6VXNlcjE2ODU0NDcx",
+    "avatar_url": "https://avatars.githubusercontent.com/u/16854471?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/xuningy",
+    "html_url": "https://github.com/xuningy",
+    "followers_url": "https://api.github.com/users/xuningy/followers",
+    "following_url": "https://api.github.com/users/xuningy/following{/other_user}",
+    "gists_url": "https://api.github.com/users/xuningy/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/xuningy/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/xuningy/subscriptions",
+    "organizations_url": "https://api.github.com/users/xuningy/orgs",
+    "repos_url": "https://api.github.com/users/xuningy/repos",
+    "events_url": "https://api.github.com/users/xuningy/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/xuningy/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "d7235c57372d4cc6e33fc5624561ffdc1386a0e5",
+      "url": "https://api.github.com/repos/NVlabs/RoboLab/commits/d7235c57372d4cc6e33fc5624561ffdc1386a0e5",
+      "html_url": "https://github.com/NVlabs/RoboLab/commit/d7235c57372d4cc6e33fc5624561ffdc1386a0e5"
+    }
+  ],
+  "stats": {
+    "total": 40,
+    "additions": 37,
+    "deletions": 3
+  },
+  "files": [
+    {
+      "sha": "dc0b3475a425f7048b6d24b909dd4e70c5ffb185",
+      "filename": "CONTRIBUTING.md",
+      "status": "added",
+      "additions": 15,
+      "deletions": 0,
+      "changes": 15,
+      "blob_url": "https://github.com/NVlabs/RoboLab/blob/5d3ba41e551aced710b3d585b245a313a9a407ce/CONTRIBUTING.md",
+      "raw_url": "https://github.com/NVlabs/RoboLab/raw/5d3ba41e551aced710b3d585b245a313a9a407ce/CONTRIBUTING.md",
+      "contents_url": "https://api.github.com/repos/NVlabs/RoboLab/contents/CONTRIBUTING.md?ref=5d3ba41e551aced710b3d585b245a313a9a407ce",
+      "patch": "@@ -0,0 +1,15 @@\n+# Contributions\n+\n+We are not currently accepting pull requests while the codebase stabilizes. If you encounter issues or have suggestions, please open an [Issue](https://github.com/NVlabs/RoboLab/issues) in this repository.\n+\n+## Scene and task submissions\n+\n+We plan to open RoboLab to community-contributed scenes and tasks in a future release. Instructions on how to submit your own scenes and tasks will follow. Stay tuned.\n+\n+## Support\n+\n+Support is best-effort. We will continue iterating toward a more stable release.\n+\n+## Acknowledgements\n+\n+We thank the following additional contributors for their help in building RoboLab: Arhan Jain, Alperen Degirmenci, Siyi Chen."
+    },
+    {
+      "sha": "285a165e2ccd62ca835fabaf3a2a83eb83f1065c",
+      "filename": "README.md",
+      "status": "modified",
+      "additions": 17,
+      "deletions": 3,
+      "changes": 20,
+      "blob_url": "https://github.com/NVlabs/RoboLab/blob/5d3ba41e551aced710b3d585b245a313a9a407ce/README.md",
+      "raw_url": "https://github.com/NVlabs/RoboLab/raw/5d3ba41e551aced710b3d585b245a313a9a407ce/README.md",
+      "contents_url": "https://api.github.com/repos/NVlabs/RoboLab/contents/README.md?ref=5d3ba41e551aced710b3d585b245a313a9a407ce",
+      "patch": "@@ -20,7 +20,7 @@\n \n ## Getting Started\n \n-Requires [Isaac Lab](https://github.com/isaac-sim/IsaacLab) and [uv](https://docs.astral.sh/uv/getting-started/installation/). See [Requirements](#requirements) for versions and hardware.\n+Requires [uv](https://docs.astral.sh/uv/getting-started/installation/). Isaac Sim 5.0 and Isaac Lab 2.2.0 are installed automatically via `uv sync`. See [Requirements](#requirements) for hardware.\n \n ### Installation\n \n@@ -33,6 +33,13 @@ uv pip install \"setuptools<81\"\n uv sync\n ```\n \n+On first run, Isaac Sim prompts you to accept the NVIDIA Omniverse EULA. Either accept it interactively, or set it once in your shell:\n+```bash\n+export OMNI_KIT_ACCEPT_EULA=Y\n+```\n+\n+> **Running without activating the venv**: if you don't `source .venv/bin/activate`, prefix every `python` command with `uv run` (e.g. `uv run python scripts/check_registered_envs.py`).\n+\n Verify installation:\n ```bash\n python scripts/check_registered_envs.py\n@@ -52,6 +59,13 @@ python examples/demo/run_recorded.py --headless\n \n RoboLab uses a **server-client architecture**: your model runs as a standalone server, and RoboLab connects to it via a lightweight inference client. To quickly test RoboLab, try [Pi0-5 via OpenPI](docs/inference.md#openpi-pi0--pi0-fast--pi05).\n \n+Each inference client has its own lightweight Python dependency — e.g. Pi0 / Pi0-fast / Pi05 need `openpi-client`, which is **not** installed by `uv sync`. Install only the client(s) you need; see [docs/inference.md](docs/inference.md) for each backend. For example, to use the Pi0 family:\n+```bash\n+# Clone the OpenPI repo separately and install its client into the RoboLab venv\n+git clone git@github.com:xuningy/openpi.git ../openpi\n+uv pip install -e ../openpi/packages/openpi-client\n+```\n+\n 1. Start your policy server in a separate terminal.\n 2. Run evaluation:\n    ```bash\n@@ -141,6 +155,6 @@ The RoboLab framework is released under [CC-BY-NC-4.0](https://creativecommons.o\n }\n ```\n \n-### Acknowledgements\n+## Contributing\n \n-We thank the following additional contributors for their help in building RoboLab: Arhan Jain, Alperen Degirmenci, Siyi Chen\n+See [CONTRIBUTING.md](CONTRIBUTING.md) for acknowledgements, issues, and how to contribute."
+    },
+    {
+      "sha": "5b8d645275642ead43a138557e3004594f3fae63",
+      "filename": "pyproject.toml",
+      "status": "modified",
+      "additions": 5,
+      "deletions": 0,
+      "changes": 5,
+      "blob_url": "https://github.com/NVlabs/RoboLab/blob/5d3ba41e551aced710b3d585b245a313a9a407ce/pyproject.toml",
+      "raw_url": "https://github.com/NVlabs/RoboLab/raw/5d3ba41e551aced710b3d585b245a313a9a407ce/pyproject.toml",
+      "contents_url": "https://api.github.com/repos/NVlabs/RoboLab/contents/pyproject.toml?ref=5d3ba41e551aced710b3d585b245a313a9a407ce",
+      "patch": "@@ -9,6 +9,7 @@ authors = [{name = \"Xuning Yang\"}]\n dependencies = [\n     # Core\n     \"isaaclab==2.2.0\",\n+    \"isaacsim[all,extscache]==5.0.0\",\n     \"torch\",\n     \"numpy\",\n     \"gymnasium\",\n@@ -50,6 +51,10 @@ include = [\"robolab\", \"robolab.*\", \"robolab_policy_client\", \"robolab_policy_clie\n prerelease = \"allow\"\n index-strategy = \"unsafe-best-match\"\n no-build-isolation-package = [\"flatdict\"]\n+# warp-lang 1.13.0.dev20260418 on pypi.nvidia.com only published the macOS\n+# wheel — no Linux build — so any resolver pass that picked it would break\n+# `uv sync` on Linux. Exclude that specific version.\n+constraint-dependencies = [\"warp-lang != 1.13.0.dev20260418\"]\n \n [[tool.uv.index]]\n name = \"pytorch-cu128\""
+    }
+  ]
+}

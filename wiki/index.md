@@ -20,16 +20,20 @@ last_updated: 2026-04-27
 - [A Comprehensive Survey on World Models for Embodied AI](sources/a-comprehensive-survey-on-world-models-for-embodied-ai.md) - embodied AI world models 的 POMDP/ELBO formalization、三轴 taxonomy、datasets/metrics 与 open challenges
 - [AwesomeWorldModels](sources/awesome-world-models.md) - survey companion GitHub repository，按 taxonomy 维护 world model bibliography
 - [Contact Models in Robotics: a Comparative Analysis](sources/contact-models-in-robotics-a-comparative-analysis.md) - robotic contact models 与 contact solvers 的 comparative survey 和 benchmark
+- [NVlabs/RoboLab](sources/nvlabs-robolab.md) - RoboLab official implementation repository，包含 Isaac Lab task library、predicate/subtask system、policy clients 与 analysis tooling
 - [π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities](sources/pi07-steerable-generalist-robotic-foundation-model.md) - Physical Intelligence 的 steerable VLA model，强调 context conditioning、subgoal images、metadata 与 compositional robot generalization
+- [RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies](sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies.md) - NVIDIA 的 high-fidelity simulation benchmark，用 RoboLab-120、language variants 与 sensitivity analysis 评测 task-generalist robot policies
 
 ## Entities
 
 - [AwesomeWorldModels](entities/AwesomeWorldModels.md) - survey companion bibliography repository
 - [ContactBench](entities/ContactBench.md) - source 中的 unified C++ contact-model benchmark framework
 - [MuJoCo](entities/MuJoCo.md) - source 中用于讨论 contact regularization tradeoffs 的 robotics physics engine
+- [NVIDIA](entities/NVIDIA.md) - RoboLab paper/project/repo 的发布机构与 Isaac simulation stack 上下文
 - [Physical Intelligence](entities/PhysicalIntelligence.md) - π0.7 source 中的 robot foundation model research organization
 - [π0.7](entities/Pi07.md) - steerable generalist VLA model，使用 language、metadata、subgoal images 和 control mode conditioning
 - [RaiSim](entities/RaiSim.md) - source 中用于讨论 quadruped transfer 与 per-contact handling 的 robotics simulator
+- [RoboLab](entities/RoboLab.md) - high-fidelity simulation benchmark/platform for task-generalist robot policy evaluation
 
 ## Concepts
 
@@ -40,6 +44,8 @@ last_updated: 2026-04-27
 - [Differentiable Physics（可微物理）](concepts/DifferentiablePhysics.md) - simulator gradients、contact artifacts 与 gradient contamination
 - [Robot Context Conditioning](concepts/RobotContextConditioning.md) - 用 task/subtask language、metadata、subgoal images 与 control mode disambiguate heterogeneous robot data
 - [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md) - contact approximations 到 sim-to-real mismatch 的 causal flow
+- [Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md) - 用 controlled perturbations 与 NPE/MNPE posterior 找出影响 robot policy success 的环境参数
+- [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md) - 用 task libraries、language variants、predicates、subtask scoring 和 diagnostics 评估泛化 robot policies
 - [Vision-Language-Action Models](concepts/VisionLanguageActionModels.md) - 从 observation history 和 context 预测 robot action chunks 的 VLA policy formalism
 - [World Model Evaluation](concepts/WorldModelEvaluation.md) - world model metrics 从 pixel fidelity 到 state understanding 与 task performance 的评估层次
 - [World Model Taxonomy](concepts/WorldModelTaxonomy.md) - Functionality、Temporal Modeling、Spatial Representation 三轴分类
