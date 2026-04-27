@@ -9,3 +9,4 @@ node_modules/
 public/
 .quartz-cache/
 tsconfig.tsbuildinfo
+docs/plans/
