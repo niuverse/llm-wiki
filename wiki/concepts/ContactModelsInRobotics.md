@@ -26,13 +26,13 @@ Contact models 定义 robot simulator 如何把 collisions、non-penetration、f
 
 ```mermaid
 flowchart LR
-  A[Robot state<br/>q, v] --> B[Collision detection<br/>candidate contacts]
-  B --> C[Contact law<br/>Signorini + Coulomb + maximum dissipation]
-  C --> D[Model approximation<br/>NCP / LCP / CCP / RaiSim-style]
-  D --> E[Solver<br/>PGS / ADMM / staggered projections]
-  E --> F[Forces or impulses<br/>lambda_n, lambda_t]
-  F --> G[Dynamics integration<br/>next q, v]
-  E --> H[Residuals<br/>complementarity, friction, convergence]
+  A["Robot state<br/>q, v"] --> B["Collision detection<br/>candidate contacts"]
+  B --> C["Contact law<br/>Signorini + Coulomb + maximum dissipation"]
+  C --> D["Model approximation<br/>NCP / LCP / CCP / RaiSim-style"]
+  D --> E["Solver<br/>PGS / ADMM / staggered projections"]
+  E --> F["Forces or impulses<br/>lambda_n, lambda_t"]
+  F --> G["Dynamics integration<br/>next q, v"]
+  E --> H["Residuals<br/>complementarity, friction, convergence"]
   H --> D
 ```
 

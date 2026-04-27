@@ -56,11 +56,11 @@ ELBO 的两个 terms 对应一个 tension：reconstruction term 希望 $z_t$ 对
 
 ```mermaid
 flowchart LR
-  A["history<br/>o_1:t, a_0:t-1"] --> B["filtered posterior<br/>q_phi(z_t | z_{t-1}, a_{t-1}, o_t)"]
+  A["history<br/>o_1:t, a_0:t-1"] --> B["filtered posterior<br/>q_phi(z_t given z_{t-1}, a_{t-1}, o_t)"]
   B --> C["latent state z_t<br/>predictive memory"]
-  C --> D["dynamics prior<br/>p_theta(z_{t+1} | z_t, a_t)"]
+  C --> D["dynamics prior<br/>p_theta(z_{t+1} given z_t, a_t)"]
   D --> E["imagined future<br/>z_{t+1:T}"]
-  C --> F["reconstruction<br/>p_theta(o_t | z_t)"]
+  C --> F["reconstruction<br/>p_theta(o_t given z_t)"]
   E --> G["planning / policy optimization / MPC / counterfactuals"]
 ```
 

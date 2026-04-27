@@ -54,8 +54,8 @@ RoboLab appendix 的 interpretation 是：posterior tightly concentrated near re
 flowchart LR
   A[Sample perturbations theta] --> B[Run policy episodes]
   B --> C[Record outcome x]
-  C --> D[Train q_psi(theta | x)]
-  D --> E[Query success/failure posterior]
+  C --> D["Train q_psi(theta given x)"]
+  D --> E["Query success/failure posterior"]
   E --> F[Identify sensitive parameters]
 ```
 

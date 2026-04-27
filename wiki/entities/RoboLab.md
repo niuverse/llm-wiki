@@ -12,12 +12,12 @@ RoboLab 是 [[NVIDIA]] 发布的 high-fidelity simulation benchmark/platform，�
 
 ```mermaid
 flowchart LR
-  A[Scene library<br/>USD assets] --> B[Task definitions<br/>instruction + predicates]
-  B --> C[Environment registration<br/>robot + observations + actions]
-  C --> D[Policy client<br/>server-client inference]
-  D --> E[Episode runner<br/>multi-env evaluation]
-  E --> F[Results analysis<br/>success, score, wrong objects]
-  F --> G[Sensitivity analysis<br/>NPE/MNPE over perturbations]
+  A["Scene library<br/>USD assets"] --> B["Task definitions<br/>instruction + predicates"]
+  B --> C["Environment registration<br/>robot + observations + actions"]
+  C --> D["Policy client<br/>server-client inference"]
+  D --> E["Episode runner<br/>multi-env evaluation"]
+  E --> F["Results analysis<br/>success, score, wrong objects"]
+  F --> G["Sensitivity analysis<br/>NPE/MNPE over perturbations"]
 ```
 
 RoboLab 的关键设计是 separation of concerns：task file 只描述 scene、instruction、termination/subtask logic 和 contact objects；environment registration 再选择 robot embodiment、camera layout、lighting/background、action space 和 observation schema；policy 作为外部 server 接入。这使同一 benchmark 可以比较不同 [[VisionLanguageActionModels|VLA policies]]，也可以测试 same task 在不同 embodiment 或 observation setup 下的表现。

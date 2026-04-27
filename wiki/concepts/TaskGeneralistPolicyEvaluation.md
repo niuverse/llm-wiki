@@ -38,14 +38,14 @@ $$
 
 ```mermaid
 flowchart TD
-  A[Task library] --> B[Instruction variant]
-  A --> C[Scene and object distribution]
-  A --> D[Success/subtask predicates]
-  B --> E[Policy rollout]
+  A["Task library"] --> B["Instruction variant"]
+  A --> C["Scene and object distribution"]
+  A --> D["Success/subtask predicates"]
+  B --> E["Policy rollout"]
   C --> E
-  D --> F[Score and success]
+  D --> F["Score and success"]
   E --> F
-  E --> G[Wrong-object and trajectory diagnostics]
+  E --> G["Wrong-object and trajectory diagnostics"]
 ```
 
 ## Failure Modes

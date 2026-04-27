@@ -37,3 +37,7 @@ Operations: `ingest`, `query`, `health`, `lint`, `graph`, `maintenance`
 ## [2026-04-27] ingest | RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies
 
 ## [2026-04-27] ingest | NVlabs/RoboLab
+
+## [2026-04-27] maintenance | Fix Mermaid label in Simulation Sensitivity Analysis
+
+## [2026-04-27] maintenance | Audit Mermaid labels for special-character syntax
