@@ -41,3 +41,5 @@ Operations: `ingest`, `query`, `health`, `lint`, `graph`, `maintenance`
 ## [2026-04-27] maintenance | Fix Mermaid label in Simulation Sensitivity Analysis
 
 ## [2026-04-27] maintenance | Audit Mermaid labels for special-character syntax
+
+## [2026-04-27] ingest | LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion

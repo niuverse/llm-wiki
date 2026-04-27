@@ -2,7 +2,7 @@
 title: "Vision-Language-Action Models"
 type: concept
 tags: [robotics, vla, imitation-learning, foundation-models]
-sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]"]
+sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]"]
 last_updated: 2026-04-27
 ---
 
@@ -21,6 +21,8 @@ $$
 $$
 
 π0.7 的 action expert 用 flow matching 或 diffusion-style objective 学习 continuous action distribution。论文特别指出，这种 action expert 优化的是 approximate lower bound，而不是 closed-form log-likelihood；因此上式应理解为 policy-learning abstraction，而不是可精确计算的 likelihood。
+
+[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 把 VLA-style action prediction 放进更宽的 [[LatentDynamicsActionModels|latent dynamics]] objective：同一个 diffusion transformer 不只拟合 $\pi_\theta(a_{t:t+H}\mid o,C)$，还学习 $p(z_{t+1:t+k}\mid o_t,a_{t+1:t+k},\ell)$、$p(a_{t+1:t+k}\mid o_t,z_{t+1:t+k},\ell)$ 和 $p(z_{t+1:t+k}\mid o_t,\ell)$。这让 action policy 从 dynamics prediction 和 visual forecasting 中获得额外 supervision。
 
 ## 直觉
 
@@ -43,6 +45,7 @@ flowchart LR
 - Latency and stale chunks：large VLM/action expert 的 inference latency 会和 20-50 Hz control loop 冲突；action chunking 缓解频率压力，但会带来 delayed correction。
 - Cross-embodiment mismatch：同一 task 在不同 robot morphology 上可能需要完全不同的 grasp angle、reach strategy 或 force profile；直接复制 source robot motion 不够。
 - Approximate likelihood mismatch：flow/diffusion action experts 表达 multimodal actions，但 training objective 与 actual closed-loop success 之间仍有 gap。
+- BC-only data bottleneck：LDA-1B source 强调只做 expert behavior cloning 会丢掉 low-quality trajectories 与 actionless videos 中的 dynamics signal；如果 VLA training objective 不能区分 data roles，mixed data 可能被误用或丢弃。
 
 ## 实践含义
 
@@ -50,4 +53,4 @@ flowchart LR
 
 对 deployment，VLA 需要被看成实时系统的一部分：observation history、subtask generation、subgoal generation、action denoising、controller execution 和 safety checks 都会影响 final behavior。单看 offline imitation objective 无法判断 closed-loop robustness。
 
-相关页面：[[Pi07]]、[[RobotContextConditioning]]、[[CompositionalGeneralizationInRobotics]]。
+相关页面：[[Pi07]]、[[RobotContextConditioning]]、[[CompositionalGeneralizationInRobotics]]、[[LDA1B]]、[[LatentDynamicsActionModels]]。

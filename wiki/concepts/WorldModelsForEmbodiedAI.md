@@ -2,7 +2,7 @@
 title: "World Models for Embodied AI"
 type: concept
 tags: [embodied-ai, world-models, model-based-rl, robotics, autonomous-driving]
-sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]"]
+sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]"]
 last_updated: 2026-04-27
 ---
 
@@ -76,6 +76,12 @@ $$
 
 这说明 world model 可以作为 decision-coupled intermediate representation：它未必自己完成 planning，但会改变 policy 的 action distribution。因此 evaluation 也不能只看 generated image fidelity，而要看 subgoal images 是否提升 closed-loop instruction following、cross-embodiment transfer 或 [[CompositionalGeneralizationInRobotics|compositional generalization]]。
 
+## 作为 Latent Dynamics Pretraining
+
+[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 给出另一种 decision-coupled world-model role：world model 不生成 RGB subgoal image，也不单独做 MPC，而是在 DINO latent space 中 cotrain policy、forward dynamics、inverse dynamics 和 visual forecasting。Future observation target 被表示为 $z_{t+1:t+k}=f_{\mathrm{DINO}}(o_{t+1:t+k})$，然后与 action chunk $a_{t+1:t+k}$ 一起进入 diffusion-style denoising objective。
+
+这个设计把 world model 的价值放在 representation learning 和 policy pretraining 上。High-quality demonstrations 可以训练 action policy；low-quality trajectories 仍可训练 action-conditioned dynamics；actionless egocentric videos 则训练 visual forecasting。相比 pixel-space UWM，LDA-1B source 的 central claim 是 structured DINO latent 能减少 appearance modeling，扩大 mixed-quality embodied data 的可用范围。
+
 ## Failure Modes
 
 - Long-horizon error accumulation：Sequential Simulation and Inference 一步步 rollout，早期 state error 会进入后续 inputs，导致 temporal drift。
@@ -84,6 +90,7 @@ $$
 - Dataset fragmentation：manipulation、navigation、driving 和 video pretraining 使用不同 modality、scale 与 protocol，限制 cross-domain generalization。
 - Spatial bottleneck：Global Latent Vector 高效但丢失细节；Token Feature Sequence 表达力强但 sequence length 变重；Spatial Latent Grid 依赖 geometry priors；NeRF/3DGS-style Decomposed Rendering Representation 保真但 dynamic scene scalability 较弱。
 - Evaluation heterogeneity：benchmark comparisons 常被 input modality、auxiliary supervision、resolution、episode budget 和 task subset 差异混淆。
+- Frozen latent bottleneck：LDA-1B 说明 DINO latent 有助于 scaling，但也承认 fixed DINO visual features 是 limitation；如果 downstream control 需要的 force、tactile 或 material state 不在 latent 中，world model 可能预测 plausible future features 却缺少控制变量。
 
 ## 实践含义
 
@@ -93,4 +100,4 @@ $$
 
 对 foundation-model style embodied agents，[[WorldModelTaxonomy]] 提示不要把所有 video predictors 都叫 world models。只有当 representation、temporal rollout 和 action coupling 能支持 downstream decisions 时，它才是 embodied AI 意义上的 world model。
 
-相关页面：[[WorldModelTaxonomy]]、[[WorldModelEvaluation]]、[[AwesomeWorldModels]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]、[[RobotContextConditioning]]。
+相关页面：[[WorldModelTaxonomy]]、[[WorldModelEvaluation]]、[[AwesomeWorldModels]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]、[[RobotContextConditioning]]、[[LatentDynamicsActionModels]]。
