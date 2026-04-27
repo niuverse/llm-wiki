@@ -12,9 +12,9 @@
     "url": "git@github.com:niuverse/llm-wiki.git"
   },
   "scripts": {
-    "quartz": "./quartz/bootstrap-cli.mjs",
-    "wiki:preview": "npx quartz build -d wiki --serve",
-    "wiki:build": "npx quartz build -d wiki",
+    "quartz": "node --max-old-space-size=8192 ./quartz/bootstrap-cli.mjs",
+    "wiki:preview": "node --max-old-space-size=8192 ./quartz/bootstrap-cli.mjs build -d wiki --serve",
+    "wiki:build": "node --max-old-space-size=8192 ./quartz/bootstrap-cli.mjs build -d wiki",
     "wiki:health": "env UV_CACHE_DIR=.uv-cache uv run python tools/health.py",
     "wiki:graph": "env UV_CACHE_DIR=.uv-cache uv run python tools/build_graph.py --report",
     "wiki:extract": "env UV_CACHE_DIR=.uv-cache uv run python tools/extract_source.py",
