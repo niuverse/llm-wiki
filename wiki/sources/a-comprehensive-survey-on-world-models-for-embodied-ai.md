@@ -5,6 +5,9 @@ tags: [embodied-ai, world-models, robotics, autonomous-driving, evaluation]
 sources: []
 last_updated: 2026-04-27
 source_file: raw/a-comprehensive-survey-on-world-models-for-embodied-ai.html
+source_kind: html
+source_url: https://arxiv.org/abs/2510.16732
+extracted_text: graph/extracts/a-comprehensive-survey-on-world-models-for-embodied-ai.md
 source_date: 2025-11-29
 ---
 

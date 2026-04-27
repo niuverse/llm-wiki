@@ -29,3 +29,7 @@ Operations: `ingest`, `query`, `health`, `lint`, `graph`, `maintenance`
 ## [2026-04-27] ingest | AwesomeWorldModels
 
 ## [2026-04-27] maintenance | Quartz LaTeX delimiter 规范化
+
+## [2026-04-27] ingest | π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities
+
+## [2026-04-27] maintenance | MarkItDown source extraction, health/graph tools, and knowledge review

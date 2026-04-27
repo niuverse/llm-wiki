@@ -12,6 +12,8 @@ Contact solvers 是 numerical routines：当 simulator 检测到 contact geometr
 
 关键点是：solver 不是在孤立地“修正每个接触点”。一个 contact impulse 会通过 rigid-body dynamics 改变整机 velocity，再通过 Jacobian 影响所有其他 contact velocities。因此 contact resolution 本质上是一个 coupled fixed-point problem：找到一组 normal/tangential forces，使 non-penetration、friction bound 和 energy dissipation 的残差同时足够小。
 
+## 数学结构
+
 一个简化的数学图像是：
 
 - normal direction：`lambda_n >= 0`、`v_n >= 0`、`lambda_n * v_n = 0`，表示 contact 不能拉住物体，也不能在分离时仍施加 normal force。
@@ -35,6 +37,10 @@ flowchart TD
   G --> I["global / proximal iteration<br/>ADMM, staggered projections"]
 ```
 
+Contact coupling 可以通过 Delassus operator 直观理解：$W=J M^{-1}J^\top$，其中 $M$ 是 mass matrix，$J$ 是 contact Jacobian。一个 contact impulse $\lambda_i$ 会通过 $W$ 改变其他 contacts 的 normal/tangential velocities，所以求解不是每个 contact 独立 clip，而是在 coupled system 中找到全局一致的 $\lambda$。
+
+## 直觉
+
 论文区分了两个 practical families：
 
 - Per-contact methods，例如 PGS 与 RaiSim-style bisection：每次 iteration 成本低，在温和的 contact scenarios 中通常足够快；但它们可能遗漏 contacts 之间的 global coupling，产生 internal forces，并在 ill-conditioned problems 上失败。
@@ -43,6 +49,16 @@ flowchart TD
 算法直觉上，PGS-style 方法像是在 contact constraints 之间做 sequential projection：更新一个 contact 的 impulse 后，立刻用它修正当前 velocity estimate，再处理下一个 contact。它便宜、incremental，也容易 warm-start；但在 redundant support、sliding 或 bad conditioning 下，局部修正可能互相抵消，留下 self-consistency residuals 或 internal forces。
 
 ADMM 与 staggered projections 这类方法更像是在 whole contact vector 上交替满足 dynamics、cone constraints 和 complementarity-related constraints。它们每步更重，但能更直接处理 contacts 之间的 coupling 与 underdetermination，因此论文把它们描述为更 robust 的方向。
+
+## Failure Modes
+
+- Local coupling miss：PGS/per-contact updates 可能只在局部改善 residual，却没有解决 whole-body contact coupling。
+- Ill-conditioned convergence failure：质量分布、redundant contacts 或 near-singular contact geometry 会让 local solvers 难以收敛。
+- Internal-force artifacts：underdetermined support 中，solver 可能返回 physical residual 看似可接受但 force distribution 不可信的 solution。
+- Runtime/fidelity tradeoff inversion：global methods 每步更贵，但如果 local solver 需要大量 iterations 或 failed convergence，实际 control loop 中未必更便宜。
+- Warm-start dependence：warm-start 能显著改善 runtime，但也可能让 solver behavior 依赖 previous-step artifacts。
+
+## 实践含义
 
 对 robotics 来说，合适的 solver 取决于 task tolerance。某些 MPC 与 RL workloads 可能能接受快速的 approximate answers；而 contact-rich terrain、redundant support、force sensing 和 differentiable objectives 会对 physical consistency 提出更高要求。
 

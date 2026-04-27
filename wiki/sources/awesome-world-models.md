@@ -5,6 +5,10 @@ tags: [embodied-ai, world-models, bibliography, github]
 sources: []
 last_updated: 2026-04-27
 source_file: raw/awesome-world-models-readme.md
+source_kind: repo
+source_url: https://github.com/Li-Zn-H/AwesomeWorldModels
+source_metadata: raw/awesome-world-models-main-commit.json
+extracted_text: graph/extracts/awesome-world-models-readme.md
 source_date: 2026-03-28
 ---
 

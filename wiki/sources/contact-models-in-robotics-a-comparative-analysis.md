@@ -4,7 +4,10 @@ type: source
 tags: [robotics, simulation, contact-dynamics, physics-engines]
 sources: []
 last_updated: 2026-04-27
-source_file: raw/contact-models-in-robotics-a-comparative-analysis.html
+source_file: raw/contact-models-in-robotics-a-comparative-analysis.pdf
+source_kind: pdf
+source_url: https://arxiv.org/abs/2304.06372
+extracted_text: graph/extracts/contact-models-in-robotics-a-comparative-analysis.md
 source_date: 2024-07-21
 ---
 

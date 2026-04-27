@@ -1,0 +1,778 @@
+{
+  "built": "2026-04-27",
+  "nodes": [
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics",
+      "label": "Compositional Generalization in Robotics",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/CompositionalGeneralizationInRobotics.md"
+    },
+    {
+      "id": "concepts/ContactComplementarity",
+      "label": "Contact Complementarity（接触互补）",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/ContactComplementarity.md"
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics",
+      "label": "Contact Models in Robotics",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/ContactModelsInRobotics.md"
+    },
+    {
+      "id": "concepts/ContactSolvers",
+      "label": "Contact Solvers（接触求解器）",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/ContactSolvers.md"
+    },
+    {
+      "id": "concepts/DifferentiablePhysics",
+      "label": "Differentiable Physics（可微物理）",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/DifferentiablePhysics.md"
+    },
+    {
+      "id": "concepts/RobotContextConditioning",
+      "label": "Robot Context Conditioning",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/RobotContextConditioning.md"
+    },
+    {
+      "id": "concepts/SimulationRealityGap",
+      "label": "Simulation Reality Gap（仿真现实差距）",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/SimulationRealityGap.md"
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels",
+      "label": "Vision-Language-Action Models",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/VisionLanguageActionModels.md"
+    },
+    {
+      "id": "concepts/WorldModelEvaluation",
+      "label": "World Model Evaluation",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/WorldModelEvaluation.md"
+    },
+    {
+      "id": "concepts/WorldModelTaxonomy",
+      "label": "World Model Taxonomy",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/WorldModelTaxonomy.md"
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI",
+      "label": "World Models for Embodied AI",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/WorldModelsForEmbodiedAI.md"
+    },
+    {
+      "id": "entities/AwesomeWorldModels",
+      "label": "AwesomeWorldModels",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/AwesomeWorldModels.md"
+    },
+    {
+      "id": "entities/ContactBench",
+      "label": "ContactBench",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/ContactBench.md"
+    },
+    {
+      "id": "entities/MuJoCo",
+      "label": "MuJoCo",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/MuJoCo.md"
+    },
+    {
+      "id": "entities/PhysicalIntelligence",
+      "label": "Physical Intelligence",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/PhysicalIntelligence.md"
+    },
+    {
+      "id": "entities/Pi07",
+      "label": "π0.7",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/Pi07.md"
+    },
+    {
+      "id": "entities/RaiSim",
+      "label": "RaiSim",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/RaiSim.md"
+    },
+    {
+      "id": "overview",
+      "label": "Overview（总览）",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/overview.md"
+    },
+    {
+      "id": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "label": "A Comprehensive Survey on World Models for Embodied AI",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/a-comprehensive-survey-on-world-models-for-embodied-ai.md"
+    },
+    {
+      "id": "sources/awesome-world-models",
+      "label": "AwesomeWorldModels",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/awesome-world-models.md"
+    },
+    {
+      "id": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "label": "Contact Models in Robotics: a Comparative Analysis",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/contact-models-in-robotics-a-comparative-analysis.md"
+    },
+    {
+      "id": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "label": "π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/pi07-steerable-generalist-robotic-foundation-model.md"
+    }
+  ],
+  "edges": [
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--sources/pi07-steerable-generalist-robotic-foundation-model",
+      "from": "concepts/CompositionalGeneralizationInRobotics",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--concepts/RobotContextConditioning",
+      "from": "concepts/CompositionalGeneralizationInRobotics",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--concepts/VisionLanguageActionModels",
+      "from": "concepts/CompositionalGeneralizationInRobotics",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--entities/Pi07",
+      "from": "concepts/CompositionalGeneralizationInRobotics",
+      "to": "entities/Pi07",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--sources/contact-models-in-robotics-a-comparative-analysis",
+      "from": "concepts/ContactComplementarity",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--concepts/ContactModelsInRobotics",
+      "from": "concepts/ContactComplementarity",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--concepts/ContactSolvers",
+      "from": "concepts/ContactComplementarity",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--concepts/SimulationRealityGap",
+      "from": "concepts/ContactComplementarity",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--sources/contact-models-in-robotics-a-comparative-analysis",
+      "from": "concepts/ContactModelsInRobotics",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--concepts/ContactSolvers",
+      "from": "concepts/ContactModelsInRobotics",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--concepts/DifferentiablePhysics",
+      "from": "concepts/ContactModelsInRobotics",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--concepts/SimulationRealityGap",
+      "from": "concepts/ContactModelsInRobotics",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--entities/MuJoCo",
+      "from": "concepts/ContactModelsInRobotics",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--entities/RaiSim",
+      "from": "concepts/ContactModelsInRobotics",
+      "to": "entities/RaiSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--entities/ContactBench",
+      "from": "concepts/ContactModelsInRobotics",
+      "to": "entities/ContactBench",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--sources/contact-models-in-robotics-a-comparative-analysis",
+      "from": "concepts/ContactSolvers",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--concepts/SimulationRealityGap",
+      "from": "concepts/ContactSolvers",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--concepts/DifferentiablePhysics",
+      "from": "concepts/ContactSolvers",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--sources/contact-models-in-robotics-a-comparative-analysis",
+      "from": "concepts/DifferentiablePhysics",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--concepts/DifferentiablePhysics",
+      "from": "concepts/DifferentiablePhysics",
+      "to": "concepts/ContactComplementarity",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--entities/MuJoCo",
+      "from": "concepts/DifferentiablePhysics",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--sources/pi07-steerable-generalist-robotic-foundation-model",
+      "from": "concepts/RobotContextConditioning",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/RobotContextConditioning",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--concepts/VisionLanguageActionModels",
+      "from": "concepts/RobotContextConditioning",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--entities/Pi07",
+      "from": "concepts/RobotContextConditioning",
+      "to": "entities/Pi07",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/contact-models-in-robotics-a-comparative-analysis",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/pi07-steerable-generalist-robotic-foundation-model",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/SimulationRealityGap",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--concepts/WorldModelEvaluation",
+      "from": "concepts/SimulationRealityGap",
+      "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--concepts/SimulationRealityGap",
+      "from": "concepts/SimulationRealityGap",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--concepts/VisionLanguageActionModels",
+      "from": "concepts/SimulationRealityGap",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/MuJoCo",
+      "from": "concepts/SimulationRealityGap",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/RaiSim",
+      "from": "concepts/SimulationRealityGap",
+      "to": "entities/RaiSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--sources/pi07-steerable-generalist-robotic-foundation-model",
+      "from": "concepts/VisionLanguageActionModels",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--entities/Pi07",
+      "from": "concepts/VisionLanguageActionModels",
+      "to": "entities/Pi07",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--sources/awesome-world-models",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "sources/awesome-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--sources/pi07-steerable-generalist-robotic-foundation-model",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--concepts/WorldModelTaxonomy",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "concepts/WorldModelTaxonomy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--entities/AwesomeWorldModels",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "entities/AwesomeWorldModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--concepts/WorldModelEvaluation",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--concepts/WorldModelEvaluation",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelTaxonomy--sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "from": "concepts/WorldModelTaxonomy",
+      "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelTaxonomy--sources/awesome-world-models",
+      "from": "concepts/WorldModelTaxonomy",
+      "to": "sources/awesome-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelTaxonomy--entities/AwesomeWorldModels",
+      "from": "concepts/WorldModelTaxonomy",
+      "to": "entities/AwesomeWorldModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelTaxonomy--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/WorldModelTaxonomy",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--sources/awesome-world-models",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "sources/awesome-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--sources/pi07-steerable-generalist-robotic-foundation-model",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "concepts/CompositionalGeneralizationInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--entities/AwesomeWorldModels",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "entities/AwesomeWorldModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AwesomeWorldModels--sources/awesome-world-models",
+      "from": "entities/AwesomeWorldModels",
+      "to": "sources/awesome-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AwesomeWorldModels--sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "from": "entities/AwesomeWorldModels",
+      "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/ContactBench--sources/contact-models-in-robotics-a-comparative-analysis",
+      "from": "entities/ContactBench",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--entities/ContactBench",
+      "from": "entities/ContactBench",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--entities/ContactBench",
+      "from": "entities/ContactBench",
+      "to": "concepts/ContactComplementarity",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--sources/contact-models-in-robotics-a-comparative-analysis",
+      "from": "entities/MuJoCo",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--entities/MuJoCo",
+      "from": "entities/MuJoCo",
+      "to": "concepts/ContactComplementarity",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--entities/MuJoCo",
+      "from": "entities/MuJoCo",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/PhysicalIntelligence--sources/pi07-steerable-generalist-robotic-foundation-model",
+      "from": "entities/PhysicalIntelligence",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/PhysicalIntelligence--entities/Pi07",
+      "from": "entities/PhysicalIntelligence",
+      "to": "entities/Pi07",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--entities/PhysicalIntelligence",
+      "from": "entities/PhysicalIntelligence",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--entities/PhysicalIntelligence",
+      "from": "entities/PhysicalIntelligence",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--entities/PhysicalIntelligence",
+      "from": "entities/PhysicalIntelligence",
+      "to": "concepts/CompositionalGeneralizationInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/Pi07--sources/pi07-steerable-generalist-robotic-foundation-model",
+      "from": "entities/Pi07",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--entities/Pi07",
+      "from": "entities/Pi07",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/RaiSim--sources/contact-models-in-robotics-a-comparative-analysis",
+      "from": "entities/RaiSim",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--entities/RaiSim",
+      "from": "entities/RaiSim",
+      "to": "concepts/ContactComplementarity",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--entities/RaiSim",
+      "from": "entities/RaiSim",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/contact-models-in-robotics-a-comparative-analysis",
+      "from": "overview",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "from": "overview",
+      "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/awesome-world-models",
+      "from": "overview",
+      "to": "sources/awesome-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/pi07-steerable-generalist-robotic-foundation-model",
+      "from": "overview",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--overview",
+      "from": "overview",
+      "to": "concepts/ContactComplementarity",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--overview",
+      "from": "overview",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelTaxonomy--overview",
+      "from": "overview",
+      "to": "concepts/WorldModelTaxonomy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--overview",
+      "from": "overview",
+      "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--overview",
+      "from": "overview",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--overview",
+      "from": "overview",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--overview",
+      "from": "overview",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--overview",
+      "from": "overview",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--overview",
+      "from": "overview",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "from": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai--sources/awesome-world-models",
+      "from": "sources/awesome-world-models",
+      "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    }
+  ],
+  "missing": []
+}

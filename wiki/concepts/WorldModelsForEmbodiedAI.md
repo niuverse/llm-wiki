@@ -2,7 +2,7 @@
 title: "World Models for Embodied AI"
 type: concept
 tags: [embodied-ai, world-models, model-based-rl, robotics, autonomous-driving]
-sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]"]
+sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]"]
 last_updated: 2026-04-27
 ---
 
@@ -64,6 +64,18 @@ flowchart LR
   E --> G["planning / policy optimization / MPC / counterfactuals"]
 ```
 
+## 作为 Visual Subgoal Generator
+
+[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 给了一个更窄但很实用的 world-model role：world model 不直接输出 robot action，也不一定 rollout long-horizon trajectory，而是把 current observation $o_t$、semantic subtask $\hat{\ell}_t$ 和 metadata $m$ 转成 near-future visual goal：
+
+$$
+g^\star \sim p_\psi(g^\star \mid o_t,\hat{\ell}_t,m).
+$$
+
+这个 $g^\star$ 是 multi-view subgoal images，随后进入 [[VisionLanguageActionModels|VLA]] 的 context $C_t$，condition action chunk prediction。直觉上，它把 language 中难以说明的 spatial details 转成 visual target，例如 gripper 应该如何接近 handle、cloth 应该折到什么形状、或 object 应该出现在什么 view 中。
+
+这说明 world model 可以作为 decision-coupled intermediate representation：它未必自己完成 planning，但会改变 policy 的 action distribution。因此 evaluation 也不能只看 generated image fidelity，而要看 subgoal images 是否提升 closed-loop instruction following、cross-embodiment transfer 或 [[CompositionalGeneralizationInRobotics|compositional generalization]]。
+
 ## Failure Modes
 
 - Long-horizon error accumulation：Sequential Simulation and Inference 一步步 rollout，早期 state error 会进入后续 inputs，导致 temporal drift。
@@ -81,4 +93,4 @@ flowchart LR
 
 对 foundation-model style embodied agents，[[WorldModelTaxonomy]] 提示不要把所有 video predictors 都叫 world models。只有当 representation、temporal rollout 和 action coupling 能支持 downstream decisions 时，它才是 embodied AI 意义上的 world model。
 
-相关页面：[[WorldModelTaxonomy]]、[[WorldModelEvaluation]]、[[AwesomeWorldModels]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]。
+相关页面：[[WorldModelTaxonomy]]、[[WorldModelEvaluation]]、[[AwesomeWorldModels]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]、[[RobotContextConditioning]]。

@@ -1,6 +1,11 @@
-public
-node_modules
-.quartz-cache
-raw
-.obsidian
-wiki/.obsidian
+wiki/
+raw/
+graph/
+public/
+.quartz-cache/
+node_modules/
+.venv/
+.uv-cache/
+tsconfig.tsbuildinfo
+.obsidian/
+wiki/.obsidian/

@@ -15,11 +15,15 @@ wiki/
   concepts/          # ideas、methods、themes、frameworks。
   syntheses/         # 保存过的重要 query answers。
 graph/               # 可选的 generated graph artifacts。
+  extracts/          # 从 PDF/HTML/Markdown 生成的可再生阅读缓存。
+tools/               # deterministic helper scripts，不代替 agent synthesis。
 ```
 
 ## Core Rules
 
 - 把 `raw/` 当作 read-only evidence。不要 rewrite、in-place summarize 或清理 source files。
+- `raw/` 优先保存 canonical source：官方 PDF、官方 HTML capture、repo README/metadata snapshot 等。不要把 LLM 生成摘要或 extraction cache 放进 `raw/`。
+- `graph/extracts/` 保存可再生的 reading cache，例如 PDF text extraction、HTML text extraction、Markdown normalized text。extract 可以重建，不作为 canonical evidence。
 - 把 `wiki/` 当作 agent-owned layer。内容要 concise、linked、current。
 - `wiki/` 中每个 non-obvious claim 都应该能追溯到某个 source page。
 - 内部引用使用 `[[WikiLinks]]`。
@@ -96,21 +100,28 @@ source pages 还要包含：
 
 ```yaml
 source_file: raw/path/to/source.md
+source_kind: pdf | html | repo | image | office | audio | markdown | unknown
+source_url: https://...
+extracted_text: graph/extracts/path.md
 source_date: YYYY-MM-DD | unknown
 ```
+
+`source_file` 指 canonical evidence；`extracted_text` 是 optional Markdown reading cache。PDF、HTML、Office、image/audio 或编码不稳定的 source ingest 时，应优先用 MarkItDown 生成并记录 `extracted_text`，但 claims 仍追溯到 source page 与 canonical source。
 
 ## Ingest Workflow
 
 触发方式：`ingest <path>`，或用户要求把 source 加入 wiki。
 
 1. 完整阅读 source file。
-2. 阅读 `wiki/index.md` 和 `wiki/overview.md`。
-3. 创建 `wiki/sources/<slug>.md`，包含摘要、核心主张、有用 quotes、links 和开放问题。
-4. 创建或更新 `wiki/entities/` 与 `wiki/concepts/` 中的相关页面。
-5. 只有当新 source 改变 broader synthesis 时，才更新 `wiki/overview.md`。
-6. 把所有新增或变更页面加入 `wiki/index.md`。
-7. 在 `wiki/log.md` 追加条目，格式为：`## [YYYY-MM-DD] ingest | Source Title`
-8. 报告 changed files、contradictions，以及值得补充的 follow-up sources。
+2. 若 source 不是稳定的 UTF-8 Markdown，先运行 `uv run python tools/extract_source.py <path>` 生成 `graph/extracts/` Markdown reading cache。该 tool 使用 MarkItDown，支持 PDF、HTML、Office docs、images/OCR、audio transcription 等格式；需要 plugins 或 image LLM descriptions 时用 `--use-plugins`、`--llm-model` 或对应环境变量。
+3. 阅读 `wiki/index.md` 和 `wiki/overview.md`。
+4. 创建 `wiki/sources/<slug>.md`，包含摘要、核心主张、有用 quotes、links 和开放问题。
+5. 创建或更新 `wiki/entities/` 与 `wiki/concepts/` 中的相关页面。
+6. 只有当新 source 改变 broader synthesis 时，才更新 `wiki/overview.md`。
+7. 把所有新增或变更页面加入 `wiki/index.md`。
+8. 在 `wiki/log.md` 追加条目，格式为：`## [YYYY-MM-DD] ingest | Source Title`
+9. 运行 `python3 tools/health.py` 或等价确定性检查。
+10. 报告 changed files、contradictions，以及值得补充的 follow-up sources。
 
 source page body 默认使用中文 heading：
 
@@ -140,12 +151,19 @@ source page body 默认使用中文 heading：
 
 触发方式：`health`。
 
+优先运行：
+
+```bash
+uv run python tools/health.py
+```
+
 确定性检查：
 
 - Broken `[[WikiLinks]]`。
 - 没有登记到 `wiki/index.md` 的 wiki pages。
 - `wiki/index.md` 中指向 missing files 的 links。
 - 缺少对应 ingest entry 的 source pages。
+- source page frontmatter 中 `source_file` / `extracted_text` 指向 missing artifacts。
 
 除非用户要求修复，否则只报告 findings，不编辑。
 
@@ -162,6 +180,18 @@ source page body 默认使用中文 heading：
 - 值得单独建页的重要 recurring topics。
 
 做 broad rewrites 前先询问用户。
+
+## Graph Workflow
+
+触发方式：`build graph`。
+
+运行：
+
+```bash
+uv run python tools/build_graph.py --report
+```
+
+当前 graph tool 是 deterministic v1：只解析显式 `[[WikiLinks]]`，生成 `graph/graph.json`、`graph/graph.html` 和可选 `graph/graph-report.md`。不要自动创建 broken-link target pages；missing targets 只报告。
 
 ## Naming
 

@@ -6,6 +6,9 @@
 .trash/
 .DS_Store
 node_modules/
+__pycache__/
+.venv/
+.uv-cache/
 public/
 .quartz-cache/
 tsconfig.tsbuildinfo

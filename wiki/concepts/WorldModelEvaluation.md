@@ -2,7 +2,7 @@
 title: "World Model Evaluation"
 type: concept
 tags: [embodied-ai, world-models, evaluation, benchmarks, metrics]
-sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]"]
+sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]"]
 last_updated: 2026-04-27
 ---
 
@@ -53,10 +53,16 @@ flowchart LR
 - Short-horizon bias：短 clip generation 或 open-loop prediction 可能掩盖 long-horizon error accumulation 和 closed-loop instability。
 - Task-specific metrics fragmentation：EWM-Bench 之类新 benchmark 改进了部分维度，但 source 指出 cross-domain standards 仍不足。
 
+## Visual Subgoal Evaluation
+
+[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 把 world model 用作 visual subgoal generator，这让 evaluation 多了一层中间指标。Subgoal image 的视觉质量本身不够；真正要问的是它是否让 VLA 更好地 follow instruction、break dataset bias、transfer across embodiments 或完成 coached long-horizon tasks。
+
+因此 visual subgoal generator 至少需要两类评估：一类是 image/semantic quality，例如是否对齐 subtask instruction、是否保持 current observation 的 object identities；另一类是 policy-conditioning value，即加入 $g^\star$ 后 closed-loop success 是否提高，且失败时是否来自 hallucinated goal、stale goal、kinematically unreachable goal 或 VLA grounding failure。
+
 ## 实践含义
 
 评估 world model 时至少要报告三件事：model 是 [[WorldModelTaxonomy|taxonomy]] 中哪一类；evaluation 使用哪些 inputs、supervision 和 horizons；metric 是否真的对应目标 workflow。对 robotics，优先关心 real-time inference、closed-loop success、sample efficiency 和 [[SimulationRealityGap|sim-to-real]] behavior。对 autonomous driving，除了 FVD/FID，还要看 occupancy forecasting、trajectory L2、collision rate 与 causal scenario response。
 
 对于本 wiki 的后续 ingest，[[AwesomeWorldModels]] 中的 papers 不应只按 title 收录。更有用的 metadata 是：benchmark、horizon、input modality、是否用 GT state/occupancy、是否有 real-robot or closed-loop validation、是否提供 code/dataset。
 
-相关页面：[[WorldModelsForEmbodiedAI]]、[[WorldModelTaxonomy]]、[[AwesomeWorldModels]]。
+相关页面：[[WorldModelsForEmbodiedAI]]、[[WorldModelTaxonomy]]、[[AwesomeWorldModels]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]。
