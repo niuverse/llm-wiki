@@ -13,7 +13,7 @@ wiki/
   sources/           # 每个已 ingest source 一页。
   entities/          # 人物、组织、项目、产品等 entities。
   concepts/          # ideas、methods、themes、frameworks。
-  syntheses/         # 保存过的重要 query answers。
+  syntheses/         # 保存过的重要 query answers、distill summaries、learning scaffolds。
 graph/               # 可选的 generated graph artifacts。
   extracts/          # 从 PDF/HTML/Markdown 生成的可再生阅读缓存。
 tools/               # deterministic helper scripts，不代替 agent synthesis。
@@ -146,6 +146,84 @@ source page body 默认使用中文 heading：
 3. 用中文/hybrid style 回答，并使用 `[[WikiLinks]]` 作为 citations。
 4. 如果答案以后可能复用，询问是否保存到 `wiki/syntheses/<slug>.md`。
 5. 如果保存，同步更新 `wiki/index.md`，并在 `wiki/log.md` 追加 `query` 条目。
+
+## Distill Workflow
+
+触发方式：`distill`、`distill this`、`把刚才讨论沉淀进 wiki`，或用户明确要求把对话中的洞见、判断、假设、研究路线或框架整合进知识库。
+
+`distill` 的输入是当前对话，不是 external canonical source。它用于把 conversation-derived knowledge 编译进 `wiki/`，同时明确 evidence boundary，避免把讨论中的想法伪装成 source-backed claim。
+
+1. 回顾当前对话，提取有长期价值的信息：新概念或已有概念的澄清、研究判断、假设、decision rationale、framework/taxonomy、open questions、follow-up source candidates。
+2. 阅读 `wiki/index.md`、`wiki/overview.md` 和最小相关集合的 wiki pages。
+3. 将提炼结果分成三类：
+   - `source-backed`：已有 wiki source 支持的判断，必须链接到相关 source/concept page。
+   - `conversation-derived`：来自本次讨论的框架、偏好、解释或 meta-level 判断，不能写成外部证据结论。
+   - `hypothesis`：值得保留但仍需外部 source 验证的想法，优先进入 open questions 或 follow-up sources。
+4. 根据内容写入合适位置：
+   - 稳定研究判断：更新相关 `wiki/concepts/`、`wiki/syntheses/` 或 `wiki/overview.md`。
+   - 可复用讨论结果：新建 `wiki/syntheses/<slug>.md`。
+   - 待验证方向：更新 `wiki/syntheses/research-questions.md` 或目标 synthesis 的 `开放问题` / `Follow-up Sources` 部分。
+5. 新建或更新一个 distillation 摘要页，通常放在 `wiki/syntheses/`：
+   - frontmatter 使用 `type: synthesis` 与 `tags: [distill]`。
+   - `sources:` 只填已有 wiki source links；不要把 conversation 当作 source。
+   - body 默认包含 `## 讨论背景`、`## 提炼结果`、`## Evidence Boundaries`、`## 写入位置`、`## Follow-up Sources`。
+6. 同步更新 `wiki/index.md`。
+7. 在 `wiki/log.md` 追加条目，格式为：`## [YYYY-MM-DD] distill | <Title>`。
+8. 运行 `python3 tools/health.py` 或等价确定性检查。
+9. 报告 changed files、`source-backed` / `conversation-derived` / `hypothesis` 分类，以及值得后续 ingest 的 source 类型。
+
+推荐在 distill synthesis 中使用简短表格：
+
+```markdown
+| Insight | Evidence Level | Wiki Target |
+| --- | --- | --- |
+| ... | source-backed / conversation-derived / hypothesis | ... |
+```
+
+## Learn Workflow
+
+触发方式：`learn <topic>`、`系统学习 <topic>`，或用户希望 wiki 帮助理解一个当前没有明确 source 的主题，例如 `learn MPC and RL`。
+
+`learn` 的目标是从 unknown topic 启动学习，生成 learning scaffold（学习脚手架）和后续 source plan；它不是 ingest，不应创建 `wiki/sources/` 页面，也不应把 LLM explanation 写成 source-backed claim。
+
+1. 阅读 `wiki/index.md`、`wiki/overview.md` 和最小相关集合的 wiki pages。
+2. 判断当前 wiki 是否已有相关 source-backed coverage；如果没有，明确说明当前回答主要是 `conversation-derived` / `unsourced learning scaffold`。
+3. 用中文/hybrid style 生成学习脚手架，优先包含：
+   - topic boundary：这个主题包含什么、不包含什么。
+   - prerequisite map：需要先理解的数学、系统或工程概念。
+   - core concepts：核心概念、变量、对象和常见 notation。
+   - mechanism-level explanation：核心机制、公式直觉、pipeline 或算法 loop。
+   - misconception map：常见误解和概念混淆。
+   - practice hooks：和当前 wiki 主题、用户研究方向或工程任务的连接。
+4. 对所有非 wiki-source 支持的解释标注为 `conversation-derived` 或 `unsourced learning note`；不要把它们写成 external evidence。
+5. 产出 Source Acquisition Plan，列出值得后续 `source <topic>` 或 `ingest` 的资料类型，例如 textbook chapters、lecture notes、survey papers、seminal papers、implementation docs、tutorial repos。
+6. 如果 learning scaffold 以后可能复用，询问是否保存到 `wiki/syntheses/<slug>-learning-map.md`；如果保存，frontmatter 使用 `type: synthesis`、`tags: [learn]`，`sources:` 只填已有 wiki source links。
+7. 保存时同步更新 `wiki/index.md`，并在 `wiki/log.md` 追加条目，格式为：`## [YYYY-MM-DD] learn | <Topic>`。
+8. 保存后运行 `python3 tools/health.py` 或等价确定性检查。
+
+learning scaffold 不进入 `raw/`。如果后续找到 canonical external source，必须通过 `ingest` 才能升级为 source-backed wiki knowledge。
+
+## Source Workflow
+
+触发方式：`source <topic>`、`find sources for <topic>`、`sources for <topic>`、`learn <topic> --with-sources`，或用户要求 wiki 帮忙搜集某个学习主题的资料来源。
+
+`source` 的目标是建立候选 source 清单和 ingest priority；它不直接生成知识结论。只有用户选定资料并执行 `ingest` 后，才创建 `wiki/sources/` 页面。
+
+1. 阅读 `wiki/index.md`、`wiki/overview.md` 和相关 pages，确认当前 wiki 已有哪些 source-backed coverage 与缺口。
+2. 如果用户要求联网搜集，或 topic 依赖最新资料，使用 web search；优先官方课程、教材、经典论文、survey papers、作者/机构主页、官方 docs、维护良好的 repo。避免把 SEO 内容、二手摘要或低可信博客作为优先 source。
+3. 对候选资料按用途分类：
+   - `intro`：入门解释和 intuition。
+   - `mathematical`：定义、定理、推导、notation。
+   - `implementation`：代码、API、工程实践、tutorial repo。
+   - `survey`：taxonomy、历史脉络、open problems。
+   - `seminal`：奠基论文或领域内高影响 source。
+4. 对每个候选 source 记录 title、URL/path、source kind、推荐理由、适合的学习阶段、是否建议 ingest。
+5. 给出 ingest priority：哪些资料最应该先进入 `raw/` 并执行 `ingest`，哪些只适合作为背景阅读。
+6. 如果用户要求保存 source plan，创建或更新 `wiki/syntheses/<slug>-source-plan.md`，frontmatter 使用 `type: synthesis`、`tags: [source-plan]`，并把候选资料作为 follow-up ingest queue，而不是 source-backed claims。
+7. 保存时同步更新 `wiki/index.md`，并在 `wiki/log.md` 追加条目，格式为：`## [YYYY-MM-DD] source | <Topic>`。
+8. 保存后运行 `python3 tools/health.py` 或等价确定性检查。
+
+`source` 可以推荐 source，但不能替代 `ingest`。不要把候选 source 的内容直接写入 concepts，除非已经完成对应 source 的 ingest。
 
 ## Health Workflow
 

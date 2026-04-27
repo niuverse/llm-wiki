@@ -3,7 +3,7 @@ title: "Wiki Log"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-04-27
+last_updated: 2026-04-28
 ---
 
 # Wiki Log
@@ -12,7 +12,7 @@ wiki operations 的 append-only chronological record。
 
 Format: `## [YYYY-MM-DD] <operation> | <title>`
 
-Operations: `ingest`, `query`, `health`, `lint`, `graph`, `maintenance`
+Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `graph`, `maintenance`
 
 ---
 
@@ -49,3 +49,7 @@ Operations: `ingest`, `query`, `health`, `lint`, `graph`, `maintenance`
 ## [2026-04-27] ingest | Disentangled Robot Learning via Separate Forward and Inverse Dynamics Pretraining
 
 ## [2026-04-27] ingest | Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation
+
+## [2026-04-28] maintenance | Add distill workflow for conversation-derived knowledge
+
+## [2026-04-28] maintenance | Add learn and source workflows for unsourced study topics
