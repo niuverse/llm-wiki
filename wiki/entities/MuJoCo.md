@@ -2,8 +2,8 @@
 title: "MuJoCo"
 type: entity
 tags: [robotics, simulation, physics-engine]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]"]
-last_updated: 2026-04-27
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[isaac-sim-asset-structure]]"]
+last_updated: 2026-05-01
 ---
 
 # MuJoCo
@@ -14,4 +14,6 @@ MuJoCo 是 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in
 
 本页只记录该 paper 对 MuJoCo 的处理方式；在提出 current-version claims 之前，应补充 MuJoCo documentation 或 source-code notes。
 
-相关页面：[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[SimulationRealityGap]]。
+[[isaac-sim-asset-structure|Isaac Sim Asset Structure]] source 给 MuJoCo 增加了 asset-authoring context：Isaac Sim 6.0 EDR docs 建议把 MuJoCo-specific attributes 和 tuning 放入 `mujoco.usda`，并把 common rigid bodies、joints 和 articulation 放在 neutral `physics.usd(a)` layer 中，以避免 runtime-specific behavior 与 PhysX 或 neutral physics clashing。
+
+相关页面：[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]。

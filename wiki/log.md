@@ -3,7 +3,7 @@ title: "Wiki Log"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-04-28
+last_updated: 2026-05-01
 ---
 
 # Wiki Log
@@ -53,3 +53,7 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 ## [2026-04-28] maintenance | Add distill workflow for conversation-derived knowledge
 
 ## [2026-04-28] maintenance | Add learn and source workflows for unsourced study topics
+
+## [2026-05-01] ingest | Asset Structure - Isaac Sim Documentation
+
+## [2026-05-01] maintenance | Add Isaac Sim Asset Structure architecture diagrams
