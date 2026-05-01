@@ -1,3 +1,229 @@
 .wheeled-robot-lab {
+  margin: 1.5rem 0;
   border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--light) 94%, var(--lightgray));
+}
+
+.wrl-figure {
+  display: grid;
+  grid-template-columns: minmax(18rem, 1.2fr) minmax(17rem, 0.8fr);
+  gap: 1rem;
+  margin: 0;
+  padding: 1rem;
+}
+
+.wrl-diagram {
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+}
+
+.wrl-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.wrl-grid {
+  stroke: var(--lightgray);
+  stroke-width: 0.01;
+}
+
+.wrl-axis {
+  stroke: var(--gray);
+  stroke-width: 0.018;
+}
+
+.wrl-body {
+  fill: color-mix(in srgb, var(--light) 88%, var(--tertiary));
+  stroke: var(--darkgray);
+  stroke-width: 0.035;
+}
+
+.wrl-origin {
+  fill: var(--darkgray);
+}
+
+.wrl-omni-outline {
+  fill: none;
+  stroke: var(--gray);
+  stroke-dasharray: 0.08 0.06;
+  stroke-width: 0.025;
+}
+
+.wrl-rear-reference rect {
+  fill: none;
+  stroke: var(--gray);
+  stroke-dasharray: 0.08 0.05;
+  stroke-width: 0.03;
+}
+
+.wrl-wheel rect {
+  fill: var(--light);
+  stroke: var(--dark);
+  stroke-width: 0.035;
+}
+
+.wrl-wheel-relaxed rect {
+  stroke-dasharray: 0.07 0.04;
+}
+
+.wrl-roll {
+  stroke: var(--secondary);
+  stroke-width: 0.04;
+}
+
+.wrl-normal {
+  stroke: #9f3d3d;
+  stroke-width: 0.035;
+}
+
+.wrl-relaxed {
+  opacity: 0.72;
+  stroke-dasharray: 0.08 0.06;
+}
+
+.wrl-velocity {
+  stroke: var(--dark);
+  stroke-width: 0.035;
+}
+
+.wrl-body-x,
+.wrl-body-y {
+  stroke: var(--darkgray);
+  stroke-width: 0.025;
+}
+
+.wrl-arrow-head {
+  fill: currentColor;
+}
+
+.wrl-roll + .wrl-arrow-head {
+  color: var(--secondary);
+}
+
+.wrl-svg-label {
+  fill: var(--darkgray);
+  font-family: var(--codeFont);
+  font-size: 0.18px;
+  dominant-baseline: middle;
+}
+
+.wrl-equations {
+  min-width: 0;
+}
+
+.wrl-equations h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.wrl-equations pre {
+  overflow-x: auto;
+  margin: 0;
+  padding: 0.75rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 4px;
+  background: var(--light);
+  color: var(--dark);
+  font-family: var(--codeFont);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.wrl-legend {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25rem 0.5rem;
+  margin: 0.75rem 0 0;
+  font-size: 0.88rem;
+}
+
+.wrl-legend dt,
+.wrl-legend dd {
+  margin: 0;
+}
+
+.wrl-legend dt {
+  font-family: var(--codeFont);
+}
+
+.wrl-key {
+  display: inline-block;
+  width: 1.4rem;
+  height: 0.16rem;
+  margin-right: 0.35rem;
+  vertical-align: middle;
+}
+
+.wrl-key-roll {
+  background: var(--secondary);
+}
+
+.wrl-key-normal {
+  background: #9f3d3d;
+}
+
+.wrl-key-velocity {
+  background: var(--dark);
+}
+
+.wrl-controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+  padding: 0 1rem 1rem;
+  border-top: 1px solid var(--lightgray);
+}
+
+.wrl-control {
+  display: grid;
+  grid-template-columns: 4rem minmax(5rem, 1fr) 3.7rem;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  font-family: var(--codeFont);
+  font-size: 0.82rem;
+}
+
+.wrl-control:has(select) {
+  grid-template-columns: 4rem minmax(8rem, 1fr);
+}
+
+.wrl-control-name {
+  color: var(--darkgray);
+}
+
+.wrl-control input,
+.wrl-control select,
+.wrl-reset {
+  min-width: 0;
+}
+
+.wrl-control output {
+  text-align: right;
+  color: var(--darkgray);
+}
+
+.wrl-reset {
+  min-height: 2rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 4px;
+  background: var(--light);
+  color: var(--dark);
+  font: inherit;
+}
+
+@media all and (max-width: 900px) {
+  .wrl-figure,
+  .wrl-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .wrl-control,
+  .wrl-control:has(select) {
+    grid-template-columns: 4rem minmax(0, 1fr) 3.7rem;
+  }
 }
