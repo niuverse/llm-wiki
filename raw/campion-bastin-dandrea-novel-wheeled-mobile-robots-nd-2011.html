@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+<title>ND - Article - Structural properties and classification on kinematic and dynamic models of wheeled mobile robots</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="robots" content="index, follow" />
+<link href="/bitrix/cache/css/s2/template-site1/kernel/kernel.css?1762961083" type="text/css" rel="stylesheet" />
+<script type="text/javascript"> var arKernelCSS = new Array('/bitrix/js/main/core/css/core.css','/bitrix/js/fileman/sticker.css','/bitrix/js/main/core/css/core_panel.css','/bitrix/js/main/core/css/core_popup.css','/bitrix/js/main/core/css/core_date.css','/bitrix/js/socialservices/css/ss.css','//bitrix/js/main/core/css/core.css','//bitrix/js/fileman/sticker.css','//bitrix/js/main/core/css/core_panel.css','/home/user1web/site3-ics/htdocs/bitrix/js/main/core/css/core.css'); </script><link href="/bitrix/cache/css/s2/template-site1/template_83b556c3f6ae4f6aaed945acba66be94/template_83b556c3f6ae4f6aaed945acba66be94_463dc66aec198fceeda819e25899d8b1.css?1412060386" type="text/css" rel="stylesheet" />
+
+<script type="text/javascript">if(!window.BX)window.BX={message:function(mess){if(typeof mess=='object') for(var i in mess) BX.message[i]=mess[i]; return true;}};</script><script type="text/javascript">(window.BX||top.BX).message({'LANGUAGE_ID':'en','FORMAT_DATE':'DD.MM.YYYY','FORMAT_DATETIME':'DD.MM.YYYY HH:MI:SS','COOKIE_PREFIX':'BITRIX_SM','USER_ID':'','SERVER_TIME':'1777643638','SERVER_TZ_OFFSET':'10800','USER_TZ_OFFSET':'0','USER_TZ_AUTO':'Y','bitrix_sessid':'a29ba7ecc5dbd97ca73d3fc50e89063c','SITE_ID':'s2'});(window.BX||top.BX).message({'JS_CORE_LOADING':'Loading...','JS_CORE_WINDOW_CLOSE':'Close','JS_CORE_WINDOW_EXPAND':'Expand','JS_CORE_WINDOW_NARROW':'Restore','JS_CORE_WINDOW_SAVE':'Save','JS_CORE_WINDOW_CANCEL':'Cancel','JS_CORE_H':'h','JS_CORE_M':'m','JS_CORE_S':'s','JS_CORE_NO_DATA':'- No data -','JSADM_AI_HIDE_EXTRA':'Hide extra items','JSADM_AI_ALL_NOTIF':'All notifications','JSADM_AUTH_REQ':'Authentication is required!','JS_CORE_WINDOW_AUTH':'Log In','JS_CORE_IMAGE_FULL':'Full size'});</script>
+<script type="text/javascript" src="/bitrix/cache/js/s2/template-site1/kernel/kernel.js?1762961083"></script>
+<script type="text/javascript"> BX.setKernelJS(['/bitrix/js/main/core/core.js','/bitrix/js/main/core/core_ajax.js','/bitrix/js/main/core/core_fx.js','/bitrix/js/main/session.js','/bitrix/js/main/cphttprequest.js','/bitrix/js/main/core/core_window.js','/bitrix/js/fileman/sticker.js','/bitrix/js/main/core/core_admin.js','/bitrix/js/main/utils.js','/bitrix/js/main/admin_tools.js','/bitrix/js/main/popup_menu.js','/bitrix/js/main/admin_search.js','/bitrix/js/main/hot_keys.js','/bitrix/js/main/public_tools.js','/bitrix/js/main/core/core_popup.js','/bitrix/js/main/core/core_date.js','/bitrix/js/socialservices/ss.js','//bitrix/js/main/core/core.js','//bitrix/js/main/core/core_ajax.js','//bitrix/js/main/core/core_fx.js','//bitrix/js/main/session.js','//bitrix/js/main/cphttprequest.js','//bitrix/js/main/core/core_window.js','//bitrix/js/fileman/sticker.js','//bitrix/js/main/core/core_admin.js','//bitrix/js/main/utils.js','//bitrix/js/main/admin_tools.js','//bitrix/js/main/popup_menu.js','//bitrix/js/main/admin_search.js','//bitrix/js/main/hot_keys.js','//bitrix/js/main/public_tools.js','/home/user1web/site3-ics/htdocs/bitrix/js/main/core/core.js','/home/user1web/site3-ics/htdocs/bitrix/js/main/core/core_ajax.js','/home/user1web/site3-ics/htdocs/bitrix/js/main/session.js','/home/user1web/site3-ics/htdocs/bitrix/js/main/cphttprequest.js']); </script><script type="text/javascript">
+bxSession.Expand(14400, 'a29ba7ecc5dbd97ca73d3fc50e89063c', false, '4d7f86892dbda596ae989ec821079bc4');
+</script>
+
+<meta name="author" content="Russian Journal of Nonlinear Dynamics">
+<meta name="keywords" content="wheeled mobile robots, kinematic and dynamic models, nonholonomity, control">
+<meta name="description" content="Russian Journal of Nonlinear Dynamics">
+<meta name="citation_journal_title" content="Russian Journal of Nonlinear Dynamics">
+<meta name="citation_title" content="Structural properties and classification on kinematic and dynamic models of wheeled mobile robots">
+<meta name="citation_date" content="2011">
+<meta name="citation_publication_date" content="2011">
+<meta name="citation_volume" content="7">
+<meta name="citation_issue" content="4">
+<meta name="citation_firstpage" content="733">
+<meta name="citation_lastpage" content="769">
+<meta name="citation_author" content="Campion G.">
+<meta name="citation_author" content="Bastin G.">
+<meta name="citation_author" content="D’Andréa-Novel B.">
+<meta name="distribution" content="global">
+ 
+<script type="text/javascript" src="/bitrix/cache/js/s2/template-site1/template_f43a77c14888861c0d8b1558745bda22/template_f43a77c14888861c0d8b1558745bda22_3c4952a696931fcbb8b41c5e461493cd.js?1527861862"></script>
+
+<meta name="cmsmagazine" content="0aa780ee12234a864a21ed9e371ed814" />
+<link rel="stylesheet" type="text/css" href="/bitrix/templates/template-site1/asset/jquery.mmenu.css">
+<link rel="stylesheet" type="text/css" href="/bitrix/templates/template-site1/asset/style.css?v=1.7.2">
+
+<link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+<link rel="manifest" href="/favicon/manifest.json">
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,300,700,800&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
+<script src="/js/less.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="/bitrix/templates/template-site1/asset/jquery.cookie.js"></script>
+<script type="text/javascript" src="/bitrix/templates/template-site1/asset/jquery.mmenu.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">// <![CDATA[
+MathJax.Hub.Config({
+tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+// ]]></script>
+<script>
+$('#En').live('click', function() {
+		$.cookie('language', 'en', {
+   			expires: 30,
+    			path: '/',
+			});	
+		location.reload();	
+});
+$('#Rus').live('click', function() {
+		$.cookie('language', 'ru', {
+   			expires: 30,
+    			path: '/',
+			});	
+		location.reload();	
+});
+</script>
+
+<script type="text/javascript" src="/js/cusel.js"></script>
+<script>
+  $(function(select_cusel){
+    var params = {
+        changedEl: "select",
+        scrollArrows: false
+    }
+    cuSel(params);
+  });
+</script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<style>
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+</style>
+</head>
+<body>
+<div id="main_wrap_content">
+<!--[if lte IE 8]>
+<div class="message message_error">Your Internet Explorer outdated!<br>
+Please use the actual web-browser or IE does not mnee 9 version.<br>
+<a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Download actual version</a>
+</div>
+<![endif]-->
+
+<div class="wrap">
+    <header>
+        <div class="wr">
+			<!--<div id="lang">
+			Select language: 			 <span id="En" class="active">En</span>
+			</div>-->
+            <div class="logo" style="width: 360px;">
+				<a href="/"><img src="/bitrix/templates/template-site1/asset/logo.png"></a>
+                <a href="/" class="h1">Russian Journal of Nonlinear Dynamics </span></a>
+                <span class="issn_head">
+				<nobr>ISSN 2658-5324 (print)</nobr>, <nobr>2658-5316 (on-line)</nobr>				</span> 
+				<a class="ml" href="mailto:editorial@rcd.ru">editorial@rcd.ru</a>
+            </div>
+			            <div class="search">
+               <form action="/search/">
+<script type="text/javascript">
+if (!window.oObject || typeof oObject != "object")
+	window.oObject = {};
+
+window.q2132416085_CheckThis = document.q2132416085_CheckThis = function(oObj)
+{
+	try
+	{
+		if(SuggestLoaded)
+		{
+			if (typeof window.oObject[oObj.id] != 'object')
+				window.oObject[oObj.id] = new JsSuggest(oObj, 'pe:10,md5:,site:s2');
+			return;
+		}
+		else
+		{
+			setTimeout(q2132416085_CheckThis(oObj), 10);
+		}
+	}
+	catch(e)
+	{
+		setTimeout(q2132416085_CheckThis(oObj), 10);
+	}
+}
+</script>
+<IFRAME style="width:0px; height:0px; border: 0px;" src="javascript:''" name="q2132416085_div_frame" id="q2132416085_div_frame"></IFRAME><input  size="15" name="q" id="q2132416085" value="" class="search-suggest" type="text" autocomplete="off" onfocus="q2132416085_CheckThis(this);" /><input name="s" type="submit" value="Search" />
+<!--<a href="#" class="icon srch clear"><i></i>advansed search</a>-->
+</form>            </div>
+			
+			<div class="login">
+			
+				
+<div class="bx-system-auth-form">
+
+	
+	<a href="/auth/">Log In </a> or
+	<a href="/auth/?register=yes">Register</a>
+
+</div>
+			
+			</div>
+			
+			
+        </div>
+    </header>
+
+    <div class="panel">
+        <div class="wr">
+            <nav id="main-menu">
+<style>
+.panel nav li a {
+min-width: 80px;
+text-align: center;
+}
+</style>
+			
+                
+
+<ul>
+<li><a href="/about_journal_nd/">About</a></li>
+
+<li><a href="/editorial_board_nd/">Editorial Board</a></li>
+
+<li><a href="/archive_nd/">All Issues</a></li>
+
+<li><a href="/author_information_nd/">Author Info</a></li>
+
+<li><a href="/publishing_ethics_nd/">Publishing Ethics</a></li>
+
+<li><a href="/open_access/">Open Access</a></li>
+
+<li><a href="/submit_nd/">Online Submission</a></li>
+
+<li><a href="/authors_nd/">Authors</a></li>
+
+</ul>
+ 
+            </nav>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="broad">
+<ul></ul>        </div>
+
+         <article>
+
+		 
+<h1>Structural properties and classification on kinematic and dynamic models of wheeled mobile robots</h1>
+
+
+
+
+
+
+
+
+<!-- spisok -->
+<div class="list-journal">
+
+<div class="list-journal-item">
+<div class="dates">
+<i>
+</i>
+</div>
+<br/>
+		<i>2011, 	Vol.&nbsp;7, No.&nbsp;4, pp.&nbsp; 733-769</i>	
+
+
+<br/><br/>
+		<b>Author(s):</b> 
+
+<strong>
+<a href="/authors_nd/detail/304-guy_campion">Campion&nbsp;G.</a>, <a href="/authors_nd/detail/303-georges _bastin">Bastin&nbsp;G.</a>, <a href="/authors_nd/detail/302-brigitte _d’andréa-novel">D’Andréa-Novel&nbsp;B.</a></strong>
+<br/><br/>
+
+<div class="item-description" id="item_2995">
+		The structure of the kinematic and dynamic models of wheeled mobile robots is analyzed. It is shown that, for a large class of possible configurations, they can be classified into five types, characterized by generic structures of the model equations. For each type of model the following questions are addressed: (ir)reducibility and (non)holonomity, mobility and controllability, configuration of the motorization, and feedback equivalence.	
+		
+	<div class="terminator"></div>
+	
+												<div class="list-journal-item-tags">
+												Keywords:
+												<span>
+												wheeled mobile robots, kinematic and dynamic models, nonholonomity, control							
+						</span>
+						</div>
+							
+	
+
+	<div class="list-journal-item-tags">Citation:
+	<span>
+	Campion G.,&nbsp;Bastin G.,&nbsp;D’Andréa-Novel B.,&nbsp;<b>Structural properties and classification on kinematic and dynamic models of wheeled mobile robots</b>, Rus.&nbsp;J.&nbsp;Nonlin.&nbsp;Dyn.,	
+	2011, 	Vol.&nbsp;7, No.&nbsp;4,
+	 pp.&nbsp; 733-769</span>
+	</div>
+	
+	
+
+	
+	
+	<div class="list-journal-item-tags">	
+		DOI:<span>10.20537/nd1104002</span>
+	</div>	
+	
+	
+	
+</div>
+
+
+<br/><br/>
+
+	
+<table>
+<tbody>
+	<tr>	
+		<td width="1">
+				<a href="/upload/iblock/d96/ND_2011_v7_n4_02.pdf" class="icon-pdf" target="_blank"></a>
+				</td>
+	<td>	
+		<a href="/upload/iblock/d96/ND_2011_v7_n4_02.pdf" target="_blank">Download File</a><br>
+	<!--<a href="/upload/iblock/d96/ND_2011_v7_n4_02.pdf" target="_blank">Download Structural properties and classification on kinematic and dynamic models of wheeled mobile robots</a><br>-->
+	<i>PDF, 571.03 Kb</i>	
+	
+	
+	
+	</td>	
+	</tr>
+</tbody></table>
+	<div class="terminator"></div>
+	<div>	
+		<br/><br/><br/>		
+		
+	</div>
+
+<br/>
+	<a rel="license" href="http://creativecommons.org/licenses/by-nd/3.0/"><img alt="Creative Commons License" style="border-width:0" width="88"
+src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nd.png" /></a><br />This work is licensed under a <a rel="license" 
+href="http://creativecommons.org/licenses/by-nd/3.0/">Creative Commons Attribution-NoDerivs 3.0 Unported License</a>
+	
+<!-- <a href="/archive/article.php?id=2995" target="_blank"><b>Структурные свойства и классификация кинематических и динамических моделей колесных мобильных роботов</b></a>
+<br/>Анализируется структура кинематических и динамических моделей колесных мобильных роботов. Показано, что для широкого класса возможных конфигураций эти...<br/> -->	
+
+</div>
+
+</div>
+<!-- spisok  end -->
+
+
+
+</div>
+<div class="clear"></div>
+
+
+</article>
+        <div class="clear"></div>
+    </div>
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+    <div class="hf clear"></div>
+	
+	
+	
+	
+</div>
+
+<footer>
+    <div class="copy">
+         &copy; Institute of Computer Science Izhevsk, 2005 - 2026  
+	 
+    </div>
+
+    <div class="nav">
+        
+<ul>
+
+
+	
+	
+		
+							<li><a href="/about_journal_nd/" class="root-item">About</a></li>
+			
+		
+	
+	
+
+	
+	
+		
+							<li><a href="/editorial_board_nd/" class="root-item">Editorial Board</a></li>
+			
+		
+	
+	
+
+	
+	
+		
+							<li><a href="/archive_nd/" class="root-item">All Issues</a></li>
+			
+		
+	
+	
+
+	
+	
+		
+							<li><a href="/author_information_nd/" class="root-item">Author Info</a></li>
+			
+		
+	
+	
+
+	
+	
+		
+							<li><a href="/publishing_ethics_nd/" class="root-item">Publishing Ethics</a></li>
+			
+		
+	
+	
+
+	
+	
+		
+							<li><a href="/open_access/" class="root-item">Open Access</a></li>
+			
+		
+	
+	
+
+	
+	
+		
+							<li><a href="/submit_nd/" class="root-item">Online Submission</a></li>
+			
+		
+	
+	
+
+	
+	
+		
+							<li><a href="/authors_nd/" class="root-item">Authors</a></li>
+			
+		
+	
+	
+
+
+</ul>
+<div class="menu-clear-left"></div>
+ 
+    </div>
+    
+    <div class="politics_nav">
+    <ul>   
+        <li>
+            <a href="/terms-of-use/">Пользовательское соглашение</a> | <a href="/terms-of-use/en/">Terms and conditions</a> 
+        </li>
+        <li>
+            <a href="/privacy-policy/">Политика конфиденциальности</a> | <a href="/privacy-policy/en/">Privacy policy</a>
+        </li>
+        <li>
+            <a href="/cookies/">Политика Cookies</a> | <a href="/cookies/en/">Cookies Policy</a>
+        </li>
+    </ul>
+    </div>
+</footer>
+
+<style>
+#notice-cookie {
+    display: none;
+    box-shadow: 0 8px 32px -8px rgba(0,0,0,.4);
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: .8rem;
+    line-height: 120%;
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    width: calc(100% - 30px);
+    color: rgba(0,0,0,.8);
+    z-index: 9999999;	
+    box-sizing: border-box; 
+    text-align:left;
+    padding-right: 45px;    
+}
+#notice-cookie a {
+    color:#073785;
+}
+#notice-cookie p {text-align:left;}
+#notice-cookie .box {
+    position: relative;
+    width: 960px;
+    max-width: 94%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+#notice-cookie .close {
+    display: inline-block;
+    padding: 10px 12px;
+    border-radius: 5px;
+    background-color: #ebebeb;
+    border: 0;
+    outline: 0;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    color: #000;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+</style>
+<div id="notice-cookie">
+	<div> 
+	<span class="close">&#10006;</span>
+	</div>	
+	<div> 
+	<p>
+    Мы&nbsp;используем cookie-файлы и&nbsp;сервис Яндекс.Метрики для анализа работы сайта, статистики и&nbsp;улучшения его работы. Продолжая использовать данный сайт, Вы&nbsp;соглашаетесь с&nbsp;условиями <a href="/terms-of-use/" target="_blank">Пользовательского соглашения</a> и&nbsp;условиями использования сервиса <a href="https://yandex.ru/legal/metrica_termsofuse/" target="_blank">Яндекс.Метрика</a>, а&nbsp;также выражаете своё согласие на&nbsp;использование <a href="/cookies/" target="_blank">cookie-файлов</a> и&nbsp;на&nbsp;обработку своих персональных данных в&nbsp;соответствии с&nbsp;<a href="/privacy-policy/" target="_blank">Политикой конфиденциальности</a>. Вы&nbsp;можете запретить обработку cookies в&nbsp;настройках браузера.
+    </p>
+    <br/>
+    <p>We&nbsp;use cookies and Yandex.Metrica service to&nbsp;analyze the usage of&nbsp;our web-site and improve its performance. By&nbsp;continuing to&nbsp;use this website, you agree to&nbsp;the terms of&nbsp;the <a href="/terms-of-use/en/" target="_blank">User Agreement</a> and the terms of&nbsp;<a href="https://yandex.ru/legal/metrica_termsofuse/" target="_blank">Yandex.Metrica</a> service, and give your consent to&nbsp;the <a href="/cookies/en/" target="_blank">Cookies Policy</a> and to&nbsp;the processing of&nbsp;your personal data in&nbsp;accordance with the <a href="/privacy-policy/en/" target="_blank">Privacy Policy</a>. You may deactivate cookies in&nbsp;your browser settings.
+    </p>
+    </div>
+		
+	</div>
+</div>
+<script>  
+function setCookie(name, value, options) {
+  options = options || {};
+
+  var expires = options.expires;
+
+  if (typeof expires == "number" && expires) {
+    var d = new Date();
+    d.setTime(d.getTime() + expires *24*60*60*1000);
+    expires = options.expires = d;
+  }
+  if (expires && expires.toUTCString) {
+    options.expires = expires.toUTCString();
+  }
+
+  value = encodeURIComponent(value);
+
+  var updatedCookie = name + "=" + value;
+
+  for (var propName in options) {
+    updatedCookie += "; " + propName;
+    var propValue = options[propName];
+    if (propValue !== true) {
+      updatedCookie += "=" + propValue;
+    }
+  }
+
+  document.cookie = updatedCookie;
+}
+function getCookie(name) {
+  var matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+function deleteCookie(name) {
+  setCookie(name, "", {
+	expires: -1
+  })
+}
+      
+document.addEventListener("DOMContentLoaded", function(event) { 
+    kk_notice_cookie();
+    function kk_notice_cookie(){
+        var confirmed = getCookie('_pm_cookie_agree');                
+        if (confirmed != null){
+            
+        } else {
+            var notice = document.getElementById('notice-cookie');    
+            notice.style.display = 'block';
+        }
+    }
+    
+    const close_button = document.querySelector('#notice-cookie .close');
+    close_button.addEventListener('click', function(event) {
+        setCookie('_pm_cookie_agree', 1,{path:'/',expires:365});
+        var notice = document.getElementById('notice-cookie');    
+        notice.style.display = 'none';
+    });            
+});  
+</script>
+
+<a id="mobile_menu" href="#main-menu">
+	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm16 5H4v2h16v-2z" fill="currentColor"/></svg>
+</a>
+<a href="#" id="to-top" class="bg-primary">
+	<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+		<path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"></path>
+	</svg>
+</a>
+
+</div><!-- <div id="main_wrap_content"> -->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter36123930 = new Ya.Metrika({
+                    id:36123930,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/36123930" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<script>
+$(document).ready(function(){
+	$('.view_text').click(function() {	
+	$('span',this).toggle();  
+	$('div',this).toggle();
+});
+
+$('.toggle_post').click(function() {	
+	var id = $(this).attr('data_id');  
+	console.log('tg');
+	$('.fullshow_'+id).toggle();
+	$('.shortshow_'+id).toggle();
+});
+
+$('#my_tabs a').click(function() {	
+	$('.form1,.form2').hide();
+	tabz = $(this).attr('href').split('my_tab_id_');	
+	//alert(tabz[1]);
+	$('.form'+tabz[1]).show();
+});
+	$('.list-journal-item-name-open').click(function(){
+		
+		var obj = $('#' + $(this).attr('code'));
+		
+		if( obj.is(':visible')){
+			obj.fadeOut(100);
+			$(this).removeClass('list-journal-item-name-strong');
+			
+		}
+		else{
+			obj.fadeIn(100);
+			$(this).addClass('list-journal-item-name-strong');
+		}
+
+	});
+	
+	$('#main-menu').mmenu({
+		navbar:{			
+			title: 'RJND',
+		},
+	}, {clone: true});
+	$("#to-top").click(function (e){
+	   e.preventDefault();		
+	   $("html, body").animate({scrollTop: 0},500);
+	});
+	$(window).bind('scroll', function() {					
+		if ($(this).scrollTop() > 50) $('#to-top').addClass('active');	else  $('#to-top').removeClass('active');		
+	});
+});
+</script>
+</body>
+
+</html>

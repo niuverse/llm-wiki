@@ -21,6 +21,7 @@ last_updated: 2026-05-01
 - **OpenUSD 的核心价值是什么？** 读 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)、[OpenUSD](entities/OpenUSD.md) 和 [Introduction to USD](sources/openusd-introduction.md)；如果关注 robotics asset authoring，再接 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md)。
 - **Isaac Sim Asset Structure 3.0 怎么理解？** 读 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) 和 [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md)，重点看 layer role、payload/variant composition 和 engine-specific tuning 隔离。
 - **Contact physics 为什么会影响 learning/control？** 读 [Contact Models in Robotics](concepts/ContactModelsInRobotics.md)、[Contact Complementarity（接触互补）](concepts/ContactComplementarity.md)、[Contact Solvers（接触求解器）](concepts/ContactSolvers.md)、[Differentiable Physics（可微物理）](concepts/DifferentiablePhysics.md)。
+- **轮式机器人建模怎么系统学习？** 读 [Wheeled Robot Modeling Learning Map](syntheses/wheeled-robot-modeling-learning-map.md)、[Wheeled Robot Kinematics](concepts/WheeledRobotKinematics.md)、[Wheeled Mobile Robot Classification](concepts/WheeledMobileRobotClassification.md)、[Omnidirectional Wheels](concepts/OmnidirectionalWheels.md)、[Nonholonomic Mobile Robots](concepts/NonholonomicMobileRobots.md) 和 [Steerable Wheels](concepts/SteerableWheels.md)。
 
 ## 维护入口
 
@@ -33,6 +34,7 @@ last_updated: 2026-05-01
 ## Syntheses
 
 - [Research Questions](syntheses/research-questions.md) - 当前 wiki 支持的高价值研究问题、阅读路径和 evidence boundary
+- [Wheeled Robot Modeling Learning Map](syntheses/wheeled-robot-modeling-learning-map.md) - 轮式机器人建模学习脚手架，覆盖 wheel taxonomy、kinematics、swerve allocation、simulation path、failure modes 和 source acquisition plan
 
 ## Sources
 
@@ -61,6 +63,11 @@ last_updated: 2026-05-01
 ### Contact Physics
 
 - [Contact Models in Robotics: a Comparative Analysis](sources/contact-models-in-robotics-a-comparative-analysis.md) - robotic contact models 与 contact solvers 的 comparative survey 和 benchmark
+
+### Wheeled Robot Modeling
+
+- [Modern Robotics Chapter 13: Wheeled Mobile Robots](sources/modern-robotics-chapter-13-wheeled-mobile-robots.md) - Lynch 和 Park 的 wheeled mobile robot chapter，覆盖 planar chassis twist、omni/mecanum kinematics、nonholonomic canonical model、Lie bracket controllability、odometry 和 mobile manipulation
+- [Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots](sources/structural-properties-and-classification-of-wheeled-mobile-robots.md) - Campion、Bastin 和 D'Andrea-Novel 的 WMR taxonomy source，提出 degree of mobility、degree of steerability 和五类 nondegenerate WMR
 
 ## Concepts
 
@@ -95,6 +102,15 @@ last_updated: 2026-05-01
 - [Contact Complementarity（接触互补）](concepts/ContactComplementarity.md) - rigid contact、friction cone、NCP/LCP/CCP 与 residual intuition
 - [Contact Solvers（接触求解器）](concepts/ContactSolvers.md) - 计算 contact forces 与 impulses 的 numerical methods，以及 solver taxonomy
 - [Differentiable Physics（可微物理）](concepts/DifferentiablePhysics.md) - simulator gradients、contact artifacts 与 gradient contamination
+
+### Wheeled Robot Modeling
+
+- [Wheeled Robot Kinematics](concepts/WheeledRobotKinematics.md) - wheel speeds、steering angles、body twist、rolling/no-slip constraints 和 $u=H(0)V_b$ 的统一建模入口
+- [Wheeled Mobile Robot Classification](concepts/WheeledMobileRobotClassification.md) - Campion taxonomy 中的 $\delta_m$、$\delta_s$、$\delta_M$ 与五类 WMR
+- [Omnidirectional Wheels](concepts/OmnidirectionalWheels.md) - omniwheel / mecanum 的 rank condition、feasible twist polyhedron、roller contact failure modes 和仿真实践含义
+- [Nonholonomic Mobile Robots](concepts/NonholonomicMobileRobots.md) - unicycle、diff-drive、car-like robot 的 Pfaffian constraint、canonical model 和 Lie bracket controllability
+- [Steerable Wheels](concepts/SteerableWheels.md) - centered steerable wheels、off-centered caster wheels、swerve-style modules 和 steering DOF failure modes
+- [Mobile Robot Odometry](concepts/MobileRobotOdometry.md) - 用 wheel encoder increments 估计 chassis pose 的 $H^\dagger$ / SE(2) integration 方法与 drift sources
 
 ## Entities
 

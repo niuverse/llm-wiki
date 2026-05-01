@@ -59,3 +59,9 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 ## [2026-05-01] maintenance | Add Isaac Sim Asset Structure architecture diagrams
 
 ## [2026-05-01] ingest | Introduction to USD
+
+## [2026-05-01] learn | Wheeled Robot Modeling
+
+## [2026-05-01] ingest | Modern Robotics Chapter 13: Wheeled Mobile Robots
+
+## [2026-05-01] ingest | Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots
