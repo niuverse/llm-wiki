@@ -155,6 +155,7 @@ $$
 
 ## Practice Hooks
 
+- 对几何/矩阵直觉：[[wheeled-robot-visual-lab|Wheeled Robot Visual Lab]] 把 wheel constraints、rolling rows 和 chassis matrix 放在同一个平面图里复习。
 - 对 MPC：先决定使用 kinematic model 还是 dynamic/contact-aware model；复杂地面、急加速和高载荷时，contact mismatch 可能主导误差。
 - 对 RL：如果用 physics simulator 训练 wheel policy，需要 domain randomization friction、mass、delay、motor strength 和 ground compliance，同时审计 [[SimulationRealityGap|simulation reality gap]]。
 - 对 system identification：优先估计 wheel radius、track width、steering zero、motor deadband、friction/slip parameters 和 latency。

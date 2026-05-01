@@ -21,7 +21,7 @@ last_updated: 2026-05-01
 - **OpenUSD 的核心价值是什么？** 读 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)、[OpenUSD](entities/OpenUSD.md) 和 [Introduction to USD](sources/openusd-introduction.md)；如果关注 robotics asset authoring，再接 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md)。
 - **Isaac Sim Asset Structure 3.0 怎么理解？** 读 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) 和 [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md)，重点看 layer role、payload/variant composition 和 engine-specific tuning 隔离。
 - **Contact physics 为什么会影响 learning/control？** 读 [Contact Models in Robotics](concepts/ContactModelsInRobotics.md)、[Contact Complementarity（接触互补）](concepts/ContactComplementarity.md)、[Contact Solvers（接触求解器）](concepts/ContactSolvers.md)、[Differentiable Physics（可微物理）](concepts/DifferentiablePhysics.md)。
-- **轮式机器人建模怎么系统学习？** 读 [Wheeled Robot Modeling Learning Map](syntheses/wheeled-robot-modeling-learning-map.md)、[Wheeled Robot Kinematics](concepts/WheeledRobotKinematics.md)、[Wheeled Mobile Robot Classification](concepts/WheeledMobileRobotClassification.md)、[Omnidirectional Wheels](concepts/OmnidirectionalWheels.md)、[Nonholonomic Mobile Robots](concepts/NonholonomicMobileRobots.md) 和 [Steerable Wheels](concepts/SteerableWheels.md)。
+- **轮式机器人建模怎么系统学习？** 读 [Wheeled Robot Modeling Learning Map](syntheses/wheeled-robot-modeling-learning-map.md)、[Wheeled Robot Visual Lab](syntheses/wheeled-robot-visual-lab.md)、[Wheeled Robot Kinematics](concepts/WheeledRobotKinematics.md)、[Wheeled Mobile Robot Classification](concepts/WheeledMobileRobotClassification.md)、[Omnidirectional Wheels](concepts/OmnidirectionalWheels.md)、[Nonholonomic Mobile Robots](concepts/NonholonomicMobileRobots.md) 和 [Steerable Wheels](concepts/SteerableWheels.md)。
 
 ## 维护入口
 
@@ -35,6 +35,7 @@ last_updated: 2026-05-01
 
 - [Research Questions](syntheses/research-questions.md) - 当前 wiki 支持的高价值研究问题、阅读路径和 evidence boundary
 - [Wheeled Robot Modeling Learning Map](syntheses/wheeled-robot-modeling-learning-map.md) - 轮式机器人建模学习脚手架，覆盖 wheel taxonomy、kinematics、swerve allocation、simulation path、failure modes 和 source acquisition plan
+- [Wheeled Robot Visual Lab](syntheses/wheeled-robot-visual-lab.md) - 内嵌 academic-style 交互图，把 wheel-level constraints、contact-point velocity 和 chassis matrix rows 放在同一张平面图中复习
 
 ## Sources
 

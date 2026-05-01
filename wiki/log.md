@@ -65,3 +65,8 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 ## [2026-05-01] ingest | Modern Robotics Chapter 13: Wheeled Mobile Robots
 
 ## [2026-05-01] ingest | Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots
+
+## [2026-05-01] learn | Wheeled Robot Visual Lab
+
+- Added `wiki/syntheses/wheeled-robot-visual-lab.md` as an embedded academic visualization scaffold for wheeled robot kinematics.
+- Linked it to the wheeled robot modeling learning map and source-backed concept pages.
