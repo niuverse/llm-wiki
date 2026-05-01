@@ -18,6 +18,7 @@ last_updated: 2026-05-01
 - **Inverse dynamics model 怎么从视频学 action？** 读 [Inverse Dynamics Models](concepts/InverseDynamicsModels.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)、[Seer](entities/Seer.md)、[DeFI](entities/DeFI.md)。
 - **Robot foundation model 如何处理 heterogeneous data？** 读 [Vision-Language-Action Models](concepts/VisionLanguageActionModels.md)、[Robot Context Conditioning](concepts/RobotContextConditioning.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)。
 - **Simulation benchmark 能证明什么？** 读 [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md)、[Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
+- **OpenUSD 的核心价值是什么？** 读 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)、[OpenUSD](entities/OpenUSD.md) 和 [Introduction to USD](sources/openusd-introduction.md)；如果关注 robotics asset authoring，再接 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md)。
 - **Isaac Sim Asset Structure 3.0 怎么理解？** 读 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) 和 [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md)，重点看 layer role、payload/variant composition 和 engine-specific tuning 隔离。
 - **Contact physics 为什么会影响 learning/control？** 读 [Contact Models in Robotics](concepts/ContactModelsInRobotics.md)、[Contact Complementarity（接触互补）](concepts/ContactComplementarity.md)、[Contact Solvers（接触求解器）](concepts/ContactSolvers.md)、[Differentiable Physics（可微物理）](concepts/DifferentiablePhysics.md)。
 
@@ -34,6 +35,10 @@ last_updated: 2026-05-01
 - [Research Questions](syntheses/research-questions.md) - 当前 wiki 支持的高价值研究问题、阅读路径和 evidence boundary
 
 ## Sources
+
+### OpenUSD And Asset Infrastructure
+
+- [Introduction to USD](sources/openusd-introduction.md) - OpenUSD 官方 introduction，解释 scene description、Stage/Layer/Prim data model、schemas、composition arcs、Hydra、extension points 与边界条件
 
 ### World Models
 
@@ -58,6 +63,10 @@ last_updated: 2026-05-01
 - [Contact Models in Robotics: a Comparative Analysis](sources/contact-models-in-robotics-a-comparative-analysis.md) - robotic contact models 与 contact solvers 的 comparative survey 和 benchmark
 
 ## Concepts
+
+### OpenUSD And Asset Infrastructure
+
+- [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md) - 把 OpenUSD 的 Stage/Layer/Prim data model、schemas、composition arcs、Hydra 与 Isaac Sim robotics asset layering 连接起来的学习页
 
 ### World Models
 
@@ -104,7 +113,12 @@ last_updated: 2026-05-01
 - [AwesomeWorldModels](entities/AwesomeWorldModels.md) - survey companion bibliography repository
 - [Galbot](entities/Galbot.md) - LDA-1B source 中的作者机构与 Galbot G1 real-world evaluation platform context
 - [NVIDIA](entities/NVIDIA.md) - RoboLab paper/project/repo 与 Isaac Sim Asset Structure docs 的发布机构
+- [Pixar](entities/Pixar.md) - OpenUSD official docs 的 copyright holder 与 USD production-pipeline heritage context
 - [Physical Intelligence](entities/PhysicalIntelligence.md) - π0.7 source 中的 robot foundation model research organization
+
+### Scene Description Platforms
+
+- [OpenUSD](entities/OpenUSD.md) - Universal Scene Description / OpenUSD scene-description platform；当前 coverage 聚焦 official Introduction 与 Isaac Sim asset-structure usage
 
 ### Simulation Tools
 

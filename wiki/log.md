@@ -57,3 +57,5 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 ## [2026-05-01] ingest | Asset Structure - Isaac Sim Documentation
 
 ## [2026-05-01] maintenance | Add Isaac Sim Asset Structure architecture diagrams
+
+## [2026-05-01] ingest | Introduction to USD
