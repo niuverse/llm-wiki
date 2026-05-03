@@ -80,3 +80,13 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 
 - Added `wiki/syntheses/isaac-sim-mujoco-usda-runtime-semantics.md` to preserve the conversation-derived ownership boundary for `mujoco.usda`.
 - Updated `wiki/concepts/IsaacSimAssetStructure.md`, `wiki/entities/MuJoCo.md`, and `wiki/index.md`.
+
+## [2026-05-04] distill | Isaac Sim and MuJoCo Control Tuning Notes
+
+- Added `wiki/syntheses/isaac-sim-mujoco-control-tuning-notes.md` to preserve the discussion about PhysX/Isaac Sim joint position drive, stiffness/damping, effort limits, seven-DOF arm gain scaling, and MuJoCo/PhysX tuning boundaries.
+- Updated `wiki/entities/IsaacSim.md`, `wiki/entities/MuJoCo.md`, and `wiki/index.md`.
+
+## [2026-05-04] distill | Isaac Sim and MuJoCo Physics and Control Notes
+
+- Expanded `wiki/syntheses/isaac-sim-mujoco-control-tuning-notes.md` beyond control tuning to include the Isaac Sim documentation wording, PhysX solver-level drive semantics, effort-limit diagnosis, seven-DOF arm gain scaling, MuJoCo/PhysX solver and actuator differences, and follow-up official docs to ingest.
+- Updated `wiki/entities/IsaacSim.md`, `wiki/entities/MuJoCo.md`, and `wiki/index.md` to point to the broader physics/control framing.

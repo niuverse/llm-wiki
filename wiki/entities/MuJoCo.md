@@ -18,4 +18,6 @@ MuJoCo 是 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in
 
 本次 distill 进一步澄清了 `mujoco.usda` 的 ownership boundary：在 Isaac Asset Structure context 中，MuJoCo native MJCF 里存在 visual / collision model 不意味着 visual mesh、material 或 shared collider geometry 应进入 `mujoco.usda`；这些通常属于 shared geometry / material / instance / neutral physics layers，`mujoco.usda` 更适合作为 MuJoCo-only runtime interpretation / tuning overlay。这个边界是 conversation-derived clarification，待后续 ingest MuJoCo XML Reference 和 Isaac backend schema docs 验证具体 supported attributes。见 [[isaac-sim-mujoco-usda-runtime-semantics]]。
 
-相关页面：[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]。
+另一个 conversation-derived distill 总结了 MuJoCo 与 Isaac Sim / PhysX 的 physics/control 迁移边界：不要直接复制 raw stiffness/damping gains，而应迁移 closed-loop bandwidth、damping ratio、force limit、trajectory smoothness 和 contact regime；同时要记住 MuJoCo 和 PhysX 的 solver、constraint regularization 与 actuator abstraction 不同。MuJoCo actuator、`forcerange`、`armature`、`solref/solimp`、Newton/CG/PGS solver 等具体语义仍需要后续 ingest 官方 MuJoCo docs。见 [[isaac-sim-mujoco-control-tuning-notes]]。
+
+相关页面：[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]、[[isaac-sim-mujoco-control-tuning-notes]]。

@@ -3,7 +3,7 @@ title: "Isaac Sim"
 type: entity
 tags: [robotics, simulation, nvidia, usd]
 sources: ["[[isaac-sim-asset-structure]]"]
-last_updated: 2026-05-01
+last_updated: 2026-05-04
 ---
 
 # Isaac Sim
@@ -12,4 +12,6 @@ Isaac Sim 是 [[NVIDIA]] 的 robotics simulation stack。本 wiki 当前对 Isaa
 
 在这个 source 中，Isaac Sim 的关键工程判断是：robot asset 不是单个不可分割文件，而是一个由 USD layers、payloads、references 和 variants 组成的 composable asset graph。这个判断直接影响 robot setup、runtime switching、control / ROS feature authoring，以及后续用 [[MuJoCo]]、PhysX 或 USD / Newton physics 运行同一个 asset 时的可维护性。
 
-相关页面：[[IsaacSimAssetStructure]]、[[NVIDIA]]、[[MuJoCo]]、[[SimulationRealityGap]]。
+本次 physics/control distill 记录了一个 conversation-derived 实践框架：Isaac Sim robot setup 教程中的 high stiffness / low damping 表述应结合 drive mode context 理解；在 PhysX position control 中，应把 stiffness、damping、`Max Force` / effort limit、effective inertia、solver settings 和 contact regime 一起看，而不是只复制一组 joint gains。该框架尚待后续 ingest Isaac Sim Joint Tuning / Gain Tuner 和 PhysX Articulation docs 后升级为 source-backed knowledge。见 [[isaac-sim-mujoco-control-tuning-notes]]。
+
+相关页面：[[IsaacSimAssetStructure]]、[[NVIDIA]]、[[MuJoCo]]、[[SimulationRealityGap]]、[[isaac-sim-mujoco-control-tuning-notes]]。
