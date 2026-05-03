@@ -3,7 +3,7 @@ title: "Wiki Log"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-05-01
+last_updated: 2026-05-03
 ---
 
 # Wiki Log
@@ -70,3 +70,8 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 
 - Added `wiki/syntheses/wheeled-robot-visual-lab.md` as an embedded academic visualization scaffold for wheeled robot kinematics.
 - Linked it to the wheeled robot modeling learning map and source-backed concept pages.
+
+## [2026-05-03] learn | 3D Model Formats Learning Map
+
+- Added `wiki/syntheses/3d-model-formats-learning-map.md` as a learning scaffold for OBJ, STL, PLY, glTF/GLB, FBX, USD, STEP, URDF/SDF/MJCF and related asset pipeline concepts.
+- Linked it from `wiki/index.md` and marked non-USD format comparisons as unsourced learning notes pending source / ingest.
