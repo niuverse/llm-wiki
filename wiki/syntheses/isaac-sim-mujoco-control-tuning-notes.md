@@ -2,7 +2,7 @@
 title: "Isaac Sim and MuJoCo Physics and Control Notes"
 type: synthesis
 tags: [distill, isaac-sim, mujoco, physx, control, simulation, solver]
-sources: ["[[isaac-sim-asset-structure]]", "[[contact-models-in-robotics-a-comparative-analysis]]"]
+sources: ["[[isaac-sim-asset-structure]]", "[[contact-models-in-robotics-a-comparative-analysis]]", "[[omniverse-omni-physics-articulations]]"]
 last_updated: 2026-05-04
 ---
 
@@ -17,8 +17,8 @@ last_updated: 2026-05-04
 | Insight | Evidence Level | Wiki Target |
 | --- | --- | --- |
 | Isaac Sim 教程里的 “high stiffness and relatively low or zero damping” 更应读作 control-mode setup heuristic：position control 需要非零 stiffness；velocity control 通常主要靠 damping；effort control 则关闭 drive gains。它不是“最终稳定调参规则”。 | conversation-derived interpretation; needs Isaac docs ingest | 本页 |
-| PhysX/Isaac Sim 的 position drive 可以按 spring-damper / PD drive 理解：`stiffness` 对应 position error 增益，`damping` 对应 velocity error 增益；低 damping 在高 stiffness 下可能产生 overshoot 或 oscillation。 | conversation-derived; needs PhysX / Isaac joint tuning docs ingest | 本页 |
-| PhysX drive 不是单纯在外部 control loop 里显式计算 torque 的连续时间 PD；它是 solver-level drive / constraint behavior，因此 timestep、solver iterations、drive type、limits、contact 和 articulation conditioning 都会影响最终响应。 | conversation-derived; needs PhysX docs ingest | [[ContactSolvers]], 本页 |
+| PhysX/Isaac Sim articulation drive 可以按 spring-damper / PD-like drive 理解：Omni Physics source 明确说 articulation drive is analogous to a PD controller；`stiffness` / `damping` 的精确 discrete solver semantics 仍需 joint tuning docs。 | source-backed for PD analogy; details still follow-up | [[omniverse-omni-physics-articulations]], 本页 |
+| PhysX drive 不是单纯在外部 control loop 里显式计算 torque 的连续时间 PD；它受到 performance envelope、force / velocity limits、contact、closed loops、mimic compliance、timestep 和 TGS iterations 影响。 | partly source-backed by Omni Physics articulation docs; broader tuning still conversation-derived | [[ReducedCoordinateArticulations]], [[ContactSolvers]], 本页 |
 | `Max Force` / effort limit 是 position control 的一等参数，不是事后细节；它会 clamp drive torque/force，决定 tracking error 是 gain 不足还是 actuator authority 不足。 | conversation-derived; needs Isaac joint tuning docs ingest | 本页 |
 | 七自由度机械臂的 gains 不应机械地按 joint index 递减，而应按 effective inertia、payload、gravity torque、task stiffness 和 contact requirement 分组调；shoulder/elbow 通常需要更高 absolute stiffness，wrist 通常可以更小。 | conversation-derived heuristic | 本页 |
 | `Kd/Kp` 不是无量纲固定比例；更稳定的参数化是 natural frequency $\omega_n$ 和 damping ratio $\zeta$。常用起点是 $\zeta \approx 0.7-1.0$，接触任务可更高。 | conversation-derived control heuristic | 本页 |
@@ -84,7 +84,11 @@ $$
 
 ## PhysX Position Drive Semantics
 
-本次讨论中的 working model 是：PhysX / Isaac Sim 的 position drive 是 PD-like spring-damper drive，但它不等同于用户自己在 Python control loop 中每步显式算出的 torque command。它位于 PhysX articulation / constraint solver 的语义里，最终 behavior 会被 solver discretization、iteration budget、force limit、velocity limit、joint limits、contact constraints 和 articulation mass matrix 共同塑造。
+[[omniverse-omni-physics-articulations|Omni Physics Articulations]] 已经 source-back 了这个 working model 的一部分：articulation drive 被描述为 analogous to a PD controller，且 source 用 `DriveAPI.maxForce`、velocity-dependent resistance、speed-effort gradient 和 `maxActuatorVelocity` 定义 drive performance envelope。它还明确区分 `maxActuatorVelocity` 与 joint-level `maxJointVelocity`，并说明 `driveEffort` 包含 internal drive effort 与 user-defined joint effort。
+
+仍需保留的边界是：这个 source 没有完整展开 Isaac Sim UI 中 `stiffness` / `damping` 的所有 mode-specific semantics，也没有给出 PhysX drive discretization、acceleration drive、solver defaults 或 Gain Tuner workflow。因此“PD-like”现在是 source-backed；“如何把它调成某个 closed-loop bandwidth”仍是 engineering interpretation，需要后续 joint tuning docs。
+
+本页讨论中的 working model 是：PhysX / Isaac Sim 的 position drive 是 PD-like spring-damper drive，但它不等同于用户自己在 Python control loop 中每步显式算出的 torque command。它位于 PhysX articulation / constraint solver 的语义里，最终 behavior 会被 solver discretization、iteration budget、force limit、velocity limit、joint limits、contact constraints 和 articulation mass matrix 共同塑造。
 
 这个 distinction 对调参很关键。连续时间 PD 公式能解释 overshoot、damping ratio 和 gain scaling；但在 PhysX 里，若 timestep 太大、solver iterations 太少、drive 太硬、force limit 太高或 contact 同时发生，系统可能表现出连续时间公式没有直接预测的 chatter、constraint error 或非物理强伺服。反过来，PhysX 的 implicit / solver-level treatment 也可能让某些高 gain 配置比显式 Euler control loop 更稳定。
 
@@ -142,9 +146,9 @@ $$
 
 ## Evidence Boundaries
 
-Source-backed：当前 wiki 已 ingest 的 [[contact-models-in-robotics-a-comparative-analysis]] 支持一个更 general 的判断：contact model 和 solver choices 会改变 forces、residuals、conditioning 和 downstream MPC/RL/differentiable optimization；[[isaac-sim-asset-structure]] 支持 Isaac Sim asset graph 中 PhysX/MuJoCo-specific tuning 应被隔离在 runtime-specific layer 的 authoring principle。
+Source-backed：当前 wiki 已 ingest 的 [[contact-models-in-robotics-a-comparative-analysis]] 支持一个更 general 的判断：contact model 和 solver choices 会改变 forces、residuals、conditioning 和 downstream MPC/RL/differentiable optimization；[[isaac-sim-asset-structure]] 支持 Isaac Sim asset graph 中 PhysX/MuJoCo-specific tuning 应被隔离在 runtime-specific layer 的 authoring principle；[[omniverse-omni-physics-articulations]] 支持 PhysX articulation drive 的 PD analogy、performance envelope、joint friction、mimic compliance、TGS position-iteration effect 和 closed-loop / hard-contact stability warnings。
 
-Conversation-derived：本页关于 Isaac Sim 官方教程措辞的解释、PhysX position drive 的 PD interpretation、solver-level semantics、`Max Force` clamp、PhysX vs MuJoCo 物理解算对比、Isaac Gain Tuner-style tuning、MuJoCo actuator tuning 和七自由度机械臂 gain grouping，来自本次讨论中的工程归纳。它们应作为工作笔记使用，不应被当作已 ingest 的 source-backed claim。
+Conversation-derived：本页关于 Isaac Sim 官方教程措辞的解释、具体 stiffness/damping tuning workflow、seven-DOF arm gain grouping、PhysX vs MuJoCo 物理解算对比、Isaac Gain Tuner-style tuning 和 MuJoCo actuator tuning，来自本次讨论中的工程归纳。它们应作为工作笔记使用，不应被当作已 ingest 的 source-backed claim。
 
 Hypothesis / follow-up needed：需要后续 ingest PhysX Articulation / Joint Drive docs、Isaac Sim Joint Tuning / Gain Tuner docs、MuJoCo Computation docs 和 MuJoCo XML actuator reference，才能把 drive formula、API 字段名、solver defaults 和版本差异升级为 source-backed wiki knowledge。
 
@@ -158,6 +162,7 @@ Hypothesis / follow-up needed：需要后续 ingest PhysX Articulation / Joint D
 
 - Isaac Sim Simple Robot / Joint Control setup tutorial：验证 “high stiffness and relatively low or zero damping” 的原文 context，以及它是在 mode setup 还是 gain tuning context 中出现。
 - Isaac Sim Joint Tuning / Gain Tuner documentation：验证 `stiffness`、`damping`、`Max Force`、natural frequency 和 damping ratio 的官方语义。
-- PhysX Articulations / Joint Drive documentation：验证 articulation drive 的 force law、implicit solver behavior、acceleration drive、TGS/PGS interaction 和 force limit semantics。
+- Omni Physics Articulation Stability Guide：补充 closed loops、timestep、solver iterations、mass ratio 和 robot stability 的官方调参建议。
+- PhysX SDK Articulations / Joint Drive documentation：继续验证 articulation drive 的 force law、implicit solver behavior、acceleration drive、TGS/PGS interaction 和 force limit semantics。
 - MuJoCo Computation and XML Reference：验证 actuator model、`forcerange`、`kp/kv` equivalent setup、`armature`、`solref/solimp`、Newton/CG/PGS solvers 和 defaults。
 - 实际机械臂 datasheet 或 URDF/MJCF/USD asset：验证 effort limit、joint damping、friction、payload 和 inertia 是否与真实硬件匹配。

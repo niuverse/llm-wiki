@@ -90,3 +90,9 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 
 - Expanded `wiki/syntheses/isaac-sim-mujoco-control-tuning-notes.md` beyond control tuning to include the Isaac Sim documentation wording, PhysX solver-level drive semantics, effort-limit diagnosis, seven-DOF arm gain scaling, MuJoCo/PhysX solver and actuator differences, and follow-up official docs to ingest.
 - Updated `wiki/entities/IsaacSim.md`, `wiki/entities/MuJoCo.md`, and `wiki/index.md` to point to the broader physics/control framing.
+
+## [2026-05-04] ingest | Articulations - Omni Physics
+
+- Added `wiki/sources/omniverse-omni-physics-articulations.md` with canonical HTML in `raw/` and extracted Markdown in `graph/extracts/`.
+- Added `wiki/concepts/ReducedCoordinateArticulations.md` and `wiki/entities/PhysX.md`.
+- Updated Isaac Sim, NVIDIA, Contact Solvers, the physics/control notes, and the wiki index.

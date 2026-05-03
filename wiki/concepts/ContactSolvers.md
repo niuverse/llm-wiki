@@ -2,8 +2,8 @@
 title: "Contact Solvers（接触求解器）"
 type: concept
 tags: [robotics, simulation, optimization, numerical-methods]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]"]
-last_updated: 2026-04-27
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[omniverse-omni-physics-articulations]]"]
+last_updated: 2026-05-04
 ---
 
 # Contact Solvers（接触求解器）
@@ -50,16 +50,19 @@ Contact coupling 可以通过 Delassus operator 直观理解：$W=J M^{-1}J^\top
 
 ADMM 与 staggered projections 这类方法更像是在 whole contact vector 上交替满足 dynamics、cone constraints 和 complementarity-related constraints。它们每步更重，但能更直接处理 contacts 之间的 coupling 与 underdetermination，因此论文把它们描述为更 robust 的方向。
 
+[[omniverse-omni-physics-articulations|Omni Physics Articulations]] 给这个 solver lens 增加了 articulation-internal constraints。Source 说明 closed-loop articulations 更难求解，建议降低 simulation timestep；mimic joint 如果没有 compliance，会用 impulses instantaneously 维持 mimic equation；gripper 场景中 stiff driven joint、light finger inertia、hard mimic constraint 和 hard contact 会互相竞争，导致 instability。它还说明增加 TGS solver position iterations 会降低 compliant mimic joint 看到的 effective timestep，尤其在 behavior 不由 collision response 主导时。
+
 ## Failure Modes
 
 - Local coupling miss：PGS/per-contact updates 可能只在局部改善 residual，却没有解决 whole-body contact coupling。
 - Ill-conditioned convergence failure：质量分布、redundant contacts 或 near-singular contact geometry 会让 local solvers 难以收敛。
 - Internal-force artifacts：underdetermined support 中，solver 可能返回 physical residual 看似可接受但 force distribution 不可信的 solution。
+- Competing articulation constraints：hard mimic / tendon / closed-loop constraints 与 hard contact 或 stiff drive 同时存在时，solver 可能出现 instability、chatter 或需要更小 timestep。
 - Runtime/fidelity tradeoff inversion：global methods 每步更贵，但如果 local solver 需要大量 iterations 或 failed convergence，实际 control loop 中未必更便宜。
 - Warm-start dependence：warm-start 能显著改善 runtime，但也可能让 solver behavior 依赖 previous-step artifacts。
 
 ## 实践含义
 
-对 robotics 来说，合适的 solver 取决于 task tolerance。某些 MPC 与 RL workloads 可能能接受快速的 approximate answers；而 contact-rich terrain、redundant support、force sensing 和 differentiable objectives 会对 physical consistency 提出更高要求。
+对 robotics 来说，合适的 solver 取决于 task tolerance。某些 MPC 与 RL workloads 可能能接受快速的 approximate answers；而 contact-rich terrain、redundant support、force sensing、differentiable objectives、closed-loop mechanisms 和 gripper mimic constraints 会对 physical consistency 提出更高要求。
 
-相关页面：[[ContactComplementarity]]、[[ContactModelsInRobotics]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]。
+相关页面：[[ContactComplementarity]]、[[ContactModelsInRobotics]]、[[ReducedCoordinateArticulations]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]。

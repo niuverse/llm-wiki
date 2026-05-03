@@ -1,0 +1,1524 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Articulations &#8212; Omni Physics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/nvidia-sphinx-theme.css?v=933278ad" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=767de534" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/api.css?v=6f210184" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+
+
+
+    <script rel="preload" src="../../_static/modal-table.js"></script>
+    <script src="../../_static/documentation_options.js?v=0b9d707f"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=65e89d2a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_guide/rigid_bodies_articulations/articulations';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.17.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '../versions1.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '110.1';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            true;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../../_static/version-patch.js?v=3e13fdd2"></script>
+    <script rel="preload" src="../../_static/toctree.js"></script>
+
+    <link rel="icon" href="../../_static/favicon.png"/>
+
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Deformable Bodies" href="../deformables/deformables_index.html" />
+    <link rel="prev" title="Joints" href="joints.html" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="May 01, 2026"/>
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+
+
+  </head>
+
+  <body data-default-mode="">
+
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="Omni Physics - Home"/>
+    <img src="../../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="Omni Physics - Home"/>
+  
+  
+    <p class="title logo__title">Omni Physics</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/nvidiaomniverse" title="twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCSKUoczbGAcMld7HjpCR8OA" title="youtube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-youtube fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">youtube</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.instagram.com/nvidiaomniverse" title="instagram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-instagram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">instagram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.nvidia.com/en-us/omniverse/" title="www" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-globe fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">www</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/showcase/nvidia-omniverse" title="linkedin" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">linkedin</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.twitch.tv/nvidiaomniverse" title="twitch" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitch fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">twitch</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="Omni Physics - Home"/>
+    <img src="../../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="Omni Physics - Home"/>
+  
+  
+    <p class="title logo__title">Omni Physics</p>
+  
+</a>
+
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/nvidiaomniverse" title="twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCSKUoczbGAcMld7HjpCR8OA" title="youtube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-youtube fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">youtube</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.instagram.com/nvidiaomniverse" title="instagram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-instagram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">instagram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.nvidia.com/en-us/omniverse/" title="www" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-globe fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">www</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/showcase/nvidia-omniverse" title="linkedin" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">linkedin</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.twitch.tv/nvidiaomniverse" title="twitch" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitch fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">twitch</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../simulation_config.html" class="nav-link">Simulation Setup and Configuration</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Articulations</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="articulations">
+<span id="id1"></span><h1>Articulations<a class="headerlink" href="#articulations" title="Link to this heading">#</a></h1>
+<p>Articulations provide an alternative, and often superior approach to simulating mechanisms composed of jointed rigid bodies. Typically, you achieve higher simulation fidelity with articulations as they have zero joint error by design, and can handle larger mass ratios between the jointed bodies. PhysX simulates articulations in reduced-coordinates, where the configuration of the articulation is determined by its root body and the joint angles instead of the world pose of each body involved.</p>
+<p>You can often turn jointed rigid bodies into an articulation given that they do not contain unsupported joints, see the <a class="reference internal" href="joints.html#jointsupporttable"><span class="std std-ref">Joint Table</span></a>, and ensuring that <a class="reference internal" href="#articulationloops"><span class="std std-ref">loops</span></a> are resolved appropriately. In order to enable articulation simulation on jointed rigid bodies, apply the <a class="reference internal" href="../schemas/usdphysics.html#_CPPv429UsdPhysicsArticulationRootAPI" title="UsdPhysicsArticulationRootAPI"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UsdPhysics.ArticulationRootAPI</span></code></a> component to the appropriate primitive, see <a class="reference internal" href="#articulation-root-and-usd-hierarchy"><span class="std std-ref">USD Hierarchy / Articulation Root</span></a>.</p>
+<p>In the following, we often use the term <em>(articulation) link</em> for a rigid body that is part of an articulation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you encounter stability issues with articulations in your robot simulations, please refer to the <a class="reference internal" href="../guides/articulation_stability_guide.html#articulation-stability-guide"><span class="std std-ref">Articulation and Robot Simulation Stability Guide</span></a>.</p>
+</div>
+<section id="articulation-tree-structure">
+<h2>Articulation Tree Structure<a class="headerlink" href="#articulation-tree-structure" title="Link to this heading">#</a></h2>
+<p>Articulations must have a tree structure in terms of the rigid-body links and the joints between them (<a class="reference internal" href="#articulationloops"><span class="std std-ref">loops</span></a> are possible, however). The tree structure is created solely by the <em>Body 0</em> and <em>Body 1</em> relationships of the <a class="reference internal" href="joints.html#joints"><span class="std std-ref">joints</span></a> connecting the articulation links (i.e. rigid bodies) - the USD hierarchy has no impact on the articulation structure other than during parsing, see <a class="reference internal" href="#articulation-root-and-usd-hierarchy"><span class="std std-ref">below</span></a>. Therefore, you may organize the joints and links in the stage tree as you see fit.</p>
+<p>Here are two example articulations: A ragdoll and a robotic arm.</p>
+<a class="reference internal image-reference" href="../../_images/ext_physics-articulation_examples.png"><img alt="Articulation examples" src="../../_images/ext_physics-articulation_examples.png" style="width: 450px;" />
+</a>
+<p>The tree structure for the arm is straightforward: The root is at the base on the ground plane, and revolute joints connect the different links up to the manipulator, where the tree has its only branch to connect the two gripper parts to the end-effector with prismatic (i.e. linear) joints.</p>
+<p>For the ragdoll, we can choose any link, i.e. limb as the root and the resulting structure is always a tree. For example, we can choose the head to be the root, and connect the torso to it with a spherical joint, which in turn uses spherical joints to attach the arms, and so on.</p>
+<p>While in practice, the root can be placed on any link for a floating-base articulation, it is a good rule of thumb to choose a central node such that traversal distances to the leaf nodes of the articulation are reduced. The heuristic for root-node determination described in <a class="reference internal" href="#createautomaticartic"><span class="std std-ref">Create an Articulation Based on Topology</span></a> typically leads to the selection of central links. Of course, the application may require setting the root to a specific link, e.g. a quadruped torso, because control algorithms are designed around this topology.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An implication of the articulation algorithm operating on reduced coordinates is that contrary to non-articulation jointed rigid bodies, setting poses and velocities on non-root links is not supported and triggers a warning in the console. For further differences and limitations, please see <a class="reference internal" href="#articulation-limitations-differences"><span class="std std-ref">Articulation Limitations and Differences</span></a>.</p>
+</div>
+</section>
+<section id="floating-and-fixed-base">
+<h2>Floating and Fixed-Base<a class="headerlink" href="#floating-and-fixed-base" title="Link to this heading">#</a></h2>
+<p>There is a key difference between the two articulation examples: The ragdoll is a <em>floating</em> articulation which means the root (e.g. the head) and therefore the entire robot may move freely in space.</p>
+<p>The robot arm is a fixed-base articulation: Its base, i.e. root link is fixed to the world frame.</p>
+</section>
+<section id="usd-hierarchy-articulation-root">
+<span id="articulation-root-and-usd-hierarchy"></span><h2>USD Hierarchy / Articulation Root<a class="headerlink" href="#usd-hierarchy-articulation-root" title="Link to this heading">#</a></h2>
+<p>You should consider the USD hierarchy when you apply the <a class="reference internal" href="../schemas/usdphysics.html#_CPPv429UsdPhysicsArticulationRootAPI" title="UsdPhysicsArticulationRootAPI"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UsdPhysics.ArticulationRootAPI</span></code></a> component to a prim such that one or more articulations are created.</p>
+<p>The rules are as follows:</p>
+<p>For a <em>fixed-base</em> articulation, add the Root API either to:</p>
+<ol class="arabic simple">
+<li><p>the fixed joint that connects the articulation base to the world, or</p></li>
+<li><p>an ancestor of the fixed joint in the USD hierarchy. See more information in <a class="reference internal" href="#createautomaticartic"><span class="std std-ref">Create an Articulation Based on Topology</span></a>.</p></li>
+</ol>
+<p>In the robotic-arm example above, we connect the robot’s base to the world frame using a fixed joint, and then could, for example, apply the root component to this joint.</p>
+<p>Note that there is no need to specify the joint frames of the fixed joint since its joint frames are ignored; the main purpose of the fixed joint is to specify the root link. Further note that any joint type supported by articulations may be used as a joint for the root link to the world frame. However, it is recommended that you use a fixed joint, because it best expresses the intention.</p>
+<p>For a <em>floating-base</em> articulation, add the <em>Articulation Root</em> component either to:</p>
+<ol class="arabic simple">
+<li><p>the rigid-body link that shall be the root, or</p></li>
+<li><p>an ancestor of the root link in the USD hierarchy. See more information in <a class="reference internal" href="#createautomaticartic"><span class="std std-ref">Create an Articulation Based on Topology</span></a>.</p></li>
+</ol>
+<p>In the ragdoll example, we could, for example, apply the root component to the head link.</p>
+</section>
+<section id="create-a-floating-base-articulation">
+<span id="createfloatingbaseartic"></span><h2>Create a Floating-Base Articulation<a class="headerlink" href="#create-a-floating-base-articulation" title="Link to this heading">#</a></h2>
+<p>The following Python snippet creates a single dynamic rigid body and converts it to an articulation link that is the root link of a floating-base articulation. The script also sets initial pose and velocity of the root link, which is only possible on root links if articulations are used.</p>
+<p>The snippet may be extended to add further links and joints using the USD schema introduced in sections <a class="reference internal" href="rigid_bodies.html#rigidbodies"><span class="std std-ref">Rigid Bodies</span></a>, <a class="reference internal" href="collision.html#collision"><span class="std std-ref">Colliders</span></a>, and <a class="reference internal" href="joints.html#joints"><span class="std std-ref">Joints</span></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pxr</span><span class="w"> </span><span class="kn">import</span> <span class="n">Usd</span><span class="p">,</span> <span class="n">UsdGeom</span><span class="p">,</span> <span class="n">UsdPhysics</span><span class="p">,</span> <span class="n">Gf</span><span class="p">,</span> <span class="n">PhysxSchema</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">omni.usd</span>
+
+<span class="c1"># Create a stage</span>
+<span class="n">omni</span><span class="o">.</span><span class="n">usd</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span><span class="o">.</span><span class="n">new_stage</span><span class="p">()</span>
+<span class="n">stage</span>  <span class="o">=</span> <span class="n">omni</span><span class="o">.</span><span class="n">usd</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span><span class="o">.</span><span class="n">get_stage</span><span class="p">()</span>
+
+<span class="c1"># Define the root Xform (transformable object)</span>
+<span class="n">rootxform</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Xform</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="s2">&quot;/World&quot;</span><span class="p">)</span>
+
+<span class="n">rigidBodyPath</span> <span class="o">=</span> <span class="s2">&quot;/World/rigidBody&quot;</span>
+
+<span class="c1"># Initial pose and velocity</span>
+<span class="n">rigidBodyStartPosition</span> <span class="o">=</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">rigidBodyStartRotation</span> <span class="o">=</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">rigidBodyStartLinVelocity</span> <span class="o">=</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">rigidBodyStartAngVelocity</span> <span class="o">=</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Create the rigid body</span>
+<span class="n">rigidBodyXform</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Xform</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">rigidBodyPath</span><span class="p">)</span>
+<span class="n">rigidBodyXform</span><span class="o">.</span><span class="n">AddTranslateOp</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">rigidBodyStartPosition</span><span class="p">)</span>
+<span class="n">rigidBodyXform</span><span class="o">.</span><span class="n">AddOrientOp</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">rigidBodyStartRotation</span><span class="p">)</span>
+<span class="n">rigidBodyPrim</span> <span class="o">=</span> <span class="n">rigidBodyXform</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">()</span>
+
+<span class="c1"># Apply the rigid body api and set the body&#39;s initial state.</span>
+<span class="n">rigidBodyAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">RigidBodyAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyPrim</span><span class="p">)</span>
+<span class="n">rigidBodyAPI</span><span class="o">.</span><span class="n">CreateRigidBodyEnabledAttr</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">rigidBodyAPI</span><span class="o">.</span><span class="n">CreateVelocityAttr</span><span class="p">(</span><span class="n">rigidBodyStartLinVelocity</span><span class="p">)</span>
+<span class="n">rigidBodyAPI</span><span class="o">.</span><span class="n">CreateAngularVelocityAttr</span><span class="p">(</span><span class="n">rigidBodyStartAngVelocity</span><span class="p">)</span>
+
+<span class="c1"># Auto-compute the mass properties of the rigid body</span>
+<span class="n">massAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">MassAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyPrim</span><span class="p">)</span>
+<span class="n">massAPI</span><span class="o">.</span><span class="n">CreateMassAttr</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="c1"># Apply the articulation api to the rigid body.</span>
+<span class="c1"># rigidBodyPrim is now the root link of a floating</span>
+<span class="c1"># articulation that has a single link.</span>
+<span class="n">UsdPhysics</span><span class="o">.</span><span class="n">ArticulationRootAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyPrim</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="create-a-fixed-base-articulation">
+<span id="createfixedbaseartic"></span><h2>Create a Fixed-Base Articulation<a class="headerlink" href="#create-a-fixed-base-articulation" title="Link to this heading">#</a></h2>
+<p>The following snippet creates a fixed-base articulation with two links coupled by a revolute joint.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pxr</span><span class="w"> </span><span class="kn">import</span> <span class="n">Usd</span><span class="p">,</span> <span class="n">UsdGeom</span><span class="p">,</span> <span class="n">UsdPhysics</span><span class="p">,</span> <span class="n">Gf</span><span class="p">,</span> <span class="n">PhysxSchema</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">omni.usd</span>
+
+<span class="c1"># Create a stage</span>
+<span class="n">omni</span><span class="o">.</span><span class="n">usd</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span><span class="o">.</span><span class="n">new_stage</span><span class="p">()</span>
+<span class="n">stage</span>  <span class="o">=</span> <span class="n">omni</span><span class="o">.</span><span class="n">usd</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span><span class="o">.</span><span class="n">get_stage</span><span class="p">()</span>
+
+<span class="c1"># Define the root Xform (transformable object)</span>
+<span class="n">rootxform</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Xform</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="s2">&quot;/World&quot;</span><span class="p">)</span>
+
+<span class="n">rigidBodyPaths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/World/rigidBody0&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/rigidBody1&quot;</span><span class="p">]</span>
+<span class="n">revoluteJointPath</span> <span class="o">=</span> <span class="s2">&quot;/World/revoluteJoint&quot;</span>
+<span class="n">fixedJointPath</span> <span class="o">=</span> <span class="s2">&quot;/World/fixedJoint&quot;</span>
+
+<span class="c1"># The initial pose of the root link.</span>
+<span class="n">rootLinkStartPosition</span> <span class="o">=</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">rootLinkStartRotation</span> <span class="o">=</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="c1"># The joint frames of the revolute joint coupling</span>
+<span class="c1"># the two links of the articulation.</span>
+<span class="n">revoluteJointlocalPositions</span> <span class="o">=</span> <span class="p">[</span><span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
+<span class="n">revoluteJointLocalRotations</span> <span class="o">=</span> <span class="p">[</span><span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)]</span>
+
+<span class="c1"># body0 is chosen to be the root link.</span>
+<span class="n">rootLinkId</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">rigidBodyXforms</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+
+    <span class="c1"># Create the rigid body</span>
+    <span class="n">rigidBodyXform</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Xform</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">rigidBodyXforms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rigidBodyXform</span>
+    <span class="n">rigidBodyPrim</span> <span class="o">=</span> <span class="n">rigidBodyXform</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">()</span>
+    <span class="n">rigidBodyAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">RigidBodyAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyPrim</span><span class="p">)</span>
+    <span class="n">rigidBodyAPI</span><span class="o">.</span><span class="n">CreateRigidBodyEnabledAttr</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">massAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">MassAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyPrim</span><span class="p">)</span>
+    <span class="n">massAPI</span><span class="o">.</span><span class="n">CreateMassAttr</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+
+
+<span class="c1"># Create a revolute joint between the two rigid body prims</span>
+<span class="n">revoluteJoint</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">RevoluteJoint</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">revoluteJointPath</span><span class="p">)</span>
+<span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateAxisAttr</span><span class="p">(</span><span class="n">UsdPhysics</span><span class="o">.</span><span class="n">Tokens</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateBody0Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateBody1Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateLocalPos0Attr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">revoluteJointlocalPositions</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateLocalRot0Attr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">revoluteJointLocalRotations</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateLocalPos1Attr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">revoluteJointlocalPositions</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateLocalRot1Attr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">revoluteJointLocalRotations</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Create a fixed joint between the root link and the world.</span>
+<span class="c1"># Mark the fixed joint as the root. This will create a fixed</span>
+<span class="c1"># base articulation with body0 as the root link.</span>
+<span class="n">fixedJoint</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">FixedJoint</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">fixedJointPath</span><span class="p">)</span>
+<span class="n">fixedJoint</span><span class="o">.</span><span class="n">CreateBody0Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">rootLinkId</span><span class="p">])</span>
+<span class="n">UsdPhysics</span><span class="o">.</span><span class="n">ArticulationRootAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">fixedJoint</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">())</span>
+
+<span class="c1"># Set the initial pose of the root link</span>
+<span class="n">rigidBodyXforms</span><span class="p">[</span><span class="n">rootLinkId</span><span class="p">]</span><span class="o">.</span><span class="n">AddTranslateOp</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">rootLinkStartPosition</span><span class="p">)</span>
+<span class="n">rigidBodyXforms</span><span class="p">[</span><span class="n">rootLinkId</span><span class="p">]</span><span class="o">.</span><span class="n">AddOrientOp</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">rootLinkStartRotation</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="create-an-articulation-based-on-topology">
+<span id="createautomaticartic"></span><h2>Create an Articulation Based on Topology<a class="headerlink" href="#create-an-articulation-based-on-topology" title="Link to this heading">#</a></h2>
+<p>When the articulation root is not directly applied to a fixed joint or rigid body, the simulator attempts to determine the articulation type and topology automatically.</p>
+<dl class="simple">
+<dt>The automation process works as follows:</dt><dd><ol class="arabic simple">
+<li><p>Traverse the hierarchy below the articulation root.</p></li>
+<li><p>Create topologies, which are graphs based on the traversed bodies and joints connecting them.</p></li>
+<li><p>For each topology, apply a deterministic algorithm to select the articulation root:</p>
+<ul class="simple">
+<li><p>If any joint to the world is found, the topology (articulation) is considered fixed-base. The articulation root link is the body connected to the world with this joint.</p></li>
+<li><p>If no world joint is found, the topology is considered floating-base. In this case, the articulation root is set to the graph node (articulation link) with minimal eccentricity.</p></li>
+</ul>
+</li>
+</ol>
+</dd>
+</dl>
+<p>Note that with this automation, it’s not possible to know the articulation root beforehand. As a result applying poses and velocities to the articulation root is not feasible unless the root is identified after parsing.</p>
+</section>
+<section id="jointstateapi-for-set-and-get-of-joint-position-and-velocity">
+<span id="articulationjointstate"></span><h2>JointStateAPI for Set and Get of Joint Position And Velocity<a class="headerlink" href="#jointstateapi-for-set-and-get-of-joint-position-and-velocity" title="Link to this heading">#</a></h2>
+<p>Each degree of freedom of an articulated joint has position and velocity attributes. These attributes may be queried or modified by applying <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">PhysxSchema.JointStateAPI</span></code> to the corresponding joint prim. This is a feature unique to articulated joints.</p>
+<p>The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">PhysxSchema.JointStateAPI</span></code> can be used to set initial position and velocity of the articulation joint. In the absence of the API, the simulation initializes the joint positions and velocities to zero.</p>
+<p>The following Python snippet may be added to the snippet in section <a class="reference internal" href="#createfixedbaseartic"><span class="std std-ref">Create a Fixed-Base Articulation</span></a> to set the initial position and velocity of the revolute joint:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">jointStateAPI</span> <span class="o">=</span> <span class="n">PhysxSchema</span><span class="o">.</span><span class="n">JointStateAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">revoluteJoint</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">(),</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">Tokens</span><span class="o">.</span><span class="n">angular</span><span class="p">)</span>
+<span class="n">jointStateAPI</span><span class="o">.</span><span class="n">CreatePositionAttr</span><span class="p">(</span><span class="mf">45.0</span><span class="p">)</span>
+<span class="n">jointStateAPI</span><span class="o">.</span><span class="n">CreateVelocityAttr</span><span class="p">(</span><span class="mf">180.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The position and velocity of the degree of freedom permitted by the revolute joint may be queried as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">jointPosition</span> <span class="o">=</span> <span class="n">jointStateAPI</span><span class="o">.</span><span class="n">GetPositionAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Get</span><span class="p">()</span>
+<span class="n">jointVelocity</span> <span class="o">=</span> <span class="n">jointStateAPI</span><span class="o">.</span><span class="n">GetVelocityAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Get</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Tokens such as <a class="reference internal" href="../schemas/usdphysics.html#_CPPv4N20UsdPhysicsTokensType6linearE" title="UsdPhysicsTokensType::linear"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">UsdPhysics.Tokens.linear</span></code></a> and <a class="reference internal" href="../schemas/usdphysics.html#_CPPv4N20UsdPhysicsTokensType4rotXE" title="UsdPhysicsTokensType::rotX"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">UsdPhysics.Tokens.rotX</span></code></a> are used to specify the degree of freedom whose state will be queried or modified.
+For example, a prismatic joint would use the token <a class="reference internal" href="../schemas/usdphysics.html#_CPPv4N20UsdPhysicsTokensType6linearE" title="UsdPhysicsTokensType::linear"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">UsdPhysics.Tokens.linear</span></code></a>, while a spherical joint would use <a class="reference internal" href="../schemas/usdphysics.html#_CPPv4N20UsdPhysicsTokensType4rotXE" title="UsdPhysicsTokensType::rotX"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">UsdPhysics.Tokens.rotX</span></code></a>, <a class="reference internal" href="../schemas/usdphysics.html#_CPPv4N20UsdPhysicsTokensType4rotYE" title="UsdPhysicsTokensType::rotY"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">UsdPhysics.Tokens.rotY</span></code></a>, or <a class="reference internal" href="../schemas/usdphysics.html#_CPPv4N20UsdPhysicsTokensType4rotZE" title="UsdPhysicsTokensType::rotZ"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">UsdPhysics.Tokens.rotZ</span></code></a>, as appropriate.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For performance in reinforcement learning or other simulation workloads, you may enable the physics Fabric extension (see enabling <a class="reference internal" href="../simulation_control/simulation_control.html#fabricconfiguration"><span class="std std-ref">Fabric</span></a>). The above USD access to the joint state will no longer work in that case, but you can use the Tensor API <code class="xref py py-class docutils literal notranslate"><span class="pre">ArticulationView</span></code> instead that directly accesses PhysX data.</p>
+</div>
+</section>
+<section id="articulation-joint-drive-and-performance-envelope">
+<span id="articulationloops"></span><h2>Articulation Joint Drive and Performance Envelope<a class="headerlink" href="#articulation-joint-drive-and-performance-envelope" title="Link to this heading">#</a></h2>
+<p>A drive, operating analogous to a PD controller, may be added to a joint. This is defined on a per-axis basis.</p>
+<p>It is possible to define drive’s <strong>performance envelope</strong>, which acts as a static model that constrains the behavior of an articulated joint. This can be achieved by applying a multiple-apply PhysxDrivePerformanceEnvelopeAPI per joint axis. The following snippet demonstrates how to apply and configure this API on a revolute joint:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">omni.physx.bindings._physx</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">PERF_ENV_API</span><span class="p">,</span>
+    <span class="n">PERF_ENV_ATTR_MAX_ACTUATOR_VELOCITY_ANGULAR</span><span class="p">,</span>
+    <span class="n">PERF_ENV_ATTR_VELOCITY_DEPENDENT_RESISTANCE_ANGULAR</span><span class="p">,</span>
+    <span class="n">PERF_ENV_ATTR_SPEED_EFFORT_GRADIENT_ANGULAR</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Assume we have a revolute joint already created</span>
+<span class="c1"># Apply drive API for the angular axis</span>
+<span class="n">driveAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">DriveAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">jointPrim</span><span class="p">,</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">Tokens</span><span class="o">.</span><span class="n">angular</span><span class="p">)</span>
+<span class="n">driveAPI</span><span class="o">.</span><span class="n">CreateMaxForceAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span>
+
+<span class="c1"># Apply performance envelope API for the angular axis</span>
+<span class="n">jointPrim</span><span class="o">.</span><span class="n">ApplyAPI</span><span class="p">(</span><span class="n">PERF_ENV_API</span><span class="p">,</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">Tokens</span><span class="o">.</span><span class="n">angular</span><span class="p">)</span>
+<span class="n">jointPrim</span><span class="o">.</span><span class="n">CreateAttribute</span><span class="p">(</span><span class="n">PERF_ENV_ATTR_MAX_ACTUATOR_VELOCITY_ANGULAR</span><span class="p">,</span> <span class="n">Sdf</span><span class="o">.</span><span class="n">ValueTypeNames</span><span class="o">.</span><span class="n">Float</span><span class="p">)</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">180.0</span><span class="p">)</span>
+<span class="n">jointPrim</span><span class="o">.</span><span class="n">CreateAttribute</span><span class="p">(</span><span class="n">PERF_ENV_ATTR_VELOCITY_DEPENDENT_RESISTANCE_ANGULAR</span><span class="p">,</span> <span class="n">Sdf</span><span class="o">.</span><span class="n">ValueTypeNames</span><span class="o">.</span><span class="n">Float</span><span class="p">)</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">jointPrim</span><span class="o">.</span><span class="n">CreateAttribute</span><span class="p">(</span><span class="n">PERF_ENV_ATTR_SPEED_EFFORT_GRADIENT_ANGULAR</span><span class="p">,</span> <span class="n">Sdf</span><span class="o">.</span><span class="n">ValueTypeNames</span><span class="o">.</span><span class="n">Float</span><span class="p">)</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>PhysX enforces operation within the envelope using:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>Effort constraint</strong>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[|driveEffort| \leq maxEffort - velocityDependentResistance \cdot |jointVelocity|\]</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Velocity constraint</strong>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[|jointVelocity| \leq maxActuatorVelocity - speedEffortGradient \cdot |driveEffort|\]</div>
+</div></blockquote>
+<p>Where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">maxEffort</span></code> corresponds to the maximum force for linear joints or maximum torque for rotational joints and is configured using the maxForce attribute of the DriveAPI.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">velocityDependentResistance</span></code> represents resistance that scales with velocity.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">speedEffortGradient</span></code> represents how actuator speed capability decreases with applied effort.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxActuatorVelocity</span></code> is the maximum achievable velocity for actuated joints.</p></li>
+</ul>
+<p>These constraints define a <strong>feasible operating region</strong> in the (joint velocity, drive effort) plane.</p>
+<p><strong>Units (from PhysxDrivePerformanceEnvelopeAPI schema):</strong></p>
+<ul class="simple">
+<li><p><strong>Linear joints:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxForce</span></code>: force [N]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">velocityDependentResistance</span></code>: force × second / distance</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">speedEffortGradient</span></code>: distance / second / force</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxActuatorVelocity</span></code>: distance / second</p></li>
+</ul>
+</li>
+<li><p><strong>Angular joints:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxForce</span></code>: torque [Nm]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">velocityDependentResistance</span></code>: torque × second / degrees</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">speedEffortGradient</span></code>: degrees / second / torque</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxActuatorVelocity</span></code>: degrees / second</p></li>
+</ul>
+</li>
+</ul>
+<p>The accompanying document <a class="reference download internal" download="" href="../../_downloads/f44e831b7f29e7c2ec8e3f2c54418430/drivePerformanceEnvelope.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Drive</span> <span class="pre">Performance</span> <span class="pre">Envelope</span></code></a> describes deriving the performance envelope parameters from a typical motor datasheet.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">driveEffort</span></code> represents the <strong>sum</strong> of:</dt><dd><ul>
+<li><p>Internal drive effort (from PD controller)</p></li>
+<li><p>User-defined joint effort</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>For the PhysxDrivePerformanceEnvelopeAPI to take effect, the PhysicsDriveAPI must also be defined for the same axis, as the maxForce parameter from PhysicsDriveAPI is utilized by the performance envelope.</p></li>
+<li><p>Legacy behavior is achieved by not applying the PhysxDrivePerformanceEnvelopeAPI.</p></li>
+<li><p>Differentiate between PhysxDrivePerformanceEnvelopeAPI:<code class="docutils literal notranslate"><span class="pre">maxActuatorVelocity</span></code> and PhysxJointAxisAPI(PhysxJointAPI):<code class="docutils literal notranslate"><span class="pre">maxJointVelocity</span></code>. While the former is used for clamping the drive effort, the latter is used for clamping the joint velocity itself.</p></li>
+</ul>
+</div>
+</section>
+<section id="articulation-joint-friction">
+<h2>Articulation Joint Friction<a class="headerlink" href="#articulation-joint-friction" title="Link to this heading">#</a></h2>
+<p>Joint friction is applied to an articulation joint when non-zero friction parameters are specified.</p>
+<p>The updated friction model combines <strong>Coulomb friction</strong> (static and dynamic) with <strong>viscous friction</strong>. The behavior is as follows:</p>
+<ul class="simple">
+<li><p>For each joint degree of freedom, the system evaluates whether the joint can be brought to rest using static friction alone. This is determined by comparing the impulse required to stop the joint (based on its current velocity) to the static friction impulse, which is computed from the <code class="docutils literal notranslate"><span class="pre">staticFrictionEffort</span></code> parameter.</p></li>
+<li><p>If the static friction impulse is sufficient, the joint is held at rest along that axis.</p></li>
+<li><p>If not, <strong>dynamic friction</strong> is applied to slow the joint down. This dynamic friction consists of:</p>
+<ul>
+<li><p>A constant term derived from the <code class="docutils literal notranslate"><span class="pre">dynamicFrictionEffort</span></code> parameter.</p></li>
+<li><p>A velocity-dependent term, calculated as the product of <code class="docutils literal notranslate"><span class="pre">viscousFrictionCoefficient</span></code> and the joint velocity.</p></li>
+</ul>
+</li>
+</ul>
+<p>Users can customize this friction behavior per axis using PhysxJointAxisAPI. In addition, this API allows for setting the maximum joint velocity and armature per axis. The following snippet demonstrates how to apply and configure this API on a revolute joint:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">omni.physx.bindings._physx</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">JOINT_AXIS_API</span><span class="p">,</span>
+    <span class="n">JOINT_AXIS_ATTR_STATIC_FRICTION_EFFORT_ANGULAR</span><span class="p">,</span>
+    <span class="n">JOINT_AXIS_ATTR_DYNAMIC_FRICTION_EFFORT_ANGULAR</span><span class="p">,</span>
+    <span class="n">JOINT_AXIS_ATTR_VISCOUS_FRICTION_COEFFICIENT_ANGULAR</span><span class="p">,</span>
+    <span class="n">JOINT_AXIS_ATTR_ARMATURE_ANGULAR</span><span class="p">,</span>
+    <span class="n">JOINT_AXIS_ATTR_MAX_JOINT_VELOCITY_ANGULAR</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Assume we have a revolute joint already created</span>
+<span class="c1"># Apply joint axis API for the angular axis</span>
+<span class="n">jointPrim</span><span class="o">.</span><span class="n">ApplyAPI</span><span class="p">(</span><span class="n">JOINT_AXIS_API</span><span class="p">,</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">Tokens</span><span class="o">.</span><span class="n">angular</span><span class="p">)</span>
+
+<span class="n">jointPrim</span><span class="o">.</span><span class="n">CreateAttribute</span><span class="p">(</span><span class="n">JOINT_AXIS_ATTR_STATIC_FRICTION_EFFORT_ANGULAR</span><span class="p">,</span> <span class="n">Sdf</span><span class="o">.</span><span class="n">ValueTypeNames</span><span class="o">.</span><span class="n">Float</span><span class="p">)</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">jointPrim</span><span class="o">.</span><span class="n">CreateAttribute</span><span class="p">(</span><span class="n">JOINT_AXIS_ATTR_DYNAMIC_FRICTION_EFFORT_ANGULAR</span><span class="p">,</span> <span class="n">Sdf</span><span class="o">.</span><span class="n">ValueTypeNames</span><span class="o">.</span><span class="n">Float</span><span class="p">)</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="n">jointPrim</span><span class="o">.</span><span class="n">CreateAttribute</span><span class="p">(</span><span class="n">JOINT_AXIS_ATTR_VISCOUS_FRICTION_COEFFICIENT_ANGULAR</span><span class="p">,</span> <span class="n">Sdf</span><span class="o">.</span><span class="n">ValueTypeNames</span><span class="o">.</span><span class="n">Float</span><span class="p">)</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">jointPrim</span><span class="o">.</span><span class="n">CreateAttribute</span><span class="p">(</span><span class="n">JOINT_AXIS_ATTR_ARMATURE_ANGULAR</span><span class="p">,</span> <span class="n">Sdf</span><span class="o">.</span><span class="n">ValueTypeNames</span><span class="o">.</span><span class="n">Float</span><span class="p">)</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">jointPrim</span><span class="o">.</span><span class="n">CreateAttribute</span><span class="p">(</span><span class="n">JOINT_AXIS_ATTR_MAX_JOINT_VELOCITY_ANGULAR</span><span class="p">,</span> <span class="n">Sdf</span><span class="o">.</span><span class="n">ValueTypeNames</span><span class="o">.</span><span class="n">Float</span><span class="p">)</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">staticFrictionEffort</span></code> must always be greater than or equal to <code class="docutils literal notranslate"><span class="pre">dynamicFrictionEffort</span></code>.</p>
+</div>
+<p><strong>Units (from PhysxJointAxisAPI schema):</strong></p>
+<ul class="simple">
+<li><p><strong>Linear joints:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">staticFrictionEffort</span></code> and <code class="docutils literal notranslate"><span class="pre">dynamicFrictionEffort</span></code>: force (mass × distance / second²)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">viscousFrictionCoefficient</span></code>: force × second / distance</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxJointVelocity</span></code>: distance / second</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">armature</span></code>: mass</p></li>
+</ul>
+</li>
+<li><p><strong>Angular joints:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">staticFrictionEffort</span></code> and <code class="docutils literal notranslate"><span class="pre">dynamicFrictionEffort</span></code>: torque (mass × distance² / second²)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">viscousFrictionCoefficient</span></code>: torque × second / degrees</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxJointVelocity</span></code>: degrees / second</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">armature</span></code>: mass × distance²</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="closed-loops">
+<h2>Closed Loops<a class="headerlink" href="#closed-loops" title="Link to this heading">#</a></h2>
+<p>Articulation joints on their own do not support closed loops. For example, links A, B, C may be connected with articulation joints coupling A to B and B to C, but not with an articulation joint that also couples C to A. This final joint would create a closed loop of articulation joints and is not supported.</p>
+<img alt="Articulation Closed Loop" class="align-center" src="../../_images/closed_loops_sketch.png" />
+<p>Closing loops is still possible by using a regular joint (rather than an articulation joint). This is achieved by marking the loop-closing joint as being excluded from the articulation. For the example above, this would involve marking the joint coupling C to A as excluded from the articulation, see <a class="reference internal" href="#excludejointsfromarticulations"><span class="std std-ref">below</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Simulation of articulations with closed-loops is more challenging for the solver and you may encounter instabilities; try lowering the simulation time step, and follow other advice in <a class="reference internal" href="../guides/articulation_stability_guide.html#articulation-stability-guide"><span class="std std-ref">Articulation and Robot Simulation Stability Guide</span></a>.</p>
+</div>
+</section>
+<section id="exclude-joints-from-articulations">
+<span id="excludejointsfromarticulations"></span><h2>Exclude Joints from Articulations<a class="headerlink" href="#exclude-joints-from-articulations" title="Link to this heading">#</a></h2>
+<p>You most often exclude joints from an articulation when breaking closed loops; but you may also use it to connect a swappable manipulator to a robot arm, i.e. to connect two articulations to each other using a fixed joint.</p>
+<p>The snippet creates four links arranged at the corners of a square in the x-y plane. Each edge of the square has a corresponding joint which results in a closed loop. This loop is broken by excluding the last joint from the articulation. An additional joint is added to make the articulation fixed-base.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pxr</span><span class="w"> </span><span class="kn">import</span> <span class="n">Usd</span><span class="p">,</span> <span class="n">UsdGeom</span><span class="p">,</span> <span class="n">UsdPhysics</span><span class="p">,</span> <span class="n">Gf</span><span class="p">,</span> <span class="n">PhysxSchema</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">omni.usd</span>
+
+<span class="c1"># Create a stage</span>
+<span class="n">omni</span><span class="o">.</span><span class="n">usd</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span><span class="o">.</span><span class="n">new_stage</span><span class="p">()</span>
+<span class="n">stage</span>  <span class="o">=</span> <span class="n">omni</span><span class="o">.</span><span class="n">usd</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span><span class="o">.</span><span class="n">get_stage</span><span class="p">()</span>
+
+<span class="c1"># Define the root Xform (transformable object)</span>
+<span class="n">rootxform</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Xform</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="s2">&quot;/World&quot;</span><span class="p">)</span>
+
+<span class="n">rootLinkfixedJointPath</span> <span class="o">=</span> <span class="s2">&quot;/World/rootLinkfixedJoint&quot;</span>
+<span class="n">rigidBodyPaths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/World/rigidBody0&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/rigidBody1&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/rigidBody2&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/rigidBody3&quot;</span><span class="p">]</span>
+<span class="n">rigidBodyBoxPaths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/World/rigidBody0/box&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/rigidBody1/box&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/rigidBody2/box&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/rigidBody3/box&quot;</span><span class="p">]</span>
+<span class="n">rigidBodyStartPositions</span> <span class="o">=</span> <span class="p">[</span><span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="n">fixedJointPaths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/World/fixedJoint0&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/fixedJoint1&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/fixedJoint2&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/fixedJoint3&quot;</span><span class="p">]</span>
+<span class="n">fixedJointBodyPairs</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+
+<span class="c1"># The joint frames of the revolute joint coupling</span>
+<span class="c1"># the two links of the articulation.</span>
+<span class="n">fixedJointlocalPositions0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
+<span class="n">fixedJointlocalPositions1</span> <span class="o">=</span> <span class="p">[</span><span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
+<span class="n">fixedJointLocalRotations0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)]</span>
+<span class="n">fixedJointLocalRotations1</span> <span class="o">=</span> <span class="p">[</span><span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+
+    <span class="c1"># Create the rigid body</span>
+    <span class="n">rigidBodyXform</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Xform</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">rigidBodyXform</span><span class="o">.</span><span class="n">AddTranslateOp</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">rigidBodyStartPositions</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">rigidBodyPrim</span> <span class="o">=</span> <span class="n">rigidBodyXform</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">()</span>
+    <span class="n">rigidBodyAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">RigidBodyAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyPrim</span><span class="p">)</span>
+    <span class="n">rigidBodyAPI</span><span class="o">.</span><span class="n">CreateRigidBodyEnabledAttr</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">massAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">MassAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyPrim</span><span class="p">)</span>
+    <span class="n">massAPI</span><span class="o">.</span><span class="n">CreateMassAttr</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+
+    <span class="n">fixedJoint</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">FixedJoint</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">fixedJointPaths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">body0Index</span> <span class="o">=</span> <span class="n">fixedJointBodyPairs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">body1Index</span> <span class="o">=</span> <span class="n">fixedJointBodyPairs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">fixedJoint</span><span class="o">.</span><span class="n">CreateBody0Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">body0Index</span><span class="p">])</span>
+    <span class="n">fixedJoint</span><span class="o">.</span><span class="n">CreateBody1Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">body1Index</span><span class="p">])</span>
+    <span class="n">fixedJoint</span><span class="o">.</span><span class="n">CreateLocalPos0Attr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">fixedJointlocalPositions0</span><span class="p">[</span><span class="n">body0Index</span><span class="p">])</span>
+    <span class="n">fixedJoint</span><span class="o">.</span><span class="n">CreateLocalRot0Attr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">fixedJointLocalRotations0</span><span class="p">[</span><span class="n">body0Index</span><span class="p">])</span>
+    <span class="n">fixedJoint</span><span class="o">.</span><span class="n">CreateLocalPos1Attr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">fixedJointlocalPositions1</span><span class="p">[</span><span class="n">body1Index</span><span class="p">])</span>
+    <span class="n">fixedJoint</span><span class="o">.</span><span class="n">CreateLocalRot1Attr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">fixedJointLocalRotations1</span><span class="p">[</span><span class="n">body1Index</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">3</span><span class="p">:</span>
+        <span class="n">fixedJoint</span><span class="o">.</span><span class="n">CreateExcludeFromArticulationAttr</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create a fixed joint to the world and define it</span>
+<span class="c1"># as the articulation root</span>
+<span class="n">rootLinkFixedJoint</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">FixedJoint</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">rootLinkfixedJointPath</span><span class="p">)</span>
+<span class="n">rootLinkFixedJoint</span><span class="o">.</span><span class="n">CreateBody0Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">UsdPhysics</span><span class="o">.</span><span class="n">ArticulationRootAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rootLinkFixedJoint</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="articulation-mimic-joints">
+<span id="articulationmimicjoints"></span><h2>Articulation Mimic Joints<a class="headerlink" href="#articulation-mimic-joints" title="Link to this heading">#</a></h2>
+<p>Mimic joints allow the position of two degrees of freedom of the same articulation to be coupled with a linear relationship.</p>
+<p>For example, you can use mimic joints to create</p>
+<ul class="simple">
+<li><p>a <strong>gear joint</strong> by coupling two revolute joints, or</p></li>
+<li><p>a <strong>rack-and-pinion-joint</strong> by coupling a prismatic and revolute joint.</p></li>
+</ul>
+<p>Note that when simulating articulations, it is recommended that you use mimic joints instead of the <a class="reference internal" href="joints.html#metajoints"><span class="std std-ref">Meta Joints</span></a> implementations of the gear and rack-and-pinion joints. Mimic joints are articulation-specific and fully GPU accelerated.</p>
+<p>Mimic joints are characterized by a gear ratio <span class="math notranslate nohighlight">\(G\)</span> and an offset <span class="math notranslate nohighlight">\(\gamma\)</span> such that:</p>
+<div class="math notranslate nohighlight">
+\[q_A + G*q_B + \gamma = 0\]</div>
+<p>with <span class="math notranslate nohighlight">\(q_A\)</span> and <span class="math notranslate nohighlight">\(q_B\)</span> denoting the positions of the two degrees of freedom coupled by the mimic joint.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Mimic joints only support revolute joints with limits applied. The limits may have any value. For example, setting the limit to a very large value could create a situation where the limit is never exceeded.</p></li>
+<li><p>Mimic joints only support articulation joints.</p></li>
+</ul>
+</div>
+<p>The following Python snippet creates a mimic joint that implements a gear-joint relationship. The mimic joint couples the two revolute joint positions of <em>joint0</em> and <em>joint1</em>. Then, <em>joint0</em> is initialized to an angular speed of 800 degrees per second, while <em>joint1</em> is initialized to zero angular speed. The mimic joint with gear ratio five will then pull <em>joint1</em> along as the simulation progresses.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pxr</span><span class="w"> </span><span class="kn">import</span> <span class="n">Usd</span><span class="p">,</span> <span class="n">UsdGeom</span><span class="p">,</span> <span class="n">UsdPhysics</span><span class="p">,</span> <span class="n">Gf</span><span class="p">,</span> <span class="n">PhysxSchema</span><span class="p">,</span> <span class="n">Sdf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">omni.usd</span>
+
+<span class="c1"># Create a stage</span>
+<span class="n">omni</span><span class="o">.</span><span class="n">usd</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span><span class="o">.</span><span class="n">new_stage</span><span class="p">()</span>
+<span class="n">stage</span>  <span class="o">=</span> <span class="n">omni</span><span class="o">.</span><span class="n">usd</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span><span class="o">.</span><span class="n">get_stage</span><span class="p">()</span>
+
+<span class="c1"># Define the root Xform (transformable object)</span>
+<span class="n">rootxform</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Xform</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="s2">&quot;/World&quot;</span><span class="p">)</span>
+
+<span class="n">rootBodyPath</span> <span class="o">=</span> <span class="s2">&quot;/World/rootBody&quot;</span>
+<span class="n">rootBodyFixedJointPath</span> <span class="o">=</span> <span class="s2">&quot;/World/rootBodyFixedJoint&quot;</span>
+
+<span class="n">rigidBodyPaths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/World/rigidBody0&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/rigidBody1&quot;</span><span class="p">]</span>
+<span class="n">rigidBodySpherePaths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/World/rigidBody/sphere&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/rigidBody/sphere&quot;</span><span class="p">]</span>
+<span class="n">sphereRadii</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">revoluteJointPaths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/World/revoluteJoint0&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/revoluteJoint1&quot;</span><span class="p">]</span>
+<span class="n">revoluteJointBody0Positions</span> <span class="o">=</span> <span class="p">[</span><span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+
+<span class="c1"># Create the root body</span>
+<span class="n">rootBodyXform</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Xform</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">rootBodyPath</span><span class="p">)</span>
+<span class="n">rootBodyXform</span><span class="o">.</span><span class="n">AddTranslateOp</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
+<span class="n">rootBodyXform</span><span class="o">.</span><span class="n">AddOrientOp</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="n">rootBodyPrim</span> <span class="o">=</span> <span class="n">rootBodyXform</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">()</span>
+<span class="n">rigidBodyAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">RigidBodyAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rootBodyPrim</span><span class="p">)</span>
+<span class="n">rigidBodyAPI</span><span class="o">.</span><span class="n">CreateRigidBodyEnabledAttr</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create two siblings (body0 and body1) as children of the root.</span>
+<span class="c1"># Create an inbound revolute joint (joint0 and joint1) for each child.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+
+    <span class="c1"># Create a rigid body</span>
+    <span class="n">rigidBodyXform</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Xform</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">rigidBodyPrim</span> <span class="o">=</span> <span class="n">rigidBodyXform</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">()</span>
+    <span class="n">rigidBodyAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">RigidBodyAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyPrim</span><span class="p">)</span>
+    <span class="n">rigidBodyAPI</span><span class="o">.</span><span class="n">CreateRigidBodyEnabledAttr</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">massAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">MassAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyPrim</span><span class="p">)</span>
+    <span class="n">massAPI</span><span class="o">.</span><span class="n">CreateDensityAttr</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+
+    <span class="c1"># Add a sphere collider</span>
+    <span class="n">sphereGeom</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Sphere</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">rigidBodySpherePaths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">sphereGeom</span><span class="o">.</span><span class="n">CreateRadiusAttr</span><span class="p">(</span><span class="n">sphereRadii</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">sphereGeom</span><span class="o">.</span><span class="n">AddTranslateOp</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
+    <span class="n">sphereGeom</span><span class="o">.</span><span class="n">AddOrientOp</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+    <span class="n">spherePrim</span> <span class="o">=</span> <span class="n">sphereGeom</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">()</span>
+    <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">CollisionAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">spherePrim</span><span class="p">)</span>
+
+    <span class="c1"># Create a revolute joint between the root link and the rigid body</span>
+    <span class="n">revoluteJoint</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">RevoluteJoint</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">revoluteJointPaths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateBody0Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rootBodyPath</span><span class="p">)</span>
+    <span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateBody1Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateAxisAttr</span><span class="p">(</span><span class="n">UsdPhysics</span><span class="o">.</span><span class="n">Tokens</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+    <span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateLocalPos0Attr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">revoluteJointBodyPositions</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateLowerLimitAttr</span><span class="p">(</span><span class="o">-</span><span class="mf">9000.0</span><span class="p">)</span>
+    <span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateUpperLimitAttr</span><span class="p">(</span><span class="mf">9000.0</span><span class="p">)</span>
+
+<span class="c1"># Create a fixed joint between the root body and the world.</span>
+<span class="c1"># Mark the fixed joint as the root. This will create a fixed</span>
+<span class="c1"># base articulation with body0 as the root link.</span>
+<span class="n">fixedJoint</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">FixedJoint</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">rootLinkFixedJointPath</span><span class="p">)</span>
+<span class="n">fixedJoint</span><span class="o">.</span><span class="n">CreateBody0Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">UsdPhysics</span><span class="o">.</span><span class="n">ArticulationRootAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">fixedJoint</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">())</span>
+
+<span class="n">jointPrim0</span> <span class="o">=</span> <span class="n">stage</span><span class="o">.</span><span class="n">GetPrimAtPath</span><span class="p">(</span><span class="n">revoluteJointPaths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Apply a joint speed to one of the revolute joints</span>
+<span class="n">jointStateAPI</span> <span class="o">=</span> <span class="n">PhysxSchema</span><span class="o">.</span><span class="n">JointStateAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">jointPrim0</span><span class="p">,</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">Tokens</span><span class="o">.</span><span class="n">angular</span><span class="p">)</span>
+<span class="n">jointStateAPI</span><span class="o">.</span><span class="n">CreatePositionAttr</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">jointStateAPI</span><span class="o">.</span><span class="n">CreateVelocityAttr</span><span class="p">(</span><span class="mf">800.0</span><span class="p">)</span>
+
+<span class="c1"># Create a mimic joint</span>
+<span class="n">mimicJointAPI</span> <span class="o">=</span> <span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxMimicJointAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">jointPrim0</span><span class="p">,</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">Tokens</span><span class="o">.</span><span class="n">rotZ</span><span class="p">)</span>
+<span class="n">mimicJointAPI</span><span class="o">.</span><span class="n">GetReferenceJointRel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">revoluteJointPaths</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">mimicJointAPI</span><span class="o">.</span><span class="n">GetReferenceJointAxisAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">UsdPhysics</span><span class="o">.</span><span class="n">Tokens</span><span class="o">.</span><span class="n">rotZ</span><span class="p">)</span>
+<span class="n">mimicJointAPI</span><span class="o">.</span><span class="n">GetGearingAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">mimicJointAPI</span><span class="o">.</span><span class="n">GetOffsetAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="articulation-mimic-joint-compliance">
+<span id="articulationmimicjointcompliance"></span><h3>Articulation Mimic Joint Compliance<a class="headerlink" href="#articulation-mimic-joint-compliance" title="Link to this heading">#</a></h3>
+<p>Mimic joints support compliance, as discussed <a class="reference external" href="https://nvidia-omniverse.github.io/PhysX/physx/5.5.0/docs/Articulations.html#mimic-joints">here</a> in the PhysX SDK guide.  In the absence of compliance, mimic joints apply the impulses necessary to instantaneously maintain the mimic joint equation. This can lead to instability in the event that another sub-system is pushing back equally hard to break the mimic joint constraint.</p>
+<p>Gripping scenarios may exhibit mimic joint instability when finger joints are “passively” actuated via a mimic joint connected to a driven joint. This scenario is especially prone to instability when the driven joint is configured to be very stiff (i.e. high position gain) compared to the typically small masses and inertia of finger links: When the finger tip is in contact with an object, the mimic joint will be a constraint competing with the hard contact which may cause stability issues.</p>
+<p>One solution to the numerical issues arising from the competing constraints is to add compliance to the mimic joints. Mimic joint compliance is achieved with two parameters that model compliance as a spring-damper: natural frequency and damping ratio.</p>
+<p>The following python script may be added to the script in section <a class="reference internal" href="#articulationmimicjoints"><span class="std std-ref">Articulation Mimic Joints</span></a> to add compliance to a mimic joint:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the compliance attributes of the mimic joint</span>
+<span class="n">mimicJointAPI</span><span class="o">.</span><span class="n">GetNaturalFrequencyAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span>
+<span class="n">mimicJointAPI</span><span class="o">.</span><span class="n">GetDampingRatioAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="tuning-a-compliant-mimic-joint">
+<span id="tuning-mimic-joints"></span><h3>Tuning a Compliant Mimic Joint<a class="headerlink" href="#tuning-a-compliant-mimic-joint" title="Link to this heading">#</a></h3>
+<p>A metric that helps tuning compliance is the product of simulation timestep and natural frequency. Larger product values are more likely to lead to instability, while smaller product values are more likely to lead to stability. If the product of simulation timestep and natural frequency is many orders of magnitude greater than 1, there is no effective compliance, and you may just as well avoid configuring compliance.</p>
+<ol class="arabic simple">
+<li><p>A good starting point for the product of natural frequency and simulation timestep is 1. This might lead to the mimic joint appearing sluggish. Increase the natural frequency until the sluggishness is reduced to an acceptable or even imperceptible level but not so great that the compliance has no effect.</p></li>
+<li><p>Increasing the number of position iterations with the TGS solver reduces the effective simulation timestep. This is particularly true when the behavior of the articulation is not dominated by collision response.</p></li>
+<li><p>Joints such as gear and rack-and-pinion joints are rarely underdamped. Avoid damping ratios less than 1 to avoid oscillations arising from underdamping. Avoid values much greater than 1 to avoid sluggish approaches to the equilibrium state of the mimic joint.</p></li>
+<li><p>Note that increasing the number of position iterations and/or reducing the simulation timestep incurs a performance penalty. For recovering some performance, see also the hints in <a class="reference internal" href="../guides/articulation_stability_guide.html#small-dt-stability"><span class="std std-ref">Reduce Simulation Timestep for Complex Systems and Closed Loops</span></a>.</p></li>
+</ol>
+</section>
+</section>
+<section id="articulation-tendons">
+<span id="articulationtendons"></span><h2>Articulation Tendons<a class="headerlink" href="#articulation-tendons" title="Link to this heading">#</a></h2>
+<p>Tendons create constraints within articulations. There are two types: <em>Fixed</em> and <em>Spatial</em></p>
+<p>Fixed tendons impose constraints on joint positions, while spatial tendons impose constraints on the lengths between selected links.</p>
+<section id="fixed-tendons">
+<h3>Fixed Tendons<a class="headerlink" href="#fixed-tendons" title="Link to this heading">#</a></h3>
+<p>Fixed tendons couple degrees of freedom of an articulation such that the weighted sum of the coupled joint positions (the tendon length) is driven towards a specified rest length. In the event that the tendon length is outside a permitted range, the tendon length may also be driven back towards the permitted range.</p>
+<p>The articulation joints referenced by a fixed tendon must follow the topology of the articulation. Another way of expressing this is that the sequence of articulation joints referenced by a tendon must follow the sequence of joints of the articulation. The sequence may start and end at any joint, provided each adjacent pair in the sequence share a common link.</p>
+<p>Each articulation joint referenced by a fixed tendon has an associated gear ratio used to compute the tendon length. Moreover, each articulation joint has an associated force coefficient, which is used to scale the force applied to each joint. The force coefficients are chosen heuristically to best help the fixed tendon achieve its goal. It is recommended to set the force coefficient associated with each joint in the fixed tendon to be the reciprocal of the associated gear ratio.</p>
+<p>The rate at which a fixed tendon achieves its target length may be increased by increasing the stiffness or limit stiffness of the fixed tendon, as appropriate. The stiffness value controls the rate at which the fixed tendon approaches the specified rest length, while the limit stiffness controls the rate at which the tendon length approaches the upper or lower bound of the permitted range from outside the permitted range. Choices of stiffness and limit stiffness allow fixed tendons to observe only limits, to observe only the rest length or to observe both.</p>
+<p>To avoid oscillations around the target length, fixed tendons support damping. Higher damping values will lead to the tendon length asymptotically approaching the target length, while lower damping values can lead to the tendon oscillating around the target length. The damping value is used to compute a damping force that is the product of the damping value and the tendon speed, with the damping speed of the tendon computed as the weighted sum of individual joint speeds. The force coefficients are again used to compute a damping force to apply to each individual joint of the fixed tendon.</p>
+<p>The tendon length may be amended by adding a constant offset value to the weighted sum of joint positions. This offset can be used to control or actuate joints of the articulation through the fixed tendon.</p>
+<p>The <em>Fixed Tendon</em> demo found in <em>Physics Demo Scenes</em> provides an example of a fixed tendon. The motion of the fixed tendon is shown in the following video.</p>
+<div style="width: 100%;display: inline-block;position: relative;">
+    <div id="dummy" style="margin-top: 56%;">
+    </div>
+    <div align="center">
+    <div id="kaltura_player_1" style="position:absolute;top:0;left:0;left: 0;right: 0;bottom:0;border:solid thin black;"></div>
+    <script type="text/javascript" src="https://cdnapisec.kaltura.com/p/2935771/embedPlaykitJs/uiconf_id/46302491"></script>
+    <script type="text/javascript">
+        try {
+        var kalturaPlayer = KalturaPlayer.setup({
+        targetId: "kaltura_player_1",
+        provider:
+        { partnerId: 2935771, uiConfId: 46302491 }
+        });
+        kalturaPlayer.loadMedia(
+        {entryId: '1_qig5cus0'}
+        );
+        } catch (e)
+        { console.error(e.message) }
+    </script>
+    </div>
+</div><p>The three articulation links shown in the video are connected by two revolute joints with the red link denoting the root link of the fixed base articulation. The outbound revolute joint of the root link is driven alternately to zero and forty-five degrees. The second revolute joint connecting the two blue links does not have a drive, but is constrained to follow the position of the driven joint by virtue of the fixed tendon and its gearing.</p>
+<p>The following Python snippet creates a simple fixed tendon that couples two degrees of freedom such that the tendon length approaches a rest length. The tendon references just two joints and enforces the rule that the sum of the two joint positions is zero:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">pxr</span><span class="w"> </span><span class="kn">import</span> <span class="n">Usd</span><span class="p">,</span> <span class="n">UsdGeom</span><span class="p">,</span> <span class="n">UsdPhysics</span><span class="p">,</span> <span class="n">Gf</span><span class="p">,</span> <span class="n">PhysxSchema</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">omni.usd</span>
+
+    <span class="c1"># Create a stage</span>
+    <span class="n">omni</span><span class="o">.</span><span class="n">usd</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span><span class="o">.</span><span class="n">new_stage</span><span class="p">()</span>
+    <span class="n">stage</span>  <span class="o">=</span> <span class="n">omni</span><span class="o">.</span><span class="n">usd</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span><span class="o">.</span><span class="n">get_stage</span><span class="p">()</span>
+
+    <span class="c1"># Define the root Xform (transformable object)</span>
+    <span class="n">rootxform</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Xform</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="s2">&quot;/World&quot;</span><span class="p">)</span>
+
+    <span class="c1"># paths to bodies and joints</span>
+    <span class="n">rigidBodyPaths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/World/rigidBody0&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/rigidBody1&quot;</span><span class="p">,</span>  <span class="s2">&quot;/World/rigidBody2&quot;</span><span class="p">]</span>
+    <span class="n">revoluteJointPaths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/World/revoluteJoint01&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/revoluteJoint12&quot;</span><span class="p">]</span>
+    <span class="n">fixedJointPath</span> <span class="o">=</span> <span class="s2">&quot;/World/fixedJoint&quot;</span>
+
+    <span class="c1"># The initial pose of the root link.</span>
+    <span class="n">rootLinkStartPosition</span> <span class="o">=</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">rootLinkStartRotation</span> <span class="o">=</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="c1"># The joint frames of the revolute joint coupling</span>
+    <span class="n">revoluteJointlocalPositions0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
+    <span class="n">revoluteJointLocalRotations0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)]</span>
+    <span class="n">revoluteJointlocalPositions1</span> <span class="o">=</span> <span class="p">[</span><span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="o">-</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="o">-</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
+    <span class="n">revoluteJointLocalRotations1</span> <span class="o">=</span> <span class="p">[</span><span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)]</span>
+
+    <span class="c1"># body0 is chosen to be the root link.</span>
+    <span class="n">rootLinkId</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># The configuration of the fixed tendon.</span>
+    <span class="c1"># With joint positions p0,p1 and joint speeds v0,v1 we have:</span>
+    <span class="c1"># tendonLength = gearRatios[0]*p0 + gearRatios[1]*p1 = p0 + p1</span>
+    <span class="c1"># tendonSpeed = gearRatios[0]*v0 + gearRatios[1]*v1 = v0 + v1</span>
+    <span class="c1"># tendonForce = (tendonLength-restLength)*stiffness - tendonSpeed*damping</span>
+    <span class="c1"># Force applied to joint0 is tendonForce*forceCoefficients[0]</span>
+    <span class="c1"># Force applied to joint1 is tendonForce*forceCoefficients[1]</span>
+    <span class="c1"># For simplicity, limitStiffness is 0 allowing limits to be left at default values.</span>
+    <span class="n">stiffness</span> <span class="o">=</span> <span class="mf">10.0</span>
+    <span class="n">limitStiffness</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">damping</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">restLength</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">gearRatios</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+    <span class="n">forceCoefficients</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+
+    <span class="c1"># The three links of the articulation.</span>
+    <span class="n">rigidBodyXforms</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+
+            <span class="c1"># Create the rigid body prim</span>
+            <span class="n">rigidBodyXform</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Xform</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">rigidBodyXforms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rigidBodyXform</span>
+            <span class="n">rigidBodyPrim</span> <span class="o">=</span> <span class="n">rigidBodyXform</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">()</span>
+            <span class="n">rigidBodyAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">RigidBodyAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyPrim</span><span class="p">)</span>
+            <span class="n">rigidBodyAPI</span><span class="o">.</span><span class="n">CreateRigidBodyEnabledAttr</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">massAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">MassAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyPrim</span><span class="p">)</span>
+            <span class="n">massAPI</span><span class="o">.</span><span class="n">CreateMassAttr</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+
+
+    <span class="c1"># Create a revolute joint between body prim0 and body prim 1</span>
+    <span class="c1"># Create a revolute joint between body prim 1 and body prim 2</span>
+    <span class="n">revoluteJoints</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">revoluteJoint</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">RevoluteJoint</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">revoluteJointPaths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateAxisAttr</span><span class="p">(</span><span class="n">UsdPhysics</span><span class="o">.</span><span class="n">Tokens</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateBody0Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateBody1Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateLocalPos0Attr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">revoluteJointlocalPositions0</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateLocalRot0Attr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">revoluteJointLocalRotations0</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateLocalPos1Attr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">revoluteJointlocalPositions1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">revoluteJoint</span><span class="o">.</span><span class="n">CreateLocalRot1Attr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">revoluteJointLocalRotations1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">revoluteJoints</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">revoluteJoint</span>
+
+    <span class="c1"># Create a fixed joint between the root link and the world.</span>
+    <span class="c1"># Mark the fixed joint as the root. This will create a fixed</span>
+    <span class="c1"># base articulation with body0 as the root link.</span>
+    <span class="n">fixedJoint</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">FixedJoint</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">fixedJointPath</span><span class="p">)</span>
+    <span class="n">fixedJoint</span><span class="o">.</span><span class="n">CreateBody0Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">rootLinkId</span><span class="p">])</span>
+    <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">ArticulationRootAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">fixedJoint</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">())</span>
+
+    <span class="c1"># Set the initial pose of the root link</span>
+    <span class="n">rigidBodyXforms</span><span class="p">[</span><span class="n">rootLinkId</span><span class="p">]</span><span class="o">.</span><span class="n">AddTranslateOp</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">rootLinkStartPosition</span><span class="p">)</span>
+    <span class="n">rigidBodyXforms</span><span class="p">[</span><span class="n">rootLinkId</span><span class="p">]</span><span class="o">.</span><span class="n">AddOrientOp</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">rootLinkStartRotation</span><span class="p">)</span>
+
+<span class="c1"># Create a fixed tendon root and configure its properties.</span>
+<span class="n">fixedTendonRootApi</span> <span class="o">=</span> <span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxTendonAxisRootAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">revoluteJoints</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">(),</span> <span class="s2">&quot;FixedTendon&quot;</span><span class="p">)</span>
+<span class="n">fixedTendonRootApi</span><span class="o">.</span><span class="n">CreateStiffnessAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">stiffness</span><span class="p">)</span>
+<span class="n">fixedTendonRootApi</span><span class="o">.</span><span class="n">CreateDampingAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">damping</span><span class="p">)</span>
+<span class="n">fixedTendonRootApi</span><span class="o">.</span><span class="n">CreateLimitStiffnessAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">limitStiffness</span><span class="p">)</span>
+<span class="n">fixedTendonRootApi</span><span class="o">.</span><span class="n">CreateRestLengthAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">restLength</span><span class="p">)</span>
+<span class="n">fixedTendonRootApi</span><span class="o">.</span><span class="n">CreateOffsetAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+<span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxTendonAxisAPI</span><span class="p">(</span><span class="n">revoluteJoints</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">(),</span> <span class="s2">&quot;FixedTendon&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">CreateGearingAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">([</span><span class="n">gearRatios</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxTendonAxisAPI</span><span class="p">(</span><span class="n">revoluteJoints</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">(),</span> <span class="s2">&quot;FixedTendon&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">CreateForceCoefficientAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">([</span><span class="n">forceCoefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+
+<span class="c1"># Add the 2nd joint of the articulation to the fixed tendon and configure its properties.</span>
+<span class="n">fixedTendonAxisApi</span> <span class="o">=</span> <span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxTendonAxisAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">revoluteJoints</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">(),</span> <span class="s2">&quot;FixedTendon&quot;</span><span class="p">)</span>
+<span class="n">fixedTendonAxisApi</span><span class="o">.</span><span class="n">CreateGearingAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">([</span><span class="n">gearRatios</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">fixedTendonAxisApi</span><span class="o">.</span><span class="n">CreateForceCoefficientAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">([</span><span class="n">forceCoefficients</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+</section>
+<section id="spatial-tendons">
+<span id="articulationspatialtendons"></span><h3>Spatial Tendons<a class="headerlink" href="#spatial-tendons" title="Link to this heading">#</a></h3>
+<p>Spatial tendons create line-of-sight constraints between links of a single articulation.  This allows, for example, modeling hydraulic actuators that can push and pull on links; artificial muscles in a biomimetic robot; or elastic-string-like mechanical components.</p>
+<p>Each link of an articulation may have any number of associated tendon attachments with each having a specified offset from the relevant link. Spatial tendons are created as chains of attachments such that the total length of the tendon is the weighted sum of the distances between each pair of attachments as they are encountered along the topological chain. The tendon length may be amended by adding a constant offset value to the weighted sum of distances between attachments. This offset can be used for control and actuation of articulation links through the tendon.</p>
+<p>The tendon length is driven towards a rest length with stiffness and damping values. In the event that the tendon length is outside a permitted range, the tendon length may also be driven back towards the permitted range with a limitStiffness value.</p>
+<p>The rate at which a spatial tendon achieves its target length may be increased by increasing the stiffness or limit stiffness of the spatial tendon, as appropriate. The stiffness value controls the rate at which the spatial tendon approaches the specified rest length, while the limit stiffness controls the rate at which the tendon length approaches the upper or lower bound of the permitted range from outside the permitted range. Choices of stiffness and limit stiffness allow spatial tendons to observe only limits, to observe only the rest length or to observe both.</p>
+<p>To avoid oscillations around the target length, spatial tendons support damping. Higher damping values will lead to the tendon length asymptotically approaching the target length, while lower damping values can lead to the tendon oscillating around the target length. The damping value is used to compute a damping force that is the product of the damping value and the tendon speed, with the tendon speed computed as the rate of change of the distance between the attachment pairs nearest the root and leaf of the chain.</p>
+<p>The root and leaf attachments of a tendon are identified using <code class="docutils literal notranslate"><span class="pre">PhysxTendonAttachmentRootAPI</span></code> and <code class="docutils literal notranslate"><span class="pre">PhysxTendonAttachmentLeafAPI</span></code>. The attachments in-between are identified using <code class="docutils literal notranslate"><span class="pre">PhysxTendonAttachmentAPI</span></code>. By definition, <code class="docutils literal notranslate"><span class="pre">PhysxTendonAttachmentRootAPI</span></code> has no parent attachment, while both <code class="docutils literal notranslate"><span class="pre">PhysxTendonAttachmentLeafAPI</span></code> and <code class="docutils literal notranslate"><span class="pre">PhysxTendonAttachmentAPI</span></code> are required to have parent attachments.</p>
+<p>Each type of attachment has an associated instance name and link. <code class="docutils literal notranslate"><span class="pre">PhysxTendonAttachmentLeafAPI</span></code> and <code class="docutils literal notranslate"><span class="pre">PhysxTendonAttachmentAPI</span></code> additionally have an associated parent attachment instance name and a path to the link of the parent attachment.  If a link has multiple attachments, each of those attachments must have a different instance name to allow each of those multiple attachments to be uniquely identified. No other rules govern the naming convention of attachments.</p>
+<p>The <em>Spatial Tendon Actuation</em> demo found in <em>Physics Demo Scenes</em> provides an example of a spatial tendon. The motion of the spatial tendon is shown in the following video.</p>
+<div style="width: 100%;display: inline-block;position: relative;">
+    <div id="dummy" style="margin-top: 56%;">
+    </div>
+    <div align="center">
+    <div id="kaltura_player_2" style="position:absolute;top:0;left:0;left: 0;right: 0;bottom:0;border:solid thin black;"></div>
+    <script type="text/javascript" src="https://cdnapisec.kaltura.com/p/2935771/embedPlaykitJs/uiconf_id/46302491"></script>
+    <script type="text/javascript">
+    try {
+    var kalturaPlayer = KalturaPlayer.setup({
+    targetId: "kaltura_player_2",
+    provider:
+    { partnerId: 2935771, uiConfId: 46302491 }
+    });
+    kalturaPlayer.loadMedia(
+    {entryId: '1_1d2kakbq'}
+    );
+    } catch (e)
+    { console.error(e.message) }
+    </script>
+    </div>
+</div><p>The moving links of the two articulations are held up against gravity and actuated by tendons. The spheres are the debug visualization of the attachments that define the tendon geometry, and the blue lines visualize the line-of-sight distances that the tendons constrain using spring-damper forces.</p>
+<p>The three different attachment-sphere colors distinguish the different types of attachments:</p>
+<ol class="arabic simple">
+<li><p><strong>Root</strong> attachments (cyan) provide tendon-wide parameters such as spring-damper parameters, etc. The root attachments experience the reaction forces of the constraint forces applied to the leaf attachments.</p></li>
+<li><p><strong>Regular</strong> attachments (magenta) are used to route a tendon along articulation links. There is no force propagation through regular attachments, so they do not exert any forces on the links.</p></li>
+<li><p><strong>Leaf</strong> attachments (yellow) exert constraint forces to enforce a distance constraint on the path from the leaf to the root. A spatial tendon may branch, and, therefore, each leaf defines a sub-tendon with its own distance constraint. The leaf has sub-tendon specific parameters, such as the sub-tendon <em>rest length</em> and <em>limits</em>.</p></li>
+</ol>
+<p>As previously stated, the tendon length of a (sub-)tendon is the sum of line-of-sight distances between the attachments on the path from a leaf to the root attachment. In this case, the tendon length is the length traversed when travelling from the cyan attachment to the magenta attachment to the yellow attachment.</p>
+<p>The direction of the forces that are applied to roots and leaves is defined by the tendon geometry. For example, in the video above, the yellow leaf attachments apply a force to the moving links in the direction of the blue line towards the magenta middle attachment; analogously, the equal-magnitude root reaction force is also in the direction of the magenta middle attachment.</p>
+<p>In the demo, the two tendons demonstrate two separate approaches to actuation: The front tendon moves the middle attachment while keeping the target tendon length constant, while the rear tendon changes the target tendon length. Further details such as sizing of the spring-damper parameters are presented in detail in the demo Python code. Full details on the tendon dynamics are available in the USD schema documentation of <code class="docutils literal notranslate"><span class="pre">PhysxTendonAttachmentRootAPI</span></code>.</p>
+<p>The following Python snippet creates a spatial tendon with 3 links, 2 joints and 4 attachments. The attachments are configured to create a tendon with a rest length of 6 distance units and a start length of 9 distance units:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pxr</span><span class="w"> </span><span class="kn">import</span> <span class="n">Usd</span><span class="p">,</span> <span class="n">UsdGeom</span><span class="p">,</span> <span class="n">UsdPhysics</span><span class="p">,</span> <span class="n">Gf</span><span class="p">,</span> <span class="n">PhysxSchema</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">omni.usd</span>
+
+<span class="c1"># Create a stage</span>
+<span class="n">omni</span><span class="o">.</span><span class="n">usd</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span><span class="o">.</span><span class="n">new_stage</span><span class="p">()</span>
+<span class="n">stage</span>  <span class="o">=</span> <span class="n">omni</span><span class="o">.</span><span class="n">usd</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span><span class="o">.</span><span class="n">get_stage</span><span class="p">()</span>
+
+<span class="c1"># Define the root Xform (transformable object)</span>
+<span class="n">rootxform</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Xform</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="s2">&quot;/World&quot;</span><span class="p">)</span>
+
+<span class="c1"># paths to bodies and joints</span>
+<span class="n">rigidBodyPaths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/World/rigidBody0&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/rigidBody1&quot;</span><span class="p">,</span>  <span class="s2">&quot;/World/rigidBody2&quot;</span><span class="p">]</span>
+<span class="n">prismaticJointPaths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/World/prismaticJoint01&quot;</span><span class="p">,</span> <span class="s2">&quot;/World/prismaticJoint12&quot;</span><span class="p">]</span>
+
+<span class="c1"># path to fixed joint that will help create a fixed base articulation</span>
+<span class="n">fixedJointPath</span> <span class="o">=</span> <span class="s2">&quot;/World/fixedJoint&quot;</span>
+
+<span class="c1"># The initial pose of the root link.</span>
+<span class="n">rootLinkStartPosition</span> <span class="o">=</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">rootLinkStartRotation</span> <span class="o">=</span> <span class="n">Gf</span><span class="o">.</span><span class="n">Quatf</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># The start positions of prismaticJoint01 and prismaticJoint12</span>
+<span class="c1"># These start positions give an initial tendon length of 9.0</span>
+<span class="n">prismaticJointStartPositions</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span>
+
+<span class="c1"># The configuration of the spatial tendon.</span>
+<span class="n">stiffness</span> <span class="o">=</span> <span class="mf">10.0</span>
+<span class="n">limitStiffness</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">damping</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">restLength</span> <span class="o">=</span> <span class="mf">6.0</span>
+<span class="n">offset</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="c1"># body0 is chosen to be the root link.</span>
+<span class="n">rootLinkId</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># The three links of the articulation.</span>
+<span class="n">rigidBodyXforms</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+
+    <span class="c1"># Create a rigid body prim</span>
+    <span class="n">rigidBodyXform</span> <span class="o">=</span> <span class="n">UsdGeom</span><span class="o">.</span><span class="n">Xform</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">rigidBodyXforms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rigidBodyXform</span>
+    <span class="n">rigidBodyPrim</span> <span class="o">=</span> <span class="n">rigidBodyXform</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">()</span>
+    <span class="n">rigidBodyAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">RigidBodyAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyPrim</span><span class="p">)</span>
+    <span class="n">rigidBodyAPI</span><span class="o">.</span><span class="n">CreateRigidBodyEnabledAttr</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">massAPI</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">MassAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyPrim</span><span class="p">)</span>
+    <span class="n">massAPI</span><span class="o">.</span><span class="n">CreateMassAttr</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+
+
+<span class="c1"># Create a prismatic joint between body prim0 and body prim 1</span>
+<span class="c1"># Create a prismatic joint between body prim 1 and body prim 2</span>
+<span class="n">prismaticJoints</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">prismaticJoint</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">PrismaticJoint</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">prismaticJointPaths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">prismaticJoint</span><span class="o">.</span><span class="n">CreateAxisAttr</span><span class="p">(</span><span class="n">UsdPhysics</span><span class="o">.</span><span class="n">Tokens</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">prismaticJoint</span><span class="o">.</span><span class="n">CreateBody0Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">prismaticJoint</span><span class="o">.</span><span class="n">CreateBody1Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">jointStateAPI</span> <span class="o">=</span> <span class="n">PhysxSchema</span><span class="o">.</span><span class="n">JointStateAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">prismaticJoint</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">(),</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">Tokens</span><span class="o">.</span><span class="n">linear</span><span class="p">)</span>
+    <span class="n">jointStateAPI</span><span class="o">.</span><span class="n">CreatePositionAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">prismaticJointStartPositions</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">prismaticJoints</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">prismaticJoint</span>
+
+<span class="c1"># Create a fixed joint between the root link and the world.</span>
+<span class="c1"># Mark the fixed joint as the root. This will create a fixed</span>
+<span class="c1"># base articulation with body0 as the root link.</span>
+<span class="n">fixedJoint</span> <span class="o">=</span> <span class="n">UsdPhysics</span><span class="o">.</span><span class="n">FixedJoint</span><span class="o">.</span><span class="n">Define</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">fixedJointPath</span><span class="p">)</span>
+<span class="n">fixedJoint</span><span class="o">.</span><span class="n">CreateBody0Rel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyPaths</span><span class="p">[</span><span class="n">rootLinkId</span><span class="p">])</span>
+<span class="n">UsdPhysics</span><span class="o">.</span><span class="n">ArticulationRootAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">fixedJoint</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">())</span>
+
+<span class="c1"># Set the initial pose of the root link</span>
+<span class="n">rigidBodyXforms</span><span class="p">[</span><span class="n">rootLinkId</span><span class="p">]</span><span class="o">.</span><span class="n">AddTranslateOp</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">rootLinkStartPosition</span><span class="p">)</span>
+<span class="n">rigidBodyXforms</span><span class="p">[</span><span class="n">rootLinkId</span><span class="p">]</span><span class="o">.</span><span class="n">AddOrientOp</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">rootLinkStartRotation</span><span class="p">)</span>
+
+<span class="c1"># Create:</span>
+<span class="c1"># a single attachment to rigidBodyXforms[0]</span>
+<span class="c1"># two attachments to rigidBodyXforms[1]</span>
+<span class="c1"># a single attachment to rigidBodyXforms[2]</span>
+<span class="c1"># The attachment to rigidBodyXforms[0] will play the role of the tendon root</span>
+<span class="c1"># The attachment to rigidBodyXforms[2] will play the role of the tendon leaf</span>
+<span class="c1"># The attachments to rigidBodyXforms[1] complete the chain in-between the root and the leaf.</span>
+<span class="c1"># Attachments to the same link must have different instance names.</span>
+<span class="c1"># Attachments to different links may have the same instance name.</span>
+<span class="c1"># In this example, the root and leaf attachment are named &quot;SpatialTendon&quot;</span>
+<span class="c1"># and the two attachments to rigidBodyXforms[1] are given instance names</span>
+<span class="c1"># &quot;Minus&quot; and &quot;Plus&quot;.</span>
+
+<span class="c1"># Create a spatial tendon root attached to rigidBodyXforms[0] and with name &quot;SpatialTendon&quot;</span>
+<span class="n">attachment0API</span> <span class="o">=</span> <span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxTendonAttachmentRootAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyXforms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">(),</span> <span class="s2">&quot;SpatialTendon&quot;</span><span class="p">)</span>
+<span class="n">attachment0API</span><span class="o">.</span><span class="n">CreateStiffnessAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">stiffness</span><span class="p">)</span>
+<span class="n">attachment0API</span><span class="o">.</span><span class="n">CreateDampingAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">damping</span><span class="p">)</span>
+<span class="n">attachment0API</span><span class="o">.</span><span class="n">CreateOffsetAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+<span class="n">attachment0API</span><span class="o">.</span><span class="n">CreateLimitStiffnessAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+<span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxTendonAttachmentAPI</span><span class="p">(</span><span class="n">attachment0API</span> <span class="p">,</span> <span class="s2">&quot;attachment0&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">CreateLocalPosAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+
+<span class="c1"># Create the 1st attachment to rigidBodyXforms[1] with name &quot;Minus&quot;</span>
+<span class="c1"># The attachment is positioned at (-1,0,0) in the frame of rigidBodyXforms[1]</span>
+<span class="c1"># The parent of the attachment is attachment0API</span>
+<span class="n">attachment1API</span> <span class="o">=</span> <span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxTendonAttachmentAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyXforms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">(),</span> <span class="s2">&quot;Minus&quot;</span><span class="p">)</span>
+<span class="n">attachment1API</span><span class="o">.</span><span class="n">CreateParentLinkRel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyXforms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">()</span><span class="o">.</span><span class="n">GetPath</span><span class="p">())</span>
+<span class="n">attachment1API</span><span class="o">.</span><span class="n">CreateParentAttachmentAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="s2">&quot;SpatialTendon&quot;</span><span class="p">)</span>
+<span class="n">attachment1API</span><span class="o">.</span><span class="n">CreateGearingAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">attachment1API</span><span class="o">.</span><span class="n">CreateLocalPosAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+
+<span class="c1"># Create the 2nd attachment to rigidBodyXforms[1] with name &quot;Plus&quot;</span>
+<span class="c1"># The attachment is positioned at (1,0,0) in the frame of rigidBodyXforms[1]</span>
+<span class="c1"># The parent of the attachment is attachment1API</span>
+<span class="n">attachment2API</span> <span class="o">=</span> <span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxTendonAttachmentAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyXforms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">(),</span> <span class="s2">&quot;Plus&quot;</span><span class="p">)</span>
+<span class="n">attachment2API</span><span class="o">.</span><span class="n">CreateParentLinkRel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyXforms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">()</span><span class="o">.</span><span class="n">GetPath</span><span class="p">())</span>
+<span class="n">attachment2API</span><span class="o">.</span><span class="n">CreateParentAttachmentAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="s2">&quot;Minus&quot;</span><span class="p">)</span>
+<span class="n">attachment2API</span><span class="o">.</span><span class="n">CreateGearingAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">attachment2API</span><span class="o">.</span><span class="n">CreateLocalPosAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+
+<span class="c1"># Create an attachment attached to rigidBodyXforms[2] and with name &quot;SpatialTendon&quot;</span>
+<span class="c1"># The parent of the attachment is attachment2API</span>
+<span class="n">attachment3API</span> <span class="o">=</span> <span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxTendonAttachmentLeafAPI</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">rigidBodyXforms</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">(),</span> <span class="s2">&quot;SpatialTendon&quot;</span><span class="p">)</span>
+<span class="n">attachment3API</span><span class="o">.</span><span class="n">CreateRestLengthAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">restLength</span><span class="p">)</span>
+<span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxTendonAttachmentAPI</span><span class="p">(</span><span class="n">attachment3API</span><span class="p">,</span> <span class="s2">&quot;SpatialTendon&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">CreateParentLinkRel</span><span class="p">()</span><span class="o">.</span><span class="n">AddTarget</span><span class="p">(</span><span class="n">rigidBodyXforms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">GetPrim</span><span class="p">()</span><span class="o">.</span><span class="n">GetPath</span><span class="p">())</span>
+<span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxTendonAttachmentAPI</span><span class="p">(</span><span class="n">attachment3API</span><span class="p">,</span> <span class="s2">&quot;SpatialTendon&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">CreateParentAttachmentAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="s2">&quot;Plus&quot;</span><span class="p">)</span>
+<span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxTendonAttachmentAPI</span><span class="p">(</span><span class="n">attachment3API</span><span class="p">,</span> <span class="s2">&quot;SpatialTendon&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">CreateGearingAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">PhysxSchema</span><span class="o">.</span><span class="n">PhysxTendonAttachmentAPI</span><span class="p">(</span><span class="n">attachment3API</span><span class="p">,</span> <span class="s2">&quot;SpatialTendon&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">CreateLocalPosAttr</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">Gf</span><span class="o">.</span><span class="n">Vec3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="articulation-limitations-and-differences">
+<span id="articulation-limitations-differences"></span><h2>Articulation Limitations and Differences<a class="headerlink" href="#articulation-limitations-and-differences" title="Link to this heading">#</a></h2>
+<p>The following list describes further differences and limitations:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Each articulation link has a single inbound joint and any loops in the topology must be broken as described in <a class="reference internal" href="#articulationloops"><span class="std std-ref">Articulation Joint Drive and Performance Envelope</span></a>.</p></li>
+<li><p>Articulations do not support all types of USD joints, see the <a class="reference internal" href="joints.html#jointsupporttable"><span class="std std-ref">list here</span></a> for compatibility.</p></li>
+<li><p>Articulation joints of type <a class="reference internal" href="../schemas/usdphysics.html#_CPPv424UsdPhysicsSphericalJoint" title="UsdPhysicsSphericalJoint"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UsdPhysics.SphericalJoint</span></code></a> have swing limits that form a pyramid rather than an elliptical cone.</p></li>
+<li><p>Articulation joints only support a single linear degree of freedom or up to three angular degrees of freedom, you should consider this limitation when a <a class="reference internal" href="joints.html#d6joint"><span class="std std-ref">D6 Joint</span></a> is to be included in an articulation.</p></li>
+<li><p>Initial articulation joint violations are resolved before the first simulation step involving the articulation. Joint violations arising from joint-position limits persist until the simulation resolves them. See also <a class="reference internal" href="#articulationjointstate"><span class="std std-ref">JointStateAPI for Set and Get of Joint Position And Velocity</span></a>.</p></li>
+<li><p>Articulation joints do not support the breaking force and torque attributes associated with <a class="reference internal" href="../schemas/usdphysics.html#_CPPv415UsdPhysicsJoint" title="UsdPhysicsJoint"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UsdPhysics.Joint</span></code></a>.</p></li>
+<li><p>Articulation joints may not be removed from the stage at run-time (after a simulation step has been performed).</p></li>
+<li><p>Articulation joints support querying and setting velocity and position attributes of each degree of freedom of a joint with the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">PhysxSchema.JointStateAPI</span></code>.</p></li>
+<li><p>Articulated joints with a single degree of angular motion may accumulate a joint position greater than 360° if limits are enabled on the joint. This is true of joints that are configured with <a class="reference internal" href="../schemas/usdphysics.html#_CPPv423UsdPhysicsRevoluteJoint" title="UsdPhysicsRevoluteJoint"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UsdPhysics.RevoluteJoint</span></code></a> and joints that are configured with <a class="reference internal" href="../schemas/usdphysics.html#_CPPv415UsdPhysicsJoint" title="UsdPhysicsJoint"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UsdPhysics.Joint</span></code></a> and allow only angular motion around a single axis. The joint position of a revolute joint that does not have limits applied will wrap on a 360° boundary.</p></li>
+<li><p>Articulated joints configured using <a class="reference internal" href="../schemas/usdphysics.html#_CPPv415UsdPhysicsJoint" title="UsdPhysicsJoint"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UsdPhysics.Joint</span></code></a> and <a class="reference internal" href="../schemas/usdphysics.html#_CPPv418UsdPhysicsLimitAPI" title="UsdPhysicsLimitAPI"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UsdPhysics.LimitAPI</span></code></a> do not support distance limits configured with the <a class="reference internal" href="../schemas/usdphysics.html#_CPPv4N20UsdPhysicsTokensType8distanceE" title="UsdPhysicsTokensType::distance"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">UsdPhysics.Tokens.distance</span></code></a> token.</p></li>
+<li><p>Articulation joints may not be instanced, see <a class="reference internal" href="joints.html#jointinstancing"><span class="std std-ref">Joint Instancing</span></a>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">breakForce</span></code> attribute of <a class="reference internal" href="../schemas/usdphysics.html#_CPPv415UsdPhysicsJoint" title="UsdPhysicsJoint"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UsdPhysics.Joint</span></code></a> is ignored for articulation joints.</p></li>
+<li><p>Articulation joint limits are hard constraints that do not support stiffness and damping parameters in the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">PhysxSchema.PhysxLimitAPI</span></code>.</p></li>
+<li><p>Articulation joints without limits cannot be configured with limits after attaching the stage. If limits are required only temporarily it is recommended to initially configure the joint with unreachable high and low limits and then later update the limits so that they affect the joint’s motion. This way, the joint is effectively unlimited until required to behave as a limited joint.</p></li>
+</ul>
+</div></blockquote>
+<section id="extensions-and-articulations">
+<h3>Extensions and Articulations<a class="headerlink" href="#extensions-and-articulations" title="Link to this heading">#</a></h3>
+<p>When you use extensions that access the underlying PhysX articulation data (e.g. <a class="reference internal" href="../../extensions/runtime/source/omni.physics.tensors/docs/index.html#ext-omni-physics-tensors"><span class="std std-ref">Omni Physics Tensors</span></a>), it is beneficial to set up articulations such that their USD and PhysX topologies are identical - only then do you get a one-to-one relationship between USD and PhysX joint parameters such as limits and drive targets. The USD physics interface must provide identical behavior for articulation and regular joints, and it may therefore swap joint limits or negate joint drive targets when parsing from USD to the PhysX articulation; this is because USD joints do not have to follow the articulation topology, e.g., it may be that the <em>body0</em> relationship does not point to the parent link in the PhysX articulation, but the USD joint limit is defined in the <em>body0</em> to <em>body1</em> joint frame order.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="joints.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Joints</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../deformables/deformables_index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Deformable Bodies</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+
+
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#articulation-tree-structure">Articulation Tree Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floating-and-fixed-base">Floating and Fixed-Base</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usd-hierarchy-articulation-root">USD Hierarchy / Articulation Root</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-floating-base-articulation">Create a Floating-Base Articulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-fixed-base-articulation">Create a Fixed-Base Articulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-articulation-based-on-topology">Create an Articulation Based on Topology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jointstateapi-for-set-and-get-of-joint-position-and-velocity">JointStateAPI for Set and Get of Joint Position And Velocity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#articulation-joint-drive-and-performance-envelope">Articulation Joint Drive and Performance Envelope</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#articulation-joint-friction">Articulation Joint Friction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closed-loops">Closed Loops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exclude-joints-from-articulations">Exclude Joints from Articulations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#articulation-mimic-joints">Articulation Mimic Joints</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#articulation-mimic-joint-compliance">Articulation Mimic Joint Compliance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-a-compliant-mimic-joint">Tuning a Compliant Mimic Joint</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#articulation-tendons">Articulation Tendons</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-tendons">Fixed Tendons</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-tendons">Spatial Tendons</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#articulation-limitations-and-differences">Articulation Limitations and Differences</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extensions-and-articulations">Extensions and Articulations</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+<a class="footer-brand logo" href="https://www.nvidia.com">
+  <img src="../../_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg" class="logo__image only-light" alt="NVIDIA"/>
+  <img src="../../_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg" class="logo__image only-dark" alt="NVIDIA"/>
+</a></div>
+      
+        <div class="footer-item">
+
+
+
+
+  <p class="copyright">
+    
+      Copyright © 2020-2026, NVIDIA Corporation.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item"><p class="last-updated">
+  Last updated on May 01, 2026.
+  <br/>
+</p></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>
