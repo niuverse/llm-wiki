@@ -3,7 +3,7 @@ title: "Wiki Log"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-05-03
+last_updated: 2026-05-04
 ---
 
 # Wiki Log
@@ -75,3 +75,8 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 
 - Added `wiki/syntheses/3d-model-formats-learning-map.md` as a learning scaffold for OBJ, STL, PLY, glTF/GLB, FBX, USD, STEP, URDF/SDF/MJCF and related asset pipeline concepts.
 - Linked it from `wiki/index.md` and marked non-USD format comparisons as unsourced learning notes pending source / ingest.
+
+## [2026-05-04] distill | Isaac Sim mujoco.usda Runtime Semantics
+
+- Added `wiki/syntheses/isaac-sim-mujoco-usda-runtime-semantics.md` to preserve the conversation-derived ownership boundary for `mujoco.usda`.
+- Updated `wiki/concepts/IsaacSimAssetStructure.md`, `wiki/entities/MuJoCo.md`, and `wiki/index.md`.

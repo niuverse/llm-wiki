@@ -3,7 +3,7 @@ title: "Isaac Sim Asset Structure 3.0"
 type: concept
 tags: [isaac-sim, usd, asset-structure, simulation-assets, robot-setup]
 sources: ["[[isaac-sim-asset-structure]]"]
-last_updated: 2026-05-01
+last_updated: 2026-05-04
 ---
 
 # Isaac Sim Asset Structure 3.0
@@ -121,6 +121,19 @@ flowchart LR
 | MuJoCo tuning | `mujoco.usda` | Runtime-specific attrs 只影响 MuJoCo composition。 |
 | PhysX tuning | `physx.usda` | PhysX APIs、mimic setup 和 solver-related attrs 与 PhysX runtime 绑定。 |
 | Optional feature / runtime switch | final `asset.usd` / `interface.usda` | Payloads 和 variants 控制 feature loading 与 physics setup switching。 |
+
+### `mujoco.usda` Ownership Boundary
+
+`mujoco.usda` 不应理解成“MuJoCo 版 visual/collision asset”，也不等价于 native MJCF。Source-backed 的部分是：[[isaac-sim-asset-structure]] 把 `mujoco.usda` 放在 MuJoCo physics setup / engine-specific tuning 位置，并把 visual mesh、materials、instances/colliders 和 neutral physics 拆到其他 layers。由此可以得到一个 conversation-derived authoring heuristic：`mujoco.usda` 放的是 [[MuJoCo]] 对已有 USD robot asset 的 runtime interpretation / tuning overlay，而不是 robot asset 的 mesh、material 或 shared collider source-of-truth。更完整的 distill 见 [[isaac-sim-mujoco-usda-runtime-semantics]]。
+
+| 语义类型 | 先看哪个 layer？ | 判断 |
+| --- | --- | --- |
+| Visual mesh、texture、material、mesh topology | `geometries.usdc`、`materials.usda`、`instances.usda` | 不属于 `mujoco.usda`。 |
+| Collision shape、collision mesh、visual/collider assembly | `instances.usda`、`base.usda`、`physics.usd(a)` | 如果是 cross-engine shared collider semantics，不属于 `mujoco.usda`。 |
+| Body/joint hierarchy、joint axis、shared limit、mass/inertia | `base.usda`、`physics.usd(a)` | 优先作为 neutral physics / structure author。 |
+| MuJoCo actuator/transmission behavior | `mujoco.usda` | 属于 MuJoCo-only runtime semantics 的典型例子。 |
+| MuJoCo joint passive dynamics 或 contact solver tuning | `mujoco.usda` | 例如 damping、frictionloss、armature、MuJoCo-specific contact / solver parameters；实际可用属性需以 Isaac backend support 为准。 |
+| MuJoCo-only collision filtering 或 constraint tuning | `mujoco.usda` or runtime config | 如果 neutral USD Physics 不能表达且只影响 MuJoCo backend，才进入 MuJoCo-specific layer。 |
 
 对 RL、MPC、sim-to-real 或 multi-engine benchmarking，这个 structure 的实际价值是让 asset assumptions 可定位。你可以明确说“这是 shared geometry/collider change”“这是 neutral dynamics change”“这是 PhysX-only tuning change”或“这是 MuJoCo-only tuning change”。这不能消除 [[SimulationRealityGap|simulation reality gap]]，但能减少 asset authoring 层面的不可解释差异。
 
