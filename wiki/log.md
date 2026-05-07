@@ -3,7 +3,7 @@ title: "Wiki Log"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-05-04
+last_updated: 2026-05-07
 ---
 
 # Wiki Log
@@ -96,3 +96,9 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 - Added `wiki/sources/omniverse-omni-physics-articulations.md` with canonical HTML in `raw/` and extracted Markdown in `graph/extracts/`.
 - Added `wiki/concepts/ReducedCoordinateArticulations.md` and `wiki/entities/PhysX.md`.
 - Updated Isaac Sim, NVIDIA, Contact Solvers, the physics/control notes, and the wiki index.
+
+## [2026-05-07] ingest | Asset Structure - Isaac Sim 4.5 Documentation
+
+- Added `wiki/sources/isaac-sim-45-asset-structure.md` with canonical HTML in `raw/` and extracted cache in `graph/extracts/`.
+- Added `wiki/concepts/IsaacSimLegacyAssetStructure.md` for the legacy / pre-3.0 layout and explicitly avoided the unsupported `Asset Structure 2.0` label.
+- Updated `wiki/concepts/IsaacSimAssetStructure.md`, `wiki/entities/IsaacSim.md`, `wiki/entities/NVIDIA.md`, and `wiki/index.md`.

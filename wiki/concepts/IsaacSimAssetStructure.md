@@ -2,8 +2,8 @@
 title: "Isaac Sim Asset Structure 3.0"
 type: concept
 tags: [isaac-sim, usd, asset-structure, simulation-assets, robot-setup]
-sources: ["[[isaac-sim-asset-structure]]"]
-last_updated: 2026-05-04
+sources: ["[[isaac-sim-asset-structure]]", "[[isaac-sim-45-asset-structure]]"]
+last_updated: 2026-05-07
 ---
 
 # Isaac Sim Asset Structure 3.0
@@ -11,6 +11,8 @@ last_updated: 2026-05-04
 Isaac Sim Asset Structure 3.0 是 [[isaac-sim-asset-structure|Asset Structure - Isaac Sim Documentation]] 中描述的 robot asset organization pattern：不要把 mesh、materials、colliders、robot metadata、neutral physics、engine-specific tuning、control graphs 和 optional features 混在一个 monolithic USD 里，而是拆成职责明确的 layers，再通过 USD composition 组合成最终 entry asset。
 
 Source 的 evidence boundary 很重要：这是 Isaac Sim 6.0 Early Developer Release 文档中的 guidance，页面最后更新时间是 2026-03-18；它说明的是当前 EDR docs 对 imported assets 的 structure 约定，而不是所有旧版 Isaac Sim assets 都已经符合这个 layout。
+
+命名上也要保持精确：[[isaac-sim-45-asset-structure|Isaac Sim 4.5 Asset Structure]] 描述的是 legacy / pre-3.0 layout，source 本身没有把旧 layout 称为 `Asset Structure 2.0`。本页中的 3.0 对照应理解为“legacy vs. 3.0”，不是“2.0 vs. 3.0”。旧 layout 的机制页见 [[IsaacSimLegacyAssetStructure]]。
 
 ## 数学结构
 
@@ -122,6 +124,19 @@ flowchart LR
 | PhysX tuning | `physx.usda` | PhysX APIs、mimic setup 和 solver-related attrs 与 PhysX runtime 绑定。 |
 | Optional feature / runtime switch | final `asset.usd` / `interface.usda` | Payloads 和 variants 控制 feature loading 与 physics setup switching。 |
 
+### 与 Legacy / Pre-3.0 Layout 的区别
+
+[[IsaacSimLegacyAssetStructure|Legacy asset structure]] 已经使用 USD sublayers、payloads、references 和 variants，但职责切分较粗：`parts.usd` 承担 mesh parts，`asset_sim_optimized.usd` 承担 transformed simulation asset，`asset_physics.usd` 承担 physics feature。Asset Structure 3.0 的主要变化是把 mesh data、mesh/material/collider assembly、simulation hierarchy、Robot Schema、neutral physics 和 runtime-specific physics 拆成更明确的 layers。
+
+| Responsibility | Legacy / pre-3.0 | Asset Structure 3.0 |
+| --- | --- | --- |
+| Mesh data / parts | `parts.usd` | `geometries.usdc` |
+| Assembly and colliders | mixed into source / optimized asset responsibilities | `instances.usda` |
+| Simulation-ready hierarchy | `asset_sim_optimized.usd` | `base.usda` |
+| Robot metadata | not separated in 4.5 source | `robot.usda` |
+| Physics setup | `asset_physics.usd` reference | `physics.usd(a)` + `physx.usda` / `mujoco.usda` |
+| Final entry | `asset.usd` | `asset.usd` or `interface.usda` |
+
 ### `mujoco.usda` Ownership Boundary
 
 `mujoco.usda` 不应理解成“MuJoCo 版 visual/collision asset”，也不等价于 native MJCF。Source-backed 的部分是：[[isaac-sim-asset-structure]] 把 `mujoco.usda` 放在 MuJoCo physics setup / engine-specific tuning 位置，并把 visual mesh、materials、instances/colliders 和 neutral physics 拆到其他 layers。由此可以得到一个 conversation-derived authoring heuristic：`mujoco.usda` 放的是 [[MuJoCo]] 对已有 USD robot asset 的 runtime interpretation / tuning overlay，而不是 robot asset 的 mesh、material 或 shared collider source-of-truth。更完整的 distill 见 [[isaac-sim-mujoco-usda-runtime-semantics]]。
@@ -137,4 +152,4 @@ flowchart LR
 
 对 RL、MPC、sim-to-real 或 multi-engine benchmarking，这个 structure 的实际价值是让 asset assumptions 可定位。你可以明确说“这是 shared geometry/collider change”“这是 neutral dynamics change”“这是 PhysX-only tuning change”或“这是 MuJoCo-only tuning change”。这不能消除 [[SimulationRealityGap|simulation reality gap]]，但能减少 asset authoring 层面的不可解释差异。
 
-相关页面：[[IsaacSim]]、[[NVIDIA]]、[[MuJoCo]]、[[SimulationRealityGap]]、[[ContactModelsInRobotics]]。
+相关页面：[[IsaacSimLegacyAssetStructure]]、[[IsaacSim]]、[[NVIDIA]]、[[MuJoCo]]、[[SimulationRealityGap]]、[[ContactModelsInRobotics]]。

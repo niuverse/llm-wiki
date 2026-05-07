@@ -3,7 +3,7 @@ title: "Wiki Index"
 type: synthesis
 tags: [index, navigation]
 sources: []
-last_updated: 2026-05-04
+last_updated: 2026-05-07
 ---
 
 # Wiki Index
@@ -18,8 +18,9 @@ last_updated: 2026-05-04
 - **Inverse dynamics model 怎么从视频学 action？** 读 [Inverse Dynamics Models](concepts/InverseDynamicsModels.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)、[Seer](entities/Seer.md)、[DeFI](entities/DeFI.md)。
 - **Robot foundation model 如何处理 heterogeneous data？** 读 [Vision-Language-Action Models](concepts/VisionLanguageActionModels.md)、[Robot Context Conditioning](concepts/RobotContextConditioning.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)。
 - **Simulation benchmark 能证明什么？** 读 [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md)、[Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
-- **OpenUSD 的核心价值是什么？** 读 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)、[OpenUSD](entities/OpenUSD.md) 和 [Introduction to USD](sources/openusd-introduction.md)；如果关注 robotics asset authoring，再接 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md)。
+- **OpenUSD 的核心价值是什么？** 读 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)、[OpenUSD](entities/OpenUSD.md) 和 [Introduction to USD](sources/openusd-introduction.md)；如果关注 robotics asset authoring，再接 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) 与 [Isaac Sim Legacy Asset Structure](concepts/IsaacSimLegacyAssetStructure.md)。
 - **Isaac Sim Asset Structure 3.0 怎么理解？** 读 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) 和 [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md)，重点看 layer role、payload/variant composition 和 engine-specific tuning 隔离。
+- **Isaac Sim 旧 asset layout 是不是 2.0？** 读 [Isaac Sim Legacy Asset Structure](concepts/IsaacSimLegacyAssetStructure.md) 和 [Asset Structure - Isaac Sim 4.5 Documentation](sources/isaac-sim-45-asset-structure.md)；当前 source-backed 结论是它应称为 legacy / pre-3.0，而不是 2.0。
 - **Isaac Sim 的 `mujoco.usda` 应该放什么？** 读 [Isaac Sim mujoco.usda Runtime Semantics](syntheses/isaac-sim-mujoco-usda-runtime-semantics.md) 和 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md)，重点区分 shared visual/collider asset semantics 与 MuJoCo-only runtime tuning。
 - **PhysX articulation、position drive、solver 和 joint gains 怎么理解？** 先读 [Reduced-Coordinate Articulations](concepts/ReducedCoordinateArticulations.md) 和 [Articulations - Omni Physics](sources/omniverse-omni-physics-articulations.md)，再读 [Isaac Sim and MuJoCo Physics and Control Notes](syntheses/isaac-sim-mujoco-control-tuning-notes.md)；PhysX articulation drive 的 PD analogy 和 envelope 已有 official source support，MuJoCo 对比与机械臂 gain grouping 仍是 conversation-derived。
 - **OBJ、STL、USD、GLB 等 3D 模型格式怎么选？** 读 [3D Model Formats Learning Map](syntheses/3d-model-formats-learning-map.md)，注意其中 USD 相关内容已有 wiki source-backed coverage，其他格式仍是 unsourced learning scaffold。
@@ -65,6 +66,7 @@ last_updated: 2026-05-04
 
 - [NVlabs/RoboLab](sources/nvlabs-robolab.md) - RoboLab official implementation repository，包含 Isaac Lab task library、predicate/subtask system、policy clients 与 analysis tooling
 - [RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies](sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies.md) - NVIDIA 的 high-fidelity simulation benchmark，用 RoboLab-120、language variants 与 sensitivity analysis 评测 task-generalist robot policies
+- [Asset Structure - Isaac Sim 4.5 Documentation](sources/isaac-sim-45-asset-structure.md) - Isaac Sim 4.5 docs 中的 legacy / pre-3.0 asset layout，覆盖 `asset_base.usd`、`parts.usd`、`asset_sim_optimized.usd`、feature layers 和 final `asset.usd`
 - [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md) - Isaac Sim 6.0 EDR docs 中的 USD Asset Structure 3.0 guidance，说明 robot assets 的 geometry/material/instance/physics/runtime/schema/feature layer organization
 - [Articulations - Omni Physics](sources/omniverse-omni-physics-articulations.md) - NVIDIA Omni Physics docs 中的 PhysX reduced-coordinate articulation guidance，覆盖 root/topology、JointStateAPI、drive performance envelope、joint friction、closed loops、mimic joints 和 tendons
 
@@ -102,6 +104,7 @@ last_updated: 2026-05-04
 - [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md) - 用 task libraries、language variants、predicates、subtask scoring 和 diagnostics 评估泛化 robot policies
 - [Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md) - 用 controlled perturbations 与 NPE/MNPE posterior 找出影响 robot policy success 的环境参数
 - [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md) - contact approximations、learned dynamics 和 policy context 到 sim-to-real mismatch 的 causal flow
+- [Isaac Sim Legacy Asset Structure](concepts/IsaacSimLegacyAssetStructure.md) - Isaac Sim 4.5 legacy / pre-3.0 asset layout，明确旧 layout 没有 source-backed 2.0 命名，并与 Asset Structure 3.0 对照
 - [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) - 用 architecture diagrams、USD layers、payloads、references 和 variants 组织 Isaac Sim robot assets，并隔离 neutral physics 与 MuJoCo/PhysX-specific tuning
 - [Reduced-Coordinate Articulations](concepts/ReducedCoordinateArticulations.md) - PhysX / Omni Physics articulation 的 mechanism-level page，覆盖 reduced coordinates、root selection、drive envelope、mimic/tendon constraints 和 solver failure modes
 
@@ -147,7 +150,7 @@ last_updated: 2026-05-04
 
 ### Simulation Tools
 
-- [Isaac Sim](entities/IsaacSim.md) - NVIDIA robotics simulation stack；当前 source-backed coverage 包括 Isaac Sim 6.0 EDR Asset Structure 3.0 与 Omni Physics articulation semantics
+- [Isaac Sim](entities/IsaacSim.md) - NVIDIA robotics simulation stack；当前 source-backed coverage 包括 legacy / pre-3.0 Asset Structure、Isaac Sim 6.0 EDR Asset Structure 3.0 与 Omni Physics articulation semantics
 - [PhysX](entities/PhysX.md) - NVIDIA physics runtime / SDK family；当前 wiki coverage 聚焦 Omni Physics articulations source 中的 reduced-coordinate mechanisms、drive envelope、mimic joints 和 tendons
 - [MuJoCo](entities/MuJoCo.md) - source 中用于讨论 contact regularization tradeoffs 的 robotics physics engine；Isaac Sim docs 中也作为 engine-specific asset layer 出现
 - [RaiSim](entities/RaiSim.md) - source 中用于讨论 quadruped transfer 与 per-contact handling 的 robotics simulator

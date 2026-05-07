@@ -3,7 +3,7 @@ title: "Asset Structure - Isaac Sim Documentation"
 type: source
 tags: [isaac-sim, usd, asset-structure, robot-setup]
 sources: []
-last_updated: 2026-05-01
+last_updated: 2026-05-07
 source_file: raw/isaac-sim-6-asset-structure.html
 source_kind: html
 source_url: https://docs.isaacsim.omniverse.nvidia.com/6.0.0/robot_setup/asset_structure.html
@@ -41,6 +41,7 @@ source_date: 2026-03-18
 ## 关联
 
 - [[IsaacSimAssetStructure]] - 把本 source 编译成 Asset Structure 3.0 的学习页和实践检查表。
+- [[IsaacSimLegacyAssetStructure]] - 与 Isaac Sim 4.5 legacy / pre-3.0 layout 对照，避免把旧 layout 误称为 2.0。
 - [[IsaacSim]] - 本 source 对 Isaac Sim 6.0 EDR robot asset organization 的描述。
 - [[NVIDIA]] - source publisher 与 Isaac Sim documentation owner。
 - [[MuJoCo]] - 本 source 将 MuJoCo-specific tuning 隔离到 `mujoco.usda` layer。
