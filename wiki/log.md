@@ -108,3 +108,9 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 - Added `wiki/sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation.md` with canonical HTML in `raw/` and extracted Markdown in `graph/extracts/`.
 - Added `wiki/concepts/VisualSimToReal.md` and `wiki/entities/VIRAL.md`.
 - Updated `wiki/concepts/SimulationRealityGap.md`, `wiki/entities/NVIDIA.md`, `wiki/overview.md`, and `wiki/index.md`.
+
+## [2026-05-13] ingest | Robotics Simulation Infrastructure
+
+- Added `wiki/sources/robotics-simulation-infrastructure.md` with canonical HTML in `raw/` and extracted Markdown in `graph/extracts/`.
+- Added `wiki/concepts/RoboticsSimulationInfrastructure.md` and `wiki/entities/ManiSkill.md`.
+- Updated `wiki/concepts/SimulationRealityGap.md`, `wiki/concepts/TaskGeneralistPolicyEvaluation.md`, `wiki/entities/MuJoCo.md`, `wiki/overview.md`, and `wiki/index.md`.

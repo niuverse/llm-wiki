@@ -2,8 +2,8 @@
 title: "MuJoCo"
 type: entity
 tags: [robotics, simulation, physics-engine]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[isaac-sim-asset-structure]]"]
-last_updated: 2026-05-04
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[isaac-sim-asset-structure]]", "[[robotics-simulation-infrastructure]]"]
+last_updated: 2026-05-13
 ---
 
 # MuJoCo
@@ -20,4 +20,6 @@ MuJoCo 是 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in
 
 另一个 conversation-derived distill 总结了 MuJoCo 与 Isaac Sim / PhysX 的 physics/control 迁移边界：不要直接复制 raw stiffness/damping gains，而应迁移 closed-loop bandwidth、damping ratio、force limit、trajectory smoothness 和 contact regime；同时要记住 MuJoCo 和 PhysX 的 solver、constraint regularization 与 actuator abstraction 不同。MuJoCo actuator、`forcerange`、`armature`、`solref/solimp`、Newton/CG/PGS solver 等具体语义仍需要后续 ingest 官方 MuJoCo docs。见 [[isaac-sim-mujoco-control-tuning-notes]]。
 
-相关页面：[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]、[[isaac-sim-mujoco-control-tuning-notes]]。
+[[robotics-simulation-infrastructure|Robotics Simulation Infrastructure]] source 额外提到 MuJoCo Lab 作为 end-to-end simulation/ML framework example，并特别把它的 visualizer 描述为适合 reinforcement learning work 的 diagnostic surface。这个 claim 指向 MuJoCo Lab infrastructure，而不是 MuJoCo core physics semantics；当前页面暂不把二者合并为同一个 implementation claim。
+
+相关页面：[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[RoboticsSimulationInfrastructure]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]、[[isaac-sim-mujoco-control-tuning-notes]]。

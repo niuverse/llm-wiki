@@ -2,7 +2,7 @@
 title: "Simulation Reality Gap（仿真现实差距）"
 type: concept
 tags: [robotics, simulation, sim-to-real, reinforcement-learning, world-models]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]"]
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[robotics-simulation-infrastructure]]"]
 last_updated: 2026-05-13
 ---
 
@@ -37,6 +37,12 @@ flowchart LR
 
 对 RL 和 MPC 来说，这提示 simulator choice 应该围绕 hardware 上预期出现的 contact regime 来审计：sliding、impacts、redundant contacts、rough terrain，以及 ill-conditioned mass/contact layouts。
 
+## Infrastructure lens
+
+[[robotics-simulation-infrastructure|Robotics Simulation Infrastructure]] 把 reality gap 的上游再提前一层：在 physics/rendering mismatch 进入 policy 之前，framework 已经通过 task APIs、asset management、renderer、visualizer 和 ML integration 决定了什么 variation 容易表达、什么 diagnostics 容易观察、什么 resource budget 留给 training。换言之，sim-to-real gap 不只是 engine parameters 的问题，也可能来自 infrastructure surface。
+
+这个 lens 支持一个 practical distinction：config-driven APIs 与 direct Python APIs 选择的是不同的 structure/hackability trade-off；batched rendering 的 memory/fidelity choice 会和 PPO/SAC 等 RL training 的 batch sizes、replay buffers 和 networks 争 GPU memory；visualizer 如果只显示 physics state 而不显示 reward curves、policy behavior 或 past states，就可能让 evaluation failure 难以定位。source 是 engineering blog，不是 quantitative benchmark，因此这些判断应作为 audit checklist，而不是 framework ranking。
+
 ## Visual sim-to-real lens
 
 [[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]] 把 reality gap 放进 RGB-based humanoid loco-manipulation setting：policy 在 simulation 中通过 privileged teacher 和 visual student distillation 获得 behavior，再 zero-shot 部署到 Unitree G1。这里的 gap 不只来自 rigid-body physics，也来自 visual appearance、camera geometry、sensor delay、dexterous hand dynamics 和 long-horizon policy distribution。
@@ -55,4 +61,4 @@ flowchart LR
 
 这类 gap 不一定表现为 state prediction error，而可能表现为 decision distribution error：同一 observation 下，prompt 改变了 action distribution。对 deployment 来说，这要求同时验证 physical consistency、world-model subgoal quality 和 prompt-conditioned closed-loop success。
 
-相关页面：[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[VisualSimToReal]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[MuJoCo]]、[[RaiSim]]。
+相关页面：[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[RoboticsSimulationInfrastructure]]、[[VisualSimToReal]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[MuJoCo]]、[[RaiSim]]。

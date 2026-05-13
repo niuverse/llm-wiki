@@ -2,8 +2,8 @@
 title: "Task-Generalist Policy Evaluation"
 type: concept
 tags: [robotics, evaluation, benchmarks, vla]
-sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]"]
-last_updated: 2026-04-27
+sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[robotics-simulation-infrastructure]]"]
+last_updated: 2026-05-13
 ---
 
 # Task-Generalist Policy Evaluation
@@ -36,6 +36,8 @@ $$
 
 这个 formalism 的重点是把“policy 能做什么”拆成多个可诊断 axes。Task predicate 决定什么算成功，instruction variant 决定语言歧义有多大，scene/object distribution 决定是否真的 OOD，perturbation parameters 决定 robustness 的测试范围。一个高分但只在 default language、seen objects、固定 camera 下成功的 policy，与一个在 vague/specific variants、视觉相似 objects、camera/lighting perturbations 下稳定的 policy，代表的能力不同。
 
+[[robotics-simulation-infrastructure|Robotics Simulation Infrastructure]] 补充了一个 benchmark engineering 视角：evaluation 是否可扩展，不只取决于 task list，也取决于 task/API layer、asset management、rendering throughput/fidelity、visualizer diagnostics 和 ML integration。也就是说，benchmark 的 scientific value 依赖 infrastructure 能否稳定生成 scenes、并行 rollout、暴露 failure state、记录 reward/trajectory/policy behavior，并把这些数据连接到 evaluation metrics。
+
 ```mermaid
 flowchart TD
   A["Task library"] --> B["Instruction variant"]
@@ -64,3 +66,4 @@ flowchart TD
 - 对 benchmark design，task generation 应持续加入低 overlap objects/tasks 和 controlled perturbations，避免模型在固定 benchmark 上过拟合。
 - 对 [[SimulationRealityGap|sim-to-real]]，simulation benchmark 更适合作为 diagnostic instrument：它可以定位 sensitivity 和 failure type，但不能单独证明真实部署可靠。
 - 对 [[CompositionalGeneralizationInRobotics|compositional generalization]]，short-horizon task success 仍需要区分 visual recognition、relational reasoning、procedural affordance 和 action execution 的贡献。
+- 对 [[RoboticsSimulationInfrastructure|simulation infrastructure]]，policy benchmark 的 maintainability 要检查 scene authoring API、asset serialization、parallel evaluation、visualizer instrumentation 和 ML loop resource budget。
