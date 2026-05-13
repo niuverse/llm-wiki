@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation">
+  <meta name="keywords" content="Robotics, Quadruped, Whole-body Control, Whole-body Manipulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation
+  </title>
+
+  <!-- <link rel="apple-touch-icon" sizes="57x57"s
+    href="./static/images/cr7_frame5_crop.png" />
+
+  <link rel="icon" type="image/png" href="./static/images/cr7_frame5_crop.png"
+    sizes="196x196" />
+  <link rel="icon" type="image/png" href="./static/images/cr7_frame5_crop.png"
+    sizes="192x192" />
+  <link rel="icon" type="image/png" href="./static/images/cr7_frame5_crop.png" sizes="128x128" />
+  <link rel="icon" type="image/png" href="./static/images/cr7_frame5_crop.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="./static/images/cr7_frame5_crop.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="./static/images/cr7_frame5_crop.png" sizes="16x16" />
+
+  <link rel="mask-icon" href="//www-media.stanford.edu/assets/favicon/safari-pinned-tab.svg" color="#ffffff">
+  <meta name="application-name" content="Stanford University" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="//www-media.stanford.edu/assets/favicon/mstile-144x144.png" />
+  <meta name="msapplication-square70x70logo" content="//www-media.stanford.edu/assets/favicon/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="//www-media.stanford.edu/assets/favicon/mstile-150x150.png" />
+  <meta name="msapplication-square310x310logo" content="//www-media.stanford.edu/assets/favicon/mstile-310x310.png" /> -->
+
+  <link rel="icon" href="./static/images/CR7_frame5_ico_png_crop.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZ38WT2YPD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-QZ38WT2YPD');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://kit.fontawesome.com/19914a84eb.js" crossorigin="anonymous"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <meta property="og:image" content="https://viral-humanoid.github.io/static/images/viral-preview-gif-360P.gif" />
+  <meta property="og:image:secure" content="https://viral-humanoid.github.io/static/images/viral-preview-gif-360P.gif" />
+</head>
+
+<section class="hero is-link is-fullheight video" style="overflow: hidden; position:relative;">
+  <div class="hero-video" style="height: 100%; width: 177.77777778vh; min-width: 100%;min-height: 56.25vw;">
+    <video playsinline autoplay muted loop>
+      <source src="./static/videos/autonomous_skills/auto_48x.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-video is-hidden-tablet is-inline-block-mobile"
+    style="height: 154.28571428vw; width: 100%; min-width:64.81481481vh;min-height:100%;">
+    <video playsinline autoplay muted loop>
+      <source src="./static/videos/autonomous_skills/auto_48x.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="overlay"></div>
+  <!-- Hero head: will stick at the top -->
+  <div class="hero-head is-hidden-mobile">
+    <header class="navbar">
+      <div class="container is-size-5">
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item pl-4 pr-4" href="./static/viral-v2.pdf">
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/pdf.svg" alt="PDF" />
+              </span>
+              <span>Paper</span>
+            </a>
+            <a class="navbar-item  pl-4 pr-4" href="https://arxiv.org/abs/2511.15200">
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/arxiv.svg" alt="ArXiv" />
+              </span>
+              <span>arXiv</span> </a>
+            <!-- <a href="https://www.youtube.com/watch?v=tu7LSNYWDTs" class="navbar-item  pl-4 pr-4">
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/youtube.svg" alt="Youtube" />
+              </span>
+              <span>Video</span> </a> -->
+
+            <span class="navbar-item  pl-4 pr-4">
+              <a href="https://github.com/NVlabs/GR00T-VisualSim2Real" class="button is-inverted is-large">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-1 publication-title is-size-1-mobile" style="font-size: 6rem;">
+        <span style="color: #ffffff;">VIRAL</span>
+      </h1>
+      <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 4rem;">
+        Visual Sim-to-Real at Scale for <br> Humanoid Loco-Manipulation
+      </h1>
+      <!-- <h1 class="is-2 is-italic is-size-4-mobile" style="font-size: 2rem; opacity: 80%;">
+        Robotics: Science and Systems (RSS) 2025
+      </h1> -->
+      <!--  <h1 class="is-2 is-italic is-size-4-mobile" style="font-size: 1.5rem; opacity: 80%;">
+        <b>Spotlight</b> WCBM Workshop CoRL 2024
+      </h1>
+      <h1 class="is-2 is-italic is-size-4-mobile" style="font-size: 1.5rem; opacity: 80%;">
+        X-Embodiment Workshop CoRL 2024
+      </h1> -->
+      <div class="column has-text-centered is-hidden-tablet">
+        <div class="publication-links">
+          <!-- PDF Link. -->
+          <span class="link-block">
+            <a href="./static/viral.pdf" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                <img src="./static/images/pdf.svg" alt="PDF" />
+              </span>
+              <span>Paper</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a href="https://arxiv.org/abs/2511.15200" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                <img src="./static/images/arxiv.svg" alt="ArXiv" />
+              </span>
+              <span>arXiv</span>
+            </a>
+          </span>
+          <!-- Video Link. -->
+          <!-- <span class="link-block">
+            <a href="https://www.youtube.com/watch?v=tu7LSNYWDTs" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                <img src="./static/images/youtube.svg" alt="Youtube" />
+              </span>
+              <span>Video</span>
+            </a>
+          </span> -->
+          <!-- Code Link. -->
+          <span class="link-block">
+            <a href="https://github.com/NVlabs/GR00T-VisualSim2Real"
+              class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>Code</span>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Hero footer: will stick at the bottom -->
+  <!-- <div class="hero-foot is-hidden-mobile">
+    <nav class="tabs is-boxed is-fullwidth is-size-4">
+      <ul>
+        <li><a href="#agile-skills">Agile Whole-Body Skills</a></li>
+        <li><a href="#before-after-asap"></a>Before/After ASAP Fine-tuning</a></li>
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#method">Method</a></li>
+      </ul>
+    </nav>
+  </div> -->
+</section>
+
+
+<section class="hero">
+  <div class="toc">
+    <h3>Content</h3>
+    <hr>
+    <ul>
+      <li><a href="#autonomous-locomanip">Autonomous Loco-Manipulation</a></li>
+      <li><a href="#visual-randomization">Visual Randomization in Simulation</a></li>
+      <li><a href="#teacher-student-elements">Key Teacher-Student Elements</a></li>
+      <li><a href="#compute-scaling">Compute Scaling</a></li>
+      <li><a href="#sim2real-elements">Key Sim2Real Elements</a></li>
+      <li><a href="#generalization-1">Generalization</a></li>
+        <li class="toc-subsection"><a href="#generalization-1">#1: Tray Position - Y Axis</a></li>
+        <li class="toc-subsection"><a href="#generalization-2">#2: Tray Position - X Axis</a></li>
+        <li class="toc-subsection"><a href="#generalization-3">#3: Cylinder Position</a></li>
+        <li class="toc-subsection"><a href="#generalization-4">#4: Robot Position - Y Axis</a></li>
+        <li class="toc-subsection"><a href="#generalization-5">#5: Robot Position - X Axis</a></li>
+        <li class="toc-subsection"><a href="#generalization-6">#6: Table Height</a></li>
+        <li class="toc-subsection"><a href="#generalization-7">#7: Lighting Conditions</a></li>
+        <li class="toc-subsection"><a href="#generalization-8">#8: Table Cloth Color</a></li>
+        <li class="toc-subsection"><a href="#generalization-9">#9: Table Type</a></li>
+        <li class="toc-subsection"><a href="#generalization-10">#10: Object</a></li>
+      <li><a href="#sim2real-journey">Our Visual Sim2Real Journey</a></li>
+      <li><a href="#failure-cases">Failure Cases</a></li>
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#method">Method</a></li>
+      <li><a href="#BibTeX">BibTeX</a></li>
+    </ul>
+  </div>
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title" id="main-title"><span style="color: #76b900;">VIRAL</span>: Visual Sim-to-Real at Scale for <br> Humanoid Loco-Manipulation</h1>
+
+          <!-- <div class="is-size-4 publication-authors">
+            <span class="author-block" style="font-size: 95%;">
+              <a href="https://tairanhe.com/">Tairan He</a>*&nbsp;&nbsp;
+              <a href="https://www.zhengyiluo.com/">Zhengyi Luo</a>*&nbsp;&nbsp;
+              <a href="https://xialin-he.github.io/">Xialin He</a>*&nbsp;&nbsp;
+              <a href="https://wenlixiao-cs.github.io/">Wenli Xiao</a>&nbsp;&nbsp;
+              <a href="https://zita-ch.github.io/">Chong Zhang</a>&nbsp;&nbsp;
+            </span>
+          </div>
+
+          <div class="is-size-4 publication-authors">
+            <span class="author-block" style="font-size: 95%;">
+              <a href="https://wnzhang.net/">Weinan Zhang</a>&nbsp;&nbsp;
+              <a href="https://kriskitani.github.io/">Kris Kitani</a>&nbsp;&nbsp;
+              <a href="https://www.cs.cmu.edu/~cliu6/">Changliu Liu</a>&nbsp;&nbsp;
+              <a href="https://www.gshi.me/">Guanya Shi</a>&nbsp;&nbsp;
+            </span>
+          </div> -->
+
+          <div class="is-size-4 publication-authors">
+            <span class="author-block" style="font-size: 95%;">
+              <a href="https://tairanhe.com/">Tairan He</a><sup>*</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://www.linkedin.com/in/zi-wang-b675aa236">Zi Wang</a><sup>*</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://haoruxue.github.io/">Haoru Xue</a><sup>*</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://www.qingweiben.com/">Qingwei Ben</a><sup>*</sup>
+              <br>
+              <a href="https://www.zhengyiluo.com/">Zhengyi Luo</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://wenlixiao-cs.github.io">Wenli Xiao</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://ye-yuan.com/">Ye Yuan</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://www.linkedin.com/in/xingye-dennis-da-86242655/">Xingye Da</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://scholar.google.com/citations?user=U9WUBC4AAAAJ&hl=es">Fernando Castañeda</a>
+              <br>
+              <a href="https://people.eecs.berkeley.edu/~sastry/">Shankar Sastry</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://www.cs.cmu.edu/~cliu6/">Changliu Liu</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://www.gshi.me/">Guanya Shi</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://jimfan.me">Linxi "Jim" Fan</a><sup>†</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://yukezhu.me">Yuke Zhu</a><sup>†</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal Contributions;&nbsp;&nbsp;</span>
+            <span class="author-block"><sup>†</sup>GEAR Team Leads</span>
+          </div>
+
+          <div class="column">
+            <image src="./static/images/nvidia_cmu_berkeley_cuhk_logo.png" style="width: 60%;"></image>
+         </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/viral.pdf"
+                   class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>PDF</span>
+                </a>
+              </span>
+              <!-- arXiv Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2511.15200"
+                   class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>ArXiv</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=tu7LSNYWDTs"
+                   class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Datasets Link. -->
+              <!-- <span class="link-block">
+                <a href="https://cmu.box.com/s/kmayzq5ax2rxvwn97s0hzz0aq5vws9io" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                      <i class="fas fa-database"></i>
+                  </span>
+                  <span>Datasets</span>
+                </a>
+              </span> -->
+              <!-- twitter Link. -->
+              <span class="link-block">
+                <a href="https://x.com/TairanHe99/status/1991546857097687372"
+                   class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                      <i class="fab fa-twitter"></i>
+                  </span>
+                  <span>Summary</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/NVlabs/GR00T-VisualSim2Real" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="autonomous-locomanip">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: left; padding-bottom: 10px;">Autonomous Loco-Manipulation</h2>
+        <tr>
+          <td>
+
+            <div class="columns is-centered"> <!-- Correct Bulma structure -->
+              <div class="column is-two-fifths is-centered has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Time Lapse</h3>
+                <video autoplay muted loop playsinline controls src="./static/videos/autonomous_skills/auto_48x.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column is-two-fifths is-centered has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Consecutive Successes</h3>
+                <video autoplay muted loop playsinline controls src="./static/videos/autonomous_skills/auto_4x_20strikes.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+            </div>
+            <br>
+
+
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="visual-randomization">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: left; padding-bottom: 10px;">Visual Randomization in Simulation</h2>
+        <tr>
+          <td>
+
+            <div class="columns is-centered"> <!-- Correct Bulma structure -->
+              <div class="column is-two-fifths is-centered has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">All Randomization </h3>
+                <video autoplay muted loop playsinline controls src="./static/videos/visual_rand/WSDPT-AllRand-48x.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column is-two-fifths is-centered has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Dome Light Rand</h3>
+                <video autoplay muted loop playsinline controls src="./static/videos/visual_rand/WSDPT_DomeLightRand-8x.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+            </div>
+            <br>
+
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+
+            <div class="columns is-centered"> <!-- Correct Bulma structure -->
+              <div class="column is-two-fifths is-centered has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Image Rand </h3>
+                <video autoplay muted loop playsinline controls src="./static/videos/visual_rand/WSDPT-ImageRand-8x.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column is-two-fifths is-centered has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Material Rand</h3>
+                <video autoplay muted loop playsinline controls src="./static/videos/visual_rand/WSDPT-MaterialRand-8x.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+            </div>
+            <br>
+
+
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="teacher-student-elements">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 10px;">Key Teacher Elements</h2>
+        <tr>
+          <td>
+
+            <div class="columns is-centered">
+              <div class="column is-three-fifths has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large; white-space: nowrap;">Delta Action Space & Reference State Initialization (RSI)</h3>
+                <img src="./static/images/delta_action_RSI.png" alt="Delta Action Space & Reference State" style="width: 100%; border-radius:10px;">
+              </div>
+            </div>
+            <br>
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="sim2real-elements">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 10px;">Key Sim2Real Elements</h2>
+        <tr>
+          <td>
+            <!-- First Row - Finger SysID -->
+            <div class="columns is-centered">
+              <div class="column is-four-fifths has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Finger SysID</h3>
+                <!-- <img src="./static/images/finger_sysID.png" alt="Finger SysID" style="width: 75%; border-radius:10px;"> -->
+                <div class="column is-two-third has-text-centered">
+                  <video autoplay muted loop playsinline controls src="./static/videos/SysID-NoSysID-Overlay.mp4" width="100%" style="border-radius:10px;"></video>
+                  <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">SysID vs. No SysID</div>
+                </div>
+              </div>
+            </div>
+            
+            <br>
+            <br>
+            <!-- Second Row - FOV Alignment -->
+            <div class="columns is-centered">
+              <div class="column is-four-fifths has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">FOV Alignment</h3>
+                <img src="./static/images/FOV_alignment.png" alt="FOV Alignment" style="width: 75%; border-radius:10px;">
+              </div>
+            </div>
+            <br>
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="compute-scaling">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 10px;">Compute Scaling for Teacher-Student Training</h2>
+        <tr>
+          <td>
+
+            <!-- First Row - Teacher -->
+            <div class="columns is-centered">
+              <div class="column is-four-fifths has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Scaling Compute for Teacher</h3>
+                <img src="./static/images/teacher_scaling_law.png" alt="Teacher Scaling Law" style="width: 100%; border-radius:10px;">
+              </div>
+            </div>
+            
+            <!-- Second Row - Student -->
+            <div class="columns is-centered">
+              <div class="column is-four-fifths has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Scaling Compute for Student</h3>
+                <img src="./static/images/student_scaling_law.png" alt="Student Scaling Law" style="width: 100%; border-radius:10px;">
+              </div>
+            </div>
+            <br>
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 0px;" id="generalization-1">Generalization #1: Tray Position - Y Axis  </h2>
+        <div class="columns is-centered" style="max-width: 1150px; margin: 0 auto; margin-left: 110px;">
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_1/general_1_cllip_2_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Tray on the left</div>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_1/general_1_clip_1_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Tray on the middle</div>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_1/general_1_clip_3_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Tray on the right</div>
+          </div>
+        </div>
+        <p class="figure-caption non-gallery-caption">
+          <b>Tray Position - Y Axis:</b> The robot demonstrates precise tray manipulation across different Y-axis positions, adapting to left, middle, and right placements.
+        </p>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 0px;" id="generalization-2">Generalization #2: Tray Position - X Axis </h2>
+        
+        <!-- Video Gallery Section - TRAY X AXIS VIDEOS -->
+        <div class="video-gallery-section" id="trayXGallerySection">
+          <div class="video-gallery-container">
+            <div class="video-gallery" id="videoGalleryTrayX">
+              <!-- Video items with individual captions -->
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_2/gereral_2_clip_inside_20cm_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">20cm inside table</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_2/gereral_2_clip_inside_10cm_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">10cm inside table</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_2/gereral_2_clip_inside_2cm_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">2cm inside table</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_2/gereral_2_clip_outside_7cm_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">7cm outside table</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_2/gereral_2_clip_outside_15cm_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">15cm outside table</div>
+              </div>
+            </div>
+          </div>
+          <!-- Container for the caption AND buttons -->
+          <div class="gallery-caption-container">
+              <!-- Move button controls INSIDE caption container -->
+              <div class="gallery-nav-controls">
+                  <button class="gallery-nav left" id="scrollLeftBtnTrayX">&lt;</button>
+                  <button class="gallery-nav right" id="scrollRightBtnTrayX">&gt;</button>
+              </div>
+              <!-- Caption text -->
+              <p class="figure-caption gallery-caption">
+                  <b>Tray Position - X Axis:</b> The robot demonstrates adaptive manipulation across various X-axis positions, from 20cm inside the table to 15cm beyond the edge.
+              </p>
+          </div>
+        </div>
+        <!-- End Video Gallery Section -->
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 0px;" id="generalization-3">Generalization #3: Cylinder Position </h2>
+        
+        <!-- Video Gallery Section - CYLINDER POSITION VIDEOS -->
+        <div class="video-gallery-section" id="cylinderGallerySection">
+          <div class="video-gallery-container">
+            <div class="video-gallery" id="videoGalleryCylinder">
+              <!-- Video items with individual captions -->
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_3/gereral_3_clip_right_near_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Right-Near</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_3/gereral_3_clip_right_middle_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Right-Middle</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_3/gereral_3_clip_right_far_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Right-Far</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_3/gereral_3_clip_left_near_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Left-Near</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_3/gereral_3_clip_left_middle_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Left-Middle</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_3/gereral_3_clip_left_far_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Left-Far</div>
+              </div>
+            </div>
+          </div>
+          <!-- Container for the caption AND buttons -->
+          <div class="gallery-caption-container">
+              <!-- Move button controls INSIDE caption container -->
+              <div class="gallery-nav-controls">
+                  <button class="gallery-nav left" id="scrollLeftBtnCylinder">&lt;</button>
+                  <button class="gallery-nav right" id="scrollRightBtnCylinder">&gt;</button>
+              </div>
+              <!-- Caption text -->
+              <p class="figure-caption gallery-caption">
+                  <b>Cylinder Position:</b> The robot precisely manipulates cylinders at varied positions, demonstrating adaptive positioning and control.
+              </p>
+          </div>
+        </div>
+        <!-- End Video Gallery Section -->
+        
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 0px;" id="generalization-4">Generalization #4: Robot Position - Y Axis </h2>
+        <div class="columns is-centered" style="max-width: 1150px; margin: 0 auto; margin-left: 110px;">
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_4/general_4_clip_robot_left_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Left</div>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_4/general_4_clip_robot_middle_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Middle</div>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_4/general_4_clip_robot_right_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Right</div>
+          </div>
+        </div>
+          <p class="figure-caption non-gallery-caption">
+            <b>Robot Position - Y Axis:</b> The robot performs manipulation tasks from different Y-axis positions, demonstrating adaptability to left, middle, and right positions.
+          </p>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 0px;" id="generalization-5">Generalization #5: Robot Position - X Axis </h2>
+        <div class="columns is-centered" style="max-width: 1150px; margin: 0 auto; margin-left: 110px;">
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_5/general_5_clip_robot_near_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Near</div>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_5/general_5_clip_robot_middle_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Middle</div>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_5/general_5_clip_robot_far_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Far</div>
+          </div>
+        </div>
+          <p class="figure-caption non-gallery-caption">
+            <b>Robot Position - X Axis:</b> The robot demonstrates consistent manipulation performance across different X-axis distances, from near to far positions relative to the table.
+          </p>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 0px;" id="generalization-6">Generalization #6: Table Height</h2>
+        
+        <!-- Video Gallery Section - TABLE HEIGHT VIDEOS -->
+        <div class="video-gallery-section" id="tableHeightGallerySection">
+          <div class="video-gallery-container">
+            <div class="video-gallery" id="videoGalleryTableHeight">
+            <!-- Video items with individual captions -->
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_6/general_6_clip_66.5cm_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">66.5cm</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_6/general_6_clip_67.3cm_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">67.3cm</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_6/general_6_clip_70.1cm_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">70.1cm</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_6/general_6_clip_72.6cm_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">72.6cm</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_6/general_6_clip_73.9cm_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">73.9cm</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_6/general_6_clip_76.4cm_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">76.4cm</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_6/general_6_clip_78.2cm_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">78.2cm</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_6/general_6_clip_80.7cm_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">80.7cm</div>
+            </div>
+          </div>
+          </div>
+          <!-- Container for the caption AND buttons -->
+          <div class="gallery-caption-container">
+              <!-- Move button controls INSIDE caption container -->
+              <div class="gallery-nav-controls">
+                  <button class="gallery-nav left" id="scrollLeftBtnTableHeight">&lt;</button>
+                  <button class="gallery-nav right" id="scrollRightBtnTableHeight">&gt;</button>
+              </div>
+              <!-- Caption text -->
+              <p class="figure-caption gallery-caption">
+                  <b>Table Height:</b> The robot demonstrates remarkable adaptability across various table heights, from 26.5 inches to 31.8 inches, showcasing robust manipulation capabilities.
+              </p>
+          </div>
+        </div>
+        <!-- End Video Gallery Section -->
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 0px;" id="generalization-7">Generalization #7: Lightening Conditions </h2>
+        <div class="columns is-centered" style="max-width: 1150px; margin: 0 auto; margin-left: 110px;">
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_7/general_7_clip_light_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Light</div>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_7/general_7_clip_flashing_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Flashing</div>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_7/general_7_clip_dark_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Dark</div>
+          </div>
+        </div>
+          <p class="figure-caption non-gallery-caption">
+            <b>Lighting Conditions:</b> The robot maintains consistent manipulation performance across different lighting conditions, from bright to dark and flashing environments.
+          </p>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 0px;" id="generalization-8">Generalization #8: Table Cloth Color </h2>
+        
+        <!-- Video Gallery Section - TABLE CLOTH COLOR VIDEOS -->
+        <div class="video-gallery-section" id="tableClothGallerySection">
+          <div class="video-gallery-container">
+            <div class="video-gallery" id="videoGalleryTableCloth">
+            <!-- Video items with individual captions -->
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_8/general_8_clip_1_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">Light Blue</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_8/general_8_clip_2_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">Green</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_8/general_8_clip_3_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">Yellow</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_8/general_8_clip_4_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">Light Purple</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_8/general_8_clip_5_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">Light Pink</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_8/general_8_clip_6_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">Blue</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_8/general_8_clip_7_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">Orange</div>
+            </div>
+            <div class="gallery-video-item">
+              <video class="gallery-video" src="./static/videos/general_8/general_8_clip_8_cmps.mp4" autoplay muted playsinline loop controls></video>
+              <div class="gallery-video-caption">Red</div>
+            </div>
+          </div>
+          </div>
+          <!-- Container for the caption AND buttons -->
+          <div class="gallery-caption-container">
+              <!-- Move button controls INSIDE caption container -->
+              <div class="gallery-nav-controls">
+                  <button class="gallery-nav left" id="scrollLeftBtnTableCloth">&lt;</button>
+                  <button class="gallery-nav right" id="scrollRightBtnTableCloth">&gt;</button>
+              </div>
+              <!-- Caption text -->
+              <p class="figure-caption gallery-caption">
+                  <b>Table Cloth Color:</b> The robot successfully adapts to various table cloth colors, from gray and green to bright colors like yellow, purple, cyan, blue, orange, and red.
+              </p>
+          </div>
+        </div>
+        <!-- End Video Gallery Section -->
+
+
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 0px;" id="generalization-9">Generalization #9: Table Type </h2>
+        <div class="columns is-centered" style="max-width: 1150px; margin: 0 auto; margin-left: 110px;">
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_9/general_9_table_1_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Table #1</div>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_9/general_9_table_2_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Table #2</div>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <video autoplay muted loop playsinline controls src="./static/videos/general_9/general_9_table_3_cmps.mp4" width="100%" style="border-radius:10px;"></video>
+            <div class="gallery-video-caption" style="margin-top: 8px; display: inline-block;">Table #3</div>
+          </div>
+        </div>
+          <p class="figure-caption non-gallery-caption">
+            <b>Table Type:</b> The robot demonstrates versatility across different table types, showcasing consistent manipulation performance regardless of table material and design.
+          </p>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 0px;" id="generalization-10">Generalization #10: Object </h2>
+        
+        <!-- Video Gallery Section - OBJECT VIDEOS -->
+        <div class="video-gallery-section" id="objectGallerySection">
+          <div class="video-gallery-container">
+            <div class="video-gallery" id="videoGalleryObject">
+              <!-- Video items with individual captions -->
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_10/general_10_clip_2_PlasticWaterBottle_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Plastic Water Bottle</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_10/general_10_clip_3_BowlingPin_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Bowling Pin</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_10/general_10_clip_4_SilverCan_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Silver Can</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_10/general_10_clip_5_PumpBottle_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Pump Bottle</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_10/general_10_clip_6_TennisCan_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Tennis Can</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_10/general_10_clip_7_VitaminBottle_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Vitamin Bottle</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_10/general_10_clip_8_SprayCan_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Spray Can</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_10/general_10_clip_9_MilkBottle_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Milk Bottle</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_10/general_10_clip_10_BubbleTea_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Bubble Tea</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_10/general_10_clip_11_HubBox_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Hub Box</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_10/general_10_clip_1_RedCan_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Red Can</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_10/general_10_clip_12_BlueCan_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Blue Can</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/general_10/general_10_clip_14_OrangeCup_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Orange Cup</div>
+              </div>
+            </div>
+          </div>
+          <!-- Container for the caption AND buttons -->
+          <div class="gallery-caption-container">
+              <!-- Move button controls INSIDE caption container -->
+              <div class="gallery-nav-controls">
+                  <button class="gallery-nav left" id="scrollLeftBtnObject">&lt;</button>
+                  <button class="gallery-nav right" id="scrollRightBtnObject">&gt;</button>
+              </div>
+              <!-- Caption text -->
+              <p class="figure-caption gallery-caption">
+                  <b>Object Variety:</b> The robot shows strong adaptability across objects of varying shapes, sizes, and materials.
+              </p>
+          </div>
+        </div>
+        <!-- End Video Gallery Section -->
+
+
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="sim2real-journey">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 0px;">Our Visual Sim2Real Journey</h2>
+
+        <!-- Timeline scrollable container -->
+        <div class="sim2real-timeline-wrapper">
+          <div class="sim2real-timeline-container" id="sim2realTimelineContainer">
+            <div class="sim2real-timeline">
+              <div class="sim2real-timeline-items">
+                <div class="sim2real-timeline-item" data-video-index="0">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-1-0530_cmps.mp4" data-title="The First RGB-based Sim2Real for Reaching" data-date="May 30, 2025: The task is to reach the green/red box based on the visual input. Red box to close fingers, and green box to open fingers."></video>
+                  <div class="sim2real-card">The first RGB-based sim2real deployment for visual arm reaching</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">May 30, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="0">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-2-0611_cmps.mp4" data-title="Visual IK Sim2Real: Sign of Life" data-date="June 11, 2025: After aligning FOV and added image normalization back, we got sign of life of visual sim2real for IK reaching."></video>
+                  <div class="sim2real-card">Visual IK Sim2Real: Sign of Life</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">June 11, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="2">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-3-0619_cmps.mp4" data-title="The first RGB-based sim2real deployment of visual grasping" data-date="June 19, 2025: Nothing works."></video>
+                  <div class="sim2real-card">The first RGB-based sim2real deployment of visual grasping</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">June 19, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="3">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-4-0708_cmps.mp4" data-title="Open-loop relaying teacher action in real for sanity check" data-date="July 8, 2025: Open-loop relaying teacher action in real for sanity check."></video>
+                  <div class="sim2real-card">Open-loop relaying teacher action in real for sanity check</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">July 8, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="4">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-5-0713_cmps.mp4" data-title="First grasping works" data-date="July 13, 2025: First grasping works, but then Tairan realized the policy grasps regardless of the object position"></video>
+                  <div class="sim2real-card">First grasping semi-works</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">July 13, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="5">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-7-0725_cmps.mp4" data-title="Grasping does not work still" data-date="July 25, 2025: Grasping does not work still. We find that finger sensor readings are not reliable, and the sim2real gap is too large for finger motors."></video>
+                  <div class="sim2real-card">Grasping does not work still</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">July 25, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="5">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-8-0728_cmps.mp4" data-title="Finger Primitive SysID" data-date="July 28, 2025: Finger Primitive SysID. We turn to using finger primitive as action for fingers instead of doing all-finger sim2real due to hardware limitations."></video>
+                  <div class="sim2real-card">Finger Primitive SysID</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">July 28, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="5">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-9-0731_cmps.mp4" data-title="From Grasping to PreGrasping" data-date="July 31, 2025: From Grasping to PreGrasping. We revert from learning grasping to learning pre-grasping for sanity check to understand why sim2real failed."></video>
+                  <div class="sim2real-card">From Grasping to PreGrasping</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">July 31, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="5">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-10-0806_cmps.mp4" data-title="Grasping finally works" data-date="August 6, 2025: Grasping finally works."></video>
+                  <div class="sim2real-card">Grasping finally works</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">Aug 06, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="5">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-11-0807_cmps.mp4" data-title="Grasping OOD Objects" data-date="August 7, 2025: Grasping OOD Objects. We train on 10 objects and test on OOD objects."></video>
+                  <div class="sim2real-card">Grasping OOD Objects</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">Aug 07, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="5">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-12-0815_cmps.mp4" data-title="Exploration but no improvement" data-date="August 15, 2025: We spent two weeks exploring various texture randomziation, object training size, fine-tuning strategies, and deployment implementations, but no improvement."></video>
+                  <div class="sim2real-card">Exploration but no improvement</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">Aug 15, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="5">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-13-0823_cmps.mp4" data-title="Sim2Real works for walking to table and standing" data-date="August 23, 2025: Sim2Real works for walking to table and standing. We started our effort toward loco-manipulation. The first success is walking to table and standing."></video>
+                  <div class="sim2real-card">Sim2Real works for walking to table and standing</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">Aug 23, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="5">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-13.5-1005_cmps.mp4" data-title="Walk-Stand-Grasp: Sim2Real works" data-date="October 5, 2025: Walk-Stand-Grasp: Sim2Real works. We spent 5 weeks tuning and refactoring the codebase to make Walk-Stand-Grasp."></video>
+                  <div class="sim2real-card">Walk-Stand-Grasp: Sim2Real works</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">Oct 05, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="5">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-14-1020_cmps.mp4" data-title="Walk-Stand-Drop-Grasp-Turn: First Sim2Real" data-date="October 20, 2025: Walk-Stand-Drop-Grasp-Turn: First Sim2Real. This is harder than expected."></video>
+                  <div class="sim2real-card">Walk-Stand-Drop-Grasp-Turn: First Sim2Real</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">Oct 20, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="5">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-15-1023_cmps.mp4" data-title="Walk-Stand-Drop-Grasp-Turn: Tuning and Trying Again" data-date="October 23, 2025: Walk-Stand-Drop-Grasp-Turn: Tuning and Trying Again. Still no good."></video>
+                  <div class="sim2real-card">Walk-Stand-Drop-Grasp-Turn: Tuning and Trying Again</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">Oct 23, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="5">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/journey/Journey-16-1031_cmps.mp4" data-title="Walk-Stand-Drop-Grasp-Turn: Sign of Life" data-date="October 31, 2025: Walk-Stand-Drop-Grasp-Turn: Sign of Life. We finally get sign of life of Walk-Stand-Drop-Grasp-Turn."></video>
+                  <div class="sim2real-card">Walk-Stand-Drop-Grasp-Turn: Sign of Life</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">Oct 31, 2025</div>
+                </div>
+                <div class="sim2real-timeline-item" data-video-index="5">
+                  <video class="sim2real-video clickable-video" autoplay muted playsinline loop src="./static/videos/autonomous_skills/auto_48x.mp4" data-title="Walk-Stand-Drop-Grasp-Turn: 54 Cycles of Loco-Manipulation" data-date="November 10, 2025: We finally get 54 cycles of loco-manipulation."></video>
+                  <div class="sim2real-card">Walk-Stand-Drop-Grasp-Turn: 54 Cycles of Loco-Manipulation</div>
+                  <div class="sim2real-dot"></div>
+                  <div class="sim2real-year">Nov 10, 2025</div>
+                </div>
+
+              </div> 
+            </div>
+          </div>
+          
+          <!-- Container for navigation buttons below timeline -->
+          <div class="gallery-caption-container" style="margin-top: 0; margin-bottom: 0;">
+              <div class="gallery-nav-controls">
+                  <button class="gallery-nav" id="sim2realNavLeft">&lt;</button>
+                  <button class="gallery-nav" id="sim2realNavRight">&gt;</button>
+              </div>
+          </div>
+        </div>
+
+        <!-- Enlarged video display -->
+        <div class="sim2real-enlarged-container" style="margin-top: 0;">
+          <div class="sim2real-enlarged-info">
+            <h3 id="enlargedVideoTitle" class="title is-4">The First RGB-based Sim2Real for Reaching</h3>
+            <p id="enlargedVideoDate" class="sim2real-enlarged-date">May 30, 2025: The task is to reach the green/red box based on the visual input. Red box to close fingers, and green box to open fingers.</p>
+          </div>
+          <video id="enlargedVideo" class="sim2real-enlarged-video" autoplay muted playsinline loop controls src="./static/videos/journey/Journey-1-0530_cmps.mp4"></video>
+        </div>
+
+        
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: left; padding-bottom: 10px;" id="failure-cases">Failure Cases</h2>
+        
+        <!-- Video Gallery Section - Failure Cases -->
+        <div class="video-gallery-section" id="failureCasesGallerySection">
+          <div class="video-gallery-container">
+            <div class="video-gallery" id="videoGalleryFailureCases">
+              <!-- Video items with individual captions -->
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/failure_cases/failure-cases-3_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Unreliable Deployment</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/failure_cases/failure-cases-1_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Hand Stuck</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/failure_cases/failure-cases-2_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Accident Drop</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/failure_cases/failure-cases-4_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Failed OOD Object Generalization #1 </div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/failure_cases/failure-cases-5_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Failed OOD Object Generalization #2</div>
+              </div>
+              <div class="gallery-video-item">
+                <video class="gallery-video" src="./static/videos/failure_cases/failure-cases-6_cmps.mp4" autoplay muted playsinline loop controls></video>
+                <div class="gallery-video-caption">Failed OOD Object Generalization #3</div>
+              </div>
+            </div>
+          </div>
+          <!-- Container for the caption AND buttons -->
+          <div class="gallery-caption-container">
+              <!-- Move button controls INSIDE caption container -->
+              <div class="gallery-nav-controls">
+                  <button class="gallery-nav left" id="scrollLeftBtnFailureCases">&lt;</button>
+                  <button class="gallery-nav right" id="scrollRightBtnFailureCases">&gt;</button>
+              </div>
+              <!-- Caption text -->
+              <p class="figure-caption gallery-caption">
+                  <b>Failure Cases:</b> While the robot demonstrates robust performance, occasional failures occur including unreliable deployment, hand getting stuck, accidental drops, and challenges with out-of-distribution objects.
+              </p>
+          </div>
+        </div>
+        <!-- End Video Gallery Section -->
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<section class="section" id="abstract">
+  <div class="container">
+    <!-- Abstract. -->
+    <h2 class="title is-2" id="abstract-title">Abstract</h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            A key barrier to the real-world deployment of humanoid robots is the lack of autonomous loco-manipulation skills. We introduce VIRAL, a visual sim-to-real framework that learns humanoid loco-manipulation entirely in simulation and deploys it zero-shot to real hardware. VIRAL follows a teacher-student design: a privileged RL teacher, operating on full state, learns long-horizon loco-manipulation using a delta action space and reference state initialization. A vision-based student policy is then distilled from the teacher via large-scale simulation with tiled rendering, trained with a mixture of online DAgger and behavior cloning. We find that compute scale is critical: scaling simulation to tens of GPUs (up to 64) makes both teacher and student training reliable, while low-compute regimes often fail. To bridge the sim-to-real gap, VIRAL combines large-scale visual domain randomization over lighting, materials, camera parameters, image quality, and sensor delays—with real-to-sim alignment of the dexterous hands and cameras. Deployed on a Unitree G1 humanoid, the resulting RGB-based policy performs continuous loco-manipulation for up to 54 cycles, generalizing to diverse spatial and appearance variations without any real-world fine-tuning, and approaching expert-level teleoperation performance. Extensive ablations dissect the key design choices required to make RGB-based humanoid loco-manipulation work in practice.
+        </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="method">
+  <div class="container">
+    <h2 class="title is-2" style="text-align: left;">Method</h2>
+    <!-- <h2 class="title is-4" style="text-align: center;">Stage 1: RL Pre-training with Soft Dynamics Constraints</h2>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <div class="content has-text-justified">
+          <p>
+            In the RL pre-training stage, we allow robots to penetrate obstacles using an automatic curriculum that enforces soft dynamics constraints. This encourages robots to gradually learn to overcome these obstacles while minimizing penetrations. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-three-fifths is-centered has-text-centered">
+        <video controls autoplay loop muted playsinline src="./resources/method/soft-dyanmics.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+      </div>
+    </div>
+    <h2 class="title is-4" style="text-align: center;">Stage 2: RL Fine-tuning with Hard Dynamics Constraints</h2>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <div class="content has-text-justified">
+          <p>
+            In the RL fine-tuning stage, we enforce all dynamics constraints and fine-tune the behaviors learned in the pre-training stage with realistic dynamics.         </p>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-three-fifths is-centered has-text-centered">
+        <video controls autoplay loop muted playsinline src="./resources/method/hard-dynamics.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+      </div>
+    </div> -->
+    <!-- <h2 class="title is-4" style="text-align: center;">Training Framework</h2> -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            There are three steps in the <span class="method" style="color: #76b900;">VIRAL</span> framework:
+          </p>
+          <ol>
+            <li><strong>Teacher Training with Privileged Information</strong>: A privileged RL teacher with full state access learns long-horizon loco-manipulation using delta action space and reference state initialization.</li>
+            <li><strong>Student Distillation at Scale</strong>: A vision-based student policy is distilled from the teacher via large-scale simulation with tiled rendering, trained using a mixture of online DAgger and behavior cloning across tens of GPUs.</li>
+            <li><strong>Sim-to-Real Transfer</strong>: Large-scale visual domain randomization combined with real-to-sim alignment of dexterous hand and camera parameters enables zero-shot deployment to real hardware.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <img src="./static/images/VIRAL-Pipeline.png" alt="VIRAL Framework Pipeline" style="width: 100%;" />
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <img src="./static/images/visual_randomization.png" alt="Visual Randomization" style="width: 100%;" />
+      </div>
+    </div>
+
+
+
+
+    <section class="section" id="BibTeX">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-2" style="text-align: left;">BibTeX</h2>
+            <pre><code>@article{he2025viral,
+              title={VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation},
+              author={He, Tairan and Wang, Zi and Xue, Haoru and Ben, Qingwei and Luo, Zhengyi and Xiao, Wenli and Yuan, Ye and Da, Xingye and Castañeda, Fernando and Sastry, Shankar and Liu, Changliu and Shi, Guanya and Fan, Linxi and Zhu, Yuke},
+              journal={arXiv preprint arXiv:2511.15200},
+              year={2025}
+            }</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>Page template borrowed from <a href="https://nerfies.github.io/"><span class="dnerf">Nerfies</span></a> and <a href="https://umi-on-legs.github.io"><span class="dnerf">UMI-On-Legs</span></a>.</p>
+        </div>
+      </div>
+    </footer>
+
+  <!-- JavaScript for TOC Scroll Behavior -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toc = document.querySelector('.toc');
+      const mainTitle = document.getElementById('main-title');
+      
+      if (toc && mainTitle) {
+        // Function to check if we should show the TOC
+        function checkTocVisibility() {
+          const titleRect = mainTitle.getBoundingClientRect();
+          
+          // Show TOC when the main title is getting close to the top (with 100px buffer)
+          if (titleRect.top <= 100) {
+            toc.classList.add('show');
+          } else {
+            toc.classList.remove('show');
+          }
+        }
+        
+        // Check on scroll
+        window.addEventListener('scroll', checkTocVisibility);
+        
+        // Check on load
+        checkTocVisibility();
+      }
+
+      // Active section highlighting in TOC
+      const tocLinks = document.querySelectorAll('.toc a');
+      const sections = [];
+      
+      // Collect all sections that have corresponding TOC links
+      tocLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          const sectionId = href.substring(1);
+          const section = document.getElementById(sectionId);
+          if (section) {
+            sections.push({
+              id: sectionId,
+              element: section,
+              link: link
+            });
+          }
+        }
+      });
+
+      function updateActiveTocLink() {
+        // Get current scroll position (with offset from top)
+        const scrollPosition = window.scrollY + 150; // 150px offset to trigger earlier
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Find the current section
+        let currentSection = null;
+        
+        // Check if we're at the bottom of the page
+        if (window.scrollY + windowHeight >= documentHeight - 50) {
+          // If at bottom, highlight the last section
+          currentSection = sections[sections.length - 1];
+        } else {
+          // Find the section that's currently in view
+          for (let i = 0; i < sections.length; i++) {
+            const section = sections[i];
+            const rect = section.element.getBoundingClientRect();
+            const sectionTop = rect.top + window.scrollY;
+            const sectionBottom = sectionTop + rect.height;
+            
+            // Check if the top of viewport is within this section (with offset)
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+              currentSection = section;
+              break;
+            }
+          }
+          
+          // If no section found in viewport, use the last section that's above current position
+          if (!currentSection) {
+            for (let i = sections.length - 1; i >= 0; i--) {
+              const section = sections[i];
+              const sectionTop = section.element.getBoundingClientRect().top + window.scrollY;
+              if (sectionTop <= scrollPosition) {
+                currentSection = section;
+                break;
+              }
+            }
+          }
+        }
+
+        // Update active class on TOC links
+        tocLinks.forEach(link => {
+          link.classList.remove('active');
+        });
+
+        if (currentSection) {
+          currentSection.link.classList.add('active');
+          
+          // Also highlight parent link if this is a subsection
+          const parentLi = currentSection.link.closest('li');
+          if (parentLi && parentLi.classList.contains('toc-subsection')) {
+            // Find the parent "Generalization" link
+            const generalizationLink = document.querySelector('.toc a[href="#generalization-1"]');
+            if (generalizationLink && !generalizationLink.closest('li').classList.contains('toc-subsection')) {
+              generalizationLink.classList.add('active');
+            }
+          }
+        }
+      }
+
+      // Update on scroll
+      window.addEventListener('scroll', updateActiveTocLink);
+      
+      // Update on load
+      updateActiveTocLink();
+    });
+  </script>
+
+  <!-- JavaScript for Video Gallery Navigation -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const galleries = [
+        {
+          sectionId: 'trayYGallerySection',
+          galleryInnerId: 'videoGalleryTrayY',
+          scrollLeftBtnId: 'scrollLeftBtnTrayY',
+          scrollRightBtnId: 'scrollRightBtnTrayY'
+        },
+        {
+          sectionId: 'trayXGallerySection',
+          galleryInnerId: 'videoGalleryTrayX',
+          scrollLeftBtnId: 'scrollLeftBtnTrayX',
+          scrollRightBtnId: 'scrollRightBtnTrayX'
+        },
+        {
+          sectionId: 'cylinderGallerySection',
+          galleryInnerId: 'videoGalleryCylinder',
+          scrollLeftBtnId: 'scrollLeftBtnCylinder',
+          scrollRightBtnId: 'scrollRightBtnCylinder'
+        },
+        {
+          sectionId: 'robotYGallerySection',
+          galleryInnerId: 'videoGalleryRobotY',
+          scrollLeftBtnId: 'scrollLeftBtnRobotY',
+          scrollRightBtnId: 'scrollRightBtnRobotY'
+        },
+        {
+          sectionId: 'robotXGallerySection',
+          galleryInnerId: 'videoGalleryRobotX',
+          scrollLeftBtnId: 'scrollLeftBtnRobotX',
+          scrollRightBtnId: 'scrollRightBtnRobotX'
+        },
+        {
+          sectionId: 'tableHeightGallerySection',
+          galleryInnerId: 'videoGalleryTableHeight',
+          scrollLeftBtnId: 'scrollLeftBtnTableHeight',
+          scrollRightBtnId: 'scrollRightBtnTableHeight'
+        },
+        {
+          sectionId: 'lightingGallerySection',
+          galleryInnerId: 'videoGalleryLighting',
+          scrollLeftBtnId: 'scrollLeftBtnLighting',
+          scrollRightBtnId: 'scrollRightBtnLighting'
+        },
+        {
+          sectionId: 'tableClothGallerySection',
+          galleryInnerId: 'videoGalleryTableCloth',
+          scrollLeftBtnId: 'scrollLeftBtnTableCloth',
+          scrollRightBtnId: 'scrollRightBtnTableCloth'
+        },
+        {
+          sectionId: 'tableTypeGallerySection',
+          galleryInnerId: 'videoGalleryTableType',
+          scrollLeftBtnId: 'scrollLeftBtnTableType',
+          scrollRightBtnId: 'scrollRightBtnTableType'
+        },
+        {
+          sectionId: 'objectGallerySection',
+          galleryInnerId: 'videoGalleryObject',
+          scrollLeftBtnId: 'scrollLeftBtnObject',
+          scrollRightBtnId: 'scrollRightBtnObject'
+        },
+        {
+          sectionId: 'failureCasesGallerySection',
+          galleryInnerId: 'videoGalleryFailureCases',
+          scrollLeftBtnId: 'scrollLeftBtnFailureCases',
+          scrollRightBtnId: 'scrollRightBtnFailureCases'
+        }
+      ];
+
+      galleries.forEach(gallery => {
+        const section = document.getElementById(gallery.sectionId);
+        const galleryInner = document.getElementById(gallery.galleryInnerId);
+        const scrollLeftBtn = document.getElementById(gallery.scrollLeftBtnId);
+        const scrollRightBtn = document.getElementById(gallery.scrollRightBtnId);
+
+        if (section && galleryInner && scrollLeftBtn && scrollRightBtn) {
+          // Find the gallery container (parent of galleryInner)
+          const galleryContainer = galleryInner.parentElement;
+
+          scrollLeftBtn.addEventListener('click', function() {
+            const scrollAmount = 300; // Adjust scroll distance as needed
+            galleryContainer.scrollBy({
+              left: -scrollAmount,
+              behavior: 'smooth'
+            });
+          });
+
+          scrollRightBtn.addEventListener('click', function() {
+            const scrollAmount = 300; // Adjust scroll distance as needed
+            galleryContainer.scrollBy({
+              left: scrollAmount,
+              behavior: 'smooth'
+            });
+          });
+
+          console.log(`Gallery navigation initialized for ${gallery.sectionId}`);
+        } else {
+          console.error(`Gallery elements not found for ${gallery.sectionId}`);
+        }
+      });
+    });
+  </script>
+
+  <!-- JavaScript for Timeline Navigation -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const timelineContainer = document.getElementById('sim2realTimelineContainer');
+      const navLeft = document.getElementById('sim2realNavLeft');
+      const navRight = document.getElementById('sim2realNavRight');
+
+      if (timelineContainer && navLeft && navRight) {
+        navLeft.addEventListener('click', function() {
+          const scrollAmount = 400; // Adjust scroll distance as needed
+          timelineContainer.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+          });
+        });
+
+        navRight.addEventListener('click', function() {
+          const scrollAmount = 400; // Adjust scroll distance as needed
+          timelineContainer.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+          });
+        });
+
+        console.log('Timeline navigation initialized');
+      } else {
+        console.error('Timeline elements not found');
+      }
+
+      // Handle video clicks for enlarged display
+      const timelineVideos = document.querySelectorAll('.clickable-video');
+      const enlargedVideo = document.getElementById('enlargedVideo');
+      const enlargedVideoTitle = document.getElementById('enlargedVideoTitle');
+      const enlargedVideoDate = document.getElementById('enlargedVideoDate');
+
+      if (timelineVideos.length > 0 && enlargedVideo) {
+        // Set first video as active by default
+        timelineVideos[0].classList.add('active');
+
+        timelineVideos.forEach(function(video) {
+          video.addEventListener('click', function() {
+            // Remove active class from all videos
+            timelineVideos.forEach(v => v.classList.remove('active'));
+            
+            // Add active class to clicked video
+            this.classList.add('active');
+
+            // Update enlarged video
+            const videoSrc = this.getAttribute('src');
+            const videoTitle = this.getAttribute('data-title');
+            const videoDate = this.getAttribute('data-date');
+
+            enlargedVideo.src = videoSrc;
+            enlargedVideoTitle.textContent = videoTitle;
+            enlargedVideoDate.textContent = videoDate;
+
+            // Restart the enlarged video
+            enlargedVideo.load();
+            enlargedVideo.play();
+
+            console.log('Video clicked:', videoTitle);
+          });
+        });
+
+        console.log('Timeline video click handlers initialized');
+      }
+    });
+  </script>
+
+</body>
+
+</html>
+</html>
+</html>
+</html>
+</html>
+</html>

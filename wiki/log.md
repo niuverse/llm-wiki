@@ -3,7 +3,7 @@ title: "Wiki Log"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-05-07
+last_updated: 2026-05-13
 ---
 
 # Wiki Log
@@ -102,3 +102,9 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 - Added `wiki/sources/isaac-sim-45-asset-structure.md` with canonical HTML in `raw/` and extracted cache in `graph/extracts/`.
 - Added `wiki/concepts/IsaacSimLegacyAssetStructure.md` for the legacy / pre-3.0 layout and explicitly avoided the unsupported `Asset Structure 2.0` label.
 - Updated `wiki/concepts/IsaacSimAssetStructure.md`, `wiki/entities/IsaacSim.md`, `wiki/entities/NVIDIA.md`, and `wiki/index.md`.
+
+## [2026-05-13] ingest | VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation
+
+- Added `wiki/sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation.md` with canonical HTML in `raw/` and extracted Markdown in `graph/extracts/`.
+- Added `wiki/concepts/VisualSimToReal.md` and `wiki/entities/VIRAL.md`.
+- Updated `wiki/concepts/SimulationRealityGap.md`, `wiki/entities/NVIDIA.md`, `wiki/overview.md`, and `wiki/index.md`.

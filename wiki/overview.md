@@ -2,8 +2,8 @@
 title: "Overview（总览）"
 type: synthesis
 tags: [research-dashboard, robotics, embodied-ai]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]"]
-last_updated: 2026-04-27
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]"]
+last_updated: 2026-05-13
 ---
 
 # Overview（总览）
@@ -12,7 +12,7 @@ last_updated: 2026-04-27
 
 ## 当前总判断
 
-当前 wiki 的中心判断是：robotics systems 中的 model assumptions 会通过 simulator、world model、policy context、training objective 和 benchmark design 进入 downstream decisions 与 reported performance；这些 assumptions 在温和场景里可能被 success rate 掩盖，但在 contact-rich dynamics、long-horizon rollout、heterogeneous data、unseen task composition 和 sim-to-real transfer 中会变成 first-order failure source。
+当前 wiki 的中心判断是：robotics systems 中的 model assumptions 会通过 simulator、world model、policy context、training objective 和 benchmark design 进入 downstream decisions 与 reported performance；这些 assumptions 在温和场景里可能被 success rate 掩盖，但在 contact-rich dynamics、long-horizon rollout、heterogeneous data、unseen task composition 和 sim-to-real transfer 中会变成 first-order failure source。[[VIRAL]] 新增的 visual sim-to-real case 强化了这个判断：RGB-based humanoid loco-manipulation 的 transfer 不是单一算法问题，而是 privileged teacher、visual student、domain randomization、real-to-sim alignment、compute scaling 和 failure analysis 的耦合系统。
 
 这条判断把五类材料连成一条主线。[[ContactModelsInRobotics|contact models in robotics]] 说明 low-level contact law 与 [[ContactSolvers|solver]] 不是 implementation detail，而是 task-level modeling assumption；[[WorldModelsForEmbodiedAI|world models]] 说明 learned latent dynamics 也是 simulator，只是 failure 可能表现为 temporal drift、weak physical consistency 或 misleading futures；[[VisionLanguageActionModels|VLA]] 和 [[RobotContextConditioning|context conditioning]] 说明 robot foundation model 的 behavior mode 由 prompt、metadata、subgoal image 和 control mode 选择；[[LatentDynamicsActionModels|latent dynamics action models]] 与 [[InverseDynamicsModels|inverse dynamics models]] 说明 data quality 的影响取决于 training objective 如何分配 data role、如何把 visual transition 变成 action representation；[[TaskGeneralistPolicyEvaluation|task-generalist policy evaluation]] 说明 benchmark predicates、language variants 和 perturbation protocol 决定哪些 failure 会被看见。
 
@@ -24,6 +24,7 @@ last_updated: 2026-04-27
 | Inverse dynamics model 怎么从视频学 action？ | Seer 在 action-labeled robot data 上把 predicted future RGB 和 action sequence end-to-end joint training；DeFI 把 IDM 写成 self-supervised latent-action representation learning，从 current/future DINO features 重建 future feature，并用 VQ bottleneck 得到 latent action tokens。 | [[InverseDynamicsModels]], [[Seer]], [[DeFI]], [[LatentDynamicsActionModels]] |
 | Simulation benchmark 能证明什么？ | Benchmark 更适合作为 diagnostic instrument，而不是 deployment proof。RoboLab 能定位 task、language、object、camera 和 scene sensitivity，但 real/sim proxy validity 仍随 policy/task family 改变。 | [[TaskGeneralistPolicyEvaluation]], [[SimulationSensitivityAnalysis]], [[SimulationRealityGap]] |
 | Contact solver choices 为什么会影响 learning/control？ | Contact solver 选择会改变 forces、impulses、energy dissipation 和 convergence residuals；这些误差会进入 MPC、RL、system identification 和 differentiable optimization。 | [[ContactModelsInRobotics]], [[ContactComplementarity]], [[ContactSolvers]], [[DifferentiablePhysics]] |
+| Visual sim-to-real 如何跨过 reality gap？ | VIRAL 说明 transfer recipe 至少要同时处理 visual distribution、camera geometry、hand dynamics、distillation distribution 和 compute scale；domain randomization 与 real-to-sim alignment 是互补项，不是替代项。 | [[VisualSimToReal]], [[VIRAL]], [[SimulationRealityGap]] |
 | Heterogeneous robot data 是噪声还是资源？ | 不是数据混杂本身决定成败，而是系统是否显式建模 data role。π0.7 用 runtime context steering，LDA-1B 用 objective routing 和 DINO latent dynamics。 | [[RobotContextConditioning]], [[LatentDynamicsActionModels]], [[VisionLanguageActionModels]] |
 | 当前证据最薄弱在哪里？ | strongest evidence 来自 source-specific benchmark 和 ablation；weakest link 是跨系统、跨机器人、跨 benchmark 的 independent replication 与真实部署因果验证。 | [[research-questions|Research Questions]], [[SimulationRealityGap]] |
 
@@ -38,6 +39,7 @@ last_updated: 2026-04-27
 | End-to-end PIDM can scale on robot data | [[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]] 用 [FRS] future image token 和 [INV] action token 在同一个 Transformer policy 中联合训练，报告 LIBERO、CALVIN 和 real-world Franka gains。 | 主要依赖 action-labeled robot data；future target 是 RGB pixel reconstruction，cross-embodiment 证据仍弱。 |
 | Inverse dynamics can be pretrained from action-free videos | [[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]] 用 GIDM 从 unlabeled video transitions 学 discrete latent action tokens，并在 CALVIN、SimplerEnv 和 real-world Franka 上报告 gains；failure analysis 还区分 forward vs inverse dynamics bottlenecks。 | Latent action 不等于直接可执行 action；最终 grounding 仍依赖 robot action data，且 GFDM domain mismatch 会传递到 IDM。 |
 | High-fidelity sim can expose policy sensitivity | [[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab paper]] 与 [[nvlabs-robolab|NVlabs/RoboLab repo]] 提供 task library、predicate/subtask scoring、wrong-object diagnostics 和 sensitivity analysis workflow。 | Simulation proxy validity 不是自动成立；benchmark success 不能单独证明 real-world reliability。 |
+| Visual sim-to-real can produce real humanoid deployment | [[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL project page]] 把 privileged RL teacher、vision student distillation、visual randomization、finger SysID、FOV alignment 和 compute scaling 连到 Unitree G1 的 continuous loco-manipulation videos。 | 当前证据来自 project page 和 source-specific videos；完整 reward、architecture、ablation numbers、code-level reproducibility 与 independent replication 仍需后续 ingest。 |
 
 ## 关键张力
 
@@ -49,7 +51,7 @@ last_updated: 2026-04-27
 
 ## 下一步缺口
 
-- 补充 independent replication 或 follow-up sources：π0.7、LDA-1B、RoboLab 都有强 source-specific claims，但需要更多外部复现、失败案例或对比评测。
+- 补充 independent replication 或 follow-up sources：π0.7、LDA-1B、RoboLab、VIRAL 都有强 source-specific claims，但需要更多外部复现、失败案例或对比评测。
 - 给 world model papers 建立更结构化 ingest metadata：horizon、input modality、action coupling、closed-loop validation、real-robot validation、benchmark、code/data availability。这个需求来自 [[WorldModelEvaluation]] 与 [[AwesomeWorldModels]]。
 - 追踪“latent dynamics + runtime context steering + predictive inverse dynamics”是否会合流：LDA-1B 的 objective routing、π0.7 的 runtime steering、Seer 的 end-to-end PIDM 与 DeFI 的 decoupled GFDM/GIDM 看起来互补，但当前 sources 还没有证明组合系统。
 - 对 simulation reality gap 保持多层解释：gap 不只来自 physics engine 参数，也可能来自 learned dynamics objective、policy prompt/context、benchmark predicate 和 evaluation aggregation。见 [[SimulationRealityGap]]。

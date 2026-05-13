@@ -3,7 +3,7 @@ title: "Wiki Index"
 type: synthesis
 tags: [index, navigation]
 sources: []
-last_updated: 2026-05-07
+last_updated: 2026-05-13
 ---
 
 # Wiki Index
@@ -18,6 +18,7 @@ last_updated: 2026-05-07
 - **Inverse dynamics model 怎么从视频学 action？** 读 [Inverse Dynamics Models](concepts/InverseDynamicsModels.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)、[Seer](entities/Seer.md)、[DeFI](entities/DeFI.md)。
 - **Robot foundation model 如何处理 heterogeneous data？** 读 [Vision-Language-Action Models](concepts/VisionLanguageActionModels.md)、[Robot Context Conditioning](concepts/RobotContextConditioning.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)。
 - **Simulation benchmark 能证明什么？** 读 [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md)、[Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
+- **Visual sim-to-real 怎么跨过 reality gap？** 读 [Visual Sim-to-Real](concepts/VisualSimToReal.md)、[VIRAL](entities/VIRAL.md) 和 [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)，重点看 privileged teacher、vision student、domain randomization、hand/camera alignment 与 failure cases。
 - **OpenUSD 的核心价值是什么？** 读 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)、[OpenUSD](entities/OpenUSD.md) 和 [Introduction to USD](sources/openusd-introduction.md)；如果关注 robotics asset authoring，再接 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) 与 [Isaac Sim Legacy Asset Structure](concepts/IsaacSimLegacyAssetStructure.md)。
 - **Isaac Sim Asset Structure 3.0 怎么理解？** 读 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) 和 [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md)，重点看 layer role、payload/variant composition 和 engine-specific tuning 隔离。
 - **Isaac Sim 旧 asset layout 是不是 2.0？** 读 [Isaac Sim Legacy Asset Structure](concepts/IsaacSimLegacyAssetStructure.md) 和 [Asset Structure - Isaac Sim 4.5 Documentation](sources/isaac-sim-45-asset-structure.md)；当前 source-backed 结论是它应称为 legacy / pre-3.0，而不是 2.0。
@@ -64,6 +65,7 @@ last_updated: 2026-05-07
 
 ### Simulation And Evaluation
 
+- [VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation](sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation.md) - project page for RGB-based humanoid loco-manipulation，覆盖 privileged RL teacher、vision student distillation、visual randomization、finger SysID、FOV alignment、generalization videos 和 failure cases
 - [NVlabs/RoboLab](sources/nvlabs-robolab.md) - RoboLab official implementation repository，包含 Isaac Lab task library、predicate/subtask system、policy clients 与 analysis tooling
 - [RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies](sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies.md) - NVIDIA 的 high-fidelity simulation benchmark，用 RoboLab-120、language variants 与 sensitivity analysis 评测 task-generalist robot policies
 - [Asset Structure - Isaac Sim 4.5 Documentation](sources/isaac-sim-45-asset-structure.md) - Isaac Sim 4.5 docs 中的 legacy / pre-3.0 asset layout，覆盖 `asset_base.usd`、`parts.usd`、`asset_sim_optimized.usd`、feature layers 和 final `asset.usd`
@@ -104,6 +106,7 @@ last_updated: 2026-05-07
 - [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md) - 用 task libraries、language variants、predicates、subtask scoring 和 diagnostics 评估泛化 robot policies
 - [Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md) - 用 controlled perturbations 与 NPE/MNPE posterior 找出影响 robot policy success 的环境参数
 - [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md) - contact approximations、learned dynamics 和 policy context 到 sim-to-real mismatch 的 causal flow
+- [Visual Sim-to-Real](concepts/VisualSimToReal.md) - VIRAL-style visual sim-to-real 的 teacher-student formulation、domain randomization、real-to-sim hand/camera alignment 与 deployment failure modes
 - [Isaac Sim Legacy Asset Structure](concepts/IsaacSimLegacyAssetStructure.md) - Isaac Sim 4.5 legacy / pre-3.0 asset layout，明确旧 layout 没有 source-backed 2.0 命名，并与 Asset Structure 3.0 对照
 - [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) - 用 architecture diagrams、USD layers、payloads、references 和 variants 组织 Isaac Sim robot assets，并隔离 neutral physics 与 MuJoCo/PhysX-specific tuning
 - [Reduced-Coordinate Articulations](concepts/ReducedCoordinateArticulations.md) - PhysX / Omni Physics articulation 的 mechanism-level page，覆盖 reduced coordinates、root selection、drive envelope、mimic/tendon constraints 和 solver failure modes
@@ -134,13 +137,14 @@ last_updated: 2026-05-07
 - [Seer](entities/Seer.md) - end-to-end PIDM model，用 [FRS] foresight token 和 [INV] action token 做 robot manipulation policy learning
 - [π0.7](entities/Pi07.md) - steerable generalist VLA model，使用 language、metadata、subgoal images 和 control mode conditioning
 - [RoboLab](entities/RoboLab.md) - high-fidelity simulation benchmark/platform for task-generalist robot policy evaluation
+- [VIRAL](entities/VIRAL.md) - visual sim-to-real framework for humanoid loco-manipulation，使用 privileged teacher、vision student distillation、visual randomization 和 real-to-sim alignment
 - [ContactBench](entities/ContactBench.md) - source 中的 unified C++ contact-model benchmark framework
 
 ### Organizations And Repositories
 
 - [AwesomeWorldModels](entities/AwesomeWorldModels.md) - survey companion bibliography repository
 - [Galbot](entities/Galbot.md) - LDA-1B source 中的作者机构与 Galbot G1 real-world evaluation platform context
-- [NVIDIA](entities/NVIDIA.md) - RoboLab paper/project/repo 与 Isaac Sim Asset Structure docs 的发布机构
+- [NVIDIA](entities/NVIDIA.md) - RoboLab paper/project/repo、VIRAL-linked NVlabs code repository 与 Isaac Sim Asset Structure docs 的发布机构
 - [Pixar](entities/Pixar.md) - OpenUSD official docs 的 copyright holder 与 USD production-pipeline heritage context
 - [Physical Intelligence](entities/PhysicalIntelligence.md) - π0.7 source 中的 robot foundation model research organization
 
