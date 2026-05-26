@@ -1,0 +1,18 @@
+{
+  "source_url": "https://github.com/NVIDIA-Omniverse/ovrtx/tree/main",
+  "local_clone": "/home/galbot/Projects/ovrtx",
+  "remote_origin": "https://github.com/NVIDIA-Omniverse/ovrtx.git",
+  "branch": "main",
+  "commit": "29d11037fbcaed0f0f53e7f32d17bd0486fd453b",
+  "commit_author": "Anders Langlands <alanglands@nvidia.com>",
+  "commit_author_date": "2026-05-19",
+  "commit_committer_date": "2026-05-19",
+  "commit_subject": "Update ovrtx.cmake",
+  "version": "0.3.0",
+  "ingested_at": "2026-05-26",
+  "archive_file": "raw/ovrtx-source.tar.gz",
+  "archive_sha256": "860e1eea3837772d0e2dc4cace36abaa64d9310285e2334d16f2ef729571c8af",
+  "readme_file": "raw/ovrtx-readme.md",
+  "readme_sha256": "af6b7f500b76c88f24acc527297644f7d33b6b11273e215c565b888aaed5ea64",
+  "snapshot_policy": "Tracked HEAD archive only; local untracked examples/python/minimal/uv.lock was excluded."
+}

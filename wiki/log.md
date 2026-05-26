@@ -3,7 +3,7 @@ title: "Wiki Log"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-05-13
+last_updated: 2026-05-26
 ---
 
 # Wiki Log
@@ -114,3 +114,14 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 - Added `wiki/sources/robotics-simulation-infrastructure.md` with canonical HTML in `raw/` and extracted Markdown in `graph/extracts/`.
 - Added `wiki/concepts/RoboticsSimulationInfrastructure.md` and `wiki/entities/ManiSkill.md`.
 - Updated `wiki/concepts/SimulationRealityGap.md`, `wiki/concepts/TaskGeneralistPolicyEvaluation.md`, `wiki/entities/MuJoCo.md`, `wiki/overview.md`, and `wiki/index.md`.
+
+## [2026-05-26] ingest | NVIDIA ovrtx
+
+- Added `raw/ovrtx-source.tar.gz`, `raw/ovrtx-readme.md`, and `raw/ovrtx-main-commit.json` from local clone commit `29d11037fbcaed0f0f53e7f32d17bd0486fd453b`.
+- Added `wiki/sources/nvidia-ovrtx.md`, `wiki/entities/Ovrtx.md`, and `wiki/concepts/RTXSensorSimulationPipeline.md`.
+- Updated OpenUSD, NVIDIA, robotics simulation infrastructure, overview, and wiki index entries.
+
+## [2026-05-26] distill | ovrtx API Boundary
+
+- Added `wiki/syntheses/ovrtx-api-boundary.md` to preserve the boundary between ovrtx scene composition / sensor rendering APIs and full physics scene authoring.
+- Updated `wiki/entities/Ovrtx.md`, `wiki/concepts/RTXSensorSimulationPipeline.md`, and `wiki/index.md`.

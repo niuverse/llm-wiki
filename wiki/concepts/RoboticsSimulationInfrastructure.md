@@ -2,8 +2,8 @@
 title: "Robotics Simulation Infrastructure"
 type: concept
 tags: [robotics, simulation, infrastructure, reinforcement-learning, policy-evaluation]
-sources: ["[[robotics-simulation-infrastructure]]"]
-last_updated: 2026-05-13
+sources: ["[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]"]
+last_updated: 2026-05-26
 ---
 
 # Robotics Simulation Infrastructure
@@ -49,6 +49,8 @@ Rendering trade-off 也不是纯视觉问题。[[robotics-simulation-infrastruct
 
 Pose API example 说明 infrastructure 的小接口会在大系统里放大。把 position 和 quaternion 分散在多个 tensors 与 helper functions 中，可能让每个 call site 都携带更多 input variables、imports 和 frame/operation reasoning；`Pose` dataclass 把 pose storage、composition、inverse 和 heterogeneous input conversion 放进 typed object，牺牲少量 Python indirection 来降低 cognitive load。
 
+[[nvidia-ovrtx|NVIDIA ovrtx]] 给这个 infrastructure lens 增加了一个 official sensor-rendering case。ovrtx 把 renderer lifecycle、OpenUSD composition、RenderProduct/RenderVar configuration、DLPack outputs、stage query/read/write、GPU synchronization、warm-up、picking/selection 和 C/Python resource lifetime 都写成 API/documentation surface。也就是说，sensor simulation infrastructure 不只是“render 得像不像”，还包括 outputs 是否 schemaed、device memory 是否可控、async errors 是否可查询、debug interaction 是否能和 rendered output 对齐。
+
 ## Failure Modes
 
 - Framework comparison 被误读成 engine ranking：source 的判断主要是 API、visualizer、rendering 和 developer ergonomics，不是证明某个 physics engine 或 framework universally better。
@@ -57,6 +59,7 @@ Pose API example 说明 infrastructure 的小接口会在大系统里放大。�
 - Rendering fidelity/memory mismatch：为 high-fidelity batched rendering 付出的 GPU memory 可能挤压 RL batch size、replay buffer 或 network capacity；过度追求 throughput 又可能漏掉视觉假设需要的 fidelity。
 - Visualizer under-instrumentation：如果 visualizer 只显示 physics state 而不显示 reward、policy behavior、past states 或 diagnostics，evaluation 的 failure type 会变难定位。
 - Pose abstraction 过薄：分散的 tensor/function API 增加 import surface、frame reasoning 和 function-call complexity；但过厚的 object abstraction 也可能引入 Python overhead 或 backend compatibility burden。
+- Sensor output contract 过隐式：如果 camera/lidar/radar output 只是 opaque buffer，ML loop 很难稳定处理 device、shape、valid counts、params、semantic labels 和 synchronization。[[RTXSensorSimulationPipeline]] 中的 `RenderVar` / DLPack contract 是 ovrtx 对这个问题的 source-backed answer。
 - Evidence boundary：当前 page 主要来自一篇 Substack engineering article，适合作为 design lens；framework-specific claims 需要后续 ingest official docs、repo snapshots 或 benchmark reports。
 
 ## 实践含义
@@ -65,5 +68,6 @@ Pose API example 说明 infrastructure 的小接口会在大系统里放大。�
 - 对 [[TaskGeneralistPolicyEvaluation|policy evaluation]]，infrastructure 决定 tasks 是否容易扩展、success predicates 是否可维护、diagnostics 是否能定位 wrong-object / reward / trajectory failures，以及多 policy evaluation 是否可并行。
 - 对 [[SimulationRealityGap|sim-to-real]]，gap 的上游不只包括 contact law 和 rendering mismatch，也包括 framework API 能不能表达 hardware-relevant variation、visualizer 能不能暴露 failure、ML loop 能不能保留足够训练资源。
 - 对 LLM-assisted scene/task generation，typed objects、clear task APIs 和 composable asset schemas 会影响 LLM 能否稳定生成可运行 scene，而不只是影响 human developer ergonomics。
+- 对 sensor-heavy robotics workflows，应该审计 RenderProduct/RenderVar schema、output channels、validity flags、warm-up policy、GPU mapping lifetime 和 multi-GPU behavior，因为这些决定 observation tensor 是否可复现、可调试、可接到 ML pipeline。
 
-相关页面：[[robotics-simulation-infrastructure]]、[[ManiSkill]]、[[IsaacSim]]、[[MuJoCo]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]。
+相关页面：[[robotics-simulation-infrastructure]]、[[nvidia-ovrtx]]、[[RTXSensorSimulationPipeline]]、[[ManiSkill]]、[[IsaacSim]]、[[Ovrtx]]、[[MuJoCo]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]。

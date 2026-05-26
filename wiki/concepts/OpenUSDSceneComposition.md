@@ -2,13 +2,13 @@
 title: "OpenUSD Scene Composition"
 type: concept
 tags: [openusd, usd, scene-description, composition, simulation-assets]
-sources: ["[[openusd-introduction]]", "[[isaac-sim-asset-structure]]"]
-last_updated: 2026-05-01
+sources: ["[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[nvidia-ovrtx]]"]
+last_updated: 2026-05-26
 ---
 
 # OpenUSD Scene Composition
 
-[[OpenUSD]] 的核心学习入口不是“USD 是哪种文件后缀”，而是 scene description（场景描述）如何被 schema 化、组合、覆写、查询和 author。[[openusd-introduction|Introduction to USD]] 把 USD 定位为 single scenegraph + composition engine + schemas + toolset 的组合：它让 elemental assets 可以组成 sets、scenes、shots 和 worlds，并且允许在 stronger layers 中 non-destructively edit as overrides。[[isaac-sim-asset-structure|Isaac Sim Asset Structure]] 则展示这个思想在 robotics asset authoring 中如何落到 layers、payloads、references 和 variants。
+[[OpenUSD]] 的核心学习入口不是“USD 是哪种文件后缀”，而是 scene description（场景描述）如何被 schema 化、组合、覆写、查询和 author。[[openusd-introduction|Introduction to USD]] 把 USD 定位为 single scenegraph + composition engine + schemas + toolset 的组合：它让 elemental assets 可以组成 sets、scenes、shots 和 worlds，并且允许在 stronger layers 中 non-destructively edit as overrides。[[isaac-sim-asset-structure|Isaac Sim Asset Structure]] 则展示这个思想在 robotics asset authoring 中如何落到 layers、payloads、references 和 variants。[[nvidia-ovrtx|NVIDIA ovrtx]] 补充了 sensor simulation 侧的 official example：应用可以用 inline root layer sublayer 原始 scene，并在不改 source asset 的情况下 author cameras、`RenderProduct`、`RenderVar`、semantic labels 或 non-visual material labels。
 
 Evidence boundary：当前 OpenUSD source 是官方 Introduction，不是 glossary 或 API reference。它足够支持 `Stage`、`Prim`、`Layer`、schemas、composition arcs、Hydra、extension points 和 USD boundary 的入门级机制解释；但 `LayerStack`、value resolution、LIVRPS strength ordering、list-editing 和 namespace editing 的精确定义仍需要后续 ingest `glossary.html` / tutorials。
 
@@ -69,7 +69,7 @@ OpenUSD 解决的是大型 3D pipeline 的两个长期问题。第一，多个 t
 
 Composition 的要点是“强 layer 的 opinion 可以统一地 override 弱 layer”，无论弱内容是 subLayered、referenced 还是 inherited。Source 列出 stronger layer 可以添加/deactivate/reorder prims、修改 variants、override metadata、添加 properties、override attributes、block attribute values、修改 relationship / connection targets 等。学习时不要把 USD 想成 import/export，而要把它想成一个可组合的、可覆写的 authored-opinion graph。
 
-对 robotics 来说，这个直觉尤其重要。一个 robot asset 同时有 mesh、material、collider、joint、mass、sensor、controller、ROS integration、PhysX tuning、MuJoCo tuning 等语义。如果这些都写进一个文件，后续很难判断一个 behavior change 来自 visual geometry、collision approximation、neutral physics 还是 runtime-specific tuning。[[IsaacSimAssetStructure]] 把这些 responsibilities 拆成 layers，本质上就是在 simulation asset 里应用 OpenUSD scene composition 的工程原则。
+对 robotics 来说，这个直觉尤其重要。一个 robot asset 同时有 mesh、material、collider、joint、mass、sensor、controller、ROS integration、PhysX tuning、MuJoCo tuning 等语义。如果这些都写进一个文件，后续很难判断一个 behavior change 来自 visual geometry、collision approximation、neutral physics 还是 runtime-specific tuning。[[IsaacSimAssetStructure]] 把这些 responsibilities 拆成 layers，本质上就是在 simulation asset 里应用 OpenUSD scene composition 的工程原则。[[nvidia-ovrtx|ovrtx]] 的 sensor configuration 进一步说明，render/sensor output 本身也应被 author 成 composition layer：`RenderProduct` 用 relationships 连接 sensor prim 和 `RenderVar`，render settings 与 device pinning author 在 RenderProduct 上，semantic/non-visual labels 可以通过 override layer 加到现有 scene。
 
 Hydra 的位置也要放对：它不是 composition engine，而是 USD distribution 中的 imaging framework。它把 scene delegates 和 render delegates 连接起来，让 `usdview` 与第三方插件可以用 composed USD scene 做 preview、rendering 和 animation streaming。对学习者来说，Hydra 是“我如何看见 composed result”的通道，不是“这个 result 如何被 resolve”的规则。
 
@@ -96,5 +96,6 @@ Hydra 的位置也要放对：它不是 composition engine，而是 USD distribu
 | Hydra 在 USD 里负责什么？ | [[openusd-introduction]] | source-backed |
 | Robotics asset 为什么要拆 layers？ | [[IsaacSimAssetStructure]] | source-backed |
 | USD physics schema 和 Isaac Sim runtime tuning 怎么衔接？ | [[IsaacSimAssetStructure]], [[SimulationRealityGap]] | 部分 source-backed；需要补充 OpenUSD physics / Isaac docs |
+| OpenUSD scene 如何变成 sensor outputs？ | [[nvidia-ovrtx]], [[RTXSensorSimulationPipeline]] | source-backed at SDK/API contract level |
 
-相关页面：[[OpenUSD]]、[[IsaacSimAssetStructure]]、[[IsaacSim]]、[[SimulationRealityGap]]。
+相关页面：[[OpenUSD]]、[[IsaacSimAssetStructure]]、[[RTXSensorSimulationPipeline]]、[[IsaacSim]]、[[SimulationRealityGap]]。

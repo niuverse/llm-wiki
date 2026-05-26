@@ -3,7 +3,7 @@ title: "Wiki Index"
 type: synthesis
 tags: [index, navigation]
 sources: []
-last_updated: 2026-05-13
+last_updated: 2026-05-26
 ---
 
 # Wiki Index
@@ -19,6 +19,7 @@ last_updated: 2026-05-13
 - **Robot foundation model 如何处理 heterogeneous data？** 读 [Vision-Language-Action Models](concepts/VisionLanguageActionModels.md)、[Robot Context Conditioning](concepts/RobotContextConditioning.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)。
 - **Simulation benchmark 能证明什么？** 读 [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md)、[Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
 - **Simulation infrastructure decisions 为什么重要？** 读 [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md)，重点看 task/API、asset management、rendering memory/fidelity、visualizer diagnostics 和 pose API 如何影响 RL/evaluation workflow。
+- **ovrtx 如何把 OpenUSD scene 变成 RTX sensor outputs？** 读 [RTX Sensor Simulation Pipeline](concepts/RTXSensorSimulationPipeline.md)、[NVIDIA ovrtx](sources/nvidia-ovrtx.md)、[ovrtx](entities/Ovrtx.md) 和 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)，重点看 `RenderProduct`、`RenderVar`、DLPack tensor mapping、lidar/radar `PointCloud` channels 和 warm-up / synchronization rules。
 - **Visual sim-to-real 怎么跨过 reality gap？** 读 [Visual Sim-to-Real](concepts/VisualSimToReal.md)、[VIRAL](entities/VIRAL.md) 和 [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)，重点看 privileged teacher、vision student、domain randomization、hand/camera alignment 与 failure cases。
 - **OpenUSD 的核心价值是什么？** 读 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)、[OpenUSD](entities/OpenUSD.md) 和 [Introduction to USD](sources/openusd-introduction.md)；如果关注 robotics asset authoring，再接 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) 与 [Isaac Sim Legacy Asset Structure](concepts/IsaacSimLegacyAssetStructure.md)。
 - **Isaac Sim Asset Structure 3.0 怎么理解？** 读 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) 和 [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md)，重点看 layer role、payload/variant composition 和 engine-specific tuning 隔离。
@@ -40,6 +41,7 @@ last_updated: 2026-05-13
 ## Syntheses
 
 - [Research Questions](syntheses/research-questions.md) - 当前 wiki 支持的高价值研究问题、阅读路径和 evidence boundary
+- [ovrtx API Boundary](syntheses/ovrtx-api-boundary.md) - distill ovrtx 的 scene composition、physics object authoring、light/camera randomization 和上层 ownership 边界
 - [Isaac Sim mujoco.usda Runtime Semantics](syntheses/isaac-sim-mujoco-usda-runtime-semantics.md) - distill `mujoco.usda` 的 ownership boundary：不是 visual/collision asset 文件，而是 MuJoCo-specific runtime interpretation / tuning overlay
 - [Isaac Sim and MuJoCo Physics and Control Notes](syntheses/isaac-sim-mujoco-control-tuning-notes.md) - distill Isaac Sim 官方文档措辞、PhysX/Isaac Sim position drive semantics、stiffness/damping、effort limit、七自由度机械臂 gain scaling、MuJoCo/PhysX solver 差异和参数迁移边界
 - [3D Model Formats Learning Map](syntheses/3d-model-formats-learning-map.md) - OBJ、STL、PLY、glTF/GLB、FBX、USD、STEP、URDF/SDF/MJCF 等 3D asset formats 的学习脚手架与 source acquisition plan
@@ -51,6 +53,10 @@ last_updated: 2026-05-13
 ### OpenUSD And Asset Infrastructure
 
 - [Introduction to USD](sources/openusd-introduction.md) - OpenUSD 官方 introduction，解释 scene description、Stage/Layer/Prim data model、schemas、composition arcs、Hydra、extension points 与边界条件
+
+### Sensor Simulation And Rendering
+
+- [NVIDIA ovrtx](sources/nvidia-ovrtx.md) - NVIDIA Omniverse RTX 的 C/Python SDK repo snapshot，覆盖 OpenUSD runtime stage、RenderProduct/RenderVar、camera/lidar/radar outputs、DLPack mapping、async lifecycle、stage queries 和 0.3.0 limitations
 
 ### World Models
 
@@ -88,6 +94,10 @@ last_updated: 2026-05-13
 ### OpenUSD And Asset Infrastructure
 
 - [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md) - 把 OpenUSD 的 Stage/Layer/Prim data model、schemas、composition arcs、Hydra 与 Isaac Sim robotics asset layering 连接起来的学习页
+
+### Sensor Simulation And Rendering
+
+- [RTX Sensor Simulation Pipeline](concepts/RTXSensorSimulationPipeline.md) - ovrtx 中 OpenUSD scene、sensor prim、RenderProduct、RenderVar、DLPack tensor output 与 CPU/CUDA mapping 组成的 sensor simulation pipeline
 
 ### World Models
 
@@ -158,6 +168,7 @@ last_updated: 2026-05-13
 ### Simulation Tools
 
 - [Isaac Sim](entities/IsaacSim.md) - NVIDIA robotics simulation stack；当前 source-backed coverage 包括 legacy / pre-3.0 Asset Structure、Isaac Sim 6.0 EDR Asset Structure 3.0 与 Omni Physics articulation semantics
+- [ovrtx](entities/Ovrtx.md) - NVIDIA Omniverse RTX 的 lightweight C/Python sensor simulation SDK，使用 OpenUSD runtime stage、RenderProduct/RenderVar 和 DLPack tensor outputs
 - [PhysX](entities/PhysX.md) - NVIDIA physics runtime / SDK family；当前 wiki coverage 聚焦 Omni Physics articulations source 中的 reduced-coordinate mechanisms、drive envelope、mimic joints 和 tendons
 - [MuJoCo](entities/MuJoCo.md) - source 中用于讨论 contact regularization tradeoffs 的 robotics physics engine；Isaac Sim docs 中也作为 engine-specific asset layer 出现
 - [ManiSkill](entities/ManiSkill.md) - Stone Tao article 中用于说明 Python API、batched rendering performance 和 `Pose` abstraction 的 robotics simulation framework
