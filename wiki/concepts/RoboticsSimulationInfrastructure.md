@@ -2,8 +2,8 @@
 title: "Robotics Simulation Infrastructure"
 type: concept
 tags: [robotics, simulation, infrastructure, reinforcement-learning, policy-evaluation]
-sources: ["[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]"]
-last_updated: 2026-05-26
+sources: ["[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]"]
+last_updated: 2026-06-05
 ---
 
 # Robotics Simulation Infrastructure
@@ -51,6 +51,8 @@ Pose API example 说明 infrastructure 的小接口会在大系统里放大。�
 
 [[nvidia-ovrtx|NVIDIA ovrtx]] 给这个 infrastructure lens 增加了一个 official sensor-rendering case。ovrtx 把 renderer lifecycle、OpenUSD composition、RenderProduct/RenderVar configuration、DLPack outputs、stage query/read/write、GPU synchronization、warm-up、picking/selection 和 C/Python resource lifetime 都写成 API/documentation surface。也就是说，sensor simulation infrastructure 不只是“render 得像不像”，还包括 outputs 是否 schemaed、device memory 是否可控、async errors 是否可查询、debug interaction 是否能和 rendered output 对齐。
 
+[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] 给这个 infrastructure lens 增加了 training-runtime case。它把 robot RL training speed 拆成 CPU-side rollout collection、GPU learner utilization、replay boundary、H2D transfer、buffer slotting 和 parameter synchronization，而不是把 simulator env steps/s 当作唯一 bottleneck。这里的 infrastructure surface 是 [[HeterogeneousRobotRLTraining|heterogeneous robot RL training]]：task/backend contract、domain-randomization lifecycle、sample-before-transfer replay pipeline 和 hot/cold GPU batch slots 都会改变 end-to-end training efficiency。
+
 ## Failure Modes
 
 - Framework comparison 被误读成 engine ranking：source 的判断主要是 API、visualizer、rendering 和 developer ergonomics，不是证明某个 physics engine 或 framework universally better。
@@ -60,6 +62,7 @@ Pose API example 说明 infrastructure 的小接口会在大系统里放大。�
 - Visualizer under-instrumentation：如果 visualizer 只显示 physics state 而不显示 reward、policy behavior、past states 或 diagnostics，evaluation 的 failure type 会变难定位。
 - Pose abstraction 过薄：分散的 tensor/function API 增加 import surface、frame reasoning 和 function-call complexity；但过厚的 object abstraction 也可能引入 Python overhead 或 backend compatibility burden。
 - Sensor output contract 过隐式：如果 camera/lidar/radar output 只是 opaque buffer，ML loop 很难稳定处理 device、shape、valid counts、params、semantic labels 和 synchronization。[[RTXSensorSimulationPipeline]] 中的 `RenderVar` / DLPack contract 是 ovrtx 对这个问题的 source-backed answer。
+- Training runtime contract 过隐式：如果只报告 simulator throughput，而不记录 learner wait、replay sampling、H2D transfer、buffer residency 和 weight sync，robot RL system comparison 可能测到的是 runtime placement，而不是 algorithm 或 physics backend 本身。
 - Evidence boundary：当前 page 主要来自一篇 Substack engineering article，适合作为 design lens；framework-specific claims 需要后续 ingest official docs、repo snapshots 或 benchmark reports。
 
 ## 实践含义
@@ -69,5 +72,6 @@ Pose API example 说明 infrastructure 的小接口会在大系统里放大。�
 - 对 [[SimulationRealityGap|sim-to-real]]，gap 的上游不只包括 contact law 和 rendering mismatch，也包括 framework API 能不能表达 hardware-relevant variation、visualizer 能不能暴露 failure、ML loop 能不能保留足够训练资源。
 - 对 LLM-assisted scene/task generation，typed objects、clear task APIs 和 composable asset schemas 会影响 LLM 能否稳定生成可运行 scene，而不只是影响 human developer ergonomics。
 - 对 sensor-heavy robotics workflows，应该审计 RenderProduct/RenderVar schema、output channels、validity flags、warm-up policy、GPU mapping lifetime 和 multi-GPU behavior，因为这些决定 observation tensor 是否可复现、可调试、可接到 ML pipeline。
+- 对 simulation-based robot RL training，应该审计 full learner cycle：collection、packing、H2D、learner update、replay hot path、boundary wait 和 parameter publication。UniLab 的 source-backed lesson 是，GPU-resident physics 是有效路线，但不是唯一能形成高效 training loop 的路线。
 
-相关页面：[[robotics-simulation-infrastructure]]、[[nvidia-ovrtx]]、[[RTXSensorSimulationPipeline]]、[[ManiSkill]]、[[IsaacSim]]、[[Ovrtx]]、[[MuJoCo]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]。
+相关页面：[[robotics-simulation-infrastructure]]、[[nvidia-ovrtx]]、[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]、[[RTXSensorSimulationPipeline]]、[[HeterogeneousRobotRLTraining]]、[[ManiSkill]]、[[IsaacSim]]、[[Ovrtx]]、[[UniLab]]、[[MuJoCo]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]。

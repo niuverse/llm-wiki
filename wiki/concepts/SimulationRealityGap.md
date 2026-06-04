@@ -2,8 +2,8 @@
 title: "Simulation Reality Gap（仿真现实差距）"
 type: concept
 tags: [robotics, simulation, sim-to-real, reinforcement-learning, world-models]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]"]
-last_updated: 2026-06-04
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]"]
+last_updated: 2026-06-05
 ---
 
 # Simulation Reality Gap（仿真现实差距）
@@ -49,6 +49,8 @@ flowchart LR
 
 这个 lens 支持一个 practical distinction：config-driven APIs 与 direct Python APIs 选择的是不同的 structure/hackability trade-off；batched rendering 的 memory/fidelity choice 会和 PPO/SAC 等 RL training 的 batch sizes、replay buffers 和 networks 争 GPU memory；visualizer 如果只显示 physics state 而不显示 reward curves、policy behavior 或 past states，就可能让 evaluation failure 难以定位。source 是 engineering blog，不是 quantitative benchmark，因此这些判断应作为 audit checklist，而不是 framework ranking。
 
+[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] 增加了 training-runtime lens：sim-to-real evidence 的上游还包括 backend contract、domain-randomization lifecycle、sim2sim validation 和 training critical path。它不声称 heterogeneous runtime 会自动减少 physical reality gap；相反，它提示 training distribution 是由 simulator backend semantics、randomization payloads、collector/learner schedule 和 replay boundary 共同生成的。若两个 backends 支持的 randomization fields 或 reward/task defaults 不同，cross-backend training speed 和 cross-backend policy transfer 都需要分开解释。
+
 ## Visual sim-to-real lens
 
 [[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]] 把 reality gap 放进 RGB-based humanoid loco-manipulation setting：policy 在 simulation 中通过 privileged teacher 和 visual student distillation 获得 behavior，再 zero-shot 部署到 Unitree G1。这里的 gap 不只来自 rigid-body physics，也来自 visual appearance、camera geometry、sensor delay、dexterous hand dynamics 和 long-horizon policy distribution。
@@ -89,4 +91,4 @@ a_t = pi_phi(assemble_deploy(o_{t-k:t}; joint_order', history', scaling'))
 
 AGILE 还说明 evaluation gap 是 reality gap 的前置条件：只看 aggregate reward 或 stochastic rollout average，可能错过 RMS acceleration、jerk、joint-limit violations 和 high-frequency energy ratio 等 actuator-relevant signals。Deterministic scenario tests（velocity sweep、height ramp）提供低方差 regression tests；stochastic rollouts 则估计随机 command distribution 下的 robustness。两者缺一时，sim-to-real risk 都可能被误估。
 
-相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[RoboticsSimulationInfrastructure]]、[[VisualSimToReal]]、[[AssetConditionedHOIGeneration]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[HumanoidRLWorkflow]]、[[AGILE]]、[[GRAIL]]、[[MuJoCo]]、[[RaiSim]]。
+相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[RoboticsSimulationInfrastructure]]、[[HeterogeneousRobotRLTraining]]、[[VisualSimToReal]]、[[AssetConditionedHOIGeneration]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[HumanoidRLWorkflow]]、[[AGILE]]、[[GRAIL]]、[[UniLab]]、[[MuJoCo]]、[[RaiSim]]。

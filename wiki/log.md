@@ -3,7 +3,7 @@ title: "Wiki Log"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-06-04
+last_updated: 2026-06-05
 ---
 
 # Wiki Log
@@ -178,3 +178,9 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 - Added `wiki/sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.md` with canonical arXiv PDF in `raw/` and extracted Markdown in `graph/extracts/`.
 - Added `wiki/entities/GRAIL.md` and `wiki/concepts/AssetConditionedHOIGeneration.md`.
 - Updated visual sim-to-real, simulation reality gap, task-generalist evaluation, NVIDIA, overview, research questions, and wiki index entries.
+
+## [2026-06-05] ingest | UniLab: A Heterogeneous Architecture for Robot RL Beyond GPU-Dominant Paradigms
+
+- Added `wiki/sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms.md` with canonical arXiv PDF in `raw/` and extracted Markdown in `graph/extracts/`.
+- Added `wiki/entities/UniLab.md` and `wiki/concepts/HeterogeneousRobotRLTraining.md`.
+- Updated robotics simulation infrastructure, simulation reality gap, MuJoCo, overview, research questions, and wiki index entries.

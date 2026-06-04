@@ -2,8 +2,8 @@
 title: "MuJoCo"
 type: entity
 tags: [robotics, simulation, physics-engine]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-asset-structure]]", "[[robotics-simulation-infrastructure]]"]
-last_updated: 2026-06-04
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-asset-structure]]", "[[robotics-simulation-infrastructure]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]"]
+last_updated: 2026-06-05
 ---
 
 # MuJoCo
@@ -22,4 +22,6 @@ MuJoCo 是 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in
 
 [[robotics-simulation-infrastructure|Robotics Simulation Infrastructure]] source 额外提到 MuJoCo Lab 作为 end-to-end simulation/ML framework example，并特别把它的 visualizer 描述为适合 reinforcement learning work 的 diagnostic surface。这个 claim 指向 MuJoCo Lab infrastructure，而不是 MuJoCo core physics semantics；当前页面暂不把二者合并为同一个 implementation claim。
 
-相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[RoboticsSimulationInfrastructure]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]、[[isaac-sim-mujoco-control-tuning-notes]]。
+[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] source 又给 MuJoCo ecosystem 增加了 training-system context：MuJoCoUni 作为 CPU-batched MuJoCo runtime backend，用于 heterogeneous CPU simulation / GPU learning；source 还把 MjWarp / mjlab / MuJoCo Playground 放在 GPU-resident robot learning systems 背景中对比。这个 evidence 说明 MuJoCo-related infrastructure 已经同时覆盖 CPU-batched、GPU-oriented 和 framework-level training paths；具体 backend semantics 仍需要后续单独 ingest MuJoCoUni / MjWarp docs。
+
+相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[RoboticsSimulationInfrastructure]]、[[HeterogeneousRobotRLTraining]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]、[[isaac-sim-mujoco-control-tuning-notes]]。

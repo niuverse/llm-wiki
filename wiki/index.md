@@ -3,7 +3,7 @@ title: "Wiki Index"
 type: synthesis
 tags: [index, navigation]
 sources: []
-last_updated: 2026-06-04
+last_updated: 2026-06-05
 ---
 
 # Wiki Index
@@ -20,6 +20,7 @@ last_updated: 2026-06-04
 - **Simulation benchmark 能证明什么？** 读 [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md)、[Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
 - **Humanoid RL 从训练到硬件怎样减少 silent failures？** 读 [Humanoid RL Workflow](concepts/HumanoidRLWorkflow.md)、[AGILE](entities/AGILE.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
 - **Simulation infrastructure decisions 为什么重要？** 读 [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md)，重点看 task/API、asset management、rendering memory/fidelity、visualizer diagnostics 和 pose API 如何影响 RL/evaluation workflow。
+- **Robot RL training 必须 GPU-resident simulation 吗？** 读 [Heterogeneous Robot RL Training](concepts/HeterogeneousRobotRLTraining.md)、[UniLab](entities/UniLab.md) 和 [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md)，重点看 CPU/GPU role assignment、collector-learner overlap、replay boundary、H2D transfer 和 weight sync 如何决定 end-to-end training efficiency。
 - **ovrtx 如何把 OpenUSD scene 变成 RTX sensor outputs？** 读 [RTX Sensor Simulation Pipeline](concepts/RTXSensorSimulationPipeline.md)、[NVIDIA ovrtx](sources/nvidia-ovrtx.md)、[ovrtx](entities/Ovrtx.md) 和 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)，重点看 `RenderProduct`、`RenderVar`、DLPack tensor mapping、lidar/radar `PointCloud` channels 和 warm-up / synchronization rules。
 - **Visual sim-to-real 怎么跨过 reality gap？** 读 [Visual Sim-to-Real](concepts/VisualSimToReal.md)、[VIRAL](entities/VIRAL.md) 和 [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)，重点看 privileged teacher、vision student、domain randomization、hand/camera alignment 与 failure cases。
 - **Humanoid loco-manipulation demonstrations 如何 scale？** 读 [Asset-Conditioned HOI Generation](concepts/AssetConditionedHOIGeneration.md)、[GRAIL](entities/GRAIL.md) 和 [Visual Sim-to-Real](concepts/VisualSimToReal.md)，重点看 3D assets、VFM interaction prior、metric 4D HOI reconstruction、retargeting 与 task-general trackers。
@@ -79,6 +80,7 @@ last_updated: 2026-06-04
 - [VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation](sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation.md) - project page for RGB-based humanoid loco-manipulation，覆盖 privileged RL teacher、vision student distillation、visual randomization、finger SysID、FOV alignment、generalization videos 和 failure cases
 - [GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors](sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.md) - fully digital humanoid data-generation pipeline，用 3D assets、VFM priors、metric 4D HOI reconstruction、retargeting 和 task-general trackers 训练 Unitree G1 visual policies
 - [Robotics Simulation Infrastructure](sources/robotics-simulation-infrastructure.md) - Stone Tao 的 simulation infrastructure blog，覆盖 task/API、asset management、physics/rendering、visualizer、ML integration、rendering memory/fidelity 和 pose API trade-offs
+- [UniLab: A Heterogeneous Architecture for Robot RL Beyond GPU-Dominant Paradigms](sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms.md) - heterogeneous CPU-simulation / GPU-learning robot RL training system，把 collector-learner overlap、replay boundary、H2D transfer 和 synchronization 写成 end-to-end efficiency problem
 - [NVlabs/RoboLab](sources/nvlabs-robolab.md) - RoboLab official implementation repository，包含 Isaac Lab task library、predicate/subtask system、policy clients 与 analysis tooling
 - [RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies](sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies.md) - NVIDIA 的 high-fidelity simulation benchmark，用 RoboLab-120、language variants 与 sensitivity analysis 评测 task-generalist robot policies
 - [Asset Structure - Isaac Sim 4.5 Documentation](sources/isaac-sim-45-asset-structure.md) - Isaac Sim 4.5 docs 中的 legacy / pre-3.0 asset layout，覆盖 `asset_base.usd`、`parts.usd`、`asset_sim_optimized.usd`、feature layers 和 final `asset.usd`
@@ -135,6 +137,7 @@ last_updated: 2026-06-04
 - [Humanoid RL Workflow](concepts/HumanoidRLWorkflow.md) - 从 robot/MDP verification 到 training、evaluation、descriptor export 和 hardware deployment 的 humanoid RL lifecycle
 - [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md) - 用 task libraries、language variants、predicates、subtask scoring 和 diagnostics 评估泛化 robot policies
 - [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md) - 把 simulator framework 拆成 task/API、asset management、physics/rendering、visualizer 和 ML loop 的 design decisions
+- [Heterogeneous Robot RL Training](concepts/HeterogeneousRobotRLTraining.md) - 把 simulation-based robot RL training 写成 CPU/GPU role assignment、collector/learner overlap、replay boundary、H2D transfer、buffering 和 weight sync 的 systems problem
 - [Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md) - 用 controlled perturbations 与 NPE/MNPE posterior 找出影响 robot policy success 的环境参数
 - [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md) - contact approximations、learned dynamics 和 policy context 到 sim-to-real mismatch 的 causal flow
 - [Visual Sim-to-Real](concepts/VisualSimToReal.md) - VIRAL-style visual sim-to-real 的 teacher-student formulation、domain randomization、real-to-sim hand/camera alignment 与 deployment failure modes
@@ -175,6 +178,7 @@ last_updated: 2026-06-04
 - [RoboLab](entities/RoboLab.md) - high-fidelity simulation benchmark/platform for task-generalist robot policy evaluation
 - [VIRAL](entities/VIRAL.md) - visual sim-to-real framework for humanoid loco-manipulation，使用 privileged teacher、vision student distillation、visual randomization 和 real-to-sim alignment
 - [GRAIL](entities/GRAIL.md) - fully digital humanoid loco-manipulation data-generation framework，使用 3D assets、VFM priors、metric 4D HOI reconstruction 和 task-general trackers
+- [UniLab](entities/UniLab.md) - heterogeneous CPU-simulation / GPU-learning robot RL training system，使用 unified runtime 管理 rollout collection、buffering、H2D transfer 和 learner synchronization
 - [ContactBench](entities/ContactBench.md) - source 中的 unified C++ contact-model benchmark framework
 
 ### Organizations And Repositories

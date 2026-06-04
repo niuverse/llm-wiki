@@ -2,8 +2,8 @@
 title: "Research Questions"
 type: synthesis
 tags: [research-questions, robotics, embodied-ai]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]"]
-last_updated: 2026-06-04
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]"]
+last_updated: 2026-06-05
 ---
 
 # Research Questions
@@ -25,6 +25,14 @@ last_updated: 2026-06-04
 优先阅读：[[TaskGeneralistPolicyEvaluation]]、[[SimulationSensitivityAnalysis]]、[[RoboLab]]、[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]、[[nvlabs-robolab]]。
 
 证据边界：RoboLab 的 six-task real/sim verification 支持 simulation proxy 有价值，但也提示 proxy validity 会随 policy/task family 改变；benchmark score 不能单独等价于真实部署可靠性。
+
+## Robot RL training 必须使用 GPU-resident simulation 吗？
+
+当前判断：不必须。[[HeterogeneousRobotRLTraining]] 说明 simulation-based robot RL training 的关键是 collector、buffer、learner、data transfer 和 synchronization 组成的 closed loop，而不是 physics backend 必须驻留在 GPU 上。[[UniLab]] 用 CPU-batched MuJoCoUni / MotrixSim + GPU learner + unified runtime 作为 source-backed counterexample，并报告 3-10× end-to-end wall-clock gains；但这不是否定 GPU simulation，而是说明 GPU-resident physics 是有效路径之一。
+
+优先阅读：[[HeterogeneousRobotRLTraining]]、[[UniLab]]、[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]、[[RoboticsSimulationInfrastructure]]、[[MuJoCo]]。
+
+证据边界：UniLab 的 strongest evidence 是 source-specific workstation benchmark 和 replay-path trace/ablation；vision-dominated workloads、multi-GPU/distributed settings、deformable physics 和 real-world policy reliability 都不能由这篇 source 直接推出。
 
 ## Humanoid RL 从训练到硬件怎样减少 silent failures？
 
@@ -77,6 +85,7 @@ last_updated: 2026-06-04
 - π0.7、LDA-1B、RoboLab 的外部复现或批判性分析。
 - AGILE/WBC-AGILE 的后续 hardware reports，尤其是带 motion capture、force/torque、energy、failure-rate 和 perception-driven manipulation metrics 的资料。
 - GRAIL 的 project page、code、dataset release、failure-filtering statistics 和 independent replication，尤其是不同 VFM / 3D asset pipeline / robot platform 下的 robustness。
+- MuJoCoUni、MotrixSim、UniLab repo、mjlab / MjWarp、MuJoCo Playground、Isaac Lab 和 ManiSkill3 的 docs / repo snapshots，用来建立 robot RL training runtime taxonomy。
 - 直接比较 visual subgoal world model、latent dynamics pretraining 和 classical model-based control 的 robot studies。
 - 把 contact solver choice 与 real-robot MPC/RL/differentiable optimization failure 关联起来的实证工作。
 - 对同一 object/robot asset 系统比较 primitive collider、convex hull、CoACD、VisACD、SDF 和 differentiable primitive collision 的 engine-specific benchmarks。
