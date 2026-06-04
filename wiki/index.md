@@ -22,6 +22,7 @@ last_updated: 2026-06-04
 - **Simulation infrastructure decisions 为什么重要？** 读 [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md)，重点看 task/API、asset management、rendering memory/fidelity、visualizer diagnostics 和 pose API 如何影响 RL/evaluation workflow。
 - **ovrtx 如何把 OpenUSD scene 变成 RTX sensor outputs？** 读 [RTX Sensor Simulation Pipeline](concepts/RTXSensorSimulationPipeline.md)、[NVIDIA ovrtx](sources/nvidia-ovrtx.md)、[ovrtx](entities/Ovrtx.md) 和 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)，重点看 `RenderProduct`、`RenderVar`、DLPack tensor mapping、lidar/radar `PointCloud` channels 和 warm-up / synchronization rules。
 - **Visual sim-to-real 怎么跨过 reality gap？** 读 [Visual Sim-to-Real](concepts/VisualSimToReal.md)、[VIRAL](entities/VIRAL.md) 和 [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)，重点看 privileged teacher、vision student、domain randomization、hand/camera alignment 与 failure cases。
+- **Humanoid loco-manipulation demonstrations 如何 scale？** 读 [Asset-Conditioned HOI Generation](concepts/AssetConditionedHOIGeneration.md)、[GRAIL](entities/GRAIL.md) 和 [Visual Sim-to-Real](concepts/VisualSimToReal.md)，重点看 3D assets、VFM interaction prior、metric 4D HOI reconstruction、retargeting 与 task-general trackers。
 - **OpenUSD 的核心价值是什么？** 读 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)、[OpenUSD](entities/OpenUSD.md) 和 [Introduction to USD](sources/openusd-introduction.md)；如果关注 robotics asset authoring，再接 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) 与 [Isaac Sim Legacy Asset Structure](concepts/IsaacSimLegacyAssetStructure.md)。
 - **Isaac Sim Asset Structure 3.0 怎么理解？** 读 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) 和 [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md)，重点看 layer role、payload/variant composition 和 engine-specific tuning 隔离。
 - **Isaac Sim 旧 asset layout 是不是 2.0？** 读 [Isaac Sim Legacy Asset Structure](concepts/IsaacSimLegacyAssetStructure.md) 和 [Asset Structure - Isaac Sim 4.5 Documentation](sources/isaac-sim-45-asset-structure.md)；当前 source-backed 结论是它应称为 legacy / pre-3.0，而不是 2.0。
@@ -76,6 +77,7 @@ last_updated: 2026-06-04
 
 - [AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning](sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.md) - humanoid RL workflow，把 environment verification、training stabilization、deterministic evaluation 和 descriptor-driven deployment 接成 sim-to-real lifecycle
 - [VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation](sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation.md) - project page for RGB-based humanoid loco-manipulation，覆盖 privileged RL teacher、vision student distillation、visual randomization、finger SysID、FOV alignment、generalization videos 和 failure cases
+- [GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors](sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.md) - fully digital humanoid data-generation pipeline，用 3D assets、VFM priors、metric 4D HOI reconstruction、retargeting 和 task-general trackers 训练 Unitree G1 visual policies
 - [Robotics Simulation Infrastructure](sources/robotics-simulation-infrastructure.md) - Stone Tao 的 simulation infrastructure blog，覆盖 task/API、asset management、physics/rendering、visualizer、ML integration、rendering memory/fidelity 和 pose API trade-offs
 - [NVlabs/RoboLab](sources/nvlabs-robolab.md) - RoboLab official implementation repository，包含 Isaac Lab task library、predicate/subtask system、policy clients 与 analysis tooling
 - [RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies](sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies.md) - NVIDIA 的 high-fidelity simulation benchmark，用 RoboLab-120、language variants 与 sensitivity analysis 评测 task-generalist robot policies
@@ -136,6 +138,7 @@ last_updated: 2026-06-04
 - [Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md) - 用 controlled perturbations 与 NPE/MNPE posterior 找出影响 robot policy success 的环境参数
 - [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md) - contact approximations、learned dynamics 和 policy context 到 sim-to-real mismatch 的 causal flow
 - [Visual Sim-to-Real](concepts/VisualSimToReal.md) - VIRAL-style visual sim-to-real 的 teacher-student formulation、domain randomization、real-to-sim hand/camera alignment 与 deployment failure modes
+- [Asset-Conditioned HOI Generation](concepts/AssetConditionedHOIGeneration.md) - GRAIL-style generated humanoid demonstration pipeline：known 3D assets / camera / metric world + VFM prior + interaction-aware 4D reconstruction + robot tracking
 - [Isaac Sim Legacy Asset Structure](concepts/IsaacSimLegacyAssetStructure.md) - Isaac Sim 4.5 legacy / pre-3.0 asset layout，明确旧 layout 没有 source-backed 2.0 命名，并与 Asset Structure 3.0 对照
 - [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) - 用 architecture diagrams、USD layers、payloads、references 和 variants 组织 Isaac Sim robot assets，并隔离 neutral physics 与 MuJoCo/PhysX-specific tuning
 - [Reduced-Coordinate Articulations](concepts/ReducedCoordinateArticulations.md) - PhysX / Omni Physics articulation 的 mechanism-level page，覆盖 reduced coordinates、root selection、drive envelope、mimic/tendon constraints 和 solver failure modes
@@ -171,6 +174,7 @@ last_updated: 2026-06-04
 - [π0.7](entities/Pi07.md) - steerable generalist VLA model，使用 language、metadata、subgoal images 和 control mode conditioning
 - [RoboLab](entities/RoboLab.md) - high-fidelity simulation benchmark/platform for task-generalist robot policy evaluation
 - [VIRAL](entities/VIRAL.md) - visual sim-to-real framework for humanoid loco-manipulation，使用 privileged teacher、vision student distillation、visual randomization 和 real-to-sim alignment
+- [GRAIL](entities/GRAIL.md) - fully digital humanoid loco-manipulation data-generation framework，使用 3D assets、VFM priors、metric 4D HOI reconstruction 和 task-general trackers
 - [ContactBench](entities/ContactBench.md) - source 中的 unified C++ contact-model benchmark framework
 
 ### Organizations And Repositories

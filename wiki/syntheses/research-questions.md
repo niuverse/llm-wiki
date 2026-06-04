@@ -2,7 +2,7 @@
 title: "Research Questions"
 type: synthesis
 tags: [research-questions, robotics, embodied-ai]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]"]
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]"]
 last_updated: 2026-06-04
 ---
 
@@ -33,6 +33,14 @@ last_updated: 2026-06-04
 优先阅读：[[HumanoidRLWorkflow]]、[[AGILE]]、[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]、[[SimulationRealityGap]]、[[TaskGeneralistPolicyEvaluation]]。
 
 证据边界：AGILE 报告 Unitree G1 / Booster T1 上五类 skills 的 transfer demonstrations 与多个 stabilization ablations，但 hardware validation 主要是 qualitative；loco-manipulation/VLA case 的 90% success 是 closed-loop simulation result，不等于真实 humanoid manipulation 已解决。
+
+## Humanoid loco-manipulation demonstrations 如何 scale？
+
+当前判断：GRAIL 提供一条 source-backed route：把 3D assets、simulator-ready scenes、camera/scale/depth 和 robot-proportioned character 先固定，再用 VFM 作为 interaction prior 生成 video，随后通过 metric 4D HOI reconstruction、GMR retargeting 和 task-general trackers 转成 robot-action data。这个路线的重点不是“VFM 直接控制 robot”，而是用 known 3D configuration 把 video prior 约束成 physically executable trajectories。
+
+优先阅读：[[AssetConditionedHOIGeneration]]、[[GRAIL]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]、[[VisualSimToReal]]、[[TaskGeneralistPolicyEvaluation]]。
+
+证据边界：GRAIL 报告超过 20,000 条 generated sequences、HOI generation/tracking ablations 和 Unitree G1 real-world pick-up / stair-climbing success rates；但 project page/code/dataset release、VFM/API reproducibility、failure filtering rate、跨平台 transfer 和 independent replication 仍需后续 sources。
 
 ## Contact model 和 solver 为什么会影响 learning/control？
 
@@ -68,6 +76,7 @@ last_updated: 2026-06-04
 
 - π0.7、LDA-1B、RoboLab 的外部复现或批判性分析。
 - AGILE/WBC-AGILE 的后续 hardware reports，尤其是带 motion capture、force/torque、energy、failure-rate 和 perception-driven manipulation metrics 的资料。
+- GRAIL 的 project page、code、dataset release、failure-filtering statistics 和 independent replication，尤其是不同 VFM / 3D asset pipeline / robot platform 下的 robustness。
 - 直接比较 visual subgoal world model、latent dynamics pretraining 和 classical model-based control 的 robot studies。
 - 把 contact solver choice 与 real-robot MPC/RL/differentiable optimization failure 关联起来的实证工作。
 - 对同一 object/robot asset 系统比较 primitive collider、convex hull、CoACD、VisACD、SDF 和 differentiable primitive collision 的 engine-specific benchmarks。

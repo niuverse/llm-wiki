@@ -2,7 +2,7 @@
 title: "Task-Generalist Policy Evaluation"
 type: concept
 tags: [robotics, evaluation, benchmarks, vla]
-sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[robotics-simulation-infrastructure]]"]
+sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]"]
 last_updated: 2026-06-04
 ---
 
@@ -38,6 +38,8 @@ $$
 
 [[robotics-simulation-infrastructure|Robotics Simulation Infrastructure]] 补充了一个 benchmark engineering 视角：evaluation 是否可扩展，不只取决于 task list，也取决于 task/API layer、asset management、rendering throughput/fidelity、visualizer diagnostics 和 ML integration。也就是说，benchmark 的 scientific value 依赖 infrastructure 能否稳定生成 scenes、并行 rollout、暴露 failure state、记录 reward/trajectory/policy behavior，并把这些数据连接到 evaluation metrics。
 
+[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 给这个概念增加了 data-generation / tracking lens：对 humanoid loco-manipulation，不仅要问 policy 是否在一个 task 上 replay reference，还要问 generated 4D HOI pool 能否训练 task-general trackers。它把 evaluation 分成 generated HOI quality、physics executability、task-general tracking metrics（SR、ObjPos、MPJPE-L）和 real visual deployment success，避免只用 perceptual video score 或单条 trajectory tracking 证明 robot usefulness。
+
 ```mermaid
 flowchart TD
   A["Task library"] --> B["Instruction variant"]
@@ -58,6 +60,7 @@ flowchart TD
 - Sim-proxy mismatch：RoboLab 的 six-task real/sim verification 对 π0.5 和 π0-FAST 呈现相近趋势，但 π0 是明显 outlier；因此 simulation score 需要按 policy/task family 验证。
 - Predicate mismatch：predicate-based success checking 清晰且可自动化，但可能低估 recovery behavior、partial satisfaction、human preference 或工具使用中的 subtle semantics。
 - Metric masking：subtask score 能显示 partial progress，但也可能掩盖 final task failure；success rate 又可能忽略 trajectory quality 和 safety margins。
+- Task-family masking：GRAIL-style pooled trackers 会在 related motion families 内 amortize learning；如果 evaluation aggregate 不按 object geometry、contact mode、terrain type 或 motion family 分层，可能掩盖 out-of-family failure。
 - Coverage gap：rigid-body tabletop tasks 不覆盖 deformables、cables/bags、precise force control、compliant interaction 和复杂 frictional dynamics。
 
 ## 实践含义
@@ -69,3 +72,5 @@ flowchart TD
 - 对 [[RoboticsSimulationInfrastructure|simulation infrastructure]]，policy benchmark 的 maintainability 要检查 scene authoring API、asset serialization、parallel evaluation、visualizer instrumentation 和 ML loop resource budget。
 
 [[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] 补充了 humanoid RL 的 evaluation lens：对部署型 humanoid policies，evaluation 还需要 deterministic scenario tests 和 per-joint motion-quality diagnostics。RoboLab-style evaluation 更关注 task library、language variants、object distribution 和 wrong-object behavior；AGILE-style evaluation 更关注 velocity/height sweeps、RMS acceleration、jerk、joint-limit violations、high-frequency energy 和 sim-to-sim descriptor consistency。两者共同指向同一个原则：只看 aggregate success/reward 会掩盖实际 deployment risk。
+
+GRAIL 进一步提示：当 training data 来自 generated trajectories，evaluation 还应把 data source 本身纳入报告。Generated HOI 的 contact distance、penetration、smoothness、tracking executability、policy-level object error 和 real-world trial success 属于不同层级；某一层成功不能替代下一层验证。

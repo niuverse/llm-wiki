@@ -172,3 +172,9 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 
 - Added `wiki/sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons.md` with canonical PDF in `raw/` and extracted Markdown in `graph/extracts/`.
 - Added `wiki/entities/DiffPills.md` and linked capsule / padded polygon collision gradients into differentiable collision coverage.
+
+## [2026-06-04] ingest | GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors
+
+- Added `wiki/sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.md` with canonical arXiv PDF in `raw/` and extracted Markdown in `graph/extracts/`.
+- Added `wiki/entities/GRAIL.md` and `wiki/concepts/AssetConditionedHOIGeneration.md`.
+- Updated visual sim-to-real, simulation reality gap, task-generalist evaluation, NVIDIA, overview, research questions, and wiki index entries.

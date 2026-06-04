@@ -2,13 +2,13 @@
 title: "Visual Sim-to-Real"
 type: concept
 tags: [robotics, sim-to-real, visual-policy, humanoid-loco-manipulation, reinforcement-learning]
-sources: ["[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]"]
-last_updated: 2026-05-13
+sources: ["[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]"]
+last_updated: 2026-06-04
 ---
 
 # Visual Sim-to-Real
 
-Visual sim-to-real（视觉仿真到真实迁移）是在 simulation 中训练一个使用 visual observations 的 robot policy，并把它直接部署到真实硬件上。[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]] 给出一个 high-stakes case：policy 不只是 fixed-base tabletop manipulation，而是在 humanoid 上执行 walking、placing、grasping、turning 和 object transport 的 long-horizon loco-manipulation。
+Visual sim-to-real（视觉仿真到真实迁移）是在 simulation 中训练一个使用 visual observations 的 robot policy，并把它直接部署到真实硬件上。[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]] 给出一个 high-stakes case：policy 不只是 fixed-base tabletop manipulation，而是在 humanoid 上执行 walking、placing、grasping、turning 和 object transport 的 long-horizon loco-manipulation。[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 补充了上游数据生成视角：如果 visual student 的 behavior 来自 generated 4D HOI trajectories，那么 sim-to-real pipeline 还要审计 VFM prior、metric reconstruction、retargeting 和 task-general tracking pool。
 
 ## 数学结构
 
@@ -60,6 +60,14 @@ $$
 
 其中 $R_\eta$ 表示 lighting、materials、camera parameters、image quality 和 sensor delay 等 perturbations；$\phi_{cam}$ 表示 camera / FOV alignment；hand SysID 则改变 simulator 中 dexterous hand parameters，使 simulated joint response 更接近 real hand。
 
+GRAIL-style pipeline 让 visual policy 的 demonstration distribution 也成为变量。设 $D_{\mathrm{GRAIL}}$ 是由 3D assets、VFM-generated videos、4D HOI reconstruction、robot retargeting 和 task-general trackers 组成的数据分布，则 visual student 学到的是：
+
+$$
+\pi_S(a_t \mid I_{t-k:t}, q_{t-k:t}) \leftarrow D_{\mathrm{GRAIL}}(\mathcal{M}_O,\mathcal{E},C,\tilde{\Theta}_{1:T},\tilde{q}_{1:T}).
+$$
+
+这表示 transfer risk 不只来自 visual rendering gap，也来自 generated reference 是否 physically executable、retargeting 是否保持 contact，以及 tracker 是否覆盖目标 motion family。
+
 ## 直觉
 
 Teacher 是 privileged solver：它在 simulation 中看见真实部署时看不到的 state，所以更容易学到 long-horizon behavior。Student 是 deployable policy：它只能从 RGB 和 proprioception 中恢复 enough state，然后 imitate teacher command。Domain randomization 让 student 不把某个 synthetic lighting、texture、camera pose 当成必要条件；real-to-sim alignment 则减少系统性偏差，例如手指动力学和相机视角不一致。
@@ -79,6 +87,8 @@ flowchart LR
 
 这个结构的关键 tradeoff 是：simulation 给了 cheap scale 和 privileged supervision，但部署时 policy 必须在 real images、real latencies、real hand mechanics 和 real contacts 下闭环运行。因此 visual sim-to-real 不是“train in sim once”；它是 teacher design、distillation distribution、randomization scope、hardware calibration 与 failure analysis 的组合工程。
 
+GRAIL 把这个 tradeoff 再往上游推一层：visual policy 之前的 robot-action data 可以来自 [[AssetConditionedHOIGeneration|asset-conditioned HOI generation]]。这使 data scale 不再完全受 teleoperation / mocap 限制，但也要求把 generated video quality、4D reconstruction losses、physics executability 和 real-world policy success 分开验证。
+
 ## Failure Modes
 
 - Low-compute failure：VIRAL page 明确说 compute scale critical；low-compute regimes often fail。这说明 visual student training 的 rendering / rollout distribution 不足时，policy 可能没有学到 robust perception-control mapping。
@@ -86,6 +96,7 @@ flowchart LR
 - Hand dynamics mismatch：source 把 finger SysID 列为 key element。Dexterous hand 的 stiffness、damping、armature 或 gear-ratio effects 不匹配时，grasp release timing 与 force response 会偏离 simulation。
 - OOD object failure：页面展示 failed out-of-distribution object generalization，说明 object category randomization 不等于覆盖所有 shape、material、mass、grasp affordance。
 - Mechanical execution failure：页面展示 unreliable deployment、hand stuck 和 accidental drop，表明 visual policy success 仍会被 low-level manipulation mechanics、contact state 和 recovery behavior 限制。
+- Generated-reference failure：GRAIL-style data 可能在 VFM artifact、occlusion、fast motion、object appearance inconsistency、metric reconstruction error 或 retargeting/contact mismatch 上失败；即使 rendered video plausible，也不一定是 robot-useful trajectory。
 
 ## 实践含义
 
@@ -93,6 +104,6 @@ flowchart LR
 
 对 sim-to-real，domain randomization 需要和 real-to-sim alignment 同时看。Randomization 负责扩大 distribution support；alignment 负责消除已知 systematic mismatch。只做其中一个都容易留下 gap。
 
-对 system evaluation，real-world videos 和 consecutive cycles 比 single-episode success 更有信息量，但仍不足以证明 generality。需要区分 success distribution、failure categories、OOD object coverage、camera/lighting perturbation 和 hardware-specific tuning。
+对 system evaluation，real-world videos 和 consecutive cycles 比 single-episode success 更有信息量，但仍不足以证明 generality。需要区分 success distribution、failure categories、OOD object coverage、camera/lighting perturbation、generated reference quality 和 hardware-specific tuning。
 
-相关页面：[[VIRAL]]、[[SimulationRealityGap]]、[[TaskGeneralistPolicyEvaluation]]、[[WorldModelsForEmbodiedAI]]。
+相关页面：[[VIRAL]]、[[GRAIL]]、[[AssetConditionedHOIGeneration]]、[[SimulationRealityGap]]、[[TaskGeneralistPolicyEvaluation]]、[[WorldModelsForEmbodiedAI]]。
