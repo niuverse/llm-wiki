@@ -2,8 +2,8 @@
 title: "Simulation Reality Gap（仿真现实差距）"
 type: concept
 tags: [robotics, simulation, sim-to-real, reinforcement-learning, world-models]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[robotics-simulation-infrastructure]]"]
-last_updated: 2026-05-13
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[robotics-simulation-infrastructure]]"]
+last_updated: 2026-06-04
 ---
 
 # Simulation Reality Gap（仿真现实差距）
@@ -37,6 +37,12 @@ flowchart LR
 
 对 RL 和 MPC 来说，这提示 simulator choice 应该围绕 hardware 上预期出现的 contact regime 来审计：sliding、impacts、redundant contacts、rough terrain，以及 ill-conditioned mass/contact layouts。
 
+## Collider geometry lens
+
+[[CollisionGeometryForRobotSimulation]] 把 reality gap 再往 contact pipeline 上游推进：即使 contact law 和 solver 不变，collider representation 也会改变 generated contacts。[[mujoco-computation-collision-detection|MuJoCo collision docs]] 明确说明 active contacts 由 geoms 产生，并进入 constraint construction；[[isaac-sim-core-api-collision-approximation|Isaac Sim Core API docs]] 列出 convex hull、convex decomposition、SDF、sphere fill、bounding sphere / cube 等 approximation modes，并警告更高 detail 会带来 performance impact。
+
+这类 gap 的典型形式是 visual-collider mismatch：单个 convex hull 或过粗 primitive 可能把 handle、slot、hole 填满，制造 false positive occupied space；过度简化也可能漏掉真实接触面，制造 late contact 或 penetration。[[coacd-approximate-convex-decomposition|CoACD paper]] 的 drawer-opening case 把这一点具体化：collision shapes 是否保留 handle holes 会改变 RL agent 是否能形成有效 interaction。
+
 ## Infrastructure lens
 
 [[robotics-simulation-infrastructure|Robotics Simulation Infrastructure]] 把 reality gap 的上游再提前一层：在 physics/rendering mismatch 进入 policy 之前，framework 已经通过 task APIs、asset management、renderer、visualizer 和 ML integration 决定了什么 variation 容易表达、什么 diagnostics 容易观察、什么 resource budget 留给 training。换言之，sim-to-real gap 不只是 engine parameters 的问题，也可能来自 infrastructure surface。
@@ -61,4 +67,24 @@ flowchart LR
 
 这类 gap 不一定表现为 state prediction error，而可能表现为 decision distribution error：同一 observation 下，prompt 改变了 action distribution。对 deployment 来说，这要求同时验证 physical consistency、world-model subgoal quality 和 prompt-conditioned closed-loop success。
 
-相关页面：[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[RoboticsSimulationInfrastructure]]、[[VisualSimToReal]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[MuJoCo]]、[[RaiSim]]。
+## Workflow and deployment-contract lens
+
+[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] 给 simulation reality gap 增加了 workflow lens：真实部署失败不一定来自 simulator physics 本身，也可能来自 environment verification、evaluation protocol 或 policy export contract。Source 中列出的 workflow gap 包括 reversed joint axes、incorrect reward terms、只用 stochastic rollout 导致 hardware-critical behavior 被平均掉，以及 deployment 时 joint order、observation history buffer、action scaling 不一致。
+
+用 contract 形式看，训练时 policy 看到的是：
+
+```text
+a_t = pi_phi(assemble_train(o_{t-k:t}; joint_order, history, scaling))
+```
+
+部署时若 descriptor 不一致，实际执行变成：
+
+```text
+a_t = pi_phi(assemble_deploy(o_{t-k:t}; joint_order', history', scaling'))
+```
+
+即使 $T^{sim}$ 与 $T^{real}$ 很接近，$\text{assemble}_{train}\neq\text{assemble}_{deploy}$ 也会制造 decision-distribution gap。AGILE 用 TorchScript policy + YAML I/O descriptors 记录 joint names、observation ordering、history buffers 和 action scaling，并用 MuJoCo sim-to-sim validation 在 hardware 前复用同一 inference contract。
+
+AGILE 还说明 evaluation gap 是 reality gap 的前置条件：只看 aggregate reward 或 stochastic rollout average，可能错过 RMS acceleration、jerk、joint-limit violations 和 high-frequency energy ratio 等 actuator-relevant signals。Deterministic scenario tests（velocity sweep、height ramp）提供低方差 regression tests；stochastic rollouts 则估计随机 command distribution 下的 robustness。两者缺一时，sim-to-real risk 都可能被误估。
+
+相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[RoboticsSimulationInfrastructure]]、[[VisualSimToReal]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[HumanoidRLWorkflow]]、[[AGILE]]、[[MuJoCo]]、[[RaiSim]]。

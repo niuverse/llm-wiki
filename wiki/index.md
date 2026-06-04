@@ -3,7 +3,7 @@ title: "Wiki Index"
 type: synthesis
 tags: [index, navigation]
 sources: []
-last_updated: 2026-05-26
+last_updated: 2026-06-04
 ---
 
 # Wiki Index
@@ -18,6 +18,7 @@ last_updated: 2026-05-26
 - **Inverse dynamics model 怎么从视频学 action？** 读 [Inverse Dynamics Models](concepts/InverseDynamicsModels.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)、[Seer](entities/Seer.md)、[DeFI](entities/DeFI.md)。
 - **Robot foundation model 如何处理 heterogeneous data？** 读 [Vision-Language-Action Models](concepts/VisionLanguageActionModels.md)、[Robot Context Conditioning](concepts/RobotContextConditioning.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)。
 - **Simulation benchmark 能证明什么？** 读 [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md)、[Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
+- **Humanoid RL 从训练到硬件怎样减少 silent failures？** 读 [Humanoid RL Workflow](concepts/HumanoidRLWorkflow.md)、[AGILE](entities/AGILE.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
 - **Simulation infrastructure decisions 为什么重要？** 读 [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md)，重点看 task/API、asset management、rendering memory/fidelity、visualizer diagnostics 和 pose API 如何影响 RL/evaluation workflow。
 - **ovrtx 如何把 OpenUSD scene 变成 RTX sensor outputs？** 读 [RTX Sensor Simulation Pipeline](concepts/RTXSensorSimulationPipeline.md)、[NVIDIA ovrtx](sources/nvidia-ovrtx.md)、[ovrtx](entities/Ovrtx.md) 和 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)，重点看 `RenderProduct`、`RenderVar`、DLPack tensor mapping、lidar/radar `PointCloud` channels 和 warm-up / synchronization rules。
 - **Visual sim-to-real 怎么跨过 reality gap？** 读 [Visual Sim-to-Real](concepts/VisualSimToReal.md)、[VIRAL](entities/VIRAL.md) 和 [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)，重点看 privileged teacher、vision student、domain randomization、hand/camera alignment 与 failure cases。
@@ -28,6 +29,7 @@ last_updated: 2026-05-26
 - **PhysX articulation、position drive、solver 和 joint gains 怎么理解？** 先读 [Reduced-Coordinate Articulations](concepts/ReducedCoordinateArticulations.md) 和 [Articulations - Omni Physics](sources/omniverse-omni-physics-articulations.md)，再读 [Isaac Sim and MuJoCo Physics and Control Notes](syntheses/isaac-sim-mujoco-control-tuning-notes.md)；PhysX articulation drive 的 PD analogy 和 envelope 已有 official source support，MuJoCo 对比与机械臂 gain grouping 仍是 conversation-derived。
 - **OBJ、STL、USD、GLB 等 3D 模型格式怎么选？** 读 [3D Model Formats Learning Map](syntheses/3d-model-formats-learning-map.md)，注意其中 USD 相关内容已有 wiki source-backed coverage，其他格式仍是 unsourced learning scaffold。
 - **Contact physics 为什么会影响 learning/control？** 读 [Contact Models in Robotics](concepts/ContactModelsInRobotics.md)、[Contact Complementarity（接触互补）](concepts/ContactComplementarity.md)、[Contact Solvers（接触求解器）](concepts/ContactSolvers.md)、[Differentiable Physics（可微物理）](concepts/DifferentiablePhysics.md)。
+- **Collision geometry 为什么会影响 robot simulation？** 读 [Collision Geometry for Robot Simulation](concepts/CollisionGeometryForRobotSimulation.md)、[Approximate Convex Decomposition](concepts/ApproximateConvexDecomposition.md)、[Differentiable Collision Detection](concepts/DifferentiableCollisionDetection.md)，重点看 capsule/sphere/cylinder、convex hull、convex decomposition、SDF、primitive decomposition 和 differentiable primitives 的 tradeoffs。
 - **轮式机器人建模怎么系统学习？** 读 [Wheeled Robot Modeling Learning Map](syntheses/wheeled-robot-modeling-learning-map.md)、[Wheeled Robot Visual Lab](syntheses/wheeled-robot-visual-lab.md)、[Wheeled Robot Kinematics](concepts/WheeledRobotKinematics.md)、[Wheeled Mobile Robot Classification](concepts/WheeledMobileRobotClassification.md)、[Omnidirectional Wheels](concepts/OmnidirectionalWheels.md)、[Nonholonomic Mobile Robots](concepts/NonholonomicMobileRobots.md) 和 [Steerable Wheels](concepts/SteerableWheels.md)。
 
 ## 维护入口
@@ -72,6 +74,7 @@ last_updated: 2026-05-26
 
 ### Simulation And Evaluation
 
+- [AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning](sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.md) - humanoid RL workflow，把 environment verification、training stabilization、deterministic evaluation 和 descriptor-driven deployment 接成 sim-to-real lifecycle
 - [VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation](sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation.md) - project page for RGB-based humanoid loco-manipulation，覆盖 privileged RL teacher、vision student distillation、visual randomization、finger SysID、FOV alignment、generalization videos 和 failure cases
 - [Robotics Simulation Infrastructure](sources/robotics-simulation-infrastructure.md) - Stone Tao 的 simulation infrastructure blog，覆盖 task/API、asset management、physics/rendering、visualizer、ML integration、rendering memory/fidelity 和 pose API trade-offs
 - [NVlabs/RoboLab](sources/nvlabs-robolab.md) - RoboLab official implementation repository，包含 Isaac Lab task library、predicate/subtask system、policy clients 与 analysis tooling
@@ -83,6 +86,18 @@ last_updated: 2026-05-26
 ### Contact Physics
 
 - [Contact Models in Robotics: a Comparative Analysis](sources/contact-models-in-robotics-a-comparative-analysis.md) - robotic contact models 与 contact solvers 的 comparative survey 和 benchmark
+
+### Collision Geometry And Collider Authoring
+
+- [MuJoCo Computation: Collision Detection](sources/mujoco-computation-collision-detection.md) - MuJoCo official docs 中的 geom-based collision pipeline、convex geom restriction、GJK/EPA、single vs multi contact points 和 convex decomposition guidance
+- [Isaac Sim Core API Collision Approximation](sources/isaac-sim-core-api-collision-approximation.md) - Isaac Sim Core API docs 中的 collision approximation modes，包括 triangle mesh、convex decomposition、convex hull、bounding sphere/cube、SDF 和 sphere fill
+- [V-HACD Repository](sources/v-hacd-repository.md) - deprecated / archived V-HACD README，说明 approximate convex decomposition 的 motivation、NP-hard exact decomposition boundary 和 practical hull-budget tradeoffs
+- [CoACD Repository](sources/coacd-repository.md) - CoACD implementation README，覆盖 `run_coacd` usage、threshold / hull count / MCTS parameters、real metric mode 和 preprocessing notes
+- [Approximate Convex Decomposition for 3D Meshes with Collision-Aware Concavity and Tree Search](sources/coacd-approximate-convex-decomposition.md) - CoACD paper，提出 collision-aware concavity、direct plane cuts、MCTS search，并展示 handle-preserving collider 改变 drawer-opening success
+- [Convex Primitive Decomposition for Collision Detection](sources/convex-primitive-decomposition-for-collision-detection.md) - 用 boxes、capsules、spheres、cylinders 等 primitive colliders 自动拟合 mesh 的 runtime-oriented collider decomposition paper
+- [VisACD: Visibility-Based GPU-Accelerated Approximate Convex Decomposition](sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition.md) - visibility-based、GPU-accelerated、rotation-equivariant ACD paper
+- [DCOL: Differentiable Collision Detection for a Set of Convex Primitives](sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives.md) - 用 minimum uniform scaling factor 和 differentiable conic optimization 处理 convex primitives collision 的 paper
+- [DiffPills: Differentiable Collision Detection for Capsules and Padded Polygons](sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons.md) - capsule / padded polygon differentiable collision detection paper，用 proximity value 进入 trajectory optimization
 
 ### Wheeled Robot Modeling
 
@@ -115,6 +130,7 @@ last_updated: 2026-05-26
 
 ### Simulation And Evaluation
 
+- [Humanoid RL Workflow](concepts/HumanoidRLWorkflow.md) - 从 robot/MDP verification 到 training、evaluation、descriptor export 和 hardware deployment 的 humanoid RL lifecycle
 - [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md) - 用 task libraries、language variants、predicates、subtask scoring 和 diagnostics 评估泛化 robot policies
 - [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md) - 把 simulator framework 拆成 task/API、asset management、physics/rendering、visualizer 和 ML loop 的 design decisions
 - [Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md) - 用 controlled perturbations 与 NPE/MNPE posterior 找出影响 robot policy success 的环境参数
@@ -130,6 +146,9 @@ last_updated: 2026-05-26
 - [Contact Complementarity（接触互补）](concepts/ContactComplementarity.md) - rigid contact、friction cone、NCP/LCP/CCP 与 residual intuition
 - [Contact Solvers（接触求解器）](concepts/ContactSolvers.md) - 计算 contact forces 与 impulses 的 numerical methods，以及 solver taxonomy
 - [Differentiable Physics（可微物理）](concepts/DifferentiablePhysics.md) - simulator gradients、contact artifacts 与 gradient contamination
+- [Collision Geometry for Robot Simulation](concepts/CollisionGeometryForRobotSimulation.md) - sphere、capsule、cylinder、convex hull、ACD、SDF 和 differentiable primitives 如何改变 contact generation 与 robot policy behavior
+- [Approximate Convex Decomposition](concepts/ApproximateConvexDecomposition.md) - V-HACD、CoACD、VisACD 和 convex primitive decomposition 的数学结构、直觉、failure modes 与实践含义
+- [Differentiable Collision Detection](concepts/DifferentiableCollisionDetection.md) - DCOL / DiffPills style collision metrics 如何把 primitive colliders 变成 trajectory optimization constraints and gradients
 
 ### Wheeled Robot Modeling
 
@@ -144,6 +163,7 @@ last_updated: 2026-05-26
 
 ### Models, Datasets, And Benchmarks
 
+- [AGILE](entities/AGILE.md) - Isaac Lab/RSL-RL based humanoid RL workflow layer，统一 verification、training、evaluation 和 descriptor-driven deployment
 - [DeFI](entities/DeFI.md) - decoupled forward/inverse dynamics pretraining framework，用 GFDM、GIDM 和 action adapter 从 videos 到 robot commands
 - [EI-30K](entities/EI30K.md) - LDA-1B source 构建的 30k+ hour heterogeneous embodied interaction dataset
 - [LDA-1B](entities/LDA1B.md) - dynamics-centric robot foundation model，统一 policy、latent dynamics 和 visual forecasting
@@ -165,11 +185,19 @@ last_updated: 2026-05-26
 
 - [OpenUSD](entities/OpenUSD.md) - Universal Scene Description / OpenUSD scene-description platform；当前 coverage 聚焦 official Introduction 与 Isaac Sim asset-structure usage
 
+### Collision Geometry Methods
+
+- [CoACD](entities/CoACD.md) - collision-aware approximate convex decomposition method / implementation，用 concavity metric、plane cuts 和 MCTS 保留 collision-relevant details
+- [V-HACD](entities/VHACD.md) - deprecated / archived voxelized hierarchical approximate convex decomposition baseline
+- [VisACD](entities/VisACD.md) - visibility-based GPU-accelerated ACD method，强调 rotation-equivariant、intersection-free collider decomposition
+- [DCOL](entities/DCOL.md) - differentiable collision detection method for convex primitives，用 minimum uniform scaling factor 生成 collision constraints and gradients
+- [DiffPills](entities/DiffPills.md) - differentiable collision detection method for capsules and padded polygons
+
 ### Simulation Tools
 
-- [Isaac Sim](entities/IsaacSim.md) - NVIDIA robotics simulation stack；当前 source-backed coverage 包括 legacy / pre-3.0 Asset Structure、Isaac Sim 6.0 EDR Asset Structure 3.0 与 Omni Physics articulation semantics
+- [Isaac Sim](entities/IsaacSim.md) - NVIDIA robotics simulation stack；当前 source-backed coverage 包括 legacy / pre-3.0 Asset Structure、Isaac Sim 6.0 EDR Asset Structure 3.0、Core API collision approximation modes 与 Omni Physics articulation semantics
 - [ovrtx](entities/Ovrtx.md) - NVIDIA Omniverse RTX 的 lightweight C/Python sensor simulation SDK，使用 OpenUSD runtime stage、RenderProduct/RenderVar 和 DLPack tensor outputs
 - [PhysX](entities/PhysX.md) - NVIDIA physics runtime / SDK family；当前 wiki coverage 聚焦 Omni Physics articulations source 中的 reduced-coordinate mechanisms、drive envelope、mimic joints 和 tendons
-- [MuJoCo](entities/MuJoCo.md) - source 中用于讨论 contact regularization tradeoffs 的 robotics physics engine；Isaac Sim docs 中也作为 engine-specific asset layer 出现
+- [MuJoCo](entities/MuJoCo.md) - robotics physics engine；当前 coverage 包括 contact regularization tradeoffs、geom-based collision detection、convex collision constraints，以及 Isaac Sim 中的 engine-specific asset layer context
 - [ManiSkill](entities/ManiSkill.md) - Stone Tao article 中用于说明 Python API、batched rendering performance 和 `Pose` abstraction 的 robotics simulation framework
 - [RaiSim](entities/RaiSim.md) - source 中用于讨论 quadruped transfer 与 per-contact handling 的 robotics simulator

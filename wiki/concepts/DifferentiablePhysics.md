@@ -2,8 +2,8 @@
 title: "Differentiable Physics（可微物理）"
 type: concept
 tags: [robotics, simulation, differentiable-optimization]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]"]
-last_updated: 2026-04-27
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]"]
+last_updated: 2026-06-04
 ---
 
 # Differentiable Physics（可微物理）
@@ -11,6 +11,8 @@ last_updated: 2026-04-27
 Differentiable physics 通过 simulation 暴露 gradients，使 optimization、system identification 和 learning systems 能使用 dynamics derivatives。在 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]] 中，differentiable simulation 不是主要实验目标，但论文把它标记为 contact artifacts 的 high-risk area。
 
 问题很直接：如果 forward simulation 引入 internal forces、artificial compliance，或 physically shifted contact solutions，那么计算出的 gradients 可能 encode 这些 artifacts。这对 trajectory optimization 和 physical system identification 很关键，因为 gradient 是驱动 update 的信号。
+
+[[DifferentiableCollisionDetection]] 补充了另一层：在完整 differentiable simulator 之前，可以先把 collision query 写成可微函数。[[DCOL]] 用 minimum uniform scaling factor $\alpha$ 表示 convex primitives 的 separation / penetration，[[DiffPills]] 用 proximity value $\phi$ 处理 capsules 和 padded polygons。这些 source 支持把 collision avoidance 写成 differentiable constraints，但它们不自动解决 frictional contact time stepping、solver residual 和 complementarity switches。
 
 可以把一个 time step 写成：
 
@@ -36,4 +38,4 @@ contact 还会放大这个问题，因为 [[ContactComplementarity|complementari
 
 开放线索：评估 differentiable simulators 时，不应只看 smoothness、speed 或 task-level loss，还应该看 contact residuals 与 force artifacts。
 
-相关页面：[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[MuJoCo]]。
+相关页面：[[DifferentiableCollisionDetection]]、[[CollisionGeometryForRobotSimulation]]、[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[MuJoCo]]。

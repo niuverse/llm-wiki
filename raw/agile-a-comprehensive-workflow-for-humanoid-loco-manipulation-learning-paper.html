@@ -1,0 +1,1383 @@
+<!DOCTYPE html><html prefix="dcterms: http://purl.org/dc/terms/" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning</title>
+<!--Generated on Fri Mar 20 17:20:25 2026 by LaTeXML (version 0.8.8) http://dlmf.nist.gov/LaTeXML/.-->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/static/browse/0.3.4/css/arxiv-html-papers-20260131.css" type="text/css">
+<script src="/static/browse/0.3.4/js/arxiv-html-papers-20260131.js"></script>
+<script>
+  // Restore the saved color scheme preference, or
+  // enact the browser preference if "automatic", 
+  // without expecting DOM load to have completed.
+  //
+  // Also restore any saved readingmode and ToC display preferences.
+  function initializeReadingPreferences() {
+    let saved_theme = localStorage.getItem("ar5iv_theme") || "automatic";
+    if (saved_theme === "automatic") {
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        saved_theme = "dark";
+      }
+    }
+    if (saved_theme == "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+
+    const tocDisplay = localStorage.getItem('arxiv_html_paper_toc_display');
+    if (tocDisplay) {
+      document.documentElement.setAttribute("data-toc-display", tocDisplay);
+    }
+    const readingMode = localStorage.getItem('arxiv_html_paper_reading_mode');
+    if (readingMode) {
+      document.documentElement.setAttribute("data-reading-mode", readingMode);
+    }
+  }
+  // Run as soon as JS starts, to minimize repainting
+  initializeReadingPreferences();
+</script>
+<link rel="apple-touch-icon" sizes="180x180"
+  href="/static/browse/0.3.4/images/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+  href="/static/browse/0.3.4/images/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+  href="/static/browse/0.3.4/images/icons/favicon-16x16.png">
+<link rel="manifest" href="/static/browse/0.3.4/images/icons/site.webmanifest">
+<link rel="mask-icon" href="/static/browse/0.3.4/images/icons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="stylesheet" type="text/css" media="screen" href="https://use.typekit.net/utz6mli.css">
+</head>
+<body>
+<dialog id="modal-form" aria-labelledby="modal-title" closedby="any">
+  <form id="modal-form-content" method="dialog" enctype="multipart/form-data">
+    <header class="modal-header">
+      <h5 id="modal-title" class="modal-title">Report GitHub Issue</h5>
+      <button type="submit" formnovalidate class="modal-close" aria-label="Close">×</button>
+    </header>
+
+    <div class="modal-body">
+      <label for="form_title">Title:</label>
+      <input class="form-control" id="form_title" name="form_title" required placeholder="Enter title">
+
+      <p id="selectedTextModalDescription" hidden>Content selection saved. Describe the issue below:</p>
+
+      <label for="description">Description:</label>
+      <textarea class="form-control" id="description" name="description" required maxlength="500"
+        placeholder="500 characters maximum"></textarea>
+    </div>
+
+    <footer class="modal-footer">
+      <button type="submit" value="internal-report" class="sr-only modal-submit">Submit without GitHub</button>
+      <button type="submit" value="github-report" class="modal-submit">Submit in GitHub</button>
+    </footer>
+  </form>
+</dialog>
+
+<header class="arxiv-html-header">
+  <div class="html-header-logo">
+    <a href="/">
+      <img alt="arXiv logo" class="logo desktop-only" width="100"
+        src="/static/browse/0.3.4/images/arxiv-logo-one-color-white.svg">
+      <span class="sr-only">Back to arXiv</span>
+    </a>
+  </div>
+  <!--TOC, dark mode, links-->
+  <nav class="html-header-nav">
+    <a class="header-button hover-effect desktop-only" href="https://info.arxiv.org/about/accessible_HTML.html"
+      target="_blank">Why HTML?</a>
+    <a class="header-button" title="Report an Issue" href="#" title="Report an issue"
+      onclick="event.preventDefault(); showModalForm();">
+      <svg role="presentation" class="mobile-only toggle-icon" aria-hidden="true" height="1.25rem"
+        viewBox="0 0 640 640">
+        <path
+          d="M224 160C224 107 267 64 320 64C373 64 416 107 416 160L416 163.6C416 179.3 403.3 192 387.6 192L252.5 192C236.8 192 224.1 179.3 224.1 163.6L224.1 160zM569.6 172.8C580.2 186.9 577.3 207 563.2 217.6L465.4 290.9C470.7 299.8 474.7 309.6 477.2 320L576 320C593.7 320 608 334.3 608 352C608 369.7 593.7 384 576 384L480 384L480 416C480 418.6 479.9 421.3 479.8 423.9L563.2 486.4C577.3 497 580.2 517.1 569.6 531.2C559 545.3 538.9 548.2 524.8 537.6L461.7 490.3C438.5 534.5 395.2 566.5 344 574.2L344 344C344 330.7 333.3 320 320 320C306.7 320 296 330.7 296 344L296 574.2C244.8 566.5 201.5 534.5 178.3 490.3L115.2 537.6C101.1 548.2 81 545.3 70.4 531.2C59.8 517.1 62.7 497 76.8 486.4L160.2 423.9C160.1 421.3 160 418.7 160 416L160 384L64 384C46.3 384 32 369.7 32 352C32 334.3 46.3 320 64 320L162.8 320C165.3 309.6 169.3 299.8 174.6 290.9L76.8 217.6C62.7 207 59.8 186.9 70.4 172.8C81 158.7 101.1 155.8 115.2 166.4L224 248C236.3 242.9 249.8 240 264 240L376 240C390.2 240 403.7 242.8 416 248L524.8 166.4C538.9 155.8 559 158.7 569.6 172.8z" />
+      </svg>
+      <span class="desktop-only">Report Issue</span></a>
+    <!--back to abstract-->
+    <a class="header-button" title="Back to abstract page" aria-label="Back to abstract page"
+      href="/abs/2603.20147v1">
+      <svg class="mobile-only toggle-icon" role="presentation" height="1.25rem" viewBox="0 0 512 512" fill="#ffffff"
+        aria-hidden="true">
+        <path
+          d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z">
+        </path>
+      </svg>
+      <span class="desktop-only">Back to Abstract</span>
+    </a>
+    <!-- PDF download link -->
+    <a class="header-button" title="Download PDF" href="/pdf/2603.20147v1"
+      target="_blank">
+      <svg class="mobile-only toggle-icon" role="presentation" height="1.25rem" viewBox="0 0 576 542">
+        <path
+          d="M208 48L96 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16l80 0 0 48-80 0c-35.3 0-64-28.7-64-64L32 64C32 28.7 60.7 0 96 0L229.5 0c17 0 33.3 6.7 45.3 18.7L397.3 141.3c12 12 18.7 28.3 18.7 45.3l0 149.5-48 0 0-128-88 0c-39.8 0-72-32.2-72-72l0-88zM348.1 160L256 67.9 256 136c0 13.3 10.7 24 24 24l68.1 0zM240 380l32 0c33.1 0 60 26.9 60 60s-26.9 60-60 60l-12 0 0 28c0 11-9 20-20 20s-20-9-20-20l0-128c0-11 9-20 20-20zm32 80c11 0 20-9 20-20s-9-20-20-20l-12 0 0 40 12 0zm96-80l32 0c28.7 0 52 23.3 52 52l0 64c0 28.7-23.3 52-52 52l-32 0c-11 0-20-9-20-20l0-128c0-11 9-20 20-20zm32 128c6.6 0 12-5.4 12-12l0-64c0-6.6-5.4-12-12-12l-12 0 0 88 12 0zm76-108c0-11 9-20 20-20l48 0c11 0 20 9 20 20s-9 20-20 20l-28 0 0 24 28 0c11 0 20 9 20 20s-9 20-20 20l-28 0 0 44c0 11-9 20-20 20s-20-9-20-20l0-128z" />
+      </svg>
+      <span class="desktop-only">Download PDF</span></a>
+    <!-- navigational table of contents toggle -->
+    <a class="header-button toggle-icon" href="javascript:toggleNavTOC();" title="Toggle navigation"
+      aria-label="Toggle navigation">
+      <svg height="1.25rem" role="presentation" viewBox="0 0 512 512">
+        <path
+          d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z">
+        </path>
+      </svg>
+    </a>
+    <!--- collapsable header / reading mode toggle -->
+    <a class="header-button toggle-icon" href="javascript:toggleReadingMode();"
+      title="Disable reading mode, show header and footer">
+      <svg role="presentation" height="1.25rem"
+        viewBox="0 0 448 512"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+        <path
+          d="M32 32C14.3 32 0 46.3 0 64l0 96c0 17.7 14.3 32 32 32s32-14.3 32-32l0-64 64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L32 32zM64 352c0-17.7-14.3-32-32-32S0 334.3 0 352l0 96c0 17.7 14.3 32 32 32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0 0-64zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0 0 64c0 17.7 14.3 32 32 32s32-14.3 32-32l0-96c0-17.7-14.3-32-32-32l-96 0zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l96 0c17.7 0 32-14.3 32-32l0-96z" />
+      </svg>
+    </a>
+    <!--- colored theme toggle -->
+    <a class="header-button color-tog" href="javascript:toggleColorScheme();" title="Toggle dark/light mode">
+      <label class="toggle-icon automatic-tog" title="Switch to light mode">
+        <svg role="presentation" height="1.25rem" viewBox="0 0 24 24">
+          <path
+            d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z">
+          </path>
+        </svg>
+      </label>
+      <label class="toggle-icon light-tog" title="Switch to dark mode">
+        <svg role="presentation" height="1.25rem" viewBox="0 0 24 24">
+          <path
+            d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z">
+          </path>
+        </svg>
+      </label>
+      <label class="toggle-icon dark-tog" title="Switch to system preference">
+        <svg role="presentation" height="1.25rem" viewBox="0 0 24 24">
+          <path
+            d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z">
+          </path>
+        </svg>
+      </label>
+    </a>
+  </nav>
+</header><nav class="ltx_page_navbar">
+<nav class="ltx_TOC">
+<ol class="ltx_toclist">
+<li class="ltx_tocentry ltx_tocentry_abstract"><a href="#abstract1" title="In AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title">Abstract</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a href="#S1" title="In AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">1 </span>Introduction</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section">
+<a href="#S2" title="In AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">2 </span>Related Work</span></a>
+<ol class="ltx_toclist ltx_toclist_section">
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S2.SS1" title="In 2 Related Work ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">2.1 </span>GPU-Accelerated Simulation Primitives</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S2.SS2" title="In 2 Related Work ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">2.2 </span>Humanoid Learning Frameworks</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S2.SS3" title="In 2 Related Work ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">2.3 </span>Algorithmic Techniques for Sim-to-Real Transfer</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S2.SS4" title="In 2 Related Work ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">2.4 </span>Evaluation and Benchmarking</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_section">
+<a href="#S3" title="In AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3 </span>System Design</span></a>
+<ol class="ltx_toclist ltx_toclist_section">
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S3.SS1" title="In 3 System Design ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.1 </span>Overview</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S3.SS2" title="In 3 System Design ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.2 </span>Training Preparation</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection">
+<a href="#S3.SS3" title="In 3 System Design ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.3 </span>Training</span></a>
+<ol class="ltx_toclist ltx_toclist_subsection">
+<li class="ltx_tocentry ltx_tocentry_subsubsection"><a href="#S3.SS3.SSS1" title="In 3.3 Training ‣ 3 System Design ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.3.1 </span>Training Infrastructure</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsubsection"><a href="#S3.SS3.SSS2" title="In 3.3 Training ‣ 3 System Design ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.3.2 </span>Algorithmic Toolbox</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S3.SS4" title="In 3 System Design ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.4 </span>Evaluation</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S3.SS5" title="In 3 System Design ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.5 </span>Deployment</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_section">
+<a href="#S4" title="In AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4 </span>Case Studies &amp; Results</span></a>
+<ol class="ltx_toclist ltx_toclist_section">
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S4.SS1" title="In 4 Case Studies &amp; Results ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4.1 </span>Velocity Tracking on Unitree G1 and Booster T1</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S4.SS2" title="In 4 Case Studies &amp; Results ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4.2 </span>Height-Controlled Locomotion on Unitree G1</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S4.SS3" title="In 4 Case Studies &amp; Results ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4.3 </span>Stand-Up on Booster T1 &amp; Unitree G1</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S4.SS4" title="In 4 Case Studies &amp; Results ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4.4 </span>Motion Imitation on Unitree G1</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S4.SS5" title="In 4 Case Studies &amp; Results ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4.5 </span>Loco-Manipulation &amp; VLA Fine-Tuning</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_section">
+<a href="#S5" title="In AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">5 </span>Discussion &amp; Limitations</span></a>
+<ol class="ltx_toclist ltx_toclist_section">
+<li class="ltx_tocentry ltx_tocentry_subsection">
+<a href="#S5.SS1" title="In 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">5.1 </span>Ablation Studies</span></a>
+<ol class="ltx_toclist ltx_toclist_subsection">
+<li class="ltx_tocentry ltx_tocentry_subsubsection"><a href="#S5.SS1.SSS1" title="In 5.1 Ablation Studies ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">5.1.1 </span>Reward Normalizer</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsubsection"><a href="#S5.SS1.SSS2" title="In 5.1 Ablation Studies ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">5.1.2 </span>L2C2</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsubsection"><a href="#S5.SS1.SSS3" title="In 5.1 Ablation Studies ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">5.1.3 </span>Value-Bootstrapped Terminations</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsubsection"><a href="#S5.SS1.SSS4" title="In 5.1 Ablation Studies ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">5.1.4 </span>Virtual Harness</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsubsection"><a href="#S5.SS1.SSS5" title="In 5.1 Ablation Studies ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">5.1.5 </span>Symmetry Augmentation</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S5.SS2" title="In 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">5.2 </span>Sim-to-Real Transfer</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#S5.SS3" title="In 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">5.3 </span>Limitations &amp; Outlook</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_section"><a href="#S6" title="In AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">6 </span>Acknowledgment</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_bibliography"><a href="#bib" title="In AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title">References</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_appendix">
+<a href="#A1" title="In AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">A </span>Appendix</span></a>
+<ol class="ltx_toclist ltx_toclist_appendix">
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#A1.SS1" title="In Appendix A Appendix ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">A.1 </span>Best Practices</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="#A1.SS2" title="In Appendix A Appendix ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">A.2 </span>Hyperparameter Tables</span></a></li>
+</ol>
+</li>
+</ol></nav>
+</nav>
+<div class="ltx_page_main">
+<div id="infobox" class="infobox">
+  <a id="license-tr" href="https://info.arxiv.org/help/license/index.html#licenses-available">
+    License: CC BY-SA 4.0
+  </a>
+  <div id="watermark-tr">
+arXiv:2603.20147v1 [cs.RO] 20 Mar 2026</div>
+</div><div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document" lang="en">AGILE: A Comprehensive Workflow 
+<br class="ltx_break">for Humanoid Loco-Manipulation Learning</h1>
+<div class="ltx_authors">
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname" lang="en">Huihua Zhao<sup id="id1.1.id1" class="ltx_sup">*</sup>
+</span><span class="ltx_author_notes">
+<span class="ltx_contact ltx_role_affiliation">
+</span></span></span>
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname" lang="en">
+Rafael Cathomen<sup id="id2.1.id1" class="ltx_sup">*</sup>
+</span><span class="ltx_author_notes">
+<span class="ltx_contact ltx_role_affiliation">
+</span></span></span>
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname" lang="en">
+Lionel Gulich
+</span><span class="ltx_author_notes">
+<span class="ltx_contact ltx_role_affiliation">
+</span></span></span>
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname" lang="en">
+Wei Liu
+</span><span class="ltx_author_notes">
+<span class="ltx_contact ltx_role_affiliation">
+</span></span></span>
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname" lang="en">
+Efe Arda Ongan
+</span><span class="ltx_author_notes">
+<span class="ltx_contact ltx_role_affiliation">
+</span></span></span>
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname" lang="en">
+Michael Lin
+</span><span class="ltx_author_notes">
+<span class="ltx_contact ltx_role_affiliation">
+</span></span></span>
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname" lang="en">
+Shalin Jain
+</span><span class="ltx_author_notes">
+<span class="ltx_contact ltx_role_affiliation">
+</span></span></span>
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname" lang="en">
+Soha Pouya
+</span><span class="ltx_author_notes">
+<span class="ltx_contact ltx_role_affiliation">
+</span></span></span>
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname" lang="en">
+Yan Chang
+<br class="ltx_break"><sup id="id3.1.id1" class="ltx_sup"><span id="id3.1.id1.1" class="ltx_text" style="font-size:90%;">*</span></sup><span id="id4.2.id2" class="ltx_text" style="font-size:90%;">Equal contribution.</span>
+</span><span class="ltx_author_notes">
+<span class="ltx_contact ltx_role_affiliation">
+</span></span></span>
+</div>
+
+<div id="abstract1" class="ltx_abstract">
+<h6 class="ltx_title ltx_title_abstract">Abstract</h6>
+<p class="ltx_p">Recent advances in reinforcement learning (RL) have enabled impressive humanoid behaviors in simulation, yet transferring these results to new robots remains challenging. In many real deployments, the primary bottleneck is no longer simulation throughput or algorithm design, but the absence of systematic infrastructure that links environment verification, training, evaluation, and deployment in a coherent loop.</p>
+<p class="ltx_p">To address this gap, we present AGILE, an end-to-end workflow for humanoid RL that standardizes the policy-development lifecycle to mitigate common sim-to-real failure modes. AGILE comprises four stages: (1) interactive environment verification, (2) reproducible training, (3) unified evaluation, and (4) descriptor-driven deployment via robot/task configuration descriptors. For evaluation stage, AGILE supports both scenario-based tests and randomized rollouts under a shared suite of motion-quality diagnostics, enabling automated regression testing and principled robustness assessment. AGILE also incorporates a set of training stabilizations and algorithmic enhancements in training stage to improve optimization stability and sim-to-real transfer.</p>
+<p class="ltx_p">With this pipeline in place, we validate AGILE across five representative humanoid skills spanning locomotion, recovery, motion imitation, and loco-manipulation on two hardware platforms (Unitree G1 and Booster T1), achieving consistent sim-to-real transfer. Overall, AGILE shows that a standardized, end-to-end workflow can substantially improve the reliability and reproducibility of humanoid RL development.</p>
+<p class="ltx_p">Code: <a href="https://github.com/nvidia-isaac/WBC-AGILE" title="" class="ltx_ref ltx_url ltx_font_typewriter">https://github.com/nvidia-isaac/WBC-AGILE</a></p>
+</div>
+<div id="p1" class="ltx_para">
+<span id="p1.1" class="ltx_ERROR undefined" lang="en">\abscontent</span>
+</div>
+<section id="S1" class="ltx_section" lang="en">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>Introduction</h2>
+
+<div id="S1.p1" class="ltx_para">
+<p id="S1.p1.1" class="ltx_p">Reinforcement learning has enabled increasingly capable humanoid locomotion and manipulation policies <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">rudin2022learning</span>, <span class="ltx_ref ltx_missing_citation ltx_ref_self">cheng2024expressive</span>, <span class="ltx_ref ltx_missing_citation ltx_ref_self">radosavovic2024humanoid</span>, <span class="ltx_ref ltx_missing_citation ltx_ref_self">he2024learning</span>, <span class="ltx_ref ltx_missing_citation ltx_ref_self">chen2025gmtgeneralmotiontracking</span>, <span class="ltx_ref ltx_missing_citation ltx_ref_self">luo2025sonicsupersizingmotiontracking</span>]</cite>, yet translating these results to new robots and tasks remains fragile and labor-intensive. In practice, failures rarely stem from insufficient simulation throughput or algorithmic novelty, but from the absence of structured infrastructure connecting environment verification, scalable training, systematic evaluation, and deployment.</p>
+</div>
+<div id="S1.p2" class="ltx_para">
+<p id="S1.p2.1" class="ltx_p"><span id="S1.p2.1.1" class="ltx_text ltx_font_bold">The Workflow Gap:</span> Humanoid RL development is often built on fragmented and ad hoc workflows. Basic environment issues, such as reversed joint axes or incorrect reward terms, are frequently discovered only after costly training runs. Policy evaluation is also commonly performed through stochastic rollouts, which measure average task performance under randomized commands but can make it difficult to diagnose hardware-critical behaviors such as joint limit violations or high-frequency actuation. As a result, the lifecycle of humanoid RL development, from environment verification to deployment, remains poorly structured and hard to reproduce.</p>
+</div>
+<div id="S1.p3" class="ltx_para">
+<p id="S1.p3.1" class="ltx_p"><span id="S1.p3.1.1" class="ltx_text ltx_font_bold">The Transfer Gap:</span> Exporting a learned policy for external validation or hardware deployment is a notoriously fragile process. Without a standardized I/O contract, researchers must manually resolve joint order mismatches, reconstruct observation history buffers, and align action scaling. This ad hoc translation introduces silent bugs and prevents the use of a unified evaluation pipeline across secondary simulators (like MuJoCo), forcing researchers to risk physical deployment without rigorous, quantitative pre-validation.</p>
+</div>
+<figure id="S1.F1" class="ltx_figure"><img src="2603.20147v1/x1.png" id="S1.F1.g1" class="ltx_graphics ltx_centering ltx_img_landscape" width="830" height="507" alt="Refer to caption">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 1: </span>Overview of <span id="S1.F1.2.1" class="ltx_text ltx_font_smallcaps">agile</span> learning workflow. The workflow covers prepare-training, batch cloud training with reproducible logging and deployment-oriented features, evaluation using quantitative motion metrics and automated HTML reports, and deployment by exporting the learned policy and I/O descriptors for Sim2Sim and Sim2Real transfer. Example applications include locomotion, loco-manipulation, DeepMimic-style imitation, and synthetic data generation (SDG) for VLA training, supported by an algorithmic enhancements library (e.g., curricula, regularization, adaptive sampling, reward normalization, symmetry augmentation, and distillation).</figcaption>
+</figure>
+<div id="S1.p4" class="ltx_para">
+<p id="S1.p4.1" class="ltx_p">To resolve these bottlenecks, we present AGILE (A Generic Isaac-Lab based Engine), an open-source workflow built on Isaac Lab and RSL-RL that covers the full path from a new robot to a deployed policy. AGILE bridges the workflow and transfer gaps through a four-stage pipeline (Figure <a href="#S1.F1" title="Figure 1 ‣ 1 Introduction ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>):</p>
+<ol id="S1.I1" class="ltx_enumerate">
+<li id="S1.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S1.I1.i1.p1" class="ltx_para">
+<p id="S1.I1.i1.p1.1" class="ltx_p"><span id="S1.I1.i1.p1.1.1" class="ltx_text ltx_font_bold">Prepare:</span> Interactive debug GUIs (for joint control, object manipulation, and reward visualization) allow researchers to catch robot model and MDP misconfigurations in minutes before committing GPU hours.</p>
+</div>
+</li>
+<li id="S1.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S1.I1.i2.p1" class="ltx_para">
+<p id="S1.I1.i2.p1.1" class="ltx_p"><span id="S1.I1.i2.p1.1.1" class="ltx_text ltx_font_bold">Train:</span> A scalable, reproducible training environment featuring automated hyperparameter sweeps, experiment tracking, and a suite of independently toggleable algorithmic enhancements.</p>
+</div>
+</li>
+<li id="S1.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S1.I1.i3.p1" class="ltx_para">
+<p id="S1.I1.i3.p1.1" class="ltx_p"><span id="S1.I1.i3.p1.1.1" class="ltx_text ltx_font_bold">Evaluate:</span> A unified evaluation pipeline combining deterministic scenario-based tests and stochastic rollouts. Parallel environments receive scripted or randomized commands to evaluate deployment-critical motion metrics such as joint jerk and limit violations.</p>
+</div>
+</li>
+<li id="S1.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">4.</span> 
+<div id="S1.I1.i4.p1" class="ltx_para">
+<p id="S1.I1.i4.p1.1" class="ltx_p"><span id="S1.I1.i4.p1.1.1" class="ltx_text ltx_font_bold">Deploy:</span> Trained policies are auto-exported alongside self-contained YAML I/O descriptors that resolve joint ordering and action scaling. This powers a unified inference pipeline for both quantitative sim-to-sim validation in MuJoCo and real-world hardware deployment.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="S1.p5" class="ltx_para">
+<p id="S1.p5.1" class="ltx_p">Beyond infrastructure, <span id="S1.p5.1.1" class="ltx_text ltx_font_smallcaps">agile</span> also packages a suite of training enhancements for sim-to-real transfer (L2C2 <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">kobayashi2022l2c2</span>]</cite>, reward normalization, value-bootstrapped terminations, symmetry augmentation <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">mittal2024symmetry</span>]</cite>, virtual harness), each validated through thorough ablations. To further showcase <span id="S1.p5.1.2" class="ltx_text ltx_font_smallcaps">agile</span>’s modularity, we present a decoupled whole-body control application <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">ben2025homiehumanoidlocomanipulationisomorphic</span>, <span class="ltx_ref ltx_missing_citation ltx_ref_self">li2025amoadaptivemotionoptimization</span>]</cite>, in which a frozen locomotion policy serves as a lower-body API while an independent upper-body expert collects demonstration data for VLA fine-tuning <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">lu2025mobiletelevisionpredictivemotionpriors</span>]</cite>.</p>
+</div>
+<div id="S1.p6" class="ltx_para">
+<p id="S1.p6.1" class="ltx_p">Conceptually, AGILE reframes humanoid reinforcement learning as a structured engineering lifecycle rather than a collection of loosely connected scripts. By formalizing interfaces across verification, training, evaluation, and deployment, the framework enables deterministic regression testing, deployment-oriented motion diagnostics, and descriptor-consistent policy export prior to hardware trials. This shifts humanoid RL development from empirical trial-and-error toward repeatable, quantitatively validated engineering.</p>
+</div>
+<div id="S1.p7" class="ltx_para">
+<p id="S1.p7.1" class="ltx_p">We validate the complete workflow across five tasks on the Unitree G1 and Booster T1: velocity tracking, height-controlled locomotion <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">ben2025homiehumanoidlocomanipulationisomorphic</span>]</cite>, stand-up <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">huang2025learninghumanoidstandingupcontrol</span>, <span class="ltx_ref ltx_missing_citation ltx_ref_self">he2025learninggettinguppoliciesrealworld</span>]</cite>, motion imitation <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">ji2025exbody2advancedexpressivehumanoid</span>, <span class="ltx_ref ltx_missing_citation ltx_ref_self">sun2025robotdancingresidualactionreinforcementlearning</span>]</cite>, and loco-manipulation with VLA <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">xu2024humanvlavisionlanguagedirectedobject</span>]</cite>. Our contributions are:</p>
+<ul id="S1.I2" class="ltx_itemize">
+<li id="S1.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i1.p1" class="ltx_para">
+<p id="S1.I2.i1.p1.1" class="ltx_p"><span id="S1.I2.i1.p1.1.1" class="ltx_text ltx_font_bold">A structured lifecycle for humanoid RL</span>, integrating environment verification, training, evaluation, and descriptor-driven deployment into a unified workflow.</p>
+</div>
+</li>
+<li id="S1.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i2.p1" class="ltx_para">
+<p id="S1.I2.i2.p1.1" class="ltx_p"><span id="S1.I2.i2.p1.1.1" class="ltx_text ltx_font_bold">A unified evaluation framework</span> combining deterministic scenario tests and stochastic rollouts with per-joint motion-quality metrics (jerk, limit violations) for quantitatively regression test and deployment-oriented policy validation.</p>
+</div>
+</li>
+<li id="S1.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i3.p1" class="ltx_para">
+<p id="S1.I2.i3.p1.1" class="ltx_p"><span id="S1.I2.i3.p1.1.1" class="ltx_text ltx_font_bold">Validation across five tasks and two platforms</span>, with sim-to-real transfer for locomotion, recovery, imitation, and loco-manipulation, released as open-source with pre-trained checkpoints.</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="S2" class="ltx_section" lang="en">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">2 </span>Related Work</h2>
+
+<div id="S2.p1" class="ltx_para">
+<p id="S2.p1.1" class="ltx_p">We categorize related work into simulation platforms, humanoid learning frameworks, algorithmic techniques for sim-to-real transfer, and evaluation methodologies.</p>
+</div>
+<section id="S2.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.1 </span>GPU-Accelerated Simulation Primitives</h3>
+
+<div id="S2.SS1.p1" class="ltx_para">
+<p id="S2.SS1.p1.1" class="ltx_p">GPU-based simulators have significantly accelerated reinforcement learning for robotics. Isaac Gym <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">makoviychuk2021isaac</span>]</cite> introduced tensor-based simulation pipelines that eliminate CPU–GPU bottlenecks, while Isaac Lab <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">nvidia2025isaaclabgpuacceleratedsimulation</span>]</cite> extends this approach with a modular manager-based architecture and USD-based scene configuration. Parallel efforts such as MuJoCo Playground <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">zakka2025mujoco</span>]</cite> bring GPU acceleration to the MuJoCo physics engine. While these platforms provide powerful simulation primitives, they primarily focus on simulation performance and environment modeling rather than the workflow surrounding debugging, evaluation, and deployment.</p>
+</div>
+</section>
+<section id="S2.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.2 </span>Humanoid Learning Frameworks</h3>
+
+<div id="S2.SS2.p1" class="ltx_para">
+<p id="S2.SS2.p1.1" class="ltx_p">Several recent frameworks aim to scale humanoid learning pipelines. Holosoma focuses on large-scale infrastructure and fast off-policy learning for humanoid locomotion <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">amazon-holosoam</span>, <span class="ltx_ref ltx_missing_citation ltx_ref_self">seo2025fasttd3</span>]</cite>. HumanoidVerse emphasizes cross-simulator compatibility through abstraction layers across multiple physics engines <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">humanoidverse2025</span>]</cite>, ProtoMotions provides an Isaac Lab-native framework for motion tracking and humanoid control <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">ProtoMotions</span>]</cite>, and RoboVerse provides unified interfaces for scalable robot learning across tasks and embodiments <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">geng2025roboverse</span>]</cite>. These frameworks primarily address training scalability and simulator interoperability. In contrast, <span id="S2.SS2.p1.1.1" class="ltx_text ltx_font_smallcaps">agile</span> focuses on the broader development lifecycle of humanoid RL policies, including environment verification, deterministic evaluation, and deployment. Table <a href="#S2.T1" title="Table 1 ‣ 2.2 Humanoid Learning Frameworks ‣ 2 Related Work ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a> summarizes key differences.</p>
+</div>
+<figure id="S2.T1" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">Table 1: </span>Feature comparison of humanoid RL frameworks. ✓= supported, <math id="S2.T1.2.m1" class="ltx_Math" alttext="\sim" display="inline" intent=":literal"><semantics><mo>∼</mo><annotation encoding="application/x-tex">\sim</annotation></semantics></math>= partial, – = not supported.</figcaption>
+<table id="S2.T1.5" class="ltx_tabular ltx_centering ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr id="S2.T1.5.4.1" class="ltx_tr">
+<td id="S2.T1.5.4.1.1" class="ltx_td ltx_align_left ltx_border_tt" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.4.1.1.1" class="ltx_text" style="font-size:90%;">Feature</span></td>
+<td id="S2.T1.5.4.1.2" class="ltx_td ltx_align_center ltx_border_tt" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.4.1.2.1" class="ltx_text ltx_font_smallcaps" style="font-size:90%;">agile</span></td>
+<td id="S2.T1.5.4.1.3" class="ltx_td ltx_align_center ltx_border_tt" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.4.1.3.1" class="ltx_text" style="font-size:90%;">Holosoma</span></td>
+<td id="S2.T1.5.4.1.4" class="ltx_td ltx_align_center ltx_border_tt" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.4.1.4.1" class="ltx_text" style="font-size:90%;">H.Verse</span></td>
+<td id="S2.T1.5.4.1.5" class="ltx_td ltx_nopad_r ltx_align_center ltx_border_tt" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.4.1.5.1" class="ltx_text" style="font-size:90%;">Proto.</span></td>
+</tr>
+<tr id="S2.T1.5.5.2" class="ltx_tr">
+<td id="S2.T1.5.5.2.1" class="ltx_td ltx_align_left ltx_border_t" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.5.2.1.1" class="ltx_text" style="font-size:90%;">Env. debugging</span></td>
+<td id="S2.T1.5.5.2.2" class="ltx_td ltx_align_center ltx_border_t" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.5.2.2.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+<td id="S2.T1.5.5.2.3" class="ltx_td ltx_align_center ltx_border_t" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.5.2.3.1" class="ltx_text" style="font-size:90%;">–</span></td>
+<td id="S2.T1.5.5.2.4" class="ltx_td ltx_align_center ltx_border_t" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.5.2.4.1" class="ltx_text" style="font-size:90%;">–</span></td>
+<td id="S2.T1.5.5.2.5" class="ltx_td ltx_nopad_r ltx_align_center ltx_border_t" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.5.2.5.1" class="ltx_text" style="font-size:90%;">–</span></td>
+</tr>
+<tr id="S2.T1.4.2" class="ltx_tr">
+<td id="S2.T1.4.2.3" class="ltx_td ltx_align_left" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.4.2.3.1" class="ltx_text" style="font-size:90%;">Algo. enhancements</span></td>
+<td id="S2.T1.4.2.4" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.4.2.4.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+<td id="S2.T1.3.1.1" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><math id="S2.T1.3.1.1.m1" class="ltx_Math" alttext="\sim" display="inline" intent=":literal"><semantics><mo mathsize="0.900em">∼</mo><annotation encoding="application/x-tex">\sim</annotation></semantics></math></td>
+<td id="S2.T1.4.2.5" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.4.2.5.1" class="ltx_text" style="font-size:90%;">–</span></td>
+<td id="S2.T1.4.2.2" class="ltx_td ltx_nopad_r ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><math id="S2.T1.4.2.2.m1" class="ltx_Math" alttext="\sim" display="inline" intent=":literal"><semantics><mo mathsize="0.900em">∼</mo><annotation encoding="application/x-tex">\sim</annotation></semantics></math></td>
+</tr>
+<tr id="S2.T1.5.3" class="ltx_tr">
+<td id="S2.T1.5.3.2" class="ltx_td ltx_align_left" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.3.2.1" class="ltx_text" style="font-size:90%;">Determ. evaluation</span></td>
+<td id="S2.T1.5.3.3" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.3.3.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+<td id="S2.T1.5.3.1" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><math id="S2.T1.5.3.1.m1" class="ltx_Math" alttext="\sim" display="inline" intent=":literal"><semantics><mo mathsize="0.900em">∼</mo><annotation encoding="application/x-tex">\sim</annotation></semantics></math></td>
+<td id="S2.T1.5.3.4" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.3.4.1" class="ltx_text" style="font-size:90%;">–</span></td>
+<td id="S2.T1.5.3.5" class="ltx_td ltx_nopad_r ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.3.5.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+</tr>
+<tr id="S2.T1.5.6.3" class="ltx_tr">
+<td id="S2.T1.5.6.3.1" class="ltx_td ltx_align_left" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.6.3.1.1" class="ltx_text" style="font-size:90%;">Sim-to-sim pipeline</span></td>
+<td id="S2.T1.5.6.3.2" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.6.3.2.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+<td id="S2.T1.5.6.3.3" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.6.3.3.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+<td id="S2.T1.5.6.3.4" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.6.3.4.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+<td id="S2.T1.5.6.3.5" class="ltx_td ltx_nopad_r ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.6.3.5.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+</tr>
+<tr id="S2.T1.5.7.4" class="ltx_tr">
+<td id="S2.T1.5.7.4.1" class="ltx_td ltx_align_left" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.7.4.1.1" class="ltx_text" style="font-size:90%;">Descriptor-driven export</span></td>
+<td id="S2.T1.5.7.4.2" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.7.4.2.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+<td id="S2.T1.5.7.4.3" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.7.4.3.1" class="ltx_text" style="font-size:90%;">–</span></td>
+<td id="S2.T1.5.7.4.4" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.7.4.4.1" class="ltx_text" style="font-size:90%;">–</span></td>
+<td id="S2.T1.5.7.4.5" class="ltx_td ltx_nopad_r ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.7.4.5.1" class="ltx_text" style="font-size:90%;">–</span></td>
+</tr>
+<tr id="S2.T1.5.8.5" class="ltx_tr">
+<td id="S2.T1.5.8.5.1" class="ltx_td ltx_align_left" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.8.5.1.1" class="ltx_text" style="font-size:90%;">Sim-to-real validation</span></td>
+<td id="S2.T1.5.8.5.2" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.8.5.2.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+<td id="S2.T1.5.8.5.3" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.8.5.3.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+<td id="S2.T1.5.8.5.4" class="ltx_td ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.8.5.4.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+<td id="S2.T1.5.8.5.5" class="ltx_td ltx_nopad_r ltx_align_center" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.8.5.5.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+</tr>
+<tr id="S2.T1.5.9.6" class="ltx_tr">
+<td id="S2.T1.5.9.6.1" class="ltx_td ltx_align_left ltx_border_bb" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.9.6.1.1" class="ltx_text" style="font-size:90%;">Multi-sim backend support</span></td>
+<td id="S2.T1.5.9.6.2" class="ltx_td ltx_align_center ltx_border_bb" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.9.6.2.1" class="ltx_text" style="font-size:90%;">–</span></td>
+<td id="S2.T1.5.9.6.3" class="ltx_td ltx_align_center ltx_border_bb" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.9.6.3.1" class="ltx_text" style="font-size:90%;">–</span></td>
+<td id="S2.T1.5.9.6.4" class="ltx_td ltx_align_center ltx_border_bb" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.9.6.4.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+<td id="S2.T1.5.9.6.5" class="ltx_td ltx_nopad_r ltx_align_center ltx_border_bb" style="padding-left:3.0pt;padding-right:3.0pt;"><span id="S2.T1.5.9.6.5.1" class="ltx_text" style="font-size:90%;">✓</span></td>
+</tr>
+</tbody>
+</table>
+</figure>
+</section>
+<section id="S2.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.3 </span>Algorithmic Techniques for Sim-to-Real Transfer</h3>
+
+<div id="S2.SS3.p1" class="ltx_para">
+<p id="S2.SS3.p1.1" class="ltx_p">A number of approaches improve policy robustness for real-world deployment. CAPS encourages smoother control policies through action regularization <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">mysore2021caps</span>]</cite>, while L2C2 enforces local Lipschitz continuity to improve stability under observation perturbations <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">kobayashi2022l2c2</span>]</cite>. Other approaches such as ASAP use data from real world deployments to learn a residual action policy that enables simulation dynamics to better align with real world dynamics <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">song2025asap</span>]</cite>. While these techniques improve policy stability, they are typically applied independently. AGILE instead integrates such stabilization methods within a unified training and evaluation workflow.</p>
+</div>
+</section>
+<section id="S2.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.4 </span>Evaluation and Benchmarking</h3>
+
+<div id="S2.SS4.p1" class="ltx_para">
+<p id="S2.SS4.p1.1" class="ltx_p">Earlier benchmark suites such as OpenAI Gym <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">brockman2016gym</span>]</cite> and the DeepMind Control Suite <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">tassa2018dmcontrol</span>]</cite> established standardized task evaluation in simulation, motivating similar rigor for humanoid systems. HumanoidBench provides simulation benchmarks for locomotion and manipulation tasks <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">gu2024humanoidbench</span>]</cite>, while RoboGauge proposes a predictive assessment suite for quantifying sim-to-real transferability in quadrupedal locomotion <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">wu2026robogauge</span>]</cite>. Related efforts from the IEEE Humanoid Study Group seek standardized metrics for stability and safety in humanoid systems. AGILE builds on this direction by incorporating a unified evaluation framework into the RL development workflow, supporting deterministic scenario tests and stochastic rollouts with motion-quality diagnostics.</p>
+</div>
+</section>
+</section>
+<section id="S3" class="ltx_section" lang="en">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">3 </span>System Design</h2>
+
+<section id="S3.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.1 </span>Overview</h3>
+
+<div id="S3.SS1.p1" class="ltx_para">
+<p id="S3.SS1.p1.1" class="ltx_p"><span id="S3.SS1.p1.1.1" class="ltx_text ltx_font_smallcaps">agile</span> is a comprehensive workflow layer built on top of Isaac Lab (providing parallel GPU simulation and MDP primitives) and RSL-RL (providing RL algorithms). It adds a four-stage pipeline (Figure <a href="#S1.F1" title="Figure 1 ‣ 1 Introduction ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>) that wraps the training loop with tooling for verification, reproducibility, evaluation, and deployment.</p>
+</div>
+<div id="S3.SS1.p2" class="ltx_para">
+<p id="S3.SS1.p2.1" class="ltx_p">The workflow follows a configuration-driven, flat architecture: every task is a self-contained file specifying the scene, observations, actions, rewards, terminations, and curriculum. Because every MDP parameter can be modified directly via configuration, researchers can rapidly prototype, sweep parameters, and deploy policies without structural code changes.</p>
+</div>
+</section>
+<section id="S3.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.2 </span>Training Preparation</h3>
+
+<div id="S3.SS2.p1" class="ltx_para">
+<p id="S3.SS2.p1.1" class="ltx_p">Misconfigurations such as incorrect joint directions, collision geometries, or reward terms can waste days of GPU time. <span id="S3.SS2.p1.1.1" class="ltx_text ltx_font_smallcaps">agile</span> provides three composable GUI plugins, built on Isaac Lab’s manager terms, that attach to any environment for interactive pre-training validation:</p>
+</div>
+<div id="S3.SS2.p2" class="ltx_para">
+<p id="S3.SS2.p2.1" class="ltx_p"><span id="S3.SS2.p2.1.1" class="ltx_text ltx_font_bold">Joint Position GUI.</span> Per-joint slider control with real-time torque readout; an optional symmetry mode displays mirrored robots side by side to spot sign errors in roll/yaw axes.</p>
+</div>
+<div id="S3.SS2.p3" class="ltx_para">
+<p id="S3.SS2.p3.1" class="ltx_p"><span id="S3.SS2.p3.1.1" class="ltx_text ltx_font_bold">Object Manipulation GUI.</span> 6-DOF object positioning with live contact-sensor visualization for verifying that manipulation-based rewards activate correctly.</p>
+</div>
+<div id="S3.SS2.p4" class="ltx_para">
+<p id="S3.SS2.p4.1" class="ltx_p"><span id="S3.SS2.p4.1.1" class="ltx_text ltx_font_bold">Reward Visualizer.</span> Per-term reward overlay showing each component’s weight and contribution while users manipulate the scene, confirming reward behavior without running a training loop.</p>
+</div>
+<figure id="S3.F2" class="ltx_figure"><img src="2603.20147v1/figures/eval_pipeline_idea2.jpg" id="S3.F2.g1" class="ltx_graphics ltx_centering ltx_img_landscape" width="449" height="296" alt="Refer to caption">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 2: </span>Deterministic Evaluation Pipeline. A unified framework for assessing humanoid policies across Isaac Lab (GPU) and MuJoCo (CPU) backends.</figcaption>
+</figure>
+</section>
+<section id="S3.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.3 </span>Training</h3>
+
+<div id="S3.SS3.p1" class="ltx_para">
+<p id="S3.SS3.p1.1" class="ltx_p">A unified entry point manages training, evaluation, and parameter sweeps, supporting both local execution and cloud deployment.</p>
+</div>
+<section id="S3.SS3.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">3.3.1 </span>Training Infrastructure</h4>
+
+<div id="S3.SS3.SSS1.p1" class="ltx_para">
+<p id="S3.SS3.SSS1.p1.1" class="ltx_p">To ensure reproducibility, <span id="S3.SS3.SSS1.p1.1.1" class="ltx_text ltx_font_smallcaps">agile</span> records a lightweight git snapshot (commit hash, branch, and uncommitted diffs) together with YAML configuration dumps for every run. Combined with Docker-based orchestration and W&amp;B logging, experiments are exactly reproducible.</p>
+</div>
+<div id="S3.SS3.SSS1.p2" class="ltx_para">
+<p id="S3.SS3.SSS1.p2.1" class="ltx_p">AGILE also supports structured hyperparameter sweeps through <em id="S3.SS3.SSS1.p2.1.1" class="ltx_emph ltx_font_italic">scaled-dict parameters</em>. Instead of independently sweeping each entry of structured parameter groups (e.g., leg PD gains), scaled-dict allowed for joint-parameter sweeping by scaling a single scaling parameter that is applied to the entire dictionary, preserving relative structure while collapsing the search into a one-dimensional variable. Because AGILE builds on Isaac Lab’s manager architecture, any MDP parameter, not only RL hyperparameters, can participate in these sweeps.</p>
+</div>
+</section>
+<section id="S3.SS3.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">3.3.2 </span>Algorithmic Toolbox</h4>
+
+<div id="S3.SS3.SSS2.p1" class="ltx_para">
+<p id="S3.SS3.SSS2.p1.1" class="ltx_p">AGILE integrates several commonly used stabilization techniques as independently toggleable modules within the training pipeline.</p>
+</div>
+<div id="S3.SS3.SSS2.p2" class="ltx_para">
+<p id="S3.SS3.SSS2.p2.3" class="ltx_p"><span id="S3.SS3.SSS2.p2.3.1" class="ltx_text ltx_font_bold">L2C2 Regularization.</span>
+Given consecutive observations <math id="S3.SS3.SSS2.p2.1.m1" class="ltx_Math" alttext="(\mathbf{x}_{t},\mathbf{x}_{t+1})" display="inline" intent=":literal"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>𝐱</mi><mi>t</mi></msub><mo>,</mo><msub><mi>𝐱</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathbf{x}_{t},\mathbf{x}_{t+1})</annotation></semantics></math>, we form an
+interpolated input
+<math id="S3.SS3.SSS2.p2.2.m2" class="ltx_Math" alttext="\tilde{\mathbf{x}}=\mathbf{x}_{t}+\alpha\,(\mathbf{x}_{t+1}-\mathbf{x}_{t})" display="inline" intent=":literal"><semantics><mrow><mover accent="true"><mi>𝐱</mi><mo>~</mo></mover><mo>=</mo><mrow><msub><mi>𝐱</mi><mi>t</mi></msub><mo>+</mo><mrow><mi>α</mi><mo lspace="0.170em" rspace="0em">​</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝐱</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>𝐱</mi><mi>t</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><annotation encoding="application/x-tex">\tilde{\mathbf{x}}=\mathbf{x}_{t}+\alpha\,(\mathbf{x}_{t+1}-\mathbf{x}_{t})</annotation></semantics></math> with
+<math id="S3.SS3.SSS2.p2.3.m3" class="ltx_Math" alttext="\alpha\sim\mathcal{U}(0,1)" display="inline" intent=":literal"><semantics><mrow><mi>α</mi><mo>∼</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo lspace="0em" rspace="0em">​</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></mrow><annotation encoding="application/x-tex">\alpha\sim\mathcal{U}(0,1)</annotation></semantics></math> and penalize the output change:</p>
+<table id="S3.E1" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.E1.m1" class="ltx_Math" alttext="\mathcal{L}=\lambda_{\pi}\left\lVert\pi(\tilde{\mathbf{x}})-\pi(\mathbf{x}_{t})\right\rVert^{2}+\lambda_{V}\left\lVert V(\tilde{\mathbf{x}^{\mathrm{p}}})-V(\mathbf{x}^{\mathrm{p}}_{t})\right\rVert^{2}," display="block" intent=":literal"><semantics><mrow><mrow><mi class="ltx_font_mathcaligraphic">ℒ</mi><mo>=</mo><mrow><mrow><msub><mi>λ</mi><mi>π</mi></msub><mo lspace="0em" rspace="0em">​</mo><msup><mrow><mo>‖</mo><mrow><mrow><mi>π</mi><mo lspace="0em" rspace="0em">​</mo><mrow><mo stretchy="false">(</mo><mover accent="true"><mi>𝐱</mi><mo>~</mo></mover><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>π</mi><mo lspace="0em" rspace="0em">​</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝐱</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>‖</mo></mrow><mn>2</mn></msup></mrow><mo>+</mo><mrow><msub><mi>λ</mi><mi>V</mi></msub><mo lspace="0em" rspace="0em">​</mo><msup><mrow><mo>‖</mo><mrow><mrow><mi>V</mi><mo lspace="0em" rspace="0em">​</mo><mrow><mo stretchy="false">(</mo><mover accent="true"><msup><mi>𝐱</mi><mi mathvariant="normal">p</mi></msup><mo>~</mo></mover><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>V</mi><mo lspace="0em" rspace="0em">​</mo><mrow><mo stretchy="false">(</mo><msubsup><mi>𝐱</mi><mi>t</mi><mi mathvariant="normal">p</mi></msubsup><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>‖</mo></mrow><mn>2</mn></msup></mrow></mrow></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathcal{L}=\lambda_{\pi}\left\lVert\pi(\tilde{\mathbf{x}})-\pi(\mathbf{x}_{t})\right\rVert^{2}+\lambda_{V}\left\lVert V(\tilde{\mathbf{x}^{\mathrm{p}}})-V(\mathbf{x}^{\mathrm{p}}_{t})\right\rVert^{2},</annotation></semantics></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(1)</span></td>
+</tr></tbody>
+</table>
+<p id="S3.SS3.SSS2.p2.4" class="ltx_p">enforcing local Lipschitz continuity <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">kobayashi2022l2c2</span>]</cite> for smooth,
+hardware-safe actions, also used
+in <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">huang2025learninghumanoidstandingupcontrol</span>]</cite>.</p>
+</div>
+<div id="S3.SS3.SSS2.p3" class="ltx_para">
+<p id="S3.SS3.SSS2.p3.9" class="ltx_p"><span id="S3.SS3.SSS2.p3.9.1" class="ltx_text ltx_font_bold">Online Reward Normalization.</span>
+Rewards are normalized <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">andrychowicz2021matters</span>]</cite> by a running standard deviation,</p>
+<table id="S3.E2" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.E2.m1" class="ltx_Math" alttext="\hat{r}_{t}=\frac{r_{t}}{\sigma_{r}\cdot\phi_{\gamma}\cdot c+\epsilon}," display="block" intent=":literal"><semantics><mrow><mrow><msub><mover accent="true"><mi>r</mi><mo>^</mo></mover><mi>t</mi></msub><mo>=</mo><mfrac><msub><mi>r</mi><mi>t</mi></msub><mrow><mrow><msub><mi>σ</mi><mi>r</mi></msub><mo lspace="0.222em" rspace="0.222em">⋅</mo><msub><mi>ϕ</mi><mi>γ</mi></msub><mo lspace="0.222em" rspace="0.222em">⋅</mo><mi>c</mi></mrow><mo>+</mo><mi>ϵ</mi></mrow></mfrac></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">\hat{r}_{t}=\frac{r_{t}}{\sigma_{r}\cdot\phi_{\gamma}\cdot c+\epsilon},</annotation></semantics></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2)</span></td>
+</tr></tbody>
+</table>
+<p id="S3.SS3.SSS2.p3.8" class="ltx_p">where <math id="S3.SS3.SSS2.p3.1.m1" class="ltx_Math" alttext="\epsilon=10^{-2}" display="inline" intent=":literal"><semantics><mrow><mi>ϵ</mi><mo>=</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\epsilon=10^{-2}</annotation></semantics></math> prevents division by zero, <math id="S3.SS3.SSS2.p3.2.m2" class="ltx_Math" alttext="\sigma_{r}" display="inline" intent=":literal"><semantics><msub><mi>σ</mi><mi>r</mi></msub><annotation encoding="application/x-tex">\sigma_{r}</annotation></semantics></math> is an EMA standard deviation across the environment batch, <math id="S3.SS3.SSS2.p3.3.m3" class="ltx_Math" alttext="\phi_{\gamma}=1/\sqrt{1-\gamma^{2}}" display="inline" intent=":literal"><semantics><mrow><msub><mi>ϕ</mi><mi>γ</mi></msub><mo>=</mo><mrow><mn>1</mn><mo>/</mo><msqrt><mrow><mn>1</mn><mo>−</mo><msup><mi>γ</mi><mn>2</mn></msup></mrow></msqrt></mrow></mrow><annotation encoding="application/x-tex">\phi_{\gamma}=1/\sqrt{1-\gamma^{2}}</annotation></semantics></math> accounts for discounted return variance, and <math id="S3.SS3.SSS2.p3.4.m4" class="ltx_Math" alttext="c" display="inline" intent=":literal"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math> is a return-scale correction updated as <math id="S3.SS3.SSS2.p3.5.m5" class="ltx_Math" alttext="c\leftarrow\beta\,c+(1-\beta)\,\sigma_{G}\cdot c" display="inline" intent=":literal"><semantics><mrow><mi>c</mi><mo stretchy="false">←</mo><mrow><mrow><mi>β</mi><mo lspace="0.170em" rspace="0em">​</mo><mi>c</mi></mrow><mo>+</mo><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>−</mo><mi>β</mi></mrow><mo stretchy="false">)</mo></mrow><mo lspace="0.170em" rspace="0em">​</mo><msub><mi>σ</mi><mi>G</mi></msub></mrow><mo lspace="0.222em" rspace="0.222em">⋅</mo><mi>c</mi></mrow></mrow></mrow><annotation encoding="application/x-tex">c\leftarrow\beta\,c+(1-\beta)\,\sigma_{G}\cdot c</annotation></semantics></math>, where <math id="S3.SS3.SSS2.p3.6.m6" class="ltx_Math" alttext="\sigma_{G}" display="inline" intent=":literal"><semantics><msub><mi>σ</mi><mi>G</mi></msub><annotation encoding="application/x-tex">\sigma_{G}</annotation></semantics></math> is the GAE return standard deviation. Because rewards are divided by <math id="S3.SS3.SSS2.p3.7.m7" class="ltx_Math" alttext="c" display="inline" intent=":literal"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>, the product <math id="S3.SS3.SSS2.p3.8.m8" class="ltx_Math" alttext="\sigma_{G}\cdot c" display="inline" intent=":literal"><semantics><mrow><msub><mi>σ</mi><mi>G</mi></msub><mo lspace="0.222em" rspace="0.222em">⋅</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">\sigma_{G}\cdot c</annotation></semantics></math> is invariant to the current normalization, making training largely invariant to reward magnitude changes during curriculum.</p>
+</div>
+<div id="S3.SS3.SSS2.p4" class="ltx_para">
+<p id="S3.SS3.SSS2.p4.3" class="ltx_p"><span id="S3.SS3.SSS2.p4.3.1" class="ltx_text ltx_font_bold">Value-Bootstrapped Terminations.</span>
+Standard GAE bootstraps the value to zero at termination. The conventional remedy—a sparse penalty <math id="S3.SS3.SSS2.p4.1.m1" class="ltx_Math" alttext="p" display="inline" intent=":literal"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>—is fragile: <math id="S3.SS3.SSS2.p4.2.m2" class="ltx_Math" alttext="p" display="inline" intent=":literal"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> must satisfy <math id="S3.SS3.SSS2.p4.3.m3" class="ltx_Math" alttext="p&lt;V(\mathbf{x}_{T})" display="inline" intent=":literal"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mrow><mi>V</mi><mo lspace="0em" rspace="0em">​</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝐱</mi><mi>T</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><annotation encoding="application/x-tex">p&lt;V(\mathbf{x}_{T})</annotation></semantics></math> for all terminal states, otherwise the agent prefers dying over continuing when expected returns are negative. We instead modify the terminal reward as</p>
+<table id="S3.E3" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.E3.m1" class="ltx_Math" alttext="\hat{r}_{T}\leftarrow\hat{r}_{T}+\gamma\,V(\mathbf{x}_{T})+\begin{cases}-\sigma&amp;\text{bad (e.g.\ falling)}\\
++\sigma&amp;\text{good (e.g.\ reaching goal)}\\
+\phantom{+}0&amp;\text{neutral (e.g.\ timeout)}\end{cases}" display="block" intent=":literal"><semantics><mrow><msub><mover accent="true"><mi>r</mi><mo>^</mo></mover><mi>T</mi></msub><mo stretchy="false">←</mo><mrow><msub><mover accent="true"><mi>r</mi><mo>^</mo></mover><mi>T</mi></msub><mo>+</mo><mrow><mi>γ</mi><mo lspace="0.170em" rspace="0em">​</mo><mi>V</mi><mo lspace="0em" rspace="0em">​</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝐱</mi><mi>T</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><mo>{</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd class="ltx_align_left" columnalign="left"><mrow><mo>−</mo><mi>σ</mi></mrow></mtd><mtd class="ltx_align_left" columnalign="left"><mtext>bad (e.g. falling)</mtext></mtd></mtr><mtr><mtd class="ltx_align_left" columnalign="left"><mrow><mo>+</mo><mi>σ</mi></mrow></mtd><mtd class="ltx_align_left" columnalign="left"><mtext>good (e.g. reaching goal)</mtext></mtd></mtr><mtr><mtd class="ltx_align_left" columnalign="left"><mn>0</mn></mtd><mtd class="ltx_align_left" columnalign="left"><mtext>neutral (e.g. timeout)</mtext></mtd></mtr></mtable></mrow></mrow></mrow><annotation encoding="application/x-tex">\hat{r}_{T}\leftarrow\hat{r}_{T}+\gamma\,V(\mathbf{x}_{T})+\begin{cases}-\sigma&amp;\text{bad (e.g.\ falling)}\\
++\sigma&amp;\text{good (e.g.\ reaching goal)}\\
+\phantom{+}0&amp;\text{neutral (e.g.\ timeout)}\end{cases}</annotation></semantics></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(3)</span></td>
+</tr></tbody>
+</table>
+</div>
+<div id="S3.SS3.SSS2.p5" class="ltx_para">
+<p id="S3.SS3.SSS2.p5.8" class="ltx_p">The <math id="S3.SS3.SSS2.p5.1.m1" class="ltx_Math" alttext="\gamma V(\mathbf{x}_{T})" display="inline" intent=":literal"><semantics><mrow><mi>γ</mi><mo lspace="0em" rspace="0em">​</mo><mi>V</mi><mo lspace="0em" rspace="0em">​</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝐱</mi><mi>T</mi></msub><mo stretchy="false">)</mo></mrow></mrow><annotation encoding="application/x-tex">\gamma V(\mathbf{x}_{T})</annotation></semantics></math> term makes termination value-neutral (as if the episode continued), while <math id="S3.SS3.SSS2.p5.2.m2" class="ltx_Math" alttext="\sigma&gt;0" display="inline" intent=":literal"><semantics><mrow><mi>σ</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\sigma&gt;0</annotation></semantics></math> shifts the outcome to be strictly worse or better than continuing. Because <math id="S3.SS3.SSS2.p5.3.m3" class="ltx_Math" alttext="\sigma" display="inline" intent=":literal"><semantics><mi>σ</mi><annotation encoding="application/x-tex">\sigma</annotation></semantics></math> operates after reward normalization, it remains scale-invariant (<math id="S3.SS3.SSS2.p5.4.m4" class="ltx_Math" alttext="\sigma{=}5" display="inline" intent=":literal"><semantics><mrow><mi>σ</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">\sigma{=}5</annotation></semantics></math> for all tasks). This is related to potential-based shaping <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">ng1999policy</span>]</cite>, applied only at terminal states. The modified Bellman operator is a <math id="S3.SS3.SSS2.p5.5.m5" class="ltx_Math" alttext="\gamma" display="inline" intent=":literal"><semantics><mi>γ</mi><annotation encoding="application/x-tex">\gamma</annotation></semantics></math>-contraction; with <math id="S3.SS3.SSS2.p5.6.m6" class="ltx_Math" alttext="\gamma{=}0.99" display="inline" intent=":literal"><semantics><mrow><mi>γ</mi><mo>=</mo><mn>0.99</mn></mrow><annotation encoding="application/x-tex">\gamma{=}0.99</annotation></semantics></math>, a bad termination offset of <math id="S3.SS3.SSS2.p5.7.m7" class="ltx_Math" alttext="\sigma{=}5" display="inline" intent=":literal"><semantics><mrow><mi>σ</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">\sigma{=}5</annotation></semantics></math> amplifies to an effective shift of <math id="S3.SS3.SSS2.p5.8.m8" class="ltx_Math" alttext="500" display="inline" intent=":literal"><semantics><mn>500</mn><annotation encoding="application/x-tex">500</annotation></semantics></math> in value space.</p>
+</div>
+<div id="S3.SS3.SSS2.p6" class="ltx_para">
+<p id="S3.SS3.SSS2.p6.12" class="ltx_p"><span id="S3.SS3.SSS2.p6.12.1" class="ltx_text ltx_font_bold">Virtual Harness.</span>
+Much like a physical harness that supports a person learning to walk, external PD forces applied to the root body stabilize the robot during early training, preventing immediate collapse before the policy can discover useful behaviors:
+<math id="S3.SS3.SSS2.p6.1.m1" class="ltx_Math" alttext="\boldsymbol{\tau}_{\mathrm{h}}=K_{p}\,\mathbf{e}_{q}-K_{d}\,\boldsymbol{\omega}" display="inline" intent=":literal"><semantics><mrow><msub><mi>𝝉</mi><mi mathvariant="normal">h</mi></msub><mo>=</mo><mrow><mrow><msub><mi>K</mi><mi>p</mi></msub><mo lspace="0em" rspace="0em">​</mo><msub><mi>𝐞</mi><mi>q</mi></msub></mrow><mo>−</mo><mrow><msub><mi>K</mi><mi>d</mi></msub><mo lspace="0em" rspace="0em">​</mo><mi>𝝎</mi></mrow></mrow></mrow><annotation encoding="application/x-tex">\boldsymbol{\tau}_{\mathrm{h}}=K_{p}\,\mathbf{e}_{q}-K_{d}\,\boldsymbol{\omega}</annotation></semantics></math>, 
+<math id="S3.SS3.SSS2.p6.2.m2" class="ltx_Math" alttext="\mathbf{f}_{\mathrm{h}}=K_{p}\,(h^{*}-h)-K_{d}\,\dot{h}" display="inline" intent=":literal"><semantics><mrow><msub><mi>𝐟</mi><mi mathvariant="normal">h</mi></msub><mo>=</mo><mrow><mrow><msub><mi>K</mi><mi>p</mi></msub><mo lspace="0em" rspace="0em">​</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>h</mi><mo>∗</mo></msup><mo>−</mo><mi>h</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><msub><mi>K</mi><mi>d</mi></msub><mo lspace="0em" rspace="0em">​</mo><mover accent="true"><mi>h</mi><mo>˙</mo></mover></mrow></mrow></mrow><annotation encoding="application/x-tex">\mathbf{f}_{\mathrm{h}}=K_{p}\,(h^{*}-h)-K_{d}\,\dot{h}</annotation></semantics></math>,
+where <math id="S3.SS3.SSS2.p6.3.m3" class="ltx_Math" alttext="K_{p}" display="inline" intent=":literal"><semantics><msub><mi>K</mi><mi>p</mi></msub><annotation encoding="application/x-tex">K_{p}</annotation></semantics></math>/<math id="S3.SS3.SSS2.p6.4.m4" class="ltx_Math" alttext="K_{d}" display="inline" intent=":literal"><semantics><msub><mi>K</mi><mi>d</mi></msub><annotation encoding="application/x-tex">K_{d}</annotation></semantics></math> are proportional/derivative gains, <math id="S3.SS3.SSS2.p6.5.m5" class="ltx_Math" alttext="\mathbf{e}_{q}" display="inline" intent=":literal"><semantics><msub><mi>𝐞</mi><mi>q</mi></msub><annotation encoding="application/x-tex">\mathbf{e}_{q}</annotation></semantics></math> is
+the orientation error to upright, <math id="S3.SS3.SSS2.p6.6.m6" class="ltx_Math" alttext="\boldsymbol{\omega}" display="inline" intent=":literal"><semantics><mi>𝝎</mi><annotation encoding="application/x-tex">\boldsymbol{\omega}</annotation></semantics></math> the angular
+velocity, and <math id="S3.SS3.SSS2.p6.7.m7" class="ltx_Math" alttext="h^{*}" display="inline" intent=":literal"><semantics><msup><mi>h</mi><mo>∗</mo></msup><annotation encoding="application/x-tex">h^{*}</annotation></semantics></math>/<math id="S3.SS3.SSS2.p6.8.m8" class="ltx_Math" alttext="h" display="inline" intent=":literal"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math> the desired/current root height. A curriculum scale
+<math id="S3.SS3.SSS2.p6.9.m9" class="ltx_Math" alttext="s\in[0,1]" display="inline" intent=":literal"><semantics><mrow><mi>s</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mrow><annotation encoding="application/x-tex">s\in[0,1]</annotation></semantics></math> multiplies all gains and limits; supported schedules
+are linear decay (<math id="S3.SS3.SSS2.p6.10.m10" class="ltx_Math" alttext="s=1-t/T" display="inline" intent=":literal"><semantics><mrow><mi>s</mi><mo>=</mo><mrow><mn>1</mn><mo>−</mo><mrow><mi>t</mi><mo>/</mo><mi>T</mi></mrow></mrow></mrow><annotation encoding="application/x-tex">s=1-t/T</annotation></semantics></math>), exponential decay
+(<math id="S3.SS3.SSS2.p6.11.m11" class="ltx_Math" alttext="s=e^{(t/T)\ln 0.01}" display="inline" intent=":literal"><semantics><mrow><mi>s</mi><mo>=</mo><msup><mi>e</mi><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>t</mi><mo>/</mo><mi>T</mi></mrow><mo stretchy="false">)</mo></mrow><mo lspace="0.167em" rspace="0em">​</mo><mrow><mi>ln</mi><mo lspace="0.167em">⁡</mo><mn>0.01</mn></mrow></mrow></msup></mrow><annotation encoding="application/x-tex">s=e^{(t/T)\ln 0.01}</annotation></semantics></math>), and an adaptive variant that decreases
+<math id="S3.SS3.SSS2.p6.12.m12" class="ltx_Math" alttext="s" display="inline" intent=":literal"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math> only when the standing ratio exceeds a threshold.</p>
+</div>
+<figure id="S3.F3" class="ltx_figure"><img src="2603.20147v1/figures/decoupled_wbc_white_bg.jpg" id="S3.F3.g1" class="ltx_graphics ltx_centering ltx_img_landscape" width="568" height="435" alt="Refer to caption">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 3: </span>Decoupled whole-body control: upper- and lower-body policies are trained separately. This design allows greater flexibility to meet different application requirements. For example, an IK policy can be used for high-accuracy tasks while a VLA upper-body policy enables autonomous execution with language input.</figcaption>
+</figure>
+<div id="S3.SS3.SSS2.p7" class="ltx_para">
+<p id="S3.SS3.SSS2.p7.2" class="ltx_p"><span id="S3.SS3.SSS2.p7.2.1" class="ltx_text ltx_font_bold">Velocity Profile.</span> 
+When randomizing upper-body joint targets during locomotion training, abrupt
+position jumps can destabilize the lower-body policy. <span id="S3.SS3.SSS2.p7.2.2" class="ltx_text ltx_font_smallcaps">agile</span> provides
+pluggable velocity profiles that interpolate between the current position
+<math id="S3.SS3.SSS2.p7.1.m1" class="ltx_Math" alttext="\mathbf{q}_{t}" display="inline" intent=":literal"><semantics><msub><mi>𝐪</mi><mi>t</mi></msub><annotation encoding="application/x-tex">\mathbf{q}_{t}</annotation></semantics></math> and a sampled target <math id="S3.SS3.SSS2.p7.2.m2" class="ltx_Math" alttext="\mathbf{q}^{*}" display="inline" intent=":literal"><semantics><msup><mi>𝐪</mi><mo>∗</mo></msup><annotation encoding="application/x-tex">\mathbf{q}^{*}</annotation></semantics></math>:</p>
+<ul id="S3.I1" class="ltx_itemize">
+<li id="S3.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i1.p1" class="ltx_para">
+<p id="S3.I1.i1.p1.2" class="ltx_p"><span id="S3.I1.i1.p1.2.1" class="ltx_text ltx_font_bold">EMA.</span> Exponential smoothing:
+<math id="S3.I1.i1.p1.1.m1" class="ltx_Math" alttext="\mathbf{q}_{t+1}=\alpha_{\mathrm{ema}}\,\mathbf{q}^{*}+(1-\alpha_{\mathrm{ema}})\,\mathbf{q}_{t}" display="inline" intent=":literal"><semantics><mrow><msub><mi>𝐪</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mrow><mrow><msub><mi>α</mi><mi>ema</mi></msub><mo lspace="0em" rspace="0em">​</mo><msup><mi>𝐪</mi><mo>∗</mo></msup></mrow><mo>+</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>−</mo><msub><mi>α</mi><mi>ema</mi></msub></mrow><mo stretchy="false">)</mo></mrow><mo lspace="0.170em" rspace="0em">​</mo><msub><mi>𝐪</mi><mi>t</mi></msub></mrow></mrow></mrow><annotation encoding="application/x-tex">\mathbf{q}_{t+1}=\alpha_{\mathrm{ema}}\,\mathbf{q}^{*}+(1-\alpha_{\mathrm{ema}})\,\mathbf{q}_{t}</annotation></semantics></math>, with
+<math id="S3.I1.i1.p1.2.m2" class="ltx_Math" alttext="\alpha_{\mathrm{ema}}" display="inline" intent=":literal"><semantics><msub><mi>α</mi><mi>ema</mi></msub><annotation encoding="application/x-tex">\alpha_{\mathrm{ema}}</annotation></semantics></math> sampled uniformly per trajectory. Smooth, zero-overshoot.</p>
+</div>
+</li>
+<li id="S3.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i2.p1" class="ltx_para">
+<p id="S3.I1.i2.p1.2" class="ltx_p"><span id="S3.I1.i2.p1.2.1" class="ltx_text ltx_font_bold">Trapezoidal.</span> Three-phase motion with bounded
+<math id="S3.I1.i2.p1.1.m1" class="ltx_Math" alttext="a_{\max}" display="inline" intent=":literal"><semantics><msub><mi>a</mi><mi>max</mi></msub><annotation encoding="application/x-tex">a_{\max}</annotation></semantics></math> and <math id="S3.I1.i2.p1.2.m2" class="ltx_Math" alttext="v_{\max}" display="inline" intent=":literal"><semantics><msub><mi>v</mi><mi>max</mi></msub><annotation encoding="application/x-tex">v_{\max}</annotation></semantics></math>: accelerate, cruise, decelerate. Joints can be
+synchronized to finish simultaneously. Physically realistic.</p>
+</div>
+</li>
+<li id="S3.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i3.p1" class="ltx_para">
+<p id="S3.I1.i3.p1.1" class="ltx_p"><span id="S3.I1.i3.p1.1.1" class="ltx_text ltx_font_bold">Linear.</span> Constant-velocity interpolation. Simplest;
+suitable for non-critical joints.</p>
+</div>
+</li>
+</ul>
+<p id="S3.SS3.SSS2.p7.3" class="ltx_p">All profiles support per-joint position and velocity limits.</p>
+</div>
+<div id="S3.SS3.SSS2.p8" class="ltx_para">
+<p id="S3.SS3.SSS2.p8.1" class="ltx_p"><span id="S3.SS3.SSS2.p8.1.1" class="ltx_text ltx_font_bold">Symmetry Augmentation.</span> Observations and actions are mirrored to encourage symmetric locomotion and effectively double training data <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">mittal2024symmetry</span>]</cite>. The mapping is configuration-driven rather than index-based, enabling adaptation to new observation spaces and robot morphologies.</p>
+</div>
+<figure id="S3.T2" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">Table 2: </span>MDP overview and training time (on a single L40) per task.</figcaption>
+<table id="S3.T2.1" class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr id="S3.T2.1.1.1" class="ltx_tr">
+<th id="S3.T2.1.1.1.1" class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.1.1.1.1.1" class="ltx_text" style="font-size:90%;">Task</span></th>
+<th id="S3.T2.1.1.1.2" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.1.1.1.2.1" class="ltx_text" style="font-size:90%;">Robot</span></th>
+<th id="S3.T2.1.1.1.3" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.1.1.1.3.1" class="ltx_text" style="font-size:90%;">Actions</span></th>
+<th id="S3.T2.1.1.1.4" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.1.1.1.4.1" class="ltx_text" style="font-size:90%;">Observation (pol/crit)</span></th>
+<th id="S3.T2.1.1.1.5" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.1.1.1.5.1" class="ltx_text" style="font-size:90%;">Reward dim</span></th>
+<th id="S3.T2.1.1.1.6" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.1.1.1.6.1" class="ltx_text" style="font-size:90%;">Episode</span></th>
+<th id="S3.T2.1.1.1.7" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.1.1.1.7.1" class="ltx_text" style="font-size:90%;">Terrain</span></th>
+<th id="S3.T2.1.1.1.8" class="ltx_td ltx_nopad_r ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.1.1.1.8.1" class="ltx_text" style="font-size:90%;">Training</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr id="S3.T2.1.2.1" class="ltx_tr">
+<td id="S3.T2.1.2.1.1" class="ltx_td ltx_align_left ltx_border_t"><span id="S3.T2.1.2.1.1.1" class="ltx_text" style="font-size:90%;">Locomotion</span></td>
+<td id="S3.T2.1.2.1.2" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.1.2.1.2.1" class="ltx_text" style="font-size:90%;">G1</span></td>
+<td id="S3.T2.1.2.1.3" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.1.2.1.3.1" class="ltx_text" style="font-size:90%;">Leg pos (12)</span></td>
+<td id="S3.T2.1.2.1.4" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.1.2.1.4.1" class="ltx_text" style="font-size:90%;">noisy / + scans</span></td>
+<td id="S3.T2.1.2.1.5" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.1.2.1.5.1" class="ltx_text" style="font-size:90%;">15</span></td>
+<td id="S3.T2.1.2.1.6" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.1.2.1.6.1" class="ltx_text" style="font-size:90%;">30 s</span></td>
+<td id="S3.T2.1.2.1.7" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.1.2.1.7.1" class="ltx_text" style="font-size:90%;">rough</span></td>
+<td id="S3.T2.1.2.1.8" class="ltx_td ltx_nopad_r ltx_align_center ltx_border_t"><span id="S3.T2.1.2.1.8.1" class="ltx_text" style="font-size:90%;">10h</span></td>
+</tr>
+<tr id="S3.T2.1.3.2" class="ltx_tr">
+<td id="S3.T2.1.3.2.1" class="ltx_td ltx_align_left"><span id="S3.T2.1.3.2.1.1" class="ltx_text" style="font-size:90%;">Locomotion</span></td>
+<td id="S3.T2.1.3.2.2" class="ltx_td ltx_align_center"><span id="S3.T2.1.3.2.2.1" class="ltx_text" style="font-size:90%;">T1</span></td>
+<td id="S3.T2.1.3.2.3" class="ltx_td ltx_align_center"><span id="S3.T2.1.3.2.3.1" class="ltx_text" style="font-size:90%;">Leg pos (10)</span></td>
+<td id="S3.T2.1.3.2.4" class="ltx_td ltx_align_center"><span id="S3.T2.1.3.2.4.1" class="ltx_text" style="font-size:90%;">noisy / + vel,ht</span></td>
+<td id="S3.T2.1.3.2.5" class="ltx_td ltx_align_center"><span id="S3.T2.1.3.2.5.1" class="ltx_text" style="font-size:90%;">20</span></td>
+<td id="S3.T2.1.3.2.6" class="ltx_td ltx_align_center"><span id="S3.T2.1.3.2.6.1" class="ltx_text" style="font-size:90%;">30 s</span></td>
+<td id="S3.T2.1.3.2.7" class="ltx_td ltx_align_center"><span id="S3.T2.1.3.2.7.1" class="ltx_text" style="font-size:90%;">rough</span></td>
+<td id="S3.T2.1.3.2.8" class="ltx_td ltx_nopad_r ltx_align_center"><span id="S3.T2.1.3.2.8.1" class="ltx_text" style="font-size:90%;">10h</span></td>
+</tr>
+<tr id="S3.T2.1.4.3" class="ltx_tr">
+<td id="S3.T2.1.4.3.1" class="ltx_td ltx_align_left"><span id="S3.T2.1.4.3.1.1" class="ltx_text" style="font-size:90%;">Loco + Height</span></td>
+<td id="S3.T2.1.4.3.2" class="ltx_td ltx_align_center"><span id="S3.T2.1.4.3.2.1" class="ltx_text" style="font-size:90%;">G1</span></td>
+<td id="S3.T2.1.4.3.3" class="ltx_td ltx_align_center"><span id="S3.T2.1.4.3.3.1" class="ltx_text" style="font-size:90%;">Leg pos (12)</span></td>
+<td id="S3.T2.1.4.3.4" class="ltx_td ltx_align_center"><span id="S3.T2.1.4.3.4.1" class="ltx_text" style="font-size:90%;">noisy / + scans</span></td>
+<td id="S3.T2.1.4.3.5" class="ltx_td ltx_align_center"><span id="S3.T2.1.4.3.5.1" class="ltx_text" style="font-size:90%;">22</span></td>
+<td id="S3.T2.1.4.3.6" class="ltx_td ltx_align_center"><span id="S3.T2.1.4.3.6.1" class="ltx_text" style="font-size:90%;">30 s</span></td>
+<td id="S3.T2.1.4.3.7" class="ltx_td ltx_align_center"><span id="S3.T2.1.4.3.7.1" class="ltx_text" style="font-size:90%;">rough</span></td>
+<td id="S3.T2.1.4.3.8" class="ltx_td ltx_nopad_r ltx_align_center"><span id="S3.T2.1.4.3.8.1" class="ltx_text" style="font-size:90%;">10h</span></td>
+</tr>
+<tr id="S3.T2.1.5.4" class="ltx_tr">
+<td id="S3.T2.1.5.4.1" class="ltx_td ltx_align_left"><span id="S3.T2.1.5.4.1.1" class="ltx_text" style="font-size:90%;">Stand-up</span></td>
+<td id="S3.T2.1.5.4.2" class="ltx_td ltx_align_center"><span id="S3.T2.1.5.4.2.1" class="ltx_text" style="font-size:90%;">G1</span></td>
+<td id="S3.T2.1.5.4.3" class="ltx_td ltx_align_center"><span id="S3.T2.1.5.4.3.1" class="ltx_text" style="font-size:90%;">All joints (rel)</span></td>
+<td id="S3.T2.1.5.4.4" class="ltx_td ltx_align_center"><span id="S3.T2.1.5.4.4.1" class="ltx_text" style="font-size:90%;">noisy / + forces</span></td>
+<td id="S3.T2.1.5.4.5" class="ltx_td ltx_align_center"><span id="S3.T2.1.5.4.5.1" class="ltx_text" style="font-size:90%;">18</span></td>
+<td id="S3.T2.1.5.4.6" class="ltx_td ltx_align_center"><span id="S3.T2.1.5.4.6.1" class="ltx_text" style="font-size:90%;">15 s</span></td>
+<td id="S3.T2.1.5.4.7" class="ltx_td ltx_align_center"><span id="S3.T2.1.5.4.7.1" class="ltx_text" style="font-size:90%;">stand-up</span></td>
+<td id="S3.T2.1.5.4.8" class="ltx_td ltx_nopad_r ltx_align_center"><span id="S3.T2.1.5.4.8.1" class="ltx_text" style="font-size:90%;">25h</span></td>
+</tr>
+<tr id="S3.T2.1.6.5" class="ltx_tr">
+<td id="S3.T2.1.6.5.1" class="ltx_td ltx_align_left"><span id="S3.T2.1.6.5.1.1" class="ltx_text" style="font-size:90%;">Stand-up</span></td>
+<td id="S3.T2.1.6.5.2" class="ltx_td ltx_align_center"><span id="S3.T2.1.6.5.2.1" class="ltx_text" style="font-size:90%;">T1</span></td>
+<td id="S3.T2.1.6.5.3" class="ltx_td ltx_align_center"><span id="S3.T2.1.6.5.3.1" class="ltx_text" style="font-size:90%;">All joints (rel)</span></td>
+<td id="S3.T2.1.6.5.4" class="ltx_td ltx_align_center"><span id="S3.T2.1.6.5.4.1" class="ltx_text" style="font-size:90%;">noisy / + forces</span></td>
+<td id="S3.T2.1.6.5.5" class="ltx_td ltx_align_center"><span id="S3.T2.1.6.5.5.1" class="ltx_text" style="font-size:90%;">18</span></td>
+<td id="S3.T2.1.6.5.6" class="ltx_td ltx_align_center"><span id="S3.T2.1.6.5.6.1" class="ltx_text" style="font-size:90%;">15 s</span></td>
+<td id="S3.T2.1.6.5.7" class="ltx_td ltx_align_center"><span id="S3.T2.1.6.5.7.1" class="ltx_text" style="font-size:90%;">stand-up</span></td>
+<td id="S3.T2.1.6.5.8" class="ltx_td ltx_nopad_r ltx_align_center"><span id="S3.T2.1.6.5.8.1" class="ltx_text" style="font-size:90%;">15h</span></td>
+</tr>
+<tr id="S3.T2.1.7.6" class="ltx_tr">
+<td id="S3.T2.1.7.6.1" class="ltx_td ltx_align_left"><span id="S3.T2.1.7.6.1.1" class="ltx_text" style="font-size:90%;">Motion Imitation</span></td>
+<td id="S3.T2.1.7.6.2" class="ltx_td ltx_align_center"><span id="S3.T2.1.7.6.2.1" class="ltx_text" style="font-size:90%;">G1</span></td>
+<td id="S3.T2.1.7.6.3" class="ltx_td ltx_align_center"><span id="S3.T2.1.7.6.3.1" class="ltx_text" style="font-size:90%;">All joints (rel)</span></td>
+<td id="S3.T2.1.7.6.4" class="ltx_td ltx_align_center"><span id="S3.T2.1.7.6.4.1" class="ltx_text" style="font-size:90%;">noisy / + vel</span></td>
+<td id="S3.T2.1.7.6.5" class="ltx_td ltx_align_center"><span id="S3.T2.1.7.6.5.1" class="ltx_text" style="font-size:90%;">9</span></td>
+<td id="S3.T2.1.7.6.6" class="ltx_td ltx_align_center"><span id="S3.T2.1.7.6.6.1" class="ltx_text" style="font-size:90%;">8 s</span></td>
+<td id="S3.T2.1.7.6.7" class="ltx_td ltx_align_center"><span id="S3.T2.1.7.6.7.1" class="ltx_text" style="font-size:90%;">flat</span></td>
+<td id="S3.T2.1.7.6.8" class="ltx_td ltx_nopad_r ltx_align_center"><span id="S3.T2.1.7.6.8.1" class="ltx_text" style="font-size:90%;">6h</span></td>
+</tr>
+<tr id="S3.T2.1.8.7" class="ltx_tr">
+<td id="S3.T2.1.8.7.1" class="ltx_td ltx_align_left ltx_border_bb"><span id="S3.T2.1.8.7.1.1" class="ltx_text" style="font-size:90%;">Pick &amp; Place</span></td>
+<td id="S3.T2.1.8.7.2" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.1.8.7.2.1" class="ltx_text" style="font-size:90%;">G1</span></td>
+<td id="S3.T2.1.8.7.3" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.1.8.7.3.1" class="ltx_text" style="font-size:90%;">Upper body</span></td>
+<td id="S3.T2.1.8.7.4" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.1.8.7.4.1" class="ltx_text" style="font-size:90%;">tracking / –</span></td>
+<td id="S3.T2.1.8.7.5" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.1.8.7.5.1" class="ltx_text" style="font-size:90%;">10</span></td>
+<td id="S3.T2.1.8.7.6" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.1.8.7.6.1" class="ltx_text" style="font-size:90%;">25 s</span></td>
+<td id="S3.T2.1.8.7.7" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.1.8.7.7.1" class="ltx_text" style="font-size:90%;">flat</span></td>
+<td id="S3.T2.1.8.7.8" class="ltx_td ltx_nopad_r ltx_align_center ltx_border_bb"><span id="S3.T2.1.8.7.8.1" class="ltx_text" style="font-size:90%;">10h</span></td>
+</tr>
+</tbody>
+</table>
+</figure>
+<div id="S3.SS3.SSS2.p9" class="ltx_para">
+<p id="S3.SS3.SSS2.p9.1" class="ltx_p"><span id="S3.SS3.SSS2.p9.1.1" class="ltx_text ltx_font_bold">Additional Modules.</span>
+These include adaptive command
+sampling (biasing toward low-speed balancing), upper-body velocity
+profiles (EMA, trapezoidal, linear interpolation), state caching for efficient resets (a one-time rollout collects diverse initial states, e.g. fallen poses, avoiding repeated drop simulations during training), and teacher-student distillation following RSL-RL with symmetry mirror loss.</p>
+</div>
+<div id="S3.SS3.SSS2.p10" class="ltx_para">
+<p id="S3.SS3.SSS2.p10.1" class="ltx_p">Transferring policies to real hardware requires both <em id="S3.SS3.SSS2.p10.1.1" class="ltx_emph ltx_font_italic">smooth</em> and <em id="S3.SS3.SSS2.p10.1.2" class="ltx_emph ltx_font_italic">robust</em> control. AGILE encourages smoothness through action regularization penalties (norm, rate, acceleration) and L2C2, reducing high-frequency actions that real actuators cannot reliably track. Robustness is improved through domain randomization—randomizing dynamics, mass properties, contact parameters, and actuator delays—as established in sim-to-real transfer literature <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">tobin2017domain</span>, <span class="ltx_ref ltx_missing_citation ltx_ref_self">peng2018sim2real</span>]</cite>, together with external perturbations and sensor noise injection. These techniques are not new learning algorithms; instead, AGILE provides a unified implementation and empirical characterization of commonly used stabilization methods within a reproducible humanoid RL workflow.</p>
+</div>
+</section>
+</section>
+<section id="S3.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.4 </span>Evaluation</h3>
+
+<div id="S3.SS4.p1" class="ltx_para">
+<p id="S3.SS4.p1.1" class="ltx_p">Comparing policies solely with stochastic rollouts can mask failure modes that become visible only under controlled conditions. <span id="S3.SS4.p1.1.1" class="ltx_text ltx_font_smallcaps">agile</span> therefore complements stochastic rollouts with deterministic scenario-driven testing, where parallel environments receive identical scripted command sequences (e.g., velocity sweeps or height ramps). The resulting evaluation pipeline combines stochastic rollouts, deterministic scenario tests, and motion-quality diagnostics within a unified workflow. Crucially, this pipeline operates seamlessly in both Isaac Lab and MuJoCo, allowing the same evaluation scenarios and metrics to be applied during sim-to-sim validation (Figure <a href="#S3.F2" title="Figure 2 ‣ 3.2 Training Preparation ‣ 3 System Design ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a>).</p>
+</div>
+<div id="S3.SS4.p2" class="ltx_para">
+<p id="S3.SS4.p2.1" class="ltx_p">Beyond aggregate task tracking, the pipeline analyzes deployment-critical per-joint motion-quality metrics such as RMS acceleration, jerk, and joint-limit violations. Deterministic scenarios provide reproducible, lower-variance benchmarks for regression testing, while stochastic rollouts evaluate robustness under randomized command distributions. All evaluation results are exported as standalone interactive HTML reports, enabling rapid diagnosis of behaviors that may threaten hardware safety prior to deployment.</p>
+</div>
+</section>
+<section id="S3.SS5" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.5 </span>Deployment</h3>
+
+<div id="S3.SS5.p1" class="ltx_para">
+<p id="S3.SS5.p1.1" class="ltx_p"><span id="S3.SS5.p1.1.1" class="ltx_text ltx_font_smallcaps">agile</span> builds on Isaac Lab’s I/O descriptor system, which exports trained policies to TorchScript alongside auto-generated YAML configurations capturing the full I/O contract (joint names, observation ordering, history buffers, action scaling). On top of this, <span id="S3.SS5.p1.1.2" class="ltx_text ltx_font_smallcaps">agile</span> provides export tooling and a complete sim-to-sim validation pipeline in MuJoCo that reads the descriptors to automatically reconstruct observation assembly, action mapping, and history buffers for inference. Hardware-specific driver integrations reuse the same I/O contract, so the core inference logic remains identical; only the state provider changes. The descriptor also facilitates translating the inference stack from Python to C++ for real-time execution on hardware.</p>
+</div>
+</section>
+</section>
+<section id="S4" class="ltx_section" lang="en">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">4 </span>Case Studies &amp; Results</h2>
+
+<figure id="S4.F4" class="ltx_figure"><img src="2603.20147v1/x2.png" id="S4.F4.g1" class="ltx_graphics ltx_centering ltx_img_landscape" width="830" height="549" alt="Refer to caption">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 4: </span>Velocity and height command tracking in MuJoCo. Each subplot shows a sweep of commanded values (dashed) versus actual robot response (solid) for forward velocity, lateral velocity, yaw rate, and standing height. The solid line is smoothed with the actual showing as the lighter shadow for easier visualization.</figcaption>
+</figure>
+<div id="S4.p1" class="ltx_para">
+<p id="S4.p1.1" class="ltx_p">We validate <span id="S4.p1.1.1" class="ltx_text ltx_font_smallcaps">agile</span> across five representative tasks using the Unitree G1 and Booster T1 platforms. Table <a href="#S3.T2" title="Table 2 ‣ 3.3.2 Algorithmic Toolbox ‣ 3.3 Training ‣ 3 System Design ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a> provides a comprehensive summary of the MDP configurations and the estimated training hours required for each task on a single L40. Although the reward signal often reaches convergence relatively early, we typically extend training runs until <math id="S4.p1.1.m1" class="ltx_Math" alttext="20" display="inline" intent=":literal"><semantics><mn>20</mn><annotation encoding="application/x-tex">20</annotation></semantics></math>k steps reached to ensure optimal policy performance and stability.</p>
+</div>
+<section id="S4.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.1 </span>Velocity Tracking on Unitree G1 and Booster T1</h3>
+
+<div id="S4.SS1.p1" class="ltx_para">
+<p id="S4.SS1.p1.1" class="ltx_p">The baseline locomotion policy tracks commanded <math id="S4.SS1.p1.1.m1" class="ltx_Math" alttext="(v_{x},v_{y},\omega_{z})" display="inline" intent=":literal"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>v</mi><mi>x</mi></msub><mo>,</mo><msub><mi>v</mi><mi>y</mi></msub><mo>,</mo><msub><mi>ω</mi><mi>z</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(v_{x},v_{y},\omega_{z})</annotation></semantics></math> using leg-joint position offsets (Figure <a href="#S5.F8" title="Figure 8 ‣ 5.2 Sim-to-Real Transfer ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">8</span></a>a,b).
+To encourage robustness, upper-body joints receive random targets via trapezoidal velocity profiles. This task demonstrates <span id="S4.SS1.p1.1.1" class="ltx_text ltx_font_smallcaps">agile</span>’s generic configuration architecture. Both the Unitree G1 and Booster T1 use the exact same MDP template and training pipeline. We utilize a preparation module to ensure the defined symmetry terms are correct, allowing us to safely apply <span id="S4.SS1.p1.1.2" class="ltx_text ltx_font_smallcaps">agile</span>’s symmetry augmentation to double the effective training data and enforce symmetric gaits. Additionally, the virtual harness is utilized for early stabilization, preventing initial episode collapse. All locomotion tasks train on procedurally generated rough terrain with an adaptive difficulty curriculum <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">rudin2022learning</span>]</cite>.</p>
+</div>
+</section>
+<section id="S4.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.2 </span>Height-Controlled Locomotion on Unitree G1</h3>
+
+<figure id="S4.T3" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">Table 3: </span>Sim-to-Sim evaluation of tracking on Unitree G1 velocity+height control.
+Left: deterministic sweep (50 s) vs. random commands at
+increasing durations (2 s resample interval) over 10 runs.
+Right: teacher vs. distilled student policies
+(deterministic sweep, 50 s).</figcaption>
+<div id="S4.T3.28" class="ltx_inline-block ltx_align_center ltx_transformed_outer" style="width:433.6pt;height:94.3pt;vertical-align:-44.4pt;"><span class="ltx_transformed_inner" style="transform:translate(19.0pt,-4.1pt) scale(1.09603963554105,1.09603963554105) ;">
+<table id="S4.T3.28.28" class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr id="S4.T3.28.28.29.1" class="ltx_tr">
+<th id="S4.T3.28.28.29.1.1" class="ltx_td ltx_th ltx_th_row ltx_border_tt"></th>
+<th id="S4.T3.28.28.29.1.2" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt" colspan="4">Teacher (Privileged)</th>
+<th id="S4.T3.28.28.29.1.3" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt" colspan="2">Student (Distilled)</th>
+</tr>
+<tr id="S4.T3.28.28.30.2" class="ltx_tr">
+<th id="S4.T3.28.28.30.2.1" class="ltx_td ltx_th ltx_th_row"></th>
+<th id="S4.T3.28.28.30.2.2" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t">Det.</th>
+<th id="S4.T3.28.28.30.2.3" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t" colspan="3">Random</th>
+<th id="S4.T3.28.28.30.2.4" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t" colspan="2">Deterministic</th>
+</tr>
+<tr id="S4.T3.28.28.31.3" class="ltx_tr">
+<th id="S4.T3.28.28.31.3.1" class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row">Duration</th>
+<th id="S4.T3.28.28.31.3.2" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t">50s</th>
+<th id="S4.T3.28.28.31.3.3" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t">50s</th>
+<th id="S4.T3.28.28.31.3.4" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t">200s</th>
+<th id="S4.T3.28.28.31.3.5" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t">500s</th>
+<th id="S4.T3.28.28.31.3.6" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t">RNN (50s)</th>
+<th id="S4.T3.28.28.31.3.7" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t">Hist. (50s)</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr id="S4.T3.7.7.7" class="ltx_tr">
+<th id="S4.T3.1.1.1.1" class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">
+<math id="S4.T3.1.1.1.1.m1" class="ltx_Math" alttext="v_{x}" display="inline" intent=":literal"><semantics><msub><mi>v</mi><mi>x</mi></msub><annotation encoding="application/x-tex">v_{x}</annotation></semantics></math> (m/s)</th>
+<td id="S4.T3.7.7.7.8" class="ltx_td ltx_align_center ltx_border_t"><span id="S4.T3.7.7.7.8.1" class="ltx_text ltx_font_bold">0.070</span></td>
+<td id="S4.T3.3.3.3.3" class="ltx_td ltx_align_center ltx_border_t">
+<math id="S4.T3.2.2.2.2.m1" class="ltx_Math" alttext="0.142" display="inline" intent=":literal"><semantics><mn>0.142</mn><annotation encoding="application/x-tex">0.142</annotation></semantics></math><math id="S4.T3.3.3.3.3.m2" class="ltx_Math" alttext="\pm" display="inline" intent=":literal"><semantics><mo mathsize="0.700em">±</mo><annotation encoding="application/x-tex">\pm</annotation></semantics></math><span id="S4.T3.3.3.3.3.1" class="ltx_text" style="font-size:70%;">0.019</span>
+</td>
+<td id="S4.T3.5.5.5.5" class="ltx_td ltx_align_center ltx_border_t">
+<math id="S4.T3.4.4.4.4.m1" class="ltx_Math" alttext="0.136" display="inline" intent=":literal"><semantics><mn>0.136</mn><annotation encoding="application/x-tex">0.136</annotation></semantics></math><math id="S4.T3.5.5.5.5.m2" class="ltx_Math" alttext="\pm" display="inline" intent=":literal"><semantics><mo mathsize="0.700em">±</mo><annotation encoding="application/x-tex">\pm</annotation></semantics></math><span id="S4.T3.5.5.5.5.1" class="ltx_text" style="font-size:70%;">0.010</span>
+</td>
+<td id="S4.T3.7.7.7.7" class="ltx_td ltx_align_center ltx_border_t">
+<math id="S4.T3.6.6.6.6.m1" class="ltx_Math" alttext="0.136" display="inline" intent=":literal"><semantics><mn>0.136</mn><annotation encoding="application/x-tex">0.136</annotation></semantics></math><math id="S4.T3.7.7.7.7.m2" class="ltx_Math" alttext="\pm" display="inline" intent=":literal"><semantics><mo mathsize="0.700em">±</mo><annotation encoding="application/x-tex">\pm</annotation></semantics></math><span id="S4.T3.7.7.7.7.1" class="ltx_text" style="font-size:70%;">0.003</span>
+</td>
+<td id="S4.T3.7.7.7.9" class="ltx_td ltx_align_center ltx_border_t">0.116</td>
+<td id="S4.T3.7.7.7.10" class="ltx_td ltx_align_center ltx_border_t">0.097</td>
+</tr>
+<tr id="S4.T3.14.14.14" class="ltx_tr">
+<th id="S4.T3.8.8.8.1" class="ltx_td ltx_align_left ltx_th ltx_th_row">
+<math id="S4.T3.8.8.8.1.m1" class="ltx_Math" alttext="v_{y}" display="inline" intent=":literal"><semantics><msub><mi>v</mi><mi>y</mi></msub><annotation encoding="application/x-tex">v_{y}</annotation></semantics></math> (m/s)</th>
+<td id="S4.T3.14.14.14.8" class="ltx_td ltx_align_center"><span id="S4.T3.14.14.14.8.1" class="ltx_text ltx_font_bold">0.083</span></td>
+<td id="S4.T3.10.10.10.3" class="ltx_td ltx_align_center">
+<math id="S4.T3.9.9.9.2.m1" class="ltx_Math" alttext="0.118" display="inline" intent=":literal"><semantics><mn>0.118</mn><annotation encoding="application/x-tex">0.118</annotation></semantics></math><math id="S4.T3.10.10.10.3.m2" class="ltx_Math" alttext="\pm" display="inline" intent=":literal"><semantics><mo mathsize="0.700em">±</mo><annotation encoding="application/x-tex">\pm</annotation></semantics></math><span id="S4.T3.10.10.10.3.1" class="ltx_text" style="font-size:70%;">0.013</span>
+</td>
+<td id="S4.T3.12.12.12.5" class="ltx_td ltx_align_center">
+<math id="S4.T3.11.11.11.4.m1" class="ltx_Math" alttext="0.110" display="inline" intent=":literal"><semantics><mn>0.110</mn><annotation encoding="application/x-tex">0.110</annotation></semantics></math><math id="S4.T3.12.12.12.5.m2" class="ltx_Math" alttext="\pm" display="inline" intent=":literal"><semantics><mo mathsize="0.700em">±</mo><annotation encoding="application/x-tex">\pm</annotation></semantics></math><span id="S4.T3.12.12.12.5.1" class="ltx_text" style="font-size:70%;">0.006</span>
+</td>
+<td id="S4.T3.14.14.14.7" class="ltx_td ltx_align_center">
+<math id="S4.T3.13.13.13.6.m1" class="ltx_Math" alttext="0.110" display="inline" intent=":literal"><semantics><mn>0.110</mn><annotation encoding="application/x-tex">0.110</annotation></semantics></math><math id="S4.T3.14.14.14.7.m2" class="ltx_Math" alttext="\pm" display="inline" intent=":literal"><semantics><mo mathsize="0.700em">±</mo><annotation encoding="application/x-tex">\pm</annotation></semantics></math><span id="S4.T3.14.14.14.7.1" class="ltx_text" style="font-size:70%;">0.002</span>
+</td>
+<td id="S4.T3.14.14.14.9" class="ltx_td ltx_align_center">0.110</td>
+<td id="S4.T3.14.14.14.10" class="ltx_td ltx_align_center">0.087</td>
+</tr>
+<tr id="S4.T3.21.21.21" class="ltx_tr">
+<th id="S4.T3.15.15.15.1" class="ltx_td ltx_align_left ltx_th ltx_th_row">
+<math id="S4.T3.15.15.15.1.m1" class="ltx_Math" alttext="\omega_{z}" display="inline" intent=":literal"><semantics><msub><mi>ω</mi><mi>z</mi></msub><annotation encoding="application/x-tex">\omega_{z}</annotation></semantics></math> (rad/s)</th>
+<td id="S4.T3.21.21.21.8" class="ltx_td ltx_align_center"><span id="S4.T3.21.21.21.8.1" class="ltx_text ltx_font_bold">0.074</span></td>
+<td id="S4.T3.17.17.17.3" class="ltx_td ltx_align_center">
+<math id="S4.T3.16.16.16.2.m1" class="ltx_Math" alttext="0.116" display="inline" intent=":literal"><semantics><mn>0.116</mn><annotation encoding="application/x-tex">0.116</annotation></semantics></math><math id="S4.T3.17.17.17.3.m2" class="ltx_Math" alttext="\pm" display="inline" intent=":literal"><semantics><mo mathsize="0.700em">±</mo><annotation encoding="application/x-tex">\pm</annotation></semantics></math><span id="S4.T3.17.17.17.3.1" class="ltx_text" style="font-size:70%;">0.013</span>
+</td>
+<td id="S4.T3.19.19.19.5" class="ltx_td ltx_align_center">
+<math id="S4.T3.18.18.18.4.m1" class="ltx_Math" alttext="0.113" display="inline" intent=":literal"><semantics><mn>0.113</mn><annotation encoding="application/x-tex">0.113</annotation></semantics></math><math id="S4.T3.19.19.19.5.m2" class="ltx_Math" alttext="\pm" display="inline" intent=":literal"><semantics><mo mathsize="0.700em">±</mo><annotation encoding="application/x-tex">\pm</annotation></semantics></math><span id="S4.T3.19.19.19.5.1" class="ltx_text" style="font-size:70%;">0.007</span>
+</td>
+<td id="S4.T3.21.21.21.7" class="ltx_td ltx_align_center">
+<math id="S4.T3.20.20.20.6.m1" class="ltx_Math" alttext="0.112" display="inline" intent=":literal"><semantics><mn>0.112</mn><annotation encoding="application/x-tex">0.112</annotation></semantics></math><math id="S4.T3.21.21.21.7.m2" class="ltx_Math" alttext="\pm" display="inline" intent=":literal"><semantics><mo mathsize="0.700em">±</mo><annotation encoding="application/x-tex">\pm</annotation></semantics></math><span id="S4.T3.21.21.21.7.1" class="ltx_text" style="font-size:70%;">0.003</span>
+</td>
+<td id="S4.T3.21.21.21.9" class="ltx_td ltx_align_center">0.117</td>
+<td id="S4.T3.21.21.21.10" class="ltx_td ltx_align_center">0.079</td>
+</tr>
+<tr id="S4.T3.28.28.28" class="ltx_tr">
+<th id="S4.T3.22.22.22.1" class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb">
+<math id="S4.T3.22.22.22.1.m1" class="ltx_Math" alttext="h" display="inline" intent=":literal"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math> (m)</th>
+<td id="S4.T3.28.28.28.8" class="ltx_td ltx_align_center ltx_border_bb"><span id="S4.T3.28.28.28.8.1" class="ltx_text ltx_font_bold">0.035</span></td>
+<td id="S4.T3.24.24.24.3" class="ltx_td ltx_align_center ltx_border_bb">
+<math id="S4.T3.23.23.23.2.m1" class="ltx_Math" alttext="0.046" display="inline" intent=":literal"><semantics><mn>0.046</mn><annotation encoding="application/x-tex">0.046</annotation></semantics></math><math id="S4.T3.24.24.24.3.m2" class="ltx_Math" alttext="\pm" display="inline" intent=":literal"><semantics><mo mathsize="0.700em">±</mo><annotation encoding="application/x-tex">\pm</annotation></semantics></math><span id="S4.T3.24.24.24.3.1" class="ltx_text" style="font-size:70%;">0.007</span>
+</td>
+<td id="S4.T3.26.26.26.5" class="ltx_td ltx_align_center ltx_border_bb">
+<math id="S4.T3.25.25.25.4.m1" class="ltx_Math" alttext="0.039" display="inline" intent=":literal"><semantics><mn>0.039</mn><annotation encoding="application/x-tex">0.039</annotation></semantics></math><math id="S4.T3.26.26.26.5.m2" class="ltx_Math" alttext="\pm" display="inline" intent=":literal"><semantics><mo mathsize="0.700em">±</mo><annotation encoding="application/x-tex">\pm</annotation></semantics></math><span id="S4.T3.26.26.26.5.1" class="ltx_text" style="font-size:70%;">0.003</span>
+</td>
+<td id="S4.T3.28.28.28.7" class="ltx_td ltx_align_center ltx_border_bb">
+<math id="S4.T3.27.27.27.6.m1" class="ltx_Math" alttext="0.036" display="inline" intent=":literal"><semantics><mn>0.036</mn><annotation encoding="application/x-tex">0.036</annotation></semantics></math><math id="S4.T3.28.28.28.7.m2" class="ltx_Math" alttext="\pm" display="inline" intent=":literal"><semantics><mo mathsize="0.700em">±</mo><annotation encoding="application/x-tex">\pm</annotation></semantics></math><span id="S4.T3.28.28.28.7.1" class="ltx_text" style="font-size:70%;">0.001</span>
+</td>
+<td id="S4.T3.28.28.28.9" class="ltx_td ltx_align_center ltx_border_bb">0.037</td>
+<td id="S4.T3.28.28.28.10" class="ltx_td ltx_align_center ltx_border_bb">0.037</td>
+</tr>
+</tbody>
+</table>
+</span></div>
+</figure>
+<div id="S4.SS2.p1" class="ltx_para">
+<p id="S4.SS2.p1.1" class="ltx_p">This task extends velocity tracking by introducing a commanded pelvis height, requiring the robot to maintain stable locomotion across postures ranging from a deep crouch to a full stance (Figure <a href="#S5.F8" title="Figure 8 ‣ 5.2 Sim-to-Real Transfer ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">8</span></a>a).</p>
+</div>
+<div id="S4.SS2.p2" class="ltx_para">
+<p id="S4.SS2.p2.1" class="ltx_p"><span id="S4.SS2.p2.1.1" class="ltx_text ltx_font_bold">Decoupled WBC architecture.</span> A critical design choice is “separated body control.” The RL policy controls the leg joints exclusively, while the waist and upper-body joints are randomized using a trapezoidal velocity profile during training. This deliberately reserves the upper degrees of freedom, enabling an independent Inverse Kinematics (IK) or Vision-Language-Action (VLA) controller to take full ownership of the torso and arms at deployment (Figure <a href="#S3.F3" title="Figure 3 ‣ 3.3.2 Algorithmic Toolbox ‣ 3.3 Training ‣ 3 System Design ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a>).</p>
+</div>
+<div id="S4.SS2.p3" class="ltx_para">
+<p id="S4.SS2.p3.1" class="ltx_p">This task also serves as a case study for <span id="S4.SS2.p3.1.1" class="ltx_text ltx_font_smallcaps">agile</span>’s unified evaluation pipeline (Section <a href="#S3.SS4" title="3.4 Evaluation ‣ 3 System Design ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3.4</span></a>), which combines deterministic scenario tests, stochastic rollouts, and shared motion-quality diagnostics. Policies are first evaluated in IsaacLab; we observed that consistent violations of joint limits reliably preclude successful sim-to-sim transfer; policies are thus fine-tuned using these feedback signals. The pipeline then transitions to MuJoCo, employing scripted height-ramp and velocity-sweep scenarios to provide reproducible, low-variance benchmarks for controlled comparison, while stochastic command sampling assesses robustness. As shown in Table <a href="#S4.T3" title="Table 3 ‣ 4.2 Height-Controlled Locomotion on Unitree G1 ‣ 4 Case Studies &amp; Results ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a>, deterministic scenarios produce consistent tracking metrics over short horizons, whereas stochastic rollouts have bigger variance (std is computed with <math id="S4.SS2.p3.1.m1" class="ltx_Math" alttext="10" display="inline" intent=":literal"><semantics><mn>10</mn><annotation encoding="application/x-tex">10</annotation></semantics></math> runs) and require substantially longer durations to converge. This unified evaluation enables consistent quantitative comparisons between the privileged teacher policy and distilled LSTM and history-MLP student architectures (Figure <a href="#S4.F4" title="Figure 4 ‣ 4 Case Studies &amp; Results ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a> and Table <a href="#S4.T3" title="Table 3 ‣ 4.2 Height-Controlled Locomotion on Unitree G1 ‣ 4 Case Studies &amp; Results ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a>), demonstrating that the evaluation pipeline generalizes across different policy structures.</p>
+</div>
+</section>
+<section id="S4.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.3 </span>Stand-Up on Booster T1 &amp; Unitree G1</h3>
+
+<div id="S4.SS3.p1" class="ltx_para">
+<p id="S4.SS3.p1.1" class="ltx_p">Fall recovery is a complex whole-body control problem where the policy must coordinate all joints to transition from a random fallen configuration to a stable standing pose <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">huang2025learninghumanoidstandingupcontrol</span>]</cite>. Both policies successfully transfer to real hardware (Figure <a href="#S5.F8" title="Figure 8 ‣ 5.2 Sim-to-Real Transfer ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">8</span></a>c,d). To handle the massive scale differences between fine-grained postural rewards and the large sparse bonus for standing, this task relies on online reward normalization. A pre-collected dataset of diverse fallen poses (via <span id="S4.SS3.p1.1.1" class="ltx_text ltx_font_smallcaps">agile</span>’s state caching) provides varied initial configurations without wasting training compute on repeated drops.</p>
+</div>
+</section>
+<section id="S4.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.4 </span>Motion Imitation on Unitree G1</h3>
+
+<div id="S4.SS4.p1" class="ltx_para">
+<p id="S4.SS4.p1.1" class="ltx_p">We formulate a BeyondMimic-style <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">liao2025beyondmimicmotiontrackingversatile</span>]</cite> motion imitation task to demonstrate that <span id="S4.SS4.p1.1.1" class="ltx_text ltx_font_smallcaps">agile</span> generalizes beyond standard command-tracking. The policy tracks an <math id="S4.SS4.p1.1.m1" class="ltx_Math" alttext="8s" display="inline" intent=":literal"><semantics><mrow><mn>8</mn><mo lspace="0em" rspace="0em">​</mo><mi>s</mi></mrow><annotation encoding="application/x-tex">8s</annotation></semantics></math> dancing sequence by sampling harder segments more frequently. Because the actor uses only hardware-available observations (no privileged state), the policy deploys directly to the real Unitree G1 hardware without distillation (Figure <a href="#S5.F8" title="Figure 8 ‣ 5.2 Sim-to-Real Transfer ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">8</span></a>e). The default BeyondMimic setup with our motion reference data failed to transfer even to simulation. Therefore, we applied additional domain randomization and L2C2 regularization to support sim-to-real transfer and suppress high-frequency actuator oscillations during real-world deployment.</p>
+</div>
+</section>
+<section id="S4.SS5" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.5 </span>Loco-Manipulation &amp; VLA Fine-Tuning</h3>
+
+<figure id="S4.F5" class="ltx_figure"><img src="2603.20147v1/figures/vla_post_training.jpg" id="S4.F5.g1" class="ltx_graphics ltx_centering ltx_img_landscape" width="568" height="328" alt="Refer to caption">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 5: </span>GR00T post-training pipeline.
+(1) RL expert trained with physics randomization.
+(2) Demonstration collection via tiled parallel rendering with scene randomization.
+(3) VLA fine-tuning on the collected dataset.
+(4) Closed-loop evaluation in simulation.</figcaption>
+</figure>
+<div id="S4.SS5.p1" class="ltx_para">
+<p id="S4.SS5.p1.1" class="ltx_p"><span id="S4.SS5.p1.1.1" class="ltx_text ltx_font_smallcaps">agile</span>’s modular architecture freezes the locomotion policy from
+Section <a href="#S4.SS2" title="4.2 Height-Controlled Locomotion on Unitree G1 ‣ 4 Case Studies &amp; Results ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4.2</span></a> as a lower-body controller while an
+upper-body module is developed independently. We demonstrate this with a
+pick-and-place task on Unitree G1, followed by VLA fine-tuning
+(Figure <a href="#S4.F5" title="Figure 5 ‣ 4.5 Loco-Manipulation &amp; VLA Fine-Tuning ‣ 4 Case Studies &amp; Results ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">5</span></a>).</p>
+</div>
+<div id="S4.SS5.p2" class="ltx_para">
+<p id="S4.SS5.p2.1" class="ltx_p"><span id="S4.SS5.p2.1.1" class="ltx_text ltx_font_bold">RL expert.</span>
+An RL policy controls the right arm and waist only, guided by reference
+trajectories and privileged simulation state (object pose, hand–object
+distance). Restricting the action space to the upper body reduces training to
+20k iterations. Object identity is varied across environments to promote
+visual diversity in the resulting demonstrations.</p>
+</div>
+<div id="S4.SS5.p3" class="ltx_para">
+<p id="S4.SS5.p3.1" class="ltx_p"><span id="S4.SS5.p3.1.1" class="ltx_text ltx_font_bold">VLA data collection and fine-tuning.</span>
+The RL expert generates 100 successful trajectories via tiled parallel
+simulation under physics and visual domain randomization, producing paired
+RGB observations, proprioception, and actions without human teleoperation.
+A GR00T N1.5 VLA model is fine-tuned on this dataset, replacing privileged
+inputs with RGB and language task descriptions. At deployment, the VLA
+predicts upper-body targets while the frozen locomotion policy maintains
+lower-body stability.</p>
+</div>
+<div id="S4.SS5.p4" class="ltx_para">
+<p id="S4.SS5.p4.1" class="ltx_p">In closed-loop simulation, the post-trained VLA reliably picks up the target object and places it to the side, achieving a 90% success rate across 100 test cases with randomly sampled initial robot states. These results validate effective transfer from privileged RL to perception-driven control.</p>
+</div>
+</section>
+</section>
+<section id="S5" class="ltx_section" lang="en">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">5 </span>Discussion &amp; Limitations</h2>
+
+<section id="S5.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">5.1 </span>Ablation Studies</h3>
+
+<div id="S5.SS1.p1" class="ltx_para">
+<p id="S5.SS1.p1.1" class="ltx_p">We ablate five key enhancements independently.</p>
+</div>
+<section id="S5.SS1.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">5.1.1 </span>Reward Normalizer</h4>
+
+<div id="S5.SS1.SSS1.p1" class="ltx_para">
+<p id="S5.SS1.SSS1.p1.2" class="ltx_p">Online reward normalization makes training magnitude-agnostic, which is useful when reward scales shift during curriculum progression or when porting configurations across robots.
+Figure <a href="#S5.F7" title="Figure 7 ‣ 5.1.5 Symmetry Augmentation ‣ 5.1 Ablation Studies ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">7</span></a>(a) validates this on Unitree G1 velocity tracking: at the original scale (1<math id="S5.SS1.SSS1.p1.1.m1" class="ltx_Math" alttext="\times" display="inline" intent=":literal"><semantics><mo>×</mo><annotation encoding="application/x-tex">\times</annotation></semantics></math>), the normalizer provides a modest improvement, while at 100<math id="S5.SS1.SSS1.p1.2.m2" class="ltx_Math" alttext="\times" display="inline" intent=":literal"><semantics><mo>×</mo><annotation encoding="application/x-tex">\times</annotation></semantics></math> scale it recovers near-original performance.</p>
+</div>
+</section>
+<section id="S5.SS1.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">5.1.2 </span>L2C2</h4>
+
+<figure id="S5.F6" class="ltx_figure"><img src="2603.20147v1/x3.png" id="S5.F6.g1" class="ltx_graphics ltx_centering ltx_img_landscape" width="830" height="552" alt="Refer to caption">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 6: </span>Effect of L2C2 on motion smoothness under increasing
+observation noise. Subplots: RMS joint acceleration, RMS joint jerk,
+position limit violations, and high-frequency energy ratio (fraction of
+joint-trajectory energy above 10 Hz).</figcaption>
+</figure>
+<div id="S5.SS1.SSS2.p1" class="ltx_para">
+<p id="S5.SS1.SSS2.p1.2" class="ltx_p">We evaluate L2C2 on a mimic-style task using our MuJoCo evaluation pipeline (<math id="S5.SS1.SSS2.p1.1.m1" class="ltx_Math" alttext="15" display="inline" intent=":literal"><semantics><mn>15</mn><annotation encoding="application/x-tex">15</annotation></semantics></math> deterministic rollouts, <math id="S5.SS1.SSS2.p1.2.m2" class="ltx_Math" alttext="8s" display="inline" intent=":literal"><semantics><mrow><mn>8</mn><mo lspace="0em" rspace="0em">​</mo><mi>s</mi></mrow><annotation encoding="application/x-tex">8s</annotation></semantics></math> each). Both policies successfully transfer to real hardware for the same dancing motion; however, without L2C2 the actuators produce audible high-frequency oscillations. We quantify this via four deployment-critical metrics (Figure <a href="#S5.F6" title="Figure 6 ‣ 5.1.2 L2C2 ‣ 5.1 Ablation Studies ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">6</span></a>): RMS joint acceleration, RMS joint jerk, joint limit violations, and high-frequency energy ratio. L2C2 consistently reduces all four metrics, with the benefit increasing along the noise level.</p>
+</div>
+</section>
+<section id="S5.SS1.SSS3" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">5.1.3 </span>Value-Bootstrapped Terminations</h4>
+
+<div id="S5.SS1.SSS3.p1" class="ltx_para">
+<p id="S5.SS1.SSS3.p1.2" class="ltx_p">Figure <a href="#S5.F7" title="Figure 7 ‣ 5.1.5 Symmetry Augmentation ‣ 5.1 Ablation Studies ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">7</span></a>(b) compares value-bootstrapped terminations
+(<math id="S5.SS1.SSS3.p1.1.m1" class="ltx_Math" alttext="\sigma{=}5" display="inline" intent=":literal"><semantics><mrow><mi>σ</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">\sigma{=}5</annotation></semantics></math>) against a manually tuned termination penalty on Booster T1
+stand-up (5 seeds). The bootstrapped variant converges to a higher
+time-out ratio (fewer bad terminations) with substantially lower
+seed variance (min/max shown), indicating more robust training. The
+bootstrapped version requires no per-task penalty tuning; the same
+<math id="S5.SS1.SSS3.p1.2.m2" class="ltx_Math" alttext="\sigma" display="inline" intent=":literal"><semantics><mi>σ</mi><annotation encoding="application/x-tex">\sigma</annotation></semantics></math> works across all tasks.</p>
+</div>
+</section>
+<section id="S5.SS1.SSS4" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">5.1.4 </span>Virtual Harness</h4>
+
+<div id="S5.SS1.SSS4.p1" class="ltx_para">
+<p id="S5.SS1.SSS4.p1.1" class="ltx_p">Figure <a href="#S5.F7" title="Figure 7 ‣ 5.1.5 Symmetry Augmentation ‣ 5.1 Ablation Studies ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">7</span></a>(c) shows the effect of the virtual harness on
+Unitree G1 height-controlled locomotion (5 seeds). With the harness (decayed over
+the first 2k iterations), training recovers from the initial negative-reward
+phase faster and converges to higher final reward. Without the harness, the
+policy spends longer in unstable regimes and converges lower, with higher
+variance across seeds.</p>
+</div>
+</section>
+<section id="S5.SS1.SSS5" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">5.1.5 </span>Symmetry Augmentation</h4>
+
+<div id="S5.SS1.SSS5.p1" class="ltx_para">
+<p id="S5.SS1.SSS5.p1.1" class="ltx_p">Figure <a href="#S5.F7" title="Figure 7 ‣ 5.1.5 Symmetry Augmentation ‣ 5.1 Ablation Studies ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">7</span></a>(d) shows symmetry augmentation on Booster T1
+velocity tracking. Mirroring observations and actions doubles effective data per batch and enforces symmetric gaits. The reward improvement is modest but consistent across all seeds; the primary benefit is behavioral symmetry, not captured by the reward curve.</p>
+</div>
+<figure id="S5.F7" class="ltx_figure"><img src="2603.20147v1/x4.png" id="S5.F7.g1" class="ltx_graphics ltx_centering ltx_img_landscape" width="830" height="550" alt="Refer to caption">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 7: </span>Ablation studies (5 seeds, shaded = <math id="S5.F7.3.m1" class="ltx_Math" alttext="\pm 1" display="inline" intent=":literal"><semantics><mrow><mo>±</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\pm 1</annotation></semantics></math>std unless noted).
+(a) Reward normalization; dashed curves scale all rewards by 100<math id="S5.F7.4.m2" class="ltx_Math" alttext="\times" display="inline" intent=":literal"><semantics><mo>×</mo><annotation encoding="application/x-tex">\times</annotation></semantics></math>
+before training and rescale for comparability.
+(b) Value-bootstrapped vs. tuned termination penalty
+(shaded = min/max).
+(c) Virtual harness on height-controlled locomotion.
+(d) Symmetry augmentation.</figcaption>
+</figure>
+</section>
+</section>
+<section id="S5.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">5.2 </span>Sim-to-Real Transfer</h3>
+
+<figure id="S5.F8" class="ltx_figure"><img src="2603.20147v1/figures/robot_motion.jpg" id="S5.F8.g1" class="ltx_graphics ltx_centering ltx_img_landscape" width="598" height="435" alt="Refer to caption">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 8: </span>Sim-to-real transfer across five tasks on two robot platforms.
+(a) Velocity and height controlled locomotion on Unitree G1.
+(b) Velocity controlled locomotion on Booster T1.
+(c) Stand-up on Unitree G1.
+(d) Stand-up on Booster T1.
+(e) Motion imitation (dancing) on Unitree G1.</figcaption>
+</figure>
+<div id="S5.SS2.p1" class="ltx_para">
+<p id="S5.SS2.p1.1" class="ltx_p">All five tasks transfer to real hardware—with success defined by stable execution, absence of controller instability, and the completion of the designated task—while the loco-manipulation task is additionally validated in simulation via the VLA pipeline. Figure <a href="#S5.F8" title="Figure 8 ‣ 5.2 Sim-to-Real Transfer ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">8</span></a> shows
+stand-up on both robots and dancing on Unitree G1;
+Figure <a href="#S4.F4" title="Figure 4 ‣ 4 Case Studies &amp; Results ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a> and Table <a href="#S4.T3" title="Table 3 ‣ 4.2 Height-Controlled Locomotion on Unitree G1 ‣ 4 Case Studies &amp; Results ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a> report
+sim-to-sim tracking metrics for height-controlled locomotion. The main
+failure modes during development were sim-to-real gaps (actuator modeling,
+contact dynamics) and overly aggressive policies producing motions that
+real actuators cannot follow. Both were addressed by the domain
+randomization and policy regularization described in
+Section <a href="#S3" title="3 System Design ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a>. Since no external motion-capture system was available, sim-to-real transfer is validated qualitatively through hardware demonstrations; quantitative tracking metrics are reported via the MuJoCo pipeline (Table <a href="#S4.T3" title="Table 3 ‣ 4.2 Height-Controlled Locomotion on Unitree G1 ‣ 4 Case Studies &amp; Results ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a>). The sim-to-real pipeline will also be released in the near future separately. A supplementary video demonstrating all tasks on hardware is attached.</p>
+</div>
+</section>
+<section id="S5.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">5.3 </span>Limitations &amp; Outlook</h3>
+
+<div id="S5.SS3.p1" class="ltx_para">
+<p id="S5.SS3.p1.1" class="ltx_p">AGILE is currently validated on two humanoid platforms (Unitree G1 and Booster T1), and broader hardware validation remains future work. The framework builds on Isaac Lab, which simplifies integration with GPU-based simulation but introduces dependency on upstream APIs. In addition, the tasks studied here are primarily proprioceptive; perception-driven manipulation and more dynamic locomotion behaviors (e.g., running or stair climbing) are not yet included. Future work will expand robot and task coverage while continuing to validate new capabilities through real-world deployment.</p>
+</div>
+</section>
+</section>
+<section id="S6" class="ltx_section" lang="en">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">6 </span>Acknowledgment</h2>
+
+<div id="S6.p1" class="ltx_para">
+<p id="S6.p1.1" class="ltx_p">We thank Zhengyi Luo, Chenran Li and Xinghao Zhu for their discussion on modeling and training. We thank Rafael Wiltz, Sergey Grizan, Lotus Li, Tiffany Chen, David Chu and John Welsh for their discussion and feedback on tele-operation and data pipeline integration. We also thank H. Hawkeye King, Stephan Pleines and Vishal Kulkarni for their support on experiment and code release.</p>
+</div>
+</section>
+<section id="bib" class="ltx_bibliography" lang="en">
+<h2 class="ltx_title ltx_title_bibliography">References</h2>
+
+<ul id="bib.L1" class="ltx_biblist">
+</ul>
+</section>
+<section id="A1" class="ltx_appendix" lang="en">
+<h2 class="ltx_title ltx_title_appendix">
+<span class="ltx_tag ltx_tag_appendix">Appendix A </span>Appendix</h2>
+
+<section id="A1.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">A.1 </span>Best Practices</h3>
+
+<div id="A1.SS1.p1" class="ltx_para">
+<p id="A1.SS1.p1.1" class="ltx_p">Based on extensive experimentation across tasks and robots, we distill the
+following practical guidelines:</p>
+</div>
+<div id="A1.SS1.p2" class="ltx_para">
+<ol id="A1.I1" class="ltx_enumerate">
+<li id="A1.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="A1.I1.i1.p1" class="ltx_para">
+<p id="A1.I1.i1.p1.1" class="ltx_p"><span id="A1.I1.i1.p1.1.1" class="ltx_text ltx_font_bold">Robot model validation.</span> Validate the USD model before any
+training. Spawn the robot on a flat ground plane in an interactive
+simulator, let it settle under gravity, and manually perturb
+it—the behavior should look physically plausible. Sweep all
+joints to their limits to verify correct signs and clamping,
+and use <span id="A1.I1.i1.p1.1.2" class="ltx_text ltx_font_smallcaps">agile</span>’s joint debug GUI with symmetry mode to catch
+mirrored sign errors. A wrong joint axis wastes more GPU hours
+than any hyperparameter misconfiguration.</p>
+</div>
+</li>
+<li id="A1.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="A1.I1.i2.p1" class="ltx_para">
+<p id="A1.I1.i2.p1.1" class="ltx_p"><span id="A1.I1.i2.p1.1.1" class="ltx_text ltx_font_bold">MDP validation.</span> Once the robot model is verified, validate
+the training environment before launching long runs. Confirm that a
+zero-action command produces a stable stand (catches incorrect
+default poses or action offsets), use the reward visualizer to
+verify that each reward term activates as expected, and check that
+observations have plausible values and ranges. These checks take
+minutes and prevent days of wasted training.</p>
+</div>
+</li>
+<li id="A1.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="A1.I1.i3.p1" class="ltx_para">
+<p id="A1.I1.i3.p1.1" class="ltx_p"><span id="A1.I1.i3.p1.1.1" class="ltx_text ltx_font_bold">Reward composition.</span> Structure rewards into three groups:
+<em id="A1.I1.i3.p1.1.2" class="ltx_emph ltx_font_italic">task</em> (what to achieve), <em id="A1.I1.i3.p1.1.3" class="ltx_emph ltx_font_italic">style</em> (how it should look),
+and <em id="A1.I1.i3.p1.1.4" class="ltx_emph ltx_font_italic">regularization</em> (what to avoid). As a rule of thumb,
+start simple: task rewards plus basic regularization to prevent
+unsafe behaviors, then incrementally add style and further
+regularization terms once the core task is solved.</p>
+</div>
+</li>
+<li id="A1.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">4.</span> 
+<div id="A1.I1.i4.p1" class="ltx_para">
+<p id="A1.I1.i4.p1.2" class="ltx_p"><span id="A1.I1.i4.p1.2.1" class="ltx_text ltx_font_bold">Termination design.</span> If mean episode length collapses to
+near zero, the agent has become “suicidal”: the expected return
+from continuing (accumulating negative rewards) is worse than
+terminating and resetting. The immediate fix is to increase the termination penalty
+(make it more negative), but this requires per-task tuning and
+can break as the value landscape shifts during training.
+Value-bootstrapped terminations (Section <a href="#S5.SS1.SSS3" title="5.1.3 Value-Bootstrapped Terminations ‣ 5.1 Ablation Studies ‣ 5 Discussion &amp; Limitations ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">5.1.3</span></a>)
+offer a more principled solution by making termination
+value-neutral and adding a fixed offset <math id="A1.I1.i4.p1.1.m1" class="ltx_Math" alttext="\sigma" display="inline" intent=":literal"><semantics><mi>σ</mi><annotation encoding="application/x-tex">\sigma</annotation></semantics></math>, removing
+the need for per-task penalty tuning. However, because the
+value function’s own predictions are bootstrapped at terminal
+states, inaccurate estimates can feed back into training
+targets. If value loss increases after enabling bootstrapped
+terminations, reduce <math id="A1.I1.i4.p1.2.m2" class="ltx_Math" alttext="\sigma" display="inline" intent=":literal"><semantics><mi>σ</mi><annotation encoding="application/x-tex">\sigma</annotation></semantics></math> or address the underlying
+reward signal first.
+Conversely, always terminate episodes when the robot enters
+unrecoverable states (e.g. fallen) to avoid wasting training
+compute on hopeless trajectories.</p>
+</div>
+</li>
+<li id="A1.I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">5.</span> 
+<div id="A1.I1.i5.p1" class="ltx_para">
+<p id="A1.I1.i5.p1.1" class="ltx_p"><span id="A1.I1.i5.p1.1.1" class="ltx_text ltx_font_bold">Curriculum design.</span> Two strategies: <em id="A1.I1.i5.p1.1.2" class="ltx_emph ltx_font_italic">fading guidance</em>
+(start with assistance, remove it) and <em id="A1.I1.i5.p1.1.3" class="ltx_emph ltx_font_italic">increasing difficulty</em>
+(start easy, ramp up penalties or terrain complexity). The harness
+force (Section <a href="#S3.SS3.SSS2" title="3.3.2 Algorithmic Toolbox ‣ 3.3 Training ‣ 3 System Design ‣ AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3.3.2</span></a>) implements the former; terrain
+progression implements the latter.</p>
+</div>
+</li>
+<li id="A1.I1.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">6.</span> 
+<div id="A1.I1.i6.p1" class="ltx_para">
+<p id="A1.I1.i6.p1.1" class="ltx_p"><span id="A1.I1.i6.p1.1.1" class="ltx_text ltx_font_bold">Observation design.</span> Train teachers with privileged
+observations (terrain scans, contact forces, true velocities). Distill
+to students using only sensor-realistic inputs. Always add noise to
+policy observations matching expected sensor characteristics.</p>
+</div>
+</li>
+<li id="A1.I1.i7" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">7.</span> 
+<div id="A1.I1.i7.p1" class="ltx_para">
+<p id="A1.I1.i7.p1.1" class="ltx_p"><span id="A1.I1.i7.p1.1.1" class="ltx_text ltx_font_bold">Training monitoring.</span> Track task metrics alongside reward
+curves: rising reward with stagnant task performance indicates reward
+hacking. Monitor value loss (should converge well below <math id="A1.I1.i7.p1.1.m1" class="ltx_Math" alttext="1.0" display="inline" intent=":literal"><semantics><mn>1.0</mn><annotation encoding="application/x-tex">1.0</annotation></semantics></math>; if
+too high, scale down reward magnitudes or enable reward
+normalization to stabilize bootstrapping) and policy noise
+standard deviation (may increase initially during exploration but
+should decrease over the course of training; persistent growth
+signals that the entropy bonus dominates the task gradient). If noise keeps
+growing, first improve the reward function (cleaner advantages
+outweigh the entropy gradient), then reduce the entropy
+coefficient, or run a fraction of environments without domain
+randomization to guarantee clean gradient signal in every batch.
+Record periodic rollout videos—plots alone can be misleading.</p>
+</div>
+</li>
+<li id="A1.I1.i8" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">8.</span> 
+<div id="A1.I1.i8.p1" class="ltx_para">
+<p id="A1.I1.i8.p1.1" class="ltx_p"><span id="A1.I1.i8.p1.1.1" class="ltx_text ltx_font_bold">Seed robustness.</span> Test across <math id="A1.I1.i8.p1.1.m1" class="ltx_Math" alttext="\geq 5" display="inline" intent=":literal"><semantics><mrow><mi></mi><mo>≥</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">\geq 5</annotation></semantics></math> random seeds before
+drawing conclusions. A single lucky seed does not validate an MDP
+design. RL training is inherently sensitive to random seeds, and
+designing seed-robust environments is difficult; high variance
+across seeds often points to a fragile reward or curriculum
+design rather than bad luck.</p>
+</div>
+</li>
+<li id="A1.I1.i9" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">9.</span> 
+<div id="A1.I1.i9.p1" class="ltx_para">
+<p id="A1.I1.i9.p1.1" class="ltx_p"><span id="A1.I1.i9.p1.1.1" class="ltx_text ltx_font_bold">Sim-to-real transfer.</span> Successful transfer rests on two
+pillars: <em id="A1.I1.i9.p1.1.2" class="ltx_emph ltx_font_italic">robustness</em> via domain randomization and
+<em id="A1.I1.i9.p1.1.3" class="ltx_emph ltx_font_italic">smoothness</em> via action regularization. For regularization,
+directly regularize the policy output via action norm,
+action rate (consecutive differences), and action acceleration
+(second-order differences) penalties; L2C2 further enforces
+smooth observation-to-action mappings. A policy that appears smooth in
+simulation may be relying on high simulated damping to mask
+aggressive actions—the policy <em id="A1.I1.i9.p1.1.4" class="ltx_emph ltx_font_italic">itself</em> must output smooth
+commands. Domain randomization combined with these regularization
+terms were the most effective levers in our experience.
+History-based or recurrent policies can implicitly adapt to
+real dynamics at inference time, partially compensating for
+remaining sim-to-real gaps. If hardware behavior diverges
+significantly from simulation, the simulation is likely wrong:
+fix the simulation to match reality rather than compensating
+with reward shaping.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="A1.SS1.p3" class="ltx_para ltx_noindent">
+<p id="A1.SS1.p3.1" class="ltx_p">Finally, no single technique listed above works universally.
+Reinforcement learning offers no magic trick that reliably helps across
+all tasks and robots. <span id="A1.SS1.p3.1.1" class="ltx_text ltx_font_smallcaps">agile</span> provides a toolbox of composable
+modules, but each must be evaluated empirically for the problem at hand.</p>
+</div>
+</section>
+<section id="A1.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">A.2 </span>Hyperparameter Tables</h3>
+
+<figure id="A1.T4" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">Table 4: </span>PPO hyperparameters. Task-specific overrides in parentheses.</figcaption>
+<table id="A1.T4.18" class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr id="A1.T4.18.19.1" class="ltx_tr">
+<th id="A1.T4.18.19.1.1" class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt"><span id="A1.T4.18.19.1.1.1" class="ltx_text" style="font-size:90%;">Parameter</span></th>
+<td id="A1.T4.18.19.1.2" class="ltx_td ltx_nopad_r ltx_align_center ltx_border_tt"><span id="A1.T4.18.19.1.2.1" class="ltx_text" style="font-size:90%;">Value</span></td>
+</tr>
+<tr id="A1.T4.2.2" class="ltx_tr">
+<th id="A1.T4.2.2.3" class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span id="A1.T4.2.2.3.1" class="ltx_text" style="font-size:90%;">Actor network</span></th>
+<td id="A1.T4.2.2.2" class="ltx_td ltx_nopad_r ltx_align_center ltx_border_t">
+<math id="A1.T4.1.1.1.m1" class="ltx_Math" alttext="[256,256,128]" display="inline" intent=":literal"><semantics><mrow><mo maxsize="0.900em" minsize="0.900em">[</mo><mn mathsize="0.900em">256</mn><mo mathsize="0.900em">,</mo><mn mathsize="0.900em">256</mn><mo mathsize="0.900em">,</mo><mn mathsize="0.900em">128</mn><mo maxsize="0.900em" minsize="0.900em">]</mo></mrow><annotation encoding="application/x-tex">[256,256,128]</annotation></semantics></math><span id="A1.T4.2.2.2.1" class="ltx_text" style="font-size:90%;"> (pick&amp;place: </span><math id="A1.T4.2.2.2.m2" class="ltx_Math" alttext="[256,128,64]" display="inline" intent=":literal"><semantics><mrow><mo maxsize="0.900em" minsize="0.900em">[</mo><mn mathsize="0.900em">256</mn><mo mathsize="0.900em">,</mo><mn mathsize="0.900em">128</mn><mo mathsize="0.900em">,</mo><mn mathsize="0.900em">64</mn><mo maxsize="0.900em" minsize="0.900em">]</mo></mrow><annotation encoding="application/x-tex">[256,128,64]</annotation></semantics></math><span id="A1.T4.2.2.2.2" class="ltx_text" style="font-size:90%;">)</span>
+</td>
+</tr>
+<tr id="A1.T4.4.4" class="ltx_tr">
+<th id="A1.T4.4.4.3" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="A1.T4.4.4.3.1" class="ltx_text" style="font-size:90%;">Critic network</span></th>
+<td id="A1.T4.4.4.2" class="ltx_td ltx_nopad_r ltx_align_center">
+<math id="A1.T4.3.3.1.m1" class="ltx_Math" alttext="[512,256,128]" display="inline" intent=":literal"><semantics><mrow><mo maxsize="0.900em" minsize="0.900em">[</mo><mn mathsize="0.900em">512</mn><mo mathsize="0.900em">,</mo><mn mathsize="0.900em">256</mn><mo mathsize="0.900em">,</mo><mn mathsize="0.900em">128</mn><mo maxsize="0.900em" minsize="0.900em">]</mo></mrow><annotation encoding="application/x-tex">[512,256,128]</annotation></semantics></math><span id="A1.T4.4.4.2.1" class="ltx_text" style="font-size:90%;"> (pick&amp;place: </span><math id="A1.T4.4.4.2.m2" class="ltx_Math" alttext="[256,128,64]" display="inline" intent=":literal"><semantics><mrow><mo maxsize="0.900em" minsize="0.900em">[</mo><mn mathsize="0.900em">256</mn><mo mathsize="0.900em">,</mo><mn mathsize="0.900em">128</mn><mo mathsize="0.900em">,</mo><mn mathsize="0.900em">64</mn><mo maxsize="0.900em" minsize="0.900em">]</mo></mrow><annotation encoding="application/x-tex">[256,128,64]</annotation></semantics></math><span id="A1.T4.4.4.2.2" class="ltx_text" style="font-size:90%;">)</span>
+</td>
+</tr>
+<tr id="A1.T4.18.20.2" class="ltx_tr">
+<th id="A1.T4.18.20.2.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="A1.T4.18.20.2.1.1" class="ltx_text" style="font-size:90%;">Activation</span></th>
+<td id="A1.T4.18.20.2.2" class="ltx_td ltx_nopad_r ltx_align_center"><span id="A1.T4.18.20.2.2.1" class="ltx_text" style="font-size:90%;">ELU</span></td>
+</tr>
+<tr id="A1.T4.5.5" class="ltx_tr">
+<th id="A1.T4.5.5.2" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="A1.T4.5.5.2.1" class="ltx_text" style="font-size:90%;">Learning rate</span></th>
+<td id="A1.T4.5.5.1" class="ltx_td ltx_nopad_r ltx_align_center"><math id="A1.T4.5.5.1.m1" class="ltx_Math" alttext="10^{-3}" display="inline" intent=":literal"><semantics><msup><mn mathsize="0.900em">10</mn><mrow><mo mathsize="0.900em">−</mo><mn mathsize="0.900em">3</mn></mrow></msup><annotation encoding="application/x-tex">10^{-3}</annotation></semantics></math></td>
+</tr>
+<tr id="A1.T4.8.8" class="ltx_tr">
+<th id="A1.T4.6.6.1" class="ltx_td ltx_align_left ltx_th ltx_th_row">
+<span id="A1.T4.6.6.1.1" class="ltx_text" style="font-size:90%;">Discount </span><math id="A1.T4.6.6.1.m1" class="ltx_Math" alttext="\gamma" display="inline" intent=":literal"><semantics><mi mathsize="0.900em">γ</mi><annotation encoding="application/x-tex">\gamma</annotation></semantics></math>
+</th>
+<td id="A1.T4.8.8.3" class="ltx_td ltx_nopad_r ltx_align_center">
+<math id="A1.T4.7.7.2.m1" class="ltx_Math" alttext="0.99" display="inline" intent=":literal"><semantics><mn mathsize="0.900em">0.99</mn><annotation encoding="application/x-tex">0.99</annotation></semantics></math><span id="A1.T4.8.8.3.1" class="ltx_text" style="font-size:90%;"> (stand-up: </span><math id="A1.T4.8.8.3.m2" class="ltx_Math" alttext="0.995" display="inline" intent=":literal"><semantics><mn mathsize="0.900em">0.995</mn><annotation encoding="application/x-tex">0.995</annotation></semantics></math><span id="A1.T4.8.8.3.2" class="ltx_text" style="font-size:90%;">)</span>
+</td>
+</tr>
+<tr id="A1.T4.10.10" class="ltx_tr">
+<th id="A1.T4.9.9.1" class="ltx_td ltx_align_left ltx_th ltx_th_row">
+<span id="A1.T4.9.9.1.1" class="ltx_text" style="font-size:90%;">GAE </span><math id="A1.T4.9.9.1.m1" class="ltx_Math" alttext="\lambda" display="inline" intent=":literal"><semantics><mi mathsize="0.900em">λ</mi><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>
+</th>
+<td id="A1.T4.10.10.2" class="ltx_td ltx_nopad_r ltx_align_center"><math id="A1.T4.10.10.2.m1" class="ltx_Math" alttext="0.95" display="inline" intent=":literal"><semantics><mn mathsize="0.900em">0.95</mn><annotation encoding="application/x-tex">0.95</annotation></semantics></math></td>
+</tr>
+<tr id="A1.T4.11.11" class="ltx_tr">
+<th id="A1.T4.11.11.2" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="A1.T4.11.11.2.1" class="ltx_text" style="font-size:90%;">Clip ratio</span></th>
+<td id="A1.T4.11.11.1" class="ltx_td ltx_nopad_r ltx_align_center"><math id="A1.T4.11.11.1.m1" class="ltx_Math" alttext="0.2" display="inline" intent=":literal"><semantics><mn mathsize="0.900em">0.2</mn><annotation encoding="application/x-tex">0.2</annotation></semantics></math></td>
+</tr>
+<tr id="A1.T4.18.21.3" class="ltx_tr">
+<th id="A1.T4.18.21.3.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="A1.T4.18.21.3.1.1" class="ltx_text" style="font-size:90%;">Mini-batches</span></th>
+<td id="A1.T4.18.21.3.2" class="ltx_td ltx_nopad_r ltx_align_center"><span id="A1.T4.18.21.3.2.1" class="ltx_text" style="font-size:90%;">4</span></td>
+</tr>
+<tr id="A1.T4.18.22.4" class="ltx_tr">
+<th id="A1.T4.18.22.4.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="A1.T4.18.22.4.1.1" class="ltx_text" style="font-size:90%;">Learning epochs</span></th>
+<td id="A1.T4.18.22.4.2" class="ltx_td ltx_nopad_r ltx_align_center"><span id="A1.T4.18.22.4.2.1" class="ltx_text" style="font-size:90%;">5</span></td>
+</tr>
+<tr id="A1.T4.14.14" class="ltx_tr">
+<th id="A1.T4.14.14.4" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="A1.T4.14.14.4.1" class="ltx_text" style="font-size:90%;">Entropy coeff.</span></th>
+<td id="A1.T4.14.14.3" class="ltx_td ltx_nopad_r ltx_align_center">
+<math id="A1.T4.12.12.1.m1" class="ltx_Math" alttext="0.005" display="inline" intent=":literal"><semantics><mn mathsize="0.900em">0.005</mn><annotation encoding="application/x-tex">0.005</annotation></semantics></math><span id="A1.T4.14.14.3.1" class="ltx_text" style="font-size:90%;"> (height: </span><math id="A1.T4.13.13.2.m2" class="ltx_Math" alttext="0.01" display="inline" intent=":literal"><semantics><mn mathsize="0.900em">0.01</mn><annotation encoding="application/x-tex">0.01</annotation></semantics></math><span id="A1.T4.14.14.3.2" class="ltx_text" style="font-size:90%;">, stand-up: </span><math id="A1.T4.14.14.3.m3" class="ltx_Math" alttext="0.0025" display="inline" intent=":literal"><semantics><mn mathsize="0.900em">0.0025</mn><annotation encoding="application/x-tex">0.0025</annotation></semantics></math><span id="A1.T4.14.14.3.3" class="ltx_text" style="font-size:90%;">)</span>
+</td>
+</tr>
+<tr id="A1.T4.18.23.5" class="ltx_tr">
+<th id="A1.T4.18.23.5.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="A1.T4.18.23.5.1.1" class="ltx_text" style="font-size:90%;">Num. environments</span></th>
+<td id="A1.T4.18.23.5.2" class="ltx_td ltx_nopad_r ltx_align_center"><span id="A1.T4.18.23.5.2.1" class="ltx_text" style="font-size:90%;">4096</span></td>
+</tr>
+<tr id="A1.T4.18.24.6" class="ltx_tr">
+<th id="A1.T4.18.24.6.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="A1.T4.18.24.6.1.1" class="ltx_text" style="font-size:90%;">Symmetry augmentation</span></th>
+<td id="A1.T4.18.24.6.2" class="ltx_td ltx_nopad_r ltx_align_center"><span id="A1.T4.18.24.6.2.1" class="ltx_text" style="font-size:90%;">L-R mirror (except pick&amp;place)</span></td>
+</tr>
+<tr id="A1.T4.16.16" class="ltx_tr">
+<th id="A1.T4.16.16.3" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="A1.T4.16.16.3.1" class="ltx_text" style="font-size:90%;">L2C2</span></th>
+<td id="A1.T4.16.16.2" class="ltx_td ltx_nopad_r ltx_align_center">
+<math id="A1.T4.15.15.1.m1" class="ltx_Math" alttext="\lambda_{\pi}{=}1.0" display="inline" intent=":literal"><semantics><mrow><msub><mi mathsize="0.900em">λ</mi><mi mathsize="0.900em">π</mi></msub><mo mathsize="0.900em">=</mo><mn mathsize="0.900em">1.0</mn></mrow><annotation encoding="application/x-tex">\lambda_{\pi}{=}1.0</annotation></semantics></math><span id="A1.T4.16.16.2.1" class="ltx_text" style="font-size:90%;">, </span><math id="A1.T4.16.16.2.m2" class="ltx_Math" alttext="\lambda_{V}{=}0.1" display="inline" intent=":literal"><semantics><mrow><msub><mi mathsize="0.900em">λ</mi><mi mathsize="0.900em">V</mi></msub><mo mathsize="0.900em">=</mo><mn mathsize="0.900em">0.1</mn></mrow><annotation encoding="application/x-tex">\lambda_{V}{=}0.1</annotation></semantics></math>
+</td>
+</tr>
+<tr id="A1.T4.18.18" class="ltx_tr">
+<th id="A1.T4.18.18.3" class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb"><span id="A1.T4.18.18.3.1" class="ltx_text" style="font-size:90%;">Reward normalizer</span></th>
+<td id="A1.T4.18.18.2" class="ltx_td ltx_nopad_r ltx_align_center ltx_border_bb">
+<math id="A1.T4.17.17.1.m1" class="ltx_Math" alttext="\beta{=}0.999" display="inline" intent=":literal"><semantics><mrow><mi mathsize="0.900em">β</mi><mo mathsize="0.900em">=</mo><mn mathsize="0.900em">0.999</mn></mrow><annotation encoding="application/x-tex">\beta{=}0.999</annotation></semantics></math><span id="A1.T4.18.18.2.1" class="ltx_text" style="font-size:90%;">, </span><math id="A1.T4.18.18.2.m2" class="ltx_Math" alttext="\epsilon{=}0.01" display="inline" intent=":literal"><semantics><mrow><mi mathsize="0.900em">ϵ</mi><mo mathsize="0.900em">=</mo><mn mathsize="0.900em">0.01</mn></mrow><annotation encoding="application/x-tex">\epsilon{=}0.01</annotation></semantics></math>
+</td>
+</tr>
+</tbody>
+</table>
+</figure>
+</section>
+</section><div class="ltx_rdf" about="" property="dcterms:creator" content="{}"></div>
+<div class="ltx_rdf" about="" property="dcterms:title" content="{}"></div>
+
+</article>
+</div>
+</div>
+<footer class="arxiv-html-footer">
+  <div class="ltx_page_logo">
+    Experimental support, please
+    <a href="./2603.20147v1/__stdout.txt" class="ltx_ref"
+    target="_blank" rel="nofollow">view the build logs</a>
+    for errors. Generated by
+    <a href="https://math.nist.gov/~BMiller/LaTeXML/" target="_blank" class="ltx_ref ltx_LaTeXML_logo">
+      <span style="letter-spacing: -0.2em; margin-right: 0.1em;">
+        L
+        <span style="font-size: 70%; position: relative; bottom: 2.2pt;">A</span>
+        T
+        <span style="position: relative; bottom: -0.4ex;">E</span>
+      </span>
+      <span class="ltx_font_smallcaps">xml</span>
+      <img alt="[LOGO]"
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==">
+    </a>.
+  </div>
+  <div class="keyboard-glossary">
+    <h2>Instructions for reporting errors</h2>
+    <p>We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+      support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+      methods listed below:</p>
+    <ul>
+      <li>Click the "Report Issue" <span class="mobile-only">(<svg role="presentation"
+            style="display: inline-block; vertical-align: middle; fill: var(--text-color);" aria-hidden="true"
+            height="1em" viewBox="0 0 640 640">
+            <path
+              d="M224 160C224 107 267 64 320 64C373 64 416 107 416 160L416 163.6C416 179.3 403.3 192 387.6 192L252.5 192C236.8 192 224.1 179.3 224.1 163.6L224.1 160zM569.6 172.8C580.2 186.9 577.3 207 563.2 217.6L465.4 290.9C470.7 299.8 474.7 309.6 477.2 320L576 320C593.7 320 608 334.3 608 352C608 369.7 593.7 384 576 384L480 384L480 416C480 418.6 479.9 421.3 479.8 423.9L563.2 486.4C577.3 497 580.2 517.1 569.6 531.2C559 545.3 538.9 548.2 524.8 537.6L461.7 490.3C438.5 534.5 395.2 566.5 344 574.2L344 344C344 330.7 333.3 320 320 320C306.7 320 296 330.7 296 344L296 574.2C244.8 566.5 201.5 534.5 178.3 490.3L115.2 537.6C101.1 548.2 81 545.3 70.4 531.2C59.8 517.1 62.7 497 76.8 486.4L160.2 423.9C160.1 421.3 160 418.7 160 416L160 384L64 384C46.3 384 32 369.7 32 352C32 334.3 46.3 320 64 320L162.8 320C165.3 309.6 169.3 299.8 174.6 290.9L76.8 217.6C62.7 207 59.8 186.9 70.4 172.8C81 158.7 101.1 155.8 115.2 166.4L224 248C236.3 242.9 249.8 240 264 240L376 240C390.2 240 403.7 242.8 416 248L524.8 166.4C538.9 155.8 559 158.7 569.6 172.8z" />
+          </svg>)</span> button, located in the page header.</li>
+    </ul>
+    <p><strong>Tip:</strong> You can select the relevant text first, to include it in your report.</p>
+    <p>Our team has already identified <a class="ltx_ref" href="https://github.com/arXiv/html_feedback/issues"
+        target="_blank">the following issues</a>. We appreciate your time reviewing and reporting rendering errors we
+      may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+      should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+      all.</p>
+    <p>Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a <a
+        class="ltx_ref" href="https://github.com/brucemiller/LaTeXML/wiki/Porting-LaTeX-packages-for-LaTeXML"
+        target="_blank">list of packages that need conversion</a>, and welcome <a class="ltx_ref"
+        href="https://github.com/brucemiller/LaTeXML/issues" target="_blank">developer contributions</a>.</p>
+  </div>
+</footer>
+<div id="fixed-buttons-container">
+  <div id="beta-badge">BETA</div>
+  <a id="disable-reading-mode-btn" class="header-button" href="javascript:toggleReadingMode();"
+    title="Disable reading mode, show header and footer">
+    <svg role="presentation" height="1.25rem"
+      viewBox="0 0 448 512"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+      <path
+        d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z" />
+    </svg>
+  </a>
+</div></body>
+</html>

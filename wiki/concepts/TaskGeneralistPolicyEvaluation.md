@@ -2,8 +2,8 @@
 title: "Task-Generalist Policy Evaluation"
 type: concept
 tags: [robotics, evaluation, benchmarks, vla]
-sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[robotics-simulation-infrastructure]]"]
-last_updated: 2026-05-13
+sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[robotics-simulation-infrastructure]]"]
+last_updated: 2026-06-04
 ---
 
 # Task-Generalist Policy Evaluation
@@ -67,3 +67,5 @@ flowchart TD
 - 对 [[SimulationRealityGap|sim-to-real]]，simulation benchmark 更适合作为 diagnostic instrument：它可以定位 sensitivity 和 failure type，但不能单独证明真实部署可靠。
 - 对 [[CompositionalGeneralizationInRobotics|compositional generalization]]，short-horizon task success 仍需要区分 visual recognition、relational reasoning、procedural affordance 和 action execution 的贡献。
 - 对 [[RoboticsSimulationInfrastructure|simulation infrastructure]]，policy benchmark 的 maintainability 要检查 scene authoring API、asset serialization、parallel evaluation、visualizer instrumentation 和 ML loop resource budget。
+
+[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] 补充了 humanoid RL 的 evaluation lens：对部署型 humanoid policies，evaluation 还需要 deterministic scenario tests 和 per-joint motion-quality diagnostics。RoboLab-style evaluation 更关注 task library、language variants、object distribution 和 wrong-object behavior；AGILE-style evaluation 更关注 velocity/height sweeps、RMS acceleration、jerk、joint-limit violations、high-frequency energy 和 sim-to-sim descriptor consistency。两者共同指向同一个原则：只看 aggregate success/reward 会掩盖实际 deployment risk。

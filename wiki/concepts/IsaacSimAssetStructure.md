@@ -2,8 +2,8 @@
 title: "Isaac Sim Asset Structure 3.0"
 type: concept
 tags: [isaac-sim, usd, asset-structure, simulation-assets, robot-setup]
-sources: ["[[isaac-sim-asset-structure]]", "[[isaac-sim-45-asset-structure]]"]
-last_updated: 2026-05-07
+sources: ["[[isaac-sim-asset-structure]]", "[[isaac-sim-45-asset-structure]]", "[[isaac-sim-core-api-collision-approximation]]"]
+last_updated: 2026-06-04
 ---
 
 # Isaac Sim Asset Structure 3.0
@@ -59,6 +59,8 @@ flowchart LR
 ## 直觉
 
 这个 layout 的直觉是把“会一起变化的东西”放在一起，把“会因为 runtime 或 use case 不同而变化的东西”隔离开。CAD mesh 变化会触发 `geometries.usdc`；collision approximation 会触发 `instances.usda`；robot identity 和 schema relationships 会触发 `robot.usda`；跨 runtime 都成立的 mass/joint/articulation 会触发 `physics.usd(a)`；只属于 MuJoCo 或 PhysX 的 solver/runtime tuning 则进入各自 layer。
+
+[[isaac-sim-core-api-collision-approximation|Isaac Sim Core API collision approximation docs]] 让 collider layer 的含义更具体：同一个 visible mesh 可以选择 triangle mesh、convex decomposition、convex hull、bounding sphere、bounding cube、mesh simplification、SDF 或 sphere fill 作为 collision approximation。这个 choice 属于 shared collider representation；只有当某个 contact tuning 或 backend attribute 只服务 MuJoCo / PhysX runtime 时，才应进入 `mujoco.usda` / `physx.usda` 这类 runtime-specific layer。
 
 Transformation 阶段解决的是 source asset 与 simulation asset 的结构差异。Imported source 可能有 nested rigid bodies 或 CAD-oriented hierarchy；simulation 更需要 flattened rigid-body list、清晰的 visual/collider split、较少 mesh count，以及 instantiable references。这样做会牺牲 source hierarchy 的直观原貌，但换来更可控的 simulation composition 和 performance。
 
@@ -152,4 +154,4 @@ flowchart LR
 
 对 RL、MPC、sim-to-real 或 multi-engine benchmarking，这个 structure 的实际价值是让 asset assumptions 可定位。你可以明确说“这是 shared geometry/collider change”“这是 neutral dynamics change”“这是 PhysX-only tuning change”或“这是 MuJoCo-only tuning change”。这不能消除 [[SimulationRealityGap|simulation reality gap]]，但能减少 asset authoring 层面的不可解释差异。
 
-相关页面：[[IsaacSimLegacyAssetStructure]]、[[IsaacSim]]、[[NVIDIA]]、[[MuJoCo]]、[[SimulationRealityGap]]、[[ContactModelsInRobotics]]。
+相关页面：[[CollisionGeometryForRobotSimulation]]、[[IsaacSimLegacyAssetStructure]]、[[IsaacSim]]、[[NVIDIA]]、[[MuJoCo]]、[[SimulationRealityGap]]、[[ContactModelsInRobotics]]。

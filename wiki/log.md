@@ -3,7 +3,7 @@ title: "Wiki Log"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-05-26
+last_updated: 2026-06-04
 ---
 
 # Wiki Log
@@ -53,6 +53,8 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 ## [2026-04-28] maintenance | Add distill workflow for conversation-derived knowledge
 
 ## [2026-04-28] maintenance | Add learn and source workflows for unsourced study topics
+
+## [2026-04-28] ingest | AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning
 
 ## [2026-05-01] ingest | Asset Structure - Isaac Sim Documentation
 
@@ -125,3 +127,48 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 
 - Added `wiki/syntheses/ovrtx-api-boundary.md` to preserve the boundary between ovrtx scene composition / sensor rendering APIs and full physics scene authoring.
 - Updated `wiki/entities/Ovrtx.md`, `wiki/concepts/RTXSensorSimulationPipeline.md`, and `wiki/index.md`.
+
+## [2026-06-04] ingest | MuJoCo Computation: Collision Detection
+
+- Added `wiki/sources/mujoco-computation-collision-detection.md` with canonical HTML in `raw/` and extracted Markdown in `graph/extracts/`.
+- Updated `wiki/entities/MuJoCo.md`, `wiki/concepts/CollisionGeometryForRobotSimulation.md`, `wiki/concepts/ApproximateConvexDecomposition.md`, and navigation pages.
+
+## [2026-06-04] ingest | Isaac Sim Core API Collision Approximation
+
+- Added `wiki/sources/isaac-sim-core-api-collision-approximation.md` with canonical HTML in `raw/` and extracted Markdown in `graph/extracts/`.
+- Updated `wiki/entities/IsaacSim.md`, `wiki/concepts/IsaacSimAssetStructure.md`, `wiki/concepts/CollisionGeometryForRobotSimulation.md`, and navigation pages.
+
+## [2026-06-04] ingest | V-HACD Repository
+
+- Added `wiki/sources/v-hacd-repository.md` with canonical README snapshot in `raw/` and extracted Markdown in `graph/extracts/`.
+- Added `wiki/entities/VHACD.md` and linked V-HACD into approximate convex decomposition coverage.
+
+## [2026-06-04] ingest | CoACD Repository
+
+- Added `wiki/sources/coacd-repository.md` with canonical README snapshot in `raw/` and extracted Markdown in `graph/extracts/`.
+- Added implementation-facing CoACD parameter notes and linked them from `wiki/entities/CoACD.md`.
+
+## [2026-06-04] ingest | Approximate Convex Decomposition for 3D Meshes with Collision-Aware Concavity and Tree Search
+
+- Added `wiki/sources/coacd-approximate-convex-decomposition.md` with canonical PDF in `raw/` and extracted Markdown in `graph/extracts/`.
+- Added `wiki/entities/CoACD.md` and source-backed discussion of handle-preserving collision geometry in `wiki/concepts/ApproximateConvexDecomposition.md`.
+
+## [2026-06-04] ingest | Convex Primitive Decomposition for Collision Detection
+
+- Added `wiki/sources/convex-primitive-decomposition-for-collision-detection.md` with canonical PDF in `raw/` and extracted Markdown in `graph/extracts/`.
+- Added primitive-collider trend notes to `wiki/concepts/CollisionGeometryForRobotSimulation.md` and `wiki/concepts/ApproximateConvexDecomposition.md`.
+
+## [2026-06-04] ingest | VisACD: Visibility-Based GPU-Accelerated Approximate Convex Decomposition
+
+- Added `wiki/sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition.md` with canonical PDF in `raw/` and extracted Markdown in `graph/extracts/`.
+- Added `wiki/entities/VisACD.md` and linked GPU / visibility-based ACD into the collider authoring taxonomy.
+
+## [2026-06-04] ingest | DCOL: Differentiable Collision Detection for a Set of Convex Primitives
+
+- Added `wiki/sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives.md` with canonical PDF in `raw/` and extracted Markdown in `graph/extracts/`.
+- Added `wiki/entities/DCOL.md` and `wiki/concepts/DifferentiableCollisionDetection.md`.
+
+## [2026-06-04] ingest | DiffPills: Differentiable Collision Detection for Capsules and Padded Polygons
+
+- Added `wiki/sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons.md` with canonical PDF in `raw/` and extracted Markdown in `graph/extracts/`.
+- Added `wiki/entities/DiffPills.md` and linked capsule / padded polygon collision gradients into differentiable collision coverage.
