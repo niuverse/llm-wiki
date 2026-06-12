@@ -2,8 +2,8 @@
 title: "Robotics Simulation Infrastructure"
 type: concept
 tags: [robotics, simulation, infrastructure, reinforcement-learning, policy-evaluation]
-sources: ["[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]"]
-last_updated: 2026-06-05
+sources: ["[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[nvlabs-robolab]]"]
+last_updated: 2026-06-12
 ---
 
 # Robotics Simulation Infrastructure
@@ -52,6 +52,12 @@ Pose API example 说明 infrastructure 的小接口会在大系统里放大。�
 [[nvidia-ovrtx|NVIDIA ovrtx]] 给这个 infrastructure lens 增加了一个 official sensor-rendering case。ovrtx 把 renderer lifecycle、OpenUSD composition、RenderProduct/RenderVar configuration、DLPack outputs、stage query/read/write、GPU synchronization、warm-up、picking/selection 和 C/Python resource lifetime 都写成 API/documentation surface。也就是说，sensor simulation infrastructure 不只是“render 得像不像”，还包括 outputs 是否 schemaed、device memory 是否可控、async errors 是否可查询、debug interaction 是否能和 rendered output 对齐。
 
 [[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] 给这个 infrastructure lens 增加了 training-runtime case。它把 robot RL training speed 拆成 CPU-side rollout collection、GPU learner utilization、replay boundary、H2D transfer、buffer slotting 和 parameter synchronization，而不是把 simulator env steps/s 当作唯一 bottleneck。这里的 infrastructure surface 是 [[HeterogeneousRobotRLTraining|heterogeneous robot RL training]]：task/backend contract、domain-randomization lifecycle、sample-before-transfer replay pipeline 和 hot/cold GPU batch slots 都会改变 end-to-end training efficiency。
+
+## RoboLab as infrastructure case study
+
+[[nvlabs-robolab|RoboLab]] 的 updated repository 是这个 concept 的 concrete case：它把 simulator framework 拆成 task dataclasses、USD scene/assets、environment registration、policy backend adapters、evaluation runner、analysis scripts、dashboard、diagnostic tests、known issues 和 agentic authoring workflows。这里的 infrastructure value 不只在 Isaac Lab/Sim fidelity，而在每层是否形成可复查 contract：policy backend 有 `InferenceClient` hooks，tasks 有 predicates/subtasks，dashboard 有 scene/task/result APIs，analysis 有 confidence intervals，debug docs 有 WorldState inspection 和 pytest diagnostics。
+
+RoboLab 也展示了 infrastructure 的 governance side。Apache-2.0 code license、third-party notices、`uv run pytest tests/` install verification、`docs/known_issues.md`、L40 `num_envs` guide 和 `_wip` asset removal 都不是 algorithmic novelty，却会影响 benchmark reproducibility、maintainability 和 reviewer trust。[[AgenticSceneTaskGeneration|agentic scene/task generation]] 降低 authoring cost，但必须接入 catalog、solver、task metadata、registration and health checks，才能避免把 LLM-generated artifacts 变成 ungoverned benchmark churn。
 
 ## Failure Modes
 

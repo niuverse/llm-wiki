@@ -3,7 +3,7 @@ title: "Wiki Index"
 type: synthesis
 tags: [index, navigation]
 sources: []
-last_updated: 2026-06-05
+last_updated: 2026-06-12
 ---
 
 # Wiki Index
@@ -17,9 +17,9 @@ last_updated: 2026-06-05
 - **World model 如何影响 robot decision？** 读 [World Models for Embodied AI](concepts/WorldModelsForEmbodiedAI.md)、[World Model Evaluation](concepts/WorldModelEvaluation.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)。
 - **Inverse dynamics model 怎么从视频学 action？** 读 [Inverse Dynamics Models](concepts/InverseDynamicsModels.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)、[Seer](entities/Seer.md)、[DeFI](entities/DeFI.md)。
 - **Robot foundation model 如何处理 heterogeneous data？** 读 [Vision-Language-Action Models](concepts/VisionLanguageActionModels.md)、[Robot Context Conditioning](concepts/RobotContextConditioning.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)。
-- **Simulation benchmark 能证明什么？** 读 [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md)、[Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
+- **Simulation benchmark 能证明什么？** 读 [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md)、[Simulation Benchmark Reporting Pipeline](concepts/SimulationBenchmarkReportingPipeline.md)、[Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
 - **Humanoid RL 从训练到硬件怎样减少 silent failures？** 读 [Humanoid RL Workflow](concepts/HumanoidRLWorkflow.md)、[AGILE](entities/AGILE.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
-- **Simulation infrastructure decisions 为什么重要？** 读 [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md)，重点看 task/API、asset management、rendering memory/fidelity、visualizer diagnostics 和 pose API 如何影响 RL/evaluation workflow。
+- **Simulation infrastructure decisions 为什么重要？** 读 [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md) 和 [Agentic Scene/Task Generation](concepts/AgenticSceneTaskGeneration.md)，重点看 task/API、asset management、agentic scene/task authoring、rendering memory/fidelity、visualizer diagnostics 和 pose API 如何影响 RL/evaluation workflow。
 - **Robot RL training 必须 GPU-resident simulation 吗？** 读 [Heterogeneous Robot RL Training](concepts/HeterogeneousRobotRLTraining.md)、[UniLab](entities/UniLab.md) 和 [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md)，重点看 CPU/GPU role assignment、collector-learner overlap、replay boundary、H2D transfer 和 weight sync 如何决定 end-to-end training efficiency。
 - **ovrtx 如何把 OpenUSD scene 变成 RTX sensor outputs？** 读 [RTX Sensor Simulation Pipeline](concepts/RTXSensorSimulationPipeline.md)、[NVIDIA ovrtx](sources/nvidia-ovrtx.md)、[ovrtx](entities/Ovrtx.md) 和 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)，重点看 `RenderProduct`、`RenderVar`、DLPack tensor mapping、lidar/radar `PointCloud` channels 和 warm-up / synchronization rules。
 - **Visual sim-to-real 怎么跨过 reality gap？** 读 [Visual Sim-to-Real](concepts/VisualSimToReal.md)、[VIRAL](entities/VIRAL.md) 和 [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)，重点看 privileged teacher、vision student、domain randomization、hand/camera alignment 与 failure cases。
@@ -81,7 +81,7 @@ last_updated: 2026-06-05
 - [GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors](sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.md) - fully digital humanoid data-generation pipeline，用 3D assets、VFM priors、metric 4D HOI reconstruction、retargeting 和 task-general trackers 训练 Unitree G1 visual policies
 - [Robotics Simulation Infrastructure](sources/robotics-simulation-infrastructure.md) - Stone Tao 的 simulation infrastructure blog，覆盖 task/API、asset management、physics/rendering、visualizer、ML integration、rendering memory/fidelity 和 pose API trade-offs
 - [UniLab: A Heterogeneous Architecture for Robot RL Beyond GPU-Dominant Paradigms](sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms.md) - heterogeneous CPU-simulation / GPU-learning robot RL training system，把 collector-learner overlap、replay boundary、H2D transfer 和 synchronization 写成 end-to-end efficiency problem
-- [NVlabs/RoboLab](sources/nvlabs-robolab.md) - RoboLab official implementation repository，包含 Isaac Lab task library、predicate/subtask system、policy clients 与 analysis tooling
+- [NVlabs/RoboLab](sources/nvlabs-robolab.md) - RoboLab official implementation repository；2026-06 refresh 增加 dashboard、adaptive sampling/statistical reporting、policy backend contract、Cosmos3 client、agentic scene/task generation skills 与 debug/ops docs
 - [RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies](sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies.md) - NVIDIA 的 high-fidelity simulation benchmark，用 RoboLab-120、language variants 与 sensitivity analysis 评测 task-generalist robot policies
 - [Asset Structure - Isaac Sim 4.5 Documentation](sources/isaac-sim-45-asset-structure.md) - Isaac Sim 4.5 docs 中的 legacy / pre-3.0 asset layout，覆盖 `asset_base.usd`、`parts.usd`、`asset_sim_optimized.usd`、feature layers 和 final `asset.usd`
 - [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md) - Isaac Sim 6.0 EDR docs 中的 USD Asset Structure 3.0 guidance，说明 robot assets 的 geometry/material/instance/physics/runtime/schema/feature layer organization
@@ -137,6 +137,8 @@ last_updated: 2026-06-05
 - [Humanoid RL Workflow](concepts/HumanoidRLWorkflow.md) - 从 robot/MDP verification 到 training、evaluation、descriptor export 和 hardware deployment 的 humanoid RL lifecycle
 - [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md) - 用 task libraries、language variants、predicates、subtask scoring 和 diagnostics 评估泛化 robot policies
 - [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md) - 把 simulator framework 拆成 task/API、asset management、physics/rendering、visualizer 和 ML loop 的 design decisions
+- [Simulation Benchmark Reporting Pipeline](concepts/SimulationBenchmarkReportingPipeline.md) - 把 rollout outputs、episode evidence、success-rate uncertainty、adaptive sampling 和 dashboard review 组织成 benchmark reporting system
+- [Agentic Scene/Task Generation](concepts/AgenticSceneTaskGeneration.md) - 用 LLM/agentic workflow 生成 scenes、objects、predicates 和 task dataclasses，并把 validation 边界接回 simulation benchmark infrastructure
 - [Heterogeneous Robot RL Training](concepts/HeterogeneousRobotRLTraining.md) - 把 simulation-based robot RL training 写成 CPU/GPU role assignment、collector/learner overlap、replay boundary、H2D transfer、buffering 和 weight sync 的 systems problem
 - [Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md) - 用 controlled perturbations 与 NPE/MNPE posterior 找出影响 robot policy success 的环境参数
 - [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md) - contact approximations、learned dynamics 和 policy context 到 sim-to-real mismatch 的 causal flow

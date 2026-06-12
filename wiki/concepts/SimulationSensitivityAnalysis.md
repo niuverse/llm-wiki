@@ -3,7 +3,7 @@ title: "Simulation Sensitivity Analysis"
 type: concept
 tags: [robotics, simulation, evaluation, posterior-inference]
 sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]"]
-last_updated: 2026-04-27
+last_updated: 2026-06-12
 ---
 
 # Simulation Sensitivity Analysis
@@ -58,6 +58,12 @@ flowchart LR
   D --> E["Query success/failure posterior"]
   E --> F[Identify sensitive parameters]
 ```
+
+## 与 statistical reporting 的边界
+
+RoboLab 2026-06 repo refresh 增加了 `docs/statistical_significance.md` 与 adaptive sampling，但这和 sensitivity posterior 不是同一个概念。Statistical reporting 估计的是 $p=\Pr(y=1\mid T,\pi)$ 的 uncertainty，例如 Beta credible interval；sensitivity analysis 估计的是 $p(\theta\mid x)$，也就是在 success/failure 或其他 outcome 条件下哪些 environment parameters 更可能出现。前者回答“这个 success rate 有多稳”，后者回答“成功或失败依赖哪些 perturbation”。
+
+在实践上两者要连接：adaptive sampling 可以让每个 task-policy pair 的 binary success estimate 更可靠；posterior sensitivity 需要把这些 outcomes 与 sampled lighting、camera pose、background、object pose 等 $\theta$ 绑定。若 reporting pipeline 没有保留 episode-level outcome 和 perturbation metadata，MNPE 只能在粗糙数据上拟合；若只做 posterior 而不报告 interval width，也容易把 small-N artifact 误读成敏感参数。
 
 ## Failure Modes
 

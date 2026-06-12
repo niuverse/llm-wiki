@@ -3,7 +3,7 @@ title: "Task-Generalist Policy Evaluation"
 type: concept
 tags: [robotics, evaluation, benchmarks, vla]
 sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]"]
-last_updated: 2026-06-04
+last_updated: 2026-06-12
 ---
 
 # Task-Generalist Policy Evaluation
@@ -51,6 +51,12 @@ flowchart TD
   E --> F
   E --> G["Wrong-object and trajectory diagnostics"]
 ```
+
+## RoboLab 2026-06 repository update
+
+[[nvlabs-robolab|RoboLab repo]] 的 2026-06 refresh 让 task-generalist evaluation 更像完整 reporting system，而不只是 rollout script。Per-policy runners now live under `policies/<backend>/run.py`，共同调用 `robolab.eval.runner.run_evaluation`；`--num-episodes-adaptive` 使用 Beta posterior credible interval width 决定是否继续采样；`analysis/read_results.py` 和 dashboard 都显示 95% success-rate interval。这意味着 evaluation protocol 的 object 不再只是 $(T_i, \pi)$ 的 mean success，而是 $(T_i, \pi, n, CI, score, events, videos, metadata)$ 的 evidence bundle。
+
+这也改变了 benchmark comparison 的 failure surface：如果两个 policies 的 point success rate 接近，但一个有宽 interval、更多 wrong-object events 或只在 vague/default instruction 中失败，结论不同。RoboLab dashboard 把 task metadata、scene previews、episode videos、events 和 timeseries 放进 local UI，是 [[SimulationBenchmarkReportingPipeline|simulation benchmark reporting pipeline]] 的实现例子；agentic scene/task skills 则说明 task library expansion 也被纳入 infrastructure，但 generated tasks 仍需要 validation 和 metadata regeneration 才能成为 fair evaluation units。
 
 ## Failure Modes
 

@@ -3,7 +3,7 @@ title: "Robot Context Conditioning"
 type: concept
 tags: [robotics, prompting, vla, data-conditioning, multimodal-context]
 sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]"]
-last_updated: 2026-04-27
+last_updated: 2026-06-12
 ---
 
 # Robot Context Conditioning
@@ -68,6 +68,8 @@ flowchart TB
 - Lower zero-shot reliability：source 明确说 seen tasks often exceed 90% success，而 unseen tasks 或 unseen task-robot combinations 通常只有 60-80% success range。
 
 ## Evidence Boundary
+
+[[nvlabs-robolab|RoboLab]] 2026-06 repo refresh 增加 per-policy backend folders 和 Cosmos 3 client，但当前 source 主要证明 backend organization 与 inference-client contract，而不是证明新的 context-conditioning training method。因此本页只把 RoboLab 作为 evaluation/integration evidence，不把它写成 model-side conditioning evidence。
 
 π0.7 source 支持的是一个 empirical system claim：rich context + diverse data 在该团队的 robot stack、data mixture 和 evaluation tasks 上显著改善 out-of-the-box performance。它不证明 metadata prompting 在任意 robot platform 上都 calibrated，也不证明 subgoal images 总是 physically reachable。后续 ingest 如果包含 independent reproduction、model card、open benchmark 或 failure report，应优先回到本页更新 failure modes，而不是只把 π0.7 的 positive results 加进 overview。
 

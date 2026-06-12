@@ -3,7 +3,7 @@ title: "Wiki Log"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-06-05
+last_updated: 2026-06-12
 ---
 
 # Wiki Log
@@ -184,3 +184,9 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 - Added `wiki/sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms.md` with canonical arXiv PDF in `raw/` and extracted Markdown in `graph/extracts/`.
 - Added `wiki/entities/UniLab.md` and `wiki/concepts/HeterogeneousRobotRLTraining.md`.
 - Updated robotics simulation infrastructure, simulation reality gap, MuJoCo, overview, research questions, and wiki index entries.
+## [2026-06-12] ingest | NVlabs/RoboLab repository refresh
+
+- Added versioned raw artifacts for RoboLab commit `7d45d74904eade3b578a8eb1f2f9f89bc3d40326`, including GitHub repository metadata, main commit metadata, README snapshot, compare JSON from baseline `5d3ba41e`, and source tarball.
+- Added `graph/extracts/robolab-20260612-7d45d749-repository-manifest.md` as the readable design/change manifest for the 19-commit refresh.
+- Updated `wiki/sources/nvlabs-robolab.md` and `wiki/entities/RoboLab.md` with dashboard, adaptive statistical reporting, policy backend contract, Cosmos3 client, debug/ops docs, and agentic scene/task generation coverage.
+- Added `wiki/concepts/SimulationBenchmarkReportingPipeline.md` and `wiki/concepts/AgenticSceneTaskGeneration.md`; updated task-generalist evaluation, simulation infrastructure, simulation sensitivity, and robot context conditioning concept pages.
