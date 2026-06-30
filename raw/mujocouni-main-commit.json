@@ -1,0 +1,101 @@
+{
+  "sha": "5d782a2bb8569f2c79059c9845cae5147dd684a2",
+  "node_id": "C_kwDORS2zmtoAKDVkNzgyYTJiYjg1NjlmMmM3OTA1OWM5ODQ1Y2FlNTE0N2RkNjg0YTI",
+  "commit": {
+    "author": {
+      "name": "Yuval Tassa",
+      "email": "tassa@google.com",
+      "date": "2026-05-29T20:51:02Z"
+    },
+    "committer": {
+      "name": "Copybara-Service",
+      "email": "copybara-worker@google.com",
+      "date": "2026-05-29T20:51:47Z"
+    },
+    "message": "Fix memory overallocation in sparse primal solvers.\n\nPiperOrigin-RevId: 923586079\nChange-Id: I8d484b840063c0a7a8a79c5bdc9074a57d2ee55f",
+    "tree": {
+      "sha": "a403155d0cb1e77d23c59543cf9eb453b1241372",
+      "url": "https://api.github.com/repos/unilabsim/mujoco_uni/git/trees/a403155d0cb1e77d23c59543cf9eb453b1241372"
+    },
+    "url": "https://api.github.com/repos/unilabsim/mujoco_uni/git/commits/5d782a2bb8569f2c79059c9845cae5147dd684a2",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/unilabsim/mujoco_uni/commits/5d782a2bb8569f2c79059c9845cae5147dd684a2",
+  "html_url": "https://github.com/unilabsim/mujoco_uni/commit/5d782a2bb8569f2c79059c9845cae5147dd684a2",
+  "comments_url": "https://api.github.com/repos/unilabsim/mujoco_uni/commits/5d782a2bb8569f2c79059c9845cae5147dd684a2/comments",
+  "author": {
+    "login": "yuvaltassa",
+    "id": 6387526,
+    "node_id": "MDQ6VXNlcjYzODc1MjY=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/6387526?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/yuvaltassa",
+    "html_url": "https://github.com/yuvaltassa",
+    "followers_url": "https://api.github.com/users/yuvaltassa/followers",
+    "following_url": "https://api.github.com/users/yuvaltassa/following{/other_user}",
+    "gists_url": "https://api.github.com/users/yuvaltassa/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/yuvaltassa/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/yuvaltassa/subscriptions",
+    "organizations_url": "https://api.github.com/users/yuvaltassa/orgs",
+    "repos_url": "https://api.github.com/users/yuvaltassa/repos",
+    "events_url": "https://api.github.com/users/yuvaltassa/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/yuvaltassa/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "copybara-github",
+    "id": 32201506,
+    "node_id": "MDQ6VXNlcjMyMjAxNTA2",
+    "avatar_url": "https://avatars.githubusercontent.com/u/32201506?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/copybara-github",
+    "html_url": "https://github.com/copybara-github",
+    "followers_url": "https://api.github.com/users/copybara-github/followers",
+    "following_url": "https://api.github.com/users/copybara-github/following{/other_user}",
+    "gists_url": "https://api.github.com/users/copybara-github/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/copybara-github/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/copybara-github/subscriptions",
+    "organizations_url": "https://api.github.com/users/copybara-github/orgs",
+    "repos_url": "https://api.github.com/users/copybara-github/repos",
+    "events_url": "https://api.github.com/users/copybara-github/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/copybara-github/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "ffe1eadd7e6dc247bef36eb2609d8f5a37e37344",
+      "url": "https://api.github.com/repos/unilabsim/mujoco_uni/commits/ffe1eadd7e6dc247bef36eb2609d8f5a37e37344",
+      "html_url": "https://github.com/unilabsim/mujoco_uni/commit/ffe1eadd7e6dc247bef36eb2609d8f5a37e37344"
+    }
+  ],
+  "stats": {
+    "total": 2,
+    "additions": 1,
+    "deletions": 1
+  },
+  "files": [
+    {
+      "sha": "b9c112a1d6bb7c7d613a39fd66d4744675b09b3e",
+      "filename": "src/engine/engine_solver.c",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/unilabsim/mujoco_uni/blob/5d782a2bb8569f2c79059c9845cae5147dd684a2/src%2Fengine%2Fengine_solver.c",
+      "raw_url": "https://github.com/unilabsim/mujoco_uni/raw/5d782a2bb8569f2c79059c9845cae5147dd684a2/src%2Fengine%2Fengine_solver.c",
+      "contents_url": "https://api.github.com/repos/unilabsim/mujoco_uni/contents/src%2Fengine%2Fengine_solver.c?ref=5d782a2bb8569f2c79059c9845cae5147dd684a2",
+      "patch": "@@ -1072,7 +1072,7 @@ static void PrimalAllocate(mjData* d, mjPrimalContext* ctx, int flg_Newton) {\n   // local sizes and flags\n   int nv = ctx->nv;\n   int nefc = ctx->nefc;\n-  int nJ = ctx->is_sparse ? d->nJ : 0;\n+  int nJ = ctx->is_sparse ? ctx->nJ : 0;\n   int is_sparse = ctx->is_sparse;\n   int is_elliptic = ctx->is_elliptic;\n "
+    }
+  ]
+}

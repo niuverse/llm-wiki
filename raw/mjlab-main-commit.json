@@ -1,0 +1,113 @@
+{
+  "sha": "1d1474040c3887af8419e20a682a132e7bc3fe86",
+  "node_id": "C_kwDOO4-6kNoAKDFkMTQ3NDA0MGMzODg3YWY4NDE5ZTIwYTY4MmExMzJlN2JjM2ZlODY",
+  "commit": {
+    "author": {
+      "name": "Kevin Zakka",
+      "email": "kevinzakka@users.noreply.github.com",
+      "date": "2026-06-04T17:11:43Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-06-04T17:11:43Z"
+    },
+    "message": "Fix CircularBuffer backfill broadcast for >2D data (#1046)\n\nThe first-push backfill in CircularBuffer.append hard-coded a 3-D broadcast\n(is_first_push[None, :, None] and data[None, :, :]), which only lines up when\nthe buffer is exactly (max_len, batch, feature). DcMotorActuator with a\nvariable delay lag range stacks position, velocity, and effort targets into a\n3-D tensor (num_envs, num_targets, 3), making the buffer 4-D. The hard-coded\ncondition then misaligns the batch axis with the num_targets axis and raises a\nbroadcast error whenever num_envs != num_targets. The fix derives the broadcast\nshape from data.ndim so it works for tensors of any rank.\n\nSupersedes #1045.\n\nCo-authored-by: ZzzzzzS <ZhouZishun@mail.zzshub.cn>",
+    "tree": {
+      "sha": "fcf398d4c8c2005c5c00997a7a4f77a6a3cc69be",
+      "url": "https://api.github.com/repos/mujocolab/mjlab/git/trees/fcf398d4c8c2005c5c00997a7a4f77a6a3cc69be"
+    },
+    "url": "https://api.github.com/repos/mujocolab/mjlab/git/commits/1d1474040c3887af8419e20a682a132e7bc3fe86",
+    "comment_count": 0,
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqIbHPCRC1aQ7uu5UhlAAA7ycQAKljgmHKQQoSDjUjByp9mh0I\nIjSSI7ax37SdZGNAl8OAruP4++pwv9tKS20Z9Fg87E6FLOALudN/k7Qd6Vr8NjFv\ni7pSmIIQSEdMGNSJgxvTYiUsKhz9GON0CryC9Z+5+hOo8WkfXid3iLWpOC1V8DKk\n4DEx7iHG32e2EM3YvonkUjQZeJUJRlpm7Tj1vc1KwALk+HYbpRmCJj3fuqAMV4OR\n8/1nbGFENdmH76sL6OCPxkWBy4LsQW3T56lEo5yURPHXGJdRz7hZrZ+LtodI+Cpq\n/aQgKOZ2M4Y8Fvc4e6DhLqy63VFBWyA7ai/NJIKBBaRT2r4DupiL0KYi49+flTP5\nuI2HTlesjPYIrj4kX1OU/jmY8wbMxBetPHqqioEzAnculIE1ikiSEi8pDmixbXBI\nNLOgpEiU/KXNtnELK34r2uRqUyFTxYah7LXwbkz8QjYprPQ5yJH24ep7J3UujvYR\nYZMrXP9yngPpSdj4QqCPvV/cJ8r7iGnLL9OF4JWww+nCy2DHZ8eBp0ERVZg5Ap3g\nRIgxjgiusC2aNF2tSlQ+nKBpbSLswifCJTWR2+ZGQ9EHNy6sG681Ug+9KQuOjEML\nfsbzGN6dgdoYuzM1Tf93Om171k76k/fzgUNbIgBUJc198CcshobkUjX+D4a7Y9M5\n0RSRRCWOL8hL8z2MbU66\n=3Af1\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree fcf398d4c8c2005c5c00997a7a4f77a6a3cc69be\nparent 8574f9cd796bd96aa332c98799a4233deca873ef\nauthor Kevin Zakka <kevinzakka@users.noreply.github.com> 1780593103 -0700\ncommitter GitHub <noreply@github.com> 1780593103 -0400\n\nFix CircularBuffer backfill broadcast for >2D data (#1046)\n\nThe first-push backfill in CircularBuffer.append hard-coded a 3-D broadcast\n(is_first_push[None, :, None] and data[None, :, :]), which only lines up when\nthe buffer is exactly (max_len, batch, feature). DcMotorActuator with a\nvariable delay lag range stacks position, velocity, and effort targets into a\n3-D tensor (num_envs, num_targets, 3), making the buffer 4-D. The hard-coded\ncondition then misaligns the batch axis with the num_targets axis and raises a\nbroadcast error whenever num_envs != num_targets. The fix derives the broadcast\nshape from data.ndim so it works for tensors of any rank.\n\nSupersedes #1045.\n\nCo-authored-by: ZzzzzzS <ZhouZishun@mail.zzshub.cn>",
+      "verified_at": "2026-06-04T17:11:43Z"
+    }
+  },
+  "url": "https://api.github.com/repos/mujocolab/mjlab/commits/1d1474040c3887af8419e20a682a132e7bc3fe86",
+  "html_url": "https://github.com/mujocolab/mjlab/commit/1d1474040c3887af8419e20a682a132e7bc3fe86",
+  "comments_url": "https://api.github.com/repos/mujocolab/mjlab/commits/1d1474040c3887af8419e20a682a132e7bc3fe86/comments",
+  "author": {
+    "login": "kevinzakka",
+    "id": 10518920,
+    "node_id": "MDQ6VXNlcjEwNTE4OTIw",
+    "avatar_url": "https://avatars.githubusercontent.com/u/10518920?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/kevinzakka",
+    "html_url": "https://github.com/kevinzakka",
+    "followers_url": "https://api.github.com/users/kevinzakka/followers",
+    "following_url": "https://api.github.com/users/kevinzakka/following{/other_user}",
+    "gists_url": "https://api.github.com/users/kevinzakka/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/kevinzakka/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/kevinzakka/subscriptions",
+    "organizations_url": "https://api.github.com/users/kevinzakka/orgs",
+    "repos_url": "https://api.github.com/users/kevinzakka/repos",
+    "events_url": "https://api.github.com/users/kevinzakka/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/kevinzakka/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "web-flow",
+    "id": 19864447,
+    "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/web-flow",
+    "html_url": "https://github.com/web-flow",
+    "followers_url": "https://api.github.com/users/web-flow/followers",
+    "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+    "organizations_url": "https://api.github.com/users/web-flow/orgs",
+    "repos_url": "https://api.github.com/users/web-flow/repos",
+    "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/web-flow/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "8574f9cd796bd96aa332c98799a4233deca873ef",
+      "url": "https://api.github.com/repos/mujocolab/mjlab/commits/8574f9cd796bd96aa332c98799a4233deca873ef",
+      "html_url": "https://github.com/mujocolab/mjlab/commit/8574f9cd796bd96aa332c98799a4233deca873ef"
+    }
+  ],
+  "stats": {
+    "total": 30,
+    "additions": 27,
+    "deletions": 3
+  },
+  "files": [
+    {
+      "sha": "e2483159c2b2dbd7f3c3cb6440297e5fcc95d09f",
+      "filename": "src/mjlab/utils/buffers/circular_buffer.py",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 3,
+      "changes": 7,
+      "blob_url": "https://github.com/mujocolab/mjlab/blob/1d1474040c3887af8419e20a682a132e7bc3fe86/src%2Fmjlab%2Futils%2Fbuffers%2Fcircular_buffer.py",
+      "raw_url": "https://github.com/mujocolab/mjlab/raw/1d1474040c3887af8419e20a682a132e7bc3fe86/src%2Fmjlab%2Futils%2Fbuffers%2Fcircular_buffer.py",
+      "contents_url": "https://api.github.com/repos/mujocolab/mjlab/contents/src%2Fmjlab%2Futils%2Fbuffers%2Fcircular_buffer.py?ref=1d1474040c3887af8419e20a682a132e7bc3fe86",
+      "patch": "@@ -208,10 +208,11 @@ def append(self, data: torch.Tensor) -> None:\n     self._buffer[self._pointer] = data\n \n     # Backfill entire history with first frame for newly initialized batches.\n+    # The condition and data are reshaped to broadcast against the buffer's\n+    # (max_len, batch_size, ...) shape for data of any rank.\n     is_first_push = self._num_pushes == 0\n-    torch.where(\n-      is_first_push[None, :, None], data[None, :, :], self._buffer, out=self._buffer\n-    )\n+    condition = is_first_push.view(1, self._batch_size, *([1] * (data.ndim - 1)))\n+    torch.where(condition, data.unsqueeze(0), self._buffer, out=self._buffer)\n \n     self._num_pushes += 1\n "
+    },
+    {
+      "sha": "34b9d02afb576a11d8309f32f8b609e97b4bc1e9",
+      "filename": "tests/test_circular_buffer.py",
+      "status": "modified",
+      "additions": 23,
+      "deletions": 0,
+      "changes": 23,
+      "blob_url": "https://github.com/mujocolab/mjlab/blob/1d1474040c3887af8419e20a682a132e7bc3fe86/tests%2Ftest_circular_buffer.py",
+      "raw_url": "https://github.com/mujocolab/mjlab/raw/1d1474040c3887af8419e20a682a132e7bc3fe86/tests%2Ftest_circular_buffer.py",
+      "contents_url": "https://api.github.com/repos/mujocolab/mjlab/contents/tests%2Ftest_circular_buffer.py?ref=1d1474040c3887af8419e20a682a132e7bc3fe86",
+      "patch": "@@ -161,6 +161,29 @@ def test_backfill_after_per_batch_reset(device):\n   )\n \n \n+def test_backfill_multidimensional_data(device):\n+  \"\"\"First-push backfill works for >2D data whose trailing dims differ from batch.\n+\n+  Regression for #1045: the backfill broadcast hard-coded a 3D condition shape,\n+  which misaligned the batch axis with a trailing axis when num_targets != batch.\n+  Here batch_size=4 but the trailing axis is 2, so the buggy broadcast raised a\n+  4-vs-2 mismatch.\n+  \"\"\"\n+  batch_size, num_targets, num_channels = 4, 2, 3\n+  buffer = CircularBuffer(max_len=3, batch_size=batch_size, device=device)\n+\n+  data = torch.arange(\n+    batch_size * num_targets * num_channels, dtype=torch.float32, device=device\n+  ).reshape(batch_size, num_targets, num_channels)\n+  buffer.append(data)\n+\n+  hist = buffer.buffer  # (batch, max_len, num_targets, num_channels)\n+  assert hist.shape == (batch_size, 3, num_targets, num_channels)\n+  # First push backfills every history slot with the same frame per batch row.\n+  for t in range(3):\n+    assert torch.allclose(hist[:, t], data)\n+\n+\n def test_errors_and_types(device):\n   \"\"\"Error paths: wrong batch, pre-append access, and bad key size.\"\"\"\n   buffer = CircularBuffer(max_len=2, batch_size=2, device=device)"
+    }
+  ]
+}

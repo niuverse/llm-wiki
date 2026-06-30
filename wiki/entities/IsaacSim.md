@@ -2,8 +2,8 @@
 title: "Isaac Sim"
 type: entity
 tags: [robotics, simulation, nvidia, usd, physx]
-sources: ["[[isaac-sim-45-asset-structure]]", "[[isaac-sim-asset-structure]]", "[[isaac-sim-core-api-collision-approximation]]", "[[omniverse-omni-physics-articulations]]"]
-last_updated: 2026-06-04
+sources: ["[[isaac-sim-45-asset-structure]]", "[[isaac-sim-asset-structure]]", "[[isaac-sim-core-api-collision-approximation]]", "[[omniverse-omni-physics-articulations]]", "[[isaac-lab-repository]]"]
+last_updated: 2026-06-05
 ---
 
 # Isaac Sim
@@ -16,4 +16,6 @@ Articulations source 把一部分 physics/control 讨论升级为 source-backed�
 
 Collision approximation source 把 Isaac Sim 的 asset / physics boundary 具体化：visual objects、dynamic primitives 和 mesh colliders 可以选择不同 collision representation，而 Convex Decomposition / SDF 能捕捉更多 detail 但有 performance impact。这个 source 支持把 collider authoring 纳入 [[CollisionGeometryForRobotSimulation|collision geometry]] 与 [[SimulationRealityGap|reality-gap]] audit。
 
-相关页面：[[CollisionGeometryForRobotSimulation]]、[[IsaacSimLegacyAssetStructure]]、[[IsaacSimAssetStructure]]、[[ReducedCoordinateArticulations]]、[[PhysX]]、[[NVIDIA]]、[[MuJoCo]]、[[SimulationRealityGap]]、[[isaac-sim-mujoco-control-tuning-notes]]。
+[[isaac-lab-repository|Isaac Lab repository]] 把 Isaac Sim 连接到 robot learning framework layer：Isaac Lab built on NVIDIA Isaac Sim，用于 reinforcement learning、imitation learning、motion planning 和 sim-to-real workflows。README 还记录 Isaac Sim version dependency 与 proprietary dependency boundary，因此这个 source 支持“Isaac Lab 是 Isaac Sim 上的 GPU-accelerated robotics research framework”，但不支持把整套 runtime stack 简化为 permissive open-source。
+
+相关页面：[[CollisionGeometryForRobotSimulation]]、[[IsaacSimLegacyAssetStructure]]、[[IsaacSimAssetStructure]]、[[ReducedCoordinateArticulations]]、[[PhysX]]、[[NVIDIA]]、[[IsaacLab]]、[[MuJoCo]]、[[SimulationRealityGap]]、[[isaac-sim-mujoco-control-tuning-notes]]。

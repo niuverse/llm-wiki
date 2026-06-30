@@ -1,0 +1,1637 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link sizes="16x16" href="../_static/favicons/favicon-16x16.png" rel="icon" type="image/png">
+    <link sizes="32x32" href="../_static/favicons/favicon-32x32.png" rel="icon" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../_static/favicons/favicon-180x180.png" type="image/png">
+    <link sizes="180x180" href="../_static/favicons/favicon-180x180.png" rel="icon" type="image/png">
+    <link sizes="192x192" href="../_static/favicons/favicon-192x192.png" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="MuJoCo Warp API" href="api.html" /><link rel="prev" title="MJX API" href="../mjx_api.html" />
+
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
+        <title>MuJoCo Warp (MJWarp) - MuJoCo Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=6c1b457d" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides_mjwarp.css?v=e08d3b36" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --color-brand-visited: var(--color-brand-content);
+  --font-stack--monospace: Inconsolata,Consolas,ui-monospace,monospace;
+  --at-color: #830b2b;
+  --at-val-color: #bc103e;
+  --body-color: #14234b;
+  --color-highlight-on-target: #e5e8ed;
+  --primary-header-color: #0053d6;
+  --row-odd-background-color: #f0f3f7;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #123693;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 130%;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-visited: var(--color-brand-content);
+  --at-color: #ffaab7;
+  --at-val-color: #ff95a6;
+  --body-color: #14234b;
+  --color-admonition-background: #1e1e21;
+  --color-highlight-on-target: #3d4045;
+  --primary-header-color: #a8caff;
+  --row-odd-background-color: #222326;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #458dff;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 130%;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-visited: var(--color-brand-content);
+  --at-color: #ffaab7;
+  --at-val-color: #ff95a6;
+  --body-color: #14234b;
+  --color-admonition-background: #1e1e21;
+  --color-highlight-on-target: #3d4045;
+  --primary-header-color: #a8caff;
+  --row-odd-background-color: #222326;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #458dff;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 130%;
+  
+      }
+    }
+  }
+</style><script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="mujoco" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/mjwarp/" /><meta name="readthedocs-http-status" content="200" /></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">MuJoCo Documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/banner.svg" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">MuJoCo Documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../computation/index.html">Computation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Computation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../computation/fluid.html">Fluid forces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../XMLreference.html">XML Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../programming/index.html">Programming</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Programming</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../programming/simulation.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/visualization.html">Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/modeledit.html">Model Editing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/samples.html">Code samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/extension.html">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../APIreference/index.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../APIreference/APItypes.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../APIreference/APIfunctions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../APIreference/APIglobals.html">Globals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mjx.html">MuJoCo XLA</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of MuJoCo XLA</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mjx_api.html">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">MuJoCo Warp</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MuJoCo Warp</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../unity.html">Unity Plug-in</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../OpenUSD/index.html">OpenUSD</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of OpenUSD</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../OpenUSD/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OpenUSD/mjcPhysics.html">mjcPhysics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OpenUSD/mjcf_file_format_plugin.html">File Format Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OpenUSD/importing.html">Importing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OpenUSD/exporting.html">Exporting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">Model Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/google-deepmind/mujoco">GitHub</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/mjwarp/index.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="mujoco-warp-mjwarp">
+<span id="mjw"></span><h1>MuJoCo Warp (MJWarp)<a class="headerlink" href="#mujoco-warp-mjwarp" title="Link to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>MuJoCo Warp (MJWarp) is an implementation of MuJoCo written in <a class="reference external" href="https://nvidia.github.io/warp/">Warp</a> and optimized
+for <a class="reference external" href="https://nvidia.com">NVIDIA</a> hardware and parallel simulation. MJWarp lives in the
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp">google-deepmind/mujoco_warp</a> GitHub repository.</p>
+<p>MJWarp is developed and maintained as a joint effort by <a class="reference external" href="https://nvidia.com">NVIDIA</a> and
+<a class="reference external" href="https://deepmind.google/">Google DeepMind</a>.</p>
+<section id="tutorial-notebook">
+<span id="mjw-tutorial"></span><h2>Tutorial notebook<a class="headerlink" href="#tutorial-notebook" title="Link to this heading">#</a></h2>
+<p>The MJWarp basics are covered in a tutorial <a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/blob/main/notebooks/tutorial.ipynb">[notebook]</a> <a class="reference external" href="https://colab.research.google.com/github/google-deepmind/mujoco_warp/blob/main/notebooks/tutorial.ipynb">[open in colab]</a>.</p>
+</section>
+<section id="when-to-use-mjwarp">
+<h2>When To Use MJWarp?<a class="headerlink" href="#when-to-use-mjwarp" title="Link to this heading">#</a></h2>
+<section id="high-throughput">
+<h3>High throughput<a class="headerlink" href="#high-throughput" title="Link to this heading">#</a></h3>
+<p>The MuJoCo ecosystem offers multiple options for batched simulation.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../python.html#pyrollout"><span class="std std-ref">mujoco.rollout</span></a>: Python API for multi-threaded calls to <a class="reference internal" href="../APIreference/APIfunctions.html#mj-step"><span class="std std-ref">mj_step</span></a> on CPU. High throughput
+can be achieved with hardware that has fast cores and large thread counts, but overall performance of applications
+requiring frequent host&lt;&gt;device transfers (e.g., reinforcement learning with simulation on CPU and learning on GPU)
+may be bottlenecked by transfer overhead.</p></li>
+<li><p><strong>mjx.step</strong>: <code class="docutils literal notranslate"><span class="pre">jax.vmap</span></code> and <code class="docutils literal notranslate"><span class="pre">jax.pmap</span></code> enable multi-threaded and multi-device simulation with JAX on CPUs, GPUs, or
+TPUs.</p></li>
+<li><p><a class="reference internal" href="api.html#mujoco_warp.step" title="mujoco_warp.step"><code class="xref py py-func docutils literal notranslate"><span class="pre">mujoco_warp.step</span></code></a>: Python API for multi-threaded and multi-device simulation with CUDA via
+Warp on NVIDIA GPUs. Improved scaling for contact-rich scenes compared to the MJX JAX implementation.</p></li>
+</ul>
+</section>
+<section id="low-latency">
+<h3>Low latency<a class="headerlink" href="#low-latency" title="Link to this heading">#</a></h3>
+<p>MJWarp is optimized for throughput: the total number of simulation steps per unit time whereas MuJoCo is optimized for
+latency: time for one simulation step. It is expected that a simulation step with MJWarp will be less performant
+than a step with MuJoCo for the same simulation.</p>
+<p>As a result, MJWarp is well suited for applications where large numbers of
+samples are required, like reinforcement learning, while MuJoCo is likely more useful for real-time applications like
+online control (e.g., model predictive control) or interactive graphical interfaces (e.g., simulation-based
+teleoperation).</p>
+</section>
+<section id="complex-scenes">
+<h3>Complex scenes<a class="headerlink" href="#complex-scenes" title="Link to this heading">#</a></h3>
+<p>MJWarp scales better than MJX for scenes with many geoms or degrees of freedom, but not as well as MuJoCo. There may be
+significant performance degradation in MJWarp for scenes beyond 60 DoFs. Supporting these larger scenes is a high
+priority and progress is tracked in GitHub issues for: sparse Jacobians
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/88">#88</a>, block Cholesky factorization and solve
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/320">#320</a>, constraint islands
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/886">#886</a>, and sleeping islands
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/887">#887</a>.</p>
+</section>
+<section id="differentiability">
+<h3>Differentiability<a class="headerlink" href="#differentiability" title="Link to this heading">#</a></h3>
+<p>The dynamics API in MJX is automatically differentiable via JAX. We are considering whether to support this in MJWarp
+via Warp - if this feature is important to you, please chime in on this issue
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/500">here</a>.</p>
+</section>
+</section>
+<section id="installation">
+<span id="mjw-install"></span><h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p><strong>From PyPI:</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>mujoco-warp
+</pre></div>
+</div>
+<p><strong>From source:</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/google-deepmind/mujoco_warp.git
+<span class="nb">cd</span><span class="w"> </span>mujoco_warp
+uv<span class="w"> </span>sync<span class="w"> </span>--all-extras
+</pre></div>
+</div>
+<p>To make sure everything is working:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-n<span class="w"> </span><span class="m">8</span>
+</pre></div>
+</div>
+</section>
+<section id="basic-usage">
+<span id="mjw-usage"></span><h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading">#</a></h2>
+<p>Once installed, the package can be imported via <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">mujoco_warp</span> <span class="pre">as</span> <span class="pre">mjw</span></code>. Structs, functions, and enums are
+available directly from the top-level <a class="reference internal" href="api.html#module-mujoco_warp" title="mujoco_warp"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mjw</span></code></a> module.</p>
+<section id="structs">
+<h3>Structs<a class="headerlink" href="#structs" title="Link to this heading">#</a></h3>
+<p>Before running MJWarp functions on an NVIDIA GPU, structs must be copied onto the device via
+<a class="reference internal" href="api.html#mujoco_warp.put_model" title="mujoco_warp.put_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.put_model</span></code></a> and <a class="reference internal" href="api.html#mujoco_warp.make_data" title="mujoco_warp.make_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.make_data</span></code></a> or
+<a class="reference internal" href="api.html#mujoco_warp.put_data" title="mujoco_warp.put_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.put_data</span></code></a> functions. Placing an <a class="reference internal" href="../APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> on device yields an
+<a class="reference internal" href="api.html#mujoco_warp.Model" title="mujoco_warp.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Model</span></code></a>. Placing an <a class="reference internal" href="../APIreference/APItypes.html#mjdata"><span class="std std-ref">mjData</span></a> on device yields an
+<a class="reference internal" href="api.html#mujoco_warp.Data" title="mujoco_warp.Data"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Data</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mjm</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">MjModel</span><span class="o">.</span><span class="n">from_xml_string</span><span class="p">(</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
+<span class="n">mjd</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">MjData</span><span class="p">(</span><span class="n">mjm</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">put_model</span><span class="p">(</span><span class="n">mjm</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">put_data</span><span class="p">(</span><span class="n">mjm</span><span class="p">,</span> <span class="n">mjd</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These MJWarp variants mirror their MuJoCo counterparts but have a few key differences:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="api.html#mujoco_warp.Model" title="mujoco_warp.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Model</span></code></a> and <a class="reference internal" href="api.html#mujoco_warp.Data" title="mujoco_warp.Data"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Data</span></code></a> contain Warp arrays that are copied
+onto device.</p></li>
+<li><p>Some fields are missing from <a class="reference internal" href="api.html#mujoco_warp.Model" title="mujoco_warp.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Model</span></code></a> and <a class="reference internal" href="api.html#mujoco_warp.Data" title="mujoco_warp.Data"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Data</span></code></a> for
+features that are unsupported.</p></li>
+</ol>
+</section>
+<section id="batch-sizes">
+<h3>Batch sizes<a class="headerlink" href="#batch-sizes" title="Link to this heading">#</a></h3>
+<p>MJWarp is optimized for parallel simulation. A batch of simulations can be specified with three parameters:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="api.html#mujoco_warp.Data.nworld" title="mujoco_warp.Data.nworld"><code class="xref py py-attr docutils literal notranslate"><span class="pre">nworld</span></code></a>: Number of worlds to simulate.</p></li>
+<li><p><span class="target" id="nconmax">nconmax</span>: Expected number of contacts per world. The maximum number of contacts for all worlds is
+<code class="docutils literal notranslate"><span class="pre">nconmax</span> <span class="pre">*</span> <span class="pre">nworld</span></code>.</p></li>
+<li><p><span class="target" id="naconmax">naconmax</span>: Alternative to <a class="reference internal" href="#nconmax">nconmax</a>, maximum number of contacts over all worlds. If <a class="reference internal" href="#nconmax">nconmax</a> and <a class="reference internal" href="#naconmax">naconmax</a> are
+both set then <a class="reference internal" href="#nconmax">nconmax</a> is ignored.</p></li>
+<li><p><span class="target" id="njmax">njmax</span>: Maximum number of constraints per world.</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Semantic difference for <a class="reference internal" href="#nconmax">nconmax</a> and <a class="reference internal" href="#njmax">njmax</a>.</p>
+<p>It is possible for the number of contacts per world to exceed <a class="reference internal" href="#nconmax">nconmax</a> if the total number of contacts for all
+worlds does not exceed <code class="docutils literal notranslate"><span class="pre">nworld</span> <span class="pre">x</span> <span class="pre">nconmax</span></code>. However, the number of constraints per world is strictly limited by
+<a class="reference internal" href="#njmax">njmax</a>.</p>
+</div>
+<div class="note admonition">
+<p class="admonition-title">XML parsing</p>
+<p>Values for <a class="reference internal" href="#nconmax">nconmax</a> and <a class="reference internal" href="#njmax">njmax</a> are not parsed from <a class="reference internal" href="../XMLreference.html#size-nconmax"><span class="std std-ref">size/nconmax</span></a> and
+<a class="reference internal" href="../XMLreference.html#size-njmax"><span class="std std-ref">size/njmax</span></a> (these parameters are deprecated). Values for these parameters must be provided to
+<a class="reference internal" href="api.html#mujoco_warp.make_data" title="mujoco_warp.make_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.make_data</span></code></a> or <a class="reference internal" href="api.html#mujoco_warp.put_data" title="mujoco_warp.put_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.put_data</span></code></a>.</p>
+</div>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h3>
+<p>MuJoCo functions are exposed as MJWarp functions of the same name, but following
+<a class="reference external" href="https://peps.python.org/pep-0008/">PEP 8</a>-compliant names. Most of the <a class="reference internal" href="../APIreference/APIfunctions.html#mainsimulation"><span class="std std-ref">main simulation</span></a> and
+some of the <a class="reference internal" href="../APIreference/APIfunctions.html#subcomponents"><span class="std std-ref">sub-components</span></a> for forward simulation are available from the top-level
+<a class="reference internal" href="api.html#module-mujoco_warp" title="mujoco_warp"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mjw</span></code></a> module.</p>
+</section>
+<section id="minimal-example">
+<h3>Minimal example<a class="headerlink" href="#minimal-example" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Throw a ball at 100 different velocities.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">mujoco</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mujoco_warp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mjw</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wp</span>
+
+<span class="n">_MJCF</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;mujoco&gt;</span>
+<span class="s2">  &lt;worldbody&gt;</span>
+<span class="s2">    &lt;body&gt;</span>
+<span class="s2">      &lt;freejoint/&gt;</span>
+<span class="s2">      &lt;geom size=&quot;.15&quot; mass=&quot;1&quot; type=&quot;sphere&quot;/&gt;</span>
+<span class="s2">    &lt;/body&gt;</span>
+<span class="s2">  &lt;/worldbody&gt;</span>
+<span class="s2">&lt;/mujoco&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">mjm</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">MjModel</span><span class="o">.</span><span class="n">from_xml_string</span><span class="p">(</span><span class="n">_MJCF</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">put_model</span><span class="p">(</span><span class="n">mjm</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">make_data</span><span class="p">(</span><span class="n">mjm</span><span class="p">,</span> <span class="n">nworld</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># initialize velocities</span>
+<span class="n">wp</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">qvel</span><span class="p">,</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
+
+<span class="c1"># simulate physics</span>
+<span class="n">mjw</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;qpos:</span><span class="se">\n</span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">qpos</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="command-line-scripts">
+<span id="mjwcli"></span><h3>Command line scripts<a class="headerlink" href="#command-line-scripts" title="Link to this heading">#</a></h3>
+<p>Benchmark an environment with <span class="target" id="testspeed">testspeed</span></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mjwarp-testspeed<span class="w"> </span>benchmark/humanoid/humanoid.xml
+</pre></div>
+</div>
+<p id="mjwviewer">Interactive environment simulation with MJWarp</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mjwarp-viewer<span class="w"> </span>benchmark/humanoid/humanoid.xml
+</pre></div>
+</div>
+</section>
+</section>
+<section id="feature-parity">
+<h2>Feature Parity<a class="headerlink" href="#feature-parity" title="Link to this heading">#</a></h2>
+<p>MJWarp supports most of the main simulation features of MuJoCo, with a few exceptions. MJWarp will raise an exception if
+asked to copy to device an <a class="reference internal" href="../APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> with field values referencing unsupported features. For the most up-to-date
+feature availability, please see
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp#mujoco-api-compatibility">MuJoCo API Compatibility</a>.</p>
+</section>
+<section id="performance-tuning">
+<span id="mjwperf"></span><h2>Performance Tuning<a class="headerlink" href="#performance-tuning" title="Link to this heading">#</a></h2>
+<p>The following are considerations for optimizing the performance of MJWarp.</p>
+<section id="graph-capture">
+<span id="mjwgc"></span><h3>Graph capture<a class="headerlink" href="#graph-capture" title="Link to this heading">#</a></h3>
+<p>MJWarp functions, for example <a class="reference internal" href="api.html#mujoco_warp.step" title="mujoco_warp.step"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.step</span></code></a>, often comprise a collection of kernel launches. Warp
+will launch these kernels individually if the function is called directly. To improve performance, especially if the
+function will be called multiple times, it is recommended to capture the operations that comprise the function as a CUDA
+graph</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">wp</span><span class="o">.</span><span class="n">ScopedCapture</span><span class="p">()</span> <span class="k">as</span> <span class="n">capture</span><span class="p">:</span>
+  <span class="n">mjw</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The graph can then be launched or re-launched</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">wp</span><span class="o">.</span><span class="n">capture_launch</span><span class="p">(</span><span class="n">capture</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and will typically be significantly faster compared to calling the function directly. Please see the
+<a class="reference external" href="https://nvidia.github.io/warp/modules/runtime.html#graph-api-reference">Warp Graph API reference</a> for details.</p>
+</section>
+<section id="id1">
+<h3>Batch sizes<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>The maximum numbers of contacts and constraints, <a class="reference internal" href="#nconmax">nconmax</a> / <a class="reference internal" href="#naconmax">naconmax</a> and <a class="reference internal" href="#njmax">njmax</a> respectively, are specified when
+creating <a class="reference internal" href="api.html#mujoco_warp.Data" title="mujoco_warp.Data"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Data</span></code></a> with <a class="reference internal" href="api.html#mujoco_warp.make_data" title="mujoco_warp.make_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.make_data</span></code></a> or
+<a class="reference internal" href="api.html#mujoco_warp.put_data" title="mujoco_warp.put_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.put_data</span></code></a>. Memory and computation scales with the values of these parameters. For best
+performance, the values of these parameters should be set as small as possible while ensuring the simulation does not
+exceed these limits.</p>
+<p>It is expected that good values for these limits will be environment specific. In practice, selecting good values
+typically involves trial-and-error. <code class="xref py py-func docutils literal notranslate"><span class="pre">mjwarp-testspeed</span></code> with the flag <code class="docutils literal notranslate"><span class="pre">--measure_alloc</span></code> for
+printing the number of contacts and constraints at each simulation step and interacting with the simulation via
+<code class="xref py py-func docutils literal notranslate"><span class="pre">mjwarp-viewer</span></code> and checking for overflow errors can both be useful techniques for
+iteratively testing values for these parameters.</p>
+</section>
+<section id="solver-iterations">
+<h3>Solver iterations<a class="headerlink" href="#solver-iterations" title="Link to this heading">#</a></h3>
+<p>MuJoCo’s default solver settings for the maximum numbers of <a class="reference internal" href="../XMLreference.html#option-iterations"><span class="std std-ref">solver iterations</span></a> and
+<a class="reference internal" href="../XMLreference.html#option-ls-iterations"><span class="std std-ref">linesearch iterations</span></a> are expected to provide reasonable performance. Reducing MJWarp’s
+settings <a class="reference internal" href="api.html#mujoco_warp.Option.iterations" title="mujoco_warp.Option.iterations"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Option.iterations</span></code></a> and/or
+<a class="reference internal" href="api.html#mujoco_warp.Option.ls_iterations" title="mujoco_warp.Option.ls_iterations"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Option.ls_iterations</span></code></a> limits may improve performance and should be secondary
+considerations after tuning <a class="reference internal" href="#nconmax">nconmax</a> / <a class="reference internal" href="#naconmax">naconmax</a> and <a class="reference internal" href="#njmax">njmax</a>.</p>
+<p>Reducing these limits too much may prevent the constraint solver from converging and can lead to inaccurate or unstable
+simulation.</p>
+<div class="note admonition">
+<p class="admonition-title">Impact on Performance: MJX (JAX) and MJWarp</p>
+<p>In <a class="reference internal" href="../mjx.html#mjx"><span class="std std-ref">MJX</span></a> these solver parameters are key for controlling simulation performance. With MJWarp, in contrast,
+once all worlds have converged the solver can early exit and avoid unnecessary computation. As a result, the values
+of these settings have comparatively less impact on performance.</p>
+</div>
+</section>
+<section id="contact-sensor-matching">
+<h3>Contact sensor matching<a class="headerlink" href="#contact-sensor-matching" title="Link to this heading">#</a></h3>
+<p>Scenes that include <a class="reference internal" href="../XMLreference.html#sensor-contact"><span class="std std-ref">contact sensors</span></a> have a parameter that specifies the maximum number of matched
+contacts per sensor <code class="xref py py-attr docutils literal notranslate"><span class="pre">Option.contact_sensor_max_match</span></code>. For best
+performance, the value of this parameter should be as small as possible while ensuring the simulation does not exceed
+the limit. Matched contacts that exceed this limit will be ignored.</p>
+<p>The value of this parameter can be set directly, for example <code class="docutils literal notranslate"><span class="pre">model.opt.contact_sensor_maxmatch</span> <span class="pre">=</span> <span class="pre">16</span></code>, or via an XML
+custom numeric field</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;custom&gt;</span>
+<span class="w">  </span><span class="nt">&lt;numeric</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;contact_sensor_maxmatch&quot;</span><span class="w"> </span><span class="na">data=</span><span class="s">&quot;16&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/custom&gt;</span>
+</pre></div>
+</div>
+<p>Similar to the maximum numbers of contacts and constraints, a good value for this setting is expected to be environment
+specific. <code class="xref py py-func docutils literal notranslate"><span class="pre">mjwarp-testspeed</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">mjwarp-viewer</span></code> may be useful
+for tuning the value of this parameter.</p>
+</section>
+<section id="parallel-linesearch">
+<h3>Parallel linesearch<a class="headerlink" href="#parallel-linesearch" title="Link to this heading">#</a></h3>
+<p>In addition to the constraint solver’s iterative linesearch, MJWarp provides a parallel linesearch routine that
+evaluates a set of step sizes in parallel and selects the best one. The step sizes are spaced logarithmically from
+<a class="reference internal" href="api.html#mujoco_warp.Option.ls_parallel_min_step" title="mujoco_warp.Option.ls_parallel_min_step"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Model.opt.ls_parallel_min_step</span></code></a> to 1 and the number of step sizes to
+evaluate is set via <a class="reference internal" href="api.html#mujoco_warp.Option.ls_iterations" title="mujoco_warp.Option.ls_iterations"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Model.opt.ls_iterations</span></code></a>.</p>
+<p>In some cases the parallel routine may provide improved performance compared to the constraint solver’s default
+iterative linesearch.</p>
+<p>To enable this routine set <code class="docutils literal notranslate"><span class="pre">Model.opt.ls_parallel=True</span></code> or add a custom numeric field to the XML</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;custom&gt;</span>
+<span class="w">  </span><span class="nt">&lt;numeric</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ls_parallel&quot;</span><span class="w"> </span><span class="na">data=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/custom&gt;</span>
+</pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Experimental feature</p>
+<p>The parallel linesearch is currently an experimental feature.</p>
+</div>
+</section>
+<section id="memory">
+<h3>Memory<a class="headerlink" href="#memory" title="Link to this heading">#</a></h3>
+<p>Simulation throughput is often limited by memory requirements for large numbers of worlds. Considerations for optimizing
+memory utilization include:</p>
+<ul class="simple">
+<li><p>CCD colliders require more memory than primitive colliders, see MuJoCo’s <a class="reference internal" href="../computation/index.html#copairwise"><span class="std std-ref">pair-wise colliders table</span></a>
+for information about colliders.</p></li>
+<li><p><a class="reference internal" href="../XMLreference.html#option-flag-multiccd"><span class="std std-ref">multiccd</span></a> requires more memory than CCD.</p></li>
+<li><p>CCD memory requirements scale linearly with <a class="reference internal" href="../XMLreference.html#option-ccd-iterations"><span class="std std-ref">Option.ccd_iterations</span></a>.</p></li>
+<li><p>A scene with at least one mesh geom and using <a class="reference internal" href="../XMLreference.html#option-flag-multiccd"><span class="std std-ref">multiccd</span></a> will have memory requirements
+that scale linearly with the maximum number of vertices per face and with the maximum number of edges per vertex,
+computed over all meshes.</p></li>
+</ul>
+<p><a class="reference internal" href="#testspeed">testspeed</a> provides the flag <code class="docutils literal notranslate"><span class="pre">--memory</span></code> for reporting a simulation’s total memory utilization and information about
+<a class="reference internal" href="api.html#mujoco_warp.Model" title="mujoco_warp.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Model</span></code></a> and <a class="reference internal" href="api.html#mujoco_warp.Data" title="mujoco_warp.Data"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Data</span></code></a> fields that require significant memory.
+Memory allocated inline, including for CCD and the constraint solver, can also be significant and is reported as
+<code class="docutils literal notranslate"><span class="pre">Other</span> <span class="pre">memory</span></code>.</p>
+<div class="note admonition">
+<p class="admonition-title">Maximum number of contacts per collider</p>
+<p>Some MJWarp colliders have a different maximum number of contacts compared to MuJoCo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PLANE&lt;&gt;MESH</span></code>: 4 versus 3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HFieldCCD</span></code>: 4 versus <code class="docutils literal notranslate"><span class="pre">mjMAXCONPAIR</span></code></p></li>
+</ul>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Sparsity</p>
+<p>Sparse Jacobians can enable significant memory savings. Updates for this feature are tracked in GitHub issue
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/88">#88</a>.</p>
+</div>
+<p>The <a class="reference internal" href="api.html#mujoco_warp.make_data" title="mujoco_warp.make_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.make_data</span></code></a> or <a class="reference internal" href="api.html#mujoco_warp.put_data" title="mujoco_warp.put_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.put_data</span></code></a> argument
+<code class="docutils literal notranslate"><span class="pre">nccdmax</span></code> / <code class="docutils literal notranslate"><span class="pre">naccdmax</span></code> can be set to a value less than <a class="reference internal" href="#nconmax">nconmax</a> / <a class="reference internal" href="#naconmax">naconmax</a> in order to reduce the memory
+requirements for CCD. The value for this parameter should be the maximum number of contacts generated by a CCD
+collider, per world or for all worlds, respectively. For example, a batched simulation with 10 worlds that generates 80
+total contacts with per-collider contacts: mesh-mesh: 30 (CCD), ellipsoid-ellipsoid: 10 (CCD), and sphere-sphere: 40
+(primitive) should set <a class="reference internal" href="#nconmax">nconmax</a> / <a class="reference internal" href="#naconmax">naconmax</a> to at least 8 / 80 (may require more for broadphase) and <code class="docutils literal notranslate"><span class="pre">nccdmax</span></code> /
+<code class="docutils literal notranslate"><span class="pre">naccdmax</span></code> to 3 / 30.</p>
+</section>
+</section>
+<section id="batched-model-fields">
+<span id="mjwbatch"></span><h2>Batched <a class="reference internal" href="api.html#mujoco_warp.Model" title="mujoco_warp.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> Fields<a class="headerlink" href="#batched-model-fields" title="Link to this heading">#</a></h2>
+<p>To enable batched simulation with different model parameter values, many <a class="reference internal" href="api.html#mujoco_warp.Model" title="mujoco_warp.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Model</span></code></a> fields
+have a leading batch dimension. By default, the leading dimension is 1 (i.e., <code class="docutils literal notranslate"><span class="pre">field.shape[0]</span> <span class="pre">==</span> <span class="pre">1</span></code>) and the same
+value(s) will be applied to all worlds. It is possible to override one of these fields with a <code class="docutils literal notranslate"><span class="pre">wp.array</span></code> that has a
+leading dimension greater than one. This field will be indexed with a modulo operation of the world id and batch
+dimension: <code class="docutils literal notranslate"><span class="pre">field[worldid</span> <span class="pre">%</span> <span class="pre">field.shape[0]]</span></code>.</p>
+<div class="warning admonition">
+<p class="admonition-title">Graph capture</p>
+<p>The field array should be overridden prior to
+<a class="reference internal" href="#mjwgc"><span class="std std-ref">graph capture</span></a> (i.e., <code class="docutils literal notranslate"><span class="pre">wp.ScopedCapture</span></code>)
+since the update will not be applied to an existing graph.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># override shape and values</span>
+<span class="n">m</span><span class="o">.</span><span class="n">dof_damping</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">wp</span><span class="o">.</span><span class="n">ScopedCapture</span><span class="p">()</span> <span class="k">as</span> <span class="n">capture</span><span class="p">:</span>
+  <span class="n">mjw</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It is possible to override the field shape and set the field values after graph capture</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># override shape</span>
+<span class="n">m</span><span class="o">.</span><span class="n">dof_damping</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">wp</span><span class="o">.</span><span class="n">ScopedCapture</span><span class="p">()</span> <span class="k">as</span> <span class="n">capture</span><span class="p">:</span>
+  <span class="n">mjw</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+
+<span class="c1"># set batched values</span>
+<span class="n">dof_damping</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">wp</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">dof_damping</span><span class="p">,</span> <span class="n">dof_damping</span><span class="p">)</span>  <span class="c1"># m.dof = dof_damping will not update the captured graph</span>
+</pre></div>
+</div>
+<section id="modifying-fields">
+<h3>Modifying fields<a class="headerlink" href="#modifying-fields" title="Link to this heading">#</a></h3>
+<p>The recommended workflow for modifying an <a class="reference internal" href="../APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> field is to first modify the corresponding <a class="reference internal" href="../APIreference/APItypes.html#mjspec"><span class="std std-ref">mjSpec</span></a> and
+then compile to create a new <a class="reference internal" href="../APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> with the updated field. However, compilation currently requires a host call:
+1 call per new field instance, i.e., <code class="docutils literal notranslate"><span class="pre">nworld</span></code> host calls for <code class="docutils literal notranslate"><span class="pre">nworld</span></code> instances.</p>
+<p>Certain fields are safe to modify directly without compilation, enabling on-device updates. Please see
+<a class="reference internal" href="../programming/simulation.html#sichange"><span class="std std-ref">mjModel changes</span></a> for details about specific fields. Additionally,
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/893">GitHub issue 893</a> tracks adding on-device updates for a
+subset of fields.</p>
+</section>
+<section id="per-world-meshes">
+<h3>Per-world meshes<a class="headerlink" href="#per-world-meshes" title="Link to this heading">#</a></h3>
+<p>Per-world meshes enable heterogeneous worlds where different worlds simulate different meshes. The workflow
+is:</p>
+<ol class="arabic simple">
+<li><p>Create an <a class="reference internal" href="../APIreference/APItypes.html#mjspec"><span class="std std-ref">mjSpec</span></a> with <strong>all</strong> mesh assets and the <strong>maximum</strong> number of geom slots needed across variants.</p></li>
+<li><p>Compile each variant by mutating the spec and calling <code class="docutils literal notranslate"><span class="pre">spec.compile()</span></code>.</p></li>
+<li><p>Compile a <strong>base</strong> model and create <a class="reference internal" href="api.html#mujoco_warp.Model" title="mujoco_warp.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Model</span></code></a> from it.</p></li>
+<li><p>Override the relevant <a class="reference internal" href="api.html#mujoco_warp.Model" title="mujoco_warp.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Model</span></code></a> fields with per-world arrays built from the compiled
+variants.</p></li>
+</ol>
+<p><strong>Example 1 — Geom-level</strong> randomization (1 body, 1 geom, 2 mesh assets):</p>
+<p>The base scene includes all mesh assets. The geom references one mesh (<code class="docutils literal notranslate"><span class="pre">mesh_a</span></code>); a second mesh
+(<code class="docutils literal notranslate"><span class="pre">mesh_b</span></code>) is available for per-world substitution.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mujoco&gt;</span>
+<span class="w">  </span><span class="nt">&lt;asset&gt;</span>
+<span class="w">    </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mesh_a&quot;</span><span class="w"> </span><span class="na">vertex=</span><span class="s">&quot;0 0 0 1 0 0 0 1 0 0 0 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mesh_b&quot;</span><span class="w"> </span><span class="na">vertex=</span><span class="s">&quot;0 0 0 2 0 0 0 2 0 0 0 2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/asset&gt;</span>
+<span class="w">  </span><span class="nt">&lt;worldbody&gt;</span>
+<span class="w">    </span><span class="nt">&lt;body</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0 0 1&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;freejoint/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;geom</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;obj&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;mesh&quot;</span><span class="w"> </span><span class="na">mesh=</span><span class="s">&quot;mesh_a&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/body&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/worldbody&gt;</span>
+<span class="nt">&lt;/mujoco&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nworld</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># base spec: 1 body with 1 mesh geom, all mesh assets</span>
+<span class="n">spec</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">MjSpec</span><span class="p">()</span>
+<span class="n">mesh_a</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">()</span>
+<span class="n">mesh_a</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;mesh_a&quot;</span>
+<span class="n">mesh_a</span><span class="o">.</span><span class="n">uservert</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">mesh_b</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">()</span>
+<span class="n">mesh_b</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;mesh_b&quot;</span>
+<span class="n">mesh_b</span><span class="o">.</span><span class="n">uservert</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">worldbody</span><span class="o">.</span><span class="n">add_body</span><span class="p">()</span>
+<span class="n">body</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">body</span><span class="o">.</span><span class="n">add_freejoint</span><span class="p">()</span>
+<span class="n">geom</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">add_geom</span><span class="p">()</span>
+<span class="n">geom</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;obj&quot;</span>
+<span class="n">geom</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">mjtGeom</span><span class="o">.</span><span class="n">mjGEOM_MESH</span>
+<span class="n">geom</span><span class="o">.</span><span class="n">meshname</span> <span class="o">=</span> <span class="s2">&quot;mesh_a&quot;</span>
+
+<span class="c1"># compile each variant</span>
+<span class="n">geom</span><span class="o">.</span><span class="n">meshname</span> <span class="o">=</span> <span class="s2">&quot;mesh_a&quot;</span>
+<span class="n">mjm_a</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+<span class="n">geom</span><span class="o">.</span><span class="n">meshname</span> <span class="o">=</span> <span class="s2">&quot;mesh_b&quot;</span>
+<span class="n">mjm_b</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="c1"># restore and compile base</span>
+<span class="n">geom</span><span class="o">.</span><span class="n">meshname</span> <span class="o">=</span> <span class="s2">&quot;mesh_a&quot;</span>
+<span class="n">mjm</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">put_model</span><span class="p">(</span><span class="n">mjm</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">make_data</span><span class="p">(</span><span class="n">mjm</span><span class="p">,</span> <span class="n">nworld</span><span class="o">=</span><span class="n">nworld</span><span class="p">)</span>
+
+<span class="c1"># build per-world arrays: worlds 0-1 use mesh_a, worlds 2-3 use mesh_b</span>
+<span class="n">geom_id</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">mj_name2id</span><span class="p">(</span><span class="n">mjm</span><span class="p">,</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">mjtObj</span><span class="o">.</span><span class="n">mjOBJ_GEOM</span><span class="p">,</span> <span class="s2">&quot;obj&quot;</span><span class="p">)</span>
+<span class="n">variants</span> <span class="o">=</span> <span class="p">[</span><span class="n">mjm_a</span><span class="p">,</span> <span class="n">mjm_b</span><span class="p">]</span>
+<span class="n">assignment</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># variant index per world</span>
+
+<span class="c1"># build per-world arrays</span>
+<span class="n">dataid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">mjm</span><span class="o">.</span><span class="n">geom_dataid</span><span class="p">,</span> <span class="p">(</span><span class="n">nworld</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">geom_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">ngeom</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">geom_aabb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">ngeom</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">geom_rbound</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">ngeom</span><span class="p">))</span>
+<span class="n">geom_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">ngeom</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">body_mass</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">nbody</span><span class="p">))</span>
+<span class="n">body_subtreemass</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">nbody</span><span class="p">))</span>
+<span class="n">body_inertia</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">nbody</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">body_invweight0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">nbody</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">body_ipos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">nbody</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">body_iquat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">nbody</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nworld</span><span class="p">):</span>
+  <span class="n">ref</span> <span class="o">=</span> <span class="n">variants</span><span class="p">[</span><span class="n">assignment</span><span class="p">[</span><span class="n">w</span><span class="p">]]</span>
+  <span class="n">dataid</span><span class="p">[</span><span class="n">w</span><span class="p">,</span> <span class="n">geom_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">geom_dataid</span><span class="p">[</span><span class="n">geom_id</span><span class="p">]</span>
+  <span class="n">geom_size</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">geom_size</span>
+  <span class="n">geom_aabb</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">geom_aabb</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mjm</span><span class="o">.</span><span class="n">ngeom</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+  <span class="n">geom_rbound</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">geom_rbound</span>
+  <span class="n">geom_pos</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">geom_pos</span>
+  <span class="n">body_mass</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">body_mass</span>
+  <span class="n">body_subtreemass</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">body_subtreemass</span>
+  <span class="n">body_inertia</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">body_inertia</span>
+  <span class="n">body_invweight0</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">body_invweight0</span>
+  <span class="n">body_ipos</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">body_ipos</span>
+  <span class="n">body_iquat</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">body_iquat</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">geom_dataid</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dataid</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">geom_size</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">geom_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">geom_aabb</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">geom_aabb</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">geom_rbound</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">geom_rbound</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">geom_pos</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">geom_pos</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">body_mass</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">body_mass</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">body_subtreemass</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">body_subtreemass</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">body_inertia</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">body_inertia</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">body_invweight0</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">body_invweight0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec2</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">body_ipos</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">body_ipos</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">body_iquat</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">body_iquat</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">quat</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Example 2 — Body-level</strong> randomization (1 body, 1 or 2 geoms, 3 mesh assets):</p>
+<div class="important admonition">
+<p class="admonition-title">Maximum geom count</p>
+<p>For body-level randomization, the base <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> provided to <code class="docutils literal notranslate"><span class="pre">mjw.put_model</span></code> should specify the <strong>maximum number
+of geoms</strong> required across all variants. Geom slots that are unused in a particular variant can be disabled
+(e.g., <code class="docutils literal notranslate"><span class="pre">contype=0</span></code>, <code class="docutils literal notranslate"><span class="pre">conaffinity=0</span></code>, <code class="docutils literal notranslate"><span class="pre">dataid=-1</span></code>), but they should still be present as part of the body in the
+base model.</p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mujoco&gt;</span>
+<span class="w">  </span><span class="nt">&lt;asset&gt;</span>
+<span class="w">    </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mA&quot;</span><span class="w"> </span><span class="na">vertex=</span><span class="s">&quot;0 0 0 1 0 0 0 1 0 0 0 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mB&quot;</span><span class="w"> </span><span class="na">vertex=</span><span class="s">&quot;0 0 0 2 0 0 0 2 0 0 0 2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mC&quot;</span><span class="w"> </span><span class="na">vertex=</span><span class="s">&quot;0 0 0 3 0 0 0 3 0 0 0 3&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/asset&gt;</span>
+<span class="w">  </span><span class="nt">&lt;worldbody&gt;</span>
+<span class="w">    </span><span class="nt">&lt;body</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;obj&quot;</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0 0 1&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;freejoint/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;geom</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;obj_0&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;mesh&quot;</span><span class="w"> </span><span class="na">mesh=</span><span class="s">&quot;mA&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;geom</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;obj_1&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;.001&quot;</span><span class="w"> </span><span class="na">contype=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">conaffinity=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">mass=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/body&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/worldbody&gt;</span>
+<span class="nt">&lt;/mujoco&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nworld</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="c1"># base spec: body with 2 geom slots (max across variants), all mesh assets</span>
+<span class="n">spec</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">MjSpec</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">&quot;mA&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;mB&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;mC&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]:</span>
+  <span class="n">mesh</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">()</span>
+  <span class="n">mesh</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+  <span class="n">mesh</span><span class="o">.</span><span class="n">uservert</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="p">]</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">worldbody</span><span class="o">.</span><span class="n">add_body</span><span class="p">()</span>
+<span class="n">body</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;obj&quot;</span>
+<span class="n">body</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">body</span><span class="o">.</span><span class="n">add_freejoint</span><span class="p">()</span>
+
+<span class="n">g0</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">add_geom</span><span class="p">()</span>
+<span class="n">g0</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;obj_0&quot;</span>
+<span class="n">g0</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">mjtGeom</span><span class="o">.</span><span class="n">mjGEOM_MESH</span>
+<span class="n">g0</span><span class="o">.</span><span class="n">meshname</span> <span class="o">=</span> <span class="s2">&quot;mA&quot;</span>
+
+<span class="c1"># null geom slot: disabled collision, no mesh</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">add_geom</span><span class="p">()</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;obj_1&quot;</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">contype</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">conaffinity</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">mass</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># variant A: 1 geom (mesh mA), g1 stays null</span>
+<span class="n">mjm_a</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="c1"># variant B: 2 geoms (mesh mB + mC)</span>
+<span class="n">g0</span><span class="o">.</span><span class="n">meshname</span> <span class="o">=</span> <span class="s2">&quot;mB&quot;</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">mjtGeom</span><span class="o">.</span><span class="n">mjGEOM_MESH</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">meshname</span> <span class="o">=</span> <span class="s2">&quot;mC&quot;</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">contype</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">conaffinity</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">mjm_b</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="c1"># restore base and compile</span>
+<span class="n">g0</span><span class="o">.</span><span class="n">meshname</span> <span class="o">=</span> <span class="s2">&quot;mA&quot;</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">mjtGeom</span><span class="o">.</span><span class="n">mjGEOM_SPHERE</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">contype</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">conaffinity</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mjm</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">put_model</span><span class="p">(</span><span class="n">mjm</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">make_data</span><span class="p">(</span><span class="n">mjm</span><span class="p">,</span> <span class="n">nworld</span><span class="o">=</span><span class="n">nworld</span><span class="p">)</span>
+
+<span class="c1"># worlds 0-2: variant A (1 active geom), worlds 3-5: variant B (2 active geoms)</span>
+<span class="n">variants</span> <span class="o">=</span> <span class="p">[</span><span class="n">mjm_a</span><span class="p">,</span> <span class="n">mjm_b</span><span class="p">]</span>
+<span class="n">assignment</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">geom0_id</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">mj_name2id</span><span class="p">(</span><span class="n">mjm</span><span class="p">,</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">mjtObj</span><span class="o">.</span><span class="n">mjOBJ_GEOM</span><span class="p">,</span> <span class="s2">&quot;obj_0&quot;</span><span class="p">)</span>
+<span class="n">geom1_id</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">mj_name2id</span><span class="p">(</span><span class="n">mjm</span><span class="p">,</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">mjtObj</span><span class="o">.</span><span class="n">mjOBJ_GEOM</span><span class="p">,</span> <span class="s2">&quot;obj_1&quot;</span><span class="p">)</span>
+<span class="n">body_id</span> <span class="o">=</span> <span class="n">mjm</span><span class="o">.</span><span class="n">geom_bodyid</span><span class="p">[</span><span class="n">geom0_id</span><span class="p">]</span>
+
+<span class="c1"># build per-world arrays</span>
+<span class="n">dataid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">mjm</span><span class="o">.</span><span class="n">geom_dataid</span><span class="p">,</span> <span class="p">(</span><span class="n">nworld</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">geom_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">ngeom</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">geom_rbound</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">ngeom</span><span class="p">))</span>
+<span class="n">geom_aabb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">ngeom</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">geom_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">ngeom</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">body_mass</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">nbody</span><span class="p">))</span>
+<span class="n">body_subtreemass</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">nbody</span><span class="p">))</span>
+<span class="n">body_inertia</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">nbody</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">body_invweight0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">nbody</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">body_ipos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">nbody</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">body_iquat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">mjm</span><span class="o">.</span><span class="n">nbody</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nworld</span><span class="p">):</span>
+  <span class="n">ref</span> <span class="o">=</span> <span class="n">variants</span><span class="p">[</span><span class="n">assignment</span><span class="p">[</span><span class="n">w</span><span class="p">]]</span>
+  <span class="n">dataid</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">geom_dataid</span>
+  <span class="c1"># disable unused geom slot for variant A</span>
+  <span class="k">if</span> <span class="n">assignment</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">dataid</span><span class="p">[</span><span class="n">w</span><span class="p">,</span> <span class="n">geom1_id</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+  <span class="n">geom_size</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">geom_size</span>
+  <span class="n">geom_rbound</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">geom_rbound</span>
+  <span class="n">geom_aabb</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">geom_aabb</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mjm</span><span class="o">.</span><span class="n">ngeom</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+  <span class="n">geom_pos</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">geom_pos</span>
+  <span class="n">body_mass</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">body_mass</span>
+  <span class="n">body_subtreemass</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">body_subtreemass</span>
+  <span class="n">body_inertia</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">body_inertia</span>
+  <span class="n">body_invweight0</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">body_invweight0</span>
+  <span class="n">body_ipos</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">body_ipos</span>
+  <span class="n">body_iquat</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">body_iquat</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">geom_dataid</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dataid</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">geom_size</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">geom_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">geom_rbound</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">geom_rbound</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">geom_aabb</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">geom_aabb</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">geom_pos</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">geom_pos</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">body_mass</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">body_mass</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">body_subtreemass</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">body_subtreemass</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">body_inertia</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">body_inertia</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">body_invweight0</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">body_invweight0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec2</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">body_ipos</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">body_ipos</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">body_iquat</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">body_iquat</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">quat</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Batched fields</strong> — fields that must be overridden for per-world meshes:</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-left" style="width: 90%">
+<colgroup>
+<col style="width: 37.5%" />
+<col style="width: 25.0%" />
+<col style="width: 37.5%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>dtype</p></th>
+<th class="head"><p>Shape</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">geom_dataid</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(nworld,</span> <span class="pre">ngeom)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">geom_size</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wp.vec3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(nworld,</span> <span class="pre">ngeom)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">geom_aabb</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wp.vec3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(nworld,</span> <span class="pre">ngeom,</span> <span class="pre">2)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">geom_rbound</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(nworld,</span> <span class="pre">ngeom)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">geom_pos</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wp.vec3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(nworld,</span> <span class="pre">ngeom)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">body_mass</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(nworld,</span> <span class="pre">nbody)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">body_subtreemass</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(nworld,</span> <span class="pre">nbody)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">body_inertia</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wp.vec3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(nworld,</span> <span class="pre">nbody)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">body_invweight0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wp.vec2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(nworld,</span> <span class="pre">nbody)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">body_ipos</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wp.vec3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(nworld,</span> <span class="pre">nbody)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">body_iquat</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wp.quat</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(nworld,</span> <span class="pre">nbody)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="batch-rendering">
+<h2>Batch Rendering<a class="headerlink" href="#batch-rendering" title="Link to this heading">#</a></h2>
+<p>MJWarp provides a batch renderer for high-throughput ray tracing built on
+<a class="reference external" href="https://nvidia.github.io/warp/api_reference/_generated/warp.Bvh.html#warp.Bvh">Warp’s accelerated BVHs</a> for
+rendering worlds with multiple cameras in parallel.</p>
+<p>Key features:</p>
+<ul class="simple">
+<li><p><strong>Mesh rendering with textures</strong>: BVH-accelerated mesh rendering with full texture support.</p></li>
+<li><p><strong>Heightfield rendering</strong>: Optimized rendering for heightfields.</p></li>
+<li><p><strong>Flex rendering</strong>: Render <a class="reference internal" href="../XMLreference.html#deformable-flex"><span class="std std-ref">flex</span></a> objects.</p></li>
+<li><p><strong>Lighting and shadows</strong>: Dynamic lighting with configurable shadows; domain randomizable: <code class="docutils literal notranslate"><span class="pre">light_active</span></code>,
+<code class="docutils literal notranslate"><span class="pre">light_type</span></code>, <code class="docutils literal notranslate"><span class="pre">light_castshadow</span></code>, <code class="docutils literal notranslate"><span class="pre">light_xpos</span></code>, <code class="docutils literal notranslate"><span class="pre">light_xdir</span></code>.</p></li>
+<li><p><strong>Heterogeneous multi-camera</strong>: Multiple cameras per world and each camera can have a different resolution
+(<code class="docutils literal notranslate"><span class="pre">cam_resolution</span></code>), field of view (<code class="docutils literal notranslate"><span class="pre">cam_fovy</span></code>, <code class="docutils literal notranslate"><span class="pre">cam_sensorsize</span></code>, <code class="docutils literal notranslate"><span class="pre">cam_intrinsic</span></code>), and output mode (<code class="docutils literal notranslate"><span class="pre">cam_output</span></code>).</p></li>
+<li><p><strong>Domain Randomization</strong>: Per-world <a class="reference internal" href="api.html#mujoco_warp.Model" title="mujoco_warp.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Model</span></code></a> fields (see
+<a class="reference internal" href="#mjwbatch"><span class="std std-ref">Batched Model Fields</span></a> above): <code class="docutils literal notranslate"><span class="pre">geom_matid</span></code>, <code class="docutils literal notranslate"><span class="pre">geom_size</span></code>, <code class="docutils literal notranslate"><span class="pre">geom_rgba</span></code>, <code class="docutils literal notranslate"><span class="pre">mat_texid</span></code>, <code class="docutils literal notranslate"><span class="pre">mat_texrepeat</span></code>,
+<code class="docutils literal notranslate"><span class="pre">mat_rgba</span></code>.</p></li>
+<li><p><strong>BVH-accelerated ray/rays API</strong>: Ray casting: Accelerated <a class="reference internal" href="api.html#mujoco_warp.ray" title="mujoco_warp.ray"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.ray</span></code></a>,
+<a class="reference internal" href="api.html#mujoco_warp.rays" title="mujoco_warp.rays"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.rays</span></code></a>, and <a class="reference internal" href="../XMLreference.html#sensor-rangefinder"><span class="std std-ref">rangefinder sensors</span></a> via
+<a class="reference external" href="https://nvidia.github.io/warp/api_reference/_generated/warp.Bvh.html#warp.Bvh">Warp’s BVHs</a>.</p></li>
+</ul>
+<section id="id2">
+<h3>Basic Usage<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Rendering or raycasting requires a <a class="reference internal" href="api.html#mujoco_warp.RenderContext" title="mujoco_warp.RenderContext"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.RenderContext</span></code></a> which contains BVH structures,
+rendering specific fields, and output buffers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span> <span class="o">=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">create_render_context</span><span class="p">(</span>
+    <span class="n">mjm</span><span class="p">,</span>
+    <span class="n">nworld</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">cam_res</span><span class="o">=</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>           <span class="c1"># Override camera resolution (or per-camera list)</span>
+    <span class="n">render_rgb</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>              <span class="c1"># Enable RGB output (or per-camera list)</span>
+    <span class="n">render_depth</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>            <span class="c1"># Enable depth output (or per-camera list)</span>
+    <span class="n">use_textures</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>            <span class="c1"># Apply material textures</span>
+    <span class="n">use_shadows</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>            <span class="c1"># Enable shadow casting (slower)</span>
+    <span class="n">enabled_geom_groups</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>   <span class="c1"># Only render geoms in groups 0 and 1</span>
+    <span class="n">cam_active</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>     <span class="c1"># Selectively enable/disable cameras</span>
+    <span class="n">flex_render_smooth</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>      <span class="c1"># Smooth shading for soft bodies</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Each <a class="reference internal" href="api.html#mujoco_warp.RenderContext" title="mujoco_warp.RenderContext"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.RenderContext</span></code></a> parameter can be applied globally or per camera.
+Additionally, values for <a class="reference internal" href="api.html#mujoco_warp.RenderContext" title="mujoco_warp.RenderContext"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.RenderContext</span></code></a> parameters can be parsed from XML:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;camera</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;front_camera&quot;</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;3 0 2&quot;</span><span class="w"> </span><span class="na">xyaxes=</span><span class="s">&quot;0 1 0 -0.6 0 0.8&quot;</span><span class="w"> </span><span class="na">resolution=</span><span class="s">&quot;64 64&quot;</span><span class="w"> </span><span class="na">output=</span><span class="s">&quot;rgb depth&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>or set via <a class="reference internal" href="../APIreference/APItypes.html#mjspec"><span class="std std-ref">mjSpec</span></a> for camera customization.</p>
+<p>To render, first call <a class="reference internal" href="api.html#mujoco_warp.refit_bvh" title="mujoco_warp.refit_bvh"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.refit_bvh</span></code></a> to update the BVH trees,
+followed by <a class="reference internal" href="api.html#mujoco_warp.render" title="mujoco_warp.render"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.render</span></code></a> to write to output buffers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mjw</span><span class="o">.</span><span class="n">refit_bvh</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">rc</span><span class="p">)</span>
+<span class="n">mjw</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">rc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output buffers contain stacked pixels for all cameras with shape <code class="docutils literal notranslate"><span class="pre">(nworld,</span> <span class="pre">npixel)</span></code> and RGB data is
+packed into one <code class="docutils literal notranslate"><span class="pre">uint32</span></code> variable. <code class="docutils literal notranslate"><span class="pre">RenderContext.rgb_adr</span></code> and <code class="docutils literal notranslate"><span class="pre">RenderContext.depth_adr</span></code> provide per-camera indexing.
+For convenience, <a class="reference internal" href="api.html#mujoco_warp.get_rgb" title="mujoco_warp.get_rgb"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.get_rgb</span></code></a> and <a class="reference internal" href="api.html#mujoco_warp.get_depth" title="mujoco_warp.get_depth"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.get_depth</span></code></a>
+return processed and reshaped RGB and depth data for a given camera batched for all worlds.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nworld</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">cam_index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">cam_res</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="n">cam_index</span><span class="p">]</span>
+<span class="n">rgb_data</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nworld</span><span class="p">,</span> <span class="n">resolution</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">resolution</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+<span class="n">mjw</span><span class="o">.</span><span class="n">get_rgb</span><span class="p">(</span><span class="n">rc</span><span class="p">,</span> <span class="n">rgb_data</span><span class="o">=</span><span class="n">rgb_data</span><span class="p">,</span> <span class="n">cam_id</span><span class="o">=</span><span class="n">cam_index</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A complete example can be found in the MJWarp tutorial <a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/blob/main/notebooks/tutorial.ipynb">[notebook]</a> <a class="reference external" href="https://colab.research.google.com/github/google-deepmind/mujoco_warp/blob/main/notebooks/tutorial.ipynb">[open in colab]</a>.</p>
+</section>
+<section id="benchmarks">
+<h3>Benchmarks<a class="headerlink" href="#benchmarks" title="Link to this heading">#</a></h3>
+<p>Rendering can be benchmarked using <a class="reference internal" href="#testspeed">testspeed</a>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mjwarp-testspeed<span class="w"> </span>benchmarks/primitives.xml<span class="w"> </span>--function<span class="o">=</span>render
+</pre></div>
+</div>
+<p>For benchmark results across a variety of scenes, see the
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/pull/1113">released benchmarks</a>.</p>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Meshes</strong>: Rendering computation scales with mesh complexity, specifically the number of vertices and faces. A
+primitive is expected to have better performance (i.e., higher throughput) compared to a similar-sized
+<a class="reference internal" href="../XMLreference.html#body-geom-mesh"><span class="std std-ref">mesh</span></a> or <a class="reference internal" href="../XMLreference.html#body-geom-hfield"><span class="std std-ref">heightfield</span></a>.</p></li>
+<li><p><strong>Scaling</strong>: Rendering scales linearly with resolution (total pixel count) and camera count.</p></li>
+</ul>
+</section>
+</section>
+<section id="frequently-asked-questions">
+<span id="mjwfaq"></span><h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Link to this heading">#</a></h2>
+<section id="learning-frameworks">
+<h3>Learning frameworks<a class="headerlink" href="#learning-frameworks" title="Link to this heading">#</a></h3>
+<p><strong>Does MJWarp work with JAX?</strong></p>
+<p>Yes. MJWarp is interoperable with <a class="reference external" href="https://jax.readthedocs.io/">JAX</a>. Please see the
+<a class="reference external" href="https://nvidia.github.io/warp/modules/interoperability.html#jax">Warp Interoperability</a> documentation for details.</p>
+<p>Additionally, <a class="reference internal" href="../mjx.html#mjx"><span class="std std-ref">MJX</span></a> provides a JAX API for a subset of MJWarp’s <a class="reference internal" href="api.html"><span class="doc">API</span></a>. The implementation is
+specified with <code class="docutils literal notranslate"><span class="pre">impl='warp'</span></code>.</p>
+<p><strong>Does MJWarp work with PyTorch?</strong></p>
+<p>Yes. MJWarp is interoperable with <a class="reference external" href="https://pytorch.org">PyTorch</a>. Please see the
+<a class="reference external" href="https://nvidia.github.io/warp/modules/interoperability.html#pytorch">Warp Interoperability</a> documentation for
+details.</p>
+<p><strong>How to train policies with MJWarp physics?</strong></p>
+<p>For examples that train policies with MJWarp physics, please see:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/isaac-sim/IsaacLab/tree/feature/newton">Isaac Lab</a>: Train via
+<a class="reference external" href="https://github.com/newton-physics/newton">Newton API</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/mujocolab/mjlab">mjlab</a>: Train directly with MJWarp using PyTorch.</p></li>
+<li><p><a class="reference external" href="https://github.com/google-deepmind/mujoco_playground">MuJoCo Playground</a>: Train via <a class="reference internal" href="../mjx.html#mjx"><span class="std std-ref">MJX API</span></a>.</p></li>
+</ul>
+</section>
+<section id="features">
+<h3>Features<a class="headerlink" href="#features" title="Link to this heading">#</a></h3>
+<p id="mjwdiff"><strong>Is MJWarp differentiable?</strong></p>
+<p>No. MJWarp is not currently differentiable via
+Warp’s <a class="reference external" href="https://nvidia.github.io/warp/modules/differentiability.html#differentiability">automatic differentiation</a>
+functionality. Updates from the team related to enabling automatic differentiation for MJWarp are tracked in this
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/500">GitHub issue</a>.</p>
+<p><strong>Does MJWarp work with multiple GPUs?</strong></p>
+<p>Yes. Warp’s <code class="docutils literal notranslate"><span class="pre">wp.ScopedDevice</span></code> enables multi-GPU computation</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a graph for each device</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">wp</span><span class="o">.</span><span class="n">get_cuda_devices</span><span class="p">():</span>
+  <span class="k">with</span> <span class="n">wp</span><span class="o">.</span><span class="n">ScopedDevice</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">put_model</span><span class="p">(</span><span class="n">mjm</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">make_data</span><span class="p">(</span><span class="n">mjm</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">wp</span><span class="o">.</span><span class="n">ScopedCapture</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="k">as</span> <span class="n">capture</span><span class="p">:</span>
+      <span class="n">mjw</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+    <span class="n">graph</span><span class="p">[</span><span class="n">device</span><span class="p">]</span> <span class="o">=</span> <span class="n">capture</span><span class="o">.</span><span class="n">graph</span>
+
+<span class="c1"># launch a graph on each device</span>
+<span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">wp</span><span class="o">.</span><span class="n">get_cuda_devices</span><span class="p">():</span>
+  <span class="n">wp</span><span class="o">.</span><span class="n">capture_launch</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="n">device</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Please see the
+<a class="reference external" href="https://nvidia.github.io/modules/devices.html#example-using-wp-scopeddevice-with-multiple-gpus">Warp documentation</a>
+for details and
+<a class="reference external" href="https://mujocolab.github.io/mjlab/main/source/training/distributed_training.html">mjlab distributed training</a> for a
+reinforcement learning example.</p>
+<p><strong>Is MJWarp on GPU deterministic?</strong></p>
+<p>No. There may be ordering or <em>small</em> numerical differences between results computed by different executions of the same
+code. This is characteristic of non-deterministic atomic operations on GPU. Set device to CPU with
+<code class="docutils literal notranslate"><span class="pre">wp.set_device(&quot;cpu&quot;)</span></code> for deterministic results.</p>
+<p>Developments for deterministic results on GPU are tracked in this
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/562">GitHub issue</a>.</p>
+<p><strong>How are orientations represented?</strong></p>
+<p>Orientations are represented as unit quaternions and follow <a class="reference internal" href="../programming/simulation.html#silayout"><span class="std std-ref">MuJoCo’s conventions</span></a>:
+<code class="docutils literal notranslate"><span class="pre">w,</span> <span class="pre">x,</span> <span class="pre">y,</span> <span class="pre">z</span></code> or <code class="docutils literal notranslate"><span class="pre">scalar,</span> <span class="pre">vector</span></code>.</p>
+<div class="note admonition">
+<p class="admonition-title"><code class="docutils literal notranslate"><span class="pre">wp.quaternion</span></code></p>
+<p>MJWarp utilizes Warp’s <a class="reference external" href="https://nvidia.github.io/warp/modules/functions.html#warp.quaternion">built-in type</a>
+<code class="docutils literal notranslate"><span class="pre">wp.quaternion</span></code>. Importantly however, MJWarp does not utilize Warp’s <code class="docutils literal notranslate"><span class="pre">x,</span> <span class="pre">y,</span> <span class="pre">z,</span> <span class="pre">w</span></code> quaternion convention or
+operations and instead implements quaternion routines that follow MuJoCo’s conventions. Please see
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/blob/main/mujoco_warp/_src/math.py">math.py</a> for the
+implementations.</p>
+</div>
+<p><strong>Does MJWarp have a named access API / bind?</strong></p>
+<p>No. Updates for this feature are tracked in this
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/884">GitHub issue</a>.</p>
+<p><strong>Why are contacts reported when there are no collisions?</strong></p>
+<p>1 contact will be reported for each unique geom pair that contributes to any collision sensor, even if this geom pair is
+not in collision. Unlike MuJoCo or MJX where <a class="reference internal" href="../XMLreference.html#collision-sensors"><span class="std std-ref">collision sensors</span></a> make separate calls to
+collision routines while computing sensor data, MJWarp computes and stores the data for these sensors in contacts while
+running its main collision pipeline.</p>
+<p><a class="reference internal" href="../XMLreference.html#sensor-contact"><span class="std std-ref">Contact sensors</span></a> will report the correct information for contacts affecting the physics.</p>
+<p><strong>Why are Jacobians always dense?</strong></p>
+<p>Sparse Jacobians are not currently implemented and <code class="docutils literal notranslate"><span class="pre">Data</span></code> fields: <code class="docutils literal notranslate"><span class="pre">ten_J</span></code>, <code class="docutils literal notranslate"><span class="pre">actuator_moment</span></code>, <code class="docutils literal notranslate"><span class="pre">flexedge_J</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">efc.J</span></code> are always represented as dense matrices. Support for sparse Jacobians is tracked in GitHub issue
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/88">#88</a>.</p>
+<p><strong>Why do some arrays have different shapes compared to mjModel or mjData?</strong></p>
+<p>By default for batched simulation, many <a class="reference internal" href="api.html#mujoco_warp.Data" title="mujoco_warp.Data"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Data</span></code></a> fields having a leading batch dimension of
+size <code class="docutils literal notranslate"><span class="pre">Data.nworld</span></code>. Some <a class="reference internal" href="api.html#mujoco_warp.Model" title="mujoco_warp.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Model</span></code></a> fields having a leading batch dimension with size
+<code class="docutils literal notranslate"><span class="pre">1</span></code>, indicating that this
+<a class="reference internal" href="#mjwbatch"><span class="std std-ref">field can be overridden with an array of batched parameters for domain randomization</span></a>.</p>
+<p>Additionally, certain fields including <code class="docutils literal notranslate"><span class="pre">Model.qM</span></code>, <code class="docutils literal notranslate"><span class="pre">Data.efc.J</span></code>, and <code class="docutils literal notranslate"><span class="pre">Data.efc.D</span></code> are padded to enable fast
+loading on GPU.</p>
+<p><strong>Why are numerical results from MJWarp and MuJoCo different?</strong></p>
+<p>MJWarp utilizes <code class="docutils literal notranslate"><span class="pre">float</span> <span class="pre">&lt;https://nvidia.github.io/warp/modules/functions.html#warp.float32&gt;`__s</span> <span class="pre">in</span> <span class="pre">contrast</span> <span class="pre">to</span> <span class="pre">MuJoCo's</span>
+<span class="pre">default</span> <span class="pre">double</span> <span class="pre">representation</span> <span class="pre">for</span> <span class="pre">:ref:`mjtNum</span></code>. Solver settings, including iterations, collision detection, and small
+friction values may be sensitive to differences in floating point representation.</p>
+<p>If you encounter unexpected results, including NaNs, please open a GitHub issue.</p>
+<p><strong>Why is inertia matrix qM sparsity not consistent with MuJoCo / MJX?</strong></p>
+<div class="note admonition">
+<p class="admonition-title"><code class="docutils literal notranslate"><span class="pre">mjtJacobian</span></code> semantics</p>
+<ul class="simple">
+<li><p>MuJoCo’s inertia matrix is always sparse and <a class="reference internal" href="../APIreference/APItypes.html#mjtjacobian"><span class="std std-ref">mjtJacobian</span></a> affects constraint Jacobians and related quantities</p></li>
+<li><p>MJWarp’s (and MJX’s) constraint Jacobian is always dense and <a class="reference internal" href="../APIreference/APItypes.html#mjtjacobian"><span class="std std-ref">mjtJacobian</span></a> is repurposed to affect the inertia
+matrix that can be represented as dense or sparse</p></li>
+</ul>
+</div>
+<p>The automatic sparsity threshold utilized by MJWarp for <code class="docutils literal notranslate"><span class="pre">AUTO</span></code> is optimized for GPU and set to <code class="docutils literal notranslate"><span class="pre">nv</span> <span class="pre">&gt;</span> <span class="pre">32</span></code>,
+unlike MuJoCo and MJX which use <code class="docutils literal notranslate"><span class="pre">nv</span> <span class="pre">&gt;=</span> <span class="pre">60</span></code>. Dense <code class="docutils literal notranslate"><span class="pre">DENSE</span></code> and sparse <code class="docutils literal notranslate"><span class="pre">SPARSE</span></code> settings are consistent with MuJoCo
+and MJX.</p>
+<p>This feature is likely to change in the future.</p>
+<p><strong>How to fix simulation runtime warnings?</strong></p>
+<p>Warnings are provided when memory requirements exceed existing allocations during simulation:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#nconmax">nconmax</a> / <a class="reference internal" href="#njmax">njmax</a>: The maximum number of contacts / constraints has been exceeded. Increase the value of the
+setting by updating the relevant argument to <a class="reference internal" href="api.html#mujoco_warp.make_data" title="mujoco_warp.make_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.make_data</span></code></a> or
+<a class="reference internal" href="api.html#mujoco_warp.put_data" title="mujoco_warp.put_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.put_data</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mjw.Option.ccd_iterations</span></code>: The convex collision detection algorithm has exceeded the maximum number of iterations.
+Increase the value of this setting in the XML / <a class="reference internal" href="../APIreference/APItypes.html#mjspec"><span class="std std-ref">mjSpec</span></a> / <a class="reference internal" href="../APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a>. Importantly, this change must be made
+to the <a class="reference internal" href="../APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> instance that is provided to <a class="reference internal" href="api.html#mujoco_warp.put_model" title="mujoco_warp.put_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.put_model</span></code></a> and
+<a class="reference internal" href="api.html#mujoco_warp.make_data" title="mujoco_warp.make_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.make_data</span></code></a> / <a class="reference internal" href="api.html#mujoco_warp.put_data" title="mujoco_warp.put_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.put_data</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mjw.Option.contact_sensor_maxmatch</span></code>: The maximum number of contact matches for a
+<a class="reference internal" href="../XMLreference.html#sensor-contact"><span class="std std-ref">contact sensor</span></a>’s matching criteria has been exceeded. Increase the value of this MJWarp-only
+setting <code class="docutils literal notranslate"><span class="pre">m.opt.contact_sensor_maxmatch</span></code>. Alternatively, refactor the contact sensor matching criteria, for example if
+the 2 geoms of interest are known, specify <code class="docutils literal notranslate"><span class="pre">geom1</span></code> and <code class="docutils literal notranslate"><span class="pre">geom2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">height</span> <span class="pre">field</span> <span class="pre">collision</span> <span class="pre">overflow</span></code>: The number of potential contacts generated by a height field exceeds
+<a class="reference internal" href="../APIreference/APIglobals.html#glnumericengine"><span class="std std-ref">mjMAXCONPAIR</span></a> and some contacts are ignored. To resolve this warning, reduce the height field
+resolution or reduce the size of the geom interacting with the height field.</p></li>
+</ul>
+</section>
+<section id="compilation">
+<h3>Compilation<a class="headerlink" href="#compilation" title="Link to this heading">#</a></h3>
+<p><strong>How can compilation time be improved?</strong></p>
+<p>Limit the number of unique colliders that require the general convex collision pipeline. These colliders are listed as
+<code class="docutils literal notranslate"><span class="pre">_CONVEX_COLLISION_PAIRS</span></code> in
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/blob/main/mujoco_warp/_src/collision_convex.py">collision_convex.py</a>.
+Improvements to the compilation time for the pipeline are tracked in this
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/813">GitHub issue</a>.</p>
+<p><strong>Why are the physics not working as expected after upgrading MJWarp?</strong></p>
+<p>The Warp cache may be incompatible with the current code and should be cleared as part of the debugging process. This
+can be accomplished by deleting the directory <code class="docutils literal notranslate"><span class="pre">~/.cache/warp</span></code> or via Python</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wp</span>
+<span class="n">wp</span><span class="o">.</span><span class="n">clear_kernel_cache</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Is it possible to compile MJWarp ahead of time instead of at runtime?</strong></p>
+<p>Yes. Please see Warp’s
+<a class="reference external" href="https://nvidia.github.io/warp/codegen.html#ahead-of-time-compilation-workflows">Ahead-of-Time Compilation Workflows</a>
+documentation for details.</p>
+</section>
+</section>
+<section id="differences-from-mujoco">
+<h2>Differences from MuJoCo<a class="headerlink" href="#differences-from-mujoco" title="Link to this heading">#</a></h2>
+<p>This section notes differences between MJWarp and MuJoCo.</p>
+<section id="warmstart">
+<h3>Warmstart<a class="headerlink" href="#warmstart" title="Link to this heading">#</a></h3>
+<p>If warmstarts are not <a class="reference internal" href="../XMLreference.html#option-flag-warmstart"><span class="std std-ref">disabled</span></a>, the MJWarp solver warmstart always initializes the
+acceleration with <code class="docutils literal notranslate"><span class="pre">qacc_warmstart</span></code>. In contrast, MuJoCo performs a comparison between <code class="docutils literal notranslate"><span class="pre">qacc_smooth</span></code> and
+<code class="docutils literal notranslate"><span class="pre">qacc_warmstart</span></code> to determine which one is utilized for the initialization.</p>
+</section>
+<section id="inertia-matrix-factorization">
+<h3>Inertia matrix factorization<a class="headerlink" href="#inertia-matrix-factorization" title="Link to this heading">#</a></h3>
+<p>When using dense computation, MJWarp’s factorization of the inertia matrix <code class="docutils literal notranslate"><span class="pre">qLD</span></code> is computed with Warp’s <code class="docutils literal notranslate"><span class="pre">L'L</span></code>
+Cholesky factorization
+<a class="reference external" href="https://nvidia.github.io/warp/language_reference/_generated/warp._src.lang.tile_cholesky.html">wp.tile_cholesky</a>
+and the result is not expected to match MuJoCo’s corresponding field because a different reverse-mode <code class="docutils literal notranslate"><span class="pre">L'DL</span></code> routine
+<a class="reference internal" href="../APIreference/APIfunctions.html#mj-factorm"><span class="std std-ref">mj_factorM</span></a> is utilized.</p>
+</section>
+<section id="options">
+<h3>Options<a class="headerlink" href="#options" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="api.html#mujoco_warp.Option" title="mujoco_warp.Option"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Option</span></code></a> fields correspond to their <a class="reference internal" href="../APIreference/APItypes.html#mjoption"><span class="std std-ref">mjOption</span></a> counterparts with the following
+exceptions:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../XMLreference.html#option-impratio"><span class="std std-ref">impratio</span></a> is stored as its inverse square root <code class="docutils literal notranslate"><span class="pre">impratio_invsqrt</span></code>.</p></li>
+<li><p>The constraint solver setting <a class="reference internal" href="../XMLreference.html#option-tolerance"><span class="std std-ref">tolerance</span></a> is clamped to a minimum value of <code class="docutils literal notranslate"><span class="pre">1e-6</span></code>.</p></li>
+<li><p>Contact <a class="reference internal" href="../XMLreference.html#option-flag-override"><span class="std std-ref">override</span></a> parameters <a class="reference internal" href="../XMLreference.html#option-o-margin"><span class="std std-ref">o_margin</span></a>,
+<a class="reference internal" href="../XMLreference.html#option-o-solref"><span class="std std-ref">o_solref</span></a>, <a class="reference internal" href="../XMLreference.html#option-o-solimp"><span class="std std-ref">o_solimp</span></a>, and <a class="reference internal" href="../XMLreference.html#option-o-friction"><span class="std std-ref">o_friction</span></a> are
+not available.</p></li>
+</ul>
+<p><a class="reference internal" href="../XMLreference.html#option-flag"><span class="std std-ref">disableflags</span></a> has the following differences:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../APIreference/APItypes.html#mjtdisablebit"><span class="std std-ref">mjDSBL_MIDPHASE</span></a> is not available.</p></li>
+<li><p><a class="reference internal" href="../APIreference/APItypes.html#mjtdisablebit"><span class="std std-ref">mjDSBL_AUTORESET</span></a> is not available.</p></li>
+<li><p><a class="reference internal" href="../APIreference/APItypes.html#mjtdisablebit"><span class="std std-ref">mjDSBL_NATIVECCD</span></a> changes the default box-box collider from CCD to a primitive collider.</p></li>
+<li><p><a class="reference internal" href="../APIreference/APItypes.html#mjtdisablebit"><span class="std std-ref">mjDSBL_ISLAND</span></a> is not currently available. Constraint island discovery is tracked in GitHub issue
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/886">#886</a>.</p></li>
+</ul>
+<p><a class="reference internal" href="../XMLreference.html#option-flag"><span class="std std-ref">enableflags</span></a> has the following differences:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../APIreference/APItypes.html#mjtenablebit"><span class="std std-ref">mjENBL_OVERRIDE</span></a> is not available.</p></li>
+<li><p><a class="reference internal" href="../APIreference/APItypes.html#mjtenablebit"><span class="std std-ref">mjENBL_FWDINV</span></a> is not available.</p></li>
+<li><p>Constraint island sleeping enabled via <a class="reference internal" href="../APIreference/APItypes.html#mjtenablebit"><span class="std std-ref">mjENBL_ISLAND</span></a> is not currently available. This feature is
+tracked in GitHub issues <a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/886">#886</a> and
+<a class="reference external" href="https://github.com/google-deepmind/mujoco_warp/issues/887">#887</a>.</p></li>
+</ul>
+<p>Additional MJWarp-only options are available:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ls_parallel</span></code>: use parallel linesearch with the constraint solver</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls_parallel_min_step</span></code>: minimum step size for the parallel linesearch</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">broadphase</span></code>: type of broadphase algorithm (<a class="reference internal" href="api.html#mujoco_warp.BroadphaseType" title="mujoco_warp.BroadphaseType"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.BroadphaseType</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">broadphase_filter</span></code>: type of filtering utilized by broadphase
+(<a class="reference internal" href="api.html#mujoco_warp.BroadphaseFilter" title="mujoco_warp.BroadphaseFilter"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.BroadphaseFilter</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">graph_conditional</span></code>: use CUDA graph conditional</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_collision_detection</span></code>: use collision detection routine</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">contact_sensor_maxmatch</span></code>: maximum number of contacts for contact sensor matching criteria</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Fluid model</p>
+<p>Modifying fluid model parameters: <code class="docutils literal notranslate"><span class="pre">density</span></code>, <code class="docutils literal notranslate"><span class="pre">viscosity</span></code>, or <code class="docutils literal notranslate"><span class="pre">wind</span></code> may require updating
+<code class="docutils literal notranslate"><span class="pre">Model.has_fluid</span></code>.</p>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Graph capture</p>
+<p>A new <a class="reference internal" href="#mjwgc"><span class="std std-ref">graph capture</span></a> may be necessary after modifying an <a class="reference internal" href="api.html#mujoco_warp.Option" title="mujoco_warp.Option"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Option</span></code></a> field
+in order for the updated setting to take effect.</p>
+</div>
+</section>
+<section id="sdf-plugins">
+<h3>SDF plugins<a class="headerlink" href="#sdf-plugins" title="Link to this heading">#</a></h3>
+<p>SDF collisions support plugins. The following example for
+<a class="reference external" href="https://github.com/google-deepmind/mujoco/blob/main/model/plugin/sdf/bowl.xml">plugin/sdf/bowl.xml</a> illustrates how to implement the
+SDF plugin implementation in <a class="reference external" href="https://github.com/google-deepmind/mujoco/blob/main/plugin/sdf/bowl.cc">bowl.cc</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">mujoco_warp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mjw</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wp</span>
+
+<span class="c1"># distance function</span>
+<span class="nd">@wp</span><span class="o">.</span><span class="n">func</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">bowl</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Signed distance function for a bowl shape.</span>
+
+<span class="sd">  attr[0] = height</span>
+<span class="sd">  attr[1] = radius</span>
+<span class="sd">  attr[2] = thickness</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">height</span> <span class="o">=</span> <span class="n">attr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+  <span class="n">radius</span> <span class="o">=</span> <span class="n">attr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+  <span class="n">thick</span> <span class="o">=</span> <span class="n">attr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+  <span class="n">width</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">-</span> <span class="n">height</span> <span class="o">*</span> <span class="n">height</span><span class="p">)</span>
+
+  <span class="c1"># q = (norm_xy(p), p.z)</span>
+  <span class="n">q0</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+  <span class="n">q1</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+  <span class="c1"># qdiff = q - (width, height)</span>
+  <span class="n">qdiff0</span> <span class="o">=</span> <span class="n">q0</span> <span class="o">-</span> <span class="n">width</span>
+  <span class="n">qdiff1</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="n">height</span>
+
+  <span class="k">if</span> <span class="n">height</span> <span class="o">*</span> <span class="n">q0</span> <span class="o">&lt;</span> <span class="n">width</span> <span class="o">*</span> <span class="n">q1</span><span class="p">:</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">qdiff0</span> <span class="o">*</span> <span class="n">qdiff0</span> <span class="o">+</span> <span class="n">qdiff1</span> <span class="o">*</span> <span class="n">qdiff1</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">q_norm</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">q0</span> <span class="o">*</span> <span class="n">q0</span> <span class="o">+</span> <span class="n">q1</span> <span class="o">*</span> <span class="n">q1</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">q_norm</span> <span class="o">-</span> <span class="n">radius</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">dist</span> <span class="o">-</span> <span class="n">thick</span>
+
+
+<span class="c1"># gradient of distance function</span>
+<span class="nd">@wp</span><span class="o">.</span><span class="n">func</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">bowl_sdf_grad</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">:</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Gradient of bowl SDF via finite differences.&quot;&quot;&quot;</span>
+  <span class="n">eps</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">)</span>
+  <span class="n">f0</span> <span class="o">=</span> <span class="n">bowl</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+
+  <span class="n">px</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">eps</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+  <span class="n">py</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">eps</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+  <span class="n">pz</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span>
+
+  <span class="n">grad</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">bowl</span><span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="o">-</span> <span class="n">f0</span><span class="p">)</span> <span class="o">/</span> <span class="n">eps</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">bowl</span><span class="p">(</span><span class="n">py</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="o">-</span> <span class="n">f0</span><span class="p">)</span> <span class="o">/</span> <span class="n">eps</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">bowl</span><span class="p">(</span><span class="n">pz</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="o">-</span> <span class="n">f0</span><span class="p">)</span> <span class="o">/</span> <span class="n">eps</span><span class="p">,</span>
+  <span class="p">)</span>
+  <span class="k">return</span> <span class="n">grad</span>
+
+
+<span class="c1"># register the bowl SDF plugin</span>
+<span class="nd">@wp</span><span class="o">.</span><span class="n">func</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">user_sdf</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">,</span> <span class="n">sdf_type</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+  <span class="k">return</span> <span class="n">bowl</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+
+
+<span class="nd">@wp</span><span class="o">.</span><span class="n">func</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">user_sdf_grad</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">,</span> <span class="n">sdf_type</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">:</span>
+  <span class="k">return</span> <span class="n">bowl_sdf_grad</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+
+
+<span class="c1"># override the module-level hooks</span>
+<span class="n">mjw</span><span class="o">.</span><span class="n">_src</span><span class="o">.</span><span class="n">collision_sdf</span><span class="o">.</span><span class="n">user_sdf</span> <span class="o">=</span> <span class="n">user_sdf</span>
+<span class="n">mjw</span><span class="o">.</span><span class="n">_src</span><span class="o">.</span><span class="n">collision_sdf</span><span class="o">.</span><span class="n">user_sdf_grad</span> <span class="o">=</span> <span class="n">user_sdf_grad</span>
+</pre></div>
+</div>
+</section>
+<section id="physics-callbacks">
+<h3>Physics callbacks<a class="headerlink" href="#physics-callbacks" title="Link to this heading">#</a></h3>
+<p>MuJoCo provides global <a class="reference external" href="https://mujoco.readthedocs.io/en/latest/APIreference/APIglobals.html#physics-callbacks">physics callbacks</a>
+that allow users to inject custom logic into the simulation pipeline. MJWarp supports a similar mechanism, but callbacks
+are Python functions set per-model on the <a class="reference internal" href="api.html#mujoco_warp.Model" title="mujoco_warp.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">mjw.Model</span></code></a> instance via <code class="docutils literal notranslate"><span class="pre">Model.callback</span></code> rather than as global
+function pointers.</p>
+<p>The following callbacks are available:</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-left" style="width: 90%">
+<colgroup>
+<col style="width: 37.5%" />
+<col style="width: 62.5%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Callback</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">control</span></code></p></td>
+<td><p>Custom control laws, writes to <code class="docutils literal notranslate"><span class="pre">Data.ctrl</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">passive</span></code></p></td>
+<td><p>Custom passive forces, writes to <code class="docutils literal notranslate"><span class="pre">Data.qfrc_passive</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">act_dyn</span></code></p></td>
+<td><p>Custom actuator dynamics, writes to <code class="docutils literal notranslate"><span class="pre">Data.act_dot</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">act_gain</span></code></p></td>
+<td><p>Custom actuator gains, writes to <code class="docutils literal notranslate"><span class="pre">Data.actuator_force</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">act_bias</span></code></p></td>
+<td><p>Custom actuator biases, writes to <code class="docutils literal notranslate"><span class="pre">Data.actuator_force</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sensor</span></code></p></td>
+<td><p>Custom sensors, writes to <code class="docutils literal notranslate"><span class="pre">Data.sensordata</span></code>; receives an additional <code class="docutils literal notranslate"><span class="pre">stage</span></code> argument</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">contactfilter</span></code></p></td>
+<td><p>Custom contact filtering, writes to <code class="docutils literal notranslate"><span class="pre">Data.contact</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">mujoco</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mujoco_warp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mjw</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wp</span>
+
+<span class="n">_MJCF</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;mujoco&gt;</span>
+<span class="s2">  &lt;worldbody&gt;</span>
+<span class="s2">    &lt;body&gt;</span>
+<span class="s2">      &lt;geom size=&quot;.1&quot;/&gt;</span>
+<span class="s2">      &lt;joint name=&quot;hinge&quot;/&gt;</span>
+<span class="s2">    &lt;/body&gt;</span>
+<span class="s2">  &lt;/worldbody&gt;</span>
+<span class="s2">  &lt;actuator&gt;</span>
+<span class="s2">    &lt;motor joint=&quot;hinge&quot;/&gt;</span>
+<span class="s2">  &lt;/actuator&gt;</span>
+<span class="s2">&lt;/mujoco&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="nd">@wp</span><span class="o">.</span><span class="n">kernel</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_ctrl_callback</span><span class="p">(</span><span class="n">ctrl_out</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array2d</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)):</span>
+  <span class="n">worldid</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">tid</span><span class="p">()</span>
+  <span class="n">ctrl_out</span><span class="p">[</span><span class="n">worldid</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">ctrl_callback</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+  <span class="n">wp</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">_ctrl_callback</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">nworld</span><span class="p">,),</span> <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">ctrl</span><span class="p">])</span>
+
+<span class="n">mjm</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">MjModel</span><span class="o">.</span><span class="n">from_xml_string</span><span class="p">(</span><span class="n">_MJCF</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">put_model</span><span class="p">(</span><span class="n">mjm</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">make_data</span><span class="p">(</span><span class="n">mjm</span><span class="p">)</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">control</span> <span class="o">=</span> <span class="n">ctrl_callback</span>
+<span class="n">mjw</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">d</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mf">2.0</span>
+</pre></div>
+</div>
+</section>
+<section id="box-box-collisions">
+<h3>Box-box collisions<a class="headerlink" href="#box-box-collisions" title="Link to this heading">#</a></h3>
+<p>By default, box-box collisions use the general-purpose convex collision pipeline (GJK/EPA). A specialized primitive
+collider based on
+<a class="reference external" href="https://github.com/google-deepmind/mujoco/blob/main/src/engine/engine_collision_box.c">engine_collision_box.c</a>
+is available by setting the <code class="docutils literal notranslate"><span class="pre">NATIVECCD</span></code> disable flag:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">opt</span><span class="o">.</span><span class="n">disableflags</span> <span class="o">|=</span> <span class="n">mjw</span><span class="o">.</span><span class="n">DisableBit</span><span class="o">.</span><span class="n">NATIVECCD</span>
+</pre></div>
+</div>
+<p>The specialized collider generates up to 8 contact points, compared to up to 4 for the convex pipeline, and may improve
+contact stability for tasks involving box stacking or manipulation.</p>
+</section>
+<section id="ccd-margin">
+<h3>CCD margin<a class="headerlink" href="#ccd-margin" title="Link to this heading">#</a></h3>
+<p>Non-zero <a class="reference internal" href="../XMLreference.html#body-geom-margin"><span class="std std-ref">geom margin</span></a> or <a class="reference internal" href="../XMLreference.html#contact-pair-margin"><span class="std std-ref">pair margin</span></a> is not supported with certain
+CCD colliders and will raise a <code class="docutils literal notranslate"><span class="pre">NotImplementedError</span></code> when calling <a class="reference internal" href="api.html#mujoco_warp.put_model" title="mujoco_warp.put_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">mjw.put_model</span></code></a>:</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-left" style="width: 90%">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Geom pair</p></th>
+<th class="head"><p>Scenario</p></th>
+<th class="head"><p>Workaround</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>box-box, box-mesh, mesh-mesh</p></td>
+<td><p><a class="reference internal" href="../XMLreference.html#option-flag-multiccd"><span class="std std-ref">MULTICCD</span></a> enabled (on by default)</p></td>
+<td><p>Set margin to <code class="docutils literal notranslate"><span class="pre">0</span></code> or disable <code class="docutils literal notranslate"><span class="pre">MULTICCD</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>box-box</p></td>
+<td><p><a class="reference internal" href="../XMLreference.html#option-flag-nativeccd"><span class="std std-ref">NATIVECCD</span></a> enabled (on by default)</p></td>
+<td><p>Set margin to <code class="docutils literal notranslate"><span class="pre">0</span></code> or disable <code class="docutils literal notranslate"><span class="pre">NATIVECCD</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="rendering">
+<h3>Rendering<a class="headerlink" href="#rendering" title="Link to this heading">#</a></h3>
+<p>The batch renderer included in MJWarp serves a different purpose than MuJoCo’s renderer. The MJWarp batch
+renderer is a single hit raycaster optimized for high throughput and low fidelity.</p>
+<dl class="simple">
+<dt>It supports:</dt><dd><ul class="simple">
+<li><p>Simple lambertian diffuse shading</p></li>
+<li><p>Basic point lights and directional lights</p></li>
+<li><p>Textures</p></li>
+<li><p>Shadows</p></li>
+</ul>
+</dd>
+<dt>It does not support:</dt><dd><ul class="simple">
+<li><p>Advanced lighting effects such as global illumination</p></li>
+<li><p>Physically based material properties</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="api.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">MuJoCo Warp API</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../mjx_api.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">MJX API</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; DeepMind Technologies Limited
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">MuJoCo Warp (MJWarp)</a><ul>
+<li><a class="reference internal" href="#tutorial-notebook">Tutorial notebook</a></li>
+<li><a class="reference internal" href="#when-to-use-mjwarp">When To Use MJWarp?</a><ul>
+<li><a class="reference internal" href="#high-throughput">High throughput</a></li>
+<li><a class="reference internal" href="#low-latency">Low latency</a></li>
+<li><a class="reference internal" href="#complex-scenes">Complex scenes</a></li>
+<li><a class="reference internal" href="#differentiability">Differentiability</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#basic-usage">Basic Usage</a><ul>
+<li><a class="reference internal" href="#structs">Structs</a></li>
+<li><a class="reference internal" href="#batch-sizes">Batch sizes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#minimal-example">Minimal example</a></li>
+<li><a class="reference internal" href="#command-line-scripts">Command line scripts</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#feature-parity">Feature Parity</a></li>
+<li><a class="reference internal" href="#performance-tuning">Performance Tuning</a><ul>
+<li><a class="reference internal" href="#graph-capture">Graph capture</a></li>
+<li><a class="reference internal" href="#id1">Batch sizes</a></li>
+<li><a class="reference internal" href="#solver-iterations">Solver iterations</a></li>
+<li><a class="reference internal" href="#contact-sensor-matching">Contact sensor matching</a></li>
+<li><a class="reference internal" href="#parallel-linesearch">Parallel linesearch</a></li>
+<li><a class="reference internal" href="#memory">Memory</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#batched-model-fields">Batched <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code> Fields</a><ul>
+<li><a class="reference internal" href="#modifying-fields">Modifying fields</a></li>
+<li><a class="reference internal" href="#per-world-meshes">Per-world meshes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#batch-rendering">Batch Rendering</a><ul>
+<li><a class="reference internal" href="#id2">Basic Usage</a></li>
+<li><a class="reference internal" href="#benchmarks">Benchmarks</a></li>
+<li><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#frequently-asked-questions">Frequently Asked Questions</a><ul>
+<li><a class="reference internal" href="#learning-frameworks">Learning frameworks</a></li>
+<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#compilation">Compilation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#differences-from-mujoco">Differences from MuJoCo</a><ul>
+<li><a class="reference internal" href="#warmstart">Warmstart</a></li>
+<li><a class="reference internal" href="#inertia-matrix-factorization">Inertia matrix factorization</a></li>
+<li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#sdf-plugins">SDF plugins</a></li>
+<li><a class="reference internal" href="#physics-callbacks">Physics callbacks</a></li>
+<li><a class="reference internal" href="#box-box-collisions">Box-box collisions</a></li>
+<li><a class="reference internal" href="#ccd-margin">CCD margin</a></li>
+<li><a class="reference internal" href="#rendering">Rendering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/katex.min.js?v=1ff01101"></script>
+    <script src="../_static/auto-render.min.js?v=8b9f325c"></script>
+    <script src="../_static/katex_autorenderer.js?v=ae454eff"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/linenumbers.js?v=c3ab67e2"></script>
+    <script src="../_static/onthispage_mjwarp.js?v=7109a5a0"></script>
+    </body>
+</html>

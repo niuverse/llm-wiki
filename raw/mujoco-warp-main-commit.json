@@ -1,0 +1,113 @@
+{
+  "sha": "fb56eb0820aa22252a9ec869408484ac86d2b869",
+  "node_id": "C_kwDOOKPxNtoAKGZiNTZlYjA4MjBhYTIyMjUyYTllYzg2OTQwODQ4NGFjODZkMmI4Njk",
+  "commit": {
+    "author": {
+      "name": "Erik Frey",
+      "email": "misc@fawx.com",
+      "date": "2026-06-04T17:06:11Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-06-04T17:06:11Z"
+    },
+    "message": "Fix render test failures on machines with GPU display. (#1406)",
+    "tree": {
+      "sha": "efa456bae156ebf2643671b0dacffa03f65b679d",
+      "url": "https://api.github.com/repos/google-deepmind/mujoco_warp/git/trees/efa456bae156ebf2643671b0dacffa03f65b679d"
+    },
+    "url": "https://api.github.com/repos/google-deepmind/mujoco_warp/git/commits/fb56eb0820aa22252a9ec869408484ac86d2b869",
+    "comment_count": 0,
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqIbCDCRC1aQ7uu5UhlAAAp2EQAATO/n0zT1bEsq0qomxp1SJA\n3AhXh+s8DdmbY41XjHsenXu3q5LjV7FNjMlktEi+zSejywruHfRXlaaDKiWDGsbu\nRZH96sYrvx3i96x618K03jL6gD5HIFeGZ2HA+Sb17rAnrXBoYGx4SoAyFCZFCk2M\nwxlk1sb91IVZkjj2utAKcPINiRbtwjY5Ru4Q8vqhbiQYgY53uWA5ICUEbXEucLRD\nHcB08El7sNU0g0sJhFyRR/yEJal5tIKHrZT12crgbuidBX71JUaeo4eendgfYvob\n3+LL300IU3+RgpR1QGVMp75CpnitY5jQNOwrUFvnlx6LJvSzSVBXZEBNZ39zSsJH\nafWELKdrreO9Kh4Zs6Mao5uJ4gWI2r0sfvr3mIgTBU1kC9ltMdBJNgxSuKsu2yCp\n2K72t4uM1e/g4qg95d4C9JXEL3n0Vo1ktToGsWvM6NQfLSOOGGMC1D1zaI16doeB\nnbidi4vgYxNHXok9Az9fogBp9H/ietVstqHTesbKeCoo1meZ7NTVAwHCVeqn9xQ5\n2BRG1qK7xFzaPhnRYnwV6ljqm5Chkc0c+Tv1JLAtw8eIRX0ISnVrCNvocTIba/lu\n8hTYRdrco/oWdlBlZFB4KGDSo5j3W19ICMh79sSPnA6BzVJdwZx4bEXLcZpCh7R0\nNtrZoDyvXMFkZ9wJl2gG\n=0Wqh\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree efa456bae156ebf2643671b0dacffa03f65b679d\nparent 26e3b003a16a7820cc31b6abc333400a9ac363e6\nauthor Erik Frey <misc@fawx.com> 1780592771 -0700\ncommitter GitHub <noreply@github.com> 1780592771 -0700\n\nFix render test failures on machines with GPU display. (#1406)",
+      "verified_at": "2026-06-04T17:06:11Z"
+    }
+  },
+  "url": "https://api.github.com/repos/google-deepmind/mujoco_warp/commits/fb56eb0820aa22252a9ec869408484ac86d2b869",
+  "html_url": "https://github.com/google-deepmind/mujoco_warp/commit/fb56eb0820aa22252a9ec869408484ac86d2b869",
+  "comments_url": "https://api.github.com/repos/google-deepmind/mujoco_warp/commits/fb56eb0820aa22252a9ec869408484ac86d2b869/comments",
+  "author": {
+    "login": "erikfrey",
+    "id": 45605,
+    "node_id": "MDQ6VXNlcjQ1NjA1",
+    "avatar_url": "https://avatars.githubusercontent.com/u/45605?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/erikfrey",
+    "html_url": "https://github.com/erikfrey",
+    "followers_url": "https://api.github.com/users/erikfrey/followers",
+    "following_url": "https://api.github.com/users/erikfrey/following{/other_user}",
+    "gists_url": "https://api.github.com/users/erikfrey/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/erikfrey/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/erikfrey/subscriptions",
+    "organizations_url": "https://api.github.com/users/erikfrey/orgs",
+    "repos_url": "https://api.github.com/users/erikfrey/repos",
+    "events_url": "https://api.github.com/users/erikfrey/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/erikfrey/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "web-flow",
+    "id": 19864447,
+    "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/web-flow",
+    "html_url": "https://github.com/web-flow",
+    "followers_url": "https://api.github.com/users/web-flow/followers",
+    "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+    "organizations_url": "https://api.github.com/users/web-flow/orgs",
+    "repos_url": "https://api.github.com/users/web-flow/repos",
+    "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/web-flow/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "26e3b003a16a7820cc31b6abc333400a9ac363e6",
+      "url": "https://api.github.com/repos/google-deepmind/mujoco_warp/commits/26e3b003a16a7820cc31b6abc333400a9ac363e6",
+      "html_url": "https://github.com/google-deepmind/mujoco_warp/commit/26e3b003a16a7820cc31b6abc333400a9ac363e6"
+    }
+  ],
+  "stats": {
+    "total": 8,
+    "additions": 4,
+    "deletions": 4
+  },
+  "files": [
+    {
+      "sha": "57b97bc816329fa8281e98acebca4747d623c01f",
+      "filename": "mujoco_warp/_src/io.py",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/google-deepmind/mujoco_warp/blob/fb56eb0820aa22252a9ec869408484ac86d2b869/mujoco_warp%2F_src%2Fio.py",
+      "raw_url": "https://github.com/google-deepmind/mujoco_warp/raw/fb56eb0820aa22252a9ec869408484ac86d2b869/mujoco_warp%2F_src%2Fio.py",
+      "contents_url": "https://api.github.com/repos/google-deepmind/mujoco_warp/contents/mujoco_warp%2F_src%2Fio.py?ref=fb56eb0820aa22252a9ec869408484ac86d2b869",
+      "patch": "@@ -2869,7 +2869,7 @@ def override_model(model: types.Model | mujoco.MjModel, overrides: dict[str, Any\n     \"opt.graph_conditional\",\n     \"opt.contact_sensor_maxmatch\",\n   }\n-  mj_only_fields = {\"opt.jacobian\"}\n+  mj_only_fields = {\"opt.jacobian\", \"vis.quality.offsamples\"}\n \n   if not isinstance(overrides, dict):\n     overrides_dict = {}"
+    },
+    {
+      "sha": "86637795aac9ec50e285efcbf90e48a592054879",
+      "filename": "mujoco_warp/_src/render_test.py",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 3,
+      "changes": 6,
+      "blob_url": "https://github.com/google-deepmind/mujoco_warp/blob/fb56eb0820aa22252a9ec869408484ac86d2b869/mujoco_warp%2F_src%2Frender_test.py",
+      "raw_url": "https://github.com/google-deepmind/mujoco_warp/raw/fb56eb0820aa22252a9ec869408484ac86d2b869/mujoco_warp%2F_src%2Frender_test.py",
+      "contents_url": "https://api.github.com/repos/google-deepmind/mujoco_warp/contents/mujoco_warp%2F_src%2Frender_test.py?ref=fb56eb0820aa22252a9ec869408484ac86d2b869",
+      "patch": "@@ -240,7 +240,7 @@ def test_disable_ambient_lighting(self):\n   @absltest.skipIf(not _HAS_RENDERER, \"MuJoCo rendering requires OpenGL\")\n   def test_segmentation_matches_mujoco(self):\n     \"\"\"Segmentation should match native MuJoCo's `(object_id, object_type)` output.\"\"\"\n-    mjm, mjd, m, d = test_data.fixture(\"primitives.xml\", nworld=1)\n+    mjm, mjd, m, d = test_data.fixture(\"primitives.xml\", nworld=1, overrides={\"vis.quality.offsamples\": 0})\n     cam_w, cam_h = 32, 32\n \n     rc = mjw.create_render_context(\n@@ -263,7 +263,7 @@ def test_segmentation_matches_mujoco(self):\n   @absltest.skipIf(not _HAS_RENDERER, \"MuJoCo rendering requires OpenGL\")\n   def test_depth_matches_mujoco(self):\n     \"\"\"Depth values should match native MuJoCo (planar depth, not Euclidean).\"\"\"\n-    mjm, mjd, m, d = test_data.fixture(\"primitives.xml\", nworld=1)\n+    mjm, mjd, m, d = test_data.fixture(\"primitives.xml\", nworld=1, overrides={\"vis.quality.offsamples\": 0})\n     cam_w, cam_h = 32, 32\n \n     # mjwarp depth\n@@ -369,7 +369,7 @@ def test_backface_cull_camera_inside_primitive(self, asset: str, enclosure: str)\n   def test_backface_cull_matches_mujoco(self, asset: str, enclosure: str):\n     \"\"\"Backface-cull behavior must match native MuJoCo for every geom type.\"\"\"\n     xml = self._BACKFACE_CULL_SCENE.format(asset=asset, enclosure=enclosure)\n-    mjm, mjd, m, d = test_data.fixture(xml=xml, nworld=1)\n+    mjm, mjd, m, d = test_data.fixture(xml=xml, nworld=1, overrides={\"vis.quality.offsamples\": 0})\n \n     cam_w, cam_h = 16, 16\n     rc = mjw.create_render_context("
+    }
+  ]
+}

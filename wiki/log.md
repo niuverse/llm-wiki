@@ -190,3 +190,35 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 - Added `graph/extracts/robolab-20260612-7d45d749-repository-manifest.md` as the readable design/change manifest for the 19-commit refresh.
 - Updated `wiki/sources/nvlabs-robolab.md` and `wiki/entities/RoboLab.md` with dashboard, adaptive statistical reporting, policy backend contract, Cosmos3 client, debug/ops docs, and agentic scene/task generation coverage.
 - Added `wiki/concepts/SimulationBenchmarkReportingPipeline.md` and `wiki/concepts/AgenticSceneTaskGeneration.md`; updated task-generalist evaluation, simulation infrastructure, simulation sensitivity, and robot context conditioning concept pages.
+
+## [2026-06-30] ingest | Isaac Lab Repository
+
+- Registered pending local source page `wiki/sources/isaac-lab-repository.md` with raw README snapshot, extracted cache, and `wiki/entities/IsaacLab.md`.
+
+## [2026-06-30] ingest | ManiSkill Repository
+
+- Registered pending local source page `wiki/sources/maniskill-repository.md` with raw README snapshot and extracted cache.
+
+## [2026-06-30] ingest | mjlab Repository
+
+- Registered pending local source page `wiki/sources/mjlab-repository.md` with raw README snapshot, extracted cache, and `wiki/entities/Mjlab.md`.
+
+## [2026-06-30] ingest | MotrixSim Documentation
+
+- Registered pending local source page `wiki/sources/motrixsim-documentation.md` with canonical HTML, extracted cache, and `wiki/entities/MotrixSim.md`.
+
+## [2026-06-30] ingest | MuJoCo Playground Repository
+
+- Registered pending local source page `wiki/sources/mujoco-playground-repository.md` with raw README snapshot, extracted cache, and `wiki/entities/MuJoCoPlayground.md`.
+
+## [2026-06-30] ingest | MuJoCo Warp (MJWarp) Documentation
+
+- Registered pending local source page `wiki/sources/mujoco-warp-mjwarp-documentation.md` with canonical HTML, extracted cache, repo README snapshot, and `wiki/entities/MJWarp.md`.
+
+## [2026-06-30] ingest | MuJoCoUni: Persistent Batched Runtime Primitives for MuJoCo
+
+- Registered pending local source page `wiki/sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco.md` with canonical PDF, extracted cache, and `wiki/entities/MuJoCoUni.md`.
+
+## [2026-06-30] ingest | UniLab Repository
+
+- Registered pending local source page `wiki/sources/unilab-repository.md` with raw README snapshot and extracted cache.

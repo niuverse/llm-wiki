@@ -1,0 +1,101 @@
+{
+  "sha": "ea2e7faf6b37742e0147147ad125b6d114722698",
+  "node_id": "C_kwDOHwQFCtoAKGVhMmU3ZmFmNmIzNzc0MmUwMTQ3MTQ3YWQxMjViNmQxMTQ3MjI2OTg",
+  "commit": {
+    "author": {
+      "name": "Felipe Gomes de Melo",
+      "email": "felipegmelo.42@gmail.com",
+      "date": "2026-05-20T21:10:32Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-05-20T21:10:32Z"
+    },
+    "message": "[BugFix] stable baselines 3 example (#1418)",
+    "tree": {
+      "sha": "06fabddcaa626568972b93a7d782050e741b9906",
+      "url": "https://api.github.com/repos/haosulab/ManiSkill/git/trees/06fabddcaa626568972b93a7d782050e741b9906"
+    },
+    "url": "https://api.github.com/repos/haosulab/ManiSkill/git/commits/ea2e7faf6b37742e0147147ad125b6d114722698",
+    "comment_count": 0,
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqDiNICRC1aQ7uu5UhlAAAWmgQAABnUgCrpIvV58ZICErJoO+U\n917cYtNqyMSLRq5OjCPQvwoiPGUnEhL1x4hhIU+yIwD4Xv9bB5ssZrkqMgku/FhS\nwrNRvcUln0nQZmjRp2lEOejQf46lTm8I0Uyd1mgdou7W0F+43iwj4nQK3eNh/EoA\npBdEthFdlMn3bM5XRqmn2SUOT0L3Dz6PrcOdOavad35LEjuRHp4HMsLO6OZIMlll\nm+rgr0VTc9ALtnXUNST6JFCER568oDlymmI0RpbmZrEuQSqMjvPfGUFmsSg+2JJA\nC+vi3QMnyFxLLaHIHW4C5IN3i4nTAuEcX1o3MHrmu2cRLEnda6Reoc7VBqIRSseh\nQIJrQf+kRtll155UEdc0iXOTjwvOhMbj4p6hLUbcDLiyoKlFQfjZyOUE/UiXpZTt\nWPTpO6ezK9CD20rqsj+LEMvAyN1QoXTflySc+l7pER9JqtW2AK8NMoNEGBL/kxaT\nZDwTdEWBJHtxSqH2SZ3aI9pLaL76QCXeseAjlMrzXRypBjZ4FS84taGQdHEgIg2V\nhlkhRU7s+9JbIrLCxaB5xQoJMVHEfdOklQom7WjsPxLC6UdMaj8P2lA79uxANZ4p\nqjPw60Kcs68CdTeCJwdmvmbdeS0Ma4xMfM/JmTiBrLXeYNys+0eG7BULEWoPVijO\n3wuWavw53Ae+M01WNZB4\n=oddi\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree 06fabddcaa626568972b93a7d782050e741b9906\nparent a4a4f9272ad64b1564035874b605ceb687b63ed8\nauthor Felipe Gomes de Melo <felipegmelo.42@gmail.com> 1779311432 -0300\ncommitter GitHub <noreply@github.com> 1779311432 -0700\n\n[BugFix] stable baselines 3 example (#1418)",
+      "verified_at": "2026-05-20T21:10:33Z"
+    }
+  },
+  "url": "https://api.github.com/repos/haosulab/ManiSkill/commits/ea2e7faf6b37742e0147147ad125b6d114722698",
+  "html_url": "https://github.com/haosulab/ManiSkill/commit/ea2e7faf6b37742e0147147ad125b6d114722698",
+  "comments_url": "https://api.github.com/repos/haosulab/ManiSkill/commits/ea2e7faf6b37742e0147147ad125b6d114722698/comments",
+  "author": {
+    "login": "FelipeGdM",
+    "id": 1054087,
+    "node_id": "MDQ6VXNlcjEwNTQwODc=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/1054087?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/FelipeGdM",
+    "html_url": "https://github.com/FelipeGdM",
+    "followers_url": "https://api.github.com/users/FelipeGdM/followers",
+    "following_url": "https://api.github.com/users/FelipeGdM/following{/other_user}",
+    "gists_url": "https://api.github.com/users/FelipeGdM/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/FelipeGdM/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/FelipeGdM/subscriptions",
+    "organizations_url": "https://api.github.com/users/FelipeGdM/orgs",
+    "repos_url": "https://api.github.com/users/FelipeGdM/repos",
+    "events_url": "https://api.github.com/users/FelipeGdM/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/FelipeGdM/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "web-flow",
+    "id": 19864447,
+    "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/web-flow",
+    "html_url": "https://github.com/web-flow",
+    "followers_url": "https://api.github.com/users/web-flow/followers",
+    "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+    "organizations_url": "https://api.github.com/users/web-flow/orgs",
+    "repos_url": "https://api.github.com/users/web-flow/repos",
+    "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/web-flow/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "a4a4f9272ad64b1564035874b605ceb687b63ed8",
+      "url": "https://api.github.com/repos/haosulab/ManiSkill/commits/a4a4f9272ad64b1564035874b605ceb687b63ed8",
+      "html_url": "https://github.com/haosulab/ManiSkill/commit/a4a4f9272ad64b1564035874b605ceb687b63ed8"
+    }
+  ],
+  "stats": {
+    "total": 2,
+    "additions": 1,
+    "deletions": 1
+  },
+  "files": [
+    {
+      "sha": "4d76417b0def808a795563d09aa94f48b43119ea",
+      "filename": "mani_skill/vector/wrappers/sb3.py",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/haosulab/ManiSkill/blob/ea2e7faf6b37742e0147147ad125b6d114722698/mani_skill%2Fvector%2Fwrappers%2Fsb3.py",
+      "raw_url": "https://github.com/haosulab/ManiSkill/raw/ea2e7faf6b37742e0147147ad125b6d114722698/mani_skill%2Fvector%2Fwrappers%2Fsb3.py",
+      "contents_url": "https://api.github.com/repos/haosulab/ManiSkill/contents/mani_skill%2Fvector%2Fwrappers%2Fsb3.py?ref=ea2e7faf6b37742e0147147ad125b6d114722698",
+      "patch": "@@ -32,7 +32,7 @@ class ManiSkillSB3VectorEnv(SB3VecEnv):\n \n     def __init__(self, env: BaseEnv):\n         super().__init__(\n-            env.num_envs, env.single_observation_space, env.single_action_space\n+            env.base_env.num_envs, env.base_env.single_observation_space, env.base_env.single_action_space\n         )\n         self._env = env\n         self._last_seed = None"
+    }
+  ]
+}

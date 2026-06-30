@@ -2,8 +2,8 @@
 title: "Robotics Simulation Infrastructure"
 type: concept
 tags: [robotics, simulation, infrastructure, reinforcement-learning, policy-evaluation]
-sources: ["[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[nvlabs-robolab]]"]
-last_updated: 2026-06-12
+sources: ["[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[nvlabs-robolab]]", "[[unilab-repository]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[motrixsim-documentation]]", "[[mujoco-warp-mjwarp-documentation]]", "[[mjlab-repository]]", "[[mujoco-playground-repository]]", "[[isaac-lab-repository]]", "[[maniskill-repository]]"]
+last_updated: 2026-06-30
 ---
 
 # Robotics Simulation Infrastructure
@@ -53,6 +53,8 @@ Pose API example 说明 infrastructure 的小接口会在大系统里放大。�
 
 [[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] 给这个 infrastructure lens 增加了 training-runtime case。它把 robot RL training speed 拆成 CPU-side rollout collection、GPU learner utilization、replay boundary、H2D transfer、buffer slotting 和 parameter synchronization，而不是把 simulator env steps/s 当作唯一 bottleneck。这里的 infrastructure surface 是 [[HeterogeneousRobotRLTraining|heterogeneous robot RL training]]：task/backend contract、domain-randomization lifecycle、sample-before-transfer replay pipeline 和 hot/cold GPU batch slots 都会改变 end-to-end training efficiency。
 
+新增 repo/docs sources 把这个 lens 变成可比较的 robot learning stack taxonomy。[[MuJoCoUni]] 暴露 stateful CPU-batched MuJoCo execution 与 reset-time randomization；[[MotrixSim]] 的 high-level docs 把 Rust CPU implementation、MJCF compatibility 和 proprietary constraint solver 列为 engine surface；[[MJWarp]] / [[MuJoCoPlayground]] / [[Mjlab|mjlab]] 代表 MuJoCo ecosystem 的 GPU-oriented training route；[[IsaacLab]] 代表 NVIDIA Isaac Sim 上的 manager-based RL/IL/motion-planning framework；[[ManiSkill]] 代表 SAPIEN-powered manipulation and visual-data route。它们说明 simulation infrastructure 的 comparison 需要同时看 physics semantics、batching model、rendering/sensor path、task API、RL integration、platform constraints 和 licensing/dependency boundary。
+
 ## RoboLab as infrastructure case study
 
 [[nvlabs-robolab|RoboLab]] 的 updated repository 是这个 concept 的 concrete case：它把 simulator framework 拆成 task dataclasses、USD scene/assets、environment registration、policy backend adapters、evaluation runner、analysis scripts、dashboard、diagnostic tests、known issues 和 agentic authoring workflows。这里的 infrastructure value 不只在 Isaac Lab/Sim fidelity，而在每层是否形成可复查 contract：policy backend 有 `InferenceClient` hooks，tasks 有 predicates/subtasks，dashboard 有 scene/task/result APIs，analysis 有 confidence intervals，debug docs 有 WorldState inspection 和 pytest diagnostics。
@@ -69,7 +71,7 @@ RoboLab 也展示了 infrastructure 的 governance side。Apache-2.0 code licens
 - Pose abstraction 过薄：分散的 tensor/function API 增加 import surface、frame reasoning 和 function-call complexity；但过厚的 object abstraction 也可能引入 Python overhead 或 backend compatibility burden。
 - Sensor output contract 过隐式：如果 camera/lidar/radar output 只是 opaque buffer，ML loop 很难稳定处理 device、shape、valid counts、params、semantic labels 和 synchronization。[[RTXSensorSimulationPipeline]] 中的 `RenderVar` / DLPack contract 是 ovrtx 对这个问题的 source-backed answer。
 - Training runtime contract 过隐式：如果只报告 simulator throughput，而不记录 learner wait、replay sampling、H2D transfer、buffer residency 和 weight sync，robot RL system comparison 可能测到的是 runtime placement，而不是 algorithm 或 physics backend 本身。
-- Evidence boundary：当前 page 主要来自一篇 Substack engineering article，适合作为 design lens；framework-specific claims 需要后续 ingest official docs、repo snapshots 或 benchmark reports。
+- Evidence boundary：当前 page 已从一篇 engineering article 扩展到 official docs / repo snapshots，但多数 repo README 仍是 moving target；framework-specific benchmark、release tag、paper-level architecture 和 code-level semantics 需要按版本继续 ingest。
 
 ## 实践含义
 
@@ -79,5 +81,6 @@ RoboLab 也展示了 infrastructure 的 governance side。Apache-2.0 code licens
 - 对 LLM-assisted scene/task generation，typed objects、clear task APIs 和 composable asset schemas 会影响 LLM 能否稳定生成可运行 scene，而不只是影响 human developer ergonomics。
 - 对 sensor-heavy robotics workflows，应该审计 RenderProduct/RenderVar schema、output channels、validity flags、warm-up policy、GPU mapping lifetime 和 multi-GPU behavior，因为这些决定 observation tensor 是否可复现、可调试、可接到 ML pipeline。
 - 对 simulation-based robot RL training，应该审计 full learner cycle：collection、packing、H2D、learner update、replay hot path、boundary wait 和 parameter publication。UniLab 的 source-backed lesson 是，GPU-resident physics 是有效路线，但不是唯一能形成高效 training loop 的路线。
+- 对 framework comparison，应显式记录 route 类型：CPU-batched stateful execution、GPU-resident physics、GPU rendering/data generation、manager-based task composition、manipulation-focused visual data collection。不同 route 的 failure surface 不同，不能被一个 aggregate throughput number 代表。
 
-相关页面：[[robotics-simulation-infrastructure]]、[[nvidia-ovrtx]]、[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]、[[RTXSensorSimulationPipeline]]、[[HeterogeneousRobotRLTraining]]、[[ManiSkill]]、[[IsaacSim]]、[[Ovrtx]]、[[UniLab]]、[[MuJoCo]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]。
+相关页面：[[robotics-simulation-infrastructure]]、[[nvidia-ovrtx]]、[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]、[[nvlabs-robolab]]、[[RTXSensorSimulationPipeline]]、[[HeterogeneousRobotRLTraining]]、[[AgenticSceneTaskGeneration]]、[[SimulationBenchmarkReportingPipeline]]、[[RoboLab]]、[[UniLab]]、[[MuJoCoUni]]、[[MotrixSim]]、[[MJWarp]]、[[Mjlab|mjlab]]、[[MuJoCoPlayground]]、[[IsaacLab]]、[[ManiSkill]]、[[IsaacSim]]、[[Ovrtx]]、[[MuJoCo]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]。

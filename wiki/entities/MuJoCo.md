@@ -2,7 +2,7 @@
 title: "MuJoCo"
 type: entity
 tags: [robotics, simulation, physics-engine]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-asset-structure]]", "[[robotics-simulation-infrastructure]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]"]
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-asset-structure]]", "[[robotics-simulation-infrastructure]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[mujoco-warp-mjwarp-documentation]]", "[[mjlab-repository]]", "[[mujoco-playground-repository]]"]
 last_updated: 2026-06-05
 ---
 
@@ -22,6 +22,6 @@ MuJoCo 是 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in
 
 [[robotics-simulation-infrastructure|Robotics Simulation Infrastructure]] source 额外提到 MuJoCo Lab 作为 end-to-end simulation/ML framework example，并特别把它的 visualizer 描述为适合 reinforcement learning work 的 diagnostic surface。这个 claim 指向 MuJoCo Lab infrastructure，而不是 MuJoCo core physics semantics；当前页面暂不把二者合并为同一个 implementation claim。
 
-[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] source 又给 MuJoCo ecosystem 增加了 training-system context：MuJoCoUni 作为 CPU-batched MuJoCo runtime backend，用于 heterogeneous CPU simulation / GPU learning；source 还把 MjWarp / mjlab / MuJoCo Playground 放在 GPU-resident robot learning systems 背景中对比。这个 evidence 说明 MuJoCo-related infrastructure 已经同时覆盖 CPU-batched、GPU-oriented 和 framework-level training paths；具体 backend semantics 仍需要后续单独 ingest MuJoCoUni / MjWarp docs。
+[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] source 又给 MuJoCo ecosystem 增加了 training-system context：MuJoCoUni 作为 CPU-batched MuJoCo runtime backend，用于 heterogeneous CPU simulation / GPU learning；source 还把 MjWarp / mjlab / MuJoCo Playground 放在 GPU-resident robot learning systems 背景中对比。后续 ingest 已把这个 context 拆开：[[MuJoCoUni]] 的 technical report 支持 stateful CPU-batched `BatchEnvPool` route；[[MJWarp]] official docs 支持 NVIDIA Warp / GPU-oriented parallel MuJoCo route，并明确 feature parity、nondeterminism 与 nondifferentiability boundary；[[Mjlab|mjlab]] 和 [[MuJoCoPlayground]] repository snapshots 则显示 MuJoCo Warp / MJX 已进入 higher-level robot learning frameworks。这个 evidence 说明 MuJoCo-related infrastructure 已经同时覆盖 CPU-batched、GPU-oriented 和 framework-level training paths，但不支持把各 backend 的 solver/contact/rendering semantics 直接视为完全等价。
 
-相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[RoboticsSimulationInfrastructure]]、[[HeterogeneousRobotRLTraining]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]、[[isaac-sim-mujoco-control-tuning-notes]]。
+相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[RoboticsSimulationInfrastructure]]、[[HeterogeneousRobotRLTraining]]、[[SimulationRealityGap]]、[[MuJoCoUni]]、[[MJWarp]]、[[Mjlab|mjlab]]、[[MuJoCoPlayground]]、[[IsaacSimAssetStructure]]、[[isaac-sim-mujoco-control-tuning-notes]]。

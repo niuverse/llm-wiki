@@ -1,0 +1,173 @@
+{
+  "sha": "492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+  "node_id": "C_kwDOIcxRJNoAKDQ5Mjc1MTc1OWFmNzJhNWQzZjdlMGU0Mjc2OGI5NWZkOWYxYWM2ZGY",
+  "commit": {
+    "author": {
+      "name": "Kelly Guo",
+      "email": "kellyg@nvidia.com",
+      "date": "2026-06-04T02:47:42Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-06-04T02:47:42Z"
+    },
+    "message": "Adds per-branch cloning command to docs (#5952)\n\n# Description\n\nApply doc update that specifies the branch to be used for cloning\ncommands to main.\nWe previously added this to develop, but it appears content is getting\noverwritten from other branches.\n\n## Type of change\n\n- Documentation update\n\n## Checklist\n\n- [x] I have read and understood the [contribution\nguidelines](https://isaac-sim.github.io/IsaacLab/main/source/refs/contributing.html)\n- [x] I have run the [`pre-commit` checks](https://pre-commit.com/) with\n`./isaaclab.sh --format`\n- [x] I have made corresponding changes to the documentation\n- [x] My changes generate no new warnings\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works\n- [ ] I have updated the changelog and the corresponding version in the\nextension's `config/extension.toml` file\n- [ ] I have added my name to the `CONTRIBUTORS.md` or my name already\nexists there\n\n<!--\nAs you go through the checklist above, you can mark something as done by\nputting an x character in it\n\nFor example,\n- [x] I have done this task\n- [ ] I have not done this task\n-->",
+    "tree": {
+      "sha": "e6985d5a85dff3a9ceabb789fe3351e7678cec3a",
+      "url": "https://api.github.com/repos/isaac-sim/IsaacLab/git/trees/e6985d5a85dff3a9ceabb789fe3351e7678cec3a"
+    },
+    "url": "https://api.github.com/repos/isaac-sim/IsaacLab/git/commits/492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+    "comment_count": 0,
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqIOdOCRC1aQ7uu5UhlAAAEc0QAJGtXJP0N/0+X2wCHJLE2tgX\n4tYcP2z01d0IxcezuX63aKT+nogal348OvPwxmaG7LxEvAprifJyAUy+K1mIRwP5\nsqXQgebwuf60nfl0oAEzgWJutP+J+LmO6mKLptgZ9823NK539cS4yqrhm8+q5AtZ\ndkKhhLpbL6CFBn4BSaMs3fPlj2heQQ9Z+Qyk8Z0wbpAFoOiWGDyF55nwx09zYW73\najcmfg3cE6NLraqVisof7LprEubNf5nE8r1f17rBd4N/Eb3Mu0lxhO5V1p1nzir6\nnoXIW0/Dc3vx7AOQiSnQjzB0qmoUm+7qdfS1ZSxVAO0nSBCS5XcUBvamOrXhw62D\nCKwjUjm+RVrt89VWkZHdevxhoCNrO6J8nBIS9ISiTdS+zgHVgT0SrXe+0vcrtxTh\ngVYNDc8s1jVOwqe+wHFxd/xOoRF5WVWLFZ26OXsgvXOpfX3Ph0tEOr3Ev//Rh5oG\nGt+bf1iRquQL0SD+u88N/CBTiIaHlZTgMLQRGUsxJaAzxS09MPd9uWgz0LqdNlbQ\nPzqNK+UQ+88tUVFqMX8y2ngUQUJt8jK7xX+36Iu5Ovhs9zW+Of0gLxuBTwGUcp6t\nAqEjA2scWEGag1ULT0xb24HvD9bVsVFfQr8wYvJIE8zxgt1GJWvr6GsFPkEQSaqB\ngcZclLdgQA/tCHpSiDH/\n=lris\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree e6985d5a85dff3a9ceabb789fe3351e7678cec3a\nparent c22775241e28f465fe345fa1a482ad6d29d712b0\nauthor Kelly Guo <kellyg@nvidia.com> 1780541262 -0700\ncommitter GitHub <noreply@github.com> 1780541262 -0700\n\nAdds per-branch cloning command to docs (#5952)\n\n# Description\n\nApply doc update that specifies the branch to be used for cloning\ncommands to main.\nWe previously added this to develop, but it appears content is getting\noverwritten from other branches.\n\n## Type of change\n\n- Documentation update\n\n## Checklist\n\n- [x] I have read and understood the [contribution\nguidelines](https://isaac-sim.github.io/IsaacLab/main/source/refs/contributing.html)\n- [x] I have run the [`pre-commit` checks](https://pre-commit.com/) with\n`./isaaclab.sh --format`\n- [x] I have made corresponding changes to the documentation\n- [x] My changes generate no new warnings\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works\n- [ ] I have updated the changelog and the corresponding version in the\nextension's `config/extension.toml` file\n- [ ] I have added my name to the `CONTRIBUTORS.md` or my name already\nexists there\n\n<!--\nAs you go through the checklist above, you can mark something as done by\nputting an x character in it\n\nFor example,\n- [x] I have done this task\n- [ ] I have not done this task\n-->",
+      "verified_at": "2026-06-04T02:47:43Z"
+    }
+  },
+  "url": "https://api.github.com/repos/isaac-sim/IsaacLab/commits/492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+  "html_url": "https://github.com/isaac-sim/IsaacLab/commit/492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+  "comments_url": "https://api.github.com/repos/isaac-sim/IsaacLab/commits/492751759af72a5d3f7e0e42768b95fd9f1ac6df/comments",
+  "author": {
+    "login": "kellyguo11",
+    "id": 6352136,
+    "node_id": "MDQ6VXNlcjYzNTIxMzY=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/6352136?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/kellyguo11",
+    "html_url": "https://github.com/kellyguo11",
+    "followers_url": "https://api.github.com/users/kellyguo11/followers",
+    "following_url": "https://api.github.com/users/kellyguo11/following{/other_user}",
+    "gists_url": "https://api.github.com/users/kellyguo11/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/kellyguo11/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/kellyguo11/subscriptions",
+    "organizations_url": "https://api.github.com/users/kellyguo11/orgs",
+    "repos_url": "https://api.github.com/users/kellyguo11/repos",
+    "events_url": "https://api.github.com/users/kellyguo11/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/kellyguo11/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "web-flow",
+    "id": 19864447,
+    "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/web-flow",
+    "html_url": "https://github.com/web-flow",
+    "followers_url": "https://api.github.com/users/web-flow/followers",
+    "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+    "organizations_url": "https://api.github.com/users/web-flow/orgs",
+    "repos_url": "https://api.github.com/users/web-flow/repos",
+    "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/web-flow/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "c22775241e28f465fe345fa1a482ad6d29d712b0",
+      "url": "https://api.github.com/repos/isaac-sim/IsaacLab/commits/c22775241e28f465fe345fa1a482ad6d29d712b0",
+      "html_url": "https://github.com/isaac-sim/IsaacLab/commit/c22775241e28f465fe345fa1a482ad6d29d712b0"
+    }
+  ],
+  "stats": {
+    "total": 125,
+    "additions": 82,
+    "deletions": 43
+  },
+  "files": [
+    {
+      "sha": "32606a7fbd99194fb45f4bfc033ac5023f7b47bd",
+      "filename": "docs/_extensions/isaaclab_docs.py",
+      "status": "added",
+      "additions": 67,
+      "deletions": 0,
+      "changes": 67,
+      "blob_url": "https://github.com/isaac-sim/IsaacLab/blob/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2F_extensions%2Fisaaclab_docs.py",
+      "raw_url": "https://github.com/isaac-sim/IsaacLab/raw/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2F_extensions%2Fisaaclab_docs.py",
+      "contents_url": "https://api.github.com/repos/isaac-sim/IsaacLab/contents/docs%2F_extensions%2Fisaaclab_docs.py?ref=492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+      "patch": "@@ -0,0 +1,67 @@\n+# Copyright (c) 2022-2026, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).\n+# All rights reserved.\n+#\n+# SPDX-License-Identifier: BSD-3-Clause\n+\n+\"\"\"Sphinx helpers for Isaac Lab documentation.\"\"\"\n+\n+from __future__ import annotations\n+\n+from docutils import nodes\n+from docutils.statemachine import StringList\n+from sphinx.util.docutils import SphinxDirective\n+\n+\n+def _branch(config) -> str:\n+    \"\"\"Return the branch or tag pinned in installation docs.\"\"\"\n+    current_version = getattr(config, \"smv_current_version\", \"\")\n+    if current_version:\n+        return current_version\n+    return getattr(config, \"isaaclab_latest_branch\", \"main\")\n+\n+\n+def _parse_rst(directive: SphinxDirective, content: str) -> list[nodes.Node]:\n+    \"\"\"Parse nested reST and return the generated document nodes.\"\"\"\n+    source = directive.env.doc2path(directive.env.docname, base=False)\n+    lines = StringList(content.splitlines(), source=source)\n+    container = nodes.container()\n+    directive.state.nested_parse(lines, 0, container)\n+    return container.children\n+\n+\n+class IsaacLabCloneCommands(SphinxDirective):\n+    \"\"\"Render SSH/HTTPS clone tabs using copy-friendly ``code-block`` directives.\"\"\"\n+\n+    has_content = False\n+\n+    def run(self) -> list[nodes.Node]:\n+        branch = _branch(self.config)\n+        content = f\"\"\"\\\n+.. tab-set::\n+\n+   .. tab-item:: SSH\n+\n+      .. code-block:: bash\n+\n+         git clone git@github.com:isaac-sim/IsaacLab.git --branch {branch}\n+         cd IsaacLab\n+\n+   .. tab-item:: HTTPS\n+\n+      .. code-block:: bash\n+\n+         git clone https://github.com/isaac-sim/IsaacLab.git --branch {branch}\n+         cd IsaacLab\n+\"\"\"\n+        return _parse_rst(self, content)\n+\n+\n+def setup(app):\n+    \"\"\"Register Isaac Lab documentation directives.\"\"\"\n+    app.add_config_value(\"isaaclab_latest_branch\", \"main\", \"env\")\n+    app.add_directive(\"isaaclab-clone-commands\", IsaacLabCloneCommands)\n+    return {\n+        \"version\": \"0.1\",\n+        \"parallel_read_safe\": True,\n+        \"parallel_write_safe\": True,\n+    }"
+    },
+    {
+      "sha": "38686f640d8ca7bc7cbeb5477a8377f4fa994df3",
+      "filename": "docs/conf.py",
+      "status": "modified",
+      "additions": 9,
+      "deletions": 0,
+      "changes": 9,
+      "blob_url": "https://github.com/isaac-sim/IsaacLab/blob/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2Fconf.py",
+      "raw_url": "https://github.com/isaac-sim/IsaacLab/raw/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2Fconf.py",
+      "contents_url": "https://api.github.com/repos/isaac-sim/IsaacLab/contents/docs%2Fconf.py?ref=492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+      "patch": "@@ -18,6 +18,7 @@\n import os\n import sys\n \n+sys.path.insert(0, os.path.abspath(\"_extensions\"))\n sys.path.insert(0, os.path.abspath(\"../source/isaaclab\"))\n sys.path.insert(0, os.path.abspath(\"../source/isaaclab/isaaclab\"))\n sys.path.insert(0, os.path.abspath(\"../source/isaaclab_assets\"))\n@@ -42,6 +43,13 @@\n     full_version = f.read().strip()\n     version = \".\".join(full_version.split(\".\")[:3])\n \n+# Latest branch referenced by installation documentation.\n+isaaclab_latest_branch = os.getenv(\"ISAACLAB_LATEST_BRANCH\", \"main\")\n+\n+rst_prolog = f\"\"\"\n+.. |isaaclab_latest_branch| replace:: {isaaclab_latest_branch}\n+\"\"\"\n+\n # -- General configuration ---------------------------------------------------\n \n # Add any Sphinx extension module names here, as strings. They can be\n@@ -65,6 +73,7 @@\n     \"sphinx_design\",\n     \"sphinx_tabs.tabs\",  # backwards compatibility for building docs on v1.0.0\n     \"sphinx_multiversion\",\n+    \"isaaclab_docs\",\n ]\n \n # mathjax hacks"
+    },
+    {
+      "sha": "d30708a3ec12c182e7a01ead5d9e85e7c9768675",
+      "filename": "docs/source/deployment/index.rst",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 13,
+      "changes": 14,
+      "blob_url": "https://github.com/isaac-sim/IsaacLab/blob/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2Fsource%2Fdeployment%2Findex.rst",
+      "raw_url": "https://github.com/isaac-sim/IsaacLab/raw/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2Fsource%2Fdeployment%2Findex.rst",
+      "contents_url": "https://api.github.com/repos/isaac-sim/IsaacLab/contents/docs%2Fsource%2Fdeployment%2Findex.rst?ref=492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+      "patch": "@@ -18,19 +18,7 @@ Cloning the Repository\n \n Before building the container, clone the Isaac Lab repository (if not already done):\n \n-.. tab-set::\n-\n-   .. tab-item:: SSH\n-\n-      .. code:: bash\n-\n-         git clone git@github.com:isaac-sim/IsaacLab.git\n-\n-   .. tab-item:: HTTPS\n-\n-      .. code:: bash\n-\n-         git clone https://github.com/isaac-sim/IsaacLab.git\n+.. isaaclab-clone-commands::\n \n Next Steps\n ----------"
+    },
+    {
+      "sha": "c26f0130929e75c2f7eae4a80706c279e3b3e45e",
+      "filename": "docs/source/policy_deployment/02_gear_assembly/gear_assembly_policy.rst",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 2,
+      "changes": 4,
+      "blob_url": "https://github.com/isaac-sim/IsaacLab/blob/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2Fsource%2Fpolicy_deployment%2F02_gear_assembly%2Fgear_assembly_policy.rst",
+      "raw_url": "https://github.com/isaac-sim/IsaacLab/raw/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2Fsource%2Fpolicy_deployment%2F02_gear_assembly%2Fgear_assembly_policy.rst",
+      "contents_url": "https://api.github.com/repos/isaac-sim/IsaacLab/contents/docs%2Fsource%2Fpolicy_deployment%2F02_gear_assembly%2Fgear_assembly_policy.rst?ref=492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+      "patch": "@@ -33,7 +33,7 @@ This environment has been successfully deployed on real UR10e robots without an\n \n **Scope of This Tutorial:**\n \n-This tutorial focuses exclusively on the **training part** of the sim-to-real transfer workflow in Isaac Lab. For the complete deployment workflow on the real robot, including the exact steps to set up the vision pipeline, robot interface and the ROS inference node to run your trained policy on real hardware, please refer to the `Isaac ROS Documentation <https://nvidia-isaac-ros.github.io/reference_workflows/isaac_for_manipulation/packages/isaac_manipulator_ur_dnn_policy/index.html>`_.\n+This tutorial focuses exclusively on the **training part** of the sim-to-real transfer workflow in Isaac Lab. For the complete deployment workflow on the real robot, including the exact steps to set up the vision pipeline, robot interface and the ROS inference node to run your trained policy on real hardware, please refer to the `Isaac ROS Documentation <https://nvidia-isaac-ros.github.io/reference_workflows/isaac_for_manipulation/packages/isaac_ros_manipulation_ur_dnn_policy/index.html>`_.\n \n Overview\n --------\n@@ -493,7 +493,7 @@ Replace ``<log_dir>`` with the path to your training logs (e.g., ``logs/rsl_rl/g\n Step 3: Deploy on Real Robot\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n \n-Once training is complete, follow the `Isaac ROS inference documentation <https://nvidia-isaac-ros.github.io/reference_workflows/isaac_for_manipulation/packages/isaac_manipulator_ur_dnn_policy/index.html>`_ to deploy your policy.\n+Once training is complete, follow the `Isaac ROS inference documentation <https://nvidia-isaac-ros.github.io/reference_workflows/isaac_for_manipulation/packages/isaac_ros_manipulation_ur_dnn_policy/index.html>`_ to deploy your policy.\n \n The Isaac ROS deployment pipeline directly uses the trained model checkpoint (``.pt`` file) along with the ``agent.yaml`` and ``env.yaml`` configuration files generated during training. No additional export step is required.\n "
+    },
+    {
+      "sha": "79792b7ed75dc22315267499cd9ac1f40743ee53",
+      "filename": "docs/source/setup/ecosystem.rst",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/isaac-sim/IsaacLab/blob/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2Fsource%2Fsetup%2Fecosystem.rst",
+      "raw_url": "https://github.com/isaac-sim/IsaacLab/raw/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2Fsource%2Fsetup%2Fecosystem.rst",
+      "contents_url": "https://api.github.com/repos/isaac-sim/IsaacLab/contents/docs%2Fsource%2Fsetup%2Fecosystem.rst?ref=492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+      "patch": "@@ -147,7 +147,7 @@ to Isaac Lab, please reach out to us.\n .. _AirSim: https://microsoft.github.io/AirSim/\n .. _DoorGym: https://github.com/PSVL/DoorGym/\n .. _ManiSkill: https://github.com/haosulab/ManiSkill\n-.. _ThreeDWorld: https://www.threedworld.org/\n+.. _ThreeDWorld: https://github.com/threedworld-mit/tdw\n .. _RoboSuite: https://robosuite.ai/\n .. _MuJoCo: https://mujoco.org/\n .. _MuJoCo Playground: https://playground.mujoco.org/"
+    },
+    {
+      "sha": "3833ad8170160e0879357fb014a0053fe89605b7",
+      "filename": "docs/source/setup/installation/include/src_clone_isaaclab.rst",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 14,
+      "changes": 15,
+      "blob_url": "https://github.com/isaac-sim/IsaacLab/blob/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2Fsource%2Fsetup%2Finstallation%2Finclude%2Fsrc_clone_isaaclab.rst",
+      "raw_url": "https://github.com/isaac-sim/IsaacLab/raw/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2Fsource%2Fsetup%2Finstallation%2Finclude%2Fsrc_clone_isaaclab.rst",
+      "contents_url": "https://api.github.com/repos/isaac-sim/IsaacLab/contents/docs%2Fsource%2Fsetup%2Finstallation%2Finclude%2Fsrc_clone_isaaclab.rst?ref=492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+      "patch": "@@ -10,20 +10,7 @@ Cloning Isaac Lab\n \n Clone the Isaac Lab repository into your project's workspace:\n \n-.. tab-set::\n-\n-   .. tab-item:: SSH\n-\n-      .. code:: bash\n-\n-         git clone git@github.com:isaac-sim/IsaacLab.git\n-\n-   .. tab-item:: HTTPS\n-\n-      .. code:: bash\n-\n-         git clone https://github.com/isaac-sim/IsaacLab.git\n-\n+.. isaaclab-clone-commands::\n \n We provide a helper executable `isaaclab.sh <https://github.com/isaac-sim/IsaacLab/blob/main/isaaclab.sh>`_\n and `isaaclab.bat <https://github.com/isaac-sim/IsaacLab/blob/main/isaaclab.bat>`_ for Linux and Windows"
+    },
+    {
+      "sha": "97b058b8f3a4efd47ee8a2326fbe7e2b979a6f11",
+      "filename": "docs/source/setup/quickstart.rst",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 13,
+      "changes": 14,
+      "blob_url": "https://github.com/isaac-sim/IsaacLab/blob/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2Fsource%2Fsetup%2Fquickstart.rst",
+      "raw_url": "https://github.com/isaac-sim/IsaacLab/raw/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs%2Fsource%2Fsetup%2Fquickstart.rst",
+      "contents_url": "https://api.github.com/repos/isaac-sim/IsaacLab/contents/docs%2Fsource%2Fsetup%2Fquickstart.rst?ref=492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+      "patch": "@@ -100,19 +100,7 @@ and now we can install the Isaac Sim packages.\n \n Finally, we can install Isaac Lab.  To start, clone the repository using the following\n \n-.. tab-set::\n-\n-   .. tab-item:: SSH\n-\n-      .. code:: bash\n-\n-         git clone git@github.com:isaac-sim/IsaacLab.git\n-\n-   .. tab-item:: HTTPS\n-\n-      .. code:: bash\n-\n-         git clone https://github.com/isaac-sim/IsaacLab.git\n+.. isaaclab-clone-commands::\n \n Installation is now as easy as navigating to the repo and then calling the root script with the ``--install`` flag!\n "
+    }
+  ]
+}
