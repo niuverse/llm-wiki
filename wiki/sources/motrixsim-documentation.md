@@ -3,7 +3,7 @@ title: "MotrixSim Documentation"
 type: source
 tags: [robotics, simulation, physics-engine, documentation]
 sources: []
-last_updated: 2026-06-05
+last_updated: 2026-07-13
 source_file: raw/motrixsim-documentation.html
 source_kind: html
 source_url: https://motrixsim.readthedocs.io/en/v0.2.0/
@@ -13,16 +13,16 @@ source_date: unknown
 
 ## 摘要
 
-这是 [[MotrixSim]] v0.2.0 ReadTheDocs home page snapshot。Docs 把 MotrixSim 定位为面向 multibody dynamics 与 robotics simulation 的 high-performance physics simulation engine，覆盖 robot control、reinforcement learning、industrial simulation、education/research 等场景。
+这是 [[MotrixSim]] v0.2.0 ReadTheDocs home 页面快照。文档把 MotrixSim 定位为面向 multibody 动力学与机器人学仿真的高性能物理仿真引擎，覆盖机器人控制、强化学习、industrial 仿真、education/研究等场景。
 
-对 wiki 的价值是给 [[UniLab]] paper 中的 MotrixSim backend 增加 official documentation boundary：MotrixSim docs 强调 generalized coordinate modeling、proprietary constraint model / solver、Rust CPU implementation、Python API 和 MJCF compatibility。它支持把 MotrixSim 放入 robot RL training runtime taxonomy，但当前 home page 不足以支持具体 solver algorithm、contact law 或 benchmark claims。
+对知识库的价值是给 [[UniLab]] 论文中的 MotrixSim 后端增加官方文档边界：MotrixSim 文档强调广义的坐标建模、专有的约束模型 / 求解器、Rust CPU 实现、Python API 和 MJCF 兼容性。它支持把 MotrixSim 放入机器人 RL 训练运行时分类体系，但当前 home 页面不足以支持具体求解器算法、接触定律或基准主张。
 
 ## 核心主张
 
-- MotrixSim 是针对 multibody dynamics and robotics simulation 的 physics simulation engine。
-- Key features 包括 rigid body dynamics、collision detection、generalized coordinate modeling、proprietary constraint model and solver、Rust CPU implementation、Python API 和 MJCF model format compatibility。
-- Application scenarios 包括 robotic control algorithm development、reinforcement learning environments、industrial physics simulation、engineering design verification、education and research。
-- Docs 提供 User Guide、API Reference、Issues、Discussions 和 Motphys / GitHub links。
+- MotrixSim 是针对 multibody 动力学与机器人学仿真的物理仿真引擎。
+- Key 特征包括刚体动力学、碰撞检测、广义的坐标建模、专有的约束模型与求解器、Rust CPU 实现、Python API 和 MJCF 模型格式兼容性。
+- Application scenarios 包括机器人控制算法 development、强化学习环境、industrial 物理仿真、工程设计验证、education 与研究。
+- 文档提供用户指南、API 参考、问题、讨论和 Motphys / GitHub 链接。
 
 ## 关键引文
 
@@ -33,11 +33,11 @@ source_date: unknown
 
 ## 关联
 
-- [[MotrixSim]] - 本 source 对应的 physics engine entity。
-- [[UniLab]] - MotrixSim 是 UniLab README/paper 中列出的 CPU physics backend。
-- [[HeterogeneousRobotRLTraining]] - MotrixSim 代表 CPU-side batched physics / rendering stack 的一条 backend path。
+- [[MotrixSim]] - 本来源对应的物理引擎实体。
+- [[UniLab]] - MotrixSim 是 UniLab README/论文中列出的 CPU 物理后端。
+- [[HeterogeneousRobotRLTraining]] - MotrixSim 代表 CPU 侧批处理物理 / 渲染技术栈的一条后端路径。
 
 ## 开放问题
 
-- Home page 只提供 high-level feature claims；要写 solver/contact mechanism-level notes，需要 ingest API reference、user guide、benchmark docs 或 technical report。
-- Source 没有给具体 release date；frontmatter 使用 `source_date: unknown`。
+- Home 页面只提供高层特征主张；要写求解器/接触机制层级笔记，需要收录 API 参考、用户指南、基准文档或技术报告。
+- 来源没有给具体发布 date；frontmatter 使用 `source_date: unknown`。

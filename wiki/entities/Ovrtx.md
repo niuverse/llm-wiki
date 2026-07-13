@@ -3,24 +3,24 @@ title: "ovrtx"
 type: entity
 tags: [sdk, nvidia, omniverse, rtx, sensor-simulation, openusd]
 sources: ["[[nvidia-ovrtx]]"]
-last_updated: 2026-05-26
+last_updated: 2026-07-13
 ---
 
 # ovrtx
 
-ovrtx 是 [[NVIDIA]] 发布的 lightweight C/Python SDK，用来把 Omniverse RTX 的 RTX sensor simulation 和 visualization 集成到外部应用。[[nvidia-ovrtx|NVIDIA ovrtx]] source snapshot 显示当前 ingest 的 tracked version 是 `0.3.0`，仍标注为 pre-release software；它面向 camera、lidar、radar 和其他 sensor outputs，使用 [[OpenUSD]] scene description，并把 rendered outputs 暴露成 DLPack-compatible tensors。
+ovrtx 是 [[NVIDIA]] 发布的轻量的 C/Python SDK，用来把 Omniverse RTX 的 RTX 传感器仿真和可视化集成到外部应用。[[nvidia-ovrtx|NVIDIA ovrtx]] 来源快照显示当前收录的履带式版本是 `0.3.0`，仍标注为 pre-发布 software；它面向相机、lidar、radar 和其他传感器 outputs，使用 [[OpenUSD]] 场景描述，并把渲染的 outputs 暴露成 DLPack-兼容的张量。
 
-工程上，ovrtx 的核心对象不是“打开一个图片 renderer”，而是一条 runtime stage pipeline：应用创建 `Renderer`，加载 root USD 或 inline USDA composition，把 sensor prim、`RenderProduct`、`RenderVar` 放进 stage，调用 `step` 生成 outputs，然后按 CPU/CUDA mapping、lifetime 和 synchronization contract 消费结果。C API 强调 explicit wait/fetch/release；Python API 包一层 blocking/async convenience。更系统的机制整理见 [[RTXSensorSimulationPipeline]]。
+工程上，ovrtx 的核心对象不是“打开一个图片渲染器”，而是一条运行时阶段流程：应用创建 `Renderer`，加载根部 USD 或行内 USDA 组合，把传感器图元、`RenderProduct`、`RenderVar` 放进阶段，调用 `step` 生成 outputs，然后按 CPU/CUDA 映射、生命周期和同步契约消费结果。C API 强调显式等待/获取/发布；Python API 包一层阻塞式的/异步便捷方法。更系统的机制整理见 [[RTXSensorSimulationPipeline]]。
 
-API boundary 上，当前 source snapshot 支持 scene composition / mutation，但不应被理解成 full physics scene builder。ovrtx 可以 open root USD、用 inline USDA sublayer 原始 scene、add/remove USD references、clone 已加载 subtree、query prims，并通过 attribute writes / mappings 改 transform、material binding、semantic labels、RenderProduct settings 等；但当前 source surface 没有 high-level `create_rigid_body`、`create_articulation`、`create_deformable` 这类 physics object authoring helpers。更稳妥的工作流是：由 Isaac Sim / Isaac Lab / ovPhysX / USD authoring tool 创建 physics-rich assets，再由 ovrtx compose 进 runtime stage 做 RTX sensor simulation。这个使用边界见 [[ovrtx-api-boundary]]。
+API 边界上，当前来源快照支持场景组合 / mutation，但不应被理解成完整物理场景 builder。ovrtx 可以 open 根部 USD、用行内 USDA 子层原始场景、add/remove USD 参考资料、clone 已加载 subtree、查询图元，并通过属性 writes / 映射改变换、材质绑定、semantic labels、RenderProduct 场景等；但当前来源表面没有高层 `create_rigid_body`、`create_articulation`、`create_deformable` 这类物理物体制作辅助函数。更稳妥的工作流是：由 Isaac Sim / Isaac Lab / ovPhysX / USD 制作工具创建物理丰富资产，再由 ovrtx compose 进运行时阶段做 RTX 传感器仿真。这个使用边界见 [[ovrtx-api-boundary]]。
 
-当前 source-backed 边界：本页只记录 repository README、docs、headers 和 changelog 中明示的 API/lifecycle 信息。`physically accurate` 的 sensor model 细节、RTX renderer internal architecture、真实 sensor validation 和跨 simulator integration 还需要额外 official docs 或 benchmark sources。
+当前有来源支持的边界：本页只记录代码仓库 README、文档、headers 和 changelog 中明示的 API/生命周期信息。`physically accurate` 的传感器模型细节、RTX 渲染器内部架构、真实传感器验证和跨仿真器集成还需要额外官方文档或基准来源。
 
 ## 关联
 
-- [[nvidia-ovrtx]] - official repo source page。
+- [[nvidia-ovrtx]] - 官方代码仓库来源页。
 - [[RTXSensorSimulationPipeline]] - ovrtx 中 `RenderProduct` / `RenderVar` / DLPack output 的机制页。
-- [[OpenUSD]] - ovrtx scene configuration 和 runtime composition 的 substrate。
+- [[OpenUSD]] - ovrtx 场景配置和运行时组合的基底。
 - [[NVIDIA]] - publisher。
-- [[RoboticsSimulationInfrastructure]] - ovrtx 作为 sensor rendering / GPU output infrastructure 的 official case。
-- [[ovrtx-api-boundary]] - distill ovrtx 的 scene composition、physics authoring 和 randomization ownership 边界。
+- [[RoboticsSimulationInfrastructure]] - ovrtx 作为传感器渲染 / GPU output 基础设施的官方情形。
+- [[ovrtx-api-boundary]] - 提炼 ovrtx 的场景组合、物理制作和随机化 ownership 边界。

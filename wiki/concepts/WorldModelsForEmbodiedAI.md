@@ -1,20 +1,20 @@
 ---
-title: "World Models for Embodied AI"
+title: "具身智能世界模型"
 type: concept
 tags: [embodied-ai, world-models, model-based-rl, robotics, autonomous-driving]
 sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]"]
-last_updated: 2026-04-27
+last_updated: 2026-07-13
 ---
 
-# World Models for Embodied AI
+# 具身智能世界模型
 
-World model（世界模型）在 embodied AI 中是 learned internal simulator：它把 observations 和 actions 压缩成 predictive latent state，并 rollout future states 来支持 perception、prediction、planning、control 和 counterfactual reasoning。[[a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]] 明确把 scope 限定在能产生 actionable predictions 的 models，而不是单纯 static scene descriptors 或不受 action 控制的 visual generators。
+世界模型（世界模型）在具身 AI 中是学得的内部仿真器：它把观测和动作压缩成预测式潜在状态，并轨迹采样未来状态来支持感知、预测、规划、控制和反事实推理。[[a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]] 明确把范围限定在能产生 actionable 预测的模型，而不是单纯静态场景描述文件或不受动作控制的视觉 generators。
 
 ## 数学结构
 
-论文用 POMDP formalization 描述 embodied interaction。变量含义如下：$o_t$ 是第 $t$ 步 observation，$a_t$ 是 action，$s_t$ 是不可直接观测的 true state，$z_t$ 是 learned latent state，$\theta$ 是 generative model parameters，$\phi$ 是 inference model parameters。
+论文用 POMDP formalization 描述具身交互。变量含义如下：$o_t$ 是第 $t$ 步观测，$a_t$ 是动作，$s_t$ 是不可直接观测的真实状态，$z_t$ 是学得的潜在状态，$\theta$ 是 generative 模型参数，$\phi$ 是推理模型参数。
 
-核心 world model 由三部分组成：
+核心世界模型由三部分组成：
 
 $$
 \begin{array}{ll}
@@ -24,25 +24,25 @@ $$
 \end{array}
 $$
 
-Joint distribution 写成 action-conditioned latent transition 与 observation decoder 的乘积：
+关节分布写成动作条件化的潜在转移与观测解码器的乘积：
 
 $$
 p_\theta(o_{1:T}, z_{0:T} \mid a_{0:T-1}) = p_\theta(z_0)\prod_{t=1}^{T} p_\theta(z_t \mid z_{t-1}, a_{t-1})p_\theta(o_t \mid z_t).
 $$
 
-真实 posterior $p_\theta(z_{0:T} \mid o_{1:T}, a_{0:T-1})$ 不可直接求，论文使用 time-factorized variational posterior：
+真实后验 $p_\theta(z_{0:T} \mid o_{1:T}, a_{0:T-1})$ 不可直接求，论文使用时间-factorized variational 后验：
 
 $$
 q_\phi(z_{0:T} \mid o_{1:T}, a_{0:T-1}) = q_\phi(z_0 \mid o_1)\prod_{t=1}^{T} q_\phi(z_t \mid z_{t-1}, a_{t-1}, o_t).
 $$
 
-Training objective 是 ELBO（evidence lower bound）：
+训练目标是 ELBO（证据较低边界）：
 
 $$
 \log p_\theta(o_{1:T} \mid a_{0:T-1}) \ge \mathbb{E}_{q_\phi}\left[\log \frac{p_\theta(o_{1:T}, z_{0:T} \mid a_{0:T-1})}{q_\phi(z_{0:T} \mid o_{1:T}, a_{0:T-1})}\right] = \mathcal{L}(\theta,\phi).
 $$
 
-在 Markov factorization 下，ELBO 可理解为 reconstruction objective 加上 KL regularization：
+在 Markov 分解下，ELBO 可理解为重建目标加上 KL 正则化：
 
 $$
 \mathcal{L}(\theta,\phi)=\sum_{t=1}^{T}\mathbb{E}_{q_\phi(z_t)}[\log p_\theta(o_t \mid z_t)] - D_{\mathrm{KL}}\left(q_\phi(z_{0:T}\mid o_{1:T},a_{0:T-1})\,\|\,p_\theta(z_{0:T}\mid a_{0:T-1})\right).
@@ -50,54 +50,54 @@ $$
 
 ## 直觉
 
-Filtered posterior $q_\phi$ 是 recognition side：它看见当前 observation $o_t$，把 history 压进 latent state $z_t$。Dynamics prior $p_\theta$ 是 imagination side：它在没有未来 observation 的情况下，根据 $z_{t-1}$ 和 action $a_{t-1}$ 推进 latent future。Reconstruction $p_\theta(o_t \mid z_t)$ 让 latent state 不只是任意 embedding，而是保留可预测 observation 的信息。
+Filtered 后验 $q_\phi$ 是识别侧：它看见当前观测 $o_t$，把历史压进潜在状态 $z_t$。动力学先验 $p_\theta$ 是想象侧：它在没有未来观测的情况下，根据 $z_{t-1}$ 和动作 $a_{t-1}$ 推进潜在未来。重建 $p_\theta(o_t \mid z_t)$ 让潜在状态不只是任意嵌入，而是保留可预测观测的信息。
 
-ELBO 的两个 terms 对应一个 tension：reconstruction term 希望 $z_t$ 对 observations 足够 informative；KL term 希望 filtered posterior 不要偏离 action-conditioned dynamics prior 太远。若 KL 太弱，model 可能只学到 posterior encoding 而不会 rollout；若 reconstruction 太弱，latent dynamics 可能可 rollout 但失去可解释的 state fidelity。
+ELBO 的两个项对应一个 tension：重建项希望 $z_t$ 对观测足够 informative；KL 项希望滤波后验不要偏离动作条件化的动力学先验太远。若 KL 太弱，模型可能只学到后验编码而不会轨迹采样；若重建太弱，潜在动力学可能可轨迹采样但失去可解释的状态保真度。
 
 ```mermaid
 flowchart LR
-  A["history<br/>o_1:t, a_0:t-1"] --> B["filtered posterior<br/>q_phi(z_t given z_{t-1}, a_{t-1}, o_t)"]
-  B --> C["latent state z_t<br/>predictive memory"]
-  C --> D["dynamics prior<br/>p_theta(z_{t+1} given z_t, a_t)"]
-  D --> E["imagined future<br/>z_{t+1:T}"]
-  C --> F["reconstruction<br/>p_theta(o_t given z_t)"]
-  E --> G["planning / policy optimization / MPC / counterfactuals"]
+  A["历史<br/>o_1:t, a_0:t-1"] --> B["filtered 后验<br/>q_phi(z_t 给定 z_{t-1}, a_{t-1}, o_t)"]
+  B --> C["潜在状态 z_t<br/>预测式内存"]
+  C --> D["动力学先验<br/>p_theta(z_{t+1} 给定 z_t, a_t)"]
+  D --> E["imagined 未来<br/>z_{t+1:T}"]
+  C --> F["重建<br/>p_theta(o_t 给定 z_t)"]
+  E --> G["规划 / 策略优化 / MPC / counterfactuals"]
 ```
 
-## 作为 Visual Subgoal Generator
+## 作为视觉子目标生成器
 
-[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 给了一个更窄但很实用的 world-model role：world model 不直接输出 robot action，也不一定 rollout long-horizon trajectory，而是把 current observation $o_t$、semantic subtask $\hat{\ell}_t$ 和 metadata $m$ 转成 near-future visual goal：
+[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 给了一个更窄但很实用的世界模型角色：世界模型不直接输出机器人动作，也不一定轨迹采样长时域轨迹，而是把当前观测 $o_t$、semantic 子任务 $\hat{\ell}_t$ 和元数据 $m$ 转成近期未来视觉目标：
 
 $$
 g^\star \sim p_\psi(g^\star \mid o_t,\hat{\ell}_t,m).
 $$
 
-这个 $g^\star$ 是 multi-view subgoal images，随后进入 [[VisionLanguageActionModels|VLA]] 的 context $C_t$，condition action chunk prediction。直觉上，它把 language 中难以说明的 spatial details 转成 visual target，例如 gripper 应该如何接近 handle、cloth 应该折到什么形状、或 object 应该出现在什么 view 中。
+这个 $g^\star$ 是多视角子目标图像，随后进入 [[VisionLanguageActionModels|VLA]] 的上下文 $C_t$，条件动作块预测。直觉上，它把语言中难以说明的空间细节转成视觉目标，例如夹爪应该如何接近把手、布料应该折到什么形状、或物体应该出现在什么视角中。
 
-这说明 world model 可以作为 decision-coupled intermediate representation：它未必自己完成 planning，但会改变 policy 的 action distribution。因此 evaluation 也不能只看 generated image fidelity，而要看 subgoal images 是否提升 closed-loop instruction following、cross-embodiment transfer 或 [[CompositionalGeneralizationInRobotics|compositional generalization]]。
+这说明世界模型可以作为决策-耦合的中间表示：它未必自己完成规划，但会改变策略的动作分布。因此评估也不能只看生成的图像保真度，而要看子目标图像是否提升闭环指令 following、跨本体迁移或 [[CompositionalGeneralizationInRobotics|组合式泛化]]。
 
-## 作为 Latent Dynamics Pretraining
+## 用于潜在动力学预训练
 
-[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 给出另一种 decision-coupled world-model role：world model 不生成 RGB subgoal image，也不单独做 MPC，而是在 DINO latent space 中 cotrain policy、forward dynamics、inverse dynamics 和 visual forecasting。Future observation target 被表示为 $z_{t+1:t+k}=f_{\mathrm{DINO}}(o_{t+1:t+k})$，然后与 action chunk $a_{t+1:t+k}$ 一起进入 diffusion-style denoising objective。
+[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 给出另一种决策-耦合的世界模型角色：世界模型不生成 RGB 子目标图像，也不单独做 MPC，而是在 DINO 潜在空间中 cotrain 策略、正向动力学、逆动力学和视觉预测。未来观测目标被表示为 $z_{t+1:t+k}=f_{\mathrm{DINO}}(o_{t+1:t+k})$，然后与动作块 $a_{t+1:t+k}$ 一起进入扩散风格 denoising 目标。
 
-这个设计把 world model 的价值放在 representation learning 和 policy pretraining 上。High-quality demonstrations 可以训练 action policy；low-quality trajectories 仍可训练 action-conditioned dynamics；actionless egocentric videos 则训练 visual forecasting。相比 pixel-space UWM，LDA-1B source 的 central claim 是 structured DINO latent 能减少 appearance modeling，扩大 mixed-quality embodied data 的可用范围。
+这个设计把世界模型的价值放在表示学习和策略预训练上。高质量示范数据可以训练动作策略；低质量轨迹仍可训练动作条件化的动力学；无动作标注的第一视角视频则训练视觉预测。相比像素空间 UWM，LDA-1B 来源的核心主张是结构化的 DINO 潜在能减少外观建模，扩大混合质量具身数据的可用范围。
 
-## Failure Modes
+## 失效情形
 
-- Long-horizon error accumulation：Sequential Simulation and Inference 一步步 rollout，早期 state error 会进入后续 inputs，导致 temporal drift。
-- Weak physical consistency：FID、FVD、LPIPS 等 pixel-level metrics 可能给出高分，但不检查 dynamics、causality 或 physical constraints。
-- Real-time latency：Transformer 和 Diffusion backbones 表现强，但 inference cost 可能不满足 robot control loop 或 autonomous driving planning 的时限。
-- Dataset fragmentation：manipulation、navigation、driving 和 video pretraining 使用不同 modality、scale 与 protocol，限制 cross-domain generalization。
-- Spatial bottleneck：Global Latent Vector 高效但丢失细节；Token Feature Sequence 表达力强但 sequence length 变重；Spatial Latent Grid 依赖 geometry priors；NeRF/3DGS-style Decomposed Rendering Representation 保真但 dynamic scene scalability 较弱。
-- Evaluation heterogeneity：benchmark comparisons 常被 input modality、auxiliary supervision、resolution、episode budget 和 task subset 差异混淆。
-- Frozen latent bottleneck：LDA-1B 说明 DINO latent 有助于 scaling，但也承认 fixed DINO visual features 是 limitation；如果 downstream control 需要的 force、tactile 或 material state 不在 latent 中，world model 可能预测 plausible future features 却缺少控制变量。
+- 长时域错误 accumulation：顺序式的仿真与推理一步步轨迹采样，早期状态错误会进入后续输入，导致时间漂移。
+- 弱物理一致性：FID、FVD、LPIPS 等像素层级指标可能给出高分，但不检查动力学、causality 或物理约束。
+- 真实时间延迟：Transformer 和扩散 backbones 表现强，但推理成本可能不满足机器人控制循环或自主驱动规划的时限。
+- 数据集 fragmentation：操作、导航、驱动和视频预训练使用不同 modality、规模与规程，限制跨域泛化。
+- 空间瓶颈：全局潜在表征 Vector 高效但丢失细节；标记功能序列表达力强但序列长度变重；空间潜在表征 Grid 依赖几何先验；NeRF/3DGS-风格 Decomposed 渲染表征保真但动力学场景可扩展性较弱。
+- 评估异构性：基准比较常被输入 modality、auxiliary 监督、分辨率、回合预算和任务 subset 差异混淆。
+- 冻结的潜在瓶颈：LDA-1B 说明 DINO 潜在有助于规模扩展，但也承认固定 DINO 视觉特征是局限；如果下游控制需要的力、触觉或材质状态不在潜在中，世界模型可能预测看似合理未来特征却缺少控制变量。
 
 ## 实践含义
 
-对 MPC 和 model-based RL，world model 的价值在于可 rollout 的 transition model，而不是漂亮的 reconstruction。评估时需要检查 imagined future 是否能改变 action choice，并且在 closed-loop setting 下仍然稳定。
+对 MPC 和基于模型的强化学习，世界模型的价值在于可供轨迹采样的转移模型，而不是漂亮的重建。评估时需要检查想象出的未来是否能改变动作选择，并且在闭环场景下仍然稳定。
 
-对 robotics sim-to-real，learned world model 可能缓解 hand-designed simulator 的 mismatch，也可能把 dataset bias 或 pixel-level artifacts 变成新的 [[SimulationRealityGap|simulation reality gap]]。因此需要把 real-robot validation、physical consistency 和 causal intervention metrics 放进 evaluation loop。
+对机器人学仿真到现实迁移，学得的世界模型可能缓解手部-designed 仿真器的不匹配，也可能把数据集偏差或像素层级产物变成新的 [[SimulationRealityGap|仿真—现实差距]]。因此需要把真实机器人验证、物理一致性和因果 intervention 指标放进评估循环。
 
-对 foundation-model style embodied agents，[[WorldModelTaxonomy]] 提示不要把所有 video predictors 都叫 world models。只有当 representation、temporal rollout 和 action coupling 能支持 downstream decisions 时，它才是 embodied AI 意义上的 world model。
+对基础模型风格具身智能体，[[WorldModelTaxonomy]] 提示不要把所有视频 predictors 都叫世界模型。只有当表示、时间轨迹采样和动作耦合能支持下游决策时，它才是具身 AI 意义上的世界模型。
 
 相关页面：[[WorldModelTaxonomy]]、[[WorldModelEvaluation]]、[[AwesomeWorldModels]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]、[[RobotContextConditioning]]、[[LatentDynamicsActionModels]]。

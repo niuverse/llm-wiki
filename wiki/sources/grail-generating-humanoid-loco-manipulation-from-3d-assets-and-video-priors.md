@@ -3,7 +3,7 @@ title: "GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Pr
 type: source
 tags: [robotics, humanoid, loco-manipulation, data-generation, sim-to-real, video-foundation-models]
 sources: []
-last_updated: 2026-06-04
+last_updated: 2026-07-13
 source_file: raw/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2606.05160
@@ -14,28 +14,28 @@ project_url: https://research.nvidia.com/labs/dair/grail/
 
 ## 摘要
 
-Tianyi Xie 等提出 [[GRAIL]]，一个面向 humanoid loco-manipulation 的 fully digital data-generation pipeline。它不是从 in-the-wild videos 里事后猜 camera、scale、object geometry 和 contact，而是先构造 fully specified 3D configuration：object asset、scene geometry、camera intrinsics/extrinsics、metric scale、environment depth 和一个 prefitted 到 Unitree G1 morphology 的 human character 都在 video generation 之前已知。随后系统用 video foundation model（VFM）提供 interaction prior，再用已知 3D configuration 约束 4D human-object interaction（HOI）reconstruction，最后 retarget 到 humanoid robot 并训练 task-general tracking policies 与 egocentric visual policies。
+Tianyi Xie 等提出 [[GRAIL]]，一个面向人形机器人移动操作的全数字化数据生成流程。它不从自然场景视频中事后猜测相机、尺度、物体几何和接触，而是先构造完全明确的三维配置：物体资产、场景几何、相机内外参、公制尺度、环境深度，以及预拟合到 Unitree G1 形态的人体角色，都在视频生成前已知。随后系统用视频基础模型（VFM）提供交互先验，再用已知三维配置约束四维人物—物体交互（HOI）重建，最后重定向到人形机器人并训练通用任务跟踪策略与第一视角视觉策略。
 
-这篇 source 对 wiki 的新增价值是把 [[VisualSimToReal|visual sim-to-real]] 的上游数据问题具体化：GRAIL 试图用 [[AssetConditionedHOIGeneration|asset-conditioned HOI generation]] 替代 teleoperation / motion capture 的物理采集瓶颈，同时避免 unconstrained video reconstruction 的 scale、depth、camera 和 morphology ambiguity。它报告生成超过 20,000 条序列，覆盖 pick-up、whole-body manipulation、sitting 和 terrain traversal；用这些 generated data 训练的 RGB policy 在 Unitree G1 上达到 object pick-up 84% real-world success 和 stair-climbing 90% success。
+这篇来源对知识库的新增价值是把 [[VisualSimToReal|视觉仿真到现实迁移]] 的上游数据问题具体化：GRAIL 试图用 [[AssetConditionedHOIGeneration|资产条件化的 HOI 生成]] 替代遥操作 / 运动捕捉的物理采集瓶颈，同时避免 unconstrained 视频重建的规模、深度、相机和形态歧义。它报告生成超过 20,000 条序列，覆盖 pick-up、whole-机体操作、坐下和地形穿越；用这些生成的数据训练的 RGB 策略在 Unitree G1 上达到物体 pick-up 84% 现实世界成功和 stair-climbing 90% 成功。
 
-Source URL: https://arxiv.org/abs/2606.05160
+来源网址: https://arxiv.org/abs/2606.05160
 
-Project page: https://research.nvidia.com/labs/dair/grail/
+项目主页: https://research.nvidia.com/labs/dair/grail/
 
 ## 核心主张
 
-- Humanoid loco-manipulation 的 demonstration scaling bottleneck 来自 robot-compatible trajectories：teleoperation / mocap 质量高但依赖 physical setup、instrumented actors 和 robot operation；in-the-wild video reconstruction 又必须推断 camera、scale、object geometry、contact 和 world-space motion。
-- GRAIL 的 central design 是把 VFM 当作 interaction prior，而不是把 generated video 当作完整 truth：系统先规定 3D world，再让 VFM 生成 interaction video，之后用已知 geometry、camera、metric scale、depth 和 robot-proportioned morphology 做 reconstruction anchor。
-- Video generation stage 使用 Infinigen candidate environments、object stable placement、Blender rendering、VLM-generated prompt 和 Kling image-to-video generation；VLM 还用于按 affordance 选择 floor/table placement。
-- 4D HOI reconstruction 先独立估计 human motion 与 object pose：GENMO 给 SMPL-X body pose，WiLoR refine hands，FoundationPose 在已知 object geometry / texture / camera 下做 RGB-only 6-DoF object tracking。
-- Joint optimization 通过 $L=\lambda_{\mathrm{kp}}L_{\mathrm{kp}}+\lambda_{\mathrm{proj}}L_{\mathrm{proj}}+\lambda_{\mathrm{depth}}L_{\mathrm{depth}}+\lambda_{\mathrm{cont}}L_{\mathrm{cont}}+\lambda_{\mathrm{reg}}L_{\mathrm{reg}}$ refine human/object residual trajectories；其中 depth alignment 使用 MoGe-2 + rendered environment depth 恢复 metric-scale point clouds，contact alignment 用 VLM contact labels 和 depth-only Chamfer loss 处理 hand-object contact。
-- Failure filtering 用 SAM2 object masks 与 predicted object-pose rendered silhouettes 比较，discard fast motion、blur、object appearance inconsistency 或 tracking loss 导致的失败序列。
-- Retargeting stage 用 GMR 把 reconstructed SMPL-X motion retarget 到 Unitree G1 joint-space references，再在 SONIC pretrained whole-body controller 上训练两个 task-general trackers：object-aware latent adaptor 处理 manipulation，scene-aware height-map tracker 处理 terrain traversal 与 sitting。
-- Object-aware adaptor 冻结 SONIC encoder / FSQ quantizer / decoder，只训练 $\pi_\phi$ 输出 latent residual $\Delta z_t$ 与 binary hand primitives；observations 包含 object pose、hand-to-object transforms、finger contact forces、BPS shape encoding 和 future object-pose deltas。
-- Scene-aware tracker fine-tunes controller，加一个 local height-map encoder $\epsilon_h$，并混合原始 flat-ground data 以保留 base locomotion distribution。
-- Dataset scale：1,000 object assets、1,000 procedurally generated terrain configurations、超过 20,000 sequences，覆盖 pick-up、whole-body manipulation、sitting 和 terrain traversal。
-- Evaluation 不只看 generated video plausibility：Table 1 比较 geometric contact/penetration、VLM interaction score、smoothness 和 physics-based tracking executability；Table 2 比较 task-general tracking success、object position error 和 MPJPE-L；真实部署报告 seen/unseen object pick-up 与 stair-climbing。
-- Source-supported limitations：pipeline 假设已有 3D object assets、simulator-ready scenes 和能 follow prompt 的 VFM；severe occlusion、fast motion、VFM object appearance inconsistency 会降低 reconstruction quality；motion family 变化仍需要 retraining 或 fine-tuning。
+- 人形机器人移动操作的示范数据扩展瓶颈来自机器人兼容的轨迹：遥操作 / 动作捕捉质量高但依赖物理设置、instrumented actors 和机器人 operation；自然场景视频重建又必须推断相机、规模、物体几何、接触和世界空间运动。
+- GRAIL 的 central 设计是把 VFM 当作交互先验，而不是把生成的视频当作完整真值：系统先规定 3D 世界，再让 VFM 生成交互视频，之后用已知几何、相机、公制尺度、深度和机器人-proportioned 形态做重建 anchor。
+- 视频生成阶段使用 Infinigen 候选环境、物体稳定的放置、Blender 渲染、VLM 生成的提示和 Kling 图像到-视频生成；VLM 还用于按可供性选择 floor/表格放置。
+- 4D HOI 重建先独立估计人类运动与物体位姿：GENMO 给 SMPL-X 机体位姿，WiLoR refine hands，FoundationPose 在已知物体几何 / 纹理 / 相机下做 RGB-仅 6-DoF 物体跟踪。
+- 关节优化通过 $L=\lambda_{\mathrm{kp}}L_{\mathrm{kp}}+\lambda_{\mathrm{proj}}L_{\mathrm{proj}}+\lambda_{\mathrm{depth}}L_{\mathrm{depth}}+\lambda_{\mathrm{cont}}L_{\mathrm{cont}}+\lambda_{\mathrm{reg}}L_{\mathrm{reg}}$ refine 人类/物体残差轨迹；其中深度对齐使用 MoGe-2 + 渲染的环境深度恢复指标规模点 clouds，接触对齐用 VLM 接触标签和深度-仅 Chamfer 损失处理手部物体接触。
+- 失败过滤用 SAM2 物体掩码与预测的物体位姿渲染的 silhouettes 比较，discard 快速运动、blur、物体外观 inconsistency 或跟踪损失导致的失败序列。
+- 重定向阶段用 GMR 把 reconstructed SMPL-X 运动 retarget 到 Unitree G1 关节空间参考资料，再在 SONIC pretrained whole-机体控制器上训练两个通用任务跟踪器：物体感知潜在 adaptor 处理操作，场景感知 height-映射图跟踪器处理地形穿越与坐下。
+- 物体感知 adaptor 冻结 SONIC 编码器 / FSQ quantizer / 解码器，只训练 $\pi_\phi$ 输出潜在残差 $\Delta z_t$ 与二进制手部基元；观测包含物体位姿、手部到-物体 transforms、手指接触力、BPS 形状编码和未来物体位姿 deltas。
+- 场景感知跟踪器精细-tunes 控制器，加一个局部 height-映射图编码器 $\epsilon_h$，并混合原始 flat-地面数据以保留基座移动分布。
+- 数据集规模：1,000 物体资产、1,000 procedurally 生成的地形配置、超过 20,000 序列，覆盖 pick-up、whole-机体操作、坐下和地形穿越。
+- 评估不只看生成的视频合理性：表格 1 比较几何接触/穿透、VLM 交互得分、平滑性和物理基于跟踪可执行性；表格 2 比较通用任务跟踪成功、物体位置错误和 MPJPE-L；真实部署报告见过的/未见的物体 pick-up 与 stair-climbing。
+- 来源支持的局限：流程假设已有 3D 物体资产、仿真器就绪场景和能 follow 提示的 VFM；severe 遮挡、快速运动、VFM 物体外观 inconsistency 会降低重建质量；运动族变化仍需要 retraining 或微调。
 
 ## 关键引文
 
@@ -46,17 +46,17 @@ Project page: https://research.nvidia.com/labs/dair/grail/
 
 ## 关联
 
-- [[GRAIL]] - 本 source 对应的 framework / project entity。
-- [[AssetConditionedHOIGeneration]] - 本 source 最核心的 mechanism-level concept：先规定 3D assets / camera / metric world，再用 VFM prior 生成和重建 robot-compatible HOI trajectories。
-- [[VisualSimToReal]] - GRAIL 的 generated data 最终通过 egocentric RGB policies 部署到真实 Unitree G1。
-- [[SimulationRealityGap]] - GRAIL 把 gap 的一部分前移到 data/reconstruction stage：known geometry 和 metric scale 可以减少 video-to-4D ambiguity，但 VFM artifacts、camera/hand dynamics 和 real-world contact 仍会留下 gap。
-- [[TaskGeneralistPolicyEvaluation]] - GRAIL 明确比较 per-task/per-sequence style baselines 与 task-family pooled trackers，并用 SR、ObjPos、MPJPE-L 评估。
-- [[NVIDIA]] - 作者团队主要来自 NVIDIA，project page 位于 NVIDIA Research。
+- [[GRAIL]] - 本来源对应的框架 / 项目实体。
+- [[AssetConditionedHOIGeneration]] - 本来源最核心的机制层级概念：先规定 3D 资产 / 相机 / 指标世界，再用 VFM 先验生成和重建机器人兼容的 HOI 轨迹。
+- [[VisualSimToReal]] - GRAIL 的生成的数据最终通过第一视角 RGB 策略部署到真实 Unitree G1。
+- [[SimulationRealityGap]] - GRAIL 把差距的一部分前移到数据/重建阶段：已知几何和公制尺度可以减少视频到-4D 歧义，但 VFM 产物、相机/手部动力学和现实世界接触仍会留下差距。
+- [[TaskGeneralistPolicyEvaluation]] - GRAIL 明确比较 per-任务/per-序列风格基线与任务族 pooled 跟踪器，并用 SR、ObjPos、MPJPE-L 评估。
+- [[NVIDIA]] - 作者团队主要来自 NVIDIA，项目主页位于 NVIDIA 研究。
 
 ## 开放问题
 
-- Project page、代码和 dataset artifact 还没有单独 ingest；需要后续确认 release status、license、reproducibility boundary 和 pipeline configuration。
-- VFM 依赖 Kling API，VLM 依赖 OpenAI model；这会带来 reproducibility、cost、terms-of-use 和 model-version drift 问题，source 本身没有把这些工程边界展开。
-- Failure filtering 被描述为会 discard non-trivial fraction of sequences，但 source 没给出全 pipeline 的 discard rate；真实 dataset quality 需要 release 后进一步审计。
-- Real-world object pick-up 和 stair-climbing results 是 source-specific evidence；还需要 independent replication、更多 robot platforms、更多 object/material/mass variations 和 failure-rate reporting。
-- 这条路线与 [[VIRAL]] 的 visual teacher-student sim-to-real、[[AGILE]] 的 workflow contract、HumanoidMimicGen-style planning data generation 是否会合流，当前 source 还没有直接回答。
+- 项目主页、代码和数据集产物还没有单独收录；需要后续确认发布状态、许可证、可复现性边界和流程配置。
+- VFM 依赖 Kling API，VLM 依赖 OpenAI 模型；这会带来可复现性、成本、条款的-use 和模型版本漂移问题，来源本身没有把这些工程边界展开。
+- 失败过滤被描述为会 discard non-简单 fraction 的序列，但来源没给出全流程的 discard 比率；真实数据集质量需要发布后进一步审计。
+- 现实世界物体 pick-up 和 stair-climbing 结果是来源特有的证据；还需要独立 replication、更多机器人 platforms、更多物体/材质/质量 variations 和失败比率报告。
+- 这条路线与 [[VIRAL]] 的视觉教师—学生仿真到现实迁移、[[AGILE]] 的工作流契约、HumanoidMimicGen-风格规划数据生成是否会合流，当前来源还没有直接回答。

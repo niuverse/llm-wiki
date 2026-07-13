@@ -3,15 +3,15 @@ title: "PhysX"
 type: entity
 tags: [physics-engine, robotics, simulation, nvidia]
 sources: ["[[omniverse-omni-physics-articulations]]"]
-last_updated: 2026-05-04
+last_updated: 2026-07-13
 ---
 
 # PhysX
 
-PhysX 是 [[NVIDIA]] 的 physics runtime / SDK family。本 wiki 当前对 PhysX 的 source-backed coverage 来自 [[omniverse-omni-physics-articulations|Articulations - Omni Physics]]：该 source 说明 PhysX 用 reduced-coordinate articulations 表达 jointed mechanisms，并把 robot / mechanism state 组织成 root body + joint DOFs，而不是每个 link 的 independent world pose。
+PhysX 是 [[NVIDIA]] 的物理运行时 / SDK 族。本知识库当前对 PhysX 的有来源支持的覆盖范围来自 [[omniverse-omni-physics-articulations|关节系统 - Omni 物理]]：该来源说明 PhysX 用约化坐标关节系统表达 jointed 机制，并把机器人 / 机制状态组织成根部机体 + 关节 DOFs，而不是每个链接的独立世界位姿。
 
-在这个 source 中，PhysX 的关键 robotics semantics 包括：articulation topology 由 USD joints 的 `Body 0` / `Body 1` relationships 决定；`UsdPhysics.ArticulationRootAPI` 控制 fixed-base 或 floating-base articulation creation；articulation drives 是 per-axis PD-like drives；`PhysxDrivePerformanceEnvelopeAPI` 用 effort / velocity constraints 表达 actuator feasible region；joint friction、mimic joints、mimic compliance 和 tendons 都作为 articulation-specific constraints 暴露。
+在这个来源中，PhysX 的关键机器人学语义包括：关节系统拓扑由 USD 关节的 `Body 0` / `Body 1` 关系决定；`UsdPhysics.ArticulationRootAPI` 控制固定基座或 floating-基座关节系统创建；关节系统驱动器是 per-轴类 PD 驱动器；`PhysxDrivePerformanceEnvelopeAPI` 用作用力 / 速度约束表达执行器可行区域；关节摩擦、mimic 关节、mimic 柔顺性和 tendons 都作为关节系统特定的约束暴露。
 
-需要注意 evidence boundary：本页不扩展到 PhysX SDK 的完整 contact solver、GPU pipeline 或所有 joint support details。当前只记录 Omni Physics Articulations source 已明确覆盖的 articulation semantics；TGS/PGS defaults、drive discretization、stability-guide details 和 broader PhysX SDK behavior 仍需要后续 ingest。
+需要注意证据边界：本页不扩展到 PhysX SDK 的完整接触求解器、GPU 流程或所有关节支持细节。当前只记录 Omni 物理关节系统来源已明确覆盖的关节系统语义；TGS/PGS 默认值、驱动器离散化、稳定性-指南细节和更广泛的 PhysX SDK 行为仍需要后续收录。
 
 相关页面：[[ReducedCoordinateArticulations]]、[[IsaacSim]]、[[NVIDIA]]、[[ContactSolvers]]、[[SimulationRealityGap]]。

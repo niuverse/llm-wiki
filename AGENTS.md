@@ -43,13 +43,16 @@ tools/               # deterministic helper scripts，不代替 agent synthesis�
 
 ## Language Style
 
-- `wiki/` 的默认写作语言是简体中文。
-- 使用 hybrid style：解释、判断、synthesis 用中文；专业术语、论文术语、tool names、algorithm names 和代码相关名词保留英文，例如 `rigid contact`、`NCP`、`PGS`、`differentiable physics`。
-- 专业术语第一次出现时优先写成“English term（中文解释）”，之后可直接使用英文术语。
-- Source titles、paper titles、direct quotes 和专有名词保持原文；必要时在旁边补充中文解释。
-- 文件名、slugs、frontmatter 字段名、`type` 枚举值和 `[[WikiLinks]]` target 保持稳定，不要为了翻译而 rename 页面，除非用户明确要求。
-- Obsidian 展示文本可以用 alias，例如 `[[ContactSolvers|contact solvers（接触求解器）]]`。
-- Query answers 默认用中文回答，并使用 `[[WikiLinks]]` 作为 citations。
+- The default writing language for `wiki/` is Simplified Chinese. Reading fluency in Chinese takes priority over preserving English terminology.
+- Write explanations, judgments, derivations, headings, table labels, diagram labels, summaries, and navigation text in Chinese.
+- Keep English only when it is genuinely necessary: official paper or project titles, proper names, product names, code identifiers, commands, file names, frontmatter fields, direct quotes, and established abbreviations such as `MPC`, `RL`, `NCP`, and `PGS`.
+- When a technical term has a stable Chinese translation, use the Chinese term. On first mention, add the English term in parentheses only when it helps disambiguation or later lookup, as in “刚性接触（rigid contact）”; use Chinese or the established abbreviation afterward.
+- If translating a term would lose important technical meaning or make source lookup difficult, keep the English term but explain it briefly in Chinese on first mention.
+- Do not habitually use ordinary English nouns such as `source`, `claim`, `pipeline`, `tradeoff`, `failure mode`, `runtime`, `workflow`, or `boundary` inside Chinese prose. Prefer their natural Chinese equivalents.
+- Preserve source titles, paper titles, direct quotes, proper names, API names, formula variables, and command parameters in their original form. Add a nearby Chinese explanation when helpful.
+- Keep file names, slugs, frontmatter field names, `type` enum values, and `[[WikiLinks]]` targets stable unless the user explicitly asks for renaming. Use Chinese display aliases where useful, for example `[[ContactSolvers|接触求解器]]`.
+- When editing an existing page, clean up unnecessary Chinese-English mixing in the touched material instead of applying the rule only to new paragraphs.
+- Query answers should be in Chinese by default and use `[[WikiLinks]]` as citations.
 
 ## Markdown Formatting
 

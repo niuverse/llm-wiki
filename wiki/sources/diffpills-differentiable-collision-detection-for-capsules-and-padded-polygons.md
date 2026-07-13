@@ -3,7 +3,7 @@ title: "DiffPills: Differentiable Collision Detection for Capsules and Padded Po
 type: source
 tags: [collision-detection, differentiable-optimization, capsules, robotics]
 sources: []
-last_updated: 2026-06-04
+last_updated: 2026-07-13
 source_file: raw/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2207.00670
@@ -13,17 +13,17 @@ source_date: 2022-07-01
 
 ## 摘要
 
-DiffPills 提出 capsules 和 padded polygons 之间的 differentiable collision detection，用 differentiable convex quadratic programs 返回 proximity value 和 closest points。它可以看作 [[DCOL]] 更早、更窄的 precursor：强调把 robot / obstacle geometry 分解成简单 convex primitives 后，collision constraints 可以进入 gradient-based trajectory optimization、state estimation 和 RL pipelines。
+DiffPills 提出胶囊体和带填充的多边形之间的可微碰撞检测，用可微的凸 quadratic programs 返回邻近度价值和 closest 点。它可以看作 [[DCOL]] 更早、更窄的 precursor：强调把机器人 / obstacle 几何分解成简单凸基元后，碰撞约束可以进入基于梯度的轨迹优化、状态估计和 RL 流程。
 
-Source URL: https://arxiv.org/abs/2207.00670
+来源网址: https://arxiv.org/abs/2207.00670
 
 ## 核心主张
 
-- DiffPills 支持 capsules 与 padded polygons；arbitrary non-convex geometry 可以先分解成这些 primitives 的 collection。
-- Proximity value $\phi$ 为 positive 时无 collision，为 negative 时 collision；trajectory optimization 可用 $\phi\ge 0$ 表达 collision avoidance。
-- 算法通过 differentiable convex quadratic programs 计算 proximity 和 closest points，并对 object positions / orientations 可微。
-- Paper 展示了 car-as-capsule avoiding stationary car / bus 的 trajectory optimization demo，并使用 ALTRO optimizer。
-- Open-source Julia implementation 为 `DiffPills.jl`。
+- DiffPills 支持胶囊体与带填充的多边形；arbitrary 非凸几何可以先分解成这些基元的采集。
+- 邻近度价值 $\phi$ 为 positive 时无碰撞，为 negative 时碰撞；轨迹优化可用 $\phi\ge 0$ 表达碰撞 avoidance。
+- 算法通过可微的凸 quadratic programs 计算邻近度和 closest 点，并对物体位置 / orientations 可微。
+- 论文展示了把汽车表示为胶囊体、避让静止汽车与公交车的轨迹优化示例，并使用 ALTRO 优化器。
+- Open-来源 Julia 实现为 `DiffPills.jl`。
 
 ## 关键引文
 
@@ -32,13 +32,13 @@ Source URL: https://arxiv.org/abs/2207.00670
 
 ## 关联
 
-- [[DifferentiableCollisionDetection]] - DiffPills 的 proximity formulation。
-- [[CollisionGeometryForRobotSimulation]] - capsule / padded polygon primitives 的建模意义。
-- [[DifferentiablePhysics]] - collision gradients 如何进入 optimization。
-- [[DiffPills]] - entity page。
-- [[DCOL]] - 后续更一般的 convex primitive method。
+- [[DifferentiableCollisionDetection]] - DiffPills 的邻近度表述。
+- [[CollisionGeometryForRobotSimulation]] - 胶囊体 / 带填充的多边形基元的建模意义。
+- [[DifferentiablePhysics]] - 碰撞梯度如何进入优化。
+- [[DiffPills]] - 实体页面。
+- [[DCOL]] - 后续更一般的凸基元方法。
 
 ## 开放问题
 
-- DiffPills 的 primitive set 更窄；在 3D contact-rich manipulation 中是否足够，需要结合 DCOL 或 convex decomposition 扩展。
-- Paper 主要展示 trajectory optimization examples；和 full contact dynamics / frictional simulation 的 integration 仍是后续问题。
+- DiffPills 的基元集合更窄；在 3D 接触丰富操作中是否足够，需要结合 DCOL 或凸分解扩展。
+- 论文主要展示轨迹优化示例；和完整接触动力学 / 摩擦仿真的集成仍是后续问题。

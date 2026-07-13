@@ -3,7 +3,7 @@ title: "VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation"
 type: source
 tags: [robotics, sim-to-real, humanoid, loco-manipulation, visual-policy]
 sources: []
-last_updated: 2026-05-13
+last_updated: 2026-07-13
 source_file: raw/viral-humanoid-project-page.html
 source_kind: html
 source_url: https://viral-humanoid.github.io/
@@ -13,25 +13,25 @@ source_date: unknown
 
 ## 摘要
 
-VIRAL project page 展示了一个面向 humanoid loco-manipulation 的 [[VisualSimToReal|visual sim-to-real]] framework：系统在 simulation 中训练，然后 zero-shot 部署到 Unitree G1 humanoid，在真实环境中完成连续 walking、placing、grasping、turning 和 object transport。页面把核心方法概括为三步：privileged RL teacher 先用 full-state information 学 long-horizon behavior；vision-based student policy 再通过 large-scale simulation、tiled rendering、online DAgger 与 behavior cloning imitation teacher；最后通过 visual domain randomization 与 dexterous hand / camera 的 real-to-sim alignment 缩小 sim-to-real gap。
+VIRAL 项目主页展示了一个面向人形机器人移动操作的 [[VisualSimToReal|视觉仿真到现实迁移]] 框架：系统在仿真中训练，然后零样本部署到 Unitree G1 人形机器人，在真实环境中完成连续 walking、placing、抓取、turning 和物体 transport。页面把核心方法概括为三步：特权 RL 教师策略先用完整状态信息学长时域行为；基于视觉的学生策略再通过大规模仿真、tiled 渲染、在线 DAgger 与行为克隆模仿教师策略；最后通过视觉域随机化与灵巧手部 / 相机的真实到-sim 对齐缩小仿真到现实迁移差距。
 
-这个 source 对 wiki 的价值不在于提出新算法名称，而在于给出一个 full-stack recipe：delta action space、reference state initialization（RSI）、teacher-student distillation、compute scaling、visual randomization、finger SysID 和 FOV alignment 被组合成同一个 deployed humanoid system。页面还保留了大量 real-world videos、generalization factors、failure cases 与从 2025-05 到 2025-11 的工程 timeline，适合作为 [[SimulationRealityGap|simulation reality gap]] 的视觉策略案例。
+这个来源对知识库的价值不在于提出新算法名称，而在于给出一个全栈 recipe：delta 动作空间、参考状态 initialization（RSI）、教师—学生 distillation、计算扩展、视觉随机化、手指 SysID 和 FOV 对齐被组合成同一个 deployed 人形机器人系统。页面还保留了大量现实世界视频、泛化因素、失败案例与从 2025-05 到 2025-11 的工程 timeline，适合作为 [[SimulationRealityGap|仿真—现实差距]] 的视觉策略案例。
 
-Source URL: https://viral-humanoid.github.io/
+来源网址: https://viral-humanoid.github.io/
 
-Related links on the page: arXiv `2511.15200`, project PDF, and `https://github.com/NVlabs/GR00T-VisualSim2Real`.
+相关的链接在 the 页面: arXiv `2511.15200`, 项目 PDF, 与 `https://github.com/NVlabs/GR00T-VisualSim2Real`.
 
 ## 核心主张
 
-- VIRAL 的 task 是 autonomous humanoid loco-manipulation：机器人需要在两个 table 之间移动、放置物体、抓取新物体并转身继续循环。
-- Teacher side 使用 privileged RL teacher，观察 full state，并通过 delta action space 和 RSI 学 long-horizon loco-manipulation。
-- Student side 是 vision-based policy，从 RGB 和 real-available proprioception imitation teacher；训练混合 online DAgger 与 behavior cloning，并依赖 large-scale tiled rendering。
-- Compute scale 是系统主张的一部分：页面声称 teacher/student training 需要扩展到 tens of GPUs，low-compute regimes often fail。
-- Sim-to-real transfer 不是只靠 domain randomization。页面把 lighting、materials、camera parameters、image quality、sensor delays 等 visual randomization 与 dexterous hand SysID、camera/FOV alignment 组合起来。
-- Real-world deployment claim 是 Unitree G1 上连续 loco-manipulation 到 54 cycles，并在 diverse spatial / appearance variations 下不做 real-world fine-tuning。
-- Generalization videos 覆盖 tray Y/X position、cylinder position、robot start position、table height、lighting、table cloth color、table type 与 object category；object examples 包括 bottles、cans、cup、bowling pin、pump bottle、spray can 等。
-- 页面明确展示 failure cases：unreliable deployment、hand stuck、accidental drop 和 failed out-of-distribution object generalization。
-- Visual sim-to-real journey timeline 显示系统并非一次成型：从 2025-05-30 的 RGB reaching 到 2025-11-10 的 54-cycle loco-manipulation，中间经历 grasping failure、finger primitive SysID、pre-grasping、walking-to-table transfer 和多轮 tuning。
+- VIRAL 的任务是自主人形机器人移动操作：机器人需要在两个表格之间移动、放置物体、抓取新物体并转身继续循环。
+- 教师策略侧使用特权 RL 教师策略，观察完整状态，并通过 delta 动作空间和 RSI 学长时域移动操作。
+- 学生策略侧是基于视觉的策略，从 RGB 和真实-可用本体感知模仿教师策略；训练混合在线 DAgger 与行为克隆，并依赖大规模 tiled 渲染。
+- 计算规模是系统主张的一部分：页面声称教师策略/学生策略训练需要扩展到 tens 的 GPUs，低算力 regimes often fail。
+- 仿真到现实迁移不是只靠域随机化。页面把光照、材质、相机参数、图像质量、传感器 delays 等视觉随机化与灵巧手部 SysID、相机/FOV 对齐组合起来。
+- 现实世界部署主张是 Unitree G1 上连续移动操作到 54 cycles，并在 diverse 空间 / 外观 variations 下不做现实世界微调。
+- 泛化视频覆盖托盘的横纵位置、圆柱体位置、机器人起始位置、桌面高度、光照、桌布颜色、桌子类型与物体类别；物体示例包括瓶子、罐子、杯子、保龄球瓶、按压泵瓶和喷雾罐等。
+- 页面明确展示失败案例：unreliable 部署、手部 stuck、accidental drop 和失败的分布外物体泛化。
+- 视觉仿真到现实迁移 journey timeline 显示系统并非一次成型：从 2025-05-30 的 RGB reaching 到 2025-11-10 的 54-周期移动操作，中间经历抓取失败、手指基元 SysID、pre-抓取、walking-到-表格迁移和多轮调优。
 
 ## 关键引文
 
@@ -41,14 +41,14 @@ Related links on the page: arXiv `2511.15200`, project PDF, and `https://github.
 
 ## 关联
 
-- [[VIRAL]] - 本 source 的 framework / project entity page。
-- [[VisualSimToReal]] - 本 source 最核心的 mechanism-level concept：从 privileged simulation teacher 到 vision student，再到 real hardware transfer。
-- [[SimulationRealityGap]] - VIRAL 的 transfer recipe 把 gap 拆成 visual appearance randomization、sensor/camera mismatch、dexterous hand dynamics mismatch 和 compute/training distribution issues。
-- [[NVIDIA]] - 页面链接到 NVlabs `GR00T-VisualSim2Real` code repository；作者/项目生态也与 NVIDIA robotics stack 相关。
+- [[VIRAL]] - 本来源的框架 / 项目实体页面。
+- [[VisualSimToReal]] - 本来源最核心的机制层级概念：从特权仿真教师策略到视觉学生策略，再到真实硬件迁移。
+- [[SimulationRealityGap]] - VIRAL 的迁移 recipe 把差距拆成视觉外观随机化、传感器/相机不匹配、灵巧手部动力学不匹配和计算/训练分布问题。
+- [[NVIDIA]] - 页面链接到 NVlabs `GR00T-VisualSim2Real` 代码仓库；作者与项目生态也和 NVIDIA 机器人学技术栈相关。
 
 ## 开放问题
 
-- 当前 ingest 只覆盖 project page；arXiv paper 和 code repository 尚未 ingest。精确 reward definitions、network architecture、ablation numbers 和 implementation details 需要后续 source。
-- 54-cycle deployment 与 generalization videos 是 source-specific evidence；还需要 independent replication 或第三方 benchmark 才能判断是否可跨 robot、task 和 lab generalize。
-- VIRAL 的 transfer 成功到底由哪部分贡献最大：visual randomization、real-to-sim alignment、WBC command interface、RSI、delta action space、compute scale，还是它们之间的耦合？
-- Failure videos 指向 OOD object generalization、hand stuck 和 accidental drop；后续应该追踪这些 failure 是否来自 perception aliasing、grasp mechanics、contact dynamics、policy recovery，还是 low-level hand control。
+- 当前收录只覆盖项目主页；arXiv 论文和代码仓库尚未收录。精确奖励定义、网络架构、消融数据和实现细节需要后续来源。
+- 54-周期部署与泛化视频是来源特有的证据；还需要独立 replication 或第三方基准才能判断是否可跨机器人、任务和 lab generalize。
+- VIRAL 的迁移成功到底由哪部分贡献最大：视觉随机化、真实到-sim 对齐、WBC 命令接口、RSI、delta 动作空间、计算规模，还是它们之间的耦合？
+- 失败视频指向 OOD 物体泛化、手部 stuck 和 accidental drop；后续应该追踪这些失败是否来自感知 aliasing、抓取 mechanics、接触动力学、策略 recovery，还是底层手部控制。

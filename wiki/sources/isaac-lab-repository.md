@@ -3,7 +3,7 @@ title: "Isaac Lab Repository"
 type: source
 tags: [robotics, reinforcement-learning, simulation, nvidia, repository]
 sources: []
-last_updated: 2026-06-05
+last_updated: 2026-07-13
 source_file: raw/isaac-lab-readme.md
 source_kind: repo
 source_url: https://github.com/isaac-sim/IsaacLab
@@ -15,17 +15,17 @@ commit_sha: 492751759af72a5d3f7e0e42768b95fd9f1ac6df
 
 ## 摘要
 
-这是 [[IsaacLab|Isaac Lab]] official repository README snapshot。README 把 Isaac Lab 定位为 built on [[IsaacSim|NVIDIA Isaac Sim]] 的 GPU-accelerated open-source framework，用来统一 robotics research workflows，例如 reinforcement learning、imitation learning 和 motion planning。
+这是 [[IsaacLab|Isaac Lab]] 官方代码仓库 README 快照。README 把 Isaac Lab 定位为 built 在 [[IsaacSim|NVIDIA Isaac Sim]] 的 GPU 加速的开源框架，用来统一机器人学研究流程，例如强化学习、模仿学习和运动规划。
 
-对 wiki 的价值是给 NVIDIA robot learning stack 增加 repo-level source：Isaac Lab 提供 robots、ready-to-train environments、physics/sensor simulation、popular RL framework integrations 和 cloud/local deployment flexibility。它也是 [[Mjlab|mjlab]] README 中提到的 manager-based API source，以及 UniLab paper 中 GPU-resident training ecosystem 的重要 baseline context。
+对知识库的价值是给 NVIDIA 机器人学习技术栈增加代码仓库层级来源：Isaac Lab 提供机器人、就绪到-train 环境、物理/传感器仿真、popular RL 框架 integrations 和点云/局部部署 flexibility。它也是 [[Mjlab|mjlab]] README 中提到的基于管理器的 API 来源，以及 UniLab 论文中驻留 GPU 的训练生态的重要基线上下文。
 
 ## 核心主张
 
-- Isaac Lab 是 GPU-accelerated, open-source framework for robotics research workflows。
-- Built on NVIDIA Isaac Sim，结合 fast/accurate physics 和 sensor simulation，用于 sim-to-real transfer。
-- Features 包括 16+ robot models、30+ ready-to-train environments、RSL RL / SKRL / RL Games / Stable Baselines integration、多 agent RL、rigid/articulated/deformable physics、RGB/depth/segmentation cameras、IMU、contact sensors、ray casters。
-- README 记录 Isaac Lab 与 Isaac Sim version dependency：main branch 对应 Isaac Sim 4.5 / 5.0 / 5.1。
-- License boundary：framework BSD-3，`isaaclab_mimic` Apache-2.0；Isaac Sim 和 cuRobo dependencies 有 proprietary licensing terms。
+- Isaac Lab 是 GPU 加速的, 开源框架用于机器人学研究流程。
+- Built 在 NVIDIA Isaac Sim，结合快速/accurate 物理和传感器仿真，用于仿真到现实迁移。
+- 特征包括 16+ 机器人模型、30+ 就绪到-train 环境、RSL RL / SKRL / RL Games / 稳定的基线集成、多智能体 RL、刚性/关节化的/可变形物理、RGB/深度/分割相机、IMU、接触传感器、ray casters。
+- README 记录 Isaac Lab 与 Isaac Sim 版本依赖：主分支对应 Isaac Sim 4.5 / 5.0 / 5.1。
+- 许可证边界：框架 BSD-3，`isaaclab_mimic` Apache-2.0；Isaac Sim 和 cuRobo 依赖有专有的许可条款。
 
 ## 关键引文
 
@@ -36,12 +36,12 @@ commit_sha: 492751759af72a5d3f7e0e42768b95fd9f1ac6df
 
 ## 关联
 
-- [[IsaacLab]] - 本 source 对应的 framework entity。
-- [[IsaacSim]] 与 [[NVIDIA]] - Isaac Lab 依赖 Isaac Sim / NVIDIA stack。
-- [[RoboticsSimulationInfrastructure]] - Isaac Lab 代表 config/manager-based robotics simulation and training framework。
-- [[HeterogeneousRobotRLTraining]] - Isaac Lab 是 GPU-accelerated robot learning infrastructure 的 major route。
+- [[IsaacLab]] - 本来源对应的框架实体。
+- [[IsaacSim]] 与 [[NVIDIA]] - Isaac Lab 依赖 Isaac Sim / NVIDIA 技术栈。
+- [[RoboticsSimulationInfrastructure]] - Isaac Lab 代表配置/基于管理器的机器人学仿真与训练框架。
+- [[HeterogeneousRobotRLTraining]] - Isaac Lab 是 GPU 加速的机器人学习基础设施的 major 路线。
 
 ## 开放问题
 
-- README 指向 arXiv 2511.04831；如果要记录 architecture/benchmark details，应后续 ingest Isaac Lab paper。
-- Proprietary dependency boundary 意味着“open-source framework”不能被误读成全 stack permissive / fully open。
+- README 指向 arXiv 2511.04831；如果要记录架构/基准细节，应后续收录 Isaac Lab 论文。
+- 专有的依赖边界意味着“开源框架”不能被误读成全技术栈 permissive / 完全 open。

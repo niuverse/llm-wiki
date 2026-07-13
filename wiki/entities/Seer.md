@@ -3,32 +3,32 @@ title: "Seer"
 type: entity
 tags: [robotics, vla, inverse-dynamics, pidm]
 sources: ["[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]"]
-last_updated: 2026-04-27
+last_updated: 2026-07-13
 ---
 
 # Seer
 
-Seer 是 [[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation]] 中实现的 end-to-end PIDM（Predictive Inverse Dynamics Model）。它把 conditional visual foresight 和 [[InverseDynamicsModels|inverse dynamics prediction]] 放进同一个 Transformer policy：用 [FRS] token 预测 future RGB image，用 [INV] token 在 attend 到 [FRS] 的基础上预测 intermediate action sequence。
+Seer 是 [[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation]] 中实现的端到端 PIDM（预测式逆动力学模型）。它把条件视觉前瞻预测和 [[InverseDynamicsModels|逆动力学预测]] 放进同一个 Transformer 策略：用 [FRS] 标记预测未来 RGB 图像，用 [INV] 标记在关注到 [FRS] 的基础上预测中间动作序列。
 
 ## 模型结构
 
-Seer 输入 language instruction、multi-view RGB images 和 robot state。Image 由 MAE-pretrained ViT 编码并经 Perceiver Resampler 压缩；language 用 CLIP ViT-B/32 text encoder；robot state 用 MLP。GPT-2-style Transformer backbone 中的 [FRS] token 负责 future image latent，[INV] token 负责 action latent，并通过 unidirectional attention attend 到 [FRS]。
+Seer 输入语言指令、多视角 RGB 图像和机器人状态。图像由 MAE-pretrained ViT 编码并经 Perceiver Resampler 压缩；语言用截断 ViT-B/32 文本编码器；机器人状态用 MLP。GPT-2-风格 Transformer 主干网络中的 [FRS] 标记负责未来图像潜在，[INV] 标记负责动作潜在，并通过 unidirectional attention 关注到 [FRS]。
 
 ```mermaid
 flowchart LR
-  O["RGB history"] --> E["image encoder<br/>ViT + perceiver"]
-  S["robot state history"] --> M["state MLP"]
-  L["language or goal"] --> T["CLIP text encoder"]
-  E --> B["GPT-style transformer"]
+  O["RGB 历史"] --> E["图像编码器<br/>ViT + perceiver"]
+  S["机器人状态历史"] --> M["状态 MLP"]
+  L["语言或目标"] --> T["CLIP 文本编码器"]
+  E --> B["GPT-风格 transformer"]
   M --> B
   T --> B
-  B --> F["FRS token<br/>future image"]
-  F --> I["INV token<br/>inverse dynamics"]
-  I --> A["7D action<br/>arm + gripper"]
+  B --> F["FRS 标记<br/>未来图像"]
+  F --> I["INV 标记<br/>逆动力学"]
+  I --> A["7D 动作<br/>机械臂 + 夹爪"]
 ```
 
-## Evidence from Source
+## 来源证据
 
-LIBERO-LONG 中，Seer 平均成功率为 87.7%；CALVIN ABC-D 中，Seer-Large average length 为 4.28。Real-world Franka tasks 中，Seer 平均成功率/score 为 78.4% / 39.5，高于 scratch、MVP、MPI 和 OpenVLA baselines。Ablation 显示 $L_{\mathrm{fore}}$ 与 $L_{\mathrm{inv}}$ 同时用于 pretraining/finetuning 优于只做 future image prediction 或 vanilla BC。
+LIBERO-LONG 中，Seer 平均成功率为 87.7%；CALVIN ABC-D 中，Seer-大规模平均长度为 4.28。现实世界 Franka 任务中，Seer 平均成功率/得分为 78.4% / 39.5，高于 scratch、MVP、MPI 和 OpenVLA 基线。消融显示 $L_{\mathrm{fore}}$ 与 $L_{\mathrm{inv}}$ 同时用于预训练/finetuning 优于只做未来图像预测或 vanilla BC。
 
 相关页面：[[InverseDynamicsModels]]、[[VisionLanguageActionModels]]、[[LatentDynamicsActionModels]]、[[DeFI]]、[[WorldModelsForEmbodiedAI]]。

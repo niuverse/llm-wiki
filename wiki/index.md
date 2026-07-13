@@ -1,233 +1,233 @@
 ---
-title: "Wiki Index"
+title: "知识库索引"
 type: synthesis
 tags: [index, navigation]
 sources: []
-last_updated: 2026-07-11
+last_updated: 2026-07-13
 ---
 
-# Wiki Index
+# 知识库索引
 
-这个文件由 Codex 维护。新增、重命名或删除 wiki pages 时必须同步更新。第一部分是研究入口；后半部分是完整 inventory，用于 Obsidian、Quartz 和 deterministic health checks。
+这个文件由 Codex 维护。新增、重命名或删除知识页时必须同步更新。第一部分是研究入口；后半部分是完整清单，用于 Obsidian、Quartz 和确定性健康检查。
 
 ## 从研究问题进入
 
-- **当前总判断**：先读 [Overview（总览）](overview.md)。它维护当前 wiki 对 embodied AI、robotics simulation、world models、robot foundation models 与 evaluation 的综合判断。
-- **问题索引**：读 [Research Questions](syntheses/research-questions.md)。它把当前 wiki 能回答的高价值问题连接到相应 concept/source，而不额外引入复杂 map 层。
-- **World model 如何影响 robot decision？** 读 [World Models for Embodied AI](concepts/WorldModelsForEmbodiedAI.md)、[World Model Evaluation](concepts/WorldModelEvaluation.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)。
-- **Inverse dynamics model 怎么从视频学 action？** 读 [Inverse Dynamics Models](concepts/InverseDynamicsModels.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)、[Seer](entities/Seer.md)、[DeFI](entities/DeFI.md)。
-- **Robot foundation model 如何处理 heterogeneous data？** 读 [Vision-Language-Action Models](concepts/VisionLanguageActionModels.md)、[Robot Context Conditioning](concepts/RobotContextConditioning.md)、[Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md)。
-- **Simulation benchmark 能证明什么？** 读 [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md)、[Simulation Benchmark Reporting Pipeline](concepts/SimulationBenchmarkReportingPipeline.md)、[Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
-- **Humanoid RL 从训练到硬件怎样减少 silent failures？** 读 [Humanoid RL Workflow](concepts/HumanoidRLWorkflow.md)、[AGILE](entities/AGILE.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
-- **Simulation infrastructure decisions 为什么重要？** 读 [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md) 和 [Agentic Scene/Task Generation](concepts/AgenticSceneTaskGeneration.md)，重点看 task/API、asset management、agentic scene/task authoring、rendering memory/fidelity、visualizer diagnostics 和 pose API 如何影响 RL/evaluation workflow。
-- **Generated 3D world 什么时候才算可用于 robot learning？** 读 [EmbodiedGen V1/V2 Learning Map](syntheses/embodiedgen-v1-v2-learning-map.md)、[Simulation-Ready 3D World Generation](concepts/SimulationReady3DWorldGeneration.md) 和 [EmbodiedGen](entities/EmbodiedGen.md)，重点区分 visual plausibility 与 metric geometry、physical assets、task semantics、affordances、simulator interfaces 和 executable validation。
-- **Robot RL training 必须 GPU-resident simulation 吗？** 读 [Heterogeneous Robot RL Training](concepts/HeterogeneousRobotRLTraining.md)、[UniLab](entities/UniLab.md) 和 [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md)，重点看 CPU/GPU role assignment、collector-learner overlap、replay boundary、H2D transfer 和 weight sync 如何决定 end-to-end training efficiency。
-- **ovrtx 如何把 OpenUSD scene 变成 RTX sensor outputs？** 读 [RTX Sensor Simulation Pipeline](concepts/RTXSensorSimulationPipeline.md)、[NVIDIA ovrtx](sources/nvidia-ovrtx.md)、[ovrtx](entities/Ovrtx.md) 和 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)，重点看 `RenderProduct`、`RenderVar`、DLPack tensor mapping、lidar/radar `PointCloud` channels 和 warm-up / synchronization rules。
-- **Visual sim-to-real 怎么跨过 reality gap？** 读 [Visual Sim-to-Real](concepts/VisualSimToReal.md)、[VIRAL](entities/VIRAL.md) 和 [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)，重点看 privileged teacher、vision student、domain randomization、hand/camera alignment 与 failure cases。
-- **Humanoid loco-manipulation demonstrations 如何 scale？** 读 [Asset-Conditioned HOI Generation](concepts/AssetConditionedHOIGeneration.md)、[GRAIL](entities/GRAIL.md) 和 [Visual Sim-to-Real](concepts/VisualSimToReal.md)，重点看 3D assets、VFM interaction prior、metric 4D HOI reconstruction、retargeting 与 task-general trackers。
-- **OpenUSD 的核心价值是什么？** 读 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)、[OpenUSD](entities/OpenUSD.md) 和 [Introduction to USD](sources/openusd-introduction.md)；如果关注 robotics asset authoring，再接 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) 与 [Isaac Sim Legacy Asset Structure](concepts/IsaacSimLegacyAssetStructure.md)。
-- **Isaac Sim Asset Structure 3.0 怎么理解？** 读 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) 和 [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md)，重点看 layer role、payload/variant composition 和 engine-specific tuning 隔离。
-- **Isaac Sim 旧 asset layout 是不是 2.0？** 读 [Isaac Sim Legacy Asset Structure](concepts/IsaacSimLegacyAssetStructure.md) 和 [Asset Structure - Isaac Sim 4.5 Documentation](sources/isaac-sim-45-asset-structure.md)；当前 source-backed 结论是它应称为 legacy / pre-3.0，而不是 2.0。
-- **Isaac Sim 的 `mujoco.usda` 应该放什么？** 读 [Isaac Sim mujoco.usda Runtime Semantics](syntheses/isaac-sim-mujoco-usda-runtime-semantics.md) 和 [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md)，重点区分 shared visual/collider asset semantics 与 MuJoCo-only runtime tuning。
-- **PhysX articulation、position drive、solver 和 joint gains 怎么理解？** 先读 [Reduced-Coordinate Articulations](concepts/ReducedCoordinateArticulations.md) 和 [Articulations - Omni Physics](sources/omniverse-omni-physics-articulations.md)，再读 [Isaac Sim and MuJoCo Physics and Control Notes](syntheses/isaac-sim-mujoco-control-tuning-notes.md)；PhysX articulation drive 的 PD analogy 和 envelope 已有 official source support，MuJoCo 对比与机械臂 gain grouping 仍是 conversation-derived。
-- **OBJ、STL、USD、GLB 等 3D 模型格式怎么选？** 读 [3D Model Formats Learning Map](syntheses/3d-model-formats-learning-map.md)，注意其中 USD 相关内容已有 wiki source-backed coverage，其他格式仍是 unsourced learning scaffold。
-- **Contact physics 为什么会影响 learning/control？** 读 [Contact Models in Robotics](concepts/ContactModelsInRobotics.md)、[Contact Complementarity（接触互补）](concepts/ContactComplementarity.md)、[Contact Solvers（接触求解器）](concepts/ContactSolvers.md)、[Differentiable Physics（可微物理）](concepts/DifferentiablePhysics.md)。
-- **Collision geometry 为什么会影响 robot simulation？** 读 [Collision Geometry for Robot Simulation](concepts/CollisionGeometryForRobotSimulation.md)、[Approximate Convex Decomposition](concepts/ApproximateConvexDecomposition.md)、[Differentiable Collision Detection](concepts/DifferentiableCollisionDetection.md)，重点看 capsule/sphere/cylinder、convex hull、convex decomposition、SDF、primitive decomposition 和 differentiable primitives 的 tradeoffs。
-- **轮式机器人建模怎么系统学习？** 读 [Wheeled Robot Modeling Learning Map](syntheses/wheeled-robot-modeling-learning-map.md)、[Wheeled Robot Visual Lab](syntheses/wheeled-robot-visual-lab.md)、[Wheeled Robot Kinematics](concepts/WheeledRobotKinematics.md)、[Wheeled Mobile Robot Classification](concepts/WheeledMobileRobotClassification.md)、[Omnidirectional Wheels](concepts/OmnidirectionalWheels.md)、[Nonholonomic Mobile Robots](concepts/NonholonomicMobileRobots.md) 和 [Steerable Wheels](concepts/SteerableWheels.md)。
+- **当前总判断**：先读 [总览](overview.md)。它维护当前知识库对具身智能、机器人学仿真、世界模型、机器人基础模型与评估的综合判断。
+- **问题索引**：读 [研究问题](syntheses/research-questions.md)。它把当前知识库能回答的高价值问题连接到相应概念页/来源，而不额外引入复杂图谱层。
+- **世界模型如何影响机器人决策？** 读 [具身智能世界模型](concepts/WorldModelsForEmbodiedAI.md)、[世界模型评估](concepts/WorldModelEvaluation.md)、[潜在动力学动作模型](concepts/LatentDynamicsActionModels.md)。
+- **逆动力学模型怎么从视频学动作？** 读 [逆动力学模型](concepts/InverseDynamicsModels.md)、[潜在动力学动作模型](concepts/LatentDynamicsActionModels.md)、[Seer](entities/Seer.md)、[DeFI](entities/DeFI.md)。
+- **机器人基础模型如何处理异构数据？** 读 [视觉—语言—动作模型](concepts/VisionLanguageActionModels.md)、[机器人上下文条件化](concepts/RobotContextConditioning.md)、[潜在动力学动作模型](concepts/LatentDynamicsActionModels.md)。
+- **仿真基准能证明什么？** 读 [通用任务策略评估](concepts/TaskGeneralistPolicyEvaluation.md)、[仿真基准报告流程](concepts/SimulationBenchmarkReportingPipeline.md)、[仿真敏感性分析](concepts/SimulationSensitivityAnalysis.md)、[仿真—现实差距](concepts/SimulationRealityGap.md)。
+- **人形机器人强化学习从训练到硬件怎样减少静默失败？** 读 [人形机器人强化学习工作流](concepts/HumanoidRLWorkflow.md)、[AGILE](entities/AGILE.md)、[仿真—现实差距](concepts/SimulationRealityGap.md)。
+- **仿真基础设施决策为什么重要？** 读 [机器人仿真基础设施](concepts/RoboticsSimulationInfrastructure.md) 和 [智能体式场景与任务生成](concepts/AgenticSceneTaskGeneration.md)，重点看任务/API、资产管理、智能体式场景/任务制作、渲染内存/保真度、可视化工具诊断和位姿 API 如何影响 RL/评估工作流。
+- **生成式三维世界什么时候才算可用于机器人学习？** 读 [EmbodiedGen V1/V2 学习地图](syntheses/embodiedgen-v1-v2-learning-map.md)、[可用于仿真的三维世界生成](concepts/SimulationReady3DWorldGeneration.md) 和 [EmbodiedGen](entities/EmbodiedGen.md)，重点区分视觉合理性与公制几何、物理资产、任务语义、可供性、仿真器接口和可执行验证。
+- **机器人 RL 训练必须驻留 GPU 的仿真吗？** 读 [异构机器人强化学习训练](concepts/HeterogeneousRobotRLTraining.md)、[UniLab](entities/UniLab.md) 和 [机器人仿真基础设施](concepts/RoboticsSimulationInfrastructure.md)，重点看 CPU/GPU 职责分配、采集器与学习器重叠执行、回放边界、主机到设备传输和权重同步如何决定端到端训练效率。
+- **ovrtx 如何把 OpenUSD 场景变成 RTX 传感器输出？** 读 [RTX 传感器仿真流程](concepts/RTXSensorSimulationPipeline.md)、[NVIDIA ovrtx](sources/nvidia-ovrtx.md)、[ovrtx](entities/Ovrtx.md) 和 [OpenUSD 场景组合](concepts/OpenUSDSceneComposition.md)，重点看 `RenderProduct`、`RenderVar`、DLPack 张量映射、lidar/radar `PointCloud` 通道和预热 / 同步规则。
+- **视觉仿真到现实迁移怎么跨过仿真—现实差距？** 读 [视觉仿真到现实迁移](concepts/VisualSimToReal.md)、[VIRAL](entities/VIRAL.md) 和 [仿真—现实差距](concepts/SimulationRealityGap.md)，重点看特权教师策略、视觉学生策略、域随机化、手部与相机对齐与失败案例。
+- **人形机器人移动操作示范数据如何规模化？** 读 [资产条件化人物—物体交互生成](concepts/AssetConditionedHOIGeneration.md)、[GRAIL](entities/GRAIL.md) 和 [视觉仿真到现实迁移](concepts/VisualSimToReal.md)，重点看 3D 资产、VFM 交互先验、公制四维人物—物体交互重建、重定向与通用任务跟踪器。
+- **OpenUSD 的核心价值是什么？** 读 [OpenUSD 场景组合](concepts/OpenUSDSceneComposition.md)、[OpenUSD](entities/OpenUSD.md) 和 [Introduction to USD](sources/openusd-introduction.md)；如果关注机器人学资产制作，再接 [Isaac Sim 资产结构 3.0](concepts/IsaacSimAssetStructure.md) 与 [Isaac Sim 旧版资产结构](concepts/IsaacSimLegacyAssetStructure.md)。
+- **Isaac Sim 资产结构 3.0 怎么理解？** 读 [Isaac Sim 资产结构 3.0](concepts/IsaacSimAssetStructure.md) 和 [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md)，重点看分层职责、载荷/变体组合和引擎专用调优隔离。
+- **Isaac Sim 旧资产布局是不是 2.0？** 读 [Isaac Sim 旧版资产结构](concepts/IsaacSimLegacyAssetStructure.md) 和 [Asset Structure - Isaac Sim 4.5 Documentation](sources/isaac-sim-45-asset-structure.md)；当前有来源支持的结论是它应称为旧版 / 3.0 之前，而不是 2.0。
+- **Isaac Sim 的 `mujoco.usda` 应该放什么？** 读 [Isaac Sim `mujoco.usda` 运行时语义](syntheses/isaac-sim-mujoco-usda-runtime-semantics.md) 和 [Isaac Sim 资产结构 3.0](concepts/IsaacSimAssetStructure.md)，重点区分共享视觉/碰撞体资产语义与 MuJoCo 专用运行时调优。
+- **PhysX 关节系统、位置驱动、求解器和关节增益怎么理解？** 先读 [约化坐标关节系统](concepts/ReducedCoordinateArticulations.md) 和 [Articulations - Omni Physics](sources/omniverse-omni-physics-articulations.md)，再读 [Isaac Sim 与 MuJoCo 物理和控制笔记](syntheses/isaac-sim-mujoco-control-tuning-notes.md)；PhysX 关节系统驱动器的 PD 类比和适用范围已有官方来源支持，MuJoCo 对比与机械臂增益分组仍是源自讨论的。
+- **OBJ、STL、USD、GLB 等 3D 模型格式怎么选？** 读 [三维模型格式学习地图](syntheses/3d-model-formats-learning-map.md)，注意其中 USD 相关内容已有知识库来源支持，其他格式仍是无来源学习脚手架。
+- **接触物理为什么会影响学习/控制？** 读 [机器人学中的接触模型](concepts/ContactModelsInRobotics.md)、[接触互补](concepts/ContactComplementarity.md)、[接触求解器](concepts/ContactSolvers.md)、[可微物理](concepts/DifferentiablePhysics.md)。
+- **碰撞几何为什么会影响机器人仿真？** 读 [机器人仿真的碰撞几何](concepts/CollisionGeometryForRobotSimulation.md)、[近似凸分解](concepts/ApproximateConvexDecomposition.md)、[可微碰撞检测](concepts/DifferentiableCollisionDetection.md)，重点看胶囊体/球体/圆柱体、凸包、凸分解、SDF、基元分解和可微基元的取舍。
+- **轮式机器人建模怎么系统学习？** 读 [轮式机器人建模学习地图](syntheses/wheeled-robot-modeling-learning-map.md)、[轮式机器人可视化实验](syntheses/wheeled-robot-visual-lab.md)、[轮式机器人运动学](concepts/WheeledRobotKinematics.md)、[轮式移动机器人分类](concepts/WheeledMobileRobotClassification.md)、[全向轮](concepts/OmnidirectionalWheels.md)、[非完整约束移动机器人](concepts/NonholonomicMobileRobots.md) 和 [可转向轮](concepts/SteerableWheels.md)。
 
 ## 维护入口
 
-- [Wiki Log](log.md) - append-only operation history
-- Health check: `python3 tools/health.py`
-- Graph build: `uv run python tools/build_graph.py --report`
-- Publishing preview: `npm run wiki:preview`
-- Production build: `npm run wiki:build`
+- [知识库日志](log.md) - 仅追加的操作历史
+- 健康检查：`python3 tools/health.py`
+- 图结构构建: `uv run python tools/build_graph.py --report`
+- 发布预览: `npm run wiki:preview`
+- 生产构建: `npm run wiki:build`
 
-## Syntheses
+## 综合页
 
-- [Research Questions](syntheses/research-questions.md) - 当前 wiki 支持的高价值研究问题、阅读路径和 evidence boundary
-- [EmbodiedGen V1/V2 Learning Map](syntheses/embodiedgen-v1-v2-learning-map.md) - 对照两代 EmbodiedGen 的系统边界、核心机制、证据强度、常见误解和推荐阅读路径
-- [ovrtx API Boundary](syntheses/ovrtx-api-boundary.md) - distill ovrtx 的 scene composition、physics object authoring、light/camera randomization 和上层 ownership 边界
-- [Isaac Sim mujoco.usda Runtime Semantics](syntheses/isaac-sim-mujoco-usda-runtime-semantics.md) - distill `mujoco.usda` 的 ownership boundary：不是 visual/collision asset 文件，而是 MuJoCo-specific runtime interpretation / tuning overlay
-- [Isaac Sim and MuJoCo Physics and Control Notes](syntheses/isaac-sim-mujoco-control-tuning-notes.md) - distill Isaac Sim 官方文档措辞、PhysX/Isaac Sim position drive semantics、stiffness/damping、effort limit、七自由度机械臂 gain scaling、MuJoCo/PhysX solver 差异和参数迁移边界
-- [3D Model Formats Learning Map](syntheses/3d-model-formats-learning-map.md) - OBJ、STL、PLY、glTF/GLB、FBX、USD、STEP、URDF/SDF/MJCF 等 3D asset formats 的学习脚手架与 source acquisition plan
-- [Wheeled Robot Modeling Learning Map](syntheses/wheeled-robot-modeling-learning-map.md) - 轮式机器人建模学习脚手架，覆盖 wheel taxonomy、kinematics、swerve allocation、simulation path、failure modes 和 source acquisition plan
-- [Wheeled Robot Visual Lab](syntheses/wheeled-robot-visual-lab.md) - 内嵌 academic-style 交互图，把 wheel-level constraints、contact-point velocity 和 chassis matrix rows 放在同一张平面图中复习
+- [研究问题](syntheses/research-questions.md) - 当前知识库支持的高价值研究问题、阅读路径和证据边界
+- [EmbodiedGen V1/V2 学习地图](syntheses/embodiedgen-v1-v2-learning-map.md) - 对照两代 EmbodiedGen 的系统边界、核心机制、证据强度、常见误解和推荐阅读路径
+- [ovrtx API 边界](syntheses/ovrtx-api-boundary.md) - 提炼 ovrtx 的场景组合、物理物体制作、灯光/相机随机化和上层归属边界
+- [Isaac Sim `mujoco.usda` 运行时语义](syntheses/isaac-sim-mujoco-usda-runtime-semantics.md) - 提炼 `mujoco.usda` 的归属边界：不是视觉/碰撞资产文件，而是 MuJoCo-特定的运行时解释 / 调优叠加层
+- [Isaac Sim 与 MuJoCo 物理和控制笔记](syntheses/isaac-sim-mujoco-control-tuning-notes.md) - 提炼 Isaac Sim 官方文档措辞、PhysX/Isaac Sim 位置驱动语义、刚度/阻尼、力矩限制、七自由度机械臂增益缩放、MuJoCo/PhysX 求解器差异和参数迁移边界
+- [三维模型格式学习地图](syntheses/3d-model-formats-learning-map.md) - OBJ、STL、PLY、glTF/GLB、FBX、USD、步骤、URDF/SDF/MJCF 等三维资产格式的学习脚手架与来源获取计划
+- [轮式机器人建模学习地图](syntheses/wheeled-robot-modeling-learning-map.md) - 轮式机器人建模学习脚手架，覆盖车轮分类体系、运动学、全向转向分配、仿真路径、失效情形和来源获取计划
+- [轮式机器人可视化实验](syntheses/wheeled-robot-visual-lab.md) - 内嵌学术风格交互图，把车轮层约束、接触点速度和底盘矩阵行放在同一张平面图中复习
 
-## Sources
+## 来源页
 
-### OpenUSD And Asset Infrastructure
+### OpenUSD 与资产基础设施
 
-- [Introduction to USD](sources/openusd-introduction.md) - OpenUSD 官方 introduction，解释 scene description、Stage/Layer/Prim data model、schemas、composition arcs、Hydra、extension points 与边界条件
+- [Introduction to USD](sources/openusd-introduction.md) - OpenUSD 官方介绍，解释场景描述、阶段/层/图元数据模型、结构规范、组合弧、Hydra、扩展点与边界条件
 
-### Sensor Simulation And Rendering
+### 传感器仿真与渲染
 
-- [NVIDIA ovrtx](sources/nvidia-ovrtx.md) - NVIDIA Omniverse RTX 的 C/Python SDK repo snapshot，覆盖 OpenUSD runtime stage、RenderProduct/RenderVar、camera/lidar/radar outputs、DLPack mapping、async lifecycle、stage queries 和 0.3.0 limitations
+- [NVIDIA ovrtx](sources/nvidia-ovrtx.md) - NVIDIA Omniverse RTX 的 C/Python SDK 代码仓库快照，覆盖 OpenUSD 运行时阶段、RenderProduct/RenderVar、相机/lidar/radar 输出、DLPack 映射、异步生命周期、场景查询和 0.3.0 局限
 
-### World Models
+### 世界模型
 
-- [A Comprehensive Survey on World Models for Embodied AI](sources/a-comprehensive-survey-on-world-models-for-embodied-ai.md) - embodied AI world models 的 POMDP/ELBO formalization、三轴 taxonomy、datasets/metrics 与 open challenges
-- [AwesomeWorldModels](sources/awesome-world-models.md) - survey companion GitHub repository，按 taxonomy 维护 world model bibliography
+- [A Comprehensive Survey on World Models for Embodied AI](sources/a-comprehensive-survey-on-world-models-for-embodied-ai.md) - 具身智能世界模型的 POMDP/ELBO 形式化、三轴分类体系、数据集/指标与开放挑战
+- [AwesomeWorldModels](sources/awesome-world-models.md) - 综述配套 GitHub 代码仓库，按分类体系维护世界模型参考文献表
 
-### Robot Foundation Models
+### 机器人基础模型
 
-- [Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation](sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation.md) - Seer/PIDM 框架，用 foresight token 和 inverse dynamics action token end-to-end 连接 vision prediction 与 action prediction
-- [Disentangled Robot Learning via Separate Forward and Inverse Dynamics Pretraining](sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining.md) - DeFI 框架，把 visual forward dynamics 和 inverse dynamics 分开预训练，再耦合微调到 robot actions
-- [LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion](sources/lda-1b-scaling-latent-dynamics-action-model.md) - dynamics-centric robot foundation model，用 DINO latent、MM-DiT 和 EI-30K 做 role-aware heterogeneous data ingestion
-- [π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities](sources/pi07-steerable-generalist-robotic-foundation-model.md) - Physical Intelligence 的 steerable VLA model，强调 context conditioning、subgoal images、metadata 与 compositional robot generalization
+- [Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation](sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation.md) - Seer/PIDM 框架，用预见标记和逆动力学动作标记端到端连接视觉预测与动作预测
+- [Disentangled Robot Learning via Separate Forward and Inverse Dynamics Pretraining](sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining.md) - DeFI 框架，把视觉正向动力学和逆动力学分开预训练，再耦合微调到机器人动作
+- [LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion](sources/lda-1b-scaling-latent-dynamics-action-model.md) - 动力学中心化机器人基础模型，用 DINO 潜在、MM-DiT 和 EI-30K 做作用感知的异构数据归集
+- [π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities](sources/pi07-steerable-generalist-robotic-foundation-model.md) - 物理 Intelligence 的可引导的 VLA 模型，强调上下文条件化、子目标图像、元数据与组合式机器人泛化
 
-### Simulation And Evaluation
+### 仿真与评估
 
-- [EmbodiedGen: Towards a Generative 3D World Engine for Embodied Intelligence](sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence.md) - modular generative 3D world engine，覆盖 object/texture/articulation/scene/layout generation、自动质量检查和 simulator asset export
-- [EmbodiedGen V2: An Agentic Simulation-Ready 3D World Engine for Embodied AI](sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai.md) - agentic simulation-ready world engine，把 metric geometry、collision repair、physical parameters、task affordances、scene constraints、multi-room worlds 和 stateful vibe coding 接成可执行 pipeline
-- [AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning](sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.md) - humanoid RL workflow，把 environment verification、training stabilization、deterministic evaluation 和 descriptor-driven deployment 接成 sim-to-real lifecycle
-- [VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation](sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation.md) - project page for RGB-based humanoid loco-manipulation，覆盖 privileged RL teacher、vision student distillation、visual randomization、finger SysID、FOV alignment、generalization videos 和 failure cases
-- [GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors](sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.md) - fully digital humanoid data-generation pipeline，用 3D assets、VFM priors、metric 4D HOI reconstruction、retargeting 和 task-general trackers 训练 Unitree G1 visual policies
-- [Robotics Simulation Infrastructure](sources/robotics-simulation-infrastructure.md) - Stone Tao 的 simulation infrastructure blog，覆盖 task/API、asset management、physics/rendering、visualizer、ML integration、rendering memory/fidelity 和 pose API trade-offs
-- [UniLab: A Heterogeneous Architecture for Robot RL Beyond GPU-Dominant Paradigms](sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms.md) - heterogeneous CPU-simulation / GPU-learning robot RL training system，把 collector-learner overlap、replay boundary、H2D transfer 和 synchronization 写成 end-to-end efficiency problem
-- [UniLab Repository](sources/unilab-repository.md) - UniLab official repository README snapshot，补充 unified runtime、installation、training scripts、benchmarks、configuration surface 和 supported examples
-- [MuJoCoUni: Persistent Batched Runtime Primitives for MuJoCo](sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco.md) - MuJoCoUni technical report，把 persistent batched MuJoCo execution、reset-time randomization 和 online robot learning runtime primitives 写成 systems design
-- [MotrixSim Documentation](sources/motrixsim-documentation.md) - MotrixSim documentation，描述 Rust CPU implementation、MJCF compatibility、generalized coordinate modeling、constraint solver 和 Python API
-- [MuJoCo Warp (MJWarp) Documentation](sources/mujoco-warp-mjwarp-documentation.md) - MuJoCo official MJWarp docs，覆盖 NVIDIA Warp implementation、parallel simulation route、MuJoCo compatibility boundary 和 hardware/dependency assumptions
-- [mjlab Repository](sources/mjlab-repository.md) - mjlab official repository README snapshot，把 Isaac Lab-style manager API 与 MuJoCo Warp GPU physics 组合成 robot learning framework
-- [MuJoCo Playground Repository](sources/mujoco-playground-repository.md) - MuJoCo Playground official repository README snapshot，覆盖 MJX/MJWarp-based GPU environments、locomotion/manipulation tasks 和 sim-to-real examples
-- [Isaac Lab Repository](sources/isaac-lab-repository.md) - Isaac Lab official repository README snapshot，覆盖 Isaac Sim-based RL/IL/motion-planning framework、robot assets、environment library 和 deployment route
-- [ManiSkill Repository](sources/maniskill-repository.md) - ManiSkill official repository README snapshot，覆盖 SAPIEN-powered manipulation environments、visual data generation、benchmark tasks 和 learning integration
-- [NVlabs/RoboLab](sources/nvlabs-robolab.md) - RoboLab official implementation repository；2026-06 refresh 增加 dashboard、adaptive sampling/statistical reporting、policy backend contract、Cosmos3 client、agentic scene/task generation skills 与 debug/ops docs
-- [RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies](sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies.md) - NVIDIA 的 high-fidelity simulation benchmark，用 RoboLab-120、language variants 与 sensitivity analysis 评测 task-generalist robot policies
-- [Asset Structure - Isaac Sim 4.5 Documentation](sources/isaac-sim-45-asset-structure.md) - Isaac Sim 4.5 docs 中的 legacy / pre-3.0 asset layout，覆盖 `asset_base.usd`、`parts.usd`、`asset_sim_optimized.usd`、feature layers 和 final `asset.usd`
-- [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md) - Isaac Sim 6.0 EDR docs 中的 USD Asset Structure 3.0 guidance，说明 robot assets 的 geometry/material/instance/physics/runtime/schema/feature layer organization
-- [Articulations - Omni Physics](sources/omniverse-omni-physics-articulations.md) - NVIDIA Omni Physics docs 中的 PhysX reduced-coordinate articulation guidance，覆盖 root/topology、JointStateAPI、drive performance envelope、joint friction、closed loops、mimic joints 和 tendons
+- [EmbodiedGen: Towards a Generative 3D World Engine for Embodied Intelligence](sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence.md) - 模块化生成式 3D 世界引擎，覆盖物体/纹理/关节系统/场景/布局生成、自动质量检查和仿真器资产导出
+- [EmbodiedGen V2: An Agentic Simulation-Ready 3D World Engine for Embodied AI](sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai.md) - 智能体式可用于仿真的世界引擎，把公制几何、碰撞修复、物理参数、任务可供性、场景约束、多房间世界和有状态自然语言编程接成可执行流程
+- [AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning](sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.md) - 人形机器人强化学习工作流，把环境验证、训练稳定化、确定性评估和描述文件驱动的部署接成仿真到现实迁移生命周期
+- [VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation](sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation.md) - 项目页介绍基于 RGB 的人形机器人移动操作，覆盖特权 RL 教师策略、视觉学生策略蒸馏、视觉随机化、手指系统辨识、视场角对齐、泛化视频和失败案例
+- [GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors](sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.md) - 全数字化人形机器人数据生成流程，用 3D 资产、VFM 先验、公制四维人物—物体交互重建、重定向和通用任务跟踪器训练 Unitree G1 视觉策略
+- [机器人仿真基础设施](sources/robotics-simulation-infrastructure.md) - Stone Tao 的仿真基础设施博客，覆盖任务/API、资产管理、物理/渲染、可视化工具、机器学习集成、渲染内存/保真度和位姿 API 取舍
+- [UniLab: A Heterogeneous Architecture for Robot RL Beyond GPU-Dominant Paradigms](sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms.md) - 异构 CPU-仿真 / GPU-学习机器人 RL 训练系统，把采集器与学习器重叠执行、回放边界、主机到设备传输和同步写成端到端效率问题
+- [UniLab Repository](sources/unilab-repository.md) - UniLab 官方代码仓库 README 快照，补充统一的运行时、安装、训练脚本、基准、配置表面和支持的示例
+- [MuJoCoUni: Persistent Batched Runtime Primitives for MuJoCo](sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco.md) - MuJoCoUni 技术报告，把持久批处理 MuJoCo 执行、重置时随机化和在线机器人学习运行时基元写成系统设计
+- [MotrixSim Documentation](sources/motrixsim-documentation.md) - MotrixSim 文档，描述 Rust CPU 实现、MJCF 兼容性、广义坐标建模、约束求解器和 Python API
+- [MuJoCo Warp (MJWarp) Documentation](sources/mujoco-warp-mjwarp-documentation.md) - MuJoCo 官方 MJWarp 文档，覆盖 NVIDIA Warp 实现、并行仿真路线、MuJoCo 兼容性边界和硬件/依赖假设
+- [mjlab Repository](sources/mjlab-repository.md) - mjlab 官方代码仓库 README 快照，把 Isaac Lab-风格管理器 API 与 MuJoCo Warp GPU 物理组合成机器人学习框架
+- [MuJoCo Playground Repository](sources/mujoco-playground-repository.md) - MuJoCo Playground 官方代码仓库 README 快照，覆盖基于 MJX/MJWarp 的 GPU 环境、运动与操作任务和仿真到现实迁移示例
+- [Isaac Lab Repository](sources/isaac-lab-repository.md) - Isaac Lab 官方代码仓库 README 快照，覆盖基于 Isaac Sim 的强化学习、模仿学习与运动规划框架，以及机器人资产、环境库和部署路线
+- [ManiSkill Repository](sources/maniskill-repository.md) - ManiSkill 官方代码仓库 README 快照，覆盖基于 SAPIEN 的操作环境、视觉数据生成、基准任务和学习集成
+- [NVlabs/RoboLab](sources/nvlabs-robolab.md) - RoboLab 官方实现代码仓库；2026-06 更新增加仪表盘、自适应采样/统计报告、策略后端契约、Cosmos3 客户端、智能体式场景/任务生成技能与调试/运维文档
+- [RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies](sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies.md) - NVIDIA 的高保真度仿真基准，用 RoboLab-120、语言变体与敏感性分析评测任务通用型机器人策略
+- [Asset Structure - Isaac Sim 4.5 Documentation](sources/isaac-sim-45-asset-structure.md) - Isaac Sim 4.5 文档中的旧版 / 3.0 之前资产布局，覆盖 `asset_base.usd`、`parts.usd`、`asset_sim_optimized.usd`、特征层和最终 `asset.usd`
+- [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md) - Isaac Sim 6.0 EDR 文档中的 USD 资产结构 3.0 指南，说明机器人资产的几何/材质与实例/物理/运行时/结构规范/特征层组织
+- [Articulations - Omni Physics](sources/omniverse-omni-physics-articulations.md) - NVIDIA Omni 物理文档中的 PhysX 约化坐标关节系统指南，覆盖根部/拓扑、JointStateAPI、驱动性能适用范围、关节摩擦、闭环机构、mimic 关节和肌腱
 
-### Contact Physics
+### 接触物理
 
-- [Contact Models in Robotics: a Comparative Analysis](sources/contact-models-in-robotics-a-comparative-analysis.md) - robotic contact models 与 contact solvers 的 comparative survey 和 benchmark
+- [Contact Models in Robotics: a Comparative Analysis](sources/contact-models-in-robotics-a-comparative-analysis.md) - 机器人接触模型与接触求解器的对比综述和基准
 
-### Collision Geometry And Collider Authoring
+### 碰撞几何与碰撞体制作
 
-- [MuJoCo Computation: Collision Detection](sources/mujoco-computation-collision-detection.md) - MuJoCo official docs 中的 geom-based collision pipeline、convex geom restriction、GJK/EPA、single vs multi contact points 和 convex decomposition guidance
-- [Isaac Sim Core API Collision Approximation](sources/isaac-sim-core-api-collision-approximation.md) - Isaac Sim Core API docs 中的 collision approximation modes，包括 triangle mesh、convex decomposition、convex hull、bounding sphere/cube、SDF 和 sphere fill
-- [V-HACD Repository](sources/v-hacd-repository.md) - deprecated / archived V-HACD README，说明 approximate convex decomposition 的 motivation、NP-hard exact decomposition boundary 和 practical hull-budget tradeoffs
-- [CoACD Repository](sources/coacd-repository.md) - CoACD implementation README，覆盖 `run_coacd` usage、threshold / hull count / MCTS parameters、real metric mode 和 preprocessing notes
-- [Approximate Convex Decomposition for 3D Meshes with Collision-Aware Concavity and Tree Search](sources/coacd-approximate-convex-decomposition.md) - CoACD paper，提出 collision-aware concavity、direct plane cuts、MCTS search，并展示 handle-preserving collider 改变 drawer-opening success
-- [Convex Primitive Decomposition for Collision Detection](sources/convex-primitive-decomposition-for-collision-detection.md) - 用 boxes、capsules、spheres、cylinders 等 primitive colliders 自动拟合 mesh 的 runtime-oriented collider decomposition paper
-- [VisACD: Visibility-Based GPU-Accelerated Approximate Convex Decomposition](sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition.md) - visibility-based、GPU-accelerated、rotation-equivariant ACD paper
-- [DCOL: Differentiable Collision Detection for a Set of Convex Primitives](sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives.md) - 用 minimum uniform scaling factor 和 differentiable conic optimization 处理 convex primitives collision 的 paper
-- [DiffPills: Differentiable Collision Detection for Capsules and Padded Polygons](sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons.md) - capsule / padded polygon differentiable collision detection paper，用 proximity value 进入 trajectory optimization
+- [MuJoCo Computation: Collision Detection](sources/mujoco-computation-collision-detection.md) - MuJoCo 官方文档中的基于几何体的碰撞流程、凸几何体限制、GJK/EPA、单一与多接触点和凸分解指南
+- [Isaac Sim Core API Collision Approximation](sources/isaac-sim-core-api-collision-approximation.md) - Isaac Sim Core API 文档中的碰撞近似模式，包括三角形网格、凸分解、凸包、包围球与包围盒、SDF 和球体填充
+- [V-HACD Repository](sources/v-hacd-repository.md) - 已弃用并归档的 V-HACD README，说明近似凸分解的动机、NP 困难精确分解边界和实用的凸包数量预算取舍
+- [CoACD Repository](sources/coacd-repository.md) - CoACD 实现 README，覆盖 `run_coacd` 用法、阈值 / 凸包数量 / MCTS 参数、真实指标模式和预处理说明
+- [Approximate Convex Decomposition for 3D Meshes with Collision-Aware Concavity and Tree Search](sources/coacd-approximate-convex-decomposition.md) - CoACD 论文，提出碰撞感知凹度、直接平面切分、MCTS 搜索，并展示把手保留碰撞体改变抽屉开启成功
+- [Convex Primitive Decomposition for Collision Detection](sources/convex-primitive-decomposition-for-collision-detection.md) - 用盒体、胶囊体、球体、圆柱体等基元碰撞体自动拟合网格的面向运行时的碰撞体分解论文
+- [VisACD: Visibility-Based GPU-Accelerated Approximate Convex Decomposition](sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition.md) - 基于可见性、GPU 加速的、旋转等变的 ACD 论文
+- [DCOL: Differentiable Collision Detection for a Set of Convex Primitives](sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives.md) - 用最小均匀扩展因素和可微的锥优化处理凸基元碰撞的论文
+- [DiffPills: Differentiable Collision Detection for Capsules and Padded Polygons](sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons.md) - 胶囊体 / 带填充的多边形可微的碰撞检测论文，用邻近值进入轨迹优化
 
-### Wheeled Robot Modeling
+### 轮式机器人建模
 
-- [Modern Robotics Chapter 13: Wheeled Mobile Robots](sources/modern-robotics-chapter-13-wheeled-mobile-robots.md) - Lynch 和 Park 的 wheeled mobile robot chapter，覆盖 planar chassis twist、omni/mecanum kinematics、nonholonomic canonical model、Lie bracket controllability、odometry 和 mobile manipulation
-- [Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots](sources/structural-properties-and-classification-of-wheeled-mobile-robots.md) - Campion、Bastin 和 D'Andrea-Novel 的 WMR taxonomy source，提出 degree of mobility、degree of steerability 和五类 nondegenerate WMR
+- [Modern Robotics Chapter 13: Wheeled Mobile Robots](sources/modern-robotics-chapter-13-wheeled-mobile-robots.md) - Lynch 和 Park 的轮式移动式机器人章节，覆盖平面底盘旋量、omni/mecanum 运动学、非完整约束规范的模型、李括号可控性、里程计和移动操作
+- [Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots](sources/structural-properties-and-classification-of-wheeled-mobile-robots.md) - Campion、Bastin 和 D'Andrea-Novel 的 WMR 分类体系来源，提出机动度、可转向度和五类非退化 WMR
 
-## Concepts
+## 概念页
 
-### OpenUSD And Asset Infrastructure
+### OpenUSD 与资产基础设施
 
-- [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md) - 把 OpenUSD 的 Stage/Layer/Prim data model、schemas、composition arcs、Hydra 与 Isaac Sim robotics asset layering 连接起来的学习页
+- [OpenUSD 场景组合](concepts/OpenUSDSceneComposition.md) - 把 OpenUSD 的阶段、层、图元数据模型、结构规范、组合弧、Hydra 与 Isaac Sim 机器人学资产分层连接起来的学习页
 
-### Sensor Simulation And Rendering
+### 传感器仿真与渲染
 
-- [RTX Sensor Simulation Pipeline](concepts/RTXSensorSimulationPipeline.md) - ovrtx 中 OpenUSD scene、sensor prim、RenderProduct、RenderVar、DLPack tensor output 与 CPU/CUDA mapping 组成的 sensor simulation pipeline
+- [RTX 传感器仿真流程](concepts/RTXSensorSimulationPipeline.md) - ovrtx 中 OpenUSD 场景、传感器图元、RenderProduct、RenderVar、DLPack 张量输出与 CPU/CUDA 映射组成的传感器仿真流程
 
-### World Models
+### 世界模型
 
-- [World Models for Embodied AI](concepts/WorldModelsForEmbodiedAI.md) - action-conditioned latent simulators 的 POMDP/ELBO 机制与 practical failure modes
-- [World Model Taxonomy](concepts/WorldModelTaxonomy.md) - Functionality、Temporal Modeling、Spatial Representation 三轴分类
-- [World Model Evaluation](concepts/WorldModelEvaluation.md) - world model metrics 从 pixel fidelity 到 state understanding 与 task performance 的评估层次
-- [Latent Dynamics Action Models](concepts/LatentDynamicsActionModels.md) - 用 DINO latent、diffusion action chunks 与 multi-task objective routing 学习 robot interaction dynamics
-- [Inverse Dynamics Models](concepts/InverseDynamicsModels.md) - 从 current/future visual transition 推断 action 或 latent action 的模型，包含 DeFI/GIDM 的 self-supervised video pretraining 机制
+- [具身智能世界模型](concepts/WorldModelsForEmbodiedAI.md) - 动作条件化的潜在仿真器的 POMDP/ELBO 机制与实用的失效情形
+- [World Model Taxonomy](concepts/WorldModelTaxonomy.md) - 功能、时间建模、空间表示三轴分类
+- [世界模型评估](concepts/WorldModelEvaluation.md) - 从像素保真度、状态理解到任务性能的世界模型评估层次
+- [潜在动力学动作模型](concepts/LatentDynamicsActionModels.md) - 用 DINO 潜在表示、扩散动作块与多任务目标路由学习机器人交互动力学
+- [逆动力学模型](concepts/InverseDynamicsModels.md) - 从当前/未来视觉转移推断动作或潜在动作的模型，包含 DeFI/GIDM 的自监督视频预训练机制
 
-### Robot Foundation Models
+### 机器人基础模型
 
-- [Vision-Language-Action Models](concepts/VisionLanguageActionModels.md) - 从 observation history 和 context 预测 robot action chunks 的 VLA policy formalism
-- [Robot Context Conditioning](concepts/RobotContextConditioning.md) - 用 task/subtask language、metadata、subgoal images 与 control mode disambiguate heterogeneous robot data
-- [Compositional Generalization in Robotics](concepts/CompositionalGeneralizationInRobotics.md) - robot policies 如何把 seen skills、objects、embodiments 与 instructions 重新组合到 unseen tasks
+- [视觉—语言—动作模型](concepts/VisionLanguageActionModels.md) - 从观测历史和上下文预测机器人动作块的 VLA 策略形式化表述
+- [机器人上下文条件化](concepts/RobotContextConditioning.md) - 用任务/子任务语言、元数据、子目标图像与控制模式消除异构机器人数据中的歧义
+- [Compositional Generalization in Robotics](concepts/CompositionalGeneralizationInRobotics.md) - 机器人策略如何把见过的技能、物体、机器人形态与指令重新组合到未见的任务
 
-### Simulation And Evaluation
+### 仿真与评估
 
-- [Simulation-Ready 3D World Generation](concepts/SimulationReady3DWorldGeneration.md) - 从 generated appearance 到 metric、physical、semantic、affordance 和 interface-complete simulation assets/worlds 的约束合成框架
-- [Humanoid RL Workflow](concepts/HumanoidRLWorkflow.md) - 从 robot/MDP verification 到 training、evaluation、descriptor export 和 hardware deployment 的 humanoid RL lifecycle
-- [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md) - 用 task libraries、language variants、predicates、subtask scoring 和 diagnostics 评估泛化 robot policies
-- [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md) - 把 simulator framework 拆成 task/API、asset management、physics/rendering、visualizer 和 ML loop 的 design decisions
-- [Simulation Benchmark Reporting Pipeline](concepts/SimulationBenchmarkReportingPipeline.md) - 把 rollout outputs、episode evidence、success-rate uncertainty、adaptive sampling 和 dashboard review 组织成 benchmark reporting system
-- [Agentic Scene/Task Generation](concepts/AgenticSceneTaskGeneration.md) - 用 LLM/agentic workflow 生成 scenes、objects、predicates 和 task dataclasses，并把 validation 边界接回 simulation benchmark infrastructure
-- [Heterogeneous Robot RL Training](concepts/HeterogeneousRobotRLTraining.md) - 把 simulation-based robot RL training 写成 CPU/GPU role assignment、collector/learner overlap、replay boundary、H2D transfer、buffering 和 weight sync 的 systems problem
-- [Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md) - 用 controlled perturbations 与 NPE/MNPE posterior 找出影响 robot policy success 的环境参数
-- [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md) - contact approximations、learned dynamics 和 policy context 到 sim-to-real mismatch 的 causal flow
-- [Visual Sim-to-Real](concepts/VisualSimToReal.md) - VIRAL-style visual sim-to-real 的 teacher-student formulation、domain randomization、real-to-sim hand/camera alignment 与 deployment failure modes
-- [Asset-Conditioned HOI Generation](concepts/AssetConditionedHOIGeneration.md) - GRAIL-style generated humanoid demonstration pipeline：known 3D assets / camera / metric world + VFM prior + interaction-aware 4D reconstruction + robot tracking
-- [Isaac Sim Legacy Asset Structure](concepts/IsaacSimLegacyAssetStructure.md) - Isaac Sim 4.5 legacy / pre-3.0 asset layout，明确旧 layout 没有 source-backed 2.0 命名，并与 Asset Structure 3.0 对照
-- [Isaac Sim Asset Structure 3.0](concepts/IsaacSimAssetStructure.md) - 用 architecture diagrams、USD layers、payloads、references 和 variants 组织 Isaac Sim robot assets，并隔离 neutral physics 与 MuJoCo/PhysX-specific tuning
-- [Reduced-Coordinate Articulations](concepts/ReducedCoordinateArticulations.md) - PhysX / Omni Physics articulation 的 mechanism-level page，覆盖 reduced coordinates、root selection、drive envelope、mimic/tendon constraints 和 solver failure modes
+- [可用于仿真的三维世界生成](concepts/SimulationReady3DWorldGeneration.md) - 从生成外观到公制几何、物理、语义、可供性和完整接口的仿真资产与世界约束合成框架
+- [人形机器人强化学习工作流](concepts/HumanoidRLWorkflow.md) - 从机器人/MDP 验证到训练、评估、描述文件导出和硬件部署的人形机器人强化学习生命周期
+- [通用任务策略评估](concepts/TaskGeneralistPolicyEvaluation.md) - 用任务库、语言变体、判定条件、子任务评分和诊断评估泛化机器人策略
+- [机器人仿真基础设施](concepts/RoboticsSimulationInfrastructure.md) - 把仿真器框架拆成任务/API、资产管理、物理/渲染、可视化工具和 ML 循环的设计决策
+- [仿真基准报告流程](concepts/SimulationBenchmarkReportingPipeline.md) - 把轨迹采样输出、回合证据、成功比率不确定性、自适应采样和仪表盘复核组织成基准报告系统
+- [智能体式场景与任务生成](concepts/AgenticSceneTaskGeneration.md) - 用 LLM/智能体式工作流生成场景、物体、判定条件和任务数据类，并把验证边界接回仿真基准基础设施
+- [异构机器人强化学习训练](concepts/HeterogeneousRobotRLTraining.md) - 把基于仿真的机器人 RL 训练写成 CPU/GPU 职责分配、采集器/学习器重叠、回放边界、主机到设备传输、缓冲和权重同步的系统问题
+- [仿真敏感性分析](concepts/SimulationSensitivityAnalysis.md) - 用受控扰动与 NPE/MNPE 后验找出影响机器人策略成功的环境参数
+- [仿真—现实差距](concepts/SimulationRealityGap.md) - 接触近似、学得的动力学和策略上下文造成仿真到现实迁移不匹配的因果流程
+- [视觉仿真到现实迁移](concepts/VisualSimToReal.md) - VIRAL 风格的教师—学生表述、域随机化、真实到仿真的手部与相机对齐，以及部署失效情形
+- [资产条件化人物—物体交互生成](concepts/AssetConditionedHOIGeneration.md) - GRAIL-风格生成的人形机器人示范流程：已知三维资产 / 相机 / 公制世界 + VFM 先验 + 交互感知的 4D 重建 + 机器人跟踪
+- [Isaac Sim 旧版资产结构](concepts/IsaacSimLegacyAssetStructure.md) - Isaac Sim 4.5 旧版 / 3.0 之前资产布局；现有来源不支持“2.0”这一命名，并与资产结构 3.0 对照
+- [Isaac Sim 资产结构 3.0](concepts/IsaacSimAssetStructure.md) - 用架构图、USD 层、载荷、引用和变体组织 Isaac Sim 机器人资产，并隔离中性物理与 MuJoCo/PhysX 专用调优
+- [约化坐标关节系统](concepts/ReducedCoordinateArticulations.md) - PhysX / Omni 物理关节系统的机制层级页面，覆盖约化坐标、根部选择、驱动器适用范围、mimic/tendon 约束和求解器失效情形
 
-### Contact Physics
+### 接触物理
 
-- [Contact Models in Robotics](concepts/ContactModelsInRobotics.md) - simulator contact-law choices 作为 modeling assumptions，并包含 contact pipeline 图
-- [Contact Complementarity（接触互补）](concepts/ContactComplementarity.md) - rigid contact、friction cone、NCP/LCP/CCP 与 residual intuition
-- [Contact Solvers（接触求解器）](concepts/ContactSolvers.md) - 计算 contact forces 与 impulses 的 numerical methods，以及 solver taxonomy
-- [Differentiable Physics（可微物理）](concepts/DifferentiablePhysics.md) - simulator gradients、contact artifacts 与 gradient contamination
-- [Collision Geometry for Robot Simulation](concepts/CollisionGeometryForRobotSimulation.md) - sphere、capsule、cylinder、convex hull、ACD、SDF 和 differentiable primitives 如何改变 contact generation 与 robot policy behavior
-- [Approximate Convex Decomposition](concepts/ApproximateConvexDecomposition.md) - V-HACD、CoACD、VisACD 和 convex primitive decomposition 的数学结构、直觉、failure modes 与实践含义
-- [Differentiable Collision Detection](concepts/DifferentiableCollisionDetection.md) - DCOL / DiffPills style collision metrics 如何把 primitive colliders 变成 trajectory optimization constraints and gradients
+- [机器人学中的接触模型](concepts/ContactModelsInRobotics.md) - 仿真器接触定律选择作为建模假设，并包含接触流程图
+- [接触互补](concepts/ContactComplementarity.md) - 刚性接触、摩擦锥体、NCP/LCP/CCP 与残差直觉
+- [接触求解器](concepts/ContactSolvers.md) - 计算接触力与冲量的数值方法，以及求解器分类体系
+- [可微物理](concepts/DifferentiablePhysics.md) - 仿真器梯度、接触产物与梯度污染
+- [机器人仿真的碰撞几何](concepts/CollisionGeometryForRobotSimulation.md) - 球体、胶囊体、圆柱体、凸包、ACD、SDF 和可微的基元如何改变接触生成与机器人策略行为
+- [近似凸分解](concepts/ApproximateConvexDecomposition.md) - V-HACD、CoACD、VisACD 和凸基元分解的数学结构、直觉、失效情形与实践含义
+- [可微碰撞检测](concepts/DifferentiableCollisionDetection.md) - DCOL / DiffPills 风格碰撞指标如何把基元碰撞体变成轨迹优化约束与梯度
 
-### Wheeled Robot Modeling
+### 轮式机器人建模
 
-- [Wheeled Robot Kinematics](concepts/WheeledRobotKinematics.md) - wheel speeds、steering angles、body twist、rolling/no-slip constraints 和 $u=H(0)V_b$ 的统一建模入口
-- [Wheeled Mobile Robot Classification](concepts/WheeledMobileRobotClassification.md) - Campion taxonomy 中的 $\delta_m$、$\delta_s$、$\delta_M$ 与五类 WMR
-- [Omnidirectional Wheels](concepts/OmnidirectionalWheels.md) - omniwheel / mecanum 的 rank condition、feasible twist polyhedron、roller contact failure modes 和仿真实践含义
-- [Nonholonomic Mobile Robots](concepts/NonholonomicMobileRobots.md) - unicycle、diff-drive、car-like robot 的 Pfaffian constraint、canonical model 和 Lie bracket controllability
-- [Steerable Wheels](concepts/SteerableWheels.md) - centered steerable wheels、off-centered caster wheels、swerve-style modules 和 steering DOF failure modes
-- [Mobile Robot Odometry](concepts/MobileRobotOdometry.md) - 用 wheel encoder increments 估计 chassis pose 的 $H^\dagger$ / SE(2) integration 方法与 drift sources
+- [轮式机器人运动学](concepts/WheeledRobotKinematics.md) - 车轮速度、转向角度、机体旋量、滚动/无滑移约束和 $u=H(0)V_b$ 的统一建模入口
+- [轮式移动机器人分类](concepts/WheeledMobileRobotClassification.md) - Campion 分类体系中的 $\delta_m$、$\delta_s$、$\delta_M$ 与五类 WMR
+- [全向轮](concepts/OmnidirectionalWheels.md) - 全向轮与麦克纳姆轮的秩条件、可行旋量多面体、滚轮接触失效情形和仿真实践含义
+- [非完整约束移动机器人](concepts/NonholonomicMobileRobots.md) - 单轮车、差速驱动和类汽车模型的 Pfaffian 约束、规范模型和李括号可控性
+- [可转向轮](concepts/SteerableWheels.md) - 中心式可转向轮、偏心脚轮、全向转向模块和转向自由度的失效情形
+- [Mobile Robot Odometry](concepts/MobileRobotOdometry.md) - 用车轮编码器增量估计底盘位姿的 $H^\dagger$ / SE(2) 集成方法与漂移来源
 
-## Entities
+## 实体页
 
-### Models, Datasets, And Benchmarks
+### 模型、数据集与基准
 
-- [EmbodiedGen](entities/EmbodiedGen.md) - 从 modular 3D content generation 演进到 agentic simulation-ready asset/world/task generation 的系统项目
-- [AGILE](entities/AGILE.md) - Isaac Lab/RSL-RL based humanoid RL workflow layer，统一 verification、training、evaluation 和 descriptor-driven deployment
-- [DeFI](entities/DeFI.md) - decoupled forward/inverse dynamics pretraining framework，用 GFDM、GIDM 和 action adapter 从 videos 到 robot commands
-- [EI-30K](entities/EI30K.md) - LDA-1B source 构建的 30k+ hour heterogeneous embodied interaction dataset
-- [LDA-1B](entities/LDA1B.md) - dynamics-centric robot foundation model，统一 policy、latent dynamics 和 visual forecasting
-- [Seer](entities/Seer.md) - end-to-end PIDM model，用 [FRS] foresight token 和 [INV] action token 做 robot manipulation policy learning
-- [π0.7](entities/Pi07.md) - steerable generalist VLA model，使用 language、metadata、subgoal images 和 control mode conditioning
-- [RoboLab](entities/RoboLab.md) - high-fidelity simulation benchmark/platform for task-generalist robot policy evaluation
-- [VIRAL](entities/VIRAL.md) - visual sim-to-real framework for humanoid loco-manipulation，使用 privileged teacher、vision student distillation、visual randomization 和 real-to-sim alignment
-- [GRAIL](entities/GRAIL.md) - fully digital humanoid loco-manipulation data-generation framework，使用 3D assets、VFM priors、metric 4D HOI reconstruction 和 task-general trackers
-- [UniLab](entities/UniLab.md) - heterogeneous CPU-simulation / GPU-learning robot RL training system，使用 unified runtime 管理 rollout collection、buffering、H2D transfer 和 learner synchronization
-- [ContactBench](entities/ContactBench.md) - source 中的 unified C++ contact-model benchmark framework
+- [EmbodiedGen](entities/EmbodiedGen.md) - 从模块化三维内容生成演进到智能体式、可用于仿真的资产、世界与任务生成系统
+- [AGILE](entities/AGILE.md) - Isaac Lab/RSL-RL 基于人形机器人强化学习工作流层，统一验证、训练、评估和描述文件驱动的部署
+- [DeFI](entities/DeFI.md) - 解耦的正向/逆动力学预训练框架，用 GFDM、GIDM 和动作适配器把视频映射为机器人指令
+- [EI-30K](entities/EI30K.md) - LDA-1B 来源构建的三万小时以上异构具身交互数据集
+- [LDA-1B](entities/LDA1B.md) - 动力学中心化机器人基础模型，统一策略、潜在动力学和视觉预测
+- [Seer](entities/Seer.md) - 端到端 PIDM 模型，用 [FRS] 预见标记和 [INV] 动作标记做机器人操作策略学习
+- [π0.7](entities/Pi07.md) - 可引导的通用型 VLA 模型，使用语言、元数据、子目标图像和控制模式条件化
+- [RoboLab](entities/RoboLab.md) - 高保真度仿真基准/平台用于任务泛化机器人策略评估
+- [VIRAL](entities/VIRAL.md) - 视觉仿真到现实迁移框架用于人形机器人移动操作，使用特权教师策略、视觉学生策略蒸馏、视觉随机化和现实到仿真对齐
+- [GRAIL](entities/GRAIL.md) - 全数字化人形机器人移动操作数据生成框架，使用 3D 资产、VFM 先验、公制四维人物—物体交互重建和通用任务跟踪器
+- [UniLab](entities/UniLab.md) - 异构 CPU-仿真 / GPU-学习机器人 RL 训练系统，使用统一的运行时管理轨迹采样采集、缓冲、主机到设备传输和学习器同步
+- [ContactBench](entities/ContactBench.md) - 来源中的统一的 C++ 接触模型基准框架
 
-### Organizations And Repositories
+### 组织与代码仓库
 
-- [AwesomeWorldModels](entities/AwesomeWorldModels.md) - survey companion bibliography repository
-- [Galbot](entities/Galbot.md) - LDA-1B source 中的作者机构与 Galbot G1 real-world evaluation platform context
-- [NVIDIA](entities/NVIDIA.md) - RoboLab paper/project/repo、VIRAL-linked NVlabs code repository 与 Isaac Sim Asset Structure docs 的发布机构
-- [Pixar](entities/Pixar.md) - OpenUSD official docs 的 copyright holder 与 USD production-pipeline heritage context
-- [Physical Intelligence](entities/PhysicalIntelligence.md) - π0.7 source 中的 robot foundation model research organization
+- [AwesomeWorldModels](entities/AwesomeWorldModels.md) - 综述配套的参考文献代码仓库
+- [Galbot](entities/Galbot.md) - LDA-1B 来源中的作者机构与 Galbot G1 现实世界评估平台上下文
+- [NVIDIA](entities/NVIDIA.md) - RoboLab 论文与项目、VIRAL 关联的 NVlabs 代码仓库，以及 Isaac Sim 资产结构文档的发布机构
+- [Pixar](entities/Pixar.md) - OpenUSD 官方文档的版权所有者与 USD 生产流程历史传承上下文
+- [Physical Intelligence](entities/PhysicalIntelligence.md) - π0.7 来源中的机器人基础模型研究组织
 
-### Scene Description Platforms
+### 场景描述平台
 
-- [OpenUSD](entities/OpenUSD.md) - Universal Scene Description / OpenUSD scene-description platform；当前 coverage 聚焦 official Introduction 与 Isaac Sim asset-structure usage
+- [OpenUSD](entities/OpenUSD.md) - 通用的场景描述 / OpenUSD 场景描述平台；当前覆盖范围聚焦官方介绍与 Isaac Sim 资产结构用法
 
-### Collision Geometry Methods
+### 碰撞几何方法
 
-- [CoACD](entities/CoACD.md) - collision-aware approximate convex decomposition method / implementation，用 concavity metric、plane cuts 和 MCTS 保留 collision-relevant details
-- [V-HACD](entities/VHACD.md) - deprecated / archived voxelized hierarchical approximate convex decomposition baseline
-- [VisACD](entities/VisACD.md) - visibility-based GPU-accelerated ACD method，强调 rotation-equivariant、intersection-free collider decomposition
-- [DCOL](entities/DCOL.md) - differentiable collision detection method for convex primitives，用 minimum uniform scaling factor 生成 collision constraints and gradients
-- [DiffPills](entities/DiffPills.md) - differentiable collision detection method for capsules and padded polygons
+- [CoACD](entities/CoACD.md) - 碰撞感知近似凸分解方法 / 实现，用凹度指标、平面切分和 MCTS 保留碰撞相关的细节
+- [V-HACD](entities/VHACD.md) - 已弃用并归档的体素化分层近似凸分解基线
+- [VisACD](entities/VisACD.md) - 基于可见性的 GPU 加速 ACD 方法，强调旋转等变且无相交的碰撞体分解
+- [DCOL](entities/DCOL.md) - 可微的碰撞检测方法用于凸基元，用最小均匀扩展因素生成碰撞约束与梯度
+- [DiffPills](entities/DiffPills.md) - 可微碰撞检测方法用于胶囊体与带填充的多边形
 
-### Simulation Tools
+### 仿真工具
 
-- [Isaac Sim](entities/IsaacSim.md) - NVIDIA robotics simulation stack；当前 source-backed coverage 包括 legacy / pre-3.0 Asset Structure、Isaac Sim 6.0 EDR Asset Structure 3.0、Core API collision approximation modes 与 Omni Physics articulation semantics
-- [ovrtx](entities/Ovrtx.md) - NVIDIA Omniverse RTX 的 lightweight C/Python sensor simulation SDK，使用 OpenUSD runtime stage、RenderProduct/RenderVar 和 DLPack tensor outputs
-- [PhysX](entities/PhysX.md) - NVIDIA physics runtime / SDK family；当前 wiki coverage 聚焦 Omni Physics articulations source 中的 reduced-coordinate mechanisms、drive envelope、mimic joints 和 tendons
-- [MuJoCo](entities/MuJoCo.md) - robotics physics engine；当前 coverage 包括 contact regularization tradeoffs、geom-based collision detection、convex collision constraints，以及 Isaac Sim 中的 engine-specific asset layer context
-- [Isaac Lab](entities/IsaacLab.md) - Isaac Sim-based open-source framework for reinforcement learning、imitation learning、motion planning and sim-to-real robotics workflows
-- [MJWarp](entities/MJWarp.md) - MuJoCo Warp / MJWarp implementation route，using NVIDIA Warp for GPU-oriented MuJoCo simulation on NVIDIA hardware
-- [mjlab](entities/Mjlab.md) - robot learning framework combining Isaac Lab-style manager APIs with MuJoCo Warp GPU-accelerated physics
-- [MotrixSim](entities/MotrixSim.md) - high-performance robotics simulation engine，强调 Rust CPU implementation、generalized coordinates、MJCF compatibility 和 proprietary constraint solver
-- [MuJoCo Playground](entities/MuJoCoPlayground.md) - GPU-accelerated MuJoCo MJX/MJWarp environment suite for robot learning research and sim-to-real workflows
-- [MuJoCoUni](entities/MuJoCoUni.md) - downstream MuJoCo distribution for persistent batched runtime primitives, online robot learning and batched physics evaluation
-- [ManiSkill](entities/ManiSkill.md) - Stone Tao article 中用于说明 Python API、batched rendering performance 和 `Pose` abstraction 的 robotics simulation framework
-- [RaiSim](entities/RaiSim.md) - source 中用于讨论 quadruped transfer 与 per-contact handling 的 robotics simulator
+- [Isaac Sim](entities/IsaacSim.md) - NVIDIA 机器人学仿真技术栈；当前有来源支持的内容包括旧版 / 3.0 之前资产结构、Isaac Sim 6.0 EDR 资产结构 3.0、Core API 碰撞近似模式与 Omni 物理关节系统语义
+- [ovrtx](entities/Ovrtx.md) - NVIDIA Omniverse RTX 的轻量的 C/Python 传感器仿真 SDK，使用 OpenUSD 运行时阶段、RenderProduct/RenderVar 和 DLPack 张量输出
+- [PhysX](entities/PhysX.md) - NVIDIA 物理运行时 / SDK 族；当前知识库覆盖范围聚焦 Omni 物理关节系统来源中的约化坐标机制、驱动器适用范围、mimic 关节和肌腱
+- [MuJoCo](entities/MuJoCo.md) - 机器人学物理引擎；当前覆盖接触正则化取舍、基于几何体的碰撞检测、凸碰撞约束，以及 Isaac Sim 中的引擎专用资产层上下文
+- [Isaac Lab](entities/IsaacLab.md) - 基于 Isaac Sim 的开源机器人学框架，用于强化学习、模仿学习、运动规划与仿真到现实迁移
+- [MJWarp](entities/MJWarp.md) - 以 NVIDIA Warp 实现、面向 NVIDIA GPU 并行 MuJoCo 仿真的路线
+- [mjlab](entities/Mjlab.md) - 把 Isaac Lab 风格的管理器 API 与 MuJoCo Warp GPU 物理结合起来的机器人学习框架
+- [MotrixSim](entities/MotrixSim.md) - 高性能机器人学仿真引擎，强调 Rust CPU 实现、广义的坐标、MJCF 兼容性和专有的约束求解器
+- [MuJoCo Playground](entities/MuJoCoPlayground.md) - GPU 加速的 MuJoCo MJX/MJWarp 环境套件，用于机器人学习研究与仿真到现实迁移
+- [MuJoCoUni](entities/MuJoCoUni.md) - 面向持久批处理运行时基元、在线机器人学习和批量物理评估的 MuJoCo 下游发行版
+- [ManiSkill](entities/ManiSkill.md) - Stone Tao 文章中用于说明 Python API、批量渲染性能和 `Pose` 抽象的机器人学仿真框架
+- [RaiSim](entities/RaiSim.md) - 来源中用于讨论四足机器人迁移与逐接触点处理的机器人学仿真器

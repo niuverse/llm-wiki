@@ -3,7 +3,7 @@ title: "MuJoCo Playground Repository"
 type: source
 tags: [robotics, reinforcement-learning, simulation, mujoco, repository]
 sources: []
-last_updated: 2026-06-05
+last_updated: 2026-07-13
 source_file: raw/mujoco-playground-readme.md
 source_kind: repo
 source_url: https://github.com/google-deepmind/mujoco_playground
@@ -15,19 +15,19 @@ commit_sha: 33f1b2843a7ec5537c4882177aa2a9f236e9b692
 
 ## 摘要
 
-这是 [[MuJoCoPlayground|MuJoCo Playground]] official repository README snapshot。README 把它定义为 built with MuJoCo MJX 的 GPU-accelerated environments suite，用于 robot learning research and sim-to-real。它覆盖 classic control、quadruped/biped locomotion、non-prehensile and dexterous manipulation，并通过 MJWarp Batch Renderer 支持 vision-based environments。
+这是 [[MuJoCoPlayground|MuJoCo Playground]] 官方代码仓库 README 快照。README 把它定义为基于 MuJoCo MJX 的 GPU 加速的环境套件，用于机器人学习研究与仿真到现实迁移。它覆盖 classic 控制、quadruped/biped 移动、non-prehensile 与灵巧操作，并通过 MJWarp 批次渲染器支持基于视觉的环境。
 
-对 wiki 的价值是把 [[MuJoCo]] ecosystem 中的 environment suite / learning recipes route 与 [[MJWarp]]、MJX 和 sim-to-real 连接起来。README 还说明当前支持 both MJX JAX implementation and MuJoCo Warp at HEAD，这让 MuJoCo Playground 成为比较 JAX/MJX 与 Warp execution paths 的 practical entrypoint。
+对知识库的价值是把 [[MuJoCo]] 生态中的环境套件 / 学习 recipes 路线与 [[MJWarp]]、MJX 和仿真到现实迁移连接起来。README 还说明当前支持 both MJX JAX 实现与 MuJoCo Warp 在输出头，这让 MuJoCo Playground 成为比较 JAX/MJX 与 Warp 执行路径的实用的 entrypoint。
 
 ## 核心主张
 
-- MuJoCo Playground 是 GPU-accelerated robot learning and sim-to-real environment suite。
-- Built with MuJoCo MJX，并且 README note 表示现在支持 MJX JAX implementation 与 MuJoCo Warp implementation。
-- Features 包括 classic control、quadruped and biped locomotion、non-prehensile and dexterous manipulation、vision support via MJWarp Batch Renderer。
-- Installation 支持 PyPI `playground`，但 README 推荐从 source 安装以获得 latest MuJoCo features / fixes。
-- CLI examples 包括 `train-jax-ppo --env_name CartpoleBalance` 和 `--impl warp`。
-- README 明确记录 reproducibility / GPU precision issue：Ampere GPUs 上 JAX 默认 TF32 matmul 可能影响 RL training stability，建议设置 `JAX_DEFAULT_MATMUL_PRECISION=highest`。
-- README license/disclaimer 表示 Apache-2.0 且不是 officially supported Google product。
+- MuJoCo Playground 是 GPU 加速的机器人学习与仿真到现实迁移环境套件。
+- 项目基于 MuJoCo MJX 构建，README 说明现在同时支持 MJX 的 JAX 实现与 MuJoCo Warp 实现。
+- 特征包括 classic 控制、quadruped 与 biped 移动、non-prehensile 与灵巧操作、视觉支撑通过 MJWarp 批次渲染器。
+- 安装支持 PyPI `playground`，但 README 推荐从来源安装以获得 latest MuJoCo 特征 / fixes。
+- CLI 示例包括 `train-jax-ppo --env_name CartpoleBalance` 和 `--impl warp`。
+- README 明确记录可复现性 / GPU 精度 issue：Ampere GPUs 上 JAX 默认 TF32 matmul 可能影响 RL 训练稳定性，建议设置 `JAX_DEFAULT_MATMUL_PRECISION=highest`。
+- README 的许可证与免责声明表明：项目采用 Apache-2.0 许可证，但并非 Google 官方支持的产品。
 
 ## 关键引文
 
@@ -38,12 +38,12 @@ commit_sha: 33f1b2843a7ec5537c4882177aa2a9f236e9b692
 
 ## 关联
 
-- [[MuJoCoPlayground]] - 本 source 对应的 framework/entity。
-- [[MuJoCo]]、[[MJWarp]] - MuJoCo Playground 连接 MJX 和 MJWarp paths。
-- [[HeterogeneousRobotRLTraining]] - 它代表 GPU-accelerated environment suite / learning recipe route。
-- [[SimulationRealityGap]] - sim-to-real claim 需要具体 task/hardware evidence；README 本身只支持 framework capability boundary。
+- [[MuJoCoPlayground]] - 本来源对应的框架/实体。
+- [[MuJoCo]]、[[MJWarp]] - MuJoCo Playground 连接 MJX 和 MJWarp 路径。
+- [[HeterogeneousRobotRLTraining]] - 它代表 GPU 加速的环境套件 / 学习 recipe 路线。
+- [[SimulationRealityGap]] - 仿真到现实迁移主张需要具体任务/硬件证据；README 本身只支持框架 capability 边界。
 
 ## 开放问题
 
-- README 是 repository snapshot，不等价于 technical report；若要写 benchmark-level claims，应 ingest MuJoCo Playground paper / technical report。
-- JAX precision/reproducibility issue 提示 benchmark comparisons 需要记录 accelerator architecture 与 matmul precision settings。
+- README 是代码仓库快照，不等价于技术报告；若要写基准层级主张，应收录 MuJoCo Playground 论文 / 技术报告。
+- JAX 精度/可复现性 issue 提示基准比较需要记录 accelerator 架构与 matmul 精度场景。

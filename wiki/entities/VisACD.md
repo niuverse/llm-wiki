@@ -3,15 +3,15 @@ title: "VisACD"
 type: entity
 tags: [collision-detection, convex-decomposition, gpu, simulation-assets]
 sources: ["[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]"]
-last_updated: 2026-06-04
+last_updated: 2026-07-13
 ---
 
 # VisACD
 
-VisACD 是 Visibility-Based GPU-Accelerated Approximate Convex Decomposition，一种 2026 short paper 中提出的 ACD method。它用 visibility metric 和 GPU evaluation of candidate cutting planes 来生成 rotation-equivariant、intersection-free convex decomposition，目标是在保持 low concavity 的同时减少 parts 和 preprocessing time。
+VisACD 是一种基于可见性、由 GPU 加速的近似凸分解方法，来自 2026 年的一篇短论文。它用可见性指标在 GPU 上评估候选切分平面，生成旋转等变且无相交的凸分解，目标是在保持低凹度的同时减少部件数量和预处理时间。
 
-[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD paper]] 在 V-HACD、PartNet-Mobility 和 Objaverse datasets 上比较 VisACD、[[CoACD]]、[[VHACD]] 等方法。Source 报告 VisACD 在多个 settings 中用更少 parts 达到相近或更低 concavity，并且 PartNet-Mobility average runtime 低于 CoACD。它也明确列出 limitations：greedy algorithm 可能 suboptimal、topology-sensitive、optimal performance 需要 remeshing，未来可结合 MCTS。
+[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD 论文]] 在 V-HACD、PartNet-机动性和 Objaverse 数据集上比较 VisACD、[[CoACD]]、[[VHACD]] 等方法。来源报告 VisACD 在多个场景中用更少部件达到相近或更低凹度，并且 PartNet-机动性平均运行时低于 CoACD。它也明确列出局限：greedy 算法可能 suboptimal、拓扑-sensitive、optimal 性能需要重新网格化，未来可结合 MCTS。
 
-对 wiki 的意义是补充 [[ApproximateConvexDecomposition|ACD]] 的未来趋势：collider preprocessing 正在从 CPU-heavy manual tuning 走向 GPU-accelerated、orientation-robust 和 large-asset scalable pipeline。
+对知识库的意义是补充 [[ApproximateConvexDecomposition|ACD]] 的未来趋势：碰撞体预处理正在从 CPU-密集型 manual 调优走向 GPU 加速的、姿态-robust 和大规模资产可扩展的流程。
 
 相关页面：[[ApproximateConvexDecomposition]]、[[CollisionGeometryForRobotSimulation]]、[[CoACD]]、[[VHACD]]。

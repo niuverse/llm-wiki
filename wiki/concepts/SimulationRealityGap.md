@@ -1,100 +1,100 @@
 ---
-title: "Simulation Reality Gap（仿真现实差距）"
+title: "仿真—现实差距"
 type: concept
 tags: [robotics, simulation, sim-to-real, reinforcement-learning, world-models]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
-last_updated: 2026-07-11
+last_updated: 2026-07-13
 ---
 
-# Simulation Reality Gap（仿真现实差距）
+# 仿真—现实差距
 
-Simulation reality gap 是 simulated behavior 与 real robot behavior 之间的 mismatch。[[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]] 提供了一个 low-level contact-modeling lens：这个 gap 不只来自 randomized masses、frictions、delays 或 sensors，也来自 physics engine 的 contact law 与 solver。
+仿真现实差距是仿真的行为与真实机器人行为之间的不匹配。[[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]] 提供了一个低层接触建模视角：这个差距不只来自随机化的 masses、frictions、delays 或传感器，也来自物理引擎的接触定律与求解器。
 
-用 transition model 看，simulator 实际提供的是：
+用转移模型看，仿真器实际提供的是：
 
 ```text
 x_{t+1}^{sim} = T_body(x_t, u_t, lambda_hat_m)
 lambda_hat_m = S_m(contact law, solver, geometry, velocity)
 ```
 
-real robot 则由真实接触产生 `lambda_real`。当 `lambda_hat_m` 因 LCP/CCP relaxation、RaiSim-style heuristics、PGS residual、artificial compliance 或 failed convergence 偏离 `lambda_real`，差异会进入下一步 state，再进入 controller 或 policy 的训练分布。
+真实机器人则由真实接触产生 `lambda_real`。当 `lambda_hat_m` 因 LCP/CCP 松弛、RaiSim-风格启发式规则、PGS 残差、人为柔顺性或失败的收敛偏离 `lambda_real`，差异会进入下一步状态，再进入控制器或策略的训练分布。
 
 ```mermaid
 flowchart LR
-  A["contact law choice<br/>NCP / LCP / CCP / RaiSim-style"] --> C["computed forces / impulses"]
-  B["solver choice<br/>PGS / bisection / ADMM / staggered projections"] --> C
-  C --> D["state transition<br/>support, slip, impact, dissipation"]
-  D --> E["MPC prediction horizon<br/>or RL rollout distribution"]
-  E --> F["chosen controls / learned policy"]
-  F --> G["hardware execution"]
-  D -.-> H["simulation reality gap<br/>mismatch vs real contacts"]
+  A["接触定律选择<br/>NCP / LCP / CCP / RaiSim-风格"] --> C["计算得到的力 / 冲量"]
+  B["求解器选择<br/>PGS / 二分法 / ADMM / 交错投影"] --> C
+  C --> D["状态转移<br/>支撑, 滑移, 冲击, 耗散"]
+  D --> E["MPC 预测时域<br/>或 RL 轨迹采样分布"]
+  E --> F["选定的控制量 / 学得的策略"]
+  F --> G["硬件执行"]
+  D -.-> H["仿真—现实差距<br/>不匹配与真实接触"]
   G --> H
 ```
 
-论文显示 contact artifacts 具有 task-dependent 特征。Flat、high-friction 的 quadruped MPC 可能在不同 simulators 中追踪出相似的 base velocities；但 bumpy 与 slippery terrain 会暴露 NCP、CCP 和 RaiSim-like behavior 之间的显著差异。这意味着 simulator 在 easy validation tests 下看起来可接受，却仍可能在更困难的 contact regimes 中误导 controller。
+论文显示接触产物具有任务-依赖的特征。平坦、高摩擦的四足机器人 MPC 可能在不同仿真器中追踪出相似的基座速度；但颠簸与湿滑地形会暴露 NCP、CCP 和 RaiSim-like 行为之间的显著差异。这意味着仿真器在简单验证测试下看起来可接受，却仍可能在更困难的接触 regimes 中误导控制器。
 
-对 MPC，这个 gap 表现为 horizon 内预测的 support、slip 和 dissipation 与 hardware 不一致：optimizer 可能选择在 simulated terrain 上稳定、但在真实接触条件下失效的 controls。对 RL，同样的问题会改变 rollout distribution：policy 在 simulation 中反复见到的是 solver/model 生成的 contact outcomes，而不是 hardware 上的 contact outcomes。
+对 MPC，这个差距表现为时域长度内预测的支撑、滑移和耗散与硬件不一致：optimizer 可能选择在仿真的地形上稳定、但在真实接触条件下失效的 controls。对 RL，同样的问题会改变轨迹采样分布：策略在仿真中反复见到的是求解器/模型生成的接触结果，而不是硬件上的接触结果。
 
-对 RL 和 MPC 来说，这提示 simulator choice 应该围绕 hardware 上预期出现的 contact regime 来审计：sliding、impacts、redundant contacts、rough terrain，以及 ill-conditioned mass/contact layouts。
+对 RL 和 MPC 来说，这提示仿真器选择应该围绕硬件上预期出现的接触工况来审计：滑动、冲击、冗余接触、崎岖地形，以及病态质量/接触布局。
 
-## Collider geometry lens
+## 碰撞体几何视角
 
-[[CollisionGeometryForRobotSimulation]] 把 reality gap 再往 contact pipeline 上游推进：即使 contact law 和 solver 不变，collider representation 也会改变 generated contacts。[[mujoco-computation-collision-detection|MuJoCo collision docs]] 明确说明 active contacts 由 geoms 产生，并进入 constraint construction；[[isaac-sim-core-api-collision-approximation|Isaac Sim Core API docs]] 列出 convex hull、convex decomposition、SDF、sphere fill、bounding sphere / cube 等 approximation modes，并警告更高 detail 会带来 performance impact。
+[[CollisionGeometryForRobotSimulation]] 把现实差距再往接触流程上游推进：即使接触定律和求解器不变，碰撞体表示也会改变生成的接触。[[mujoco-computation-collision-detection|MuJoCo 碰撞文档]] 明确说明有效接触点由 geoms 产生，并进入约束结构；[[isaac-sim-core-api-collision-approximation|Isaac Sim Core API docs]] 列出凸包、凸分解、SDF、球体 fill、包围球体 / cube 等近似模式，并警告更高细节会带来性能冲击。
 
-这类 gap 的典型形式是 visual-collider mismatch：单个 convex hull 或过粗 primitive 可能把 handle、slot、hole 填满，制造 false positive occupied space；过度简化也可能漏掉真实接触面，制造 late contact 或 penetration。[[coacd-approximate-convex-decomposition|CoACD paper]] 的 drawer-opening case 把这一点具体化：collision shapes 是否保留 handle holes 会改变 RL agent 是否能形成有效 interaction。
+这类差距的典型形式是视觉碰撞体不匹配：单个凸包或过粗基元可能把把手、槽、孔填满，制造 false 正占用的空间；过度简化也可能漏掉真实接触面，制造 late 接触或穿透。[[coacd-approximate-convex-decomposition|CoACD 论文]] 的抽屉-opening 情形把这一点具体化：碰撞形状是否保留把手孔会改变 RL 智能体是否能形成有效交互。
 
-## Infrastructure lens
+## 基础设施视角
 
-[[robotics-simulation-infrastructure|Robotics Simulation Infrastructure]] 把 reality gap 的上游再提前一层：在 physics/rendering mismatch 进入 policy 之前，framework 已经通过 task APIs、asset management、renderer、visualizer 和 ML integration 决定了什么 variation 容易表达、什么 diagnostics 容易观察、什么 resource budget 留给 training。换言之，sim-to-real gap 不只是 engine parameters 的问题，也可能来自 infrastructure surface。
+[[robotics-simulation-infrastructure|机器人学仿真基础设施]] 把现实差距的上游再提前一层：在物理/渲染不匹配进入策略之前，框架已经通过任务 APIs、资产 management、渲染器、可视化工具和 ML 集成决定了什么变化容易表达、什么诊断信息容易观察、什么资源预算留给训练。换言之，仿真到现实迁移差距不只是引擎参数的问题，也可能来自基础设施表面。
 
-这个 lens 支持一个 practical distinction：config-driven APIs 与 direct Python APIs 选择的是不同的 structure/hackability trade-off；batched rendering 的 memory/fidelity choice 会和 PPO/SAC 等 RL training 的 batch sizes、replay buffers 和 networks 争 GPU memory；visualizer 如果只显示 physics state 而不显示 reward curves、policy behavior 或 past states，就可能让 evaluation failure 难以定位。source 是 engineering blog，不是 quantitative benchmark，因此这些判断应作为 audit checklist，而不是 framework ranking。
+这个视角支持一个实用区分：配置驱动 API 与直接使用 Python 的 API，代表不同的结构性与可修改性取舍；批量渲染的内存/保真度选择，会和 PPO/SAC 等强化学习训练的批次、经验回放缓冲区和神经网络争用 GPU 内存；可视化工具如果只显示物理状态，而不显示奖励曲线、策略行为或历史状态，就可能让评估失败难以定位。来源是工程博客而非定量基准，因此这些判断应作为审计清单，而不是框架排名。
 
-[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] 增加了 training-runtime lens：sim-to-real evidence 的上游还包括 backend contract、domain-randomization lifecycle、sim2sim validation 和 training critical path。它不声称 heterogeneous runtime 会自动减少 physical reality gap；相反，它提示 training distribution 是由 simulator backend semantics、randomization payloads、collector/learner schedule 和 replay boundary 共同生成的。若两个 backends 支持的 randomization fields 或 reward/task defaults 不同，cross-backend training speed 和 cross-backend policy transfer 都需要分开解释。
+[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] 增加了训练运行时视角：仿真到现实迁移证据的上游还包括后端契约、域随机化生命周期、sim2sim 验证和训练关键路径。它不声称异构运行时会自动减少物理现实差距；相反，它提示训练分布是由仿真器后端语义、随机化载荷、采集器/学习器 schedule 和重放边界共同生成的。若两个后端支持的随机化字段或奖励/任务默认值不同，跨后端训练速度和跨后端策略迁移都需要分开解释。
 
-## Visual sim-to-real lens
+## 视觉仿真到现实迁移视角
 
-[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]] 把 reality gap 放进 RGB-based humanoid loco-manipulation setting：policy 在 simulation 中通过 privileged teacher 和 visual student distillation 获得 behavior，再 zero-shot 部署到 Unitree G1。这里的 gap 不只来自 rigid-body physics，也来自 visual appearance、camera geometry、sensor delay、dexterous hand dynamics 和 long-horizon policy distribution。
+[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]] 把现实差距放进 RGB-基于人形机器人移动操作场景：策略在仿真中通过特权教师策略和视觉学生策略 distillation 获得行为，再零样本部署到 Unitree G1。这里的差距不只来自刚体物理，也来自视觉外观、相机几何、传感器延迟、灵巧手部动力学和长时域策略分布。
 
-这个 source 支持一个更细的 transfer decomposition：visual domain randomization 扩大 lighting、materials、camera parameters、image quality 和 delay 的 coverage；finger SysID 与 FOV alignment 则减少已知 hardware mismatch。换言之，randomization 处理 unknown variation，alignment 处理 known bias。页面的 failure cases 也提醒：即使有 randomization 和 alignment，unreliable deployment、hand stuck、accidental drop 与 OOD object failures 仍可能暴露未覆盖的 mechanics 或 perception states。
+这个来源支持一个更细的迁移分解：视觉域随机化扩大光照、材质、相机参数、图像质量和延迟的覆盖范围；手指 SysID 与 FOV 对齐则减少已知硬件不匹配。换言之，随机化处理未知变化，对齐处理已知偏差。页面的失败案例也提醒：即使有随机化和对齐，unreliable 部署、手部 stuck、accidental drop 与 OOD 物体失败仍可能暴露未覆盖的 mechanics 或感知状态。
 
-[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 增加了 generated-data lens。它通过先指定 3D assets、camera、metric scale、environment depth 和 robot-proportioned morphology，减少从 video 到 4D HOI trajectory 的 reconstruction gap；但它没有让 sim-to-real gap 消失，而是把一部分风险转移到 VFM prompt following、object appearance consistency、failure filtering、retargeting quality 和 task-family tracker coverage 上。换言之，known geometry 可以降低 ambiguity，不能替代真实 hardware contact、camera 和 hand dynamics validation。
+[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 增加了生成的数据视角。它通过先指定 3D 资产、相机、公制尺度、环境深度和机器人-proportioned 形态，减少从视频到 4D HOI 轨迹的重建差距；但它没有让仿真到现实迁移差距消失，而是把一部分风险转移到 VFM 提示 following、物体外观一致性、失败过滤、重定向质量和任务族跟踪器覆盖范围上。换言之，已知几何可以降低歧义，不能替代真实硬件接触、相机和手部动力学验证。
 
-## Generated environment lens
+## 生成环境视角
 
-[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 把 reality gap 的审计点提前到 world generation：metric scale、mesh repair、collision decomposition、mass/friction/inertia recovery、joint semantics、affordance segmentation/grasping、scene support/reachability 和 simulator interface 都可能在 policy training 前引入 mismatch。论文汇总 companion studies 时报告，随着 generated environment 数量从 $N=1$ 增加到 $N=50$，sim success 从 9.7% 升到 79.8%、real success 从 21.7% 升到 75.0%、OOD success 从 53.2% 升到 77.9%；这些数字支持 environment diversity 可能改善 policy robustness，但不是 V2 自身独立控制实验，因此不能脱离 companion-study setup 解释为普遍 scaling law。
+[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 把现实差距的审计点提前到世界生成：公制尺度、网格修复、碰撞分解、质量/摩擦/惯量恢复、关节语义、可供性分割/抓取、场景支撑/可达性和仿真器接口都可能在策略训练前引入不匹配。论文汇总配套研究时报告，随着生成的环境数量从 $N=1$ 增加到 $N=50$，sim 成功从 9.7% 升到 79.8%、真实成功从 21.7% 升到 75.0%、OOD 成功从 53.2% 升到 77.9%；这些数字支持环境 diversity 可能改善策略鲁棒性，但不是 V2 自身独立控制实验，因此不能脱离配套研究设置解释为普遍规模扩展定律。
 
-这个 source 还明确保留两个重要边界：cross-format export 不等于不同 simulators 中 dynamics 完全一致；VLM 恢复的 mass、friction 和 inertia estimates 也不等于 system identification。Simulation-ready 是一个可执行 contract，不是 physical truth certificate。
+这个来源还明确保留两个重要边界：跨格式导出不等于不同仿真器中动力学完全一致；VLM 恢复的质量、摩擦和惯量估计也不等于系统辨识。仿真就绪是一个可执行契约，不是物理真值 certificate。
 
-## Learned world model lens
+## 学习型世界模型视角
 
-[[a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]] 给 simulation reality gap 增加了 learned-simulator lens。[[WorldModelsForEmbodiedAI|World models]] 用 latent dynamics、tokens、spatial grids 或 renderable primitives rollout future states；这些 rollouts 可能帮助 policy optimization、MPC 和 counterfactual reasoning，但也可能把 dataset bias、temporal drift、weak physical consistency 或 pixel-level artifacts 转换成新的 model-reality mismatch。
+[[a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]] 给仿真—现实差距增加了学得的仿真器视角。[[WorldModelsForEmbodiedAI|世界模型]] 用潜在动力学、标记、空间 grids 或 renderable 基元轨迹采样未来状态；这些轨迹采样可能帮助策略优化、MPC 和反事实推理，但也可能把数据集偏差、时间漂移、弱物理一致性或像素层级产物转换成新的模型现实不匹配。
 
-这个 source 支持一个更一般的判断：sim-to-real gap 不只是 physics engine 参数错了，也可能是 learned dynamics 的 objective 错了。若 [[WorldModelEvaluation|evaluation]] 主要依赖 FID/FVD 这类 pixel fidelity metrics，而没有检查 state-level dynamics、causality、collision、task success 或 real-time closed-loop behavior，model 可能生成视觉上 plausible 但控制上 misleading 的 futures。
+这个来源支持一个更一般的判断：仿真到现实迁移差距不只是物理引擎参数错了，也可能是学得的动力学目标错了。若 [[WorldModelEvaluation|评估]] 主要依赖 FID/FVD 这类像素保真度指标，而没有检查状态层级动力学、因果性、碰撞、任务成功或实时闭环行为，模型可能生成视觉上看似合理、但会误导控制决策的未来状态。
 
-## Prompt-conditioned policy lens
+## 提示条件化策略视角
 
-[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 增加了第三种 gap：policy 不是只受 physics simulator 或 learned dynamics 影响，也受 prompt/context 所选择的 behavior mode 影响。[[RobotContextConditioning|context conditioning]] 可以让 model 从 mixed-quality data 中选择 high-quality/no-mistake/fast mode；但如果 metadata label、subgoal image 或 subtask instruction 与真实 scene state 不匹配，policy 可能执行的是 dataset 中被 prompt 出来的 idealized mode，而不是当前硬件可恢复的 behavior。
+[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 增加了第三种差距：策略不是只受物理仿真器或学得的动力学影响，也受提示/上下文所选择的行为模式影响。[[RobotContextConditioning|上下文条件化]] 可以让模型从混合质量数据中选择高质量/无错误/快速模式；但如果元数据标签、子目标图像或子任务指令与真实场景状态不匹配，策略可能执行的是数据集中被提示出来的 idealized 模式，而不是当前硬件可恢复的行为。
 
-这类 gap 不一定表现为 state prediction error，而可能表现为 decision distribution error：同一 observation 下，prompt 改变了 action distribution。对 deployment 来说，这要求同时验证 physical consistency、world-model subgoal quality 和 prompt-conditioned closed-loop success。
+这类差距不一定表现为状态预测错误，而可能表现为决策分布错误：同一观测下，提示改变了动作分布。对部署来说，这要求同时验证物理一致性、世界模型子目标质量和提示条件化的闭环成功。
 
-## Workflow and deployment-contract lens
+## 工作流与部署契约视角
 
-[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] 给 simulation reality gap 增加了 workflow lens：真实部署失败不一定来自 simulator physics 本身，也可能来自 environment verification、evaluation protocol 或 policy export contract。Source 中列出的 workflow gap 包括 reversed joint axes、incorrect reward terms、只用 stochastic rollout 导致 hardware-critical behavior 被平均掉，以及 deployment 时 joint order、observation history buffer、action scaling 不一致。
+[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] 给仿真—现实差距增加了工作流视角：真实部署失败不一定来自仿真器物理本身，也可能来自环境验证、评估规程或策略导出契约。来源中列出的工作流差距包括反向的关节轴、incorrect 奖励项、只用随机轨迹采样导致硬件关键行为被平均掉，以及部署时关节顺序、观测历史缓冲区、动作缩放不一致。
 
-用 contract 形式看，训练时 policy 看到的是：
+用契约形式看，训练时策略看到的是：
 
 ```text
 a_t = pi_phi(assemble_train(o_{t-k:t}; joint_order, history, scaling))
 ```
 
-部署时若 descriptor 不一致，实际执行变成：
+部署时若描述文件不一致，实际执行变成：
 
 ```text
 a_t = pi_phi(assemble_deploy(o_{t-k:t}; joint_order', history', scaling'))
 ```
 
-即使 $T^{sim}$ 与 $T^{real}$ 很接近，$\text{assemble}_{train}\neq\text{assemble}_{deploy}$ 也会制造 decision-distribution gap。AGILE 用 TorchScript policy + YAML I/O descriptors 记录 joint names、observation ordering、history buffers 和 action scaling，并用 MuJoCo sim-to-sim validation 在 hardware 前复用同一 inference contract。
+即使 $T^{sim}$ 与 $T^{real}$ 很接近，$\text{assemble}_{train}\neq\text{assemble}_{deploy}$ 也会制造决策分布差距。AGILE 用 TorchScript 策略 + YAML I/O 描述文件记录关节名称、观测顺序、历史缓冲区和动作缩放，并用 MuJoCo 跨仿真器验证在硬件前复用同一推理契约。
 
-AGILE 还说明 evaluation gap 是 reality gap 的前置条件：只看 aggregate reward 或 stochastic rollout average，可能错过 RMS acceleration、jerk、joint-limit violations 和 high-frequency energy ratio 等 actuator-relevant signals。Deterministic scenario tests（velocity sweep、height ramp）提供低方差 regression tests；stochastic rollouts 则估计随机 command distribution 下的 robustness。两者缺一时，sim-to-real risk 都可能被误估。
+AGILE 还说明评估差距是现实差距的前置条件：只看汇总奖励或随机轨迹采样均值，可能错过 RMS 加速度、加加速度、关节限制违反和高频能量比率等执行器相关的 signals。确定性场景测试（速度扫描、高度渐变测试）提供低方差回归测试；随机轨迹采样则估计随机指令分布下的鲁棒性。两者缺一时，仿真到现实迁移风险都可能被误估。
 
 相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[RoboticsSimulationInfrastructure]]、[[SimulationReady3DWorldGeneration]]、[[EmbodiedGen]]、[[HeterogeneousRobotRLTraining]]、[[VisualSimToReal]]、[[AssetConditionedHOIGeneration]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[HumanoidRLWorkflow]]、[[AGILE]]、[[GRAIL]]、[[UniLab]]、[[MuJoCo]]、[[RaiSim]]。

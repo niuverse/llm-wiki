@@ -3,7 +3,7 @@ title: "AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning"
 type: source
 tags: [robotics, humanoid-rl, sim-to-real, reinforcement-learning, evaluation]
 sources: []
-last_updated: 2026-04-28
+last_updated: 2026-07-13
 source_file: raw/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2603.20147
@@ -14,33 +14,33 @@ code_url: https://github.com/nvidia-isaac/WBC-AGILE
 
 ## 摘要
 
-Huihua Zhao、Rafael Cathomen、Lionel Gulich、Wei Liu、Efe Arda Ongan、Michael Lin、Shalin Jain、Soha Pouya 和 Yan Chang 提出 [[AGILE]]，一个基于 Isaac Lab 与 RSL-RL 的 end-to-end humanoid RL workflow，用来把 environment verification、reproducible training、unified evaluation 和 descriptor-driven deployment 接成同一个 development lifecycle。论文的核心判断是：许多 humanoid RL deployment failure 并不主要来自 simulation throughput 或单个 RL algorithm 不够新，而来自 workflow gap 与 transfer gap，例如 joint axis 错误、reward term 错误、evaluation 只看 stochastic rollout、policy export 时 joint order/history/action scaling 不一致。
+Huihua Zhao、Rafael Cathomen、Lionel Gulich、Wei Liu、Efe Arda Ongan、Michael Lin、Shalin Jain、Soha Pouya 和 Yan Chang 提出 [[AGILE]]，一个基于 Isaac Lab 与 RSL-RL 的端到端人形机器人 RL 工作流，用来把环境验证、可复现的训练、统一的评估和描述文件驱动的部署接成同一个 development 生命周期。论文的核心判断是：许多人形机器人 RL 部署失败并不主要来自仿真吞吐量或单个 RL 算法不够新，而来自工作流差距与迁移差距，例如关节轴错误、奖励 term 错误、评估只看随机轨迹采样、策略导出时关节顺序/历史/动作扩展不一致。
 
-AGILE 不是一个单一 policy model，而是一套 [[HumanoidRLWorkflow|humanoid RL workflow]]：训练前用 GUI 验证 joint、contact 和 reward；训练时记录 git snapshot、YAML config、W&B/Docker runs，并集成 L2C2、online reward normalization、value-bootstrapped terminations、virtual harness、symmetry augmentation 等 stabilization modules；评估时同时跑 deterministic scenario tests 和 stochastic rollouts，并报告 RMS acceleration、jerk、joint-limit violations 等 deployment-critical metrics；部署时导出 TorchScript policy 与 YAML I/O descriptor，让 MuJoCo sim-to-sim validation 和 hardware inference 复用同一 I/O contract。
+AGILE 不是一个单一策略模型，而是一套 [[HumanoidRLWorkflow|人形机器人强化学习工作流]]：训练前用 GUI 验证关节、接触和奖励；训练时记录 git 快照、YAML 配置、W&B/Docker runs，并集成 L2C2、在线奖励归一化、价值-bootstrapped terminations、虚拟的 harness、symmetry 扩充等稳定化模块；评估时同时跑确定性场景测试和随机轨迹采样，并报告 RMS 加速度、加加速度、关节限制 violations 等部署关键指标；部署时导出 TorchScript 策略与 YAML I/O 描述文件，让 MuJoCo 跨仿真器验证和硬件推理复用同一 I/O 契约。
 
-Source URL: https://arxiv.org/abs/2603.20147
+来源网址: https://arxiv.org/abs/2603.20147
 
-Code: https://github.com/nvidia-isaac/WBC-AGILE
+代码: https://github.com/nvidia-isaac/WBC-AGILE
 
 ## 核心主张
 
-- AGILE 把 humanoid RL 的问题从“写一个 training script”重构为 lifecycle engineering：Prepare、Train、Evaluate、Deploy 四个阶段必须共享 configuration、metrics 和 deployment contract。
-- Prepare stage 提供 Joint Position GUI、Object Manipulation GUI 和 Reward Visualizer，用于在训练前发现 robot model 与 MDP misconfiguration，例如 reversed joint axes、collision geometry 问题、reward term 不按预期激活。
-- Training stage 强调 reproducibility：每次 run 记录 git commit、branch、uncommitted diffs 和 YAML configuration dumps；scaled-dict parameters 把 leg PD gains 等 structured parameter groups 缩成一个 scale sweep，保持相对结构。
-- Algorithmic toolbox 不是提出全新 RL objective，而是把常用 sim-to-real stabilization techniques 变成可开关模块：L2C2 regularization、online reward normalization、value-bootstrapped terminations、virtual harness、upper-body velocity profiles、symmetry augmentation、adaptive command sampling、state caching 和 teacher-student distillation。
-- L2C2 用 consecutive observations 的 interpolation 约束 policy/value 的 local Lipschitz continuity，目标是减少 observation perturbation 下的 action jump；ablation 中它降低 RMS acceleration、RMS jerk、position limit violations 和 high-frequency energy ratio。
-- Online reward normalization 用 running reward standard deviation、discounted-return variance factor 和 return-scale correction 让 reward magnitude/curriculum scale changes 对训练更不敏感；stand-up task 特别依赖它处理 fine-grained postural rewards 与 sparse standing bonus 的尺度差异。
-- Value-bootstrapped terminations 用 $\gamma V(x_T)$ 让 termination value-neutral，再用 fixed offset $\sigma$ 区分 bad/good/neutral termination；source 报告在 Booster T1 stand-up 上比 manually tuned termination penalty 有更高 timeout ratio 和更低 seed variance。
-- Virtual harness 对 root body 施加衰减的 PD force/torque，使 early training 不会在 policy 学到站立/行走前立即 collapse；source 报告在 Unitree G1 height-controlled locomotion 上加速摆脱 negative-reward phase 并提高最终 reward。
-- Evaluation stage 把 stochastic rollouts 和 deterministic scenario-driven tests 结合起来。Deterministic velocity sweeps、height ramps 等 scripted commands 给 low-variance regression test；randomized rollouts 检验 command distribution robustness。
-- Evaluation metrics 面向 hardware risk，而不只看 reward 或 tracking average：source 特别强调 RMS joint acceleration、RMS jerk、joint-limit violations 和 high-frequency energy ratio。论文报告 consistent joint limit violations 会可靠地阻止 sim-to-sim transfer，因此可以作为 fine-tuning feedback。
-- Deployment stage 通过 TorchScript policy + YAML I/O descriptors 记录 joint names、observation ordering、history buffers 和 action scaling，减少 policy export 到 MuJoCo 或 hardware 时的 silent bugs。
-- Case studies 覆盖五类 humanoid skills：Unitree G1 / Booster T1 velocity tracking、Unitree G1 height-controlled locomotion、Unitree G1 / Booster T1 stand-up、Unitree G1 motion imitation，以及 Unitree G1 pick-and-place loco-manipulation/VLA fine-tuning。
-- Height-controlled locomotion case study 使用 separated body control：lower-body RL policy 只控制 leg joints，同时训练中用 trapezoidal velocity profile 随机化 waist/upper-body joints，从而给 deployment 时的 IK 或 VLA upper-body controller 预留自由度。
-- Loco-manipulation case study 冻结 lower-body locomotion policy，训练一个 right-arm/waist RL expert 用 privileged simulation state 生成 100 条 successful trajectories，再 fine-tune GR00T N1.5 VLA；source 报告 closed-loop simulation 中 100 个随机初始状态 test cases 达到 90% success。
-- Sim-to-real evidence 主要是 hardware demonstrations 与 MuJoCo quantitative tracking metrics：论文说明没有 external motion-capture system，因此 real-world transfer 主要是 qualitative validation，quantitative metrics 来自 MuJoCo pipeline。
-- Source-supported failure modes 包括 actuator modeling gap、contact dynamics gap、overly aggressive policies、high-frequency oscillation、joint-limit violations、descriptor/I/O mismatch，以及只用 stochastic rollout 时看不见的 hardware-critical behavior。
-- Limitations：验证平台只有 Unitree G1 和 Booster T1；框架依赖 Isaac Lab upstream APIs；任务主要是 proprioceptive，perception-driven manipulation 和 running/stair climbing 等更动态行为尚未覆盖。
+- AGILE 把人形机器人 RL 的问题从“写一个训练脚本”重构为生命周期工程：Prepare、Train、Evaluate、Deploy 四个阶段必须共享配置、指标和部署契约。
+- Prepare 阶段提供关节位置 GUI、物体操作 GUI 和奖励可视化工具，用于在训练前发现机器人模型与 MDP 配置错误，例如反向的关节轴、碰撞几何问题、奖励 term 不按预期激活。
+- 训练阶段强调可复现性：每次 run 记录 git 提交、分支、uncommitted diffs 和 YAML 配置 dumps；scaled-dict 参数把 leg PD 增益等结构化的参数组缩成一个规模扫描，保持相对结构。
+- 算法层面的 toolbox 不是提出全新 RL 目标，而是把常用仿真到现实迁移稳定化 techniques 变成可开关模块：L2C2 regularization、在线奖励归一化、价值-bootstrapped terminations、虚拟的 harness、上限机体速度 profiles、symmetry 扩充、自适应命令采样、状态 caching 和教师—学生 distillation。
+- L2C2 用连续的观测的 interpolation 约束策略/价值的局部 Lipschitz continuity，目标是减少观测 perturbation 下的动作 jump；消融中它降低 RMS 加速度、RMS 加加速度、位置限制 violations 和高频能量比率。
+- 在线奖励归一化用 running 奖励 standard deviation、discounted-return variance 因素和 return-规模校正让奖励幅值/curriculum 规模 changes 对训练更不敏感；stand-up 任务特别依赖它处理精细-grained postural 奖励与 sparse standing bonus 的尺度差异。
+- 价值-bootstrapped terminations 用 $\gamma V(x_T)$ 让终止价值中性，再用固定偏移 $\sigma$ 区分 bad/良好的/中性终止；来源报告在 Booster T1 stand-up 上比 manually tuned 终止惩罚项有更高 timeout 比率和更低随机种子 variance。
+- 虚拟的 harness 对根部机体施加衰减的 PD 力/力矩，使早期训练不会在策略学到站立/行走前立即 collapse；来源报告在 Unitree G1 height-受控的移动上加速摆脱 negative-奖励 phase 并提高最终奖励。
+- 评估阶段把随机轨迹采样和确定性场景驱动的测试结合起来。确定性速度扫描、height 渐变测试等 scripted 命令给低-variance 回归测试；randomized 轨迹采样检验命令分布鲁棒性。
+- 评估指标面向硬件风险，而不只看奖励或跟踪平均：来源特别强调 RMS 关节加速度、RMS 加加速度、关节限制 violations 和高频能量比率。论文报告一致的关节限制 violations 会可靠地阻止跨仿真器验证迁移，因此可以作为微调 feedback。
+- 部署阶段通过 TorchScript 策略 + YAML I/O descriptors 记录关节名称、观测顺序、历史缓冲区和动作扩展，减少策略导出到 MuJoCo 或硬件时的静默错误。
+- 情形研究覆盖五类人形机器人技能：Unitree G1 / Booster T1 速度跟踪、Unitree G1 height-受控的移动、Unitree G1 / Booster T1 stand-up、Unitree G1 运动模仿，以及 Unitree G1 pick-与-place 移动操作/VLA 微调。
+- Height-受控的移动情形研究使用分离机体控制：较低-机体 RL 策略只控制 leg 关节，同时训练中用 trapezoidal 速度分析随机化 waist/上限机体关节，从而给部署时的 IK 或 VLA 上限机体控制器预留自由度。
+- 移动操作情形研究冻结较低-机体移动策略，训练一个 right-机械臂/waist RL 专家用特权仿真状态生成 100 条 successful 轨迹，再微调 GR00T N1.5 VLA；来源报告闭环仿真中 100 个随机初始状态测试情形达到 90% 成功。
+- 仿真到现实迁移证据主要是硬件示范数据与 MuJoCo 定量跟踪指标：论文说明没有外部运动-捕捉系统，因此现实世界迁移主要是定性验证，定量指标来自 MuJoCo 流程。
+- 来源支持的失效情形包括执行器建模差距、接触动力学差距、过度 aggressive 策略、高频振荡、关节限制 violations、描述文件/I/O 不匹配，以及只用随机轨迹采样时看不见的硬件关键行为。
+- 局限：验证平台只有 Unitree G1 和 Booster T1；框架依赖 Isaac Lab upstream APIs；任务主要是 proprioceptive，感知驱动的操作和 running/stair climbing 等更动态行为尚未覆盖。
 
 ## 关键引文
 
@@ -50,18 +50,18 @@ Code: https://github.com/nvidia-isaac/WBC-AGILE
 
 ## 关联
 
-- [[AGILE]] - 本 source 的 workflow/entity 页面。
-- [[HumanoidRLWorkflow]] - 机制页：把 verification、training、evaluation、descriptor export 和 sim-to-real deployment 写成 lifecycle。
-- [[SimulationRealityGap]] - AGILE 把 reality gap 具体化为 actuator modeling、contact dynamics、aggressive policy 和 export contract mismatch。
-- [[TaskGeneralistPolicyEvaluation]] - AGILE 的 deterministic scenario tests 与 motion-quality diagnostics 是 policy evaluation 的 complementary lens。
-- [[VisionLanguageActionModels]] - AGILE 的 loco-manipulation case 用 RL expert demonstrations fine-tune GR00T N1.5 VLA。
-- [[NVIDIA]] - source code 发布在 `nvidia-isaac/WBC-AGILE`，并构建在 Isaac Lab stack 上。
-- [[MuJoCo]] - AGILE 用 MuJoCo 做 descriptor-driven sim-to-sim validation。
+- [[AGILE]] - 本来源的工作流/实体页面。
+- [[HumanoidRLWorkflow]] - 机制页：把验证、训练、评估、描述文件导出和仿真到现实迁移部署写成生命周期。
+- [[SimulationRealityGap]] - AGILE 把现实差距具体化为执行器建模、接触动力学、aggressive 策略和导出契约不匹配。
+- [[TaskGeneralistPolicyEvaluation]] - AGILE 的确定性场景测试与运动质量诊断信息是策略评估的 complementary 视角。
+- [[VisionLanguageActionModels]] - AGILE 的移动操作情形用 RL 专家示范数据微调 GR00T N1.5 VLA。
+- [[NVIDIA]] - 来源代码发布在 `nvidia-isaac/WBC-AGILE`，并构建在 Isaac Lab 技术栈上。
+- [[MuJoCo]] - AGILE 用 MuJoCo 做描述文件驱动的跨仿真器验证。
 
 ## 开放问题
 
-- AGILE 的 quantitative hardware validation 仍有限。没有 motion-capture metrics 时，hardware demo 能证明 stable execution，但不能精确量化 tracking error、energy、contact force 或 failure probability。
-- Loco-manipulation/VLA result 主要是 closed-loop simulation 的 90% success；它是否能稳定转到真实 humanoid manipulation，还需要后续 source 或 hardware benchmark。
-- Descriptor-driven export 可以减少 joint order、history buffer 和 action scaling bugs，但不能自动解决 actuator dynamics、latency、sensor noise 和 contact modeling mismatch。
-- AGILE 目前强依赖 Isaac Lab manager architecture；如果上游 API 或 simulator assumptions 变化，workflow 的 portability 和 long-term reproducibility 需要持续验证。
-- 这些 stabilization modules 被 source 逐项 ablate，但仍是 task-dependent toolbox；source 自身也强调没有 single technique 能 universally work across all tasks and robots。
+- AGILE 的定量硬件验证仍有限。没有运动-捕捉指标时，硬件 demo 能证明稳定的执行，但不能精确量化跟踪错误、能量、接触力或失败 probability。
+- 移动操作/VLA 结果主要是闭环仿真的 90% 成功；它是否能稳定转到真实人形机器人操作，还需要后续来源或硬件基准。
+- 描述文件驱动的导出可以减少关节顺序、历史缓冲区和动作扩展错误，但不能自动解决执行器动力学、延迟、传感器噪声和接触建模不匹配。
+- AGILE 目前强依赖 Isaac Lab 管理器架构；如果上游 API 或仿真器假设变化，工作流的 portability 和 long-term 可复现性需要持续验证。
+- 这些稳定化模块被来源逐项 ablate，但仍是任务-依赖的 toolbox；来源自身也强调没有单一 technique 能 universally 工作 across all 任务与机器人。

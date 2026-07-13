@@ -3,7 +3,7 @@ title: "Asset Structure - Isaac Sim Documentation"
 type: source
 tags: [isaac-sim, usd, asset-structure, robot-setup]
 sources: []
-last_updated: 2026-05-07
+last_updated: 2026-07-13
 source_file: raw/isaac-sim-6-asset-structure.html
 source_kind: html
 source_url: https://docs.isaacsim.omniverse.nvidia.com/6.0.0/robot_setup/asset_structure.html
@@ -15,20 +15,20 @@ source_date: 2026-03-18
 
 ## 摘要
 
-这是 [[NVIDIA]] Isaac Sim 6.0 documentation 中的 Robot Setup / Asset Structure 页面，说明 imported robot assets 如何按 USD components 分层组织，以便 review、reuse、simulation 和 multi-runtime tuning。页面本身标注为 Isaac Sim 6.0 Early Developer Release，且说明该版本文档 incomplete；因此本页应视为 Isaac Sim 6.0 EDR / USD Asset Structure 3.0 的官方设计意图，而不是 GA release 行为的最终保证。
+这是 [[NVIDIA]] Isaac Sim 6.0 文档中的机器人设置 / 资产结构页面，说明导入的机器人资产如何按 USD 组件分层组织，以便审查、reuse、仿真和多运行时调优。页面本身标注为 Isaac Sim 6.0 早期开发者发布，且说明该版本文档 incomplete；因此本页应视为 Isaac Sim 6.0 EDR / USD 资产结构 3.0 的官方设计意图，而不是 GA 发布行为的最终保证。
 
-核心思想是把一个 robot asset 拆成 source/geometry/material/instance/physics/robot/schema/control/ROS/end-effector 等职责明确的 USD layers，再用 sublayers、references、payloads 和 variants 组合成最终可加载 asset。这个结构服务两个目标：一是让原始 imported source 可以保持不变并可重新导入；二是让 [[MuJoCo]]、PhysX、USD / Newton 等 runtime-specific physics tuning 不互相污染。
+核心思想是把一个机器人资产拆成来源/几何/材质/实例/物理/机器人/结构规范/控制/ROS/末端执行器等职责明确的 USD 层，再用子层、参考资料、载荷和变体组合成最终可加载资产。这个结构服务两个目标：一是让原始导入的来源可以保持不变并可重新导入；二是让 [[MuJoCo]]、PhysX、USD / Newton 等运行时特定的物理调优不互相污染。
 
 ## 核心主张
 
-- Imported assets 被组织成多个 components，例如 geometries、materials、instances、physics 和 robot；这种拆分让 asset 更容易管理、复用和仿真。
-- Asset Source 阶段通常包括 `base.usda`、`geometries.usdc`、`instances.usda`、`materials.usda`、`physics.usd`、`mujoco.usda`、`physx.usda` 和 `robot.usda`。
-- `geometries.usdc` 应只放 mesh topology / vertex data；`materials.usda` 放 material prims 和 shader bindings；`instances.usda` 把 geometry、materials 和 colliders 组合成 visual / collision meshes。
-- `physics.usda` 或 `physics.usd` 表示 neutral USD / Newton physics layer；`mujoco.usda` 和 `physx.usda` 分别承载 engine-specific attributes 和 tuning。
-- Source assets 应保持 unchanged，便于 re-import；当 source hierarchy 不适合 simulation 时，Transformation 阶段会 flatten nested rigid bodies、整理 visuals/colliders，并把 meshes 做 instancing-friendly optimization。
-- Features 是叠加在 transformed asset 上的 lightweight layers，例如 physics setup、sensor configuration、control graphs、ROS integration 和 gripper stacks。
-- Adding/modifying feature 的 workflow 是：把 optimized asset 作为 temporary sub-layer 引入 feature stage，author feature 后保存前断开 sub-layer，再把 feature 作为 payload 加入 final asset；variants 可用于 runtime feature switching。
-- Robot Schema 被描述为与 simulation asset structure 解耦的 robot structure description，并且必须作为 sublayer 包含在 robot asset 中。
+- 导入的资产被组织成多个组件，例如 geometries、材质、instances、物理和机器人；这种拆分让资产更容易管理、复用和仿真。
+- 资产来源阶段通常包括 `base.usda`、`geometries.usdc`、`instances.usda`、`materials.usda`、`physics.usd`、`mujoco.usda`、`physx.usda` 和 `robot.usda`。
+- `geometries.usdc` 应只放网格拓扑 / 顶点数据；`materials.usda` 放材质图元和着色器 bindings；`instances.usda` 把几何、材质和碰撞体组合成视觉 / 碰撞网格。
+- `physics.usda` 或 `physics.usd` 表示中性 USD / Newton 物理层；`mujoco.usda` 和 `physx.usda` 分别承载引擎特定的属性和调优。
+- 来源资产应保持未改变，便于 re-导入；当来源层级不适合仿真时，Transformation 阶段会 flatten nested 刚体、整理 visuals/碰撞体，并把网格做实例化友好的优化。
+- 特征是叠加在转换后的资产上的轻量的层，例如物理设置、传感器配置、控制 graphs、ROS 集成和 gripper 技术栈。
+- Adding/modifying 特征的工作流是：把 optimized 资产作为 temporary sub-层引入特征阶段，作者特征后保存前断开 sub-层，再把特征作为载荷加入最终资产；变体可用于运行时特征 switching。
+- 机器人结构规范被描述为与仿真资产结构解耦的机器人结构描述，并且必须作为子层包含在机器人资产中。
 
 ## 关键引文
 
@@ -40,15 +40,15 @@ source_date: 2026-03-18
 
 ## 关联
 
-- [[IsaacSimAssetStructure]] - 把本 source 编译成 Asset Structure 3.0 的学习页和实践检查表。
-- [[IsaacSimLegacyAssetStructure]] - 与 Isaac Sim 4.5 legacy / pre-3.0 layout 对照，避免把旧 layout 误称为 2.0。
-- [[IsaacSim]] - 本 source 对 Isaac Sim 6.0 EDR robot asset organization 的描述。
-- [[NVIDIA]] - source publisher 与 Isaac Sim documentation owner。
-- [[MuJoCo]] - 本 source 将 MuJoCo-specific tuning 隔离到 `mujoco.usda` layer。
-- [[SimulationRealityGap]] - multi-runtime asset structure 能减少 authoring clash，但不能单独证明 physics runtime 与真实机器人一致。
+- [[IsaacSimAssetStructure]] - 把本来源编译成资产结构 3.0 的学习页和实践检查表。
+- [[IsaacSimLegacyAssetStructure]] - 与 Isaac Sim 4.5 旧版 / pre-3.0 布局对照，避免把旧布局误称为 2.0。
+- [[IsaacSim]] - 本来源对 Isaac Sim 6.0 EDR 机器人资产组织的描述。
+- [[NVIDIA]] - 来源 publisher 与 Isaac Sim 文档 owner。
+- [[MuJoCo]] - 本来源将 MuJoCo-特定的调优隔离到 `mujoco.usda` 层。
+- [[SimulationRealityGap]] - 多运行时资产结构能减少制作 clash，但不能单独证明物理运行时与真实机器人一致。
 
 ## 开放问题
 
-- Source 在不同段落中同时使用 `physics.usd` 与 `physics.usda`，以及 `asset.usd` 与 `interface.usda` 两种 final-entry naming；学习时应先抓住 layer role，再在具体 Isaac Sim build / importer output 中确认实际 file names。
-- 页面属于 Isaac Sim 6.0 Early Developer Release 文档；GA release 后需要复查 docs、importer output 和 Asset Transformer behavior 是否发生变化。
-- 本 source 给出 structure 和 workflow，但没有提供完整 validation checklist；后续可 ingest Robot Schema、Asset Transformer Rules Reference、Asset Validation 和 Instanceable Assets docs 来补齐。
+- 来源在不同段落中同时使用 `physics.usd` 与 `physics.usda`，以及 `asset.usd` 与 `interface.usda` 两种最终入口 naming；学习时应先抓住层角色，再在具体 Isaac Sim 构建 / 导入器输出中确认实际文件名称。
+- 页面属于 Isaac Sim 6.0 早期开发者发布文档；GA 发布后需要复查文档、导入器输出和资产 Transformer 行为是否发生变化。
+- 本来源给出结构和工作流，但没有提供完整验证 checklist；后续可收录机器人结构规范、资产 Transformer Rules 参考、资产验证和 Instanceable 资产文档来补齐。

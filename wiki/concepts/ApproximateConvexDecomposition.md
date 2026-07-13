@@ -1,84 +1,84 @@
 ---
-title: "Approximate Convex Decomposition"
+title: "近似凸分解"
 type: concept
 tags: [collision-detection, convex-decomposition, simulation-assets, robotics]
 sources: ["[[v-hacd-repository]]", "[[coacd-approximate-convex-decomposition]]", "[[coacd-repository]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]"]
-last_updated: 2026-06-04
+last_updated: 2026-07-13
 ---
 
-# Approximate Convex Decomposition
+# 近似凸分解
 
-Approximate Convex Decomposition（ACD，近似凸分解）把 non-convex mesh 分解成一组 almost-convex components，并通常用每个 component 的 convex hull 作为 collider。它是 [[CollisionGeometryForRobotSimulation|robot simulation collision geometry]] 中最常见的中间层：比 single convex hull 更能保留 concavity，比 raw triangle mesh / SDF 更适合很多 runtime collision pipelines。
+近似凸分解（ACD）把非凸网格分解成一组近似凸的组件，并通常用每个组件的凸包作为碰撞体。它是 [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]] 中最常见的中间层：比单一凸包更能保留凹陷结构，比原始三角形网格 / SDF 更适合很多运行时碰撞流程。
 
 ## 数学结构
 
-给定目标形状 $S$，ACD 寻找一组 components $\{S_i\}_{i=1}^{K}$，使它们的 convex hulls 近似覆盖原形状：
+给定目标形状 $S$，ACD 寻找一组组件 $\{S_i\}_{i=1}^{K}$，使它们的凸包近似覆盖原形状：
 
 $$
 S \approx \bigcup_{i=1}^{K} \operatorname{CH}(S_i)
 $$
 
-其中 $\operatorname{CH}(S_i)$ 是 component $S_i$ 的 convex hull。典型目标可以写成：
+其中 $\operatorname{CH}(S_i)$ 是组件 $S_i$ 的凸包。典型目标可以写成：
 
 $$
 \min_{\{S_i\}} \quad K + \beta \cdot \operatorname{Cost}(\{\operatorname{CH}(S_i)\})
 $$
 
-subject to：
+subject 到：
 
 $$
 \kappa(S_i, \operatorname{CH}(S_i)) \le \epsilon
 $$
 
-这里 $K$ 是 component count，$\kappa$ 是 concavity / approximation error metric，$\epsilon$ 是允许的 concavity threshold，$\beta$ 表示 runtime complexity 或 memory cost 的权重。[[v-hacd-repository|V-HACD README]] 与 [[coacd-approximate-convex-decomposition|CoACD paper]] 都强调 exact convex decomposition 是 NP-hard；ACD 的本质是用可控误差换 practical decomposition。
+这里 $K$ 是组件数量，$\kappa$ 是凹陷结构 / 近似错误指标，$\epsilon$ 是允许的凹陷结构阈值，$\beta$ 表示运行时复杂度或内存成本的权重。[[v-hacd-repository|V-HACD README]] 与 [[coacd-approximate-convex-decomposition|CoACD 论文]] 都强调精确凸分解是 NP 困难；ACD 的本质是用可控误差换实用的分解。
 
-CoACD 的关键变化是把 $\kappa$ 设计成 collision-aware concavity：不仅看 shape boundary 与 convex hull 的距离，也检查 interior 中会改变 collision conditions 的误差。直觉上，它关心的不是“视觉上是否相似”，而是“这个 hull 是否把本该可进入的碰撞空间填掉”。VisACD 则用 visibility relationship 定义切分价值；Convex Primitive Decomposition 把输出空间从 generic hulls 换成 primitive family：
+CoACD 的关键变化是把 $\kappa$ 设计成碰撞感知凹陷结构：不仅看形状边界与凸包的距离，也检查 interior 中会改变碰撞条件的误差。直觉上，它关心的不是“视觉上是否相似”，而是“这个凸包是否把本该可进入的碰撞空间填掉”。VisACD 则用可见性关系定义切分价值；凸基元分解把输出空间从 generic 凸包换成基元族：
 
 $$
 C = \{p_j(\theta_j, t_j)\}_{j=1}^{K}, \quad t_j \in \{\text{sphere}, \text{capsule}, \text{cylinder}, \text{box}, \ldots\}
 $$
 
-其中 $t_j$ 是 primitive type，$\theta_j$ 是 size / pose / radius 等参数。这个 variant 把 ACD 的目标从“few convex hulls”转为“few cheap, editable, engine-optimized primitives”。
+其中 $t_j$ 是基元类型，$\theta_j$ 是尺寸 / 位姿 / 半径等参数。这个变体把 ACD 的目标从“少量凸包”转为“少量低成本的, 可编辑, 引擎优化后的基元”。
 
 ```mermaid
 flowchart LR
-  A["non-convex visual mesh"] --> B["single convex hull<br/>fast but fills concavity"]
-  A --> C["V-HACD<br/>voxelized ACD baseline"]
-  A --> D["CoACD<br/>collision-aware concavity + MCTS"]
-  A --> E["VisACD<br/>visibility metric + GPU cuts"]
-  A --> F["Convex Primitive Decomposition<br/>boxes / capsules / spheres / cylinders"]
-  B --> G["collider set"]
+  A["非凸视觉网格"] --> B["单一凸包<br/>快速但会填充凹度"]
+  A --> C["V-HACD<br/>体素化的 ACD 基线"]
+  A --> D["CoACD<br/>碰撞感知的凹度 + MCTS"]
+  A --> E["VisACD<br/>可见性指标 + GPU 切分"]
+  A --> F["凸基元分解<br/>盒体 / 胶囊体 / 球体 / 圆柱体"]
+  B --> G["碰撞体集合"]
   C --> G
   D --> G
   E --> G
   F --> G
-  G --> H["narrowphase + contact solver"]
+  G --> H["窄相 + 接触求解器"]
 ```
 
 ## 直觉
 
-ACD 的直觉是避免两个极端。单个 convex hull 很快，但会把 cup handle、drawer slot、fork gap、tool notch 这类 task-relevant concavity 填满。Raw triangle mesh 或 SDF 可以更接近视觉形状，但在 many engines / real-time robotics workloads 中更贵、更 engine-specific。ACD 试图把“哪里需要细、哪里可以粗”编码进 decomposition。
+ACD 的直觉是避免两个极端。单个凸包很快，但会把杯子把手、抽屉槽、叉状差距、工具缺口这类任务相关的凹陷结构填满。原始三角形网格或 SDF 可以更接近视觉形状，但在大量引擎 / 实时机器人学工作负载中更贵、更引擎特定的。ACD 试图把“哪里需要细、哪里可以粗”编码进分解。
 
-[[CoACD]] 的贡献在于把 “collision condition” 作为 metric 的中心。它不是只追求 surface reconstruction，而是避免 collider 改变 object functionality。drawer handle example 说明这不是 aesthetic detail：collision hull 填满 handle hole 会改变 gripper / arm 是否能形成 shape closure。
+[[CoACD]] 的贡献在于把 “碰撞条件” 作为指标的中心。它不是只追求表面重建，而是避免碰撞体改变物体功能。抽屉把手示例说明这不是审美细节：碰撞凸包填满把手孔会改变夹爪 / 机械臂是否能形成形状闭合。
 
-[[convex-primitive-decomposition-for-collision-detection|Convex Primitive Decomposition]] 提醒另一条 engineering axis：即使 convex hull decomposition 准确，primitive colliders 也可能更快、更可编辑、更符合 engine optimization path。对 robot links、wheels、fixtures 和 coarse obstacles，primitive decomposition 可能比大量 hulls 更 practical。
+[[convex-primitive-decomposition-for-collision-detection|凸基元分解]] 提醒另一条工程轴：即使凸包分解准确，基元碰撞体也可能更快、更可编辑、更符合引擎优化路径。对机器人链接、车轮、固定设施和粗略障碍物，基元分解可能比大量凸包更实用的。
 
-## Failure Modes
+## 失效情形
 
-- Filled concavity：single hull 或 poor decomposition 把 holes、handles、slots 填满，制造 false positive occupied space。
-- Excess hull count：threshold 过低或 max hull count 过高会增加 narrowphase queries 和 solver constraints，导致 training throughput 下降或 contact jitter。
-- Voxelization / preprocessing artifacts：V-HACD-style voxelization 可能在 thin features、small holes 或 already-convex shapes 上产生不必要误差。
-- Intersecting hulls：某些 merging 或 post-processing 可能生成互相交叠的 hulls，改变 collision behavior；VisACD paper 在其 setup 中因此关闭 CoACD merging 做对比。
-- Topology sensitivity：VisACD 和 Convex Primitive Decomposition 都指出 topology / remeshing / mesh orientation 或 degeneracy 会影响结果。
-- Primitive overfit / underfit：primitive decomposition 对 clean mechanical shapes 很强，但 high-frequency organic curvature 或 task-critical fine contact patch 可能需要 hulls、SDF 或手工 collider。
-- Metric mismatch：Hausdorff / Chamfer / byte complexity / runtime 都不是直接的 task success metric；manipulation 可能更关心 handle clearance、contact normal 和 friction cone。
+- 填满的凹陷结构：单一凸包或粗劣的分解把孔、把手、槽填满，制造 false 正占用的空间。
+- 过多的凸包数量：阈值过低或最大凸包数量过高会增加窄相查询和求解器约束，导致训练吞吐量下降或接触抖动。
+- 体素化 / 预处理产物：V-HACD-风格体素化可能在细薄特征、小孔或已经-凸形状上产生不必要误差。
+- 相交的凸包：某些合并或后处理-处理可能生成互相交叠的凸包，改变碰撞行为；VisACD 论文在其设置中因此关闭 CoACD 合并做对比。
+- 拓扑敏感性：VisACD 和凸基元分解都指出拓扑 / 重新网格化 / 网格姿态或退化会影响结果。
+- 基元过拟合 / 欠拟合：基元分解对规则机械形状很强，但高频有机曲率或任务关键精细接触 patch 可能需要凸包、SDF 或手工碰撞体。
+- 指标不匹配：Hausdorff / Chamfer / 字节复杂度 / 运行时都不是直接的任务成功指标；操作可能更关心把手间隙、接触法向和摩擦锥。
 
 ## 实践含义
 
-使用 ACD 时，先定义 task-critical contact surfaces：handles、holes、slots、feet、wheels、tool tips、gripper pads、support faces。然后选择 decomposition budget，而不是盲目追求 visual fit。[[CoACD]] 的 `threshold`、`max-convex-hull`、`max-ch-vertex` 和 MCTS parameters 需要和 simulator throughput、contact stability、object category 一起调。
+使用 ACD 时，先定义任务关键接触表面：把手、孔、槽、足部、车轮、工具尖端、夹爪接触垫、支撑面。然后选择分解预算，而不是盲目追求视觉拟合。[[CoACD]] 的 `threshold`、`max-convex-hull`、`max-ch-vertex` 和 MCTS 参数需要和仿真器吞吐量、接触稳定性、物体类别一起调。
 
-如果目标是 large-scale RL asset pipeline，future trend 更可能是 hybrid：CoACD / VisACD 负责保留 collision-relevant concavity，primitive decomposition 负责把可用 sphere/capsule/box/cylinder 表达的 parts 压到更低 runtime cost，SDF 或 mesh collider 只留给少数 detail-critical static geometry。这个判断是 synthesis：不同 source 分别支持 collision-aware ACD、GPU ACD、primitive fitting 和 SDF/convexDecomposition modes，但还没有一个 source 证明统一 hybrid pipeline 最优。
+如果目标是大规模 RL 资产流程，未来趋势更可能是混合：CoACD / VisACD 负责保留碰撞相关的凹陷结构，基元分解负责把可用球体/胶囊体/盒体/圆柱体表达的部件压到更低运行时成本，SDF 或网格碰撞体只留给少数细节关键静态几何。这个判断是综合整理：不同来源分别支持碰撞感知 ACD、GPU ACD、基元拟合和 SDF/convexDecomposition 模式，但还没有一个来源证明统一混合流程最优。
 
-对 evaluation，建议保存 decomposition settings 和 generated collider artifacts。否则同一个 object mesh 在不同 preprocessing thresholds 下可能对应完全不同的 contact world，benchmark 结果不可复现。
+对评估，建议保存分解场景和生成的碰撞体产物。否则同一个物体网格在不同预处理阈值下可能对应完全不同的接触世界，基准结果不可复现。
 
 相关页面：[[CollisionGeometryForRobotSimulation]]、[[CoACD]]、[[VHACD]]、[[VisACD]]、[[MuJoCo]]、[[IsaacSim]]、[[SimulationRealityGap]]。

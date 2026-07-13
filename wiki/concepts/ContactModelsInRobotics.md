@@ -1,63 +1,63 @@
 ---
-title: "Contact Models in Robotics"
+title: "机器人学中的接触模型"
 type: concept
 tags: [robotics, simulation, contact-dynamics]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]"]
-last_updated: 2026-04-27
+last_updated: 2026-07-13
 ---
 
-# Contact Models in Robotics
+# 机器人学中的接触模型
 
-Contact models 定义 robot simulator 如何把 collisions、non-penetration、friction、impacts 与 numerical relaxation 转换成 forces 或 impulses。在 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]] 中，contact modeling 是 contact-rich robotics 的 first-order modeling choice，而不只是 solver implementation detail。
+接触模型定义机器人仿真器如何把碰撞、不穿透、摩擦、冲击与数值松弛转换成力或冲量。在 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]] 中，接触建模是接触丰富机器人学的首要建模选择，而不只是求解器实现细节。
 
 ## 数学结构
 
-较物理化的 rigid-contact reference 组合了三条 laws：
+较物理化的刚性接触参考基准组合了三条定律：
 
-- Signorini complementarity：用于 unilateral、non-pulling contact；normal force 只能在 active contact 中推开 bodies。
-- Coulomb friction：用于 bounded tangential forces；friction magnitude 受 normal force 与 coefficient $\mu$ 限制。
-- Maximum dissipation principle：用于 friction opposing motion；在 friction cone 内选择最耗散 sliding motion 的 tangential force。
+- Signorini 互补条件：用于单边、不产生拉力接触；法向力只能在有效接触中推开刚体。
+- Coulomb 摩擦：用于受限切向力；摩擦幅值受法向力与系数 $\mu$ 限制。
+- 最大耗散原理：用于摩擦抵抗运动；在摩擦锥内选择最耗散滑动运动的切向力。
 
-三者合在一起会产生困难的 [[ContactComplementarity|contact complementarity]] problem。Simulators 经常用 exactness 换取 speed、robustness、differentiability 或 easier implementation。论文的主要警告是：这些 tradeoffs 在简单任务中可能被隐藏，但会在 sliding contact、redundant contacts、ill-conditioned systems 和 rough locomotion terrain 中显现出来。
+三者合在一起会产生困难的 [[ContactComplementarity|接触互补]] 问题。仿真器经常用精确性换取速度、鲁棒性、可微性或更易实现。论文的主要警告是：这些取舍在简单任务中可能被隐藏，但会在滑动接触、冗余接触、病态系统和崎岖运动地形中显现出来。
 
-用 variables 看，contact model 从 robot configuration $q$、velocity $v$、contact gap $g_n(q)$、contact Jacobian $J$ 和 friction coefficient $\mu$ 出发，求 normal/tangential impulse 或 force $\lambda=(\lambda_n,\lambda_t)$。理想 rigid reference 希望同时满足 unilateral contact、Coulomb cone 和 dissipation direction；不同 simulator 的差异在于它把这个 reference problem 近似成 NCP、LCP、CCP 还是 heuristic contact-state update。
+用变量看，接触模型从机器人配置 $q$、速度 $v$、接触差距 $g_n(q)$、接触雅可比矩阵 $J$ 和摩擦系数 $\mu$ 出发，求法向/切向冲量或力 $\lambda=(\lambda_n,\lambda_t)$。理想刚性参考基准希望同时满足单边接触、库仑摩擦锥和耗散方向；不同仿真器的差异在于它把这个参考基准问题近似成 NCP、LCP、CCP 还是启发式接触状态更新。
 
-## Contact pipeline
+## 接触处理流程
 
 ```mermaid
 flowchart LR
-  A["Robot state<br/>q, v"] --> B["Collision detection<br/>candidate contacts"]
-  B --> C["Contact law<br/>Signorini + Coulomb + maximum dissipation"]
-  C --> D["Model approximation<br/>NCP / LCP / CCP / RaiSim-style"]
-  D --> E["Solver<br/>PGS / ADMM / staggered projections"]
-  E --> F["Forces or impulses<br/>lambda_n, lambda_t"]
-  F --> G["Dynamics integration<br/>next q, v"]
-  E --> H["Residuals<br/>complementarity, friction, convergence"]
+  A["机器人状态<br/>q, v"] --> B["碰撞检测<br/>候选接触点"]
+  B --> C["接触定律<br/>Signorini + Coulomb + 最大耗散"]
+  C --> D["模型近似<br/>NCP / LCP / CCP / RaiSim-风格"]
+  D --> E["求解器<br/>PGS / ADMM / 交错投影"]
+  E --> F["力或冲量<br/>lambda_n, lambda_t"]
+  F --> G["动力学集成<br/>下一时刻的 q、v"]
+  E --> H["残差<br/>互补, 摩擦, 收敛"]
   H --> D
 ```
 
-这个 pipeline 的关键点是：contact model 在 contact-resolution layer 进入 simulator。Collision detection 只给出 candidate contacts；真正决定 physical behavior 的，是后续如何把这些 contacts 解释成 unilateral constraints、friction bounds、dissipation objective，以及可求解的 mathematical problem。
+这个流程的关键点是：接触模型在接触求解层进入仿真器。碰撞检测只给出候选接触点；真正决定物理行为的，是后续如何把这些接触解释成单边约束、摩擦边界、耗散目标，以及可求解的数学问题。
 
 ## 直觉
 
-在 contact law 阶段，选择 rigid reference 意味着把 non-penetration、non-pulling force、Coulomb friction 和 maximum dissipation 一起保留。这个选择给出最清晰的 physical target，但也把问题变成 [[ContactComplementarity|NCP-style complementarity]]。
+在接触定律阶段，选择刚性参考基准意味着把不穿透、不产生拉力力、Coulomb 摩擦和最大耗散一起保留。这个选择给出最清晰的物理目标，但也把问题变成 [[ContactComplementarity|NCP 风格互补问题]]。
 
-在 model approximation 阶段，simulator 会决定牺牲哪部分 exactness。LCP 把 friction cone linearize 成 pyramid，降低求解难度但引入 direction-dependent friction bias。CCP 更好保留 cone 与 maximum dissipation structure，但可能 relax Signorini complementarity。RaiSim-style handling 尝试在 sliding contacts 中恢复 Signorini behavior，但使用 contact-state heuristics，并 relax maximum dissipation。
+在模型近似阶段，仿真器会决定牺牲哪部分精确性。LCP 把摩擦锥线性化成棱锥，降低求解难度但引入方向相关摩擦偏差。CCP 更好保留锥与最大耗散结构，但可能松弛 Signorini 互补条件。RaiSim-风格处理尝试在滑动接触中恢复 Signorini 行为，但使用接触状态启发式规则，并松弛最大耗散。
 
-在 solver 阶段，per-contact methods 如 PGS 或 RaiSim-style bisection 通常每次 iteration 更便宜，但可能错过 contacts 之间的 global coupling，产生 internal forces，并在 ill-conditioned problems 上失败。ADMM 与 staggered projections 这类 global/proximal [[ContactSolvers|contact solvers]] 更关注完整 contact problem 的 coupling，通常更 robust，但每次 iteration 成本更高；warm-starting 可以缩小 runtime gap。
+在求解器阶段，逐接触点方法如 PGS 或 RaiSim-风格二分法通常每次迭代更便宜，但可能错过接触之间的全局耦合，产生内部力，并在病态问题上失败。ADMM 与交错投影这类全局/近端 [[ContactSolvers|接触求解器]] 更关注完整接触问题的耦合，通常更鲁棒，但每次迭代成本更高；热启动可以缩小运行时差距。
 
-## Failure Modes
+## 失效情形
 
-- Direction-dependent friction bias：LCP 的 polyhedral friction cone 会让 friction behavior 依赖离散 cone directions。
-- Relaxed complementarity：CCP-style relaxation 可能允许 separating velocity 与 positive normal force 同时出现，导致 non-physical support forces。
-- Heuristic contact-state errors：RaiSim-style handling 依赖 contact state classification；sliding/sticking 判断错误会改变 force distribution。
-- Internal forces：per-contact/local solvers 在 redundant contacts 中可能产生互相抵消但物理上不干净的 internal forces。
-- Hidden easy-case equivalence：flat、high-friction terrain 可能让不同 models 看起来等价；bumpy、slippery、ill-conditioned settings 才暴露差异。
+- 方向相关摩擦偏差：LCP 的多面体摩擦锥会让摩擦行为依赖离散锥方向。
+- 松弛的互补：CCP-风格松弛可能允许分离速度与正法向力同时出现，导致非物理支撑力。
+- 启发式接触状态错误：RaiSim-风格处理依赖接触状态分类；滑动/黏着判断错误会改变力分布。
+- 内部力：逐接触点/局部求解器在冗余接触中可能产生互相抵消但物理上不干净的内部力。
+- 隐藏的简单情形等价性：平坦、高摩擦地形可能让不同模型看起来等价；颠簸、湿滑、病态场景才暴露差异。
 
 ## 实践含义
 
-对 robotics，contact model 的误差不是只停留在 forces 层。它会进入 MPC、RL policy training、trajectory optimization、system identification 与 [[DifferentiablePhysics|differentiable physics]] 的 downstream objective。source 的 quadruped MPC experiments 显示，flat、high-friction terrain 可能掩盖 solver differences；bumpy 与 slippery terrain 会放大 RaiSim/CCP behavior 与 NCP behavior 的差异。
+对机器人学，接触模型的误差不是只停留在力层。它会进入 MPC、RL 策略训练、轨迹优化、系统辨识与 [[DifferentiablePhysics|可微物理]] 的下游目标。来源的四足机器人 MPC 实验显示，平坦、高摩擦地形可能掩盖求解器差异；颠簸与湿滑地形会放大 RaiSim/CCP 行为与 NCP 行为的差异。
 
-选择 simulator 时应先写清楚目标 contact regime：高速 impact、long sliding、cloth/soft contact、redundant support、force sensing、还是 differentiable optimization。没有这个 regime，比较 “fast” 或 “stable” solver 很容易把 task-specific tolerance 误当成 general physical fidelity。
+选择仿真器时应先写清楚目标接触工况：高速冲击、长距离滑动、布料/柔性接触、冗余支撑、力感知、还是可微优化。没有这个工况，比较 “快速” 或 “稳定” 求解器很容易把任务特定的容差误当成一般性物理保真度。
 
 相关页面：[[ContactSolvers]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]、[[MuJoCo]]、[[RaiSim]]、[[ContactBench]]。

@@ -1,18 +1,18 @@
 ---
-title: "Mobile Robot Odometry"
+title: "移动机器人里程计"
 type: concept
 tags: [robotics, wheeled-robots, odometry, state-estimation]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]"]
-last_updated: 2026-05-01
+last_updated: 2026-07-13
 ---
 
-# Mobile Robot Odometry
+# 移动机器人里程计
 
-Mobile robot odometry（移动机器人里程计）用 wheel encoder increments 估计 chassis configuration。[[modern-robotics-chapter-13-wheeled-mobile-robots|Modern Robotics Chapter 13]] 把 odometry 写成两步：先把 wheel angle increments 变成 body twist $V_b$，再把 $V_b$ 积分成新的 chassis pose。
+移动式机器人里程计（移动机器人里程计）用车轮编码器增量估计底盘配置。[[modern-robotics-chapter-13-wheeled-mobile-robots|Modern 机器人学章节 13]] 把里程计写成两步：先把车轮角度增量变成刚体旋量 $V_b$，再把 $V_b$ 积分成新的底盘位姿。
 
 ## 数学结构
 
-设第 $i$ 个 wheel 在采样间隔内的 angle increment 为 $\Delta\theta_i$，组成向量 $\Delta\theta$。对 omni/mecanum base：
+设第 $i$ 个车轮在采样间隔内的角度增量为 $\Delta\theta_i$，组成向量 $\Delta\theta$。对 omni/mecanum 基座：
 
 $$
 \Delta\theta = H(0)V_b
@@ -24,7 +24,7 @@ $$
 V_b=H^\dagger(0)\Delta\theta=F\Delta\theta
 $$
 
-其中 $H^\dagger(0)$ 是 pseudo-inverse。对 differential drive 或 car 的后轮，若左右轮增量为 $\Delta\theta_L,\Delta\theta_R$，轮半径 $r$，半轮距 $d$，则：
+其中 $H^\dagger(0)$ 是 pseudo-逆。对差分驱动或 car 的后轮，若左右轮增量为 $\Delta\theta_L,\Delta\theta_R$，轮半径 $r$，半轮距 $d$，则：
 
 $$
 V_b =
@@ -40,7 +40,7 @@ r
 \end{bmatrix}
 $$
 
-得到 $V_b=(\omega_{bz},v_{bx},v_{by})$ 后，将这段时间内的 body twist 视为常量。若 $\omega_{bz}=0$：
+得到 $V_b=(\omega_{bz},v_{bx},v_{by})$ 后，将这段时间内的刚体旋量视为常量。若 $\omega_{bz}=0$：
 
 $$
 \Delta q_b =
@@ -62,7 +62,7 @@ $$
 \end{bmatrix}
 $$
 
-最后用上一时刻 heading $\phi_k$ 把 body-frame increment 转成 world-frame increment，并更新：
+最后用上一时刻 heading $\phi_k$ 把刚体帧增量转成世界帧增量，并更新：
 
 $$
 q_{k+1}=q_k+\Delta q
@@ -70,20 +70,20 @@ $$
 
 ## 直觉
 
-Odometry 是 dead reckoning：它不直接测量 pose，而是把 wheel rotations 积分成 pose change。短时间内通常稳定、便宜、低延迟；长时间会因为 slip、skid、wheel radius error、encoder quantization 和 integration error 累积 drift。
+里程计是 dead reckoning：它不直接测量位姿，而是把车轮 rotations 积分成位姿变更。短时间内通常稳定、便宜、低延迟；长时间会因为滑移、skid、车轮半径错误、编码器 quantization 和集成错误累积漂移。
 
-Omni/mecanum 的 odometry 还多一个 matrix conditioning 问题：$H^\dagger$ 会把 wheel encoder noise 投影到底盘 twist。如果 wheel layout 或 calibration 不好，误差会被放大。
+Omni/mecanum 的里程计还多一个矩阵条件化问题：$H^\dagger$ 会把车轮编码器噪声投影到底盘旋量。如果车轮布局或标定不好，误差会被放大。
 
-## Failure Modes
+## 失效情形
 
-- Wheel slip：drive direction 发生滑移时，encoder 仍会报告 wheel rotation，但 chassis 没有对应位移。
-- Lateral slip：conventional wheel 的 lateral no-slip assumption 被破坏，尤其在急转、低摩擦或 skid-steer 情况下。
-- Radius / baseline calibration error：wheel radius $r$ 或 half track $d$ 错，会系统性偏置 translation 与 yaw。
-- Caster and steering transient：passive caster 或 steerable module 未对准时，短时 motion 不符合 simple odometry model。
-- Integration drift：即使每步误差很小，pose estimate 也会随时间积累。
+- 车轮滑移：驱动方向发生滑移时，编码器仍会报告车轮旋转，但底盘没有对应位移。
+- 横向滑移：传统车轮的横向无滑移假设被破坏，尤其在急转、低摩擦或 skid-steer 情况下。
+- 半径或轮距标定误差：车轮半径 $r$ 或半轮距 $d$ 不准，会给平移与偏航角带来系统性偏差。
+- 脚轮与转向 transient：被动脚轮或 steerable 模块未对准时，短时运动不符合简单里程计模型。
+- 集成漂移：即使每步误差很小，位姿估计值也会随时间积累。
 
 ## 实践含义
 
-Wheel odometry 不应单独作为长期 global pose。它适合作为 high-rate local estimate，再与 IMU、vision、lidar、GPS、beacon 或 landmark observations 通过 Kalman filter、particle filter 或 factor graph 融合。
+车轮里程计不应单独作为长期全局位姿。它适合作为高比率局部估计值，再与 IMU、视觉、lidar、GPS、beacon 或 landmark 观测通过 Kalman filter、particle filter 或因素图结构融合。
 
-仿真验证时，应单独检查 command-to-wheel、wheel-to-twist、twist-to-pose 三层误差。相关页面：[[WheeledRobotKinematics]]、[[OmnidirectionalWheels]]、[[NonholonomicMobileRobots]]、[[SimulationRealityGap]]。
+仿真验证时，应单独检查指令到-车轮、车轮到-旋量、旋量到-位姿三层误差。相关页面：[[WheeledRobotKinematics]]、[[OmnidirectionalWheels]]、[[NonholonomicMobileRobots]]、[[SimulationRealityGap]]。

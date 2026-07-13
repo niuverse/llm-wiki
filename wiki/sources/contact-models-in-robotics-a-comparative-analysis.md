@@ -3,7 +3,7 @@ title: "Contact Models in Robotics: a Comparative Analysis"
 type: source
 tags: [robotics, simulation, contact-dynamics, physics-engines]
 sources: []
-last_updated: 2026-04-27
+last_updated: 2026-07-13
 source_file: raw/contact-models-in-robotics-a-comparative-analysis.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2304.06372
@@ -13,22 +13,22 @@ source_date: 2024-07-21
 
 ## 摘要
 
-Quentin Le Lidec、Wilson Jallet、Louis Montaut、Ivan Laptev、Cordelia Schmid 和 Justin Carpentier 对 robot simulation 中的 rigid contact models 做了 survey 和 benchmark。论文把 [[ContactModelsInRobotics|contact models in robotics]] 视为同时影响 physical fidelity 与 numerical failure 的核心因素：较物理化的 reference model 由 Signorini condition、Coulomb friction 和 maximum dissipation principle 组成，并导向一个困难的 [[ContactComplementarity|contact complementarity]] problem。
+Quentin Le Lidec、Wilson Jallet、Louis Montaut、Ivan Laptev、Cordelia Schmid 和 Justin Carpentier 对机器人仿真中的刚性接触模型做了综述和基准。论文把 [[ContactModelsInRobotics|接触模型 in 机器人学]] 视为同时影响物理保真度与数值失败的核心因素：较物理化的参考模型由 Signorini 条件、Coulomb 摩擦和最大耗散 principle 组成，并导向一个困难的 [[ContactComplementarity|接触互补]] 问题。
 
-该 source 比较了常见 relaxations 与 solvers，包括 LCP、CCP、RaiSim-like per-contact methods、NCP solvers、PGS、ADMM 和 staggered projections。核心结论是：solver/model choices 不是中性的 implementation details。简单场景中这些选择可能看起来等价；但在 sliding、underdetermined、ill-conditioned、bumpy 或 slippery contact scenarios 中，它们会导致 unphysical forces、distorted energy dissipation、failed convergence，以及下游 controller 差异。这直接把 contact modeling 与 MPC、RL、differentiable simulation 中的 [[SimulationRealityGap|simulation reality gap]] 联系起来。
+该来源比较了常见 relaxations 与求解器，包括 LCP、CCP、RaiSim-like 逐接触点方法、NCP 求解器、PGS、ADMM 和交错投影。核心结论是：求解器/模型选择不是中性的实现细节。简单场景中这些选择可能看起来等价；但在 sliding、underdetermined、ill-条件化的、bumpy 或 slippery 接触 scenarios 中，它们会导致 unphysical 力、distorted 能量耗散、失败的收敛，以及下游控制器差异。这直接把接触建模与 MPC、RL、可微的仿真中的 [[SimulationRealityGap|仿真—现实差距]] 联系起来。
 
-Source URL: https://arxiv.org/abs/2304.06372
+来源网址: https://arxiv.org/abs/2304.06372
 
 ## 核心主张
 
-- 带 friction 的 rigid contact 由 Signorini condition、Coulomb's law 和 maximum dissipation principle 共同约束；它们定义的是 nonlinear complementarity problem，而不是简单的 smooth dynamics model。
-- LCP approximations 会把 friction cone 近似为 polyhedral cone；这降低求解难度，但引入 direction-dependent friction bias。
-- CCP-style relaxations 比 LCP 更好地保留 friction cone 与 maximum dissipation，但会 relax Signorini complementarity，并可能允许 normal force 与 separating velocity 同时存在。
-- [[RaiSim]]-style contact handling 尝试在 sliding contacts 中恢复 Signorini behavior，但依赖 contact-state heuristics，并放松 maximum dissipation principle。
-- Per-contact 的 PGS-style solvers 很快且常见，但论文显示它们可能引入 internal forces，在 ill-conditioned contact problems 中表现较差，并在更困难的 contact-rich locomotion 条件下 failed to converge。
-- ADMM 和 staggered projections 这类 global/proximal [[ContactSolvers|contact solvers]] 通常更能处理 coupling 与 underdetermination，但每次 iteration 成本更高；warm-starting 可以缩小 runtime gap。
-- Quadruped MPC experiments 显示，flat、high-friction terrain 可能掩盖 solver differences；bumpy 与 slippery terrain 则会让 RaiSim/CCP behavior 与 NCP behavior 明显分化。
-- 论文把 [[DifferentiablePhysics|differentiable physics]] 标记为开放风险：artificial compliance 或 solver artifacts 可能改变 trajectory optimization 与 system identification 使用的 gradients。
+- 带摩擦的刚性接触由 Signorini 条件、Coulomb's 定律和最大耗散 principle 共同约束；它们定义的是 nonlinear 互补问题，而不是简单的平滑动力学模型。
+- LCP approximations 会把摩擦锥体近似为多面体的锥体；这降低求解难度，但引入方向-依赖的摩擦偏差。
+- CCP-风格 relaxations 比 LCP 更好地保留摩擦锥体与最大耗散，但会松弛 Signorini 互补，并可能允许法向力与分离速度同时存在。
+- [[RaiSim]]-风格接触处理尝试在 sliding 接触中恢复 Signorini 行为，但依赖接触状态启发式规则，并放松最大耗散 principle。
+- Per-接触的 PGS-风格求解器很快且常见，但论文显示它们可能引入内部力，在 ill-条件化的接触 problems 中表现较差，并在更困难的接触丰富移动条件下失败的到 converge。
+- ADMM 和交错投影这类全局/近端 [[ContactSolvers|接触求解器]] 通常更能处理耦合与 underdetermination，但每次迭代成本更高；warm-starting 可以缩小运行时差距。
+- Quadruped MPC 实验显示，flat、高摩擦地形可能掩盖求解器 differences；bumpy 与 slippery 地形则会让 RaiSim/CCP 行为与 NCP 行为明显分化。
+- 论文把 [[DifferentiablePhysics|可微物理]] 标记为开放风险：人为引入的柔顺性或求解器产物，可能改变轨迹优化与系统辨识使用的梯度。
 
 ## 关键引文
 
@@ -38,17 +38,17 @@ Source URL: https://arxiv.org/abs/2304.06372
 
 ## 关联
 
-- [[ContactModelsInRobotics]] - central domain concept：simulator 的 contact law 是模型的一部分，不只是 implementation；该页包含 contact pipeline 图。
-- [[ContactComplementarity]] - 论文比较的 exact 与 relaxed mathematical formulations；该页补充 Signorini、Coulomb cone、maximum dissipation 与 residual intuition。
-- [[ContactSolvers]] - 按 physical accuracy、robustness 和 speed 评估的 numerical algorithms；该页补充 solver taxonomy 与 PGS/ADMM/staggered projections 的求解直觉。
-- [[SimulationRealityGap]] - contact approximations 会扩大 MPC 与 RL 场景中的 transfer error；该页补充 contact artifacts 到 hardware transfer mismatch 的 causal flow。
-- [[DifferentiablePhysics]] - contact artifacts 可能污染 gradients；该页补充 chain-rule style 的 gradient contamination 解释。
-- [[ContactBench]] - 论文中的 unified C++ benchmark implementation。
-- [[MuJoCo]] 与 [[RaiSim]] - 作为不同 contact-model tradeoffs 示例的重要 simulator entities。
+- [[ContactModelsInRobotics]] - central 域概念：仿真器的接触定律是模型的一部分，不只是实现；该页包含接触流程图。
+- [[ContactComplementarity]] - 论文比较的精确与松弛的数学 formulations；该页补充 Signorini、Coulomb 锥体、最大耗散与残差直觉。
+- [[ContactSolvers]] - 按物理准确率、鲁棒性和速度评估的数值 algorithms；该页补充求解器分类体系与 PGS/ADMM/交错投影的求解直觉。
+- [[SimulationRealityGap]] - 接触 approximations 会扩大 MPC 与 RL 场景中的迁移错误；该页补充接触产物到硬件迁移不匹配的因果流程。
+- [[DifferentiablePhysics]] - 接触产物可能污染梯度；该页补充 chain-rule 风格的梯度污染解释。
+- [[ContactBench]] - 论文中的统一的 C++ 基准实现。
+- [[MuJoCo]] 与 [[RaiSim]] - 作为不同接触模型取舍示例的重要仿真器实体。
 
 ## 开放问题
 
-- 这些发现如何映射到当前 Isaac Sim/PhysX、Newton、MuJoCo Warp 和 GPU-parallel training workflows？
-- 对特定 robot task 而言，怎样的 contact residual thresholds 才算 "good enough"：MPC、RL policy training、hardware safety checks，还是 differentiable optimization？
-- 现代 differentiable simulators 中，contact artifacts 造成的 practical gradient error 有多大？
-- 论文中的 ContactBench implementation 是否仍被维护，并且足够广泛到可以作为 new simulators 的 regression benchmark？
+- 这些发现如何映射到当前 Isaac Sim/PhysX、Newton、MuJoCo Warp 和 GPU-并行训练流程？
+- 对特定机器人任务而言，怎样的接触残差阈值才算 "良好的 enough"：MPC、RL 策略训练、硬件 safety 检查，还是可微的优化？
+- 现代可微的仿真器中，接触产物造成的实用的梯度错误有多大？
+- 论文中的 ContactBench 实现是否仍被维护，并且足够广泛到可以作为新仿真器的 regression 基准？

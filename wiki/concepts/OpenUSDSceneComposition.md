@@ -1,101 +1,101 @@
 ---
-title: "OpenUSD Scene Composition"
+title: "OpenUSD 场景组合"
 type: concept
 tags: [openusd, usd, scene-description, composition, simulation-assets]
 sources: ["[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[nvidia-ovrtx]]"]
-last_updated: 2026-05-26
+last_updated: 2026-07-13
 ---
 
-# OpenUSD Scene Composition
+# OpenUSD 场景组合
 
-[[OpenUSD]] 的核心学习入口不是“USD 是哪种文件后缀”，而是 scene description（场景描述）如何被 schema 化、组合、覆写、查询和 author。[[openusd-introduction|Introduction to USD]] 把 USD 定位为 single scenegraph + composition engine + schemas + toolset 的组合：它让 elemental assets 可以组成 sets、scenes、shots 和 worlds，并且允许在 stronger layers 中 non-destructively edit as overrides。[[isaac-sim-asset-structure|Isaac Sim Asset Structure]] 则展示这个思想在 robotics asset authoring 中如何落到 layers、payloads、references 和 variants。[[nvidia-ovrtx|NVIDIA ovrtx]] 补充了 sensor simulation 侧的 official example：应用可以用 inline root layer sublayer 原始 scene，并在不改 source asset 的情况下 author cameras、`RenderProduct`、`RenderVar`、semantic labels 或 non-visual material labels。
+[[OpenUSD]] 的核心学习入口不是“USD 是哪种文件后缀”，而是场景描述（场景描述）如何被模式化、组合、覆写、查询和作者。[[openusd-introduction|Introduction 到 USD]] 把 USD 定位为单一场景图 + 组合引擎 + 模式 + 工具集的组合：它让基础资产可以组成集合、场景、镜头和世界，并且允许在更强的层中非破坏性地编辑作为覆盖。[[isaac-sim-asset-structure|Isaac Sim Asset Structure]] 则展示这个思想在机器人学资产制作中如何落到层、载荷、引用和变体。[[nvidia-ovrtx|NVIDIA ovrtx]] 补充了传感器仿真侧的官方示例：应用可以用行内根部层子层原始场景，并在不改来源资产的情况下作者相机、`RenderProduct`、`RenderVar`、语义标签或 non-视觉材质标签。
 
-Evidence boundary：当前 OpenUSD source 是官方 Introduction，不是 glossary 或 API reference。它足够支持 `Stage`、`Prim`、`Layer`、schemas、composition arcs、Hydra、extension points 和 USD boundary 的入门级机制解释；但 `LayerStack`、value resolution、LIVRPS strength ordering、list-editing 和 namespace editing 的精确定义仍需要后续 ingest `glossary.html` / tutorials。
+证据边界：当前 OpenUSD 来源是官方 Introduction，不是 glossary 或 API 参考基准。它足够支持 `Stage`、`Prim`、`Layer`、模式、组合弧、Hydra、扩展点和 USD 边界的入门级机制解释；但 `LayerStack`、价值分辨率、LIVRPS strength 顺序、列表编辑和命名空间编辑的精确定义仍需要后续收录 `glossary.html` / tutorials。
 
 ## 数学结构
 
-可以把 OpenUSD 的高层功能抽象成一个 scene-description resolution system：
+可以把 OpenUSD 的高层功能抽象成一个场景描述分辨率系统：
 
 $$
 S = \operatorname{Resolve}(L, C, \Sigma)
 $$
 
-其中 $L=\{L_1,\dots,L_n\}$ 是 authored layers（保存 prim specs、property specs、metadata 和 composition arcs 的 layer 集合），$C$ 是 composition arcs / strength ordering（怎样 stack、reference、payload、variant、inherit 或 specialize），$\Sigma$ 是 schema vocabulary（例如 `UsdGeom`、`UsdShade`、lighting、physics 等 domain schemas），$S$ 是最终被 `Stage` 暴露的 composed scene description。变量含义要分清：Layer 保存 authored opinions；composition engine 负责 resolve；Stage 是 resolved result 的 runtime scenegraph view。
+其中 $L=\{L_1,\dots,L_n\}$ 是 authored 层（保存图元 specs、属性 specs、元数据和组合弧的层集合），$C$ 是组合弧 / strength 顺序（怎样技术栈、参考基准、载荷、变体、inherit 或 specialize），$\Sigma$ 是模式 vocabulary（例如 `UsdGeom`、`UsdShade`、光照、物理等域模式），$S$ 是最终被 `Stage` 暴露的组合的场景描述。变量含义要分清：层保存 authored 意见；组合引擎负责 resolve；阶段是 resolved 结果的运行时场景图视角。
 
-USD data model 的局部结构可以写成：
+USD 数据模型的局部结构可以写成：
 
 $$
 P_i = (N_i, A_i, R_i, M_i)
 $$
 
-其中 $P_i$ 是一个 prim（scenegraph node），$N_i$ 是 child prim namespace，$A_i$ 是 Attributes（typed values，可 time-varying），$R_i$ 是 Relationships（指向其他 scene objects 的 targets），$M_i$ 是 metadata。Source 明确说明 USD 用 hierarchical namespace of `Prim` 组织 data；Attributes 和 Relationships 合称 Properties；Prims 与 contents 被组织到 Layer 中。
+其中 $P_i$ 是一个图元（场景图节点），$N_i$ 是 child 图元命名空间，$A_i$ 是属性（带类型的值，可随时间变化的），$R_i$ 是关系（指向其他场景物体的目标），$M_i$ 是元数据。来源明确说明 USD 用分层命名空间的 `Prim` 组织数据；属性和关系合称属性；图元与内容被组织到层中。
 
-在 robotics / simulation asset 中，这个抽象会变成更具体的 asset graph：
+在机器人学 / 仿真资产中，这个抽象会变成更具体的资产图结构：
 
 $$
 R = \operatorname{Compose}(L_{\text{geom}}, L_{\text{mat}}, L_{\text{physics}}, L_{\text{runtime}}, L_{\text{feature}}, V)
 $$
 
-其中 $L_{\text{geom}}$ 保存 mesh / geometry data，$L_{\text{mat}}$ 保存 materials，$L_{\text{physics}}$ 保存 neutral physics，$L_{\text{runtime}}$ 保存 PhysX / MuJoCo 这类 engine-specific tuning，$L_{\text{feature}}$ 保存 control / ROS / gripper feature payloads，$V$ 是 variant sets。[[IsaacSimAssetStructure]] 的例子说明这些 responsibilities 不应该混成 monolithic USD，而应该放在职责清晰的 layers 中。
+其中 $L_{\text{geom}}$ 保存网格 / 几何数据，$L_{\text{mat}}$ 保存材质，$L_{\text{physics}}$ 保存中性物理，$L_{\text{runtime}}$ 保存 PhysX / MuJoCo 这类引擎特定的调优，$L_{\text{feature}}$ 保存控制 / ROS / 夹爪特征载荷，$V$ 是变体集。[[IsaacSimAssetStructure]] 的例子说明这些职责不应该混成单体化的 USD，而应该放在职责清晰的层中。
 
 ```mermaid
 flowchart LR
-  L["Layers<br/>authored opinions"] --> CE["composition engine<br/>resolve graph"]
-  A["Composition arcs<br/>sublayers references payloads variants"] --> CE
-  S["Schemas<br/>UsdGeom UsdShade physics"] --> CE
-  CE --> ST["Stage<br/>composed scenegraph"]
-  ST --> H["Hydra / usdview<br/>preview and imaging"]
-  ST --> SIM["Simulation tools<br/>Isaac Sim assets"]
+  L["层<br/>authored 意见"] --> CE["组合引擎<br/>resolve 图结构"]
+  A["组合弧<br/>子层参考资料载荷变体"] --> CE
+  S["结构规范<br/>UsdGeom UsdShade 物理"] --> CE
+  CE --> ST["阶段<br/>组合的场景图"]
+  ST --> H["Hydra / usdview<br/>预览与 imaging"]
+  ST --> SIM["仿真工具<br/>Isaac Sim 资产"]
 ```
 
-这张图表达的是 source-backed mechanism：Layer 保存 authored scene description，composition arcs 描述组合与覆写关系，schemas 给 prim/property 语义，Stage 暴露 resolved scenegraph，Hydra / DCC / simulator 再消费这个 composed result。
+这张图表达的是有来源支持的机制：层保存 authored 场景描述，组合弧描述组合与覆写关系，模式给图元/属性语义，阶段暴露 resolved 场景图，Hydra / DCC / 仿真器再消费这个组合的结果。
 
-### Composition Arcs
+### 组合弧
 
-当前 source 明确介绍了六类 composition behavior：
+当前来源明确介绍了六类组合行为：
 
-| Arc / mechanism | 作用 | 直觉 |
+| 弧 / 机制 | 作用 | 直觉 |
 | --- | --- | --- |
-| subLayers | stack layers，并按 strength ordering resolve | 多个作者或部门各写自己的 layer，最终组合成一个 asset / scene |
-| references | 把另一个 layer 或同一 layer 中 target prim 的 subtree 组合进 referencing prim | 装配 elemental assets 成 aggregates / scenes |
-| payloads | deferred reference，可在 Stage 打开后选择 load / unload | 管理 working set，只加载当前任务需要的 scene parts |
-| VariantSets | 在一个 package 中暴露多种 asset variations，downstream 可用 stronger layer 切换 selector | 非破坏式选择不同外观、配置或 runtime setup |
-| inherits | derived prim 接收 base prim 的 overrides，适合 mass edit | 给一类 prim / asset 做统一修改 |
-| specializes | derived prim 是 base 的 specialized refinement | 表达更稳定的 specialized fallback / refinement 关系 |
+| 子层 | 技术栈层，并按 strength 顺序 resolve | 多个作者或部门各写自己的层，最终组合成一个资产 / 场景 |
+| 引用 | 把另一个层或同一层中目标图元的 subtree 组合进 referencing 图元 | 装配基础资产成 aggregates / 场景 |
+| 载荷 | deferred 参考基准，可在阶段打开后选择负载 / unload | 管理 working 设置，只加载当前任务需要的场景部件 |
+| VariantSets | 在一个软件包中暴露多种资产 variations，下游可用更强的层切换 selector | 非破坏式选择不同外观、配置或运行时设置 |
+| inherits | 派生的图元接收基座图元的覆盖，适合质量编辑 | 给一类图元 / 资产做统一修改 |
+| specializes | 派生的图元是基座的专门的细化 | 表达更稳定的专门的回退方案 / 细化关系 |
 
 ## 直觉
 
-OpenUSD 解决的是大型 3D pipeline 的两个长期问题。第一，多个 tools 和 teams 都在生产 scene data，如果每个 tool 都只输出自己的封闭格式，interchange、review 和 reuse 会变成 brittle conversion chain。USD 用 low-level data model 加 high-level schemas 给 mesh、transform、material、lighting、physics 等概念建立共享表达。第二，一个 scene 或 robot asset 通常不是单一作者、单一文件、单一用途；composition 让不同 workstreams 可以把自己的 contribution 保存在独立 layer，再组合成一个可检查的 final scene。
+OpenUSD 解决的是大型 3D 流程的两个长期问题。第一，多个工具和 teams 都在生产场景数据，如果每个工具都只输出自己的封闭格式，交换、审查和 reuse 会变成 brittle 转换 chain。USD 用低层数据模型加高层模式给网格、变换、材质、光照、物理等概念建立共享表达。第二，一个场景或机器人资产通常不是单一作者、单一文件、单一用途；组合让不同 workstreams 可以把自己的 contribution 保存在独立层，再组合成一个可检查的最终场景。
 
-Composition 的要点是“强 layer 的 opinion 可以统一地 override 弱 layer”，无论弱内容是 subLayered、referenced 还是 inherited。Source 列出 stronger layer 可以添加/deactivate/reorder prims、修改 variants、override metadata、添加 properties、override attributes、block attribute values、修改 relationship / connection targets 等。学习时不要把 USD 想成 import/export，而要把它想成一个可组合的、可覆写的 authored-opinion graph。
+Composition 的要点是“强层的 opinion 可以统一地覆盖弱层”，无论弱内容是 subLayered、引用的还是 inherited。来源列出更强的层可以添加/停用/重排图元、修改变体、覆盖元数据、添加属性、覆盖属性、阻断属性值、修改关系 / connection 目标等。学习时不要把 USD 想成导入/导出，而要把它想成一个可组合的、可覆写的 authored-opinion 图结构。
 
-对 robotics 来说，这个直觉尤其重要。一个 robot asset 同时有 mesh、material、collider、joint、mass、sensor、controller、ROS integration、PhysX tuning、MuJoCo tuning 等语义。如果这些都写进一个文件，后续很难判断一个 behavior change 来自 visual geometry、collision approximation、neutral physics 还是 runtime-specific tuning。[[IsaacSimAssetStructure]] 把这些 responsibilities 拆成 layers，本质上就是在 simulation asset 里应用 OpenUSD scene composition 的工程原则。[[nvidia-ovrtx|ovrtx]] 的 sensor configuration 进一步说明，render/sensor output 本身也应被 author 成 composition layer：`RenderProduct` 用 relationships 连接 sensor prim 和 `RenderVar`，render settings 与 device pinning author 在 RenderProduct 上，semantic/non-visual labels 可以通过 override layer 加到现有 scene。
+对机器人学来说，这个直觉尤其重要。一个机器人资产同时有网格、材质、碰撞体、关节、质量、传感器、控制器、ROS 集成、PhysX 调优、MuJoCo 调优等语义。如果这些都写进一个文件，后续很难判断一个行为变更来自视觉几何、碰撞近似、中性物理还是运行时特定的调优。[[IsaacSimAssetStructure]] 把这些职责拆成层，本质上就是在仿真资产里应用 OpenUSD 场景组合的工程原则。[[nvidia-ovrtx|ovrtx]] 的传感器配置进一步说明，渲染/传感器输出本身也应被作者成组合层：`RenderProduct` 用关系连接传感器图元和 `RenderVar`，渲染场景与设备 pinning 作者在 RenderProduct 上，语义/non-视觉标签可以通过覆盖层加到现有场景。
 
-Hydra 的位置也要放对：它不是 composition engine，而是 USD distribution 中的 imaging framework。它把 scene delegates 和 render delegates 连接起来，让 `usdview` 与第三方插件可以用 composed USD scene 做 preview、rendering 和 animation streaming。对学习者来说，Hydra 是“我如何看见 composed result”的通道，不是“这个 result 如何被 resolve”的规则。
+Hydra 的位置也要放对：它不是组合引擎，而是 USD 分布中的 imaging 框架。它把场景 delegates 和渲染 delegates 连接起来，让 `usdview` 与第三方插件可以用组合的 USD 场景做预览、渲染和动画 streaming。对学习者来说，Hydra 是“我如何看见组合的结果”的通道，不是“这个结果如何被 resolve”的规则。
 
-## Failure Modes
+## 失效情形
 
-- File-format reduction：只把 USD 当成 `.usd` / `.usda` / `.usdc` 文件格式，忽略 schemas 和 composition，最后只能得到更复杂的 interchange file，而不是可组合的 asset system。
-- Schema ambiguity：不同 tools 对同一个 prim/property 语义理解不一致，interchange 看似成功，但 downstream renderer、simulator 或 validation tool 读到的含义不同。
-- Namespace fragility：USD 使用 textual hierarchical namespace，而不是 GUID；当 referenced asset 的 internal namespace 改变时，higher-level overrides 可能 fall off。Source 明确把这列为 USD 的边界条件。
-- Rigging overreach：USD 的 scenegraph 是 lightweight authoring / composed data extraction substrate，不是 high-performance rigging system；把 rigging runtime behavior 直接塞进 USD 会损害 interchange。
-- Working-set collapse：payloads 的价值是 deferred loading；如果所有 heavy assets 都无条件 reference/load，Stage 可以表达 scene，但 interactive workflow 和 memory footprint 会恶化。
-- Monolithic asset drift：robotics asset 把 mesh、materials、colliders、physics 和 runtime tuning 混写，后续 re-import、engine switching 或 regression debug 难以定位 source of change。这个 failure mode 已在 [[IsaacSimAssetStructure]] 中具体化。
-- Composition overconfidence：composition 能组织 asset assumptions，但不能证明 physics runtime 与真实世界一致；sim-to-real 仍需要 [[SimulationRealityGap]] 层面的验证。
-- Glossary overreach：当前 Introduction 支持入门机制，但不能替代 glossary / API reference；对 `LayerStack`、value resolution、list-editing、namespace editing 和 LIVRPS strength ordering 的精确定义应等后续 ingest。
+- 文件格式减少：只把 USD 当成 `.usd` / `.usda` / `.usdc` 文件格式，忽略模式和组合，最后只能得到更复杂的交换文件，而不是可组合的资产系统。
+- 模式歧义：不同工具对同一个图元/属性语义理解不一致，交换看似成功，但下游渲染器、仿真器或验证工具读到的含义不同。
+- 命名空间脆弱性：USD 使用 textual 分层命名空间，而不是 GUID；当引用的资产的内部命名空间改变时，更高层覆盖可能 fall off。来源明确把这列为 USD 的边界条件。
+- 骨骼绑定 overreach：USD 的场景图是轻量制作 / 组合的数据 extraction 基底，不是高性能骨骼绑定系统；把骨骼绑定运行时行为直接塞进 USD 会损害交换。
+- Working-设置 collapse：载荷的价值是 deferred loading；如果所有密集型资产都无条件参考基准/负载，阶段可以表达场景，但交互式工作流和内存 footprint 会恶化。
+- 单体化的资产漂移：机器人学资产把网格、材质、碰撞体、物理和运行时调优混写，后续重新导入、引擎切换或 regression 调试难以定位来源的变更。这个失效情形已在 [[IsaacSimAssetStructure]] 中具体化。
+- Composition overconfidence：组合能组织资产假设，但不能证明物理运行时与真实世界一致；仿真到现实迁移仍需要 [[SimulationRealityGap]] 层面的验证。
+- Glossary overreach：当前 Introduction 支持入门机制，但不能替代 glossary / API 参考基准；对 `LayerStack`、价值分辨率、列表编辑、命名空间编辑和 LIVRPS strength 顺序的精确定义应等后续收录。
 
 ## 实践含义
 
-学习 OpenUSD 时，先把问题分成三层：data semantics、composition structure、consumer behavior。Data semantics 问“这个 scene element 是什么”；composition structure 问“它来自哪里、怎么被组合和覆写”；consumer behavior 问“renderer、DCC tool 或 simulator 最终如何解释它”。
+学习 OpenUSD 时，先把问题分成三层：数据语义、组合结构、使用方行为。数据语义问“这个场景 element 是什么”；组合结构问“它来自哪里、怎么被组合和覆写”；使用方行为问“渲染器、DCC 工具或仿真器最终如何解释它”。
 
-| 学习问题 | 当前 wiki 入口 | Evidence 状态 |
+| 学习问题 | 当前知识库入口 | 证据状态 |
 | --- | --- | --- |
-| OpenUSD 的官方定位是什么？ | [[openusd-introduction]], [[OpenUSD]] | source-backed |
-| Stage / Prim / Layer 的基本关系是什么？ | [[OpenUSDSceneComposition]], [[openusd-introduction]] | source-backed 入门层级 |
-| 为什么 composition 是核心能力？ | [[OpenUSDSceneComposition]], [[IsaacSimAssetStructure]] | source-backed；精确定义待 glossary |
-| Hydra 在 USD 里负责什么？ | [[openusd-introduction]] | source-backed |
-| Robotics asset 为什么要拆 layers？ | [[IsaacSimAssetStructure]] | source-backed |
-| USD physics schema 和 Isaac Sim runtime tuning 怎么衔接？ | [[IsaacSimAssetStructure]], [[SimulationRealityGap]] | 部分 source-backed；需要补充 OpenUSD physics / Isaac docs |
-| OpenUSD scene 如何变成 sensor outputs？ | [[nvidia-ovrtx]], [[RTXSensorSimulationPipeline]] | source-backed at SDK/API contract level |
+| OpenUSD 的官方定位是什么？ | [[openusd-introduction]], [[OpenUSD]] | 有来源支持的 |
+| 阶段 / 图元 / 层的基本关系是什么？ | [[OpenUSDSceneComposition]], [[openusd-introduction]] | 有来源支持的入门层级 |
+| 为什么组合是核心能力？ | [[OpenUSDSceneComposition]], [[IsaacSimAssetStructure]] | 有来源支持的；精确定义待 glossary |
+| Hydra 在 USD 里负责什么？ | [[openusd-introduction]] | 有来源支持的 |
+| 机器人学资产为什么要拆层？ | [[IsaacSimAssetStructure]] | 有来源支持的 |
+| USD 物理模式和 Isaac Sim 运行时调优怎么衔接？ | [[IsaacSimAssetStructure]], [[SimulationRealityGap]] | 部分有来源支持的；需要补充 OpenUSD 物理 / Isaac 文档 |
+| OpenUSD 场景如何变成传感器输出？ | [[nvidia-ovrtx]], [[RTXSensorSimulationPipeline]] | 有来源支持的在 SDK/API 契约层级 |
 
 相关页面：[[OpenUSD]]、[[IsaacSimAssetStructure]]、[[RTXSensorSimulationPipeline]]、[[IsaacSim]]、[[SimulationRealityGap]]。

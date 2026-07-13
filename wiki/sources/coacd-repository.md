@@ -3,7 +3,7 @@ title: "CoACD Repository"
 type: source
 tags: [collision-detection, convex-decomposition, repository, simulation-assets]
 sources: []
-last_updated: 2026-06-04
+last_updated: 2026-07-13
 source_file: raw/coacd-readme.md
 source_kind: repo
 source_url: https://github.com/SarahWeiii/CoACD
@@ -13,17 +13,17 @@ source_date: unknown
 
 ## 摘要
 
-CoACD repository README 是 [[CoACD]] 的 implementation-facing source，说明 `coacd.run_coacd(mesh)` 如何把 input mesh 转换成一组 convex hulls，并列出 threshold、max hull count、MCTS search、preprocess、real metric mode 等参数。它补充了 paper 的算法动机：工程上需要把 non-convex assets 变成可被 collision detection 使用的 convex components，同时控制 detail、component count 和 runtime cost。
+CoACD 代码仓库 README 是 [[CoACD]] 的实现-facing 来源，说明 `coacd.run_coacd(mesh)` 如何把输入网格转换成一组凸包，并列出阈值、最大凸包数量、MCTS 搜索、preprocess、真实指标模式等参数。它补充了论文的算法动机：工程上需要把非凸资产变成可被碰撞检测使用的凸组件，同时控制细节、组件数量和运行时成本。
 
-Source URL: https://github.com/SarahWeiii/CoACD
+来源网址: https://github.com/SarahWeiii/CoACD
 
 ## 核心主张
 
-- CoACD 的目标是用 collision-aware concavity 和 tree search 生成更适合 collision conditions 的 convex decomposition。
-- README 暴露 Python/C++/Unity usage，返回值是一组 convex hulls，可直接进入 simulator / game engine asset pipeline。
-- `threshold` 控制 decomposition detail 与 component count；`max-convex-hull`、`max-ch-vertex`、`resolution`、`decimate` 和 MCTS 参数控制质量与速度 tradeoff。
-- 2026-04 README news 增加 real metric mode `-rm`，使 threshold 可以按 meters 解释，适合 real-world scale meshes。
-- 2025-09 README news 提到 PaMO preprocessing，用于 low-poly、manifold、intersection-free mesh preparation。
+- CoACD 的目标是用碰撞感知凹度和树搜索生成更适合碰撞条件的凸分解。
+- README 暴露 Python/C++/Unity 用法，返回值是一组凸包，可直接进入仿真器 / game 引擎资产流程。
+- `threshold` 控制分解细节与组件数量；`max-convex-hull`、`max-ch-vertex`、`resolution`、`decimate` 和 MCTS 参数控制质量与速度取舍。
+- 2026-04 README news 增加真实指标模式 `-rm`，使阈值可以按 meters 解释，适合现实世界规模网格。
+- 2025 年 9 月的 README 更新提到 PaMO 预处理，用于准备低多边形、流形且无相交的网格。
 
 ## 关键引文
 
@@ -32,12 +32,12 @@ Source URL: https://github.com/SarahWeiii/CoACD
 
 ## 关联
 
-- [[coacd-approximate-convex-decomposition|CoACD paper]] - 算法和 benchmark evidence。
+- [[coacd-approximate-convex-decomposition|CoACD 论文]] - 算法和基准证据。
 - [[ApproximateConvexDecomposition]] - 参数如何影响 ACD 的实践。
-- [[CollisionGeometryForRobotSimulation]] - collider authoring workflow。
-- [[CoACD]] - entity page。
+- [[CollisionGeometryForRobotSimulation]] - collider 制作流程。
+- [[CoACD]] - 实体页面。
 
 ## 开放问题
 
-- README 的 2025/2026 news 指向 active maintenance，但 release / commit provenance 当前没有保存进 wiki；后续可用 authenticated GitHub API 或 release tarball 做更 canonical snapshot。
-- PaMO preprocessing 的 source 和 benchmark 还未 ingest；它可能是 practical asset-cleaning pipeline 的关键补充。
+- README 的 2025/2026 news 指向活跃维护，但发布 / 提交 provenance 当前没有保存进知识库；后续可用 authenticated GitHub API 或发布 tarball 做更规范的快照。
+- PaMO 预处理的来源和基准还未收录；它可能是实用的资产-cleaning 流程的关键补充。

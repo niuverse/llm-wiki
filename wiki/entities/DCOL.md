@@ -3,15 +3,15 @@ title: "DCOL"
 type: entity
 tags: [collision-detection, differentiable-optimization, robotics]
 sources: ["[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]"]
-last_updated: 2026-06-04
+last_updated: 2026-07-13
 ---
 
 # DCOL
 
-DCOL 是 Differentiable Collision Detection for a Set of Convex Primitives。它把 collision detection formulation 从 branching-heavy geometric algorithms 转换成 convex optimization problem：求两 convex primitives 相交所需的 minimum uniform scaling factor $\alpha$。若 $\alpha>1$，objects separated；若 $\alpha<1$，objects interpenetrating。
+DCOL 是用于一组凸基元的可微碰撞检测方法。它把包含大量分支的几何碰撞算法转换成凸优化问题：求两个凸基元相交所需的最小均匀尺度扩展因子 $\alpha$。若 $\alpha>1$，物体分离；若 $\alpha<1$，物体相互穿透。
 
-[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL paper]] 支持 polytopes、capsules、cylinders、cones、ellipsoids 和 padded polygons，并通过 differentiable conic optimization 返回 collision metric、contact points 和 gradients。它的主要 application 是 trajectory optimization collision constraints 和 differentiable contact physics experiments。
+[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL 论文]] 支持 polytopes、胶囊体、圆柱体、cones、ellipsoids 和带填充的多边形，并通过可微 conic 优化返回碰撞指标、接触点和梯度。它的主要 application 是轨迹优化碰撞约束和可微接触物理实验。
 
-在当前 wiki 中，DCOL 连接了 [[CollisionGeometryForRobotSimulation|collider representation]] 与 [[DifferentiableCollisionDetection|differentiable collision detection]]：复杂 assets 若要进入 gradient-based planning，往往需要先被表示成一组 optimization-friendly convex primitives。
+在当前知识库中，DCOL 连接了 [[CollisionGeometryForRobotSimulation|collider representation]] 与 [[DifferentiableCollisionDetection|可微碰撞检测]]：复杂资产若要进入基于梯度的规划，往往需要先被表示成一组优化友好的凸基元。
 
 相关页面：[[DifferentiableCollisionDetection]]、[[DifferentiablePhysics]]、[[CollisionGeometryForRobotSimulation]]、[[DiffPills]]。

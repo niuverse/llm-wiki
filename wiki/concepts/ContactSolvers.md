@@ -1,68 +1,68 @@
 ---
-title: "Contact Solvers（接触求解器）"
+title: "接触求解器"
 type: concept
 tags: [robotics, simulation, optimization, numerical-methods]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[omniverse-omni-physics-articulations]]"]
-last_updated: 2026-05-04
+last_updated: 2026-07-13
 ---
 
-# Contact Solvers（接触求解器）
+# 接触求解器
 
-Contact solvers 是 numerical routines：当 simulator 检测到 contact geometry 并构造出 contact problem 后，它们负责计算 forces 或 impulses。在 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]] 中，solvers 的评估维度包括 physical residuals、robustness to ill-conditioning、internal-force artifacts、self-consistency 和 runtime。
+接触求解器是数值 routines：当仿真器检测到接触几何并构造出接触问题后，它们负责计算力或冲量。在 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]] 中，求解器的评估维度包括物理残差、鲁棒性到 ill-条件化、内部力产物、self-一致性和运行时。
 
-关键点是：solver 不是在孤立地“修正每个接触点”。一个 contact impulse 会通过 rigid-body dynamics 改变整机 velocity，再通过 Jacobian 影响所有其他 contact velocities。因此 contact resolution 本质上是一个 coupled fixed-point problem：找到一组 normal/tangential forces，使 non-penetration、friction bound 和 energy dissipation 的残差同时足够小。
+关键点是：求解器不是在孤立地“修正每个接触点”。一个接触冲量会通过刚体动力学改变整机速度，再通过雅可比矩阵影响所有其他接触速度。因此接触分辨率本质上是一个耦合的不动点问题：找到一组法向/切向力，使不穿透、摩擦边界和能量耗散的残差同时足够小。
 
 ## 数学结构
 
 一个简化的数学图像是：
 
-- normal direction：`lambda_n >= 0`、`v_n >= 0`、`lambda_n * v_n = 0`，表示 contact 不能拉住物体，也不能在分离时仍施加 normal force。
-- tangential direction：`||lambda_t|| <= mu * lambda_n`，friction force 被 Coulomb cone 限制。
-- sliding 时：maximum dissipation 要求 friction direction 与 tangential motion 相反。
+- 法向方向：`lambda_n >= 0`、`v_n >= 0`、`lambda_n * v_n = 0`，表示接触不能拉住物体，也不能在分离时仍施加法向力。
+- 切向方向：`||lambda_t|| <= mu * lambda_n`，摩擦力被库仑摩擦锥限制。
+- 滑动时：最大耗散要求摩擦方向与切向运动相反。
 
-这些条件共同形成 [[ContactComplementarity|contact complementarity]]。论文比较的 solvers 可以按 formulation 和 numerical strategy 两层理解：
+这些条件共同形成 [[ContactComplementarity|接触互补]]。论文比较的求解器可以按表述和数值策略两层理解：
 
 ```mermaid
 flowchart TD
-  A["Rigid contact target<br/>Signorini + Coulomb + maximum dissipation"] --> B{"formulation"}
-  B --> C["NCP<br/>更接近 reference model"]
-  B --> D["LCP<br/>polyhedral friction cone"]
-  B --> E["CCP<br/>convex relaxation"]
-  B --> F["RaiSim-style model<br/>contact-state heuristics"]
-  C --> G{"solver strategy"}
+  A["刚性接触目标<br/>Signorini + Coulomb + 最大耗散"] --> B{"表述"}
+  B --> C["NCP<br/>更接近参考模型"]
+  B --> D["LCP<br/>多面体摩擦锥体"]
+  B --> E["CCP<br/>凸松弛"]
+  B --> F["RaiSim-风格模型<br/>接触状态启发式规则"]
+  C --> G{"求解器 strategy"}
   D --> G
   E --> G
   F --> G
-  G --> H["per-contact / local iteration<br/>PGS, RaiSim-style bisection"]
-  G --> I["global / proximal iteration<br/>ADMM, staggered projections"]
+  G --> H["逐接触点 / 局部迭代<br/>PGS, RaiSim-风格二分法"]
+  G --> I["全局 / 近端迭代<br/>ADMM, 交错投影"]
 ```
 
-Contact coupling 可以通过 Delassus operator 直观理解：$W=J M^{-1}J^\top$，其中 $M$ 是 mass matrix，$J$ 是 contact Jacobian。一个 contact impulse $\lambda_i$ 会通过 $W$ 改变其他 contacts 的 normal/tangential velocities，所以求解不是每个 contact 独立 clip，而是在 coupled system 中找到全局一致的 $\lambda$。
+接触耦合可以通过 Delassus 算子直观理解：$W=J M^{-1}J^\top$，其中 $M$ 是质量矩阵，$J$ 是接触雅可比矩阵。一个接触冲量 $\lambda_i$ 会通过 $W$ 改变其他接触的法向/切向速度，所以求解不是每个接触独立截断，而是在耦合的系统中找到全局一致的 $\lambda$。
 
 ## 直觉
 
-论文区分了两个 practical families：
+论文区分了两个实用的族：
 
-- Per-contact methods，例如 PGS 与 RaiSim-style bisection：每次 iteration 成本低，在温和的 contact scenarios 中通常足够快；但它们可能遗漏 contacts 之间的 global coupling，产生 internal forces，并在 ill-conditioned problems 上失败。
-- Global 或 proximal methods，例如 ADMM 与 staggered projections：使用更多完整 contact problem 的结构。它们通常更 robust，也能产生更干净的 contact forces，但每次 iteration 成本更高。从 previous time step warm-start 可以在 practical simulation loops 中缩小这个差距。
+- Per-接触方法，例如 PGS 与 RaiSim-风格二分法：每次迭代成本低，在温和的接触场景中通常足够快；但它们可能遗漏接触之间的全局耦合，产生内部力，并在病态问题上失败。
+- 全局或近端方法，例如 ADMM 与交错投影：使用更多完整接触问题的结构。它们通常更鲁棒，也能产生更干净的接触力，但每次迭代成本更高。从上一时间步热启动可以在实用的仿真 loops 中缩小这个差距。
 
-算法直觉上，PGS-style 方法像是在 contact constraints 之间做 sequential projection：更新一个 contact 的 impulse 后，立刻用它修正当前 velocity estimate，再处理下一个 contact。它便宜、incremental，也容易 warm-start；但在 redundant support、sliding 或 bad conditioning 下，局部修正可能互相抵消，留下 self-consistency residuals 或 internal forces。
+算法直觉上，PGS-风格方法像是在接触约束之间做顺序投影：更新一个接触的冲量后，立刻用它修正当前速度估计值，再处理下一个接触。它便宜、incremental，也容易热启动；但在冗余支撑、滑动或不良条件化下，局部修正可能互相抵消，留下 self-一致性残差或内部力。
 
-ADMM 与 staggered projections 这类方法更像是在 whole contact vector 上交替满足 dynamics、cone constraints 和 complementarity-related constraints。它们每步更重，但能更直接处理 contacts 之间的 coupling 与 underdetermination，因此论文把它们描述为更 robust 的方向。
+ADMM 与交错投影这类方法更像是在 whole 接触 vector 上交替满足动力学、锥约束和互补相关的约束。它们每步更重，但能更直接处理接触之间的耦合与 underdetermination，因此论文把它们描述为更鲁棒的方向。
 
-[[omniverse-omni-physics-articulations|Omni Physics Articulations]] 给这个 solver lens 增加了 articulation-internal constraints。Source 说明 closed-loop articulations 更难求解，建议降低 simulation timestep；mimic joint 如果没有 compliance，会用 impulses instantaneously 维持 mimic equation；gripper 场景中 stiff driven joint、light finger inertia、hard mimic constraint 和 hard contact 会互相竞争，导致 instability。它还说明增加 TGS solver position iterations 会降低 compliant mimic joint 看到的 effective timestep，尤其在 behavior 不由 collision response 主导时。
+[[omniverse-omni-physics-articulations|Omni 物理关节系统]] 给这个求解器视角增加了关节系统内部约束。来源说明闭环关节系统更难求解，建议降低仿真时间步；mimic 关节如果没有柔顺性，会用冲量瞬时地维持 mimic 方程；夹爪场景中高刚度的驱动的关节、轻量的手指惯量、硬 mimic 约束和硬接触会互相竞争，导致不稳定。它还说明增加 TGS 求解器位置迭代会降低 compliant mimic 关节看到的有效的时间步，尤其在行为不由碰撞响应主导时。
 
-## Failure Modes
+## 失效情形
 
-- Local coupling miss：PGS/per-contact updates 可能只在局部改善 residual，却没有解决 whole-body contact coupling。
-- Ill-conditioned convergence failure：质量分布、redundant contacts 或 near-singular contact geometry 会让 local solvers 难以收敛。
-- Internal-force artifacts：underdetermined support 中，solver 可能返回 physical residual 看似可接受但 force distribution 不可信的 solution。
-- Competing articulation constraints：hard mimic / tendon / closed-loop constraints 与 hard contact 或 stiff drive 同时存在时，solver 可能出现 instability、chatter 或需要更小 timestep。
-- Runtime/fidelity tradeoff inversion：global methods 每步更贵，但如果 local solver 需要大量 iterations 或 failed convergence，实际 control loop 中未必更便宜。
-- Warm-start dependence：warm-start 能显著改善 runtime，但也可能让 solver behavior 依赖 previous-step artifacts。
+- 局部耦合 miss：PGS/逐接触点更新可能只在局部改善残差，却没有解决全身接触耦合。
+- 病态收敛失败：质量分布、冗余接触或 near-singular 接触几何会让局部求解器难以收敛。
+- 内部力产物：underdetermined 支撑中，求解器可能返回物理残差看似可接受但力分布不可信的 solution。
+- 相互竞争的关节系统约束：硬 mimic / tendon / 闭环约束与硬接触或高刚度的驱动同时存在时，求解器可能出现不稳定、颤振或需要更小时间步。
+- 运行时/保真度取舍 inversion：全局方法每步更贵，但如果局部求解器需要大量迭代或失败的收敛，实际控制循环中未必更便宜。
+- 热启动依赖：热启动能显著改善运行时，但也可能让求解器行为依赖先前的步骤产物。
 
 ## 实践含义
 
-对 robotics 来说，合适的 solver 取决于 task tolerance。某些 MPC 与 RL workloads 可能能接受快速的 approximate answers；而 contact-rich terrain、redundant support、force sensing、differentiable objectives、closed-loop mechanisms 和 gripper mimic constraints 会对 physical consistency 提出更高要求。
+对机器人学来说，合适的求解器取决于任务容差。某些 MPC 与 RL 工作负载可能能接受快速的近似 answers；而接触丰富地形、冗余支撑、力感知、可微目标、闭环机制和夹爪 mimic 约束会对物理一致性提出更高要求。
 
 相关页面：[[ContactComplementarity]]、[[ContactModelsInRobotics]]、[[ReducedCoordinateArticulations]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]。
