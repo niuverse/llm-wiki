@@ -2,8 +2,8 @@
 title: "Collision Geometry for Robot Simulation"
 type: concept
 tags: [robotics, simulation, collision-detection, contact-dynamics, simulation-assets]
-sources: ["[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[v-hacd-repository]]", "[[coacd-approximate-convex-decomposition]]", "[[coacd-repository]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]"]
-last_updated: 2026-06-04
+sources: ["[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[v-hacd-repository]]", "[[coacd-approximate-convex-decomposition]]", "[[coacd-repository]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
+last_updated: 2026-07-11
 ---
 
 # Collision Geometry for Robot Simulation
@@ -80,6 +80,8 @@ SDF / triangle mesh collider 的直觉是用更多 geometry fidelity 换更高�
 | Convex decomposition | non-convex objects、handles、tool shapes | 保留部分 concavity，仍使用 convex queries | hull count 过高会拖慢 broadphase/narrowphase，并增加 contact count |
 | Primitive decomposition | game / large-asset pipeline，editable colliders | 使用 engine-optimized primitives，complexity 低，可手工调 | 对 high-frequency organic geometry 或 contact-critical details 可能过粗 |
 | SDF / detailed mesh | detail-critical static or quasi-static collision | fidelity 高，能表达复杂形状 | memory / compute cost 高，engine-specific，可能不适合大规模 RL throughput |
+
+[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 给出 generated assets 的 concrete pipeline evidence：mesh repair 后使用 CoACD 生成 collision geometry，再进入 URDF/MJCF/USD export 和 simulator validation。其 full asset pipeline 报告 98.6% collision success、2.6±0.4 分钟平均处理时间；关闭 mesh fix 后的人工处理时间为 21.3±22.8 分钟，asset size 为 51.63 MB。这里的 evidence 支持“collision preprocessing 是 simulation readiness 的关键 gate”，但不能直接推出 CoACD 在所有 engine/task 中最优，因为结果绑定于该系统的 asset distribution、repair pipeline 和 success definition。
 
 ## Failure Modes
 

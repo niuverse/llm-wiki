@@ -2,8 +2,8 @@
 title: "Research Questions"
 type: synthesis
 tags: [research-questions, robotics, embodied-ai]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]"]
-last_updated: 2026-06-05
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
+last_updated: 2026-07-11
 ---
 
 # Research Questions
@@ -25,6 +25,14 @@ last_updated: 2026-06-05
 优先阅读：[[TaskGeneralistPolicyEvaluation]]、[[SimulationSensitivityAnalysis]]、[[RoboLab]]、[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]、[[nvlabs-robolab]]。
 
 证据边界：RoboLab 的 six-task real/sim verification 支持 simulation proxy 有价值，但也提示 proxy validity 会随 policy/task family 改变；benchmark score 不能单独等价于真实部署可靠性。
+
+## Generated 3D world 什么时候才算可用于 robot learning？
+
+当前判断：visual plausibility 只是起点。[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen V1]] 建立 object、texture、articulation、scene 与 layout generation 的 modular pipeline；[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|V2]] 把目标收紧为 [[SimulationReady3DWorldGeneration|simulation-ready contract]]：metric geometry、collision assets、physical parameters、task semantics、affordances、standardized interfaces 和 executable validation 必须共同成立。对 task world，还要满足 support、non-overlap、reachability、settling 和 role consistency。
+
+优先阅读：[[embodiedgen-v1-v2-learning-map|EmbodiedGen V1/V2 Learning Map]]、[[EmbodiedGen]]、[[SimulationReady3DWorldGeneration]]、[[AgenticSceneTaskGeneration]]、[[CollisionGeometryForRobotSimulation]]、[[RoboticsSimulationInfrastructure]]。
+
+证据边界：V2 的 asset/world acceptance、collision success、processing time 与 affordance ablations 是 source-specific evidence；cross-format export 不保证 cross-simulator dynamics equivalence，VLM physical estimates 不等于 SysID，论文引用的 policy scaling numbers 来自 companion studies 而不是 V2 独立控制实验。
 
 ## Robot RL training 必须使用 GPU-resident simulation 吗？
 
@@ -85,6 +93,7 @@ last_updated: 2026-06-05
 - π0.7、LDA-1B、RoboLab 的外部复现或批判性分析。
 - AGILE/WBC-AGILE 的后续 hardware reports，尤其是带 motion capture、force/torque、energy、failure-rate 和 perception-driven manipulation metrics 的资料。
 - GRAIL 的 project page、code、dataset release、failure-filtering statistics 和 independent replication，尤其是不同 VFM / 3D asset pipeline / robot platform 下的 robustness。
+- EmbodiedGen V2 的 code/data release、跨 simulator dynamics validation、physical-parameter ground truth benchmark、affordance end-to-end failure analysis，以及 generated-world policy scaling companion studies。
 - MuJoCoUni、MotrixSim、UniLab repo、mjlab / MjWarp、MuJoCo Playground、Isaac Lab 和 ManiSkill3 的 docs / repo snapshots，用来建立 robot RL training runtime taxonomy。
 - 直接比较 visual subgoal world model、latent dynamics pretraining 和 classical model-based control 的 robot studies。
 - 把 contact solver choice 与 real-robot MPC/RL/differentiable optimization failure 关联起来的实证工作。

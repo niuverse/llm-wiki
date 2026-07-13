@@ -2,8 +2,8 @@
 title: "Simulation Reality Gap（仿真现实差距）"
 type: concept
 tags: [robotics, simulation, sim-to-real, reinforcement-learning, world-models]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]"]
-last_updated: 2026-06-05
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
+last_updated: 2026-07-11
 ---
 
 # Simulation Reality Gap（仿真现实差距）
@@ -59,6 +59,12 @@ flowchart LR
 
 [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 增加了 generated-data lens。它通过先指定 3D assets、camera、metric scale、environment depth 和 robot-proportioned morphology，减少从 video 到 4D HOI trajectory 的 reconstruction gap；但它没有让 sim-to-real gap 消失，而是把一部分风险转移到 VFM prompt following、object appearance consistency、failure filtering、retargeting quality 和 task-family tracker coverage 上。换言之，known geometry 可以降低 ambiguity，不能替代真实 hardware contact、camera 和 hand dynamics validation。
 
+## Generated environment lens
+
+[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 把 reality gap 的审计点提前到 world generation：metric scale、mesh repair、collision decomposition、mass/friction/inertia recovery、joint semantics、affordance segmentation/grasping、scene support/reachability 和 simulator interface 都可能在 policy training 前引入 mismatch。论文汇总 companion studies 时报告，随着 generated environment 数量从 $N=1$ 增加到 $N=50$，sim success 从 9.7% 升到 79.8%、real success 从 21.7% 升到 75.0%、OOD success 从 53.2% 升到 77.9%；这些数字支持 environment diversity 可能改善 policy robustness，但不是 V2 自身独立控制实验，因此不能脱离 companion-study setup 解释为普遍 scaling law。
+
+这个 source 还明确保留两个重要边界：cross-format export 不等于不同 simulators 中 dynamics 完全一致；VLM 恢复的 mass、friction 和 inertia estimates 也不等于 system identification。Simulation-ready 是一个可执行 contract，不是 physical truth certificate。
+
 ## Learned world model lens
 
 [[a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]] 给 simulation reality gap 增加了 learned-simulator lens。[[WorldModelsForEmbodiedAI|World models]] 用 latent dynamics、tokens、spatial grids 或 renderable primitives rollout future states；这些 rollouts 可能帮助 policy optimization、MPC 和 counterfactual reasoning，但也可能把 dataset bias、temporal drift、weak physical consistency 或 pixel-level artifacts 转换成新的 model-reality mismatch。
@@ -91,4 +97,4 @@ a_t = pi_phi(assemble_deploy(o_{t-k:t}; joint_order', history', scaling'))
 
 AGILE 还说明 evaluation gap 是 reality gap 的前置条件：只看 aggregate reward 或 stochastic rollout average，可能错过 RMS acceleration、jerk、joint-limit violations 和 high-frequency energy ratio 等 actuator-relevant signals。Deterministic scenario tests（velocity sweep、height ramp）提供低方差 regression tests；stochastic rollouts 则估计随机 command distribution 下的 robustness。两者缺一时，sim-to-real risk 都可能被误估。
 
-相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[RoboticsSimulationInfrastructure]]、[[HeterogeneousRobotRLTraining]]、[[VisualSimToReal]]、[[AssetConditionedHOIGeneration]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[HumanoidRLWorkflow]]、[[AGILE]]、[[GRAIL]]、[[UniLab]]、[[MuJoCo]]、[[RaiSim]]。
+相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[RoboticsSimulationInfrastructure]]、[[SimulationReady3DWorldGeneration]]、[[EmbodiedGen]]、[[HeterogeneousRobotRLTraining]]、[[VisualSimToReal]]、[[AssetConditionedHOIGeneration]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[HumanoidRLWorkflow]]、[[AGILE]]、[[GRAIL]]、[[UniLab]]、[[MuJoCo]]、[[RaiSim]]。

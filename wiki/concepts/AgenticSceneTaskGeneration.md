@@ -2,8 +2,8 @@
 title: "Agentic Scene/Task Generation"
 type: concept
 tags: [robotics, simulation, benchmark, asset-authoring, agents]
-sources: ["[[nvlabs-robolab]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[robotics-simulation-infrastructure]]"]
-last_updated: 2026-06-12
+sources: ["[[nvlabs-robolab]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[robotics-simulation-infrastructure]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
+last_updated: 2026-07-11
 ---
 
 # Agentic Scene/Task Generation
@@ -50,6 +50,8 @@ LLM 生成 robotics scene/task 的难点不是写文本，而是让文本落到 
 
 这类 workflow 应该属于 [[RoboticsSimulationInfrastructure|simulation infrastructure]]，因为它改变 benchmark 扩展成本和 failure surface。更低的 authoring cost 可以扩大 task library，但也引入 LLM bias、predicate expressivity limit 和 validation blind spots。它不能替代 human benchmark design；更像是把 human intent 转成 initial artifact，再通过 solver/test/review gates 筛选。
 
+[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 把这个模式扩展到完整 simulation-ready world。它先把 task 分解成 scene requirements 和 functional roles（robot、background、context、manipulated object、distractor），再用 support relations、pairwise IoU、reachability、SAPIEN settling 和 task affordance checks 筛选布局；stateful vibe coding 还要求每次 edit 保持 persistent world state，并让失败操作保持 atomic、不能部分修改场景。这个 case 说明 agentic authoring 的核心 artifact 不只是生成代码或 USD 文件，而是 `world state + constraints + executable validation + edit transaction semantics`。
+
 ## Failure Modes
 
 - Catalog mismatch：LLM 选中的 object name 不在 catalog 或与 USD prim name 不一致，导致 scene/task 无法运行。
@@ -66,4 +68,4 @@ LLM 生成 robotics scene/task 的难点不是写文本，而是让文本落到 
 - 对 [[SimulationBenchmarkReportingPipeline|reporting pipeline]]，generated tasks 需要 metadata regeneration 才能进入 dashboard、analysis grouping 和 confidence-interval reporting。
 - 对 [[SimulationRealityGap|sim-to-real]]，agentic scene/task generation 可以提高 coverage，但不能证明 real-world transfer；仍需要 physics/rendering/contact validity 和 real-robot checks。
 
-相关页面：[[nvlabs-robolab]]、[[RoboLab]]、[[RoboticsSimulationInfrastructure]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationBenchmarkReportingPipeline]]、[[SimulationRealityGap]]。
+相关页面：[[nvlabs-robolab]]、[[RoboLab]]、[[EmbodiedGen]]、[[SimulationReady3DWorldGeneration]]、[[RoboticsSimulationInfrastructure]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationBenchmarkReportingPipeline]]、[[SimulationRealityGap]]。

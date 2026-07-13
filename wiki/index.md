@@ -3,7 +3,7 @@ title: "Wiki Index"
 type: synthesis
 tags: [index, navigation]
 sources: []
-last_updated: 2026-06-30
+last_updated: 2026-07-11
 ---
 
 # Wiki Index
@@ -20,6 +20,7 @@ last_updated: 2026-06-30
 - **Simulation benchmark 能证明什么？** 读 [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md)、[Simulation Benchmark Reporting Pipeline](concepts/SimulationBenchmarkReportingPipeline.md)、[Simulation Sensitivity Analysis](concepts/SimulationSensitivityAnalysis.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
 - **Humanoid RL 从训练到硬件怎样减少 silent failures？** 读 [Humanoid RL Workflow](concepts/HumanoidRLWorkflow.md)、[AGILE](entities/AGILE.md)、[Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)。
 - **Simulation infrastructure decisions 为什么重要？** 读 [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md) 和 [Agentic Scene/Task Generation](concepts/AgenticSceneTaskGeneration.md)，重点看 task/API、asset management、agentic scene/task authoring、rendering memory/fidelity、visualizer diagnostics 和 pose API 如何影响 RL/evaluation workflow。
+- **Generated 3D world 什么时候才算可用于 robot learning？** 读 [EmbodiedGen V1/V2 Learning Map](syntheses/embodiedgen-v1-v2-learning-map.md)、[Simulation-Ready 3D World Generation](concepts/SimulationReady3DWorldGeneration.md) 和 [EmbodiedGen](entities/EmbodiedGen.md)，重点区分 visual plausibility 与 metric geometry、physical assets、task semantics、affordances、simulator interfaces 和 executable validation。
 - **Robot RL training 必须 GPU-resident simulation 吗？** 读 [Heterogeneous Robot RL Training](concepts/HeterogeneousRobotRLTraining.md)、[UniLab](entities/UniLab.md) 和 [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md)，重点看 CPU/GPU role assignment、collector-learner overlap、replay boundary、H2D transfer 和 weight sync 如何决定 end-to-end training efficiency。
 - **ovrtx 如何把 OpenUSD scene 变成 RTX sensor outputs？** 读 [RTX Sensor Simulation Pipeline](concepts/RTXSensorSimulationPipeline.md)、[NVIDIA ovrtx](sources/nvidia-ovrtx.md)、[ovrtx](entities/Ovrtx.md) 和 [OpenUSD Scene Composition](concepts/OpenUSDSceneComposition.md)，重点看 `RenderProduct`、`RenderVar`、DLPack tensor mapping、lidar/radar `PointCloud` channels 和 warm-up / synchronization rules。
 - **Visual sim-to-real 怎么跨过 reality gap？** 读 [Visual Sim-to-Real](concepts/VisualSimToReal.md)、[VIRAL](entities/VIRAL.md) 和 [Simulation Reality Gap（仿真现实差距）](concepts/SimulationRealityGap.md)，重点看 privileged teacher、vision student、domain randomization、hand/camera alignment 与 failure cases。
@@ -45,6 +46,7 @@ last_updated: 2026-06-30
 ## Syntheses
 
 - [Research Questions](syntheses/research-questions.md) - 当前 wiki 支持的高价值研究问题、阅读路径和 evidence boundary
+- [EmbodiedGen V1/V2 Learning Map](syntheses/embodiedgen-v1-v2-learning-map.md) - 对照两代 EmbodiedGen 的系统边界、核心机制、证据强度、常见误解和推荐阅读路径
 - [ovrtx API Boundary](syntheses/ovrtx-api-boundary.md) - distill ovrtx 的 scene composition、physics object authoring、light/camera randomization 和上层 ownership 边界
 - [Isaac Sim mujoco.usda Runtime Semantics](syntheses/isaac-sim-mujoco-usda-runtime-semantics.md) - distill `mujoco.usda` 的 ownership boundary：不是 visual/collision asset 文件，而是 MuJoCo-specific runtime interpretation / tuning overlay
 - [Isaac Sim and MuJoCo Physics and Control Notes](syntheses/isaac-sim-mujoco-control-tuning-notes.md) - distill Isaac Sim 官方文档措辞、PhysX/Isaac Sim position drive semantics、stiffness/damping、effort limit、七自由度机械臂 gain scaling、MuJoCo/PhysX solver 差异和参数迁移边界
@@ -76,6 +78,8 @@ last_updated: 2026-06-30
 
 ### Simulation And Evaluation
 
+- [EmbodiedGen: Towards a Generative 3D World Engine for Embodied Intelligence](sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence.md) - modular generative 3D world engine，覆盖 object/texture/articulation/scene/layout generation、自动质量检查和 simulator asset export
+- [EmbodiedGen V2: An Agentic Simulation-Ready 3D World Engine for Embodied AI](sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai.md) - agentic simulation-ready world engine，把 metric geometry、collision repair、physical parameters、task affordances、scene constraints、multi-room worlds 和 stateful vibe coding 接成可执行 pipeline
 - [AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning](sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.md) - humanoid RL workflow，把 environment verification、training stabilization、deterministic evaluation 和 descriptor-driven deployment 接成 sim-to-real lifecycle
 - [VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation](sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation.md) - project page for RGB-based humanoid loco-manipulation，覆盖 privileged RL teacher、vision student distillation、visual randomization、finger SysID、FOV alignment、generalization videos 和 failure cases
 - [GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors](sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.md) - fully digital humanoid data-generation pipeline，用 3D assets、VFM priors、metric 4D HOI reconstruction、retargeting 和 task-general trackers 训练 Unitree G1 visual policies
@@ -142,6 +146,7 @@ last_updated: 2026-06-30
 
 ### Simulation And Evaluation
 
+- [Simulation-Ready 3D World Generation](concepts/SimulationReady3DWorldGeneration.md) - 从 generated appearance 到 metric、physical、semantic、affordance 和 interface-complete simulation assets/worlds 的约束合成框架
 - [Humanoid RL Workflow](concepts/HumanoidRLWorkflow.md) - 从 robot/MDP verification 到 training、evaluation、descriptor export 和 hardware deployment 的 humanoid RL lifecycle
 - [Task-Generalist Policy Evaluation](concepts/TaskGeneralistPolicyEvaluation.md) - 用 task libraries、language variants、predicates、subtask scoring 和 diagnostics 评估泛化 robot policies
 - [Robotics Simulation Infrastructure](concepts/RoboticsSimulationInfrastructure.md) - 把 simulator framework 拆成 task/API、asset management、physics/rendering、visualizer 和 ML loop 的 design decisions
@@ -179,6 +184,7 @@ last_updated: 2026-06-30
 
 ### Models, Datasets, And Benchmarks
 
+- [EmbodiedGen](entities/EmbodiedGen.md) - 从 modular 3D content generation 演进到 agentic simulation-ready asset/world/task generation 的系统项目
 - [AGILE](entities/AGILE.md) - Isaac Lab/RSL-RL based humanoid RL workflow layer，统一 verification、training、evaluation 和 descriptor-driven deployment
 - [DeFI](entities/DeFI.md) - decoupled forward/inverse dynamics pretraining framework，用 GFDM、GIDM 和 action adapter 从 videos 到 robot commands
 - [EI-30K](entities/EI30K.md) - LDA-1B source 构建的 30k+ hour heterogeneous embodied interaction dataset

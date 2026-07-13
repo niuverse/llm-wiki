@@ -222,3 +222,11 @@ Operations: `ingest`, `query`, `distill`, `learn`, `source`, `health`, `lint`, `
 ## [2026-06-30] ingest | UniLab Repository
 
 - Registered pending local source page `wiki/sources/unilab-repository.md` with raw README snapshot and extracted cache.
+
+## [2026-07-11] ingest | EmbodiedGen: Towards a Generative 3D World Engine for Embodied Intelligence
+
+- Added the canonical arXiv PDF and MarkItDown extract, then connected its modular object/texture/articulation/scene/layout pipeline to [[EmbodiedGen]], [[SimulationReady3DWorldGeneration]], [[RoboticsSimulationInfrastructure]] and the V1/V2 learning map.
+
+## [2026-07-11] ingest | EmbodiedGen V2: An Agentic, Simulation-Ready 3D World Engine for Embodied AI
+
+- Added the canonical arXiv PDF and MarkItDown extract, then compiled its metric/physical/semantic/affordance/interface contract, agentic task-world generation, simulator validation, experimental evidence and limitations into the wiki knowledge layer.
