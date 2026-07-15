@@ -3,7 +3,7 @@ title: "知识库日志"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-07-13
+last_updated: 2026-07-15
 ---
 
 # 知识库日志
@@ -235,3 +235,8 @@ last_updated: 2026-07-13
 
 - 更新 `AGENTS.md` 中的语言规范：操作说明保持英文，知识页阅读内容以自然中文为主。
 - 统一清理导航、综述、概念页、综合页、来源页、实体页和历史日志中的非必要英文，同时保留论文原题、项目名、代码标识、命令、公式与链接目标。
+
+## [2026-07-15] ingest | MagicSim: A Unified Infrastructure for Executable Embodied Interaction
+
+- 保存 arXiv v1 PDF 与 MarkItDown 阅读缓存，新增来源页、[[MagicSim]] 实体页和 [[ExecutableEmbodiedInteractionInfrastructure|可执行具身交互基础设施]] 概念页。
+- 更新 [[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、总览和索引，区分当前接口、计划中能力与缺失的定量 / 真实机器人证据。

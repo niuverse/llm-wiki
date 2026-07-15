@@ -3,7 +3,7 @@ title: "知识库索引"
 type: synthesis
 tags: [index, navigation]
 sources: []
-last_updated: 2026-07-13
+last_updated: 2026-07-15
 ---
 
 # 知识库索引
@@ -20,6 +20,7 @@ last_updated: 2026-07-13
 - **仿真基准能证明什么？** 读 [通用任务策略评估](concepts/TaskGeneralistPolicyEvaluation.md)、[仿真基准报告流程](concepts/SimulationBenchmarkReportingPipeline.md)、[仿真敏感性分析](concepts/SimulationSensitivityAnalysis.md)、[仿真—现实差距](concepts/SimulationRealityGap.md)。
 - **人形机器人强化学习从训练到硬件怎样减少静默失败？** 读 [人形机器人强化学习工作流](concepts/HumanoidRLWorkflow.md)、[AGILE](entities/AGILE.md)、[仿真—现实差距](concepts/SimulationRealityGap.md)。
 - **仿真基础设施决策为什么重要？** 读 [机器人仿真基础设施](concepts/RoboticsSimulationInfrastructure.md) 和 [智能体式场景与任务生成](concepts/AgenticSceneTaskGeneration.md)，重点看任务/API、资产管理、智能体式场景/任务制作、渲染内存/保真度、可视化工具诊断和位姿 API 如何影响 RL/评估工作流。
+- **MagicSim 怎样把基准、数据生成和智能体交互接到同一运行时？** 读 [MagicSim 论文](sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction.md)、[MagicSim](entities/MagicSim.md) 和 [可执行具身交互基础设施](concepts/ExecutableEmbodiedInteractionInfrastructure.md)，重点看“回合而非帧”、共享任务 MDP、同步物理 / 异步语义状态、AtomicSkill、异步规划与成功门控数据。
 - **生成式三维世界什么时候才算可用于机器人学习？** 读 [EmbodiedGen V1/V2 学习地图](syntheses/embodiedgen-v1-v2-learning-map.md)、[可用于仿真的三维世界生成](concepts/SimulationReady3DWorldGeneration.md) 和 [EmbodiedGen](entities/EmbodiedGen.md)，重点区分视觉合理性与公制几何、物理资产、任务语义、可供性、仿真器接口和可执行验证。
 - **机器人 RL 训练必须驻留 GPU 的仿真吗？** 读 [异构机器人强化学习训练](concepts/HeterogeneousRobotRLTraining.md)、[UniLab](entities/UniLab.md) 和 [机器人仿真基础设施](concepts/RoboticsSimulationInfrastructure.md)，重点看 CPU/GPU 职责分配、采集器与学习器重叠执行、回放边界、主机到设备传输和权重同步如何决定端到端训练效率。
 - **ovrtx 如何把 OpenUSD 场景变成 RTX 传感器输出？** 读 [RTX 传感器仿真流程](concepts/RTXSensorSimulationPipeline.md)、[NVIDIA ovrtx](sources/nvidia-ovrtx.md)、[ovrtx](entities/Ovrtx.md) 和 [OpenUSD 场景组合](concepts/OpenUSDSceneComposition.md)，重点看 `RenderProduct`、`RenderVar`、DLPack 张量映射、lidar/radar `PointCloud` 通道和预热 / 同步规则。
@@ -80,6 +81,7 @@ last_updated: 2026-07-13
 
 - [EmbodiedGen: Towards a Generative 3D World Engine for Embodied Intelligence](sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence.md) - 模块化生成式 3D 世界引擎，覆盖物体/纹理/关节系统/场景/布局生成、自动质量检查和仿真器资产导出
 - [EmbodiedGen V2: An Agentic Simulation-Ready 3D World Engine for Embodied AI](sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai.md) - 智能体式可用于仿真的世界引擎，把公制几何、碰撞修复、物理参数、任务可供性、场景约束、多房间世界和有状态自然语言编程接成可执行流程
+- [MagicSim: A Unified Infrastructure for Executable Embodied Interaction](sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction.md) - 把异构世界、确定性批处理运行时、多机器人控制、异步规划、共享任务 MDP、AtomicSkill、成功门控轨迹与智能体接口组织成同一个可执行回合基础设施
 - [AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning](sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.md) - 人形机器人强化学习工作流，把环境验证、训练稳定化、确定性评估和描述文件驱动的部署接成仿真到现实迁移生命周期
 - [VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation](sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation.md) - 项目页介绍基于 RGB 的人形机器人移动操作，覆盖特权 RL 教师策略、视觉学生策略蒸馏、视觉随机化、手指系统辨识、视场角对齐、泛化视频和失败案例
 - [GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors](sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.md) - 全数字化人形机器人数据生成流程，用 3D 资产、VFM 先验、公制四维人物—物体交互重建、重定向和通用任务跟踪器训练 Unitree G1 视觉策略
@@ -150,6 +152,7 @@ last_updated: 2026-07-13
 - [人形机器人强化学习工作流](concepts/HumanoidRLWorkflow.md) - 从机器人/MDP 验证到训练、评估、描述文件导出和硬件部署的人形机器人强化学习生命周期
 - [通用任务策略评估](concepts/TaskGeneralistPolicyEvaluation.md) - 用任务库、语言变体、判定条件、子任务评分和诊断评估泛化机器人策略
 - [机器人仿真基础设施](concepts/RoboticsSimulationInfrastructure.md) - 把仿真器框架拆成任务/API、资产管理、物理/渲染、可视化工具和 ML 循环的设计决策
+- [可执行具身交互基础设施](concepts/ExecutableEmbodiedInteractionInfrastructure.md) - 用共享任务 MDP、按环境异步状态机、在线规划、固定技能接口、可重放初态与成功门控记录把基准、数据生成和智能体交互接到同一回合
 - [仿真基准报告流程](concepts/SimulationBenchmarkReportingPipeline.md) - 把轨迹采样输出、回合证据、成功比率不确定性、自适应采样和仪表盘复核组织成基准报告系统
 - [智能体式场景与任务生成](concepts/AgenticSceneTaskGeneration.md) - 用 LLM/智能体式工作流生成场景、物体、判定条件和任务数据类，并把验证边界接回仿真基准基础设施
 - [异构机器人强化学习训练](concepts/HeterogeneousRobotRLTraining.md) - 把基于仿真的机器人 RL 训练写成 CPU/GPU 职责分配、采集器/学习器重叠、回放边界、主机到设备传输、缓冲和权重同步的系统问题
@@ -195,6 +198,7 @@ last_updated: 2026-07-13
 - [VIRAL](entities/VIRAL.md) - 视觉仿真到现实迁移框架用于人形机器人移动操作，使用特权教师策略、视觉学生策略蒸馏、视觉随机化和现实到仿真对齐
 - [GRAIL](entities/GRAIL.md) - 全数字化人形机器人移动操作数据生成框架，使用 3D 资产、VFM 先验、公制四维人物—物体交互重建和通用任务跟踪器
 - [UniLab](entities/UniLab.md) - 异构 CPU-仿真 / GPU-学习机器人 RL 训练系统，使用统一的运行时管理轨迹采样采集、缓冲、主机到设备传输和学习器同步
+- [MagicSim](entities/MagicSim.md) - Isaac Sim 之上的可执行具身交互基础设施，用一个确定性批处理运行时和共享任务 MDP 连接评测、自动轨迹采集与智能体交互
 - [ContactBench](entities/ContactBench.md) - 来源中的统一的 C++ 接触模型基准框架
 
 ### 组织与代码仓库

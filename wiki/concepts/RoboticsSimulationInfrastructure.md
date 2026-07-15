@@ -2,8 +2,8 @@
 title: "机器人仿真基础设施"
 type: concept
 tags: [robotics, simulation, infrastructure, reinforcement-learning, policy-evaluation]
-sources: ["[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[nvlabs-robolab]]", "[[unilab-repository]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[motrixsim-documentation]]", "[[mujoco-warp-mjwarp-documentation]]", "[[mjlab-repository]]", "[[mujoco-playground-repository]]", "[[isaac-lab-repository]]", "[[maniskill-repository]]", "[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
-last_updated: 2026-07-13
+sources: ["[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[nvlabs-robolab]]", "[[unilab-repository]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[motrixsim-documentation]]", "[[mujoco-warp-mjwarp-documentation]]", "[[mjlab-repository]]", "[[mujoco-playground-repository]]", "[[isaac-lab-repository]]", "[[maniskill-repository]]", "[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]"]
+last_updated: 2026-07-15
 ---
 
 # 机器人仿真基础设施
@@ -57,6 +57,8 @@ flowchart LR
 
 [[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen]] 与 [[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 增加了生成式资产与世界基础设施案例。V1 把图像/文本到三维、纹理、关节系统、场景生成和布局组织成模块化服务；V2 则明确要求公制几何、碰撞资产、物理参数、任务可供性、标准化 URDF/MJCF/USD 接口和可执行场景验证。它们共同说明生成模型只是基础设施的入口：机器人学习真正消费的是经过修复、分解、参数恢复、语义标注、约束求解和仿真器导入/沉降检查的产物契约。
 
+[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] 把基础设施视角推进到可执行回合：一个初态、任务 MDP、命令 / 技能 / 规划状态、机器人动作、观测、语言、终态与记录门控必须在同一运行时中对齐。它在单个 Isaac Sim 进程内同步物理步骤、按环境异步推进语义状态，并让同一任务被 RL、自动采集和智能体接口复用。这个案例的重点不是新的物理求解器，而是 [[ExecutableEmbodiedInteractionInfrastructure|可执行具身交互基础设施]] 如何把评测和数据生成放在同一因果轨迹上。
+
 ## 作为基础设施案例的 RoboLab
 
 [[nvlabs-robolab|RoboLab]] 的 updated 代码仓库是这个概念的具体的情形：它把仿真器框架拆成任务数据类、USD 场景/资产、环境 registration、策略后端 adapters、评估运行器、分析脚本、看板、诊断测试、已知问题和智能体式制作流程。这里的基础设施价值不只在 Isaac Lab/Sim 保真度，而在每层是否形成可复查契约：策略后端有 `InferenceClient` hooks，任务有判定条件/子任务，看板有场景/任务/结果 APIs，分析有置信区间，调试文档有 WorldState 检查和 pytest 诊断信息。
@@ -74,6 +76,7 @@ RoboLab 也展示了基础设施的治理侧。Apache-2.0 代码许可证、thir
 - Sensor 输出契约过隐式：如果相机/lidar/radar 输出只是不透明的缓冲区，ML 循环很难稳定处理设备、形状、valid counts、参数、语义标签和同步。[[RTXSensorSimulationPipeline]] 中的 `RenderVar` / DLPack 契约是 ovrtx 对这个问题的有来源支持的 answer。
 - 训练运行时契约过隐式：如果只报告仿真器吞吐量，而不记录学习器等待、重放采样、H2D 迁移、缓冲区 residency 和权重同步，机器人 RL 系统比较可能测到的是运行时放置，而不是算法或物理后端本身。
 - 证据边界：当前页面已从一篇工程 article 扩展到官方文档 / 代码仓库 snapshots，但多数代码仓库 README 仍是 moving 目标；框架特定的基准、发布 tag、论文层级架构和代码层级语义需要按版本继续收录。
+- 可执行能力与实验结果混淆：共享 MDP、任务注册表、技能词表和智能体接口说明系统可表达什么，不等于已经测量策略质量、吞吐量、物理准确性或硬件迁移效果。MagicSim 论文中的当前 / 计划能力必须分开阅读。
 
 ## 实践含义
 
@@ -85,5 +88,6 @@ RoboLab 也展示了基础设施的治理侧。Apache-2.0 代码许可证、thir
 - 对基于仿真的机器人 RL 训练，应该审计完整学习器周期：采集、打包、H2D、学习器更新、重放 hot 路径、边界等待和参数 publication。UniLab 的有来源支持的 lesson 是，驻留 GPU 的物理是有效路线，但不是唯一能形成高效训练循环的路线。
 - 对框架比较，应显式记录路线类型：CPU-批处理的有状态的执行、驻留 GPU 的物理、GPU 渲染/数据生成、基于管理器的任务组合、操作-focused 视觉数据采集。不同路线的失败表面不同，不能被一个汇总吞吐量数值代表。
 - 对 generative 世界引擎，应分别审计外观生成与仿真可用性：公制尺度、watertightness、碰撞分解、质量/摩擦/惯量 provenance、关节语义、可供性质量、格式转换和仿真器侧执行证据不能被一个视觉质量得分合并。
+- 对可执行数据基础设施，应把初态快照、随机流隔离、规划 future、技能阶段、任务谓词、失败类型和成功门控比例纳入数据质量报告；只统计最终保存轨迹会隐藏尝试分布和恢复能力。
 
-相关页面：[[robotics-simulation-infrastructure]]、[[nvidia-ovrtx]]、[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]、[[nvlabs-robolab]]、[[EmbodiedGen]]、[[SimulationReady3DWorldGeneration]]、[[RTXSensorSimulationPipeline]]、[[HeterogeneousRobotRLTraining]]、[[AgenticSceneTaskGeneration]]、[[SimulationBenchmarkReportingPipeline]]、[[RoboLab]]、[[UniLab]]、[[MuJoCoUni]]、[[MotrixSim]]、[[MJWarp]]、[[Mjlab|mjlab]]、[[MuJoCoPlayground]]、[[IsaacLab]]、[[ManiSkill]]、[[IsaacSim]]、[[Ovrtx]]、[[MuJoCo]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]。
+相关页面：[[robotics-simulation-infrastructure]]、[[nvidia-ovrtx]]、[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]、[[nvlabs-robolab]]、[[MagicSim]]、[[ExecutableEmbodiedInteractionInfrastructure]]、[[EmbodiedGen]]、[[SimulationReady3DWorldGeneration]]、[[RTXSensorSimulationPipeline]]、[[HeterogeneousRobotRLTraining]]、[[AgenticSceneTaskGeneration]]、[[SimulationBenchmarkReportingPipeline]]、[[RoboLab]]、[[UniLab]]、[[MuJoCoUni]]、[[MotrixSim]]、[[MJWarp]]、[[Mjlab|mjlab]]、[[MuJoCoPlayground]]、[[IsaacLab]]、[[ManiSkill]]、[[IsaacSim]]、[[Ovrtx]]、[[MuJoCo]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]。
