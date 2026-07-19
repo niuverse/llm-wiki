@@ -2,8 +2,8 @@
 title: "仿真—现实差距"
 type: concept
 tags: [robotics, simulation, sim-to-real, reinforcement-learning, world-models]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
-last_updated: 2026-07-13
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
+last_updated: 2026-07-19
 ---
 
 # 仿真—现实差距
@@ -59,6 +59,12 @@ flowchart LR
 
 [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 增加了生成的数据视角。它通过先指定 3D 资产、相机、公制尺度、环境深度和机器人-proportioned 形态，减少从视频到 4D HOI 轨迹的重建差距；但它没有让仿真到现实迁移差距消失，而是把一部分风险转移到 VFM 提示 following、物体外观一致性、失败过滤、重定向质量和任务族跟踪器覆盖范围上。换言之，已知几何可以降低歧义，不能替代真实硬件接触、相机和手部动力学验证。
 
+## 仿真数据与真实数据联合训练视角
+
+[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 提供了一个范围有限但有定量结果的联合训练案例。真实实验使用 DROID Panda 机械臂和三个相机，覆盖关闭电热水壶盖、从烤箱取物、从台面放入柜子、把两个物体放到沥水架四项任务。纯真实数据模型使用 140 条真实示范，平均成功率为 61.8%；仿真加真实方案先在 150 个仿真高成功任务上中间训练，再用四项任务的仿真与真实数据共同微调，平均成功率为 79.8%。
+
+这个结果不能解释为纯仿真零样本迁移。研究者先把仿真数据重新渲染到接近真实相机视角，并继续使用真实示范与联合微调；每任务只有 20 次真实试验，也只覆盖固定厨房中的四个任务。更准确的结论是：在已做相机对齐并保留少量真实监督时，大规模仿真预训练可以改善目标任务学习。它与 [[RobotLearningDataComposition|机器人学习数据构成]] 的联系是，迁移收益取决于选取哪些仿真任务、怎样对齐观测、怎样混合真实数据，以及是否保留独立的目标后训练阶段。
+
 ## 生成环境视角
 
 [[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 把现实差距的审计点提前到世界生成：公制尺度、网格修复、碰撞分解、质量/摩擦/惯量恢复、关节语义、可供性分割/抓取、场景支撑/可达性和仿真器接口都可能在策略训练前引入不匹配。论文汇总配套研究时报告，随着生成的环境数量从 $N=1$ 增加到 $N=50$，sim 成功从 9.7% 升到 79.8%、真实成功从 21.7% 升到 75.0%、OOD 成功从 53.2% 升到 77.9%；这些数字支持环境 diversity 可能改善策略鲁棒性，但不是 V2 自身独立控制实验，因此不能脱离配套研究设置解释为普遍规模扩展定律。
@@ -97,4 +103,4 @@ a_t = pi_phi(assemble_deploy(o_{t-k:t}; joint_order', history', scaling'))
 
 AGILE 还说明评估差距是现实差距的前置条件：只看汇总奖励或随机轨迹采样均值，可能错过 RMS 加速度、加加速度、关节限制违反和高频能量比率等执行器相关的 signals。确定性场景测试（速度扫描、高度渐变测试）提供低方差回归测试；随机轨迹采样则估计随机指令分布下的鲁棒性。两者缺一时，仿真到现实迁移风险都可能被误估。
 
-相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[RoboticsSimulationInfrastructure]]、[[SimulationReady3DWorldGeneration]]、[[EmbodiedGen]]、[[HeterogeneousRobotRLTraining]]、[[VisualSimToReal]]、[[AssetConditionedHOIGeneration]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[HumanoidRLWorkflow]]、[[AGILE]]、[[GRAIL]]、[[UniLab]]、[[MuJoCo]]、[[RaiSim]]。
+相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[RoboticsSimulationInfrastructure]]、[[SimulationReady3DWorldGeneration]]、[[EmbodiedGen]]、[[HeterogeneousRobotRLTraining]]、[[VisualSimToReal]]、[[AssetConditionedHOIGeneration]]、[[RobotLearningDataComposition]]、[[RoboCasa365]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[HumanoidRLWorkflow]]、[[AGILE]]、[[GRAIL]]、[[UniLab]]、[[MuJoCo]]、[[RaiSim]]。

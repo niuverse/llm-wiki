@@ -3,7 +3,7 @@ title: "知识库日志"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-07-15
+last_updated: 2026-07-19
 ---
 
 # 知识库日志
@@ -240,3 +240,9 @@ last_updated: 2026-07-15
 
 - 保存 arXiv v1 PDF 与 MarkItDown 阅读缓存，新增来源页、[[MagicSim]] 实体页和 [[ExecutableEmbodiedInteractionInfrastructure|可执行具身交互基础设施]] 概念页。
 - 更新 [[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、总览和索引，区分当前接口、计划中能力与缺失的定量 / 真实机器人证据。
+
+## [2026-07-19] ingest | RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots
+
+- 保存 ICLR 2026 官方 PDF 与 MarkItDown 阅读缓存，新增来源页和 [[RoboCasa365]] 实体页。
+- 新增 [[RobotLearningDataComposition|机器人学习数据构成]] 概念页，整理任务/场景覆盖、示范质量、采样权重和训练阶段的机制与失效情形。
+- 更新 [[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[CompositionalGeneralizationInRobotics|机器人学中的组合泛化]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[SimulationRealityGap|仿真—现实差距]]、总览、研究问题和索引。

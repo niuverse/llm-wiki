@@ -3,7 +3,7 @@ title: "知识库索引"
 type: synthesis
 tags: [index, navigation]
 sources: []
-last_updated: 2026-07-15
+last_updated: 2026-07-19
 ---
 
 # 知识库索引
@@ -17,6 +17,7 @@ last_updated: 2026-07-15
 - **世界模型如何影响机器人决策？** 读 [具身智能世界模型](concepts/WorldModelsForEmbodiedAI.md)、[世界模型评估](concepts/WorldModelEvaluation.md)、[潜在动力学动作模型](concepts/LatentDynamicsActionModels.md)。
 - **逆动力学模型怎么从视频学动作？** 读 [逆动力学模型](concepts/InverseDynamicsModels.md)、[潜在动力学动作模型](concepts/LatentDynamicsActionModels.md)、[Seer](entities/Seer.md)、[DeFI](entities/DeFI.md)。
 - **机器人基础模型如何处理异构数据？** 读 [视觉—语言—动作模型](concepts/VisionLanguageActionModels.md)、[机器人上下文条件化](concepts/RobotContextConditioning.md)、[潜在动力学动作模型](concepts/LatentDynamicsActionModels.md)。
+- **仿真机器人预训练更依赖数据量还是数据构成？** 读 [机器人学习数据构成](concepts/RobotLearningDataComposition.md)、[RoboCasa365](entities/RoboCasa365.md) 和 [机器人学中的组合泛化](concepts/CompositionalGeneralizationInRobotics.md)，重点看任务/场景覆盖、示范质量、采样权重与预训练—后训练顺序。
 - **仿真基准能证明什么？** 读 [通用任务策略评估](concepts/TaskGeneralistPolicyEvaluation.md)、[仿真基准报告流程](concepts/SimulationBenchmarkReportingPipeline.md)、[仿真敏感性分析](concepts/SimulationSensitivityAnalysis.md)、[仿真—现实差距](concepts/SimulationRealityGap.md)。
 - **人形机器人强化学习从训练到硬件怎样减少静默失败？** 读 [人形机器人强化学习工作流](concepts/HumanoidRLWorkflow.md)、[AGILE](entities/AGILE.md)、[仿真—现实差距](concepts/SimulationRealityGap.md)。
 - **仿真基础设施决策为什么重要？** 读 [机器人仿真基础设施](concepts/RoboticsSimulationInfrastructure.md) 和 [智能体式场景与任务生成](concepts/AgenticSceneTaskGeneration.md)，重点看任务/API、资产管理、智能体式场景/任务制作、渲染内存/保真度、可视化工具诊断和位姿 API 如何影响 RL/评估工作流。
@@ -97,6 +98,7 @@ last_updated: 2026-07-15
 - [ManiSkill Repository](sources/maniskill-repository.md) - ManiSkill 官方代码仓库 README 快照，覆盖基于 SAPIEN 的操作环境、视觉数据生成、基准任务和学习集成
 - [NVlabs/RoboLab](sources/nvlabs-robolab.md) - RoboLab 官方实现代码仓库；2026-06 更新增加仪表盘、自适应采样/统计报告、策略后端契约、Cosmos3 客户端、智能体式场景/任务生成技能与调试/运维文档
 - [RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies](sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies.md) - NVIDIA 的高保真度仿真基准，用 RoboLab-120、语言变体与敏感性分析评测任务通用型机器人策略
+- [RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots](sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots.md) - 365 个厨房任务、2,500 个预训练场景和人类/合成示范组成的训练—评测框架，用受控实验研究任务/场景多样性、数据构成、组合泛化和持续学习
 - [Asset Structure - Isaac Sim 4.5 Documentation](sources/isaac-sim-45-asset-structure.md) - Isaac Sim 4.5 文档中的旧版 / 3.0 之前资产布局，覆盖 `asset_base.usd`、`parts.usd`、`asset_sim_optimized.usd`、特征层和最终 `asset.usd`
 - [Asset Structure - Isaac Sim Documentation](sources/isaac-sim-asset-structure.md) - Isaac Sim 6.0 EDR 文档中的 USD 资产结构 3.0 指南，说明机器人资产的几何/材质与实例/物理/运行时/结构规范/特征层组织
 - [Articulations - Omni Physics](sources/omniverse-omni-physics-articulations.md) - NVIDIA Omni 物理文档中的 PhysX 约化坐标关节系统指南，覆盖根部/拓扑、JointStateAPI、驱动性能适用范围、关节摩擦、闭环机构、mimic 关节和肌腱
@@ -145,6 +147,7 @@ last_updated: 2026-07-15
 - [视觉—语言—动作模型](concepts/VisionLanguageActionModels.md) - 从观测历史和上下文预测机器人动作块的 VLA 策略形式化表述
 - [机器人上下文条件化](concepts/RobotContextConditioning.md) - 用任务/子任务语言、元数据、子目标图像与控制模式消除异构机器人数据中的歧义
 - [Compositional Generalization in Robotics](concepts/CompositionalGeneralizationInRobotics.md) - 机器人策略如何把见过的技能、物体、机器人形态与指令重新组合到未见的任务
+- [机器人学习数据构成](concepts/RobotLearningDataComposition.md) - 用任务覆盖、场景覆盖、示范来源与质量、采样权重和训练阶段解释机器人预训练数据的有效性
 
 ### 仿真与评估
 
@@ -195,6 +198,7 @@ last_updated: 2026-07-15
 - [Seer](entities/Seer.md) - 端到端 PIDM 模型，用 [FRS] 预见标记和 [INV] 动作标记做机器人操作策略学习
 - [π0.7](entities/Pi07.md) - 可引导的通用型 VLA 模型，使用语言、元数据、子目标图像和控制模式条件化
 - [RoboLab](entities/RoboLab.md) - 高保真度仿真基准/平台用于任务泛化机器人策略评估
+- [RoboCasa365](entities/RoboCasa365.md) - 连接 365 个任务、2,500 个厨房、人类/合成示范、策略训练和系统评测的家庭移动操作仿真框架
 - [VIRAL](entities/VIRAL.md) - 视觉仿真到现实迁移框架用于人形机器人移动操作，使用特权教师策略、视觉学生策略蒸馏、视觉随机化和现实到仿真对齐
 - [GRAIL](entities/GRAIL.md) - 全数字化人形机器人移动操作数据生成框架，使用 3D 资产、VFM 先验、公制四维人物—物体交互重建和通用任务跟踪器
 - [UniLab](entities/UniLab.md) - 异构 CPU-仿真 / GPU-学习机器人 RL 训练系统，使用统一的运行时管理轨迹采样采集、缓冲、主机到设备传输和学习器同步

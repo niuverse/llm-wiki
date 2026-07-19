@@ -2,8 +2,8 @@
 title: "研究问题"
 type: synthesis
 tags: [research-questions, robotics, embodied-ai]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
-last_updated: 2026-07-13
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
+last_updated: 2026-07-19
 ---
 
 # 研究问题
@@ -25,6 +25,14 @@ last_updated: 2026-07-13
 优先阅读：[[TaskGeneralistPolicyEvaluation]]、[[SimulationSensitivityAnalysis]]、[[RoboLab]]、[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]、[[nvlabs-robolab]]。
 
 证据边界：RoboLab 的 six-任务真实/仿真验证支持仿真代理有价值，但也提示代理有效性会随策略/任务族改变；基准得分不能单独等价于真实部署可靠性。
+
+## 仿真机器人预训练更依赖数据量还是数据构成？
+
+当前判断：数据总量不是充分解释。[[RobotLearningDataComposition]] 把训练分布拆成任务覆盖、场景覆盖、示范来源与质量、采样权重和训练阶段。[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 的 Human50→Human300 与 5→25→2,500 场景消融支持覆盖范围有益；Human300→Human300+MG60 的下降说明规模更大的混合质量合成数据可能稀释监督；单阶段联合训练 22.5% 与两阶段训练 51.1% 的差距又说明优化顺序本身是一等变量。
+
+优先阅读：[[RobotLearningDataComposition]]、[[RoboCasa365]]、[[CompositionalGeneralizationInRobotics]]、[[TaskGeneralistPolicyEvaluation]]、[[RobotContextConditioning]]、[[LatentDynamicsActionModels]]。
+
+证据边界：RoboCasa365 的主要消融使用固定的 GR00T N1.5 训练设置，合成数据没有逐轨迹质量标签；任务、技能、物体和场景重叠也没有完全解耦。因此当前证据支持“构成很重要”，但还不能给出跨模型通用的最优人类/合成数据配比或规模扩展定律。
 
 ## 生成式三维世界什么时候才算可用于机器人学习？
 
@@ -91,6 +99,7 @@ last_updated: 2026-07-13
 候选方向：
 
 - π0.7、LDA-1B、RoboLab 的外部复现或批判性分析。
+- RoboCasa365 的外部复现、MimicGen 逐轨迹质量审计、固定训练预算下的数据配比实验、组合任务逐阶段失败统计和跨机器人真实验证。
 - AGILE/WBC-AGILE 的后续硬件报告，尤其是带运动捕捉、力/力矩、能量、失败比率和感知驱动的操作指标的资料。
 - GRAIL 的项目页面、代码、数据集发布、失败过滤 statistics 和独立复现，尤其是不同 VFM / 3D 资产流程 / 机器人平台下的鲁棒性。
 - EmbodiedGen V2 的代码/数据发布、跨仿真器动力学验证、物理参数真实值基准、可供性端到端失败分析，以及生成的世界策略扩展配套研究。

@@ -2,13 +2,13 @@
 title: "通用任务策略评估"
 type: concept
 tags: [robotics, evaluation, benchmarks, vla]
-sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]"]
-last_updated: 2026-07-13
+sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
+last_updated: 2026-07-19
 ---
 
 # 通用任务策略评估
 
-任务通用策略评估（任务泛化策略评估）关注的不是一个策略能否在单个 scripted 操作任务上成功，而是它能否在未专门 co-train 的 diverse 任务、语言变体、物体、场景和扰动上保持可解释的性能。[[RoboLab]] 把这个问题变成可运行基准：任务库定义目标与判定条件，环境 registration 组合机器人/策略/传感器，评估脚本记录成功、子任务得分、轨迹指标和错误物体失败。
+任务通用策略评估（任务泛化策略评估）关注的不是一个策略能否在单个脚本化操作任务上成功，而是它能否在没有专门共同训练的任务、语言变体、物体、场景和扰动上保持可解释的性能。[[RoboLab]] 把这个问题写成对现成策略的诊断基准：任务库定义目标与判定条件，环境注册组合机器人、策略和传感器，评估脚本记录成功、子任务得分、轨迹指标和错误物体失败。[[RoboCasa365]] 则把同一问题扩展到训练数据与学习阶段：它用原子、已见组合和未见组合任务，分别测量短时域技能、见过的任务序列和零样本任务组合。
 
 ## 数学结构
 
@@ -52,6 +52,12 @@ flowchart TD
   E --> G["Wrong-物体与 trajectory 诊断信息"]
 ```
 
+## RoboCasa365 的训练—评测分层
+
+[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 的 50 个目标任务分成 18 个原子任务、16 个已见组合任务和 16 个未见组合任务。这个分层比单一平均成功率更有解释力：GR00T N1.5 在 300 任务多任务训练后分别得到 43.0%、9.6% 和 4.4%，说明短时域原子技能、长时域执行和任务组合泛化是不同瓶颈。后续使用全量目标数据做两阶段训练后，三组结果升至 68.5%、40.6% 和 42.1%，也说明“预训练阶段是否见过完整任务”与“目标阶段是否提供示范”必须在报告中分开。
+
+该基准的主要指标仍是二元终态成功：每任务运行 30 个回合，在任务相关时域内满足成功条件即记为成功。论文给出逐任务失败描述，但没有像 RoboLab 那样统一报告子任务完成度、错误物体事件、回合置信区间和轨迹质量。因此 RoboCasa365 更适合研究任务/场景/数据构成与训练阶段，RoboLab 更适合研究现成策略的失败类型和环境敏感性；两类基准不能只按任务数量或汇总成功率互相替代。
+
 ## RoboLab 2026-06 代码仓库更新
 
 [[nvlabs-robolab|RoboLab 代码仓库]] 的 2026-06 更新让任务通用评估更像完整报告系统，而不只是轨迹采样脚本。Per-策略 runners now live under `policies/<backend>/run.py`，共同调用 `robolab.eval.runner.run_evaluation`；`--num-episodes-adaptive` 使用 Beta 后验可信区间 width 决定是否继续采样；`analysis/read_results.py` 和看板都显示 95% 成功比率区间。这意味着评估规程的物体不再只是 $(T_i, \pi)$ 的 mean 成功，而是 $(T_i, \pi, n, CI, score, events, videos, metadata)$ 的证据 bundle。
@@ -66,12 +72,17 @@ flowchart TD
 - Sim-代理不匹配：RoboLab 的 six-任务真实/仿真验证对 π0.5 和 π0-快速呈现相近趋势，但 π0 是明显 outlier；因此仿真得分需要按策略/任务族验证。
 - 判定条件不匹配：判定条件基于成功检查清晰且可自动化，但可能低估恢复行为、partial satisfaction、人类 preference 或工具使用中的 subtle 语义。
 - 指标掩盖：子任务得分能显示 partial 进度，但也可能掩盖最终任务失败；成功率又可能忽略轨迹质量和 safety margins。
+- 长时域归因丢失：组合任务只报告终态成败时，导航、目标识别、抓取、接触精度、动作排序和恢复能力会被合并，无法确定首次失败阶段。
+- 未见任务定义过弱：任务定义未见不等于技能、物体、语言片段或场景先验未见；零样本组合成绩需要同时报告组成部分的训练重叠。
+- 训练预算混杂：跨模型比较若使用不同批量大小、训练步数、冻结策略和计算量，得分同时测量模型与训练规程，而不只是架构能力。
 - 任务族掩盖：GRAIL-风格 pooled 跟踪器会在相关的运动族内 amortize 学习；如果评估汇总不按物体几何、接触模式、地形类型或运动族分层，可能掩盖族外失败。
 - 覆盖范围差距：刚体桌面任务不覆盖可变形物体、绳索与袋子、精确力控制、柔顺交互和复杂摩擦动力学。
 
 ## 实践含义
 
 - 对 VLA 模型报告，应同时给出成功、子任务得分、指令类型 breakdown、属性 breakdown 和错误物体失败，而不是只给汇总成功。
+- 对多任务与基础模型评测，应至少分开原子任务、已见组合任务和未见组合任务，并按阶段数报告成功；目标任务是否在预训练中出现必须显式记录。
+- 对数据消融，应把任务覆盖、场景覆盖、示范来源、轨迹质量、采样权重和训练阶段接到 [[RobotLearningDataComposition|机器人学习数据构成]]，避免把“更多数据”当作单一变量。
 - 对基准设计，任务生成应持续加入低重叠物体/任务和受控扰动，避免模型在固定基准上过拟合。
 - 对 [[SimulationRealityGap|仿真到现实迁移]]，仿真基准更适合作为诊断 instrument：它可以定位敏感性和失败类型，但不能单独证明真实部署可靠。
 - 对 [[CompositionalGeneralizationInRobotics|组合式泛化]]，短时域任务成功仍需要区分视觉 recognition、关系推理推理、过程推理可供性和动作执行的贡献。
