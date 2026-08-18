@@ -3,7 +3,7 @@ title: "知识库日志"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-07-19
+last_updated: 2026-08-18
 ---
 
 # 知识库日志
@@ -246,3 +246,8 @@ last_updated: 2026-07-19
 - 保存 ICLR 2026 官方 PDF 与 MarkItDown 阅读缓存，新增来源页和 [[RoboCasa365]] 实体页。
 - 新增 [[RobotLearningDataComposition|机器人学习数据构成]] 概念页，整理任务/场景覆盖、示范质量、采样权重和训练阶段的机制与失效情形。
 - 更新 [[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[CompositionalGeneralizationInRobotics|机器人学中的组合泛化]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[SimulationRealityGap|仿真—现实差距]]、总览、研究问题和索引。
+
+## [2026-08-18] learn | DeepSeek Harness
+
+- 新增 [[dsh-learning-map|DeepSeek Harness 学习地图]] 综合页：Cordis 插件框架、profile/bundle 组合层、session 事件日志、turn/step 循环、能力 seam、沙箱/审批、goal/subagent/workflow/plan/compaction 编排能力、误解图谱与来源获取计划。
+- 内容基于对本机安装包源码（@deepseek-ai/dsh 0.1.0-rc.7）与官方仓库（deepseek-ai/deepseek-harness、cordiverse/paper）的一手调研，标注为 conversation-derived / unsourced learning scaffold；待后续 ingest repo 与 Cordis 论文后升级为 source-backed。

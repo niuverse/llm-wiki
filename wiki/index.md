@@ -3,7 +3,7 @@ title: "知识库索引"
 type: synthesis
 tags: [index, navigation]
 sources: []
-last_updated: 2026-07-19
+last_updated: 2026-08-18
 ---
 
 # 知识库索引
@@ -55,6 +55,7 @@ last_updated: 2026-07-19
 - [三维模型格式学习地图](syntheses/3d-model-formats-learning-map.md) - OBJ、STL、PLY、glTF/GLB、FBX、USD、步骤、URDF/SDF/MJCF 等三维资产格式的学习脚手架与来源获取计划
 - [轮式机器人建模学习地图](syntheses/wheeled-robot-modeling-learning-map.md) - 轮式机器人建模学习脚手架，覆盖车轮分类体系、运动学、全向转向分配、仿真路径、失效情形和来源获取计划
 - [轮式机器人可视化实验](syntheses/wheeled-robot-visual-lab.md) - 内嵌学术风格交互图，把车轮层约束、接触点速度和底盘矩阵行放在同一张平面图中复习
+- [DeepSeek Harness 学习地图](syntheses/dsh-learning-map.md) - DeepSeek Harness（dsh）agent 运行时学习脚手架，覆盖 Cordis 插件框架、profile/bundle 组合、session 事件日志、turn/step 循环、能力 seam、沙箱/审批、编排能力与来源获取计划
 
 ## 来源页
 
