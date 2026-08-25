@@ -1,103 +1,299 @@
 {
-  "built": "2026-04-27",
+  "built": "2026-08-25",
   "nodes": [
     {
+      "id": "concepts/AgenticSceneTaskGeneration",
+      "label": "智能体式场景与任务生成",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/AgenticSceneTaskGeneration.md"
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition",
+      "label": "近似凸分解",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/ApproximateConvexDecomposition.md"
+    },
+    {
+      "id": "concepts/AssetConditionedHOIGeneration",
+      "label": "资产条件化人物—物体交互生成",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/AssetConditionedHOIGeneration.md"
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation",
+      "label": "机器人仿真的碰撞几何",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/CollisionGeometryForRobotSimulation.md"
+    },
+    {
       "id": "concepts/CompositionalGeneralizationInRobotics",
-      "label": "Compositional Generalization in Robotics",
+      "label": "机器人学中的组合泛化",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/CompositionalGeneralizationInRobotics.md"
     },
     {
       "id": "concepts/ContactComplementarity",
-      "label": "Contact Complementarity（接触互补）",
+      "label": "接触互补",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/ContactComplementarity.md"
     },
     {
       "id": "concepts/ContactModelsInRobotics",
-      "label": "Contact Models in Robotics",
+      "label": "机器人学中的接触模型",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/ContactModelsInRobotics.md"
     },
     {
       "id": "concepts/ContactSolvers",
-      "label": "Contact Solvers（接触求解器）",
+      "label": "接触求解器",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/ContactSolvers.md"
     },
     {
+      "id": "concepts/DifferentiableCollisionDetection",
+      "label": "可微碰撞检测",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/DifferentiableCollisionDetection.md"
+    },
+    {
       "id": "concepts/DifferentiablePhysics",
-      "label": "Differentiable Physics（可微物理）",
+      "label": "可微物理",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/DifferentiablePhysics.md"
     },
     {
+      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "label": "可执行具身交互基础设施",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/ExecutableEmbodiedInteractionInfrastructure.md"
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining",
+      "label": "异构机器人强化学习训练",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/HeterogeneousRobotRLTraining.md"
+    },
+    {
+      "id": "concepts/HumanoidRLWorkflow",
+      "label": "人形机器人强化学习工作流",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/HumanoidRLWorkflow.md"
+    },
+    {
+      "id": "concepts/InverseDynamicsModels",
+      "label": "逆动力学模型",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/InverseDynamicsModels.md"
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure",
+      "label": "Isaac Sim 资产结构 3.0",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/IsaacSimAssetStructure.md"
+    },
+    {
+      "id": "concepts/IsaacSimLegacyAssetStructure",
+      "label": "Isaac Sim 旧版资产结构",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/IsaacSimLegacyAssetStructure.md"
+    },
+    {
       "id": "concepts/LatentDynamicsActionModels",
-      "label": "Latent Dynamics Action Models",
+      "label": "潜在动力学动作模型",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/LatentDynamicsActionModels.md"
     },
     {
+      "id": "concepts/MobileRobotOdometry",
+      "label": "移动机器人里程计",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/MobileRobotOdometry.md"
+    },
+    {
+      "id": "concepts/NonholonomicMobileRobots",
+      "label": "非完整约束移动机器人",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/NonholonomicMobileRobots.md"
+    },
+    {
+      "id": "concepts/OmnidirectionalWheels",
+      "label": "全向轮",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/OmnidirectionalWheels.md"
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition",
+      "label": "OpenUSD 场景组合",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/OpenUSDSceneComposition.md"
+    },
+    {
+      "id": "concepts/RTXSensorSimulationPipeline",
+      "label": "RTX 传感器仿真流程",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/RTXSensorSimulationPipeline.md"
+    },
+    {
+      "id": "concepts/ReducedCoordinateArticulations",
+      "label": "约化坐标关节系统",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/ReducedCoordinateArticulations.md"
+    },
+    {
       "id": "concepts/RobotContextConditioning",
-      "label": "Robot Context Conditioning",
+      "label": "机器人上下文条件化",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/RobotContextConditioning.md"
     },
     {
+      "id": "concepts/RobotLearningDataComposition",
+      "label": "机器人学习数据构成",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/RobotLearningDataComposition.md"
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure",
+      "label": "机器人仿真基础设施",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/RoboticsSimulationInfrastructure.md"
+    },
+    {
+      "id": "concepts/SimulationBenchmarkReportingPipeline",
+      "label": "仿真基准报告流程",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/SimulationBenchmarkReportingPipeline.md"
+    },
+    {
+      "id": "concepts/SimulationReady3DWorldGeneration",
+      "label": "可用于仿真的三维世界生成",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/SimulationReady3DWorldGeneration.md"
+    },
+    {
       "id": "concepts/SimulationRealityGap",
-      "label": "Simulation Reality Gap（仿真现实差距）",
+      "label": "仿真—现实差距",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/SimulationRealityGap.md"
     },
     {
       "id": "concepts/SimulationSensitivityAnalysis",
-      "label": "Simulation Sensitivity Analysis",
+      "label": "仿真敏感性分析",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/SimulationSensitivityAnalysis.md"
     },
     {
+      "id": "concepts/SteerableWheels",
+      "label": "可转向轮",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/SteerableWheels.md"
+    },
+    {
       "id": "concepts/TaskGeneralistPolicyEvaluation",
-      "label": "Task-Generalist Policy Evaluation",
+      "label": "通用任务策略评估",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/TaskGeneralistPolicyEvaluation.md"
     },
     {
       "id": "concepts/VisionLanguageActionModels",
-      "label": "Vision-Language-Action Models",
+      "label": "视觉—语言—动作模型",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/VisionLanguageActionModels.md"
     },
     {
+      "id": "concepts/VisualSimToReal",
+      "label": "视觉仿真到现实迁移",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/VisualSimToReal.md"
+    },
+    {
+      "id": "concepts/WheeledMobileRobotClassification",
+      "label": "轮式移动机器人分类",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/WheeledMobileRobotClassification.md"
+    },
+    {
+      "id": "concepts/WheeledRobotKinematics",
+      "label": "轮式机器人运动学",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/WheeledRobotKinematics.md"
+    },
+    {
       "id": "concepts/WorldModelEvaluation",
-      "label": "World Model Evaluation",
+      "label": "世界模型评估",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/WorldModelEvaluation.md"
     },
     {
       "id": "concepts/WorldModelTaxonomy",
-      "label": "World Model Taxonomy",
+      "label": "世界模型分类体系",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/WorldModelTaxonomy.md"
     },
     {
       "id": "concepts/WorldModelsForEmbodiedAI",
-      "label": "World Models for Embodied AI",
+      "label": "具身智能世界模型",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/WorldModelsForEmbodiedAI.md"
+    },
+    {
+      "id": "entities/AGILE",
+      "label": "AGILE",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/AGILE.md"
+    },
+    {
+      "id": "entities/AgentsDock",
+      "label": "AgentsDock",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/AgentsDock.md"
+    },
+    {
+      "id": "entities/AgentsServer",
+      "label": "AgentsServer",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/AgentsServer.md"
     },
     {
       "id": "entities/AwesomeWorldModels",
@@ -107,11 +303,39 @@
       "path": "wiki/entities/AwesomeWorldModels.md"
     },
     {
+      "id": "entities/CoACD",
+      "label": "CoACD",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/CoACD.md"
+    },
+    {
       "id": "entities/ContactBench",
       "label": "ContactBench",
       "type": "entity",
       "color": "#2196F3",
       "path": "wiki/entities/ContactBench.md"
+    },
+    {
+      "id": "entities/DCOL",
+      "label": "DCOL",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/DCOL.md"
+    },
+    {
+      "id": "entities/DeFI",
+      "label": "DeFI",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/DeFI.md"
+    },
+    {
+      "id": "entities/DiffPills",
+      "label": "DiffPills",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/DiffPills.md"
     },
     {
       "id": "entities/EI30K",
@@ -121,11 +345,39 @@
       "path": "wiki/entities/EI30K.md"
     },
     {
+      "id": "entities/EmbodiedGen",
+      "label": "EmbodiedGen",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/EmbodiedGen.md"
+    },
+    {
+      "id": "entities/GRAIL",
+      "label": "GRAIL",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/GRAIL.md"
+    },
+    {
       "id": "entities/Galbot",
       "label": "Galbot",
       "type": "entity",
       "color": "#2196F3",
       "path": "wiki/entities/Galbot.md"
+    },
+    {
+      "id": "entities/IsaacLab",
+      "label": "Isaac Lab",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/IsaacLab.md"
+    },
+    {
+      "id": "entities/IsaacSim",
+      "label": "Isaac Sim",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/IsaacSim.md"
     },
     {
       "id": "entities/LDA1B",
@@ -135,6 +387,41 @@
       "path": "wiki/entities/LDA1B.md"
     },
     {
+      "id": "entities/MJWarp",
+      "label": "MJWarp",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/MJWarp.md"
+    },
+    {
+      "id": "entities/MagicSim",
+      "label": "MagicSim",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/MagicSim.md"
+    },
+    {
+      "id": "entities/ManiSkill",
+      "label": "ManiSkill",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/ManiSkill.md"
+    },
+    {
+      "id": "entities/Mjlab",
+      "label": "mjlab",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/Mjlab.md"
+    },
+    {
+      "id": "entities/MotrixSim",
+      "label": "MotrixSim",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/MotrixSim.md"
+    },
+    {
       "id": "entities/MuJoCo",
       "label": "MuJoCo",
       "type": "entity",
@@ -142,11 +429,46 @@
       "path": "wiki/entities/MuJoCo.md"
     },
     {
+      "id": "entities/MuJoCoPlayground",
+      "label": "MuJoCo Playground",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/MuJoCoPlayground.md"
+    },
+    {
+      "id": "entities/MuJoCoUni",
+      "label": "MuJoCoUni",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/MuJoCoUni.md"
+    },
+    {
       "id": "entities/NVIDIA",
       "label": "NVIDIA",
       "type": "entity",
       "color": "#2196F3",
       "path": "wiki/entities/NVIDIA.md"
+    },
+    {
+      "id": "entities/OpenUSD",
+      "label": "OpenUSD",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/OpenUSD.md"
+    },
+    {
+      "id": "entities/Ovrtx",
+      "label": "ovrtx",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/Ovrtx.md"
+    },
+    {
+      "id": "entities/PhysX",
+      "label": "PhysX",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/PhysX.md"
     },
     {
       "id": "entities/PhysicalIntelligence",
@@ -163,11 +485,25 @@
       "path": "wiki/entities/Pi07.md"
     },
     {
+      "id": "entities/Pixar",
+      "label": "Pixar",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/Pixar.md"
+    },
+    {
       "id": "entities/RaiSim",
       "label": "RaiSim",
       "type": "entity",
       "color": "#2196F3",
       "path": "wiki/entities/RaiSim.md"
+    },
+    {
+      "id": "entities/RoboCasa365",
+      "label": "RoboCasa365",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/RoboCasa365.md"
     },
     {
       "id": "entities/RoboLab",
@@ -177,8 +513,43 @@
       "path": "wiki/entities/RoboLab.md"
     },
     {
+      "id": "entities/Seer",
+      "label": "Seer",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/Seer.md"
+    },
+    {
+      "id": "entities/UniLab",
+      "label": "UniLab",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/UniLab.md"
+    },
+    {
+      "id": "entities/VHACD",
+      "label": "V-HACD",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/VHACD.md"
+    },
+    {
+      "id": "entities/VIRAL",
+      "label": "VIRAL",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/VIRAL.md"
+    },
+    {
+      "id": "entities/VisACD",
+      "label": "VisACD",
+      "type": "entity",
+      "color": "#2196F3",
+      "path": "wiki/entities/VisACD.md"
+    },
+    {
       "id": "overview",
-      "label": "Overview（总览）",
+      "label": "总览",
       "type": "synthesis",
       "color": "#9C27B0",
       "path": "wiki/overview.md"
@@ -191,11 +562,46 @@
       "path": "wiki/sources/a-comprehensive-survey-on-world-models-for-embodied-ai.md"
     },
     {
+      "id": "sources/agentsdock-releases",
+      "label": "AgentsDock Releases",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/agentsdock-releases.md"
+    },
+    {
+      "id": "sources/agentsserver",
+      "label": "AgentsServer",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/agentsserver.md"
+    },
+    {
+      "id": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "label": "AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.md"
+    },
+    {
       "id": "sources/awesome-world-models",
       "label": "AwesomeWorldModels",
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/awesome-world-models.md"
+    },
+    {
+      "id": "sources/coacd-approximate-convex-decomposition",
+      "label": "Approximate Convex Decomposition for 3D Meshes with Collision-Aware Concavity and Tree Search",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/coacd-approximate-convex-decomposition.md"
+    },
+    {
+      "id": "sources/coacd-repository",
+      "label": "CoACD Repository",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/coacd-repository.md"
     },
     {
       "id": "sources/contact-models-in-robotics-a-comparative-analysis",
@@ -205,11 +611,158 @@
       "path": "wiki/sources/contact-models-in-robotics-a-comparative-analysis.md"
     },
     {
+      "id": "sources/convex-primitive-decomposition-for-collision-detection",
+      "label": "Convex Primitive Decomposition for Collision Detection",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/convex-primitive-decomposition-for-collision-detection.md"
+    },
+    {
+      "id": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
+      "label": "DCOL: Differentiable Collision Detection for a Set of Convex Primitives",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives.md"
+    },
+    {
+      "id": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
+      "label": "DiffPills: Differentiable Collision Detection for Capsules and Padded Polygons",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons.md"
+    },
+    {
+      "id": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "label": "Disentangled Robot Learning via Separate Forward and Inverse Dynamics Pretraining",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining.md"
+    },
+    {
+      "id": "sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "label": "EmbodiedGen: Towards a Generative 3D World Engine for Embodied Intelligence",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence.md"
+    },
+    {
+      "id": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "label": "EmbodiedGen V2: An Agentic, Simulation-Ready 3D World Engine for Embodied AI",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai.md"
+    },
+    {
+      "id": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "label": "GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.md"
+    },
+    {
+      "id": "sources/isaac-lab-repository",
+      "label": "Isaac Lab Repository",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/isaac-lab-repository.md"
+    },
+    {
+      "id": "sources/isaac-sim-45-asset-structure",
+      "label": "Asset Structure - Isaac Sim 4.5 Documentation",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/isaac-sim-45-asset-structure.md"
+    },
+    {
+      "id": "sources/isaac-sim-asset-structure",
+      "label": "Asset Structure - Isaac Sim Documentation",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/isaac-sim-asset-structure.md"
+    },
+    {
+      "id": "sources/isaac-sim-core-api-collision-approximation",
+      "label": "Isaac Sim Core API Collision Approximation",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/isaac-sim-core-api-collision-approximation.md"
+    },
+    {
       "id": "sources/lda-1b-scaling-latent-dynamics-action-model",
       "label": "LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion",
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/lda-1b-scaling-latent-dynamics-action-model.md"
+    },
+    {
+      "id": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "label": "MagicSim: A Unified Infrastructure for Executable Embodied Interaction",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction.md"
+    },
+    {
+      "id": "sources/maniskill-repository",
+      "label": "ManiSkill Repository",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/maniskill-repository.md"
+    },
+    {
+      "id": "sources/mjlab-repository",
+      "label": "mjlab Repository",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/mjlab-repository.md"
+    },
+    {
+      "id": "sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "label": "Modern Robotics Chapter 13: Wheeled Mobile Robots",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/modern-robotics-chapter-13-wheeled-mobile-robots.md"
+    },
+    {
+      "id": "sources/motrixsim-documentation",
+      "label": "MotrixSim Documentation",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/motrixsim-documentation.md"
+    },
+    {
+      "id": "sources/mujoco-computation-collision-detection",
+      "label": "MuJoCo Computation: Collision Detection",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/mujoco-computation-collision-detection.md"
+    },
+    {
+      "id": "sources/mujoco-playground-repository",
+      "label": "MuJoCo Playground Repository",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/mujoco-playground-repository.md"
+    },
+    {
+      "id": "sources/mujoco-warp-mjwarp-documentation",
+      "label": "MuJoCo Warp (MJWarp) Documentation",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/mujoco-warp-mjwarp-documentation.md"
+    },
+    {
+      "id": "sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
+      "label": "MuJoCoUni: Persistent Batched Runtime Primitives for MuJoCo",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco.md"
+    },
+    {
+      "id": "sources/nvidia-ovrtx",
+      "label": "NVIDIA ovrtx",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/nvidia-ovrtx.md"
     },
     {
       "id": "sources/nvlabs-robolab",
@@ -219,11 +772,39 @@
       "path": "wiki/sources/nvlabs-robolab.md"
     },
     {
+      "id": "sources/omniverse-omni-physics-articulations",
+      "label": "Articulations - Omni Physics",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/omniverse-omni-physics-articulations.md"
+    },
+    {
+      "id": "sources/openusd-introduction",
+      "label": "Introduction to USD",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/openusd-introduction.md"
+    },
+    {
       "id": "sources/pi07-steerable-generalist-robotic-foundation-model",
       "label": "π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities",
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/pi07-steerable-generalist-robotic-foundation-model.md"
+    },
+    {
+      "id": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "label": "Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation.md"
+    },
+    {
+      "id": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "label": "RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots.md"
     },
     {
       "id": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
@@ -233,18 +814,508 @@
       "path": "wiki/sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies.md"
     },
     {
+      "id": "sources/robotics-simulation-infrastructure",
+      "label": "Robotics Simulation Infrastructure",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/robotics-simulation-infrastructure.md"
+    },
+    {
+      "id": "sources/structural-properties-and-classification-of-wheeled-mobile-robots",
+      "label": "Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/structural-properties-and-classification-of-wheeled-mobile-robots.md"
+    },
+    {
+      "id": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "label": "UniLab: A Heterogeneous Architecture for Robot RL Beyond GPU-Dominant Paradigms",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms.md"
+    },
+    {
+      "id": "sources/unilab-repository",
+      "label": "UniLab Repository",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/unilab-repository.md"
+    },
+    {
+      "id": "sources/v-hacd-repository",
+      "label": "V-HACD Repository",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/v-hacd-repository.md"
+    },
+    {
+      "id": "sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
+      "label": "VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation.md"
+    },
+    {
+      "id": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "label": "VisACD: Visibility-Based GPU-Accelerated Approximate Convex Decomposition",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition.md"
+    },
+    {
+      "id": "syntheses/3d-model-formats-learning-map",
+      "label": "三维模型格式学习地图",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/3d-model-formats-learning-map.md"
+    },
+    {
+      "id": "syntheses/dsh-learning-map",
+      "label": "DeepSeek Harness 学习地图",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/dsh-learning-map.md"
+    },
+    {
+      "id": "syntheses/embodiedgen-v1-v2-learning-map",
+      "label": "EmbodiedGen V1/V2 学习地图",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/embodiedgen-v1-v2-learning-map.md"
+    },
+    {
+      "id": "syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "label": "Isaac Sim 与 MuJoCo 物理和控制笔记",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/isaac-sim-mujoco-control-tuning-notes.md"
+    },
+    {
+      "id": "syntheses/isaac-sim-mujoco-usda-runtime-semantics",
+      "label": "Isaac Sim `mujoco.usda` 运行时语义",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/isaac-sim-mujoco-usda-runtime-semantics.md"
+    },
+    {
+      "id": "syntheses/ovrtx-api-boundary",
+      "label": "ovrtx API 边界",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/ovrtx-api-boundary.md"
+    },
+    {
       "id": "syntheses/research-questions",
-      "label": "Research Questions",
+      "label": "研究问题",
       "type": "synthesis",
       "color": "#9C27B0",
       "path": "wiki/syntheses/research-questions.md"
+    },
+    {
+      "id": "syntheses/wheeled-robot-modeling-learning-map",
+      "label": "轮式机器人建模学习地图",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/wheeled-robot-modeling-learning-map.md"
+    },
+    {
+      "id": "syntheses/wheeled-robot-visual-lab",
+      "label": "轮式机器人可视化实验",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/wheeled-robot-visual-lab.md"
     }
   ],
   "edges": [
     {
+      "id": "concepts/AgenticSceneTaskGeneration--sources/nvlabs-robolab",
+      "from": "concepts/AgenticSceneTaskGeneration",
+      "to": "sources/nvlabs-robolab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "from": "concepts/AgenticSceneTaskGeneration",
+      "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--sources/robotics-simulation-infrastructure",
+      "from": "concepts/AgenticSceneTaskGeneration",
+      "to": "sources/robotics-simulation-infrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "from": "concepts/AgenticSceneTaskGeneration",
+      "to": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--entities/RoboLab",
+      "from": "concepts/AgenticSceneTaskGeneration",
+      "to": "entities/RoboLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--concepts/RoboticsSimulationInfrastructure",
+      "from": "concepts/AgenticSceneTaskGeneration",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/AgenticSceneTaskGeneration",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--concepts/SimulationBenchmarkReportingPipeline",
+      "from": "concepts/AgenticSceneTaskGeneration",
+      "to": "concepts/SimulationBenchmarkReportingPipeline",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--concepts/SimulationRealityGap",
+      "from": "concepts/AgenticSceneTaskGeneration",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--entities/EmbodiedGen",
+      "from": "concepts/AgenticSceneTaskGeneration",
+      "to": "entities/EmbodiedGen",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--concepts/SimulationReady3DWorldGeneration",
+      "from": "concepts/AgenticSceneTaskGeneration",
+      "to": "concepts/SimulationReady3DWorldGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--sources/v-hacd-repository",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "sources/v-hacd-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--sources/coacd-approximate-convex-decomposition",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "sources/coacd-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--sources/coacd-repository",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "sources/coacd-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--sources/convex-primitive-decomposition-for-collision-detection",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "sources/convex-primitive-decomposition-for-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--sources/mujoco-computation-collision-detection",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--sources/isaac-sim-core-api-collision-approximation",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "sources/isaac-sim-core-api-collision-approximation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--concepts/CollisionGeometryForRobotSimulation",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "concepts/CollisionGeometryForRobotSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--entities/CoACD",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "entities/CoACD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--entities/VHACD",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "entities/VHACD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--entities/VisACD",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "entities/VisACD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--entities/MuJoCo",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--entities/IsaacSim",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--concepts/SimulationRealityGap",
+      "from": "concepts/ApproximateConvexDecomposition",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AssetConditionedHOIGeneration--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "from": "concepts/AssetConditionedHOIGeneration",
+      "to": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AssetConditionedHOIGeneration--entities/GRAIL",
+      "from": "concepts/AssetConditionedHOIGeneration",
+      "to": "entities/GRAIL",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AssetConditionedHOIGeneration--concepts/VisualSimToReal",
+      "from": "concepts/AssetConditionedHOIGeneration",
+      "to": "concepts/VisualSimToReal",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AssetConditionedHOIGeneration--concepts/SimulationRealityGap",
+      "from": "concepts/AssetConditionedHOIGeneration",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AssetConditionedHOIGeneration--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/AssetConditionedHOIGeneration",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AssetConditionedHOIGeneration--concepts/HumanoidRLWorkflow",
+      "from": "concepts/AssetConditionedHOIGeneration",
+      "to": "concepts/HumanoidRLWorkflow",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--sources/mujoco-computation-collision-detection",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--sources/isaac-sim-core-api-collision-approximation",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "sources/isaac-sim-core-api-collision-approximation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--sources/v-hacd-repository",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "sources/v-hacd-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--sources/coacd-approximate-convex-decomposition",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "sources/coacd-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--sources/coacd-repository",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "sources/coacd-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--sources/convex-primitive-decomposition-for-collision-detection",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "sources/convex-primitive-decomposition-for-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--concepts/ContactModelsInRobotics",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--concepts/ContactSolvers",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--entities/CoACD",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "entities/CoACD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--entities/VisACD",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "entities/VisACD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--entities/DCOL",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "entities/DCOL",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--entities/DiffPills",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "entities/DiffPills",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--concepts/IsaacSimAssetStructure",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "concepts/IsaacSimAssetStructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--concepts/SimulationRealityGap",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--concepts/DifferentiableCollisionDetection",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "concepts/DifferentiableCollisionDetection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--entities/MuJoCo",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--entities/IsaacSim",
+      "from": "concepts/CollisionGeometryForRobotSimulation",
+      "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/CompositionalGeneralizationInRobotics--sources/pi07-steerable-generalist-robotic-foundation-model",
       "from": "concepts/CompositionalGeneralizationInRobotics",
       "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "from": "concepts/CompositionalGeneralizationInRobotics",
+      "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--entities/RoboCasa365",
+      "from": "concepts/CompositionalGeneralizationInRobotics",
+      "to": "entities/RoboCasa365",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--concepts/RobotLearningDataComposition",
+      "from": "concepts/CompositionalGeneralizationInRobotics",
+      "to": "concepts/RobotLearningDataComposition",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -266,6 +1337,13 @@
       "id": "concepts/CompositionalGeneralizationInRobotics--entities/Pi07",
       "from": "concepts/CompositionalGeneralizationInRobotics",
       "to": "entities/Pi07",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/CompositionalGeneralizationInRobotics",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -354,6 +1432,20 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/ContactSolvers--sources/omniverse-omni-physics-articulations",
+      "from": "concepts/ContactSolvers",
+      "to": "sources/omniverse-omni-physics-articulations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--concepts/ReducedCoordinateArticulations",
+      "from": "concepts/ContactSolvers",
+      "to": "concepts/ReducedCoordinateArticulations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/ContactSolvers--concepts/SimulationRealityGap",
       "from": "concepts/ContactSolvers",
       "to": "concepts/SimulationRealityGap",
@@ -368,9 +1460,107 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/DifferentiableCollisionDetection--sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
+      "from": "concepts/DifferentiableCollisionDetection",
+      "to": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiableCollisionDetection--sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
+      "from": "concepts/DifferentiableCollisionDetection",
+      "to": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiableCollisionDetection--sources/mujoco-computation-collision-detection",
+      "from": "concepts/DifferentiableCollisionDetection",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiableCollisionDetection--sources/contact-models-in-robotics-a-comparative-analysis",
+      "from": "concepts/DifferentiableCollisionDetection",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiableCollisionDetection--concepts/DifferentiablePhysics",
+      "from": "concepts/DifferentiableCollisionDetection",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--concepts/DifferentiableCollisionDetection",
+      "from": "concepts/DifferentiableCollisionDetection",
+      "to": "concepts/ApproximateConvexDecomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--concepts/DifferentiableCollisionDetection",
+      "from": "concepts/DifferentiableCollisionDetection",
+      "to": "concepts/ContactComplementarity",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--concepts/DifferentiableCollisionDetection",
+      "from": "concepts/DifferentiableCollisionDetection",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiableCollisionDetection--entities/DCOL",
+      "from": "concepts/DifferentiableCollisionDetection",
+      "to": "entities/DCOL",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiableCollisionDetection--entities/DiffPills",
+      "from": "concepts/DifferentiableCollisionDetection",
+      "to": "entities/DiffPills",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/DifferentiablePhysics--sources/contact-models-in-robotics-a-comparative-analysis",
       "from": "concepts/DifferentiablePhysics",
       "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
+      "from": "concepts/DifferentiablePhysics",
+      "to": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
+      "from": "concepts/DifferentiablePhysics",
+      "to": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--entities/DCOL",
+      "from": "concepts/DifferentiablePhysics",
+      "to": "entities/DCOL",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--entities/DiffPills",
+      "from": "concepts/DifferentiablePhysics",
+      "to": "entities/DiffPills",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -382,6 +1572,13 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/CollisionGeometryForRobotSimulation--concepts/DifferentiablePhysics",
+      "from": "concepts/DifferentiablePhysics",
+      "to": "concepts/CollisionGeometryForRobotSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/DifferentiablePhysics--entities/MuJoCo",
       "from": "concepts/DifferentiablePhysics",
       "to": "entities/MuJoCo",
@@ -389,9 +1586,478 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "from": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "to": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--concepts/SimulationReady3DWorldGeneration",
+      "from": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "to": "concepts/SimulationReady3DWorldGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--concepts/HeterogeneousRobotRLTraining",
+      "from": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "to": "concepts/HeterogeneousRobotRLTraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--entities/MagicSim",
+      "from": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "to": "entities/MagicSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--concepts/RoboticsSimulationInfrastructure",
+      "from": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "from": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "to": "concepts/AgenticSceneTaskGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--concepts/SimulationRealityGap",
+      "from": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "from": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--sources/unilab-repository",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "sources/unilab-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--sources/motrixsim-documentation",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "sources/motrixsim-documentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--sources/mujoco-warp-mjwarp-documentation",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "sources/mujoco-warp-mjwarp-documentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--sources/mjlab-repository",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "sources/mjlab-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--sources/mujoco-playground-repository",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "sources/mujoco-playground-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--sources/isaac-lab-repository",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "sources/isaac-lab-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--sources/maniskill-repository",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "sources/maniskill-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--entities/UniLab",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "entities/UniLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--entities/MuJoCoUni",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "entities/MuJoCoUni",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--entities/MotrixSim",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "entities/MotrixSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--entities/MJWarp",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "entities/MJWarp",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--entities/Mjlab",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "entities/Mjlab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--entities/MuJoCoPlayground",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "entities/MuJoCoPlayground",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--entities/IsaacLab",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "entities/IsaacLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--entities/ManiSkill",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "entities/ManiSkill",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--concepts/RoboticsSimulationInfrastructure",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--concepts/SimulationRealityGap",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--concepts/HumanoidRLWorkflow",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "concepts/HumanoidRLWorkflow",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--entities/MuJoCo",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--entities/IsaacSim",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/HeterogeneousRobotRLTraining",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HumanoidRLWorkflow--sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "from": "concepts/HumanoidRLWorkflow",
+      "to": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HumanoidRLWorkflow--entities/AGILE",
+      "from": "concepts/HumanoidRLWorkflow",
+      "to": "entities/AGILE",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HumanoidRLWorkflow--concepts/SimulationRealityGap",
+      "from": "concepts/HumanoidRLWorkflow",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HumanoidRLWorkflow--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/HumanoidRLWorkflow",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HumanoidRLWorkflow--concepts/VisionLanguageActionModels",
+      "from": "concepts/HumanoidRLWorkflow",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HumanoidRLWorkflow--entities/MuJoCo",
+      "from": "concepts/HumanoidRLWorkflow",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "from": "concepts/InverseDynamicsModels",
+      "to": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "from": "concepts/InverseDynamicsModels",
+      "to": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--sources/lda-1b-scaling-latent-dynamics-action-model",
+      "from": "concepts/InverseDynamicsModels",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--entities/Seer",
+      "from": "concepts/InverseDynamicsModels",
+      "to": "entities/Seer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--entities/DeFI",
+      "from": "concepts/InverseDynamicsModels",
+      "to": "entities/DeFI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--concepts/LatentDynamicsActionModels",
+      "from": "concepts/InverseDynamicsModels",
+      "to": "concepts/LatentDynamicsActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--concepts/VisionLanguageActionModels",
+      "from": "concepts/InverseDynamicsModels",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/InverseDynamicsModels",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--concepts/SimulationRealityGap",
+      "from": "concepts/InverseDynamicsModels",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--sources/isaac-sim-asset-structure",
+      "from": "concepts/IsaacSimAssetStructure",
+      "to": "sources/isaac-sim-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--sources/isaac-sim-45-asset-structure",
+      "from": "concepts/IsaacSimAssetStructure",
+      "to": "sources/isaac-sim-45-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--sources/isaac-sim-core-api-collision-approximation",
+      "from": "concepts/IsaacSimAssetStructure",
+      "to": "sources/isaac-sim-core-api-collision-approximation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--concepts/IsaacSimLegacyAssetStructure",
+      "from": "concepts/IsaacSimAssetStructure",
+      "to": "concepts/IsaacSimLegacyAssetStructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--entities/MuJoCo",
+      "from": "concepts/IsaacSimAssetStructure",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--syntheses/isaac-sim-mujoco-usda-runtime-semantics",
+      "from": "concepts/IsaacSimAssetStructure",
+      "to": "syntheses/isaac-sim-mujoco-usda-runtime-semantics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--concepts/SimulationRealityGap",
+      "from": "concepts/IsaacSimAssetStructure",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--entities/IsaacSim",
+      "from": "concepts/IsaacSimAssetStructure",
+      "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--entities/NVIDIA",
+      "from": "concepts/IsaacSimAssetStructure",
+      "to": "entities/NVIDIA",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--concepts/IsaacSimAssetStructure",
+      "from": "concepts/IsaacSimAssetStructure",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimLegacyAssetStructure--sources/isaac-sim-45-asset-structure",
+      "from": "concepts/IsaacSimLegacyAssetStructure",
+      "to": "sources/isaac-sim-45-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimLegacyAssetStructure--sources/isaac-sim-asset-structure",
+      "from": "concepts/IsaacSimLegacyAssetStructure",
+      "to": "sources/isaac-sim-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimLegacyAssetStructure--entities/IsaacSim",
+      "from": "concepts/IsaacSimLegacyAssetStructure",
+      "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimLegacyAssetStructure--entities/OpenUSD",
+      "from": "concepts/IsaacSimLegacyAssetStructure",
+      "to": "entities/OpenUSD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimLegacyAssetStructure--entities/NVIDIA",
+      "from": "concepts/IsaacSimLegacyAssetStructure",
+      "to": "entities/NVIDIA",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimLegacyAssetStructure--concepts/SimulationRealityGap",
+      "from": "concepts/IsaacSimLegacyAssetStructure",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/LatentDynamicsActionModels--sources/lda-1b-scaling-latent-dynamics-action-model",
       "from": "concepts/LatentDynamicsActionModels",
       "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "from": "concepts/LatentDynamicsActionModels",
+      "to": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "from": "concepts/LatentDynamicsActionModels",
+      "to": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--entities/Seer",
+      "from": "concepts/LatentDynamicsActionModels",
+      "to": "entities/Seer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--entities/DeFI",
+      "from": "concepts/LatentDynamicsActionModels",
+      "to": "entities/DeFI",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -438,9 +2104,261 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/MobileRobotOdometry--sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "from": "concepts/MobileRobotOdometry",
+      "to": "sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MobileRobotOdometry--concepts/WheeledRobotKinematics",
+      "from": "concepts/MobileRobotOdometry",
+      "to": "concepts/WheeledRobotKinematics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MobileRobotOdometry--concepts/OmnidirectionalWheels",
+      "from": "concepts/MobileRobotOdometry",
+      "to": "concepts/OmnidirectionalWheels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MobileRobotOdometry--concepts/NonholonomicMobileRobots",
+      "from": "concepts/MobileRobotOdometry",
+      "to": "concepts/NonholonomicMobileRobots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MobileRobotOdometry--concepts/SimulationRealityGap",
+      "from": "concepts/MobileRobotOdometry",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/NonholonomicMobileRobots--sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "from": "concepts/NonholonomicMobileRobots",
+      "to": "sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/NonholonomicMobileRobots--sources/structural-properties-and-classification-of-wheeled-mobile-robots",
+      "from": "concepts/NonholonomicMobileRobots",
+      "to": "sources/structural-properties-and-classification-of-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/NonholonomicMobileRobots--concepts/WheeledMobileRobotClassification",
+      "from": "concepts/NonholonomicMobileRobots",
+      "to": "concepts/WheeledMobileRobotClassification",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/NonholonomicMobileRobots--concepts/SimulationRealityGap",
+      "from": "concepts/NonholonomicMobileRobots",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OmnidirectionalWheels--sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "from": "concepts/OmnidirectionalWheels",
+      "to": "sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OmnidirectionalWheels--sources/structural-properties-and-classification-of-wheeled-mobile-robots",
+      "from": "concepts/OmnidirectionalWheels",
+      "to": "sources/structural-properties-and-classification-of-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--concepts/OmnidirectionalWheels",
+      "from": "concepts/OmnidirectionalWheels",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OmnidirectionalWheels--concepts/WheeledRobotKinematics",
+      "from": "concepts/OmnidirectionalWheels",
+      "to": "concepts/WheeledRobotKinematics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OmnidirectionalWheels--concepts/SimulationRealityGap",
+      "from": "concepts/OmnidirectionalWheels",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--sources/openusd-introduction",
+      "from": "concepts/OpenUSDSceneComposition",
+      "to": "sources/openusd-introduction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--sources/isaac-sim-asset-structure",
+      "from": "concepts/OpenUSDSceneComposition",
+      "to": "sources/isaac-sim-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--sources/nvidia-ovrtx",
+      "from": "concepts/OpenUSDSceneComposition",
+      "to": "sources/nvidia-ovrtx",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--entities/OpenUSD",
+      "from": "concepts/OpenUSDSceneComposition",
+      "to": "entities/OpenUSD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--concepts/OpenUSDSceneComposition",
+      "from": "concepts/OpenUSDSceneComposition",
+      "to": "concepts/IsaacSimAssetStructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--concepts/SimulationRealityGap",
+      "from": "concepts/OpenUSDSceneComposition",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--concepts/RTXSensorSimulationPipeline",
+      "from": "concepts/OpenUSDSceneComposition",
+      "to": "concepts/RTXSensorSimulationPipeline",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--entities/IsaacSim",
+      "from": "concepts/OpenUSDSceneComposition",
+      "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RTXSensorSimulationPipeline--sources/nvidia-ovrtx",
+      "from": "concepts/RTXSensorSimulationPipeline",
+      "to": "sources/nvidia-ovrtx",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RTXSensorSimulationPipeline--entities/Ovrtx",
+      "from": "concepts/RTXSensorSimulationPipeline",
+      "to": "entities/Ovrtx",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RTXSensorSimulationPipeline--entities/OpenUSD",
+      "from": "concepts/RTXSensorSimulationPipeline",
+      "to": "entities/OpenUSD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RTXSensorSimulationPipeline--syntheses/ovrtx-api-boundary",
+      "from": "concepts/RTXSensorSimulationPipeline",
+      "to": "syntheses/ovrtx-api-boundary",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RTXSensorSimulationPipeline--concepts/RoboticsSimulationInfrastructure",
+      "from": "concepts/RTXSensorSimulationPipeline",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RTXSensorSimulationPipeline--concepts/SimulationRealityGap",
+      "from": "concepts/RTXSensorSimulationPipeline",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ReducedCoordinateArticulations--sources/omniverse-omni-physics-articulations",
+      "from": "concepts/ReducedCoordinateArticulations",
+      "to": "sources/omniverse-omni-physics-articulations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--concepts/ReducedCoordinateArticulations",
+      "from": "concepts/ReducedCoordinateArticulations",
+      "to": "concepts/IsaacSimAssetStructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ReducedCoordinateArticulations--entities/MuJoCo",
+      "from": "concepts/ReducedCoordinateArticulations",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ReducedCoordinateArticulations--entities/PhysX",
+      "from": "concepts/ReducedCoordinateArticulations",
+      "to": "entities/PhysX",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ReducedCoordinateArticulations--entities/IsaacSim",
+      "from": "concepts/ReducedCoordinateArticulations",
+      "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ReducedCoordinateArticulations--concepts/SimulationRealityGap",
+      "from": "concepts/ReducedCoordinateArticulations",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ReducedCoordinateArticulations--syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "from": "concepts/ReducedCoordinateArticulations",
+      "to": "syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/RobotContextConditioning--sources/pi07-steerable-generalist-robotic-foundation-model",
       "from": "concepts/RobotContextConditioning",
       "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--sources/nvlabs-robolab",
+      "from": "concepts/RobotContextConditioning",
+      "to": "sources/nvlabs-robolab",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -466,9 +2384,464 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/RobotLearningDataComposition--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "from": "concepts/RobotLearningDataComposition",
+      "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningDataComposition--sources/pi07-steerable-generalist-robotic-foundation-model",
+      "from": "concepts/RobotLearningDataComposition",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningDataComposition--sources/lda-1b-scaling-latent-dynamics-action-model",
+      "from": "concepts/RobotLearningDataComposition",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningDataComposition--concepts/SimulationRealityGap",
+      "from": "concepts/RobotLearningDataComposition",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningDataComposition--entities/RoboCasa365",
+      "from": "concepts/RobotLearningDataComposition",
+      "to": "entities/RoboCasa365",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningDataComposition--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/RobotLearningDataComposition",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--concepts/RobotLearningDataComposition",
+      "from": "concepts/RobotLearningDataComposition",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--concepts/RobotLearningDataComposition",
+      "from": "concepts/RobotLearningDataComposition",
+      "to": "concepts/LatentDynamicsActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningDataComposition--concepts/RoboticsSimulationInfrastructure",
+      "from": "concepts/RobotLearningDataComposition",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/robotics-simulation-infrastructure",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/robotics-simulation-infrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/nvidia-ovrtx",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/nvidia-ovrtx",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/nvlabs-robolab",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/nvlabs-robolab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/unilab-repository",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/unilab-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/motrixsim-documentation",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/motrixsim-documentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/mujoco-warp-mjwarp-documentation",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/mujoco-warp-mjwarp-documentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/mjlab-repository",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/mjlab-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/mujoco-playground-repository",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/mujoco-playground-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/isaac-lab-repository",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/isaac-lab-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/maniskill-repository",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/maniskill-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/MuJoCoUni",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/MuJoCoUni",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/MotrixSim",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/MotrixSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/MJWarp",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/MJWarp",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/MuJoCoPlayground",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/MuJoCoPlayground",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/Mjlab",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/Mjlab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/IsaacLab",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/IsaacLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/ManiSkill",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/ManiSkill",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--concepts/SimulationRealityGap",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/MagicSim",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/MagicSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/RoboCasa365",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/RoboCasa365",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/EmbodiedGen",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/EmbodiedGen",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--concepts/SimulationReady3DWorldGeneration",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "concepts/SimulationReady3DWorldGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--concepts/SimulationBenchmarkReportingPipeline",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "concepts/SimulationBenchmarkReportingPipeline",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/RoboLab",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/RoboLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/UniLab",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/UniLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/IsaacSim",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/Ovrtx",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/Ovrtx",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/MuJoCo",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--concepts/RoboticsSimulationInfrastructure",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "concepts/IsaacSimAssetStructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationBenchmarkReportingPipeline--sources/nvlabs-robolab",
+      "from": "concepts/SimulationBenchmarkReportingPipeline",
+      "to": "sources/nvlabs-robolab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationBenchmarkReportingPipeline--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "from": "concepts/SimulationBenchmarkReportingPipeline",
+      "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationBenchmarkReportingPipeline--sources/robotics-simulation-infrastructure",
+      "from": "concepts/SimulationBenchmarkReportingPipeline",
+      "to": "sources/robotics-simulation-infrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationBenchmarkReportingPipeline--entities/RoboLab",
+      "from": "concepts/SimulationBenchmarkReportingPipeline",
+      "to": "entities/RoboLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationBenchmarkReportingPipeline--concepts/SimulationSensitivityAnalysis",
+      "from": "concepts/SimulationBenchmarkReportingPipeline",
+      "to": "concepts/SimulationSensitivityAnalysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationBenchmarkReportingPipeline--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/SimulationBenchmarkReportingPipeline",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationBenchmarkReportingPipeline--concepts/SimulationRealityGap",
+      "from": "concepts/SimulationBenchmarkReportingPipeline",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationReady3DWorldGeneration--sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "from": "concepts/SimulationReady3DWorldGeneration",
+      "to": "sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationReady3DWorldGeneration--sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "from": "concepts/SimulationReady3DWorldGeneration",
+      "to": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationReady3DWorldGeneration--sources/robotics-simulation-infrastructure",
+      "from": "concepts/SimulationReady3DWorldGeneration",
+      "to": "sources/robotics-simulation-infrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationReady3DWorldGeneration--sources/mujoco-computation-collision-detection",
+      "from": "concepts/SimulationReady3DWorldGeneration",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationReady3DWorldGeneration--sources/coacd-approximate-convex-decomposition",
+      "from": "concepts/SimulationReady3DWorldGeneration",
+      "to": "sources/coacd-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--concepts/SimulationReady3DWorldGeneration",
+      "from": "concepts/SimulationReady3DWorldGeneration",
+      "to": "concepts/CollisionGeometryForRobotSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationReady3DWorldGeneration--concepts/SimulationRealityGap",
+      "from": "concepts/SimulationReady3DWorldGeneration",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationReady3DWorldGeneration--entities/EmbodiedGen",
+      "from": "concepts/SimulationReady3DWorldGeneration",
+      "to": "entities/EmbodiedGen",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--concepts/SimulationReady3DWorldGeneration",
+      "from": "concepts/SimulationReady3DWorldGeneration",
+      "to": "concepts/ApproximateConvexDecomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--concepts/SimulationReady3DWorldGeneration",
+      "from": "concepts/SimulationReady3DWorldGeneration",
+      "to": "concepts/OpenUSDSceneComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/SimulationRealityGap--sources/contact-models-in-robotics-a-comparative-analysis",
       "from": "concepts/SimulationRealityGap",
       "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/mujoco-computation-collision-detection",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/isaac-sim-core-api-collision-approximation",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/isaac-sim-core-api-collision-approximation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/coacd-approximate-convex-decomposition",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/coacd-approximate-convex-decomposition",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -483,6 +2856,55 @@
       "id": "concepts/SimulationRealityGap--sources/pi07-steerable-generalist-robotic-foundation-model",
       "from": "concepts/SimulationRealityGap",
       "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/robotics-simulation-infrastructure",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/robotics-simulation-infrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -508,9 +2930,51 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/SimulationRealityGap--entities/EmbodiedGen",
+      "from": "concepts/SimulationRealityGap",
+      "to": "entities/EmbodiedGen",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--concepts/VisualSimToReal",
+      "from": "concepts/SimulationRealityGap",
+      "to": "concepts/VisualSimToReal",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/RoboCasa365",
+      "from": "concepts/SimulationRealityGap",
+      "to": "entities/RoboCasa365",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/SimulationRealityGap--concepts/VisionLanguageActionModels",
       "from": "concepts/SimulationRealityGap",
       "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/AGILE",
+      "from": "concepts/SimulationRealityGap",
+      "to": "entities/AGILE",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/GRAIL",
+      "from": "concepts/SimulationRealityGap",
+      "to": "entities/GRAIL",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/UniLab",
+      "from": "concepts/SimulationRealityGap",
+      "to": "entities/UniLab",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -557,6 +3021,48 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/SteerableWheels--sources/structural-properties-and-classification-of-wheeled-mobile-robots",
+      "from": "concepts/SteerableWheels",
+      "to": "sources/structural-properties-and-classification-of-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SteerableWheels--sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "from": "concepts/SteerableWheels",
+      "to": "sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SteerableWheels--concepts/WheeledMobileRobotClassification",
+      "from": "concepts/SteerableWheels",
+      "to": "concepts/WheeledMobileRobotClassification",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SteerableWheels--concepts/WheeledRobotKinematics",
+      "from": "concepts/SteerableWheels",
+      "to": "concepts/WheeledRobotKinematics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MobileRobotOdometry--concepts/SteerableWheels",
+      "from": "concepts/SteerableWheels",
+      "to": "concepts/MobileRobotOdometry",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--concepts/SteerableWheels",
+      "from": "concepts/SteerableWheels",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/TaskGeneralistPolicyEvaluation--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
       "from": "concepts/TaskGeneralistPolicyEvaluation",
       "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
@@ -571,6 +3077,34 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "from": "concepts/TaskGeneralistPolicyEvaluation",
+      "to": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--sources/robotics-simulation-infrastructure",
+      "from": "concepts/TaskGeneralistPolicyEvaluation",
+      "to": "sources/robotics-simulation-infrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "from": "concepts/TaskGeneralistPolicyEvaluation",
+      "to": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "from": "concepts/TaskGeneralistPolicyEvaluation",
+      "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/TaskGeneralistPolicyEvaluation--entities/RoboLab",
       "from": "concepts/TaskGeneralistPolicyEvaluation",
       "to": "entities/RoboLab",
@@ -578,16 +3112,16 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/SimulationRealityGap--concepts/TaskGeneralistPolicyEvaluation",
+      "id": "concepts/TaskGeneralistPolicyEvaluation--entities/RoboCasa365",
       "from": "concepts/TaskGeneralistPolicyEvaluation",
-      "to": "concepts/SimulationRealityGap",
+      "to": "entities/RoboCasa365",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/CompositionalGeneralizationInRobotics--concepts/TaskGeneralistPolicyEvaluation",
+      "id": "concepts/SimulationRealityGap--concepts/TaskGeneralistPolicyEvaluation",
       "from": "concepts/TaskGeneralistPolicyEvaluation",
-      "to": "concepts/CompositionalGeneralizationInRobotics",
+      "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -606,6 +3140,34 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/VisionLanguageActionModels--sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "from": "concepts/VisionLanguageActionModels",
+      "to": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "from": "concepts/VisionLanguageActionModels",
+      "to": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--entities/DeFI",
+      "from": "concepts/VisionLanguageActionModels",
+      "to": "entities/DeFI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--entities/Seer",
+      "from": "concepts/VisionLanguageActionModels",
+      "to": "entities/Seer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/VisionLanguageActionModels--entities/Pi07",
       "from": "concepts/VisionLanguageActionModels",
       "to": "entities/Pi07",
@@ -616,6 +3178,104 @@
       "id": "concepts/VisionLanguageActionModels--entities/LDA1B",
       "from": "concepts/VisionLanguageActionModels",
       "to": "entities/LDA1B",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualSimToReal--sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
+      "from": "concepts/VisualSimToReal",
+      "to": "sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualSimToReal--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "from": "concepts/VisualSimToReal",
+      "to": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualSimToReal--entities/VIRAL",
+      "from": "concepts/VisualSimToReal",
+      "to": "entities/VIRAL",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualSimToReal--entities/GRAIL",
+      "from": "concepts/VisualSimToReal",
+      "to": "entities/GRAIL",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--concepts/VisualSimToReal",
+      "from": "concepts/VisualSimToReal",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualSimToReal--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/VisualSimToReal",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WheeledMobileRobotClassification--sources/structural-properties-and-classification-of-wheeled-mobile-robots",
+      "from": "concepts/WheeledMobileRobotClassification",
+      "to": "sources/structural-properties-and-classification-of-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WheeledMobileRobotClassification--sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "from": "concepts/WheeledMobileRobotClassification",
+      "to": "sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WheeledMobileRobotClassification--concepts/WheeledRobotKinematics",
+      "from": "concepts/WheeledMobileRobotClassification",
+      "to": "concepts/WheeledRobotKinematics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WheeledRobotKinematics--sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "from": "concepts/WheeledRobotKinematics",
+      "to": "sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WheeledRobotKinematics--sources/structural-properties-and-classification-of-wheeled-mobile-robots",
+      "from": "concepts/WheeledRobotKinematics",
+      "to": "sources/structural-properties-and-classification-of-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--concepts/WheeledRobotKinematics",
+      "from": "concepts/WheeledRobotKinematics",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--concepts/WheeledRobotKinematics",
+      "from": "concepts/WheeledRobotKinematics",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/NonholonomicMobileRobots--concepts/WheeledRobotKinematics",
+      "from": "concepts/WheeledRobotKinematics",
+      "to": "concepts/NonholonomicMobileRobots",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -760,6 +3420,90 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/AGILE--sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "from": "entities/AGILE",
+      "to": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--entities/AGILE",
+      "from": "entities/AGILE",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--entities/AGILE",
+      "from": "entities/AGILE",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AGILE--entities/MuJoCo",
+      "from": "entities/AGILE",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AGILE--entities/NVIDIA",
+      "from": "entities/AGILE",
+      "to": "entities/NVIDIA",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AgentsDock--sources/agentsdock-releases",
+      "from": "entities/AgentsDock",
+      "to": "sources/agentsdock-releases",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AgentsDock--sources/agentsserver",
+      "from": "entities/AgentsDock",
+      "to": "sources/agentsserver",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AgentsDock--entities/Galbot",
+      "from": "entities/AgentsDock",
+      "to": "entities/Galbot",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AgentsServer--sources/agentsserver",
+      "from": "entities/AgentsServer",
+      "to": "sources/agentsserver",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AgentsServer--sources/agentsdock-releases",
+      "from": "entities/AgentsServer",
+      "to": "sources/agentsdock-releases",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AgentsDock--entities/AgentsServer",
+      "from": "entities/AgentsServer",
+      "to": "entities/AgentsDock",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AgentsServer--entities/Galbot",
+      "from": "entities/AgentsServer",
+      "to": "entities/Galbot",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "entities/AwesomeWorldModels--sources/awesome-world-models",
       "from": "entities/AwesomeWorldModels",
       "to": "sources/awesome-world-models",
@@ -770,6 +3514,48 @@
       "id": "entities/AwesomeWorldModels--sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
       "from": "entities/AwesomeWorldModels",
       "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/CoACD--sources/coacd-approximate-convex-decomposition",
+      "from": "entities/CoACD",
+      "to": "sources/coacd-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/CoACD--sources/coacd-repository",
+      "from": "entities/CoACD",
+      "to": "sources/coacd-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/CoACD--sources/mujoco-computation-collision-detection",
+      "from": "entities/CoACD",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/CoACD--entities/VHACD",
+      "from": "entities/CoACD",
+      "to": "entities/VHACD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/CoACD--entities/VisACD",
+      "from": "entities/CoACD",
+      "to": "entities/VisACD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/CoACD",
+      "from": "entities/CoACD",
+      "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -791,6 +3577,48 @@
       "id": "concepts/ContactComplementarity--entities/ContactBench",
       "from": "entities/ContactBench",
       "to": "concepts/ContactComplementarity",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/DCOL--sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
+      "from": "entities/DCOL",
+      "to": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/DCOL--entities/DiffPills",
+      "from": "entities/DCOL",
+      "to": "entities/DiffPills",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/DeFI--sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "from": "entities/DeFI",
+      "to": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--entities/DeFI",
+      "from": "entities/DeFI",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/DeFI",
+      "from": "entities/DeFI",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/DiffPills--sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
+      "from": "entities/DiffPills",
+      "to": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -823,6 +3651,55 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/EmbodiedGen--sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "from": "entities/EmbodiedGen",
+      "to": "sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/EmbodiedGen--sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "from": "entities/EmbodiedGen",
+      "to": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--entities/EmbodiedGen",
+      "from": "entities/EmbodiedGen",
+      "to": "concepts/CollisionGeometryForRobotSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/EmbodiedGen--syntheses/embodiedgen-v1-v2-learning-map",
+      "from": "entities/EmbodiedGen",
+      "to": "syntheses/embodiedgen-v1-v2-learning-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/GRAIL--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "from": "entities/GRAIL",
+      "to": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--entities/GRAIL",
+      "from": "entities/GRAIL",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/GRAIL--entities/NVIDIA",
+      "from": "entities/GRAIL",
+      "to": "entities/NVIDIA",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "entities/Galbot--sources/lda-1b-scaling-latent-dynamics-action-model",
       "from": "entities/Galbot",
       "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
@@ -851,6 +3728,104 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/IsaacLab--sources/isaac-lab-repository",
+      "from": "entities/IsaacLab",
+      "to": "sources/isaac-lab-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacLab--entities/IsaacSim",
+      "from": "entities/IsaacLab",
+      "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacLab--entities/Mjlab",
+      "from": "entities/IsaacLab",
+      "to": "entities/Mjlab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacLab--entities/NVIDIA",
+      "from": "entities/IsaacLab",
+      "to": "entities/NVIDIA",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacSim--sources/isaac-sim-45-asset-structure",
+      "from": "entities/IsaacSim",
+      "to": "sources/isaac-sim-45-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacSim--sources/isaac-sim-asset-structure",
+      "from": "entities/IsaacSim",
+      "to": "sources/isaac-sim-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacSim--sources/isaac-sim-core-api-collision-approximation",
+      "from": "entities/IsaacSim",
+      "to": "sources/isaac-sim-core-api-collision-approximation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacSim--sources/omniverse-omni-physics-articulations",
+      "from": "entities/IsaacSim",
+      "to": "sources/omniverse-omni-physics-articulations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacSim--sources/isaac-lab-repository",
+      "from": "entities/IsaacSim",
+      "to": "sources/isaac-lab-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacSim--entities/NVIDIA",
+      "from": "entities/IsaacSim",
+      "to": "entities/NVIDIA",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacSim--entities/PhysX",
+      "from": "entities/IsaacSim",
+      "to": "entities/PhysX",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacSim--syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "from": "entities/IsaacSim",
+      "to": "syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/IsaacSim",
+      "from": "entities/IsaacSim",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacSim--entities/MuJoCo",
+      "from": "entities/IsaacSim",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "entities/LDA1B--sources/lda-1b-scaling-latent-dynamics-action-model",
       "from": "entities/LDA1B",
       "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
@@ -865,9 +3840,268 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/MJWarp--sources/mujoco-warp-mjwarp-documentation",
+      "from": "entities/MJWarp",
+      "to": "sources/mujoco-warp-mjwarp-documentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MJWarp--entities/NVIDIA",
+      "from": "entities/MJWarp",
+      "to": "entities/NVIDIA",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MJWarp--entities/MuJoCo",
+      "from": "entities/MJWarp",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MJWarp--entities/Mjlab",
+      "from": "entities/MJWarp",
+      "to": "entities/Mjlab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MJWarp--entities/MuJoCoPlayground",
+      "from": "entities/MJWarp",
+      "to": "entities/MuJoCoPlayground",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--entities/MJWarp",
+      "from": "entities/MJWarp",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MagicSim--sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "from": "entities/MagicSim",
+      "to": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--entities/MagicSim",
+      "from": "entities/MagicSim",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--entities/MagicSim",
+      "from": "entities/MagicSim",
+      "to": "concepts/AgenticSceneTaskGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationReady3DWorldGeneration--entities/MagicSim",
+      "from": "entities/MagicSim",
+      "to": "concepts/SimulationReady3DWorldGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--entities/MagicSim",
+      "from": "entities/MagicSim",
+      "to": "concepts/HeterogeneousRobotRLTraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/MagicSim",
+      "from": "entities/MagicSim",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/ManiSkill--sources/robotics-simulation-infrastructure",
+      "from": "entities/ManiSkill",
+      "to": "sources/robotics-simulation-infrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/ManiSkill",
+      "from": "entities/ManiSkill",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--entities/ManiSkill",
+      "from": "entities/ManiSkill",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/ManiSkill--entities/MuJoCo",
+      "from": "entities/ManiSkill",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacSim--entities/ManiSkill",
+      "from": "entities/ManiSkill",
+      "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/Mjlab--sources/mjlab-repository",
+      "from": "entities/Mjlab",
+      "to": "sources/mjlab-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/Mjlab--entities/MuJoCo",
+      "from": "entities/Mjlab",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MotrixSim--sources/motrixsim-documentation",
+      "from": "entities/MotrixSim",
+      "to": "sources/motrixsim-documentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MotrixSim--sources/unilab-repository",
+      "from": "entities/MotrixSim",
+      "to": "sources/unilab-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MotrixSim--sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "from": "entities/MotrixSim",
+      "to": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MotrixSim--entities/UniLab",
+      "from": "entities/MotrixSim",
+      "to": "entities/UniLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MotrixSim--entities/MuJoCoUni",
+      "from": "entities/MotrixSim",
+      "to": "entities/MuJoCoUni",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "entities/MuJoCo--sources/contact-models-in-robotics-a-comparative-analysis",
       "from": "entities/MuJoCo",
       "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--sources/mujoco-computation-collision-detection",
+      "from": "entities/MuJoCo",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--sources/isaac-sim-asset-structure",
+      "from": "entities/MuJoCo",
+      "to": "sources/isaac-sim-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--sources/robotics-simulation-infrastructure",
+      "from": "entities/MuJoCo",
+      "to": "sources/robotics-simulation-infrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "from": "entities/MuJoCo",
+      "to": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
+      "from": "entities/MuJoCo",
+      "to": "sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--sources/mujoco-warp-mjwarp-documentation",
+      "from": "entities/MuJoCo",
+      "to": "sources/mujoco-warp-mjwarp-documentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--sources/mjlab-repository",
+      "from": "entities/MuJoCo",
+      "to": "sources/mjlab-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--sources/mujoco-playground-repository",
+      "from": "entities/MuJoCo",
+      "to": "sources/mujoco-playground-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/CoACD--entities/MuJoCo",
+      "from": "entities/MuJoCo",
+      "to": "entities/CoACD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--syntheses/isaac-sim-mujoco-usda-runtime-semantics",
+      "from": "entities/MuJoCo",
+      "to": "syntheses/isaac-sim-mujoco-usda-runtime-semantics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "from": "entities/MuJoCo",
+      "to": "syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--entities/MuJoCoUni",
+      "from": "entities/MuJoCo",
+      "to": "entities/MuJoCoUni",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--entities/MuJoCoPlayground",
+      "from": "entities/MuJoCo",
+      "to": "entities/MuJoCoPlayground",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -886,6 +4120,34 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/MuJoCoPlayground--sources/mujoco-playground-repository",
+      "from": "entities/MuJoCoPlayground",
+      "to": "sources/mujoco-playground-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/MuJoCoPlayground",
+      "from": "entities/MuJoCoPlayground",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCoUni--sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
+      "from": "entities/MuJoCoUni",
+      "to": "sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCoUni--entities/UniLab",
+      "from": "entities/MuJoCoUni",
+      "to": "entities/UniLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "entities/NVIDIA--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
       "from": "entities/NVIDIA",
       "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
@@ -900,6 +4162,48 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/NVIDIA--sources/isaac-sim-45-asset-structure",
+      "from": "entities/NVIDIA",
+      "to": "sources/isaac-sim-45-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/NVIDIA--sources/isaac-sim-asset-structure",
+      "from": "entities/NVIDIA",
+      "to": "sources/isaac-sim-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/NVIDIA--sources/omniverse-omni-physics-articulations",
+      "from": "entities/NVIDIA",
+      "to": "sources/omniverse-omni-physics-articulations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/NVIDIA--sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
+      "from": "entities/NVIDIA",
+      "to": "sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/NVIDIA--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "from": "entities/NVIDIA",
+      "to": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/NVIDIA--sources/nvidia-ovrtx",
+      "from": "entities/NVIDIA",
+      "to": "sources/nvidia-ovrtx",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "entities/NVIDIA--entities/RoboLab",
       "from": "entities/NVIDIA",
       "to": "entities/RoboLab",
@@ -907,8 +4211,113 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/NVIDIA--entities/PhysX",
+      "from": "entities/NVIDIA",
+      "to": "entities/PhysX",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/NVIDIA--entities/Ovrtx",
+      "from": "entities/NVIDIA",
+      "to": "entities/Ovrtx",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/SimulationRealityGap--entities/NVIDIA",
       "from": "entities/NVIDIA",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/NVIDIA--entities/VIRAL",
+      "from": "entities/NVIDIA",
+      "to": "entities/VIRAL",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/OpenUSD--sources/openusd-introduction",
+      "from": "entities/OpenUSD",
+      "to": "sources/openusd-introduction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/OpenUSD--sources/isaac-sim-asset-structure",
+      "from": "entities/OpenUSD",
+      "to": "sources/isaac-sim-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/OpenUSD--sources/nvidia-ovrtx",
+      "from": "entities/OpenUSD",
+      "to": "sources/nvidia-ovrtx",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--entities/OpenUSD",
+      "from": "entities/OpenUSD",
+      "to": "concepts/IsaacSimAssetStructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacSim--entities/OpenUSD",
+      "from": "entities/OpenUSD",
+      "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/OpenUSD--entities/Pixar",
+      "from": "entities/OpenUSD",
+      "to": "entities/Pixar",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/Ovrtx--sources/nvidia-ovrtx",
+      "from": "entities/Ovrtx",
+      "to": "sources/nvidia-ovrtx",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/OpenUSD--entities/Ovrtx",
+      "from": "entities/Ovrtx",
+      "to": "entities/OpenUSD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/Ovrtx--syntheses/ovrtx-api-boundary",
+      "from": "entities/Ovrtx",
+      "to": "syntheses/ovrtx-api-boundary",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/PhysX--sources/omniverse-omni-physics-articulations",
+      "from": "entities/PhysX",
+      "to": "sources/omniverse-omni-physics-articulations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--entities/PhysX",
+      "from": "entities/PhysX",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/PhysX",
+      "from": "entities/PhysX",
       "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
@@ -963,6 +4372,20 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/Pixar--sources/openusd-introduction",
+      "from": "entities/Pixar",
+      "to": "sources/openusd-introduction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--entities/Pixar",
+      "from": "entities/Pixar",
+      "to": "concepts/OpenUSDSceneComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "entities/RaiSim--sources/contact-models-in-robotics-a-comparative-analysis",
       "from": "entities/RaiSim",
       "to": "sources/contact-models-in-robotics-a-comparative-analysis",
@@ -980,6 +4403,27 @@
       "id": "concepts/ContactSolvers--entities/RaiSim",
       "from": "entities/RaiSim",
       "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/RoboCasa365--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "from": "entities/RoboCasa365",
+      "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--entities/RoboCasa365",
+      "from": "entities/RoboCasa365",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/RoboCasa365--entities/RoboLab",
+      "from": "entities/RoboCasa365",
+      "to": "entities/RoboLab",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1012,9 +4456,177 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/Seer--sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "from": "entities/Seer",
+      "to": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/DeFI--entities/Seer",
+      "from": "entities/Seer",
+      "to": "entities/DeFI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--entities/Seer",
+      "from": "entities/Seer",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/UniLab--sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "from": "entities/UniLab",
+      "to": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/UniLab--sources/unilab-repository",
+      "from": "entities/UniLab",
+      "to": "sources/unilab-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/UniLab--sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
+      "from": "entities/UniLab",
+      "to": "sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/UniLab--sources/motrixsim-documentation",
+      "from": "entities/UniLab",
+      "to": "sources/motrixsim-documentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--entities/UniLab",
+      "from": "entities/UniLab",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/VHACD--sources/v-hacd-repository",
+      "from": "entities/VHACD",
+      "to": "sources/v-hacd-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/VHACD--sources/coacd-approximate-convex-decomposition",
+      "from": "entities/VHACD",
+      "to": "sources/coacd-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/VHACD--sources/convex-primitive-decomposition-for-collision-detection",
+      "from": "entities/VHACD",
+      "to": "sources/convex-primitive-decomposition-for-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/VHACD--sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "from": "entities/VHACD",
+      "to": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--entities/VHACD",
+      "from": "entities/VHACD",
+      "to": "concepts/CollisionGeometryForRobotSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/VHACD--entities/VisACD",
+      "from": "entities/VHACD",
+      "to": "entities/VisACD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/VIRAL--sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
+      "from": "entities/VIRAL",
+      "to": "sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/VIRAL",
+      "from": "entities/VIRAL",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/VisACD--sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "from": "entities/VisACD",
+      "to": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "overview--sources/contact-models-in-robotics-a-comparative-analysis",
       "from": "overview",
       "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/mujoco-computation-collision-detection",
+      "from": "overview",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/isaac-sim-core-api-collision-approximation",
+      "from": "overview",
+      "to": "sources/isaac-sim-core-api-collision-approximation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/coacd-approximate-convex-decomposition",
+      "from": "overview",
+      "to": "sources/coacd-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/convex-primitive-decomposition-for-collision-detection",
+      "from": "overview",
+      "to": "sources/convex-primitive-decomposition-for-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "from": "overview",
+      "to": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
+      "from": "overview",
+      "to": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
+      "from": "overview",
+      "to": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1061,9 +4673,149 @@
       "confidence": 1.0
     },
     {
+      "id": "overview--sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "from": "overview",
+      "to": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "from": "overview",
+      "to": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "from": "overview",
+      "to": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
+      "from": "overview",
+      "to": "sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "from": "overview",
+      "to": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/robotics-simulation-infrastructure",
+      "from": "overview",
+      "to": "sources/robotics-simulation-infrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/nvidia-ovrtx",
+      "from": "overview",
+      "to": "sources/nvidia-ovrtx",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "from": "overview",
+      "to": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "from": "overview",
+      "to": "sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "from": "overview",
+      "to": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "from": "overview",
+      "to": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "from": "overview",
+      "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "overview--syntheses/research-questions",
       "from": "overview",
       "to": "syntheses/research-questions",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--overview",
+      "from": "overview",
+      "to": "concepts/CollisionGeometryForRobotSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/VIRAL--overview",
+      "from": "overview",
+      "to": "entities/VIRAL",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/GRAIL--overview",
+      "from": "overview",
+      "to": "entities/GRAIL",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AGILE--overview",
+      "from": "overview",
+      "to": "entities/AGILE",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--overview",
+      "from": "overview",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/UniLab--overview",
+      "from": "overview",
+      "to": "entities/UniLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MagicSim--overview",
+      "from": "overview",
+      "to": "entities/MagicSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RTXSensorSimulationPipeline--overview",
+      "from": "overview",
+      "to": "concepts/RTXSensorSimulationPipeline",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1110,6 +4862,13 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/InverseDynamicsModels--overview",
+      "from": "overview",
+      "to": "concepts/InverseDynamicsModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/TaskGeneralistPolicyEvaluation--overview",
       "from": "overview",
       "to": "concepts/TaskGeneralistPolicyEvaluation",
@@ -1117,9 +4876,51 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/HumanoidRLWorkflow--overview",
+      "from": "overview",
+      "to": "concepts/HumanoidRLWorkflow",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/EmbodiedGen--overview",
+      "from": "overview",
+      "to": "entities/EmbodiedGen",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/RoboCasa365--overview",
+      "from": "overview",
+      "to": "entities/RoboCasa365",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningDataComposition--overview",
+      "from": "overview",
+      "to": "concepts/RobotLearningDataComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/WorldModelEvaluation--overview",
       "from": "overview",
       "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/Seer--overview",
+      "from": "overview",
+      "to": "entities/Seer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/DeFI--overview",
+      "from": "overview",
+      "to": "entities/DeFI",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1138,6 +4939,27 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/SimulationReady3DWorldGeneration--overview",
+      "from": "overview",
+      "to": "concepts/SimulationReady3DWorldGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--overview",
+      "from": "overview",
+      "to": "concepts/AgenticSceneTaskGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--overview",
+      "from": "overview",
+      "to": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/ContactComplementarity--overview",
       "from": "overview",
       "to": "concepts/ContactComplementarity",
@@ -1148,6 +4970,48 @@
       "id": "concepts/DifferentiablePhysics--overview",
       "from": "overview",
       "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--overview",
+      "from": "overview",
+      "to": "concepts/ApproximateConvexDecomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiableCollisionDetection--overview",
+      "from": "overview",
+      "to": "concepts/DifferentiableCollisionDetection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualSimToReal--overview",
+      "from": "overview",
+      "to": "concepts/VisualSimToReal",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AssetConditionedHOIGeneration--overview",
+      "from": "overview",
+      "to": "concepts/AssetConditionedHOIGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--overview",
+      "from": "overview",
+      "to": "concepts/CompositionalGeneralizationInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--overview",
+      "from": "overview",
+      "to": "concepts/HeterogeneousRobotRLTraining",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1166,9 +5030,163 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/agentsdock-releases--sources/agentsserver",
+      "from": "sources/agentsdock-releases",
+      "to": "sources/agentsserver",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "from": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/NVIDIA--sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "from": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "to": "entities/NVIDIA",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "from": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai--sources/awesome-world-models",
       "from": "sources/awesome-world-models",
       "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/coacd-approximate-convex-decomposition--sources/coacd-repository",
+      "from": "sources/coacd-repository",
+      "to": "sources/coacd-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/CoACD--sources/convex-primitive-decomposition-for-collision-detection",
+      "from": "sources/convex-primitive-decomposition-for-collision-detection",
+      "to": "entities/CoACD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/DCOL--sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
+      "from": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
+      "to": "entities/DCOL",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "from": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "from": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "from": "sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "to": "concepts/CollisionGeometryForRobotSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence--sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "from": "sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "to": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence--syntheses/embodiedgen-v1-v2-learning-map",
+      "from": "sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "to": "syntheses/embodiedgen-v1-v2-learning-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "from": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "to": "concepts/OpenUSDSceneComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai--syntheses/embodiedgen-v1-v2-learning-map",
+      "from": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "to": "syntheses/embodiedgen-v1-v2-learning-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/VIRAL--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "from": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "to": "entities/VIRAL",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AGILE--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "from": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "to": "entities/AGILE",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/Mjlab--sources/isaac-lab-repository",
+      "from": "sources/isaac-lab-repository",
+      "to": "entities/Mjlab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/NVIDIA--sources/isaac-lab-repository",
+      "from": "sources/isaac-lab-repository",
+      "to": "entities/NVIDIA",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/OpenUSD--sources/isaac-sim-45-asset-structure",
+      "from": "sources/isaac-sim-45-asset-structure",
+      "to": "entities/OpenUSD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/isaac-sim-45-asset-structure--sources/isaac-sim-asset-structure",
+      "from": "sources/isaac-sim-45-asset-structure",
+      "to": "sources/isaac-sim-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/isaac-sim-asset-structure",
+      "from": "sources/isaac-sim-asset-structure",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/PhysX--sources/isaac-sim-core-api-collision-approximation",
+      "from": "sources/isaac-sim-core-api-collision-approximation",
+      "to": "entities/PhysX",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1183,6 +5201,146 @@
       "id": "sources/lda-1b-scaling-latent-dynamics-action-model--sources/pi07-steerable-generalist-robotic-foundation-model",
       "from": "sources/lda-1b-scaling-latent-dynamics-action-model",
       "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "from": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "to": "concepts/AgenticSceneTaskGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "from": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationReady3DWorldGeneration--sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "from": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "to": "concepts/SimulationReady3DWorldGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "from": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "to": "concepts/HeterogeneousRobotRLTraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "from": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "from": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/ManiSkill--sources/maniskill-repository",
+      "from": "sources/maniskill-repository",
+      "to": "entities/ManiSkill",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--sources/maniskill-repository",
+      "from": "sources/maniskill-repository",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacLab--sources/mjlab-repository",
+      "from": "sources/mjlab-repository",
+      "to": "entities/IsaacLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MJWarp--sources/mjlab-repository",
+      "from": "sources/mjlab-repository",
+      "to": "entities/MJWarp",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "from": "sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--sources/mujoco-computation-collision-detection",
+      "from": "sources/mujoco-computation-collision-detection",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--sources/mujoco-computation-collision-detection",
+      "from": "sources/mujoco-computation-collision-detection",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MJWarp--sources/mujoco-playground-repository",
+      "from": "sources/mujoco-playground-repository",
+      "to": "entities/MJWarp",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/mujoco-playground-repository",
+      "from": "sources/mujoco-playground-repository",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/Mjlab--sources/mujoco-warp-mjwarp-documentation",
+      "from": "sources/mujoco-warp-mjwarp-documentation",
+      "to": "entities/Mjlab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCoPlayground--sources/mujoco-warp-mjwarp-documentation",
+      "from": "sources/mujoco-warp-mjwarp-documentation",
+      "to": "entities/MuJoCoPlayground",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--sources/mujoco-warp-mjwarp-documentation",
+      "from": "sources/mujoco-warp-mjwarp-documentation",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
+      "from": "sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/nvidia-ovrtx",
+      "from": "sources/nvidia-ovrtx",
+      "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1208,6 +5366,55 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/omniverse-omni-physics-articulations--syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "from": "sources/omniverse-omni-physics-articulations",
+      "to": "syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--sources/openusd-introduction",
+      "from": "sources/openusd-introduction",
+      "to": "concepts/IsaacSimAssetStructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining--sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "from": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "to": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "from": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "from": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "from": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "from": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/VisionLanguageActionModels--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
       "from": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
       "to": "concepts/VisionLanguageActionModels",
@@ -1229,9 +5436,247 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/IsaacSim--sources/robotics-simulation-infrastructure",
+      "from": "sources/robotics-simulation-infrastructure",
+      "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "from": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms--sources/unilab-repository",
+      "from": "sources/unilab-repository",
+      "to": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCoUni--sources/unilab-repository",
+      "from": "sources/unilab-repository",
+      "to": "entities/MuJoCoUni",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/CoACD--sources/v-hacd-repository",
+      "from": "sources/v-hacd-repository",
+      "to": "entities/CoACD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/CoACD--sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "from": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "to": "entities/CoACD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/openusd-introduction--syntheses/3d-model-formats-learning-map",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "sources/openusd-introduction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/isaac-sim-asset-structure--syntheses/3d-model-formats-learning-map",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "sources/isaac-sim-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/OpenUSD--syntheses/3d-model-formats-learning-map",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "entities/OpenUSD",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--syntheses/3d-model-formats-learning-map",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "concepts/OpenUSDSceneComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--syntheses/3d-model-formats-learning-map",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "concepts/IsaacSimAssetStructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/IsaacSim--syntheses/3d-model-formats-learning-map",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--syntheses/3d-model-formats-learning-map",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--syntheses/3d-model-formats-learning-map",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--syntheses/embodiedgen-v1-v2-learning-map",
+      "from": "syntheses/embodiedgen-v1-v2-learning-map",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationReady3DWorldGeneration--syntheses/embodiedgen-v1-v2-learning-map",
+      "from": "syntheses/embodiedgen-v1-v2-learning-map",
+      "to": "concepts/SimulationReady3DWorldGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--syntheses/embodiedgen-v1-v2-learning-map",
+      "from": "syntheses/embodiedgen-v1-v2-learning-map",
+      "to": "concepts/CollisionGeometryForRobotSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--syntheses/embodiedgen-v1-v2-learning-map",
+      "from": "syntheses/embodiedgen-v1-v2-learning-map",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--syntheses/embodiedgen-v1-v2-learning-map",
+      "from": "syntheses/embodiedgen-v1-v2-learning-map",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--syntheses/embodiedgen-v1-v2-learning-map",
+      "from": "syntheses/embodiedgen-v1-v2-learning-map",
+      "to": "concepts/AgenticSceneTaskGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/isaac-sim-asset-structure--syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "from": "syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "to": "sources/isaac-sim-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/contact-models-in-robotics-a-comparative-analysis--syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "from": "syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "from": "syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "from": "syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "from": "syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "to": "overview",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/isaac-sim-asset-structure--syntheses/isaac-sim-mujoco-usda-runtime-semantics",
+      "from": "syntheses/isaac-sim-mujoco-usda-runtime-semantics",
+      "to": "sources/isaac-sim-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/nvidia-ovrtx--syntheses/ovrtx-api-boundary",
+      "from": "syntheses/ovrtx-api-boundary",
+      "to": "sources/nvidia-ovrtx",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/contact-models-in-robotics-a-comparative-analysis--syntheses/research-questions",
       "from": "syntheses/research-questions",
       "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/mujoco-computation-collision-detection--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/isaac-sim-core-api-collision-approximation--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/isaac-sim-core-api-collision-approximation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/coacd-approximate-convex-decomposition--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/coacd-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/convex-primitive-decomposition-for-collision-detection--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/convex-primitive-decomposition-for-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1267,6 +5712,48 @@
       "id": "sources/lda-1b-scaling-latent-dynamics-action-model--syntheses/research-questions",
       "from": "syntheses/research-questions",
       "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1327,6 +5814,132 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/RobotLearningDataComposition--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/RobotLearningDataComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/RoboCasa365--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "entities/RoboCasa365",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/CompositionalGeneralizationInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationReady3DWorldGeneration--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/SimulationReady3DWorldGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/embodiedgen-v1-v2-learning-map--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "syntheses/embodiedgen-v1-v2-learning-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/EmbodiedGen--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "entities/EmbodiedGen",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgenticSceneTaskGeneration--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/AgenticSceneTaskGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/CollisionGeometryForRobotSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/HeterogeneousRobotRLTraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/UniLab--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "entities/UniLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/MuJoCo--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "entities/MuJoCo",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HumanoidRLWorkflow--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/HumanoidRLWorkflow",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AGILE--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "entities/AGILE",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AssetConditionedHOIGeneration--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/AssetConditionedHOIGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/GRAIL--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "entities/GRAIL",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualSimToReal--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/VisualSimToReal",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/ContactComplementarity--syntheses/research-questions",
       "from": "syntheses/research-questions",
       "to": "concepts/ContactComplementarity",
@@ -1355,9 +5968,16 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/RobotContextConditioning--syntheses/research-questions",
+      "id": "concepts/ApproximateConvexDecomposition--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/RobotContextConditioning",
+      "to": "concepts/ApproximateConvexDecomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiableCollisionDetection--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/DifferentiableCollisionDetection",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1386,6 +6006,160 @@
       "id": "entities/EI30K--syntheses/research-questions",
       "from": "syntheses/research-questions",
       "to": "entities/EI30K",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/modern-robotics-chapter-13-wheeled-mobile-robots--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/structural-properties-and-classification-of-wheeled-mobile-robots--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "sources/structural-properties-and-classification-of-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/contact-models-in-robotics-a-comparative-analysis--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "concepts/ContactComplementarity",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/wheeled-robot-modeling-learning-map--syntheses/wheeled-robot-visual-lab",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "syntheses/wheeled-robot-visual-lab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WheeledRobotKinematics--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "concepts/WheeledRobotKinematics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OmnidirectionalWheels--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "concepts/OmnidirectionalWheels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/NonholonomicMobileRobots--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "concepts/NonholonomicMobileRobots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MobileRobotOdometry--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "concepts/MobileRobotOdometry",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WheeledMobileRobotClassification--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "concepts/WheeledMobileRobotClassification",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SteerableWheels--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/wheeled-robot-modeling-learning-map",
+      "to": "concepts/SteerableWheels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/modern-robotics-chapter-13-wheeled-mobile-robots--syntheses/wheeled-robot-visual-lab",
+      "from": "syntheses/wheeled-robot-visual-lab",
+      "to": "sources/modern-robotics-chapter-13-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/structural-properties-and-classification-of-wheeled-mobile-robots--syntheses/wheeled-robot-visual-lab",
+      "from": "syntheses/wheeled-robot-visual-lab",
+      "to": "sources/structural-properties-and-classification-of-wheeled-mobile-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WheeledRobotKinematics--syntheses/wheeled-robot-visual-lab",
+      "from": "syntheses/wheeled-robot-visual-lab",
+      "to": "concepts/WheeledRobotKinematics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OmnidirectionalWheels--syntheses/wheeled-robot-visual-lab",
+      "from": "syntheses/wheeled-robot-visual-lab",
+      "to": "concepts/OmnidirectionalWheels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/NonholonomicMobileRobots--syntheses/wheeled-robot-visual-lab",
+      "from": "syntheses/wheeled-robot-visual-lab",
+      "to": "concepts/NonholonomicMobileRobots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SteerableWheels--syntheses/wheeled-robot-visual-lab",
+      "from": "syntheses/wheeled-robot-visual-lab",
+      "to": "concepts/SteerableWheels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WheeledMobileRobotClassification--syntheses/wheeled-robot-visual-lab",
+      "from": "syntheses/wheeled-robot-visual-lab",
+      "to": "concepts/WheeledMobileRobotClassification",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MobileRobotOdometry--syntheses/wheeled-robot-visual-lab",
+      "from": "syntheses/wheeled-robot-visual-lab",
+      "to": "concepts/MobileRobotOdometry",
       "type": "EXTRACTED",
       "confidence": 1.0
     }

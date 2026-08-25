@@ -1,0 +1,102 @@
+name: Knowledge Base Automation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled, ready_for_review]
+  push:
+    branches: [main]
+    paths:
+      - 'wiki/**'
+      - 'raw/**'
+      - 'tools/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: kb-automation-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Wiki structural health
+        run: python3 tools/health.py --json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Quartz site
+        run: npm run wiki:build
+
+      - name: Build wiki graph
+        run: python3 tools/build_graph.py --report
+
+      - name: Require generated graph to be committed
+        run: |
+          if ! git diff --quiet -- graph/graph.json graph/graph.html graph/graph-report.md; then
+            echo "::error::Graph artifacts are out of date. Run 'python3 tools/build_graph.py --report' and commit graph/graph.json, graph/graph.html, graph/graph-report.md."
+            exit 1
+          fi
+
+  auto-merge:
+    needs: validate
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.draft == false &&
+      (contains(github.event.pull_request.labels.*.name, 'auto-merge') ||
+       contains(github.event.pull_request.title, '[auto-merge]') ||
+       contains(github.event.pull_request.body, '[auto-merge]'))
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Enable GitHub auto-merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr merge "${{ github.event.pull_request.number }}" --auto --squash --delete-branch
+
+  maintain:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Wiki structural health
+        run: python3 tools/health.py --json
+
+      - name: Build wiki graph
+        run: python3 tools/build_graph.py --report
+
+      - name: Commit regenerated graph artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- graph/graph.json graph/graph.html graph/graph-report.md; then
+            git add graph/graph.json graph/graph.html graph/graph-report.md
+            git commit -m "chore(wiki): regenerate graph after knowledge base update"
+            git push
+          else
+            echo "Graph artifacts are up to date."
+          fi

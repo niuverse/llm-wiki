@@ -3,7 +3,7 @@ title: "知识库索引"
 type: synthesis
 tags: [index, navigation]
 sources: []
-last_updated: 2026-08-18
+last_updated: 2026-08-25
 ---
 
 # 知识库索引
@@ -125,6 +125,11 @@ last_updated: 2026-08-18
 - [Modern Robotics Chapter 13: Wheeled Mobile Robots](sources/modern-robotics-chapter-13-wheeled-mobile-robots.md) - Lynch 和 Park 的轮式移动式机器人章节，覆盖平面底盘旋量、omni/mecanum 运动学、非完整约束规范的模型、李括号可控性、里程计和移动操作
 - [Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots](sources/structural-properties-and-classification-of-wheeled-mobile-robots.md) - Campion、Bastin 和 D'Andrea-Novel 的 WMR 分类体系来源，提出机动度、可转向度和五类非退化 WMR
 
+### Agent 工具与自托管服务
+
+- [AgentsDock Releases](sources/agentsdock-releases.md) - AgentsDock 桌面/移动构建的公开只读发布仓库，包含签名安装包、更新元数据和发布说明
+- [AgentsServer](sources/agentsserver.md) - AgentsDock 自托管执行后端官方 README，覆盖本地 Claude/Codex 执行、事件流、定时任务、tmux、托管更新与 Team Hub
+
 ## 概念页
 
 ### OpenUSD 与资产基础设施
@@ -213,6 +218,11 @@ last_updated: 2026-08-18
 - [NVIDIA](entities/NVIDIA.md) - RoboLab 论文与项目、VIRAL 关联的 NVlabs 代码仓库，以及 Isaac Sim 资产结构文档的发布机构
 - [Pixar](entities/Pixar.md) - OpenUSD 官方文档的版权所有者与 USD 生产流程历史传承上下文
 - [Physical Intelligence](entities/PhysicalIntelligence.md) - π0.7 来源中的机器人基础模型研究组织
+
+### Agent 工具与自托管服务
+
+- [AgentsDock](entities/AgentsDock.md) - AgentsDock 桌面/移动客户端，连接自托管 AgentsServer 提供多聊天、文件、定时任务与持久终端
+- [AgentsServer](entities/AgentsServer.md) - AgentsDock 的自托管执行后端，在本机调用 Claude/Codex CLI，并通过 HTTP/WebSocket 暴露给客户端
 
 ### 场景描述平台
 

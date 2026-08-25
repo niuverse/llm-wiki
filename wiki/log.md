@@ -3,7 +3,7 @@ title: "知识库日志"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-08-18
+last_updated: 2026-08-25
 ---
 
 # 知识库日志
@@ -251,3 +251,17 @@ last_updated: 2026-08-18
 
 - 新增 [[dsh-learning-map|DeepSeek Harness 学习地图]] 综合页：Cordis 插件框架、profile/bundle 组合层、session 事件日志、turn/step 循环、能力 seam、沙箱/审批、goal/subagent/workflow/plan/compaction 编排能力、误解图谱与来源获取计划。
 - 内容基于对本机安装包源码（@deepseek-ai/dsh 0.1.0-rc.7）与官方仓库（deepseek-ai/deepseek-harness、cordiverse/paper）的一手调研，标注为 conversation-derived / unsourced learning scaffold；待后续 ingest repo 与 Cordis 论文后升级为 source-backed。
+
+## [2026-08-25] ingest | AgentsDock Releases / AgentsServer
+
+- 新增 `raw/agentsdock-releases-readme.md` 与 `raw/agentsserver-readme.md` 作为官方 README 快照，`raw/agentsserver-version.txt` 记录服务器版本。
+- 新增 `wiki/sources/agentsdock-releases.md` 和 `wiki/sources/agentsserver.md`，记录两个仓库的发布边界、核心能力、实现结构与安全/运维要点。
+- 新增 `wiki/entities/AgentsDock.md` 和 `wiki/entities/AgentsServer.md`，补充客户端/后端关系、平台现状、安装方式与实现要点。
+- 更新 `wiki/index.md`，在来源页和实体页分别增加 Agent 工具与自托管服务小节。
+
+## [2026-08-25] maintenance | Knowledge base automation workflow
+
+- 新增 `.github/workflows/knowledge-base-automation.yml`。
+- PR 自动验证：运行 `tools/health.py`、Quartz 构建、图谱构建，并强制提交最新 graph 产物。
+- 当 PR 带 `auto-merge` label，或标题/描述包含 `[auto-merge]` 时，自动启用 squash auto-merge。
+- 合并到 `main` 后自动重新生成 graph 产物；若 graph 有变化则直接提交回 `main`。

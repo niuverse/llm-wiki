@@ -1,26 +1,26 @@
-# Graph Report - 2026-04-27
+# Graph Report - 2026-08-25
 
-- Nodes: 34
-- Edges: 164
-- Orphans: 0
+- Nodes: 132
+- Edges: 748
+- Orphans: 1
 - Missing referenced pages: 0
 
 ## Orphan Nodes
 
-No orphan nodes.
+- `syntheses/dsh-learning-map`
 
 ## Top Degree Nodes
 
-- `syntheses/research-questions`: 24
-- `concepts/SimulationRealityGap`: 21
-- `overview`: 21
-- `concepts/WorldModelsForEmbodiedAI`: 18
-- `concepts/VisionLanguageActionModels`: 17
-- `concepts/RobotContextConditioning`: 12
-- `concepts/WorldModelEvaluation`: 11
-- `sources/pi07-steerable-generalist-robotic-foundation-model`: 11
-- `concepts/ContactComplementarity`: 10
-- `concepts/ContactModelsInRobotics`: 10
+- `concepts/SimulationRealityGap`: 78
+- `overview`: 65
+- `syntheses/research-questions`: 56
+- `concepts/RoboticsSimulationInfrastructure`: 44
+- `entities/MuJoCo`: 37
+- `concepts/CollisionGeometryForRobotSimulation`: 30
+- `concepts/HeterogeneousRobotRLTraining`: 28
+- `concepts/TaskGeneralistPolicyEvaluation`: 28
+- `concepts/VisionLanguageActionModels`: 26
+- `concepts/WorldModelsForEmbodiedAI`: 25
 
 ## Missing Referenced Pages
 
