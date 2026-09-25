@@ -5,6 +5,14 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
+  // The wheeled-robot lab only has markup on one synthesis page; ConditionalRender
+  // keeps its script and stylesheet off the other ~105 pages.
+  afterBody: [
+    Component.ConditionalRender({
+      component: Component.WheeledRobotVisualLab(),
+      condition: (page) => page.fileData.slug === "syntheses/wheeled-robot-visual-lab",
+    }),
+  ],
   footer: Component.Footer({
     links: {
       GitHub: "https://github.com/niuverse/llm-wiki",
@@ -36,27 +44,29 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      folderClickBehavior: "link",
+      folderDefaultState: "collapsed",
+    }),
   ],
   right: [
     Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
-  ],
-  // The wheeled-robot lab only has markup on one synthesis page; scoping it
-  // keeps the script and stylesheet off the other ~100 pages.
-  afterBody: [
-    Component.ConditionalRender({
-      component: Component.WheeledRobotVisualLab(),
-      condition: (page) => page.fileData.slug === "syntheses/wheeled-robot-visual-lab",
-    }),
+    Component.DesktopOnly(
+      Component.RecentNotes({
+        title: "最近更新",
+        limit: 6,
+        showTags: false,
+        filter: (f) => f.slug !== "index" && f.slug !== "log",
+      }),
+    ),
   ],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
-  afterBody: [],
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),

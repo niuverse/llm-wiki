@@ -63,7 +63,7 @@ export default {
   pages: {
     rss: {
       recentNotes: "最近的笔记",
-      lastFewNotes: ({ count }) => `最近的${count}条笔记`,
+      lastFewNotes: ({ count }) => `最近更新 ${count} 篇`,
     },
     error: {
       title: "无法找到",

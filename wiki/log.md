@@ -3,7 +3,7 @@ title: "知识库日志"
 type: synthesis
 tags: []
 sources: []
-last_updated: 2026-08-25
+modified: 2026-08-25
 ---
 
 # 知识库日志
@@ -278,4 +278,12 @@ last_updated: 2026-08-25
 - **展示层**：frontmatter `last_updated` 改名 `modified`（Quartz 只识别 `created`/`modified`/`published`，原字段一直被静默忽略、fallback 到 git 日期）；`docs/research/robot-simulation-post-training-evaluation.md`（1560 词、零引用、不在 vault 内）迁入 `wiki/syntheses/simulation-post-training-evaluation.md` 并标注 `unsourced`；`WheeledRobotVisualLab` 组件从每页注入收敛到单页（108 → 1 页）；同步修正 `404.tsx` 与 list layout 缺失的 `afterBody`。
 
 wiki 从 134 页降到 106 页，graph 孤儿 0、断链 0。`npm run wiki:build` 通过（此前因 `node_modules` 缺失而无法构建）。
+
+## [2026-09-25] maintenance | 展示层与阅读体验
+
+- **修复中文阅读时间虚高**：`reading-time` 把每个汉字算成一个词，中文页因此虚高约 2.5 倍（`index.md` 报 25 分钟、LDA-1B 来源页报 14 分钟）。`ContentMeta` 改为分别统计汉字与拉丁词，按 400 字/分与 200 词/分合并计算。
+- **新增「最近更新」面板**：右栏加 `RecentNotes`（6 条，仅桌面端，排除 index/log），这是站点第一个基于 `modified` 的更新入口。
+- **`log.md` 退出发布层**：它是仅追加的操作历史，对读者无价值；加入 `ignorePatterns`，仍在仓库内服务 Codex 与 health 检查。
+- **日期诚实性**：并页后一度把 100+ 页刷成同一天，按 `AGENTS.md` 自己的规则回退。最终 27 页为真正改过的日期，69 页保持原审阅日期。
+- **顺带修复**：`WheeledRobotVisualLab.tsx` 缺 `@ts-ignore` 导致 `npm run wiki:check` 长期报 1 个类型错误；现已 `tsc` 零错误。
 

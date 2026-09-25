@@ -15,7 +15,7 @@ const config: QuartzConfig = {
     analytics: null,
     locale: "zh-CN",
     baseUrl: "niuverse.github.io/llm-wiki",
-    ignorePatterns: ["private", "templates", ".obsidian", "**/.obsidian"],
+    ignorePatterns: ["private", "templates", ".obsidian", "**/.obsidian", "log.md"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",

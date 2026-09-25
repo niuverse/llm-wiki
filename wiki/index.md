@@ -1,9 +1,9 @@
 ---
 title: "知识库索引"
 type: synthesis
-tags: [index, navigation]
+tags: [navigation, source-backed]
 sources: []
-last_updated: 2026-09-25
+modified: 2026-09-25
 ---
 
 # 知识库索引
@@ -14,7 +14,7 @@ last_updated: 2026-09-25
 
 ## 维护入口
 
-- [知识库日志](log.md) - 仅追加的操作历史
+- 知识库日志：`wiki/log.md`（仅追加的操作历史，不发布到站点）
 - 健康检查：`python3 tools/health.py`
 - 图结构构建: `uv run python tools/build_graph.py --report`
 - 发布预览: `npm run wiki:preview`
