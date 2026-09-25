@@ -1,9 +1,9 @@
 ---
 title: "机器人仿真基础设施"
 type: concept
-tags: [robotics, simulation, infrastructure, reinforcement-learning, policy-evaluation]
+tags: [robotics, simulation, reinforcement-learning]
 sources: ["[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[nvlabs-robolab]]", "[[unilab-repository]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[motrixsim-documentation]]", "[[mujoco-warp-mjwarp-documentation]]", "[[mjlab-repository]]", "[[mujoco-playground-repository]]", "[[isaac-lab-repository]]", "[[maniskill-repository]]", "[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
-last_updated: 2026-07-19
+modified: 2026-07-19
 ---
 
 # 机器人仿真基础设施
@@ -18,7 +18,7 @@ $$
 \mathcal{F} = (\mathcal{T}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \mathcal{V}, \mathcal{M}),
 $$
 
-其中 $\mathcal{T}$ 是任务/API 层，定义环境、重置、步骤、并行化和用户-facing 场景 building；$\mathcal{A}$ 是资产 management 层，定义几何、材质、关节系统、poses 和序列化；$\mathcal{P}$ 是物理引擎/运行时；$\mathcal{R}$ 是渲染引擎和观测生成；$\mathcal{V}$ 是可视化工具/诊断层；$\mathcal{M}$ 是机器学习集成，包括 RL 训练、策略评估、重放缓冲区、网络与轨迹采样 plumbing。
+其中 $\mathcal{T}$ 是任务/API 层，定义环境、重置、步骤、并行化和用户-facing 场景 building；$\mathcal{A}$ 是资产管理层，定义几何、材质、关节系统、poses 和序列化；$\mathcal{P}$ 是物理引擎/运行时；$\mathcal{R}$ 是渲染引擎和观测生成；$\mathcal{V}$ 是可视化工具/诊断层；$\mathcal{M}$ 是机器学习集成，包括 RL 训练、策略评估、重放缓冲区、网络与轨迹采样 plumbing。
 
 对一个策略 $\pi_\phi$，框架的隐藏的设计参数 $\theta_{\mathcal{F}}$ 会进入训练目标：
 
@@ -26,12 +26,12 @@ $$
 J(\phi; \theta_{\mathcal{F}}) = \mathbb{E}_{\tau \sim p_{\theta_{\mathcal{F}}}(\tau \mid \pi_\phi)}\left[\sum_{t=0}^{H} r_{\theta_{\mathcal{F}}}(x_t, a_t, o_t)\right],
 $$
 
-其中 $x_t$ 是仿真器状态，$a_t$ 是动作，$o_t$ 是渲染的/传感器观测，$r_{\theta_{\mathcal{F}}}$ 是奖励或评估 signal，$p_{\theta_{\mathcal{F}}}$ 是由任务 API、资产布局、物理、渲染、并行化和诊断信息共同决定的轨迹采样分布。这个式子的重点是：API 和基础设施选择不只是开发者便捷方法，它们会选择数据分布、资源预算、可见诊断信息和失败表面。
+其中 $x_t$ 是仿真器状态，$a_t$ 是动作，$o_t$ 是渲染的/传感器观测，$r_{\theta_{\mathcal{F}}}$ 是奖励或评估信号，$p_{\theta_{\mathcal{F}}}$ 是由任务 API、资产布局、物理、渲染、并行化和诊断信息共同决定的轨迹采样分布。这个式子的重点是：API 和基础设施选择不只是开发者便捷方法，它们会选择数据分布、资源预算、可见诊断信息和失败表面。
 
 ```mermaid
 flowchart LR
   T["任务与 APIs"] --> E["Environment 步骤"]
-  A["资产 management"] --> E
+  A["资产管理"] --> E
   P["物理引擎"] --> E
   E --> R["渲染与观测"]
   E --> V["可视化工具与诊断信息"]
@@ -45,7 +45,7 @@ flowchart LR
 
 仿真基础设施的直觉是：机器人学仿真器不是只有物理正确性，一个框架还在分配人类和机器的注意力。配置驱动的资产 definitions 可以带来结构、序列化和治理，但会降低 ad hoc 可修改性；直接使用 Python 的 APIs 更容易快速表达场景和实验，但结构与 reproducibility 要靠额外约定支撑。两者不是绝对优劣，而是把复杂度放在不同地方。
 
-渲染取舍也不是纯视觉问题。[[robotics-simulation-infrastructure|来源]] 指出，批处理的渲染的 GPU 内存 footprint 会和 RL 训练争资源：内存可以用于 larger 批次大小、重放缓冲区和神经网络，也可以用于更高的保真度渲染。对 PPO/SAC 这类训练循环，渲染器的设计选择可能通过样本效率、吞吐量和训练时间间接影响性能。
+渲染取舍也不是纯视觉问题。[[robotics-simulation-infrastructure|来源]] 指出，批处理的渲染的 GPU 内存占用会和 RL 训练争资源：内存可以用于 larger 批次大小、重放缓冲区和神经网络，也可以用于更高的保真度渲染。对 PPO/SAC 这类训练循环，渲染器的设计选择可能通过样本效率、吞吐量和训练时间间接影响性能。
 
 `Pose` API 示例说明，基础设施中的小接口会在大系统里被放大。把位置和四元数分散在多个张量与辅助函数中，可能迫使每个调用位置携带更多输入变量、导入和坐标帧/操作推理；`Pose` 数据类则把位姿存储、组合、求逆和异构输入转换放进类型化对象，以少量 Python 间接访问开销换取更低的认知负担。
 
@@ -53,7 +53,7 @@ flowchart LR
 
 [[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] 给这个基础设施视角增加了训练运行时情形。它把机器人 RL 训练速度拆成 CPU 侧轨迹采样采集、GPU 学习器利用率、重放边界、H2D 迁移、缓冲区 slotting 和参数同步，而不是把仿真器 env 步骤/s 当作唯一瓶颈。这里的基础设施表面是 [[HeterogeneousRobotRLTraining|异构机器人 RL 训练]]：任务/后端契约、域随机化生命周期、样本-before-迁移重放流程和 hot/cold GPU 批次槽都会改变端到端训练效率。
 
-新增代码仓库/文档来源把这个视角变成可比较的机器人学习技术栈分类体系。[[MuJoCoUni]] 暴露有状态的 CPU-批处理的 MuJoCo 执行与重置时间随机化；[[MotrixSim]] 的高层文档把 Rust CPU 实现、MJCF 兼容性和专有的约束求解器列为引擎表面；[[MJWarp]] / [[MuJoCoPlayground]] / [[Mjlab|mjlab]] 代表 MuJoCo 生态的面向 GPU 的训练路线；[[IsaacLab]] 代表 NVIDIA Isaac Sim 上的基于管理器的 RL/IL/运动规划框架；[[ManiSkill]] 代表 SAPIEN-powered 操作与视觉数据路线。它们说明仿真基础设施的比较需要同时看物理语义、batching 模型、渲染/传感器路径、任务 API、RL 集成、平台约束和许可/依赖边界。
+新增代码仓库/文档来源把这个视角变成可比较的机器人学习技术栈分类体系。[[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]] 暴露有状态的 CPU-批处理的 MuJoCo 执行与重置时间随机化；[[MotrixSim]] 的高层文档把 Rust CPU 实现、MJCF 兼容性和专有的约束求解器列为引擎表面；[[mujoco-warp-mjwarp-documentation|MJWarp]] / [[mujoco-playground-repository|MuJoCoPlayground]] / [[mjlab-repository|mjlab]] 代表 MuJoCo 生态的面向 GPU 的训练路线；[[isaac-lab-repository|IsaacLab]] 代表 NVIDIA Isaac Sim 上的基于管理器的 RL/IL/运动规划框架；[[robotics-simulation-infrastructure|ManiSkill]] 代表 SAPIEN-powered 操作与视觉数据路线。它们说明仿真基础设施的比较需要同时看物理语义、batching 模型、渲染/传感器路径、任务 API、RL 集成、平台约束和许可/依赖边界。
 
 [[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen]] 与 [[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 增加了生成式资产与世界基础设施案例。V1 把图像/文本到三维、纹理、关节系统、场景生成和布局组织成模块化服务；V2 则明确要求公制几何、碰撞资产、物理参数、任务可供性、标准化 URDF/MJCF/USD 接口和可执行场景验证。它们共同说明生成模型只是基础设施的入口：机器人学习真正消费的是经过修复、分解、参数恢复、语义标注、约束求解和仿真器导入/沉降检查的产物契约。
 
@@ -100,4 +100,4 @@ RoboLab 也展示了基础设施的治理侧。Apache-2.0 代码许可证、thir
 - 对可执行数据基础设施，应把初态快照、随机流隔离、规划 future、技能阶段、任务谓词、失败类型和成功门控比例纳入数据质量报告；只统计最终保存轨迹会隐藏尝试分布和恢复能力。
 - 对大规模模仿学习基础设施，应同时版本化任务/场景划分、示范来源、质量标签、采样权重和预训练—后训练顺序；这些因素会像物理/渲染配置一样改变结果。
 
-相关页面：[[robotics-simulation-infrastructure]]、[[nvidia-ovrtx]]、[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]、[[nvlabs-robolab]]、[[MagicSim]]、[[ExecutableEmbodiedInteractionInfrastructure]]、[[RoboCasa365]]、[[RobotLearningDataComposition]]、[[EmbodiedGen]]、[[SimulationReady3DWorldGeneration]]、[[RTXSensorSimulationPipeline]]、[[HeterogeneousRobotRLTraining]]、[[AgenticSceneTaskGeneration]]、[[SimulationBenchmarkReportingPipeline]]、[[RoboLab]]、[[UniLab]]、[[MuJoCoUni]]、[[MotrixSim]]、[[MJWarp]]、[[Mjlab|mjlab]]、[[MuJoCoPlayground]]、[[IsaacLab]]、[[ManiSkill]]、[[IsaacSim]]、[[Ovrtx]]、[[MuJoCo]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]。
+相关页面：[[robotics-simulation-infrastructure]]、[[nvidia-ovrtx]]、[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]、[[nvlabs-robolab]]、[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]]、[[ExecutableEmbodiedInteractionInfrastructure]]、[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]、[[RobotLearningDataComposition]]、[[EmbodiedGen]]、[[SimulationReady3DWorldGeneration]]、[[RTXSensorSimulationPipeline]]、[[HeterogeneousRobotRLTraining]]、[[AgenticSceneTaskGeneration]]、[[SimulationBenchmarkReportingPipeline]]、[[RoboLab]]、[[UniLab]]、[[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]]、[[MotrixSim]]、[[mujoco-warp-mjwarp-documentation|MJWarp]]、[[mjlab-repository|mjlab]]、[[mujoco-playground-repository|MuJoCoPlayground]]、[[isaac-lab-repository|IsaacLab]]、[[robotics-simulation-infrastructure|ManiSkill]]、[[IsaacSim]]、[[nvidia-ovrtx|Ovrtx]]、[[MuJoCo]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]。

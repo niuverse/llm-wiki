@@ -1,9 +1,9 @@
 ---
 title: "RoboLab"
 type: entity
-tags: [robotics, benchmark, simulation, isaac-lab]
+tags: [robotics, benchmark, simulation]
 sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # RoboLab

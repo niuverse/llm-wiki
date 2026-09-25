@@ -3,7 +3,7 @@ title: "机器人学中的接触模型"
 type: concept
 tags: [robotics, simulation, contact-dynamics]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 机器人学中的接触模型
@@ -60,4 +60,4 @@ flowchart LR
 
 选择仿真器时应先写清楚目标接触工况：高速冲击、长距离滑动、布料/柔性接触、冗余支撑、力感知、还是可微优化。没有这个工况，比较 “快速” 或 “稳定” 求解器很容易把任务特定的容差误当成一般性物理保真度。
 
-相关页面：[[ContactSolvers]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]、[[MuJoCo]]、[[RaiSim]]、[[ContactBench]]。
+相关页面：[[ContactSolvers]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]、[[MuJoCo]]、[[contact-models-in-robotics-a-comparative-analysis|RaiSim]]、[[contact-models-in-robotics-a-comparative-analysis|ContactBench]]。

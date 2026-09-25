@@ -1,9 +1,9 @@
 ---
 title: "可用于仿真的三维世界生成"
 type: concept
-tags: [robotics, embodied-ai, simulation, 3d-generation, asset-authoring]
+tags: [robotics, embodied-ai, simulation, 3d-generation]
 sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[robotics-simulation-infrastructure]]", "[[mujoco-computation-collision-detection]]", "[[coacd-approximate-convex-decomposition]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 可用于仿真的三维世界生成

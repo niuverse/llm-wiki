@@ -3,7 +3,7 @@ title: "MuJoCo"
 type: entity
 tags: [robotics, simulation, physics-engine]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-asset-structure]]", "[[robotics-simulation-infrastructure]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[mujoco-warp-mjwarp-documentation]]", "[[mjlab-repository]]", "[[mujoco-playground-repository]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # MuJoCo
@@ -22,6 +22,6 @@ MuJoCo 是 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in
 
 [[robotics-simulation-infrastructure|机器人学仿真基础设施]] 来源额外提到 MuJoCo Lab 作为端到端仿真/ML 框架示例，并特别把它的可视化工具描述为适合强化学习工作的诊断表面。这个主张指向 MuJoCo Lab 基础设施，而不是 MuJoCo core 物理语义；当前页面暂不把二者合并为同一个实现主张。
 
-[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] 来源又给 MuJoCo 生态增加了训练系统上下文：MuJoCoUni 作为 CPU-批处理的 MuJoCo 运行时后端，用于异构 CPU 仿真 / GPU 学习；来源还把 MjWarp / mjlab / MuJoCo Playground 放在驻留 GPU 的机器人学习 systems 背景中对比。后续收录已把这个上下文拆开：[[MuJoCoUni]] 的技术报告支持有状态的 CPU-批处理的 `BatchEnvPool` 路线；[[MJWarp]] 官方文档支持 NVIDIA Warp / 面向 GPU 的并行 MuJoCo 路线，并明确特征一致性、nondeterminism 与 nondifferentiability 边界；[[Mjlab|mjlab]] 和 [[MuJoCoPlayground]] 代码仓库 snapshots 则显示 MuJoCo Warp / MJX 已进入更高的层级机器人学习框架。这个证据说明 MuJoCo-相关的基础设施已经同时覆盖 CPU-批处理的、面向 GPU 的和框架层级训练路径，但不支持把各后端的求解器/接触/渲染语义直接视为完全等价。
+[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] 来源又给 MuJoCo 生态增加了训练系统上下文：MuJoCoUni 作为 CPU-批处理的 MuJoCo 运行时后端，用于异构 CPU 仿真 / GPU 学习；来源还把 MjWarp / mjlab / MuJoCo Playground 放在驻留 GPU 的机器人学习 systems 背景中对比。后续收录已把这个上下文拆开：[[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]] 的技术报告支持有状态的 CPU-批处理的 `BatchEnvPool` 路线；[[mujoco-warp-mjwarp-documentation|MJWarp]] 官方文档支持 NVIDIA Warp / 面向 GPU 的并行 MuJoCo 路线，并明确特征一致性、nondeterminism 与 nondifferentiability 边界；[[mjlab-repository|mjlab]] 和 [[mujoco-playground-repository|MuJoCoPlayground]] 代码仓库 snapshots 则显示 MuJoCo Warp / MJX 已进入更高的层级机器人学习框架。这个证据说明 MuJoCo-相关的基础设施已经同时覆盖 CPU-批处理的、面向 GPU 的和框架层级训练路径，但不支持把各后端的求解器/接触/渲染语义直接视为完全等价。
 
-相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[RoboticsSimulationInfrastructure]]、[[HeterogeneousRobotRLTraining]]、[[SimulationRealityGap]]、[[MuJoCoUni]]、[[MJWarp]]、[[Mjlab|mjlab]]、[[MuJoCoPlayground]]、[[IsaacSimAssetStructure]]、[[isaac-sim-mujoco-control-tuning-notes]]。
+相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[RoboticsSimulationInfrastructure]]、[[HeterogeneousRobotRLTraining]]、[[SimulationRealityGap]]、[[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]]、[[mujoco-warp-mjwarp-documentation|MJWarp]]、[[mjlab-repository|mjlab]]、[[mujoco-playground-repository|MuJoCoPlayground]]、[[IsaacSimAssetStructure]]、[[isaac-sim-mujoco-control-tuning-notes]]。

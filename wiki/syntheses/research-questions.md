@@ -1,9 +1,9 @@
 ---
 title: "研究问题"
 type: synthesis
-tags: [research-questions, robotics, embodied-ai]
+tags: [robotics, embodied-ai]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
-last_updated: 2026-07-19
+modified: 2026-09-25
 ---
 
 # 研究问题
@@ -12,15 +12,23 @@ last_updated: 2026-07-19
 
 ## 世界模型如何进入机器人决策？
 
-当前判断：世界模型的关键不是未来看起来真实，而是未来表示是否改变下游动作、策略表示或评估 signal。[[WorldModelsForEmbodiedAI]] 给出动作条件化的潜在仿真器的基本形式；[[WorldModelEvaluation]] 说明像素指标容易遗漏物理一致性与任务相关性；[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 把世界模型用作视觉子目标生成器；[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 把世界模型放进潜在动力学预训练。
+当前判断：世界模型的关键不是未来看起来真实，而是未来表示是否改变下游动作、策略表示或评估信号。[[WorldModelsForEmbodiedAI]] 给出动作条件化的潜在仿真器的基本形式；[[WorldModelEvaluation]] 说明像素指标容易遗漏物理一致性与任务相关性；[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 把世界模型用作视觉子目标生成器；[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 把世界模型放进潜在动力学预训练。
 
 优先阅读：[[WorldModelsForEmbodiedAI]]、[[WorldModelTaxonomy]]、[[WorldModelEvaluation]]、[[LatentDynamicsActionModels]]。
 
 证据边界：survey 和代码仓库提供分类体系与文献组织；π0.7/LDA-1B 提供具体机器人基础模型证据，但独立复现、真实机器人失败案例和跨基准比较仍不足。
 
+## 评测该不该用仿真数据做后训练？
+
+当前判断：取决于评测想估计哪个量。测 frozen zero-shot/OOD 能力时不应使用目标 benchmark 的仿真数据微调，否则会把模型原有能力与对 benchmark 的学习能力混在一起；测 few-shot adaptation、task learning 或 continual learning 时，仿真示范通常就是协议的一部分。详见 [[simulation-post-training-evaluation|机器人仿真评测是否需要仿真数据后训练]]。
+
+优先阅读：[[simulation-post-training-evaluation|机器人仿真评测是否需要仿真数据后训练]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationRealityGap]]、[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]。
+
+证据边界：本页综合的是外部一手来源，这些来源尚未 ingest 进本知识库，属 unsourced。
+
 ## 仿真基准能证明机器人策略泛化吗？
 
-当前判断：高保真度仿真基准更适合作为诊断 instrument，而不是部署 guarantee。[[TaskGeneralistPolicyEvaluation]] 说明 RoboLab 如何通过任务库、语言变体、判定条件、wrong-物体诊断和轨迹指标观察策略行为；[[SimulationSensitivityAnalysis]] 说明受控的 perturbations 可以定位成功/失败的风险因素；[[SimulationRealityGap]] 保留真实/仿真有效性的限制。
+当前判断：高保真度仿真基准更适合作为诊断工具，而不是部署保证。[[TaskGeneralistPolicyEvaluation]] 说明 RoboLab 如何通过任务库、语言变体、判定条件、wrong-物体诊断和轨迹指标观察策略行为；[[SimulationSensitivityAnalysis]] 说明受控的 perturbations 可以定位成功/失败的风险因素；[[SimulationRealityGap]] 保留真实/仿真有效性的限制。
 
 优先阅读：[[TaskGeneralistPolicyEvaluation]]、[[SimulationSensitivityAnalysis]]、[[RoboLab]]、[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]、[[nvlabs-robolab]]。
 
@@ -30,7 +38,7 @@ last_updated: 2026-07-19
 
 当前判断：数据总量不是充分解释。[[RobotLearningDataComposition]] 把训练分布拆成任务覆盖、场景覆盖、示范来源与质量、采样权重和训练阶段。[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 的 Human50→Human300 与 5→25→2,500 场景消融支持覆盖范围有益；Human300→Human300+MG60 的下降说明规模更大的混合质量合成数据可能稀释监督；单阶段联合训练 22.5% 与两阶段训练 51.1% 的差距又说明优化顺序本身是一等变量。
 
-优先阅读：[[RobotLearningDataComposition]]、[[RoboCasa365]]、[[CompositionalGeneralizationInRobotics]]、[[TaskGeneralistPolicyEvaluation]]、[[RobotContextConditioning]]、[[LatentDynamicsActionModels]]。
+优先阅读：[[RobotLearningDataComposition]]、[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]、[[CompositionalGeneralizationInRobotics]]、[[TaskGeneralistPolicyEvaluation]]、[[RobotContextConditioning]]、[[LatentDynamicsActionModels]]。
 
 证据边界：RoboCasa365 的主要消融使用固定的 GR00T N1.5 训练设置，合成数据没有逐轨迹质量标签；任务、技能、物体和场景重叠也没有完全解耦。因此当前证据支持“构成很重要”，但还不能给出跨模型通用的最优人类/合成数据配比或规模扩展定律。
 
@@ -54,7 +62,7 @@ last_updated: 2026-07-19
 
 当前判断：AGILE 的主要价值是把人形机器人强化学习的工作流边界变成显式契约。[[HumanoidRLWorkflow]] 说明训练前的关节/奖励/接触验证、训练中的 git/配置快照、评估中的确定性场景测试、运动质量诊断，以及部署时的 TorchScript + YAML I/O 描述文件，可以一起减少关节顺序、历史缓冲区、动作扩展、奖励投机、关节限制 violations 和高频驱动这类静默失败。[[SimulationRealityGap]] 需要因此扩展：差距不只来自物理不匹配，也可能来自工作流/导出不匹配。
 
-优先阅读：[[HumanoidRLWorkflow]]、[[AGILE]]、[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]、[[SimulationRealityGap]]、[[TaskGeneralistPolicyEvaluation]]。
+优先阅读：[[HumanoidRLWorkflow]]、[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]]、[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]、[[SimulationRealityGap]]、[[TaskGeneralistPolicyEvaluation]]。
 
 证据边界：AGILE 报告 Unitree G1 / Booster T1 上五类技能的迁移示范数据与多个稳定化消融实验，但硬件验证主要是定性；移动操作/VLA 情形的 90% 成功是闭环仿真结果，不等于真实人形机器人操作已解决。
 
@@ -62,7 +70,7 @@ last_updated: 2026-07-19
 
 当前判断：GRAIL 提供一条有来源支持的路线：把 3D 资产、仿真器就绪场景、相机/规模化/深度和机器人-proportioned character 先固定，再用 VFM 作为交互先验生成视频，随后通过公制四维人物—物体交互重建、GMR 重定向和通用任务跟踪器转成机器人动作数据。这个路线的重点不是“VFM 直接控制机器人”，而是用已知三维配置把视频先验约束成物理上可执行的轨迹。
 
-优先阅读：[[AssetConditionedHOIGeneration]]、[[GRAIL]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]、[[VisualSimToReal]]、[[TaskGeneralistPolicyEvaluation]]。
+优先阅读：[[AssetConditionedHOIGeneration]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]、[[VisualSimToReal]]、[[TaskGeneralistPolicyEvaluation]]。
 
 证据边界：GRAIL 报告超过 20,000 条生成的序列、HOI 生成/跟踪消融实验和 Unitree G1 现实世界 pick-up / stair-climbing 成功比率；但项目页面/代码/数据集发布、VFM/API 可复现性、失败过滤比率、跨平台迁移和独立复现仍需后续来源。
 
@@ -86,7 +94,7 @@ last_updated: 2026-07-19
 
 当前判断：异构数据的价值取决于系统是否建模数据作用。[[RobotContextConditioning]] 说明 π0.7 用任务/子任务语言、元数据、控制模式、速度、质量和子目标图像消除歧义行为模式；[[LatentDynamicsActionModels]] 说明 LDA-1B 用策略、正向动力学、逆动力学和视觉预测目标区分高质量示范数据、低质量轨迹和 actionless 视频。
 
-优先阅读：[[RobotContextConditioning]]、[[LatentDynamicsActionModels]]、[[VisionLanguageActionModels]]、[[Pi07]]、[[LDA1B]]、[[EI30K]]。
+优先阅读：[[RobotContextConditioning]]、[[LatentDynamicsActionModels]]、[[VisionLanguageActionModels]]、[[pi07-steerable-generalist-robotic-foundation-model|Pi07]]、[[lda-1b-scaling-latent-dynamics-action-model|LDA1B]]、[[lda-1b-scaling-latent-dynamics-action-model|EI30K]]。
 
 证据边界：π0.7 与 LDA-1B 都支持“数据作用 matters”，但前者强调运行时转向，后者强调训练目标路由；两者是否能组合，还没有被当前来源证明。
 
@@ -108,3 +116,50 @@ last_updated: 2026-07-19
 - 把接触求解器选择与真实机器人 MPC/RL/可微的优化失败关联起来的实证工作。
 - 对同一物体/机器人资产系统比较基元碰撞体、凸包、CoACD、VisACD、SDF 和可微的基元碰撞的引擎特定的基准。
 - 世界模型评估论文中明确报告动作耦合、闭环成功、物理一致性和实时延迟的来源。
+
+## 轮式机器人建模怎么系统学习？
+
+当前判断：轮式机器人的建模要点是车轮层约束如何决定底盘的可行运动旋量。[[WheeledRobotKinematics]] 给出 $u=H(0)V_b$ 的统一入口；[[WheeledMobileRobotClassification]] 用机动度与可转向度划分退化与非退化结构；[[OmnidirectionalWheels]]、[[NonholonomicMobileRobots]]、[[SteerableWheels]] 分别覆盖全向轮秩条件、Pfaffian 非完整约束与可转向轮自由度。系统复习路径见 [[wheeled-robot-modeling-learning-map|轮式机器人建模学习地图]]。
+
+优先阅读：[[wheeled-robot-modeling-learning-map|轮式机器人建模学习地图]]、[[wheeled-robot-visual-lab|轮式机器人可视化实验]]、[[WheeledRobotKinematics]]、[[MobileRobotOdometry]]。
+
+证据边界：运动学与分类体系有 Modern Robotics 教材章节和 Campion 分类论文支撑；可视化实验页是内嵌交互图，属于复习辅助而非独立证据。
+
+## 三维资产格式怎么选？
+
+当前判断：格式选择取决于目标消费端。USD 有官方来源支撑（见 [[OpenUSDSceneComposition]]）；OBJ/STL/PLY/glTF/FBX/URDF/SDF/MJCF 的对比目前仍是学习脚手架，见 [[3d-model-formats-learning-map|三维模型格式学习地图]]。
+
+优先阅读：[[3d-model-formats-learning-map|三维模型格式学习地图]]、[[OpenUSDSceneComposition]]、[[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]]。
+
+证据边界：除 USD 相关部分外，本问题当前无 wiki 来源支持，属 unsourced learning scaffold。
+
+## Isaac Sim 与 MuJoCo 的控制参数能直接迁移吗？
+
+当前判断：不能按数字直接迁移。[[isaac-sim-mujoco-control-tuning-notes|Isaac Sim 与 MuJoCo 物理和控制笔记]] 记录 PhysX 位置驱动语义、刚度/阻尼含义、力矩限制与七自由度机械臂增益缩放；PhysX 侧的驱动器语义有官方来源支撑，MuJoCo 对比与增益分组仍源自讨论。
+
+优先阅读：[[isaac-sim-mujoco-control-tuning-notes|Isaac Sim 与 MuJoCo 物理和控制笔记]]、[[ReducedCoordinateArticulations]]、[[isaac-sim-mujoco-usda-runtime-semantics|Isaac Sim `mujoco.usda` 运行时语义]]。
+
+证据边界：MuJoCo/PhysX 求解器差异与参数迁移边界需要后续来源验证。
+
+## 自托管 agent 运行时怎么搭？
+
+当前判断：当前知识库只记录了 AgentsDock/AgentsServer 这一条自托管路线（桌面/移动客户端 + 本机 Claude/Codex 执行后端），见 [[agentsserver|AgentsServer 来源页]] 与 [[AgentsDock]]。DeepSeek Harness 的插件框架、session 事件日志与能力 seam 已经调研但尚未 ingest，见 [[dsh-learning-map|DeepSeek Harness 来源获取计划]]。
+
+优先阅读：[[AgentsDock]]、[[AgentsServer]]、[[dsh-learning-map|DeepSeek Harness 来源获取计划]]。
+
+证据边界：本主题与知识库其余部分（机器人学仿真）没有重叠，证据来自各自 README 快照，不是受控实验。
+
+## 下一步缺口
+
+- 补充独立复现或后续来源：π0.7、LDA-1B、RoboLab、VIRAL 和 AGILE 都有强来源特有的主张，但需要更多外部复现、失败案例或对比评测。
+- 追踪 RoboCasa365 的独立复现、逐轨迹合成数据质量、相同有效样本数/训练预算下的数据构成消融、组合任务逐阶段指标，以及不同机器人和真实厨房中的迁移结果。
+- 追踪 MagicSim 的项目主页、代码、依赖版本和定量报告：重点核对当前 / 计划能力边界，收集环境规模—步频、规划延迟、采集成功率、失败类型、确定性层级和真实机器人或 sim-to-sim 证据。
+- 追踪 AGILE/WBC-AGILE 的后续硬件报告：当前来源对工作流、评估和消融实验很有价值，但现实世界定量跟踪指标与感知驱动的人形机器人操作仍是明显缺口。
+- 追踪 GRAIL 项目页面、代码、数据集和后续报告：当前来源已给出 arXiv v1 的流程、损失项、运行时、基准和现实世界成功比率，但发布产物、失败过滤比率、VFM 版本漂移与独立复现仍是关键缺口。
+- 追踪 EmbodiedGen V2 的代码/数据发布、跨仿真器动力学验证、物理参数真实值、可供性端到端基准和配套策略扩展研究；当前论文证明了流程可行性，但没有把仿真可用性升级成物理等价性保证。
+- 给世界模型论文建立更结构化收录元数据：时域、输入模态、动作耦合、闭环验证、真实机器人验证、基准、代码/数据可用性。这个需求来自 [[WorldModelEvaluation]] 与 [[awesome-world-models|AwesomeWorldModels]]。
+- 追踪“潜在动力学 + 运行时上下文引导 + predictive 逆动力学”是否会合流：LDA-1B 的目标路由、π0.7 的运行时转向、Seer 的端到端 PIDM 与 DeFI 的解耦的 GFDM/GIDM 看起来互补，但当前来源还没有证明组合系统。
+- 对仿真—现实差距保持多层解释：差距不只来自物理引擎参数，也可能来自学得的动力学目标、策略提示/上下文、工作流/导出契约、传感器/渲染契约、基准判定条件和评估汇总。见 [[SimulationRealityGap]]。
+- 补充仿真基础设施官方来源：ManiSkill、Isaac Lab、MuJoCo Lab、SAPIEN 和 Viser 的文档/代码仓库快照，可以把当前博客层级设计视角转成更可维护的实现笔记。见 [[RoboticsSimulationInfrastructure]]。
+- 补充机器人 RL 训练系统来源：MuJoCoUni、MotrixSim、UniLab 代码仓库、mjlab / MjWarp、MuJoCo Playground、Isaac Lab 和 ManiSkill3 的官方文档/代码仓库快照，可以把 [[HeterogeneousRobotRLTraining]] 从单篇系统论文扩展成可比较的运行时分类体系。
+- 补充引擎特定的碰撞体基准：同一资产的胶囊体 / 基元 / 凸包 / CoACD / VisACD / SDF 碰撞体在 MuJoCo、Isaac Sim / PhysX、Bullet、Drake 中对接触数量、求解器残差、训练吞吐量、操作成功和仿真到现实迁移的影响仍缺系统比较。

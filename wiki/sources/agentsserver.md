@@ -1,9 +1,9 @@
 ---
 title: "AgentsServer"
 type: source
-tags: [github, self-hosted, agent-server, claude, codex, websocket]
+tags: [github, self-hosted, claude, codex, source-backed]
 sources: []
-last_updated: 2026-08-25
+modified: 2026-08-25
 source_file: raw/agentsserver-readme.md
 source_kind: markdown
 source_url: https://github.com/ZhengyiLuo/AgentsServer

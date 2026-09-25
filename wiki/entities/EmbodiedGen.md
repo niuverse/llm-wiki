@@ -1,9 +1,9 @@
 ---
 title: "EmbodiedGen"
 type: entity
-tags: [robotics, embodied-ai, 3d-generation, simulation-infrastructure]
+tags: [robotics, embodied-ai, 3d-generation]
 sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # EmbodiedGen

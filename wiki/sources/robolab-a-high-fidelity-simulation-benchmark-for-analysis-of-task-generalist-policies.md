@@ -1,9 +1,9 @@
 ---
 title: "RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies"
 type: source
-tags: [robotics, simulation, benchmark, vla, policy-evaluation]
+tags: [robotics, simulation, benchmark, vla, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/robolab.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2604.09860
@@ -52,7 +52,7 @@ RoboLab 的具体形态是 [[TaskGeneralistPolicyEvaluation|任务泛化策略�
 - [[TaskGeneralistPolicyEvaluation]] - RoboLab 对任务通用型机器人策略的评估形式化表述。
 - [[SimulationSensitivityAnalysis]] - 用受控的 perturbations 与后验推理找出影响策略成功的环境因素。
 - [[VisionLanguageActionModels]] - RoboLab 评测的策略族，包括 π0/π0-快速/π0.5、GR00T、PaliGemma-风格策略。
-- [[Pi07]] - 当前知识库中另一个机器人基础模型来源；RoboLab 提供 complementary 评估视角。
+- [[pi07-steerable-generalist-robotic-foundation-model|Pi07]] - 当前知识库中另一个机器人基础模型来源；RoboLab 提供 complementary 评估视角。
 - [[SimulationRealityGap]] - RoboLab 的核心假设之一是高保真度 sim 可以帮助分析现实世界策略行为，但仍需检查仿真到现实迁移有效性。
 
 ## 开放问题

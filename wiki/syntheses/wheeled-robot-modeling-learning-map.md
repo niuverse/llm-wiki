@@ -3,7 +3,7 @@ title: "轮式机器人建模学习地图"
 type: synthesis
 tags: [learn, robotics, wheeled-robots, simulation]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]", "[[contact-models-in-robotics-a-comparative-analysis]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 轮式机器人建模学习地图

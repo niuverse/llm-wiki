@@ -1,16 +1,16 @@
 ---
 title: "约化坐标关节系统"
 type: concept
-tags: [robotics, simulation, physx, articulations, rigid-body-dynamics]
+tags: [robotics, simulation, physx]
 sources: ["[[omniverse-omni-physics-articulations]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 约化坐标关节系统
 
 约化坐标关节系统（约化坐标关节系统）是 [[omniverse-omni-physics-articulations|Omni 物理关节系统]] 来源中描述的 PhysX 机器人 / 机制表示：机制的状态不再由每个链接的独立世界位姿表达，而由根连杆位姿与关节坐标表达。它适合机器人 arms、ragdolls、grippers 和 tendon-驱动的机制，因为关节可以被结构性地保持一致，而不是靠普通刚体关节在求解器中不断纠正漂移。
 
-核心取舍是：关节系统用拓扑和约化坐标换取更高的保真度、zero 关节错误由设计和 larger 质量比率处理；代价是拓扑必须基本是树、闭环s 要被特殊处理、non-根连杆状态不能随意设置，而且 USD 层级与 PhysX 关节系统拓扑需要保持清楚边界。
+核心取舍是：关节系统用拓扑和约化坐标换取更高的保真度、零关节误差由设计和更大的质量比率处理；代价是拓扑必须基本是树、闭环要被特殊处理、非根连杆状态不能随意设置，而且 USD 层级与 PhysX 关节系统拓扑需要保持清楚边界。
 
 ## 数学结构
 
@@ -40,7 +40,7 @@ $$
 T_i = FK_i(x_r, q)
 $$
 
-这就是来源所说约化坐标的关键：配置由根部刚体和关节角度决定，而不是由每个涉及的刚体的世界位姿决定。因此 non-根连杆的位姿 / 速度不能直接设置；要设置关节状态，应通过 `PhysxSchema.JointStateAPI` 或在 Fabric / RL 工作负载中用张量 API `ArticulationView` 访问 PhysX 数据。
+这就是来源所说约化坐标的关键：配置由根部刚体和关节角度决定，而不是由每个涉及的刚体的世界位姿决定。因此非根连杆的位姿 / 速度不能直接设置；要设置关节状态，应通过 `PhysxSchema.JointStateAPI` 或在 Fabric / RL 工作负载中用张量 API `ArticulationView` 访问 PhysX 数据。
 
 根部选择有两种路径。显式路径是由作者决定：固定基座关节系统把 `UsdPhysics.ArticulationRootAPI` 放到世界固定关节或 ancestor；浮动基座关节系统放到 intended 根连杆或 ancestor。自动路径是仿真器遍历关节系统根部下的刚体 / 关节，构造拓扑图结构；若存在关节到世界，则视为固定基座并把 connected 刚体作为根连杆；否则视为浮动基座，并选择 minimal eccentricity 的图结构节点：
 
@@ -116,10 +116,10 @@ Mimic 关节、固定肌腱和空间肌腱都是在关节系统内加入额外�
 
 ## 失效情形
 
-- Non-根部状态 write：在约化坐标关节系统中直接设置 non-根连杆位姿 / 速度不被支持，会触发 warning；应设置根部或关节 DOF 状态。
+- 非根部状态写入：在约化坐标关节系统中直接设置非根连杆位姿 / 速度不被支持，会触发 warning；应设置根部或关节 DOF 状态。
 - 隐式根部 surprise：根部 API 放在 ancestor 上时，自动拓扑选择可能选出作者没预期的根部，导致 initialization 和控制约定失配。
 - USD / PhysX 拓扑不匹配：USD 关节顺序不必等于 PhysX 父子顺序；下游 extension 访问 PhysX 关节系统数据时，限制或驱动目标可能被 swap / negated。
-- 闭环循环不稳定：Pure 关节系统关节不支持闭环s；用 excluded regular 关节闭环后，求解器更困难，可能需要更小时间步或稳定性-指南调优。
+- 闭环循环不稳定：Pure 关节系统关节不支持闭环；用 excluded regular 关节闭环后，求解器更困难，可能需要更小时间步或稳定性-指南调优。
 - 硬 mimic 与硬接触：夹爪 fingertip 接触中，硬 mimic 约束与硬接触约束竞争，尤其在驱动的关节高刚度、手指惯量小时容易不稳定。
 - 柔顺性 mistuning：$\Delta t f_n$ 太大时柔顺性没有效果或引入不稳定；$\Delta t f_n$ 太小时行为可能 sluggish。
 - 外包络 / 速度 confusion：把 `maxActuatorVelocity` 当作 `maxJointVelocity`，或忽略 `driveEffort` 包含内部 PD 作用力与用户-定义的关节作用力，会误判执行器饱和。
@@ -131,8 +131,8 @@ Mimic 关节、固定肌腱和空间肌腱都是在关节系统内加入额外�
 
 对 RL、MPC 和大规模仿真，Fabric / 张量 API 访问很重要：来源明确说 Fabric 启用后，USD 属性访问不能再用于关节状态，应该用 `ArticulationView` 直接访问 PhysX 数据。这意味着训练代码的状态/控制路径不应依赖缓慢的 USD 读取。
 
-对控制调优，先区分三层：驱动 gain、驱动外包络、求解器 / 时间步。驱动器可以按类 PD 控制器理解；性能外包络决定可行速度作用力区域；闭环s、mimic 柔顺性、接触和 TGS 位置迭代决定求解器能否稳定满足这些约束。把这些都写进同一个“刚度/阻尼”心智模型会漏掉关键失效情形。
+对控制调优，先区分三层：驱动 gain、驱动外包络、求解器 / 时间步。驱动器可以按类 PD 控制器理解；性能外包络决定可行速度作用力区域；闭环、mimic 柔顺性、接触和 TGS 位置迭代决定求解器能否稳定满足这些约束。把这些都写进同一个“刚度/阻尼”心智模型会漏掉关键失效情形。
 
 对资产制作，PhysX 专用关节系统细节适合放进 [[IsaacSimAssetStructure|PhysX-特定的调优层]]，而不是污染共享几何、材质或中性物理。这样同一个机器人资产在 PhysX、[[MuJoCo]] 或其他运行时中比较时，至少可以定位行为变更是拓扑、中性动力学还是运行时特定的调优引起的。
 
-相关页面：[[PhysX]]、[[IsaacSim]]、[[ContactSolvers]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]、[[isaac-sim-mujoco-control-tuning-notes]]。
+相关页面：[[omniverse-omni-physics-articulations|PhysX]]、[[IsaacSim]]、[[ContactSolvers]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]、[[isaac-sim-mujoco-control-tuning-notes]]。

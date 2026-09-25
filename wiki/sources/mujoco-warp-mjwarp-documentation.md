@@ -1,9 +1,9 @@
 ---
 title: "MuJoCo Warp (MJWarp) Documentation"
 type: source
-tags: [robotics, simulation, mujoco, gpu, documentation]
+tags: [robotics, simulation, mujoco, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-09-25
 source_file: raw/mujoco-warp-mjwarp-documentation.html
 source_kind: html
 source_url: https://mujoco.readthedocs.io/en/latest/mjwarp/
@@ -16,7 +16,7 @@ repo_commit_sha: fb56eb0820aa22252a9ec869408484ac86d2b869
 
 ## 摘要
 
-这是官方 MuJoCo 文档中的 [[MJWarp]] 页面快照，并附带 `google-deepmind/mujoco_warp` README / 提交快照。文档把 MJWarp 定义为用 NVIDIA Warp 实现、为 NVIDIA 硬件和并行仿真优化的 MuJoCo 实现，由 NVIDIA 与 Google DeepMind 共同开发维护。
+这是官方 MuJoCo 文档中的 [[mujoco-warp-mjwarp-documentation|MJWarp]] 页面快照，并附带 `google-deepmind/mujoco_warp` README / 提交快照。文档把 MJWarp 定义为用 NVIDIA Warp 实现、为 NVIDIA 硬件和并行仿真优化的 MuJoCo 实现，由 NVIDIA 与 Google DeepMind 共同开发维护。
 
 对知识库的价值是给驻留 GPU 的 / 面向 GPU 的 MuJoCo 路线增加官方边界：MJWarp 适合高吞吐量采样与强化学习，但不以低延迟单一步骤控制为目标；它支持 `nworld` 批处理的 worlds、设备侧 `mjw.Model` / `mjw.Data`、批次渲染和 per-世界批处理模型字段，同时有显式特征 gaps、float32 differences、nondeterminism 和 nondifferentiability 边界。
 
@@ -38,11 +38,17 @@ repo_commit_sha: fb56eb0820aa22252a9ec869408484ac86d2b869
 - "Feature Parity"
 - "MJWarp is not currently differentiable"
 
+### MJWarp
+
+MJWarp / MuJoCo Warp 是 [[mujoco-warp-mjwarp-documentation|MuJoCo 官方文档]] 中描述的实现：它以 NVIDIA Warp 编写，针对 NVIDIA 硬件和并行仿真优化。项目由 Google DeepMind 和 [[NVIDIA]] 共同开发维护，代码位于 `google-deepmind/mujoco_warp` 仓库。
+
+MJWarp 的定位是高吞吐量采样 / RL，而不是低延迟单一步骤控制。文档把它放在 MuJoCo 生态的批处理的 options 中：CPU `mujoco.rollout`、JAX/MJX 和 `mujoco_warp.step`。它支持设备侧 `mjw.Model` / `mjw.Data`、批处理的 worlds、批次渲染和 per-世界字段，但也明确有特征 gaps：例如 PGS / noslip、部分积分器/传感器/插件/flex/用户参数支持，以及当前不可用的 Warp 自动微分。
+
 ## 关联
 
-- [[MJWarp]] - 本来源对应的面向 GPU 的 MuJoCo 后端实体。
+- [[mujoco-warp-mjwarp-documentation|MJWarp]] - 本来源对应的面向 GPU 的 MuJoCo 后端实体。
 - [[MuJoCo]] - MJWarp 是 MuJoCo 生态的 GPU 实现。
-- [[Mjlab|mjlab]] 和 [[MuJoCoPlayground]] - README 明确指向这两个机器人学习集成路径。
+- [[mjlab-repository|mjlab]] 和 [[mujoco-playground-repository|MuJoCoPlayground]] - README 明确指向这两个机器人学习集成路径。
 - [[HeterogeneousRobotRLTraining]] - MJWarp 是 GPU 侧物理路线的代表，与 MuJoCoUni / UniLab 的 CPU 侧路线构成对照。
 - [[DifferentiablePhysics]] - MJWarp 当前不支持 Warp 自动微分，不能把 GPU MuJoCo 路线自动等同于可微的物理。
 

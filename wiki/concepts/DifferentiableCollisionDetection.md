@@ -1,9 +1,9 @@
 ---
 title: "可微碰撞检测"
 type: concept
-tags: [collision-detection, differentiable-optimization, robotics, trajectory-optimization]
+tags: [collision-detection, differentiable-optimization, robotics]
 sources: ["[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[mujoco-computation-collision-detection]]", "[[contact-models-in-robotics-a-comparative-analysis]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 可微碰撞检测
@@ -81,4 +81,4 @@ flowchart LR
 
 未来趋势是把机器人友好的碰撞体族与优化友好的碰撞指标结合：离线用 ACD / 基元分解产生 manageable 基元集合，在线用可微凸 programs 提供约束与梯度，再把少数接触丰富 interactions 交给更完整的仿真器 / 求解器验证。
 
-相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[DifferentiablePhysics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[DCOL]]、[[DiffPills]]。
+相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[DifferentiablePhysics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]]、[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]]。

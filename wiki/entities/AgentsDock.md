@@ -1,9 +1,9 @@
 ---
 title: "AgentsDock"
 type: entity
-tags: [agent-client, desktop, mobile, self-hosted, claude, codex]
+tags: [self-hosted, claude, codex]
 sources: ["[[agentsdock-releases]]", "[[agentsserver]]"]
-last_updated: 2026-08-25
+modified: 2026-08-25
 ---
 
 # AgentsDock
@@ -49,4 +49,4 @@ AgentsDock 通过 `/api` 管理会话、消息、文件、任务和终端，并�
 - [[AgentsServer]] - 自托管执行后端。
 - [[agentsdock-releases]] - AgentsDock 发布仓库来源页。
 - [[agentsserver]] - AgentsServer 官方 README 来源页。
-- [[Galbot]] - 用户当前在 Galbot 主机上安装 AgentsServer 的上下文。
+- [[lda-1b-scaling-latent-dynamics-action-model|Galbot]] - 用户当前在 Galbot 主机上安装 AgentsServer 的上下文。

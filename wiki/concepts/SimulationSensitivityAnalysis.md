@@ -1,9 +1,9 @@
 ---
 title: "仿真敏感性分析"
 type: concept
-tags: [robotics, simulation, evaluation, posterior-inference]
+tags: [robotics, simulation, evaluation]
 sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 仿真敏感性分析

@@ -1,9 +1,9 @@
 ---
 title: "GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors"
 type: source
-tags: [robotics, humanoid, loco-manipulation, data-generation, sim-to-real, video-foundation-models]
+tags: [robotics, humanoid, data-generation, sim-to-real, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-09-25
 source_file: raw/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2606.05160
@@ -14,7 +14,7 @@ project_url: https://research.nvidia.com/labs/dair/grail/
 
 ## 摘要
 
-Tianyi Xie 等提出 [[GRAIL]]，一个面向人形机器人移动操作的全数字化数据生成流程。它不从自然场景视频中事后猜测相机、尺度、物体几何和接触，而是先构造完全明确的三维配置：物体资产、场景几何、相机内外参、公制尺度、环境深度，以及预拟合到 Unitree G1 形态的人体角色，都在视频生成前已知。随后系统用视频基础模型（VFM）提供交互先验，再用已知三维配置约束四维人物—物体交互（HOI）重建，最后重定向到人形机器人并训练通用任务跟踪策略与第一视角视觉策略。
+Tianyi Xie 等提出 [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]]，一个面向人形机器人移动操作的全数字化数据生成流程。它不从自然场景视频中事后猜测相机、尺度、物体几何和接触，而是先构造完全明确的三维配置：物体资产、场景几何、相机内外参、公制尺度、环境深度，以及预拟合到 Unitree G1 形态的人体角色，都在视频生成前已知。随后系统用视频基础模型（VFM）提供交互先验，再用已知三维配置约束四维人物—物体交互（HOI）重建，最后重定向到人形机器人并训练通用任务跟踪策略与第一视角视觉策略。
 
 这篇来源对知识库的新增价值是把 [[VisualSimToReal|视觉仿真到现实迁移]] 的上游数据问题具体化：GRAIL 试图用 [[AssetConditionedHOIGeneration|资产条件化的 HOI 生成]] 替代遥操作 / 运动捕捉的物理采集瓶颈，同时避免 unconstrained 视频重建的规模、深度、相机和形态歧义。它报告生成超过 20,000 条序列，覆盖 pick-up、whole-机体操作、坐下和地形穿越；用这些生成的数据训练的 RGB 策略在 Unitree G1 上达到物体 pick-up 84% 现实世界成功和 stair-climbing 90% 成功。
 
@@ -44,9 +44,33 @@ Tianyi Xie 等提出 [[GRAIL]]，一个面向人形机器人移动操作的全�
 - "84% real-world success"
 - "90% success"
 
+### GRAIL
+
+GRAIL 是 "Generating 人形机器人移动操作从 3D 资产与视频先验" 中提出的人形机器人数据生成框架。它的目标是在不重建物理 scenes、不 teleoperate 机器人的情况下，从 3D 资产、仿真器就绪场景设置和视频基础模型先验生成机器人兼容的 4D 人类物体交互轨迹，再 retarget 到 Unitree G1 并训练通用任务跟踪器与第一视角视觉策略。
+
+GRAIL 的关键不是直接让 VFM 生成机器人视频，而是先建立已知指标世界：物体几何、相机参数、指标规模、环境深度和机器人-proportioned 人类 character 都已知；VFM 只提供交互先验。随后系统做物体跟踪、人类运动估计和交互感知优化，把生成的视频约束回这个已知三维世界，降低深度歧义和形态 mismatch。
+
+```mermaid
+flowchart LR
+  A["3D 资产与场景"] --> B["渲染的首帧"]
+  B --> C["VLM 提示"]
+  C --> D["VFM 交互视频"]
+  A --> E["已知几何, 规模, 相机, 深度"]
+  D --> F["4D HOI 重建"]
+  E --> F
+  F --> G["Retarget 到 Unitree G1"]
+  G --> H["任务一般性跟踪器"]
+  H --> I["第一视角视觉策略"]
+  I --> J["真实 G1 deployment"]
+```
+
+#### 证据边界
+
+当前知识库对 GRAIL 的覆盖范围来自 arXiv PDF v1。来源支持其流程结构、损失项、运行时 breakdown、失败过滤、训练细节、基准比较和 Unitree G1 现实世界成功比率。项目主页、代码、数据集发布和独立 replication 尚未收录；因此本页不把 GRAIL 的来源特有的成功直接推广成跨平台结论。
+
 ## 关联
 
-- [[GRAIL]] - 本来源对应的框架 / 项目实体。
+- [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] - 本来源对应的框架 / 项目实体。
 - [[AssetConditionedHOIGeneration]] - 本来源最核心的机制层级概念：先规定 3D 资产 / 相机 / 指标世界，再用 VFM 先验生成和重建机器人兼容的 HOI 轨迹。
 - [[VisualSimToReal]] - GRAIL 的生成的数据最终通过第一视角 RGB 策略部署到真实 Unitree G1。
 - [[SimulationRealityGap]] - GRAIL 把差距的一部分前移到数据/重建阶段：已知几何和公制尺度可以减少视频到-4D 歧义，但 VFM 产物、相机/手部动力学和现实世界接触仍会留下差距。
@@ -59,4 +83,4 @@ Tianyi Xie 等提出 [[GRAIL]]，一个面向人形机器人移动操作的全�
 - VFM 依赖 Kling API，VLM 依赖 OpenAI 模型；这会带来可复现性、成本、条款的-use 和模型版本漂移问题，来源本身没有把这些工程边界展开。
 - 失败过滤被描述为会 discard non-简单 fraction 的序列，但来源没给出全流程的 discard 比率；真实数据集质量需要发布后进一步审计。
 - 现实世界物体 pick-up 和 stair-climbing 结果是来源特有的证据；还需要独立 replication、更多机器人 platforms、更多物体/材质/质量 variations 和失败比率报告。
-- 这条路线与 [[VIRAL]] 的视觉教师—学生仿真到现实迁移、[[AGILE]] 的工作流契约、HumanoidMimicGen-风格规划数据生成是否会合流，当前来源还没有直接回答。
+- 这条路线与 [[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]] 的视觉教师—学生仿真到现实迁移、[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] 的工作流契约、HumanoidMimicGen-风格规划数据生成是否会合流，当前来源还没有直接回答。

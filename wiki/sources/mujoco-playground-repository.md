@@ -1,9 +1,9 @@
 ---
 title: "MuJoCo Playground Repository"
 type: source
-tags: [robotics, reinforcement-learning, simulation, mujoco, repository]
+tags: [robotics, reinforcement-learning, simulation, mujoco, repository, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-09-25
 source_file: raw/mujoco-playground-readme.md
 source_kind: repo
 source_url: https://github.com/google-deepmind/mujoco_playground
@@ -15,9 +15,9 @@ commit_sha: 33f1b2843a7ec5537c4882177aa2a9f236e9b692
 
 ## 摘要
 
-这是 [[MuJoCoPlayground|MuJoCo Playground]] 官方代码仓库 README 快照。README 把它定义为基于 MuJoCo MJX 的 GPU 加速的环境套件，用于机器人学习研究与仿真到现实迁移。它覆盖 classic 控制、quadruped/biped 移动、non-prehensile 与灵巧操作，并通过 MJWarp 批次渲染器支持基于视觉的环境。
+这是 [[mujoco-playground-repository|MuJoCo Playground]] 官方代码仓库 README 快照。README 把它定义为基于 MuJoCo MJX 的 GPU 加速的环境套件，用于机器人学习研究与仿真到现实迁移。它覆盖 classic 控制、quadruped/biped 移动、non-prehensile 与灵巧操作，并通过 MJWarp 批次渲染器支持基于视觉的环境。
 
-对知识库的价值是把 [[MuJoCo]] 生态中的环境套件 / 学习 recipes 路线与 [[MJWarp]]、MJX 和仿真到现实迁移连接起来。README 还说明当前支持 both MJX JAX 实现与 MuJoCo Warp 在输出头，这让 MuJoCo Playground 成为比较 JAX/MJX 与 Warp 执行路径的实用的 entrypoint。
+对知识库的价值是把 [[MuJoCo]] 生态中的环境套件 / 学习 recipes 路线与 [[mujoco-warp-mjwarp-documentation|MJWarp]]、MJX 和仿真到现实迁移连接起来。README 还说明当前支持 both MJX JAX 实现与 MuJoCo Warp 在输出头，这让 MuJoCo Playground 成为比较 JAX/MJX 与 Warp 执行路径的实用的 entrypoint。
 
 ## 核心主张
 
@@ -36,10 +36,16 @@ commit_sha: 33f1b2843a7ec5537c4882177aa2a9f236e9b692
 - "MuJoCo MJX"
 - "MJWarp Batch Renderer"
 
+### MuJoCoPlayground
+
+MuJoCo Playground 是 [[mujoco-playground-repository|官方代码仓库 README]] 中描述的 GPU 加速的环境套件，用于机器人学习研究与仿真到现实迁移，基于 MuJoCo MJX。它覆盖 classic 控制、quadruped/biped 移动、non-prehensile 与灵巧操作，并通过 [[mujoco-warp-mjwarp-documentation|MJWarp]] 批次渲染器支持基于视觉的环境。
+
+README 表示 MuJoCo Playground 当前支持 MJX JAX 实现和 MuJoCo Warp 实现在输出头。它因此是 [[MuJoCo]] 生态中连接环境套件、学习 recipes、JAX/MJX、Warp 渲染和仿真到现实迁移示例的实用的 entrypoint。README 同时提示 Ampere GPUs 上 JAX 默认 TF32 matmul 可能影响 RL 训练稳定性，需要记录精度场景。
+
 ## 关联
 
-- [[MuJoCoPlayground]] - 本来源对应的框架/实体。
-- [[MuJoCo]]、[[MJWarp]] - MuJoCo Playground 连接 MJX 和 MJWarp 路径。
+- [[mujoco-playground-repository|MuJoCoPlayground]] - 本来源对应的框架/实体。
+- [[MuJoCo]]、[[mujoco-warp-mjwarp-documentation|MJWarp]] - MuJoCo Playground 连接 MJX 和 MJWarp 路径。
 - [[HeterogeneousRobotRLTraining]] - 它代表 GPU 加速的环境套件 / 学习 recipe 路线。
 - [[SimulationRealityGap]] - 仿真到现实迁移主张需要具体任务/硬件证据；README 本身只支持框架 capability 边界。
 

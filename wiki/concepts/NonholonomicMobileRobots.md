@@ -1,9 +1,9 @@
 ---
 title: "非完整约束移动机器人"
 type: concept
-tags: [robotics, wheeled-robots, nonholonomic-systems, controllability]
+tags: [robotics, wheeled-robots, nonholonomic-systems]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 非完整约束移动机器人

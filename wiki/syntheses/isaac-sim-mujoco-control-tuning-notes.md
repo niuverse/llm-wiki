@@ -1,9 +1,9 @@
 ---
 title: "Isaac Sim 与 MuJoCo 物理和控制笔记"
 type: synthesis
-tags: [distill, isaac-sim, mujoco, physx, control, simulation, solver]
+tags: [distill, isaac-sim, mujoco, physx, simulation]
 sources: ["[[isaac-sim-asset-structure]]", "[[contact-models-in-robotics-a-comparative-analysis]]", "[[omniverse-omni-physics-articulations]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # Isaac Sim 与 MuJoCo 物理和控制笔记

@@ -1,9 +1,9 @@
 ---
 title: "世界模型分类体系"
 type: concept
-tags: [embodied-ai, world-models, taxonomy, representation-learning]
+tags: [embodied-ai, world-models]
 sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 世界模型分类体系
@@ -58,6 +58,6 @@ flowchart TD
 
 选择世界模型时应先定任务坐标，而不是先选主干网络。真实时间机器人控制通常更偏决策-耦合的、顺序式的、compact 表征；长时域驱动视频综合整理更常落在一般性-Purpose 或全局差异预测；需要几何一致性的规划则会偏向空间潜在表征 Grid 或 Decomposed 渲染表征。
 
-读 [[AwesomeWorldModels]] 时，这个分类体系也能防止 bibliography 变成无结构论文 dump：先定位分类体系 cell，再比较数据、指标、输入 modality、代码可用性和真实机器人验证。
+读 [[awesome-world-models|AwesomeWorldModels]] 时，这个分类体系也能防止 bibliography 变成无结构论文 dump：先定位分类体系 cell，再比较数据、指标、输入 modality、代码可用性和真实机器人验证。
 
-相关页面：[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[AwesomeWorldModels]]。
+相关页面：[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[awesome-world-models|AwesomeWorldModels]]。

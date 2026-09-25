@@ -1,14 +1,14 @@
 ---
-title: "DeepSeek Harness 学习地图"
+title: "DeepSeek Harness 来源获取计划"
 type: synthesis
-tags: [learn, llm-agents, agent-runtime, plugin-architecture]
+tags: [source-plan]
 sources: []
-last_updated: 2026-08-18
+modified: 2026-08-18
 ---
 
-# DeepSeek Harness 学习地图
+# DeepSeek Harness 来源获取计划
 
-这个页面是 DeepSeek Harness（`dsh`）的学习脚手架。当前知识库还没有 ingest 任何 DSH 相关 canonical source，本页内容基于对本机安装包源码（`@deepseek-ai/dsh` 0.1.0-rc.7）和官方 GitHub 仓库文档的一手调研，属于 `conversation-derived` / `unsourced learning scaffold`：机制描述可靠，但尚未升级为 source-backed claim。来源获取计划见文末。
+这个页面是 DeepSeek Harness（`dsh`）的来源获取计划（source plan），不是学习地图：它等的是后续 `ingest`，而不是复习路径。当前知识库还没有 ingest 任何 DSH 相关 canonical 来源，本页内容基于对本机安装包源码（`@deepseek-ai/dsh` 0.1.0-rc.7）和官方 GitHub 仓库文档的一手调研，属于 `conversation-derived` / `unsourced learning scaffold`：机制描述可靠，但尚未升级为 source-backed claim。来源获取计划见文末。
 
 ## 主题边界
 
@@ -130,7 +130,7 @@ compaction 是可选 seam：`agent/pre-step` 压力触发（`pressure`）或 `ag
 
 ## 证据边界
 
-本页所有机制描述来自对本机安装包源码与官方仓库文档的一手调研，属于 `conversation-derived`。当前 wiki 没有任何 DSH 相关 source 页，也没有 ingest 记录；在完成来源获取计划之前，本页内容不应被当作 source-backed claim 引用。`BENCHMARK.md` 全文仅 3 行、无自研 benchmark 或指标，只有"用独立 workspace 与 session id 隔离基准任务"的指引。
+本页所有机制描述来自对本机安装包源码与官方仓库文档的一手调研，属于 `conversation-derived`。当前 wiki 没有任何 DSH 相关来源页，也没有 ingest 记录；在完成来源获取计划之前，本页内容不应被当作有来源支持的结论引用。`BENCHMARK.md` 全文仅 3 行、无自研 benchmark 或指标，只有"用独立 workspace 与 session id 隔离基准任务"的指引。
 
 ## 来源获取计划
 

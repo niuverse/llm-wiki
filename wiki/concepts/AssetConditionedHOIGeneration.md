@@ -1,14 +1,14 @@
 ---
 title: "资产条件化人物—物体交互生成"
 type: concept
-tags: [robotics, humanoid, data-generation, video-foundation-models, sim-to-real]
+tags: [robotics, humanoid, data-generation, sim-to-real]
 sources: ["[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 资产条件化人物—物体交互生成
 
-资产条件化的 HOI 生成（资产条件化人物交互生成）是一种把 3D 资产、指标场景状态、相机参数和生成的视频先验组合起来生成机器人兼容的人类物体交互轨迹的路线。[[GRAIL]] 来源的关键转向是：不要从 unconstrained 自然场景视频里事后推断几何 / 规模 / 相机 / 接触，而是先把这些变量在 3D 世界中固定，再让视频基础模型（VFM）生成看似合理交互，最后用已知世界对 4D 重建施加强约束。
+资产条件化的 HOI 生成（资产条件化人物交互生成）是一种把 3D 资产、指标场景状态、相机参数和生成的视频先验组合起来生成机器人兼容的人类物体交互轨迹的路线。[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 来源的关键转向是：不要从 unconstrained 自然场景视频里事后推断几何 / 规模 / 相机 / 接触，而是先把这些变量在 3D 世界中固定，再让视频基础模型（VFM）生成看似合理交互，最后用已知世界对 4D 重建施加强约束。
 
 ## 数学结构
 
@@ -98,4 +98,4 @@ flowchart LR
 - 对策略架构，物体感知潜在 adaptor 是一种 conservative adaptation：冻结移动控制器的主要解码器，只在潜在标记空间注入操作残差，并补手部基元。这适合保护 pretrained 移动先验，但也可能限制族外操作。
 - 对评估，GRAIL 提示要把 4D HOI 质量、物理可执行性、任务一般性跟踪和真实视觉部署分层报告。单独的 VLM 交互得分或视频平滑性不足以证明机器人实用价值。
 
-相关页面：[[GRAIL]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]、[[VisualSimToReal]]、[[SimulationRealityGap]]、[[TaskGeneralistPolicyEvaluation]]、[[HumanoidRLWorkflow]]。
+相关页面：[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]、[[VisualSimToReal]]、[[SimulationRealityGap]]、[[TaskGeneralistPolicyEvaluation]]、[[HumanoidRLWorkflow]]。

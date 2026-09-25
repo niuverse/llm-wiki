@@ -1,9 +1,9 @@
 ---
 title: "智能体式场景与任务生成"
 type: concept
-tags: [robotics, simulation, benchmark, asset-authoring, agents]
+tags: [robotics, simulation, benchmark]
 sources: ["[[nvlabs-robolab]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[robotics-simulation-infrastructure]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 智能体式场景与任务生成

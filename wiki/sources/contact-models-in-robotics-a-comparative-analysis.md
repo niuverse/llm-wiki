@@ -1,9 +1,9 @@
 ---
 title: "Contact Models in Robotics: a Comparative Analysis"
 type: source
-tags: [robotics, simulation, contact-dynamics, physics-engines]
+tags: [robotics, simulation, contact-dynamics, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-09-25
 source_file: raw/contact-models-in-robotics-a-comparative-analysis.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2304.06372
@@ -24,7 +24,7 @@ Quentin Le Lidec、Wilson Jallet、Louis Montaut、Ivan Laptev、Cordelia Schmid
 - 带摩擦的刚性接触由 Signorini 条件、Coulomb's 定律和最大耗散 principle 共同约束；它们定义的是 nonlinear 互补问题，而不是简单的平滑动力学模型。
 - LCP approximations 会把摩擦锥体近似为多面体的锥体；这降低求解难度，但引入方向-依赖的摩擦偏差。
 - CCP-风格 relaxations 比 LCP 更好地保留摩擦锥体与最大耗散，但会松弛 Signorini 互补，并可能允许法向力与分离速度同时存在。
-- [[RaiSim]]-风格接触处理尝试在 sliding 接触中恢复 Signorini 行为，但依赖接触状态启发式规则，并放松最大耗散 principle。
+- [[contact-models-in-robotics-a-comparative-analysis|RaiSim]]-风格接触处理尝试在 sliding 接触中恢复 Signorini 行为，但依赖接触状态启发式规则，并放松最大耗散 principle。
 - Per-接触的 PGS-风格求解器很快且常见，但论文显示它们可能引入内部力，在 ill-条件化的接触 problems 中表现较差，并在更困难的接触丰富移动条件下失败的到 converge。
 - ADMM 和交错投影这类全局/近端 [[ContactSolvers|接触求解器]] 通常更能处理耦合与 underdetermination，但每次迭代成本更高；warm-starting 可以缩小运行时差距。
 - Quadruped MPC 实验显示，flat、高摩擦地形可能掩盖求解器 differences；bumpy 与 slippery 地形则会让 RaiSim/CCP 行为与 NCP 行为明显分化。
@@ -36,6 +36,22 @@ Quentin Le Lidec、Wilson Jallet、Louis Montaut、Ivan Laptev、Cordelia Schmid
 - "there is no fully satisfactory approach at the moment"
 - "these choices may induce unphysical artifacts"
 
+### ContactBench
+
+ContactBench 是 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]] 中描述的统一的 C++ 基准框架。论文用它在尽量固定其他仿真器组件的条件下比较接触模型与求解器。
+
+根据该来源，ContactBench 使用 Pinocchio 处理刚性机体动力学，使用 HPP-FCL 处理碰撞检测。这让作者可以把重点放在接触-分辨率层：LCP、CCP、RaiSim-like 接触处理、NCP、PGS、ADMM 和交错投影。
+
+为什么重要：仿真器比较经常被不同的碰撞检测、模型格式、集成细节和动力学实现混杂。ContactBench 的目标是 isolate 影响物理正确性与 computational 成本的求解器/模型行为。
+
+### RaiSim
+
+RaiSim 是 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]] 中讨论的机器人学仿真器，尤其因为它在学得的 quadruped 移动策略到硬件迁移中的作用而重要。
+
+论文把 RaiSim 的接触模型看作对 CCP formulations 一个弱点的修正：它通过 enforcing Signorini 条件来处理 sliding 接触。取舍是该方法依赖接触状态启发式规则，并松弛最大耗散 principle。在论文基准中，这会产生能量-耗散与移动 differences，尤其是在 bumpy 或 slippery 地形上。
+
+本页只记录该论文对 RaiSim 的处理方式；在提出 up-到-date 主张之前，应对照 RaiSim 文档或来源材质检查当前实现细节。
+
 ## 关联
 
 - [[ContactModelsInRobotics]] - central 域概念：仿真器的接触定律是模型的一部分，不只是实现；该页包含接触流程图。
@@ -43,12 +59,12 @@ Quentin Le Lidec、Wilson Jallet、Louis Montaut、Ivan Laptev、Cordelia Schmid
 - [[ContactSolvers]] - 按物理准确率、鲁棒性和速度评估的数值 algorithms；该页补充求解器分类体系与 PGS/ADMM/交错投影的求解直觉。
 - [[SimulationRealityGap]] - 接触 approximations 会扩大 MPC 与 RL 场景中的迁移错误；该页补充接触产物到硬件迁移不匹配的因果流程。
 - [[DifferentiablePhysics]] - 接触产物可能污染梯度；该页补充 chain-rule 风格的梯度污染解释。
-- [[ContactBench]] - 论文中的统一的 C++ 基准实现。
-- [[MuJoCo]] 与 [[RaiSim]] - 作为不同接触模型取舍示例的重要仿真器实体。
+- [[contact-models-in-robotics-a-comparative-analysis|ContactBench]] - 论文中的统一的 C++ 基准实现。
+- [[MuJoCo]] 与 [[contact-models-in-robotics-a-comparative-analysis|RaiSim]] - 作为不同接触模型取舍示例的重要仿真器实体。
 
 ## 开放问题
 
 - 这些发现如何映射到当前 Isaac Sim/PhysX、Newton、MuJoCo Warp 和 GPU-并行训练流程？
-- 对特定机器人任务而言，怎样的接触残差阈值才算 "良好的 enough"：MPC、RL 策略训练、硬件 safety 检查，还是可微的优化？
+- 对特定机器人任务而言，怎样的接触残差阈值才算 "良好的 enough"：MPC、RL 策略训练、硬件安全检查，还是可微的优化？
 - 现代可微的仿真器中，接触产物造成的实用的梯度错误有多大？
 - 论文中的 ContactBench 实现是否仍被维护，并且足够广泛到可以作为新仿真器的 regression 基准？

@@ -1,9 +1,9 @@
 ---
 title: "AgentsServer"
 type: entity
-tags: [self-hosted, agent-server, claude, codex, websocket, automation]
+tags: [self-hosted, claude, codex]
 sources: ["[[agentsserver]]", "[[agentsdock-releases]]"]
-last_updated: 2026-08-25
+modified: 2026-08-25
 ---
 
 # AgentsServer
@@ -71,4 +71,4 @@ flowchart LR
 - [[AgentsDock]] - AgentsServer 的客户端前端。
 - [[agentsserver]] - AgentsServer 官方 README 来源页。
 - [[agentsdock-releases]] - AgentsDock 发布仓库来源页。
-- [[Galbot]] - 用户安装 AgentsServer 的 Galbot 主机上下文。
+- [[lda-1b-scaling-latent-dynamics-action-model|Galbot]] - 用户安装 AgentsServer 的 Galbot 主机上下文。

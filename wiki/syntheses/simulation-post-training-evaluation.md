@@ -1,12 +1,22 @@
-# 机器人模型仿真评测是否需要仿真数据后训练：证据综述与评测建议
+---
+title: "机器人仿真评测是否需要仿真数据后训练"
+type: synthesis
+tags: [robotics, simulation, evaluation, benchmark, reinforcement-learning, unsourced]
+sources: []
+modified: 2026-09-25
+---
+
+# 机器人仿真评测是否需要仿真数据后训练
 
 调研日期：2026-07-23
 
-## Executive Summary
+证据状态：`unsourced`。本页综合的是外部一手来源（见文末），这些来源**尚未 ingest 进本知识库**，因此本页结论不属于 source-backed claim，不能替代来源页引用。
+
+## 执行摘要
 
 结论不是简单的“需要”或“不需要”，而是取决于评测想估计哪个量：
 
-- 如果目标是测量模型的 **frozen zero-shot / OOD generalization**，不应使用目标仿真 benchmark 的数据微调。此时 simulator 是测量仪器，目标域微调会把“模型原有能力”与“对 benchmark 的学习能力”混在一起，并引入 simulator overfitting。
+- 如果目标是测量模型的 **frozen zero-shot / OOD generalization**，不应使用目标仿真 benchmark 的数据微调。此时 simulator 是测量工具，目标域微调会把“模型原有能力”与“对 benchmark 的学习能力”混在一起，并引入 simulator overfitting。
 - 如果目标是测量 **few-shot adaptation、task learning 或 continual learning**，使用仿真 demonstration 做 post-training 通常就是协议的一部分。LIBERO、CALVIN、RoboTwin 2.0 和 RoboCasa365 都属于这一类或包含这一类 track。
 - 如果模型要迁移到新的 embodiment、camera、action space、controller frequency 或 observation schema，轻量 post-training 往往有现实必要性；但应把它称为 target-domain calibration / adaptation，而不是 zero-shot evaluation。
 - 如果最终目标是 **sim-to-real deployment**，高质量、足够多样且与真实接口对齐的仿真数据通常值得使用，最好与少量真实数据组成 `sim-only / real-only / sim→real / sim+real` 四组对照。仿真训练不能替代真实硬件终评。
@@ -76,11 +86,11 @@ $$
 | 为真实部署提升策略 | 通常值得，但必须以 real eval 终审 | domain randomization 和 mixed sim-real data 常有益 | `Sim-to-real` |
 | 在 simulator 内做 online RL | 可做，单列 track | 它测优化后的策略，而非原始模型能力 | `Online-RL` |
 
-## 4. Primary-source evidence
+## 4. 一手来源证据
 
 ### 4.1 不用目标仿真数据：RoboLab 和 SIMPLER 的诊断式路线
 
-[RoboLab](https://arxiv.org/html/2604.09860)（2026）明确把“训练域”和“仿真评测域”解耦：被测策略在真实 DROID 数据上 fine-tune，随后作为 off-the-shelf policy 进入 RoboLab；目标 simulator 不提供训练数据。作者指出，LIBERO 等 benchmark 在同一 simulated domain 内训练和评测，使用 simulator demonstrations 微调会使任务变容易，却难以回答模型能否对未见环境泛化。RoboLab 因而把 simulator 定位为 controlled diagnostic instrument，而不是训练场。
+[RoboLab](https://arxiv.org/html/2604.09860)（2026）明确把“训练域”和“仿真评测域”解耦：被测策略在真实 DROID 数据上 fine-tune，随后作为 off-the-shelf policy 进入 RoboLab；目标 simulator 不提供训练数据。作者指出，LIBERO 等 benchmark 在同一 simulated domain 内训练和评测，使用 simulator demonstrations 微调会使任务变容易，却难以回答模型能否对未见环境泛化。RoboLab 因而把 simulator 定位为 受控的诊断工具，而不是训练场。
 
 [SIMPLER](https://simpler-env.github.io/) 同样主要把 simulation 用作 real-world policy evaluation proxy：给定在真实数据上训练的 RT-1、RT-1-X、Octo 等策略，在视觉匹配的仿真场景中执行 inference，并用 Pearson correlation 和 Mean Maximum Rank Violation（MMRV）比较模拟与真实排序。这个协议要测的正是“现有真实策略在仿真里能否被正确区分”，所以在目标 simulator 上 fine-tune 会破坏问题定义。
 
@@ -106,7 +116,7 @@ $$
 2. **仿真数据可以帮助真实部署。** 在四个真实机器人任务上，real-only GR00T N1.5 平均成功率为 61.8，sim-and-real midtraining / co-finetuning 后为 79.8，提升约 18.1 percentage points。
 3. **质量和多样性比单纯数量重要。** Human300 pretraining 在多个设置中优于 Human300+MimicGen60；作者将差异归因于 synthetic demonstrations 质量不均。场景数量从 5、25 增加到 2,500 时，zero-shot 与 fine-tuned 性能均持续提高，说明 diversity 是关键变量。
 
-RoboCasa365 还报告了 source-specific 的优化结论：在其 GR00T N1.5 设置中，two-stage post-training 明显优于简单 joint co-training，LoRA 也优于 full fine-tuning。它们值得作为实验起点，但不能未经复现就推广到所有架构。
+RoboCasa365 还报告了 来源特有的优化结论：在其 GR00T N1.5 设置中，two-stage post-training 明显优于简单 joint co-training，LoRA 也优于 full fine-tuning。它们值得作为实验起点，但不能未经复现就推广到所有架构。
 
 ### 4.4 少量仿真 post-training 能否让评测更像真实世界：最新证据
 
@@ -205,7 +215,7 @@ RoboCasa365 的结果说明，若没有 per-trajectory filtering 和质量审计
 5. **用 test score 选择微调步数。** 这会把 test set 变成 dev set；2026 correlation study 中 10 条优于 20 条正说明 adaptation dose 必须在独立 dev set 上选。
 6. **认为 synthetic quantity 自动等价于 quality。** RoboCasa365 给出了相反案例。
 7. **忽略已有 pretraining overlap。** “未用目标 simulator data”不等于“没见过类似任务、资产或真实数据”。
-8. **把 source-specific recipe 普遍化。** LoRA、two-stage post-training 或某个 randomization range 的优势需要在自己的架构与控制栈上复现。
+8. **把来源特有的配方普遍化。** LoRA、two-stage post-training 或某个 randomization range 的优势需要在自己的架构与控制栈上复现。
 
 ## 8. 对当前机器人模型仿真评测的最终建议
 
@@ -220,7 +230,7 @@ RoboCasa365 的结果说明，若没有 per-trajectory filtering 和质量审计
 
 一句话概括：**仿真数据 post-training 对“把模型做得更好”通常有价值，但对“测清模型原本有多好”通常不应存在；一个可信的评测体系应同时保留这两个问题，而不是让 adaptation 覆盖掉 zero-shot 诊断。**
 
-## Primary Sources
+## 主要来源
 
 - [RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task-Generalist Policies](https://arxiv.org/html/2604.09860)
 - [SIMPLER: Evaluating Real-World Robot Manipulation Policies in Simulation](https://simpler-env.github.io/)
@@ -232,9 +242,9 @@ RoboCasa365 的结果说明，若没有 per-trajectory filtering 和质量审计
 - [OpenVLA official repository and LIBERO evaluation instructions](https://github.com/openvla/openvla)
 - [NVIDIA Isaac-GR00T official repository](https://github.com/NVIDIA/Isaac-GR00T)
 
-## Evidence Limits
+## 证据边界
 
 - 机器人 foundation model 的公开评测协议仍快速变化，不同 paper 对 zero-shot、fine-tuning 和 embodiment adaptation 的命名并不统一。
 - RoboLab、SIMPLER、RoboTwin 2.0、RoboCasa365 覆盖的 robot embodiment、task family 和 simulator 各不相同；数值不能跨论文直接横比。
 - 2026 年的 sim-real correlation 研究仍是 arXiv v1，结论需要更多 robot、policy family 和真实环境复现。
-- 成功率提升不能单独归因于“仿真”这一变量；data quantity、demonstration quality、domain randomization、controller、camera alignment、optimization recipe 和 real-data mixture 都是潜在 confounders。
+- 成功率提升不能单独归因于“仿真”这一变量；data quantity、demonstration quality、domain randomization、controller、camera alignment、优化配方和真实数据混合比例 都是潜在 confounders。

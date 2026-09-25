@@ -1,9 +1,9 @@
 ---
 title: "Approximate Convex Decomposition for 3D Meshes with Collision-Aware Concavity and Tree Search"
 type: source
-tags: [collision-detection, convex-decomposition, robotics, simulation-assets, siggraph]
+tags: [collision-detection, convex-decomposition, robotics, simulation-assets, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/coacd-approximate-convex-decomposition.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2205.02961

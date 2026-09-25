@@ -1,9 +1,9 @@
 ---
 title: "全向轮"
 type: concept
-tags: [robotics, wheeled-robots, omnidirectional, mecanum, omniwheel]
+tags: [robotics, wheeled-robots]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 全向轮

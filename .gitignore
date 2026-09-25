@@ -12,4 +12,3 @@ __pycache__/
 public/
 .quartz-cache/
 tsconfig.tsbuildinfo
-docs/plans/

@@ -1,9 +1,9 @@
 ---
 title: "NVlabs/RoboLab"
 type: source
-tags: [github, robotics, simulation, isaac-lab, benchmark]
+tags: [github, robotics, simulation, benchmark, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/robolab-20260612-7d45d749-source.tar.gz
 source_kind: repo
 source_url: https://github.com/NVlabs/RoboLab

@@ -1,9 +1,9 @@
 ---
 title: "Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation"
 type: source
-tags: [robotics, vla, inverse-dynamics, world-models, robot-manipulation]
+tags: [robotics, vla, inverse-dynamics, world-models, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-09-25
 source_file: raw/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation.pdf
 source_kind: pdf
 source_url: https://proceedings.iclr.cc/paper_files/paper/2025/hash/e5b5c402bb7bd5e60bede6961d6fe39e-Abstract-Conference.html
@@ -13,7 +13,7 @@ source_date: unknown
 
 ## 摘要
 
-这篇 ICLR 2025 论文提出预测式逆动力学模型（PIDM）并实现为 [[Seer]]。它的核心问题是：机器人操作扩展不能只靠动作中心化行为克隆，也不能只靠视觉中心化世界模型 / 视觉预训练；更合理的是让未来视觉预测和 [[InverseDynamicsModels|逆动力学预测]] 在同一个策略中闭环训练。
+这篇 ICLR 2025 论文提出预测式逆动力学模型（PIDM）并实现为 [[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]]。它的核心问题是：机器人操作扩展不能只靠动作中心化行为克隆，也不能只靠视觉中心化世界模型 / 视觉预训练；更合理的是让未来视觉预测和 [[InverseDynamicsModels|逆动力学预测]] 在同一个策略中闭环训练。
 
 Seer 用 Transformer 同时处理语言、RGB 观测、机器人状态和 readout 标记。它引入 [FRS] 前瞻预测标记预测未来 RGB 图像，和 [INV] 动作标记预测从当前历史到预测的未来的中间动作。关键结构是 unidirectional attention：动作标记可以关注到前瞻预测标记，因此逆动力学不是只看当前观测，而是条件化的在预测的未来视觉状态。训练目标把条件视觉前瞻预测损失和逆动力学动作损失合在一起；预训练和 finetuning 保持同样目标。
 
@@ -29,9 +29,9 @@ PDF 网址: https://proceedings.iclr.cc/paper_files/paper/2025/file/e5b5c402bb7b
 
 ## 核心主张
 
-- PIDM 的核心是用 forecasted 视觉状态条件逆动力学：先预测未来视觉表示，再用它指导动作序列预测。论文认为这比 naive BC 或 two-阶段视觉目标 + 底层 IDM 更适合可扩展的机器人策略学习。
+- PIDM 的核心是用 forecasted 视觉状态条件逆动力学：先预测未来视觉表示，再用它指导动作序列预测。论文认为这比朴素行为克隆或两阶段视觉目标 + 底层 IDM 更适合可扩展的机器人策略学习。
 - Seer 的历史 $h_t$ 包含过去 $m$ 步 RGB 图像与机器人状态，目标 $g$ 可以是语言指令或机器人状态。条件视觉前瞻预测写作 $\hat{o}_{t+n}=f_{\mathrm{fore}}(g,h_t)$，未来图像损失是像素 MSE。
-- 逆动力学预测从目标、历史和预测的未来潜在 $\hat{o}^{l}_{t+n}$ 预测动作序列：$\hat{a}_{t:t+n-1}=f_{\mathrm{inv}}(g,h_t,\hat{o}^{l}_{t+n})$。动作损失包含 6D 机械臂动作平滑-L1 和 gripper BCE，$\lambda=0.01$。
+- 逆动力学预测从目标、历史和预测的未来潜在 $\hat{o}^{l}_{t+n}$ 预测动作序列：$\hat{a}_{t:t+n-1}=f_{\mathrm{inv}}(g,h_t,\hat{o}^{l}_{t+n})$。动作损失包含 6D 机械臂动作的平滑 L1 损失和 gripper BCE，$\lambda=0.01$。
 - 总训练目标为 $\mathcal{L}=\alpha\mathcal{L}_{\mathrm{fore}}+\mathcal{L}_{\mathrm{inv}}$，论文中 $\alpha=0.5$。预训练与 finetuning 都使用条件视觉前瞻预测 + 逆动力学预测。
 - 架构使用 MAE-pretrained ViT 图像编码器、Perceiver Resampler、截断 ViT-B/32 文本编码器、机器人状态 MLP、24-层 GPT-2-风格 transformer 主干网络、MLP 动作解码器和 ViT 图像解码器。Standard Seer 有 316M total 参数，其中 65M trainable；Seer-大规模有 315M trainable 参数。
 - 预训练数据根据基准不同而变化：LIBERO 用 LIBERO-90，CALVIN 用官方机器人 play 数据（无语言标注且含 random exploration），现实世界验证用 DROID。论文强调 Seer 能处理 missing 语言标注，因为预训练时可用未来机器人状态标记作为目标。
@@ -44,18 +44,43 @@ PDF 网址: https://proceedings.iclr.cc/paper_files/paper/2025/file/e5b5c402bb7b
 
 - "closing the loop between vision and action"
 
+### Seer
+
+Seer 是 [[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation]] 中实现的端到端 PIDM（预测式逆动力学模型）。它把条件视觉前瞻预测和 [[InverseDynamicsModels|逆动力学预测]] 放进同一个 Transformer 策略：用 [FRS] 标记预测未来 RGB 图像，用 [INV] 标记在关注到 [FRS] 的基础上预测中间动作序列。
+
+#### 模型结构
+
+Seer 输入语言指令、多视角 RGB 图像和机器人状态。图像由 MAE-pretrained ViT 编码并经 Perceiver Resampler 压缩；语言用截断 ViT-B/32 文本编码器；机器人状态用 MLP。GPT-2-风格 Transformer 主干网络中的 [FRS] 标记负责未来图像潜在，[INV] 标记负责动作潜在，并通过 unidirectional attention 关注到 [FRS]。
+
+```mermaid
+flowchart LR
+  O["RGB 历史"] --> E["图像编码器<br/>ViT + perceiver"]
+  S["机器人状态历史"] --> M["状态 MLP"]
+  L["语言或目标"] --> T["CLIP 文本编码器"]
+  E --> B["GPT-风格 transformer"]
+  M --> B
+  T --> B
+  B --> F["FRS 标记<br/>未来图像"]
+  F --> I["INV 标记<br/>逆动力学"]
+  I --> A["7D 动作<br/>机械臂 + 夹爪"]
+```
+
+#### 来源证据
+
+LIBERO-LONG 中，Seer 平均成功率为 87.7%；CALVIN ABC-D 中，Seer-大规模平均长度为 4.28。现实世界 Franka 任务中，Seer 平均成功率/得分为 78.4% / 39.5，高于 scratch、MVP、MPI 和 OpenVLA 基线。消融显示 $L_{\mathrm{fore}}$ 与 $L_{\mathrm{inv}}$ 同时用于预训练/finetuning 优于只做未来图像预测或 vanilla BC。
+
 ## 关联
 
-- [[Seer]] - 本来源的核心模型。
+- [[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]] - 本来源的核心模型。
 - [[InverseDynamicsModels]] - Seer/PIDM 是动作标注的、端到端的逆动力学表述；DeFI/GIDM 是 unlabeled 视频转移预训练表述。
 - [[VisionLanguageActionModels]] - Seer 是 VLA/动作策略的一种 compact Transformer 实现，用 [FRS]/[INV] readout 标记把视觉前瞻预测接到动作预测。
 - [[LatentDynamicsActionModels]] - Seer 的动作表示是 supervised 动作序列预测；LDA-1B 和 DeFI 更强调潜在动力学 / 潜在动作扩展。
-- [[WorldModelsForEmbodiedAI]] - Seer 的未来图像预测是决策-耦合的世界模型 signal，不是单独追求视频保真度。
+- [[WorldModelsForEmbodiedAI]] - Seer 的未来图像预测是决策-耦合的世界模型信号，不是单独追求视频保真度。
 - [[SimulationRealityGap]] - 现实世界和鲁棒性实验说明 DROID 预训练对物体/背景/光照 disturbances 有帮助，但跨机器人形态与接触丰富覆盖范围仍有限。
 
 ## 开放问题
 
 - 用户提供的 `asproceedings.iclr.cc` URL 返回空占位文本；本收录使用同一路径下规范的 `proceedings.iclr.cc` 页面与官方 PDF。
-- Seer 依赖动作标注的机器人数据做预训练；它不像 DeFI/GIDM 那样把动作-free 人类视频直接用于逆动力学预训练。因此它证明的是大规模机器人数据集上视觉动作关节预训练的价值，而不是动作-free 视频扩展。
+- Seer 依赖动作标注的机器人数据做预训练；它不像 DeFI/GIDM 那样把无动作标注的人类视频直接用于逆动力学预训练。因此它证明的是大规模机器人数据集上视觉动作关节预训练的价值，而不是无动作标注的视频扩展。
 - 未来预测目标是 RGB 像素重建，可能把外观保真度和任务相关的状态纠缠在一起；这也是后续 DeFI/LDA-风格潜在表示方法试图改进的方向。
 - 论文局限明确提到下游任务只有 6 个现实世界任务，高精度/接触丰富覆盖范围还不够；跨机器人形态也需要更多测试。附录中 OXE 预训练去掉 Franka subsets 后只带来 marginal improvement，甚至在部分高精度任务上下降。

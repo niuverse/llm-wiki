@@ -3,7 +3,7 @@ title: "Isaac Sim `mujoco.usda` 运行时语义"
 type: synthesis
 tags: [distill, isaac-sim, mujoco, usd, asset-structure]
 sources: ["[[isaac-sim-asset-structure]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # Isaac Sim `mujoco.usda` 运行时语义

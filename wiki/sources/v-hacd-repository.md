@@ -1,9 +1,9 @@
 ---
 title: "V-HACD Repository"
 type: source
-tags: [collision-detection, convex-decomposition, repository, simulation-assets]
+tags: [collision-detection, convex-decomposition, repository, simulation-assets, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/v-hacd-readme.md
 source_kind: repo
 source_url: https://github.com/kmammou/v-hacd

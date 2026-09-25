@@ -1,9 +1,9 @@
 ---
 title: "Articulations - Omni Physics"
 type: source
-tags: [omniverse, omni-physics, physx, articulations, robotics-simulation]
+tags: [physx, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-09-25
 source_file: raw/omniverse-omni-physics-articulations.html
 source_kind: html
 source_url: https://docs.omniverse.nvidia.com/kit/docs/omni_physics/latest/dev_guide/rigid_bodies_articulations/articulations.html
@@ -15,7 +15,7 @@ source_date: 2026-05-01
 
 ## 摘要
 
-这是 [[NVIDIA]] Omni 物理文档中的关节系统页面，最后更新时间为 2026-05-01。它说明 [[PhysX]] 如何用约化坐标关节系统（约化坐标关节系统）模拟由关节连接的刚体，并给出 USD / PhysX API 层面的根部放置、关节状态、驱动器 envelope、关节摩擦、闭环 breaking、mimic 关节和 tendons rules。
+这是 [[NVIDIA]] Omni 物理文档中的关节系统页面，最后更新时间为 2026-05-01。它说明 [[omniverse-omni-physics-articulations|PhysX]] 如何用约化坐标关节系统（约化坐标关节系统）模拟由关节连接的刚体，并给出 USD / PhysX API 层面的根部放置、关节状态、驱动器 envelope、关节摩擦、闭环 breaking、mimic 关节和 tendons rules。
 
 本页对 Isaac Sim / PhysX 机器人仿真的价值在于：它把“关节系统只是 jointed 刚体的加速实现”纠正为一个更具体的建模选择。关节系统用根部机体和关节角度表达配置，而不是让每个链接拥有独立世界位姿；这带来 zero 关节错误由设计和更好的质量比率处理，但也要求拓扑基本是树，并引入根部选择、闭环处理、关节限制、mimic 柔顺性和张量 API access 等约束。
 
@@ -25,10 +25,10 @@ source_date: 2026-05-01
 - 关节系统拓扑由关节的 `Body 0` / `Body 1` 关系形成；USD 层级只在 parsing / 根部检测时有影响，不等价于物理关节系统树。
 - 固定基座关节系统应把 `UsdPhysics.ArticulationRootAPI` 加到世界固定关节或其 ancestor；floating-基座关节系统应加到根部链接或其 ancestor。
 - 如果根部 API 不是直接加到固定关节或刚体，仿真器会遍历层级、构造拓扑图结构，并用确定性 rule 选择关节系统类型和根部：有世界关节则固定基座，否则选 minimal eccentricity 的图结构节点。
-- 约化坐标语义意味着 non-根部链接不能直接设置位姿 / 速度；关节 DOF 状态要用 `PhysxSchema.JointStateAPI`，但在 Fabric / RL workloads 中应改用张量 API `ArticulationView`。
+- 约化坐标语义意味着非根部链接不能直接设置位姿 / 速度；关节 DOF 状态要用 `PhysxSchema.JointStateAPI`，但在 Fabric / RL 工作负载中应改用张量 API `ArticulationView`。
 - 关节系统驱动器是 per-轴驱动器，来源明确把它描述为类似 PD 控制器；`PhysxDrivePerformanceEnvelopeAPI` 用作用力和速度约束表达执行器可行区域，并区分 `maxActuatorVelocity` 与关节层级 `maxJointVelocity`。
 - 关节系统关节摩擦组合静态 / 动力学 Coulomb 摩擦和 viscous 摩擦；`staticFrictionEffort` 必须大于或等于 `dynamicFrictionEffort`，同一 API 还可设置最大关节速度和 armature。
-- 关节系统关节本身不支持闭环s；循环-closing 关节需要作为 regular 关节并标记 `excludeFromArticulation`。闭环关节系统更难求解，来源建议降低仿真时间步并参考稳定性指南。
+- 关节系统关节本身不支持闭环；闭链关节需要作为 regular 关节并标记 `excludeFromArticulation`。闭环关节系统更难求解，来源建议降低仿真时间步并参考稳定性指南。
 - Mimic 关节用 $q_A + Gq_B + \gamma = 0$ 约束两个 DOF，适合 gear / rack-与-pinion；gripper 接触中硬 mimic 约束可能和硬接触竞争，来源建议用自然频率和阻尼比率添加柔顺性。
 - 肌腱是关节系统内部约束：固定肌腱约束关节位置的加权和；空间肌腱通过附着点之间的视线距离，建模液压执行器、人工肌肉或弹性绳索类机构。
 
@@ -42,10 +42,18 @@ source_date: 2026-05-01
 - “Closing loops is still possible by using a regular joint”
 - “Mimic joint compliance is achieved with two parameters”
 
+### PhysX
+
+PhysX 是 [[NVIDIA]] 的物理运行时 / SDK 族。本知识库当前对 PhysX 的有来源支持的覆盖范围来自 [[omniverse-omni-physics-articulations|关节系统 - Omni 物理]]：该来源说明 PhysX 用约化坐标关节系统表达 jointed 机制，并把机器人 / 机制状态组织成根部机体 + 关节 DOFs，而不是每个链接的独立世界位姿。
+
+在这个来源中，PhysX 的关键机器人学语义包括：关节系统拓扑由 USD 关节的 `Body 0` / `Body 1` 关系决定；`UsdPhysics.ArticulationRootAPI` 控制固定基座或 floating-基座关节系统创建；关节系统驱动器是 per-轴类 PD 驱动器；`PhysxDrivePerformanceEnvelopeAPI` 用作用力 / 速度约束表达执行器可行区域；关节摩擦、mimic 关节、mimic 柔顺性和 tendons 都作为关节系统特定的约束暴露。
+
+需要注意证据边界：本页不扩展到 PhysX SDK 的完整接触求解器、GPU 流程或所有关节支持细节。当前只记录 Omni 物理关节系统来源已明确覆盖的关节系统语义；TGS/PGS 默认值、驱动器离散化、稳定性-指南细节和更广泛的 PhysX SDK 行为仍需要后续收录。
+
 ## 关联
 
 - [[ReducedCoordinateArticulations]] - 把本来源编译成机制层级概念：拓扑、坐标、驱动器 envelope、mimic/tendon 约束和失效情形。
-- [[PhysX]] - 本来源的物理运行时 / 结构规范上下文。
+- [[omniverse-omni-physics-articulations|PhysX]] - 本来源的物理运行时 / 结构规范上下文。
 - [[IsaacSim]] - Isaac Sim 机器人仿真中关节系统、驱动器、关节状态和张量 API 的有来源支持的语义。
 - [[NVIDIA]] - 来源 publisher 与 Omni 物理 / PhysX 文档 owner。
 - [[ContactSolvers]] - 来源中的闭环、mimic 柔顺性、TGS 位置迭代和硬接触 competition 扩展了求解器 / 约束交互视角。

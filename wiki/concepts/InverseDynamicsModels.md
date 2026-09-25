@@ -1,14 +1,14 @@
 ---
 title: "逆动力学模型"
 type: concept
-tags: [robotics, inverse-dynamics, vla, representation-learning, world-models]
+tags: [robotics, inverse-dynamics, vla, world-models]
 sources: ["[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]", "[[lda-1b-scaling-latent-dynamics-action-model]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 逆动力学模型
 
-逆动力学模型（逆动力学模型，IDM）回答的问题是：给定当前状态和目标/未来状态，什么动作造成了这个转移？在 classical 机器人学里，它常写成从 $q,\dot q,\ddot q$ 到力矩 $\tau$ 的映射；在当前知识库的 VLA / 机器人基础模型来源中，它更常写成从视觉转移 $(o_t,o_{t+n})$ 推断动作或潜在动作。[[Seer]] 把 IDM 和条件视觉前瞻预测做端到端关节训练；[[DeFI]] 则把视觉 IDM 提升为可以从动作-free 视频里 self-supervised pretrain 的核心模块。
+逆动力学模型（IDM）回答的问题是：给定当前状态和目标/未来状态，什么动作造成了这个转移？在经典机器人学里，它常写成从 $q,\dot q,\ddot q$ 到力矩 $\tau$ 的映射；在当前知识库的 VLA / 机器人基础模型来源中，它更常写成从视觉转移 $(o_t,o_{t+n})$ 推断动作或潜在动作。[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]] 把 IDM 和条件视觉前瞻预测做端到端关节训练；[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]] 则把视觉 IDM 提升为可以从无动作标注的视频里 self-supervised pretrain 的核心模块。
 
 ## 数学结构
 
@@ -100,7 +100,7 @@ flowchart LR
 ## 失效情形
 
 - 未来状态 leakage：如果潜在动作不经过足够瓶颈，解码器可能直接携带未来视觉特征，学到图像重建 shortcut，而不是动作表示。DeFI 用 VQ-VAE 缓解这个问题。
-- 像素保真度 distraction：Seer 用 RGB 像素重建作为未来预测损失；如果低层外观损失压过操作相关的状态，未来预测可能提升视觉指标但不等价于更好的控制 signal。
+- 像素保真度 distraction：Seer 用 RGB 像素重建作为未来预测损失；如果低层外观损失压过操作相关的状态，未来预测可能提升视觉指标但不等价于更好的控制信号。
 - 动作歧义：同一个视觉转移可能由不同末端执行器路径、速度或接触力造成。Unlabeled 视频预训练学到的是潜在动作先验，仍需要机器人动作数据把标记语义落地到具体控制空间。
 - GFDM-到-GIDM 错误 propagation：在 DeFI 中，GIDM finetuning 依赖 GFDM 生成的未来表征；当 GFDM 因域 shift 预测错误未来，IDM 会把错误未来翻译成错误动作。
 - 接触密集与 cluttered 场景：DeFI 的失败分析中，正向动力学失败占 62%，主要发生在接触丰富或 cluttered interactions；这说明 IDM 的上游未来目标本身仍受世界模型物理一致性限制。
@@ -116,4 +116,4 @@ flowchart LR
 
 对 [[WorldModelsForEmbodiedAI|世界模型]]，IDM 提供了决策-耦合的评估角度：一个未来模型是否有用，不只看视频保真度，而要看 GIDM 能否从未来表示中恢复稳定、可执行的动作。
 
-相关页面：[[Seer]]、[[DeFI]]、[[LatentDynamicsActionModels]]、[[VisionLanguageActionModels]]、[[WorldModelsForEmbodiedAI]]、[[SimulationRealityGap]]。
+相关页面：[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]]、[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]]、[[LatentDynamicsActionModels]]、[[VisionLanguageActionModels]]、[[WorldModelsForEmbodiedAI]]、[[SimulationRealityGap]]。

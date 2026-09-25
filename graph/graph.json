@@ -1,5 +1,5 @@
 {
-  "built": "2026-08-25",
+  "built": "2026-09-25",
   "nodes": [
     {
       "id": "concepts/AgenticSceneTaskGeneration",
@@ -275,13 +275,6 @@
       "path": "wiki/concepts/WorldModelsForEmbodiedAI.md"
     },
     {
-      "id": "entities/AGILE",
-      "label": "AGILE",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/AGILE.md"
-    },
-    {
       "id": "entities/AgentsDock",
       "label": "AgentsDock",
       "type": "entity",
@@ -296,53 +289,11 @@
       "path": "wiki/entities/AgentsServer.md"
     },
     {
-      "id": "entities/AwesomeWorldModels",
-      "label": "AwesomeWorldModels",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/AwesomeWorldModels.md"
-    },
-    {
       "id": "entities/CoACD",
       "label": "CoACD",
       "type": "entity",
       "color": "#2196F3",
       "path": "wiki/entities/CoACD.md"
-    },
-    {
-      "id": "entities/ContactBench",
-      "label": "ContactBench",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/ContactBench.md"
-    },
-    {
-      "id": "entities/DCOL",
-      "label": "DCOL",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/DCOL.md"
-    },
-    {
-      "id": "entities/DeFI",
-      "label": "DeFI",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/DeFI.md"
-    },
-    {
-      "id": "entities/DiffPills",
-      "label": "DiffPills",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/DiffPills.md"
-    },
-    {
-      "id": "entities/EI30K",
-      "label": "EI-30K",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/EI30K.md"
     },
     {
       "id": "entities/EmbodiedGen",
@@ -352,67 +303,11 @@
       "path": "wiki/entities/EmbodiedGen.md"
     },
     {
-      "id": "entities/GRAIL",
-      "label": "GRAIL",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/GRAIL.md"
-    },
-    {
-      "id": "entities/Galbot",
-      "label": "Galbot",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/Galbot.md"
-    },
-    {
-      "id": "entities/IsaacLab",
-      "label": "Isaac Lab",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/IsaacLab.md"
-    },
-    {
       "id": "entities/IsaacSim",
       "label": "Isaac Sim",
       "type": "entity",
       "color": "#2196F3",
       "path": "wiki/entities/IsaacSim.md"
-    },
-    {
-      "id": "entities/LDA1B",
-      "label": "LDA-1B",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/LDA1B.md"
-    },
-    {
-      "id": "entities/MJWarp",
-      "label": "MJWarp",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/MJWarp.md"
-    },
-    {
-      "id": "entities/MagicSim",
-      "label": "MagicSim",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/MagicSim.md"
-    },
-    {
-      "id": "entities/ManiSkill",
-      "label": "ManiSkill",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/ManiSkill.md"
-    },
-    {
-      "id": "entities/Mjlab",
-      "label": "mjlab",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/Mjlab.md"
     },
     {
       "id": "entities/MotrixSim",
@@ -429,20 +324,6 @@
       "path": "wiki/entities/MuJoCo.md"
     },
     {
-      "id": "entities/MuJoCoPlayground",
-      "label": "MuJoCo Playground",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/MuJoCoPlayground.md"
-    },
-    {
-      "id": "entities/MuJoCoUni",
-      "label": "MuJoCoUni",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/MuJoCoUni.md"
-    },
-    {
       "id": "entities/NVIDIA",
       "label": "NVIDIA",
       "type": "entity",
@@ -457,67 +338,11 @@
       "path": "wiki/entities/OpenUSD.md"
     },
     {
-      "id": "entities/Ovrtx",
-      "label": "ovrtx",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/Ovrtx.md"
-    },
-    {
-      "id": "entities/PhysX",
-      "label": "PhysX",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/PhysX.md"
-    },
-    {
-      "id": "entities/PhysicalIntelligence",
-      "label": "Physical Intelligence",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/PhysicalIntelligence.md"
-    },
-    {
-      "id": "entities/Pi07",
-      "label": "π0.7",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/Pi07.md"
-    },
-    {
-      "id": "entities/Pixar",
-      "label": "Pixar",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/Pixar.md"
-    },
-    {
-      "id": "entities/RaiSim",
-      "label": "RaiSim",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/RaiSim.md"
-    },
-    {
-      "id": "entities/RoboCasa365",
-      "label": "RoboCasa365",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/RoboCasa365.md"
-    },
-    {
       "id": "entities/RoboLab",
       "label": "RoboLab",
       "type": "entity",
       "color": "#2196F3",
       "path": "wiki/entities/RoboLab.md"
-    },
-    {
-      "id": "entities/Seer",
-      "label": "Seer",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/Seer.md"
     },
     {
       "id": "entities/UniLab",
@@ -532,20 +357,6 @@
       "type": "entity",
       "color": "#2196F3",
       "path": "wiki/entities/VHACD.md"
-    },
-    {
-      "id": "entities/VIRAL",
-      "label": "VIRAL",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/VIRAL.md"
-    },
-    {
-      "id": "entities/VisACD",
-      "label": "VisACD",
-      "type": "entity",
-      "color": "#2196F3",
-      "path": "wiki/entities/VisACD.md"
     },
     {
       "id": "overview",
@@ -871,7 +682,7 @@
     },
     {
       "id": "syntheses/dsh-learning-map",
-      "label": "DeepSeek Harness 学习地图",
+      "label": "DeepSeek Harness 来源获取计划",
       "type": "synthesis",
       "color": "#9C27B0",
       "path": "wiki/syntheses/dsh-learning-map.md"
@@ -910,6 +721,13 @@
       "type": "synthesis",
       "color": "#9C27B0",
       "path": "wiki/syntheses/research-questions.md"
+    },
+    {
+      "id": "syntheses/simulation-post-training-evaluation",
+      "label": "机器人仿真评测是否需要仿真数据后训练",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/simulation-post-training-evaluation.md"
     },
     {
       "id": "syntheses/wheeled-robot-modeling-learning-map",
@@ -1075,13 +893,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/ApproximateConvexDecomposition--entities/VisACD",
-      "from": "concepts/ApproximateConvexDecomposition",
-      "to": "entities/VisACD",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/ApproximateConvexDecomposition--entities/MuJoCo",
       "from": "concepts/ApproximateConvexDecomposition",
       "to": "entities/MuJoCo",
@@ -1106,13 +917,6 @@
       "id": "concepts/AssetConditionedHOIGeneration--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
       "from": "concepts/AssetConditionedHOIGeneration",
       "to": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/AssetConditionedHOIGeneration--entities/GRAIL",
-      "from": "concepts/AssetConditionedHOIGeneration",
-      "to": "entities/GRAIL",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1236,27 +1040,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/CollisionGeometryForRobotSimulation--entities/VisACD",
-      "from": "concepts/CollisionGeometryForRobotSimulation",
-      "to": "entities/VisACD",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/CollisionGeometryForRobotSimulation--entities/DCOL",
-      "from": "concepts/CollisionGeometryForRobotSimulation",
-      "to": "entities/DCOL",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/CollisionGeometryForRobotSimulation--entities/DiffPills",
-      "from": "concepts/CollisionGeometryForRobotSimulation",
-      "to": "entities/DiffPills",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/CollisionGeometryForRobotSimulation--concepts/IsaacSimAssetStructure",
       "from": "concepts/CollisionGeometryForRobotSimulation",
       "to": "concepts/IsaacSimAssetStructure",
@@ -1306,13 +1089,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/CompositionalGeneralizationInRobotics--entities/RoboCasa365",
-      "from": "concepts/CompositionalGeneralizationInRobotics",
-      "to": "entities/RoboCasa365",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/CompositionalGeneralizationInRobotics--concepts/RobotLearningDataComposition",
       "from": "concepts/CompositionalGeneralizationInRobotics",
       "to": "concepts/RobotLearningDataComposition",
@@ -1330,13 +1106,6 @@
       "id": "concepts/CompositionalGeneralizationInRobotics--concepts/VisionLanguageActionModels",
       "from": "concepts/CompositionalGeneralizationInRobotics",
       "to": "concepts/VisionLanguageActionModels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/CompositionalGeneralizationInRobotics--entities/Pi07",
-      "from": "concepts/CompositionalGeneralizationInRobotics",
-      "to": "entities/Pi07",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1407,20 +1176,6 @@
       "id": "concepts/ContactModelsInRobotics--entities/MuJoCo",
       "from": "concepts/ContactModelsInRobotics",
       "to": "entities/MuJoCo",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ContactModelsInRobotics--entities/RaiSim",
-      "from": "concepts/ContactModelsInRobotics",
-      "to": "entities/RaiSim",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ContactModelsInRobotics--entities/ContactBench",
-      "from": "concepts/ContactModelsInRobotics",
-      "to": "entities/ContactBench",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1516,20 +1271,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/DifferentiableCollisionDetection--entities/DCOL",
-      "from": "concepts/DifferentiableCollisionDetection",
-      "to": "entities/DCOL",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/DifferentiableCollisionDetection--entities/DiffPills",
-      "from": "concepts/DifferentiableCollisionDetection",
-      "to": "entities/DiffPills",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/DifferentiablePhysics--sources/contact-models-in-robotics-a-comparative-analysis",
       "from": "concepts/DifferentiablePhysics",
       "to": "sources/contact-models-in-robotics-a-comparative-analysis",
@@ -1547,20 +1288,6 @@
       "id": "concepts/DifferentiablePhysics--sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
       "from": "concepts/DifferentiablePhysics",
       "to": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/DifferentiablePhysics--entities/DCOL",
-      "from": "concepts/DifferentiablePhysics",
-      "to": "entities/DCOL",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/DifferentiablePhysics--entities/DiffPills",
-      "from": "concepts/DifferentiablePhysics",
-      "to": "entities/DiffPills",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1610,13 +1337,6 @@
       "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--concepts/HeterogeneousRobotRLTraining",
       "from": "concepts/ExecutableEmbodiedInteractionInfrastructure",
       "to": "concepts/HeterogeneousRobotRLTraining",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--entities/MagicSim",
-      "from": "concepts/ExecutableEmbodiedInteractionInfrastructure",
-      "to": "entities/MagicSim",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1719,13 +1439,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/HeterogeneousRobotRLTraining--entities/MuJoCoUni",
-      "from": "concepts/HeterogeneousRobotRLTraining",
-      "to": "entities/MuJoCoUni",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/HeterogeneousRobotRLTraining--entities/MotrixSim",
       "from": "concepts/HeterogeneousRobotRLTraining",
       "to": "entities/MotrixSim",
@@ -1733,37 +1446,9 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/HeterogeneousRobotRLTraining--entities/MJWarp",
+      "id": "concepts/HeterogeneousRobotRLTraining--sources/robotics-simulation-infrastructure",
       "from": "concepts/HeterogeneousRobotRLTraining",
-      "to": "entities/MJWarp",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/HeterogeneousRobotRLTraining--entities/Mjlab",
-      "from": "concepts/HeterogeneousRobotRLTraining",
-      "to": "entities/Mjlab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/HeterogeneousRobotRLTraining--entities/MuJoCoPlayground",
-      "from": "concepts/HeterogeneousRobotRLTraining",
-      "to": "entities/MuJoCoPlayground",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/HeterogeneousRobotRLTraining--entities/IsaacLab",
-      "from": "concepts/HeterogeneousRobotRLTraining",
-      "to": "entities/IsaacLab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/HeterogeneousRobotRLTraining--entities/ManiSkill",
-      "from": "concepts/HeterogeneousRobotRLTraining",
-      "to": "entities/ManiSkill",
+      "to": "sources/robotics-simulation-infrastructure",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1817,13 +1502,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/HumanoidRLWorkflow--entities/AGILE",
-      "from": "concepts/HumanoidRLWorkflow",
-      "to": "entities/AGILE",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/HumanoidRLWorkflow--concepts/SimulationRealityGap",
       "from": "concepts/HumanoidRLWorkflow",
       "to": "concepts/SimulationRealityGap",
@@ -1869,20 +1547,6 @@
       "id": "concepts/InverseDynamicsModels--sources/lda-1b-scaling-latent-dynamics-action-model",
       "from": "concepts/InverseDynamicsModels",
       "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/InverseDynamicsModels--entities/Seer",
-      "from": "concepts/InverseDynamicsModels",
-      "to": "entities/Seer",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/InverseDynamicsModels--entities/DeFI",
-      "from": "concepts/InverseDynamicsModels",
-      "to": "entities/DeFI",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2048,20 +1712,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/LatentDynamicsActionModels--entities/Seer",
-      "from": "concepts/LatentDynamicsActionModels",
-      "to": "entities/Seer",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/LatentDynamicsActionModels--entities/DeFI",
-      "from": "concepts/LatentDynamicsActionModels",
-      "to": "entities/DeFI",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/LatentDynamicsActionModels--concepts/WorldModelsForEmbodiedAI",
       "from": "concepts/LatentDynamicsActionModels",
       "to": "concepts/WorldModelsForEmbodiedAI",
@@ -2072,20 +1722,6 @@
       "id": "concepts/LatentDynamicsActionModels--concepts/VisionLanguageActionModels",
       "from": "concepts/LatentDynamicsActionModels",
       "to": "concepts/VisionLanguageActionModels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/LatentDynamicsActionModels--entities/LDA1B",
-      "from": "concepts/LatentDynamicsActionModels",
-      "to": "entities/LDA1B",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/LatentDynamicsActionModels--entities/EI30K",
-      "from": "concepts/LatentDynamicsActionModels",
-      "to": "entities/EI30K",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2265,13 +1901,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/RTXSensorSimulationPipeline--entities/Ovrtx",
-      "from": "concepts/RTXSensorSimulationPipeline",
-      "to": "entities/Ovrtx",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/RTXSensorSimulationPipeline--entities/OpenUSD",
       "from": "concepts/RTXSensorSimulationPipeline",
       "to": "entities/OpenUSD",
@@ -2317,13 +1946,6 @@
       "id": "concepts/ReducedCoordinateArticulations--entities/MuJoCo",
       "from": "concepts/ReducedCoordinateArticulations",
       "to": "entities/MuJoCo",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ReducedCoordinateArticulations--entities/PhysX",
-      "from": "concepts/ReducedCoordinateArticulations",
-      "to": "entities/PhysX",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2377,13 +1999,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/RobotContextConditioning--entities/Pi07",
-      "from": "concepts/RobotContextConditioning",
-      "to": "entities/Pi07",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/RobotLearningDataComposition--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
       "from": "concepts/RobotLearningDataComposition",
       "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
@@ -2408,13 +2023,6 @@
       "id": "concepts/RobotLearningDataComposition--concepts/SimulationRealityGap",
       "from": "concepts/RobotLearningDataComposition",
       "to": "concepts/SimulationRealityGap",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/RobotLearningDataComposition--entities/RoboCasa365",
-      "from": "concepts/RobotLearningDataComposition",
-      "to": "entities/RoboCasa365",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2559,51 +2167,9 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/MuJoCoUni",
-      "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/MuJoCoUni",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/RoboticsSimulationInfrastructure--entities/MotrixSim",
       "from": "concepts/RoboticsSimulationInfrastructure",
       "to": "entities/MotrixSim",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/MJWarp",
-      "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/MJWarp",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/MuJoCoPlayground",
-      "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/MuJoCoPlayground",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/Mjlab",
-      "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/Mjlab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/IsaacLab",
-      "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/IsaacLab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/ManiSkill",
-      "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/ManiSkill",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2618,20 +2184,6 @@
       "id": "concepts/RoboticsSimulationInfrastructure--concepts/SimulationRealityGap",
       "from": "concepts/RoboticsSimulationInfrastructure",
       "to": "concepts/SimulationRealityGap",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/MagicSim",
-      "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/MagicSim",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/RoboCasa365",
-      "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/RoboCasa365",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2674,13 +2226,6 @@
       "id": "concepts/RoboticsSimulationInfrastructure--entities/IsaacSim",
       "from": "concepts/RoboticsSimulationInfrastructure",
       "to": "entities/IsaacSim",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/Ovrtx",
-      "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/Ovrtx",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2944,30 +2489,9 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/SimulationRealityGap--entities/RoboCasa365",
-      "from": "concepts/SimulationRealityGap",
-      "to": "entities/RoboCasa365",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/SimulationRealityGap--concepts/VisionLanguageActionModels",
       "from": "concepts/SimulationRealityGap",
       "to": "concepts/VisionLanguageActionModels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--entities/AGILE",
-      "from": "concepts/SimulationRealityGap",
-      "to": "entities/AGILE",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--entities/GRAIL",
-      "from": "concepts/SimulationRealityGap",
-      "to": "entities/GRAIL",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2982,13 +2506,6 @@
       "id": "concepts/SimulationRealityGap--entities/MuJoCo",
       "from": "concepts/SimulationRealityGap",
       "to": "entities/MuJoCo",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--entities/RaiSim",
-      "from": "concepts/SimulationRealityGap",
-      "to": "entities/RaiSim",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3112,13 +2629,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/TaskGeneralistPolicyEvaluation--entities/RoboCasa365",
-      "from": "concepts/TaskGeneralistPolicyEvaluation",
-      "to": "entities/RoboCasa365",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/SimulationRealityGap--concepts/TaskGeneralistPolicyEvaluation",
       "from": "concepts/TaskGeneralistPolicyEvaluation",
       "to": "concepts/SimulationRealityGap",
@@ -3154,34 +2664,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/VisionLanguageActionModels--entities/DeFI",
-      "from": "concepts/VisionLanguageActionModels",
-      "to": "entities/DeFI",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/VisionLanguageActionModels--entities/Seer",
-      "from": "concepts/VisionLanguageActionModels",
-      "to": "entities/Seer",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/VisionLanguageActionModels--entities/Pi07",
-      "from": "concepts/VisionLanguageActionModels",
-      "to": "entities/Pi07",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/VisionLanguageActionModels--entities/LDA1B",
-      "from": "concepts/VisionLanguageActionModels",
-      "to": "entities/LDA1B",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/VisualSimToReal--sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
       "from": "concepts/VisualSimToReal",
       "to": "sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
@@ -3192,20 +2674,6 @@
       "id": "concepts/VisualSimToReal--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
       "from": "concepts/VisualSimToReal",
       "to": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/VisualSimToReal--entities/VIRAL",
-      "from": "concepts/VisualSimToReal",
-      "to": "entities/VIRAL",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/VisualSimToReal--entities/GRAIL",
-      "from": "concepts/VisualSimToReal",
-      "to": "entities/GRAIL",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3308,13 +2776,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/WorldModelEvaluation--entities/AwesomeWorldModels",
-      "from": "concepts/WorldModelEvaluation",
-      "to": "entities/AwesomeWorldModels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/WorldModelEvaluation--concepts/WorldModelsForEmbodiedAI",
       "from": "concepts/WorldModelEvaluation",
       "to": "concepts/WorldModelsForEmbodiedAI",
@@ -3346,13 +2807,6 @@
       "id": "concepts/WorldModelTaxonomy--sources/awesome-world-models",
       "from": "concepts/WorldModelTaxonomy",
       "to": "sources/awesome-world-models",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/WorldModelTaxonomy--entities/AwesomeWorldModels",
-      "from": "concepts/WorldModelTaxonomy",
-      "to": "entities/AwesomeWorldModels",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3406,51 +2860,9 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/WorldModelsForEmbodiedAI--entities/AwesomeWorldModels",
-      "from": "concepts/WorldModelsForEmbodiedAI",
-      "to": "entities/AwesomeWorldModels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/DifferentiablePhysics--concepts/WorldModelsForEmbodiedAI",
       "from": "concepts/WorldModelsForEmbodiedAI",
       "to": "concepts/DifferentiablePhysics",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/AGILE--sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
-      "from": "entities/AGILE",
-      "to": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/TaskGeneralistPolicyEvaluation--entities/AGILE",
-      "from": "entities/AGILE",
-      "to": "concepts/TaskGeneralistPolicyEvaluation",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/VisionLanguageActionModels--entities/AGILE",
-      "from": "entities/AGILE",
-      "to": "concepts/VisionLanguageActionModels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/AGILE--entities/MuJoCo",
-      "from": "entities/AGILE",
-      "to": "entities/MuJoCo",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/AGILE--entities/NVIDIA",
-      "from": "entities/AGILE",
-      "to": "entities/NVIDIA",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3469,9 +2881,9 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/AgentsDock--entities/Galbot",
+      "id": "entities/AgentsDock--sources/lda-1b-scaling-latent-dynamics-action-model",
       "from": "entities/AgentsDock",
-      "to": "entities/Galbot",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3497,23 +2909,9 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/AgentsServer--entities/Galbot",
+      "id": "entities/AgentsServer--sources/lda-1b-scaling-latent-dynamics-action-model",
       "from": "entities/AgentsServer",
-      "to": "entities/Galbot",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/AwesomeWorldModels--sources/awesome-world-models",
-      "from": "entities/AwesomeWorldModels",
-      "to": "sources/awesome-world-models",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/AwesomeWorldModels--sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
-      "from": "entities/AwesomeWorldModels",
-      "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3546,9 +2944,9 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/CoACD--entities/VisACD",
+      "id": "entities/CoACD--sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
       "from": "entities/CoACD",
-      "to": "entities/VisACD",
+      "to": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3556,97 +2954,6 @@
       "id": "concepts/SimulationRealityGap--entities/CoACD",
       "from": "entities/CoACD",
       "to": "concepts/SimulationRealityGap",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/ContactBench--sources/contact-models-in-robotics-a-comparative-analysis",
-      "from": "entities/ContactBench",
-      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ContactSolvers--entities/ContactBench",
-      "from": "entities/ContactBench",
-      "to": "concepts/ContactSolvers",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ContactComplementarity--entities/ContactBench",
-      "from": "entities/ContactBench",
-      "to": "concepts/ContactComplementarity",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/DCOL--sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
-      "from": "entities/DCOL",
-      "to": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/DCOL--entities/DiffPills",
-      "from": "entities/DCOL",
-      "to": "entities/DiffPills",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/DeFI--sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
-      "from": "entities/DeFI",
-      "to": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/WorldModelsForEmbodiedAI--entities/DeFI",
-      "from": "entities/DeFI",
-      "to": "concepts/WorldModelsForEmbodiedAI",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--entities/DeFI",
-      "from": "entities/DeFI",
-      "to": "concepts/SimulationRealityGap",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/DiffPills--sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
-      "from": "entities/DiffPills",
-      "to": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/EI30K--sources/lda-1b-scaling-latent-dynamics-action-model",
-      "from": "entities/EI30K",
-      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/EI30K--entities/LDA1B",
-      "from": "entities/EI30K",
-      "to": "entities/LDA1B",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/WorldModelsForEmbodiedAI--entities/EI30K",
-      "from": "entities/EI30K",
-      "to": "concepts/WorldModelsForEmbodiedAI",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/VisionLanguageActionModels--entities/EI30K",
-      "from": "entities/EI30K",
-      "to": "concepts/VisionLanguageActionModels",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3675,83 +2982,6 @@
       "id": "entities/EmbodiedGen--syntheses/embodiedgen-v1-v2-learning-map",
       "from": "entities/EmbodiedGen",
       "to": "syntheses/embodiedgen-v1-v2-learning-map",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/GRAIL--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
-      "from": "entities/GRAIL",
-      "to": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/TaskGeneralistPolicyEvaluation--entities/GRAIL",
-      "from": "entities/GRAIL",
-      "to": "concepts/TaskGeneralistPolicyEvaluation",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/GRAIL--entities/NVIDIA",
-      "from": "entities/GRAIL",
-      "to": "entities/NVIDIA",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/Galbot--sources/lda-1b-scaling-latent-dynamics-action-model",
-      "from": "entities/Galbot",
-      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/Galbot--entities/LDA1B",
-      "from": "entities/Galbot",
-      "to": "entities/LDA1B",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/EI30K--entities/Galbot",
-      "from": "entities/Galbot",
-      "to": "entities/EI30K",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/LatentDynamicsActionModels--entities/Galbot",
-      "from": "entities/Galbot",
-      "to": "concepts/LatentDynamicsActionModels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/IsaacLab--sources/isaac-lab-repository",
-      "from": "entities/IsaacLab",
-      "to": "sources/isaac-lab-repository",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/IsaacLab--entities/IsaacSim",
-      "from": "entities/IsaacLab",
-      "to": "entities/IsaacSim",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/IsaacLab--entities/Mjlab",
-      "from": "entities/IsaacLab",
-      "to": "entities/Mjlab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/IsaacLab--entities/NVIDIA",
-      "from": "entities/IsaacLab",
-      "to": "entities/NVIDIA",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3798,13 +3028,6 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/IsaacSim--entities/PhysX",
-      "from": "entities/IsaacSim",
-      "to": "entities/PhysX",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "entities/IsaacSim--syntheses/isaac-sim-mujoco-control-tuning-notes",
       "from": "entities/IsaacSim",
       "to": "syntheses/isaac-sim-mujoco-control-tuning-notes",
@@ -3821,153 +3044,6 @@
     {
       "id": "entities/IsaacSim--entities/MuJoCo",
       "from": "entities/IsaacSim",
-      "to": "entities/MuJoCo",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/LDA1B--sources/lda-1b-scaling-latent-dynamics-action-model",
-      "from": "entities/LDA1B",
-      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/WorldModelsForEmbodiedAI--entities/LDA1B",
-      "from": "entities/LDA1B",
-      "to": "concepts/WorldModelsForEmbodiedAI",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MJWarp--sources/mujoco-warp-mjwarp-documentation",
-      "from": "entities/MJWarp",
-      "to": "sources/mujoco-warp-mjwarp-documentation",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MJWarp--entities/NVIDIA",
-      "from": "entities/MJWarp",
-      "to": "entities/NVIDIA",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MJWarp--entities/MuJoCo",
-      "from": "entities/MJWarp",
-      "to": "entities/MuJoCo",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MJWarp--entities/Mjlab",
-      "from": "entities/MJWarp",
-      "to": "entities/Mjlab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MJWarp--entities/MuJoCoPlayground",
-      "from": "entities/MJWarp",
-      "to": "entities/MuJoCoPlayground",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/DifferentiablePhysics--entities/MJWarp",
-      "from": "entities/MJWarp",
-      "to": "concepts/DifferentiablePhysics",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MagicSim--sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
-      "from": "entities/MagicSim",
-      "to": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/TaskGeneralistPolicyEvaluation--entities/MagicSim",
-      "from": "entities/MagicSim",
-      "to": "concepts/TaskGeneralistPolicyEvaluation",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/AgenticSceneTaskGeneration--entities/MagicSim",
-      "from": "entities/MagicSim",
-      "to": "concepts/AgenticSceneTaskGeneration",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationReady3DWorldGeneration--entities/MagicSim",
-      "from": "entities/MagicSim",
-      "to": "concepts/SimulationReady3DWorldGeneration",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/HeterogeneousRobotRLTraining--entities/MagicSim",
-      "from": "entities/MagicSim",
-      "to": "concepts/HeterogeneousRobotRLTraining",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--entities/MagicSim",
-      "from": "entities/MagicSim",
-      "to": "concepts/SimulationRealityGap",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/ManiSkill--sources/robotics-simulation-infrastructure",
-      "from": "entities/ManiSkill",
-      "to": "sources/robotics-simulation-infrastructure",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--entities/ManiSkill",
-      "from": "entities/ManiSkill",
-      "to": "concepts/SimulationRealityGap",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/TaskGeneralistPolicyEvaluation--entities/ManiSkill",
-      "from": "entities/ManiSkill",
-      "to": "concepts/TaskGeneralistPolicyEvaluation",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/ManiSkill--entities/MuJoCo",
-      "from": "entities/ManiSkill",
-      "to": "entities/MuJoCo",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/IsaacSim--entities/ManiSkill",
-      "from": "entities/ManiSkill",
-      "to": "entities/IsaacSim",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/Mjlab--sources/mjlab-repository",
-      "from": "entities/Mjlab",
-      "to": "sources/mjlab-repository",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/Mjlab--entities/MuJoCo",
-      "from": "entities/Mjlab",
       "to": "entities/MuJoCo",
       "type": "EXTRACTED",
       "confidence": 1.0
@@ -4001,9 +3077,9 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/MotrixSim--entities/MuJoCoUni",
+      "id": "entities/MotrixSim--sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
       "from": "entities/MotrixSim",
-      "to": "entities/MuJoCoUni",
+      "to": "sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4092,20 +3168,6 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/MuJoCo--entities/MuJoCoUni",
-      "from": "entities/MuJoCo",
-      "to": "entities/MuJoCoUni",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MuJoCo--entities/MuJoCoPlayground",
-      "from": "entities/MuJoCo",
-      "to": "entities/MuJoCoPlayground",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/ContactComplementarity--entities/MuJoCo",
       "from": "entities/MuJoCo",
       "to": "concepts/ContactComplementarity",
@@ -4116,34 +3178,6 @@
       "id": "concepts/ContactSolvers--entities/MuJoCo",
       "from": "entities/MuJoCo",
       "to": "concepts/ContactSolvers",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MuJoCoPlayground--sources/mujoco-playground-repository",
-      "from": "entities/MuJoCoPlayground",
-      "to": "sources/mujoco-playground-repository",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--entities/MuJoCoPlayground",
-      "from": "entities/MuJoCoPlayground",
-      "to": "concepts/SimulationRealityGap",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MuJoCoUni--sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
-      "from": "entities/MuJoCoUni",
-      "to": "sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MuJoCoUni--entities/UniLab",
-      "from": "entities/MuJoCoUni",
-      "to": "entities/UniLab",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4211,30 +3245,9 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/NVIDIA--entities/PhysX",
-      "from": "entities/NVIDIA",
-      "to": "entities/PhysX",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/NVIDIA--entities/Ovrtx",
-      "from": "entities/NVIDIA",
-      "to": "entities/Ovrtx",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/SimulationRealityGap--entities/NVIDIA",
       "from": "entities/NVIDIA",
       "to": "concepts/SimulationRealityGap",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/NVIDIA--entities/VIRAL",
-      "from": "entities/NVIDIA",
-      "to": "entities/VIRAL",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4274,160 +3287,6 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/OpenUSD--entities/Pixar",
-      "from": "entities/OpenUSD",
-      "to": "entities/Pixar",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/Ovrtx--sources/nvidia-ovrtx",
-      "from": "entities/Ovrtx",
-      "to": "sources/nvidia-ovrtx",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/OpenUSD--entities/Ovrtx",
-      "from": "entities/Ovrtx",
-      "to": "entities/OpenUSD",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/Ovrtx--syntheses/ovrtx-api-boundary",
-      "from": "entities/Ovrtx",
-      "to": "syntheses/ovrtx-api-boundary",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/PhysX--sources/omniverse-omni-physics-articulations",
-      "from": "entities/PhysX",
-      "to": "sources/omniverse-omni-physics-articulations",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ContactSolvers--entities/PhysX",
-      "from": "entities/PhysX",
-      "to": "concepts/ContactSolvers",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--entities/PhysX",
-      "from": "entities/PhysX",
-      "to": "concepts/SimulationRealityGap",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/PhysicalIntelligence--sources/pi07-steerable-generalist-robotic-foundation-model",
-      "from": "entities/PhysicalIntelligence",
-      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/PhysicalIntelligence--entities/Pi07",
-      "from": "entities/PhysicalIntelligence",
-      "to": "entities/Pi07",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/RobotContextConditioning--entities/PhysicalIntelligence",
-      "from": "entities/PhysicalIntelligence",
-      "to": "concepts/RobotContextConditioning",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/VisionLanguageActionModels--entities/PhysicalIntelligence",
-      "from": "entities/PhysicalIntelligence",
-      "to": "concepts/VisionLanguageActionModels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/CompositionalGeneralizationInRobotics--entities/PhysicalIntelligence",
-      "from": "entities/PhysicalIntelligence",
-      "to": "concepts/CompositionalGeneralizationInRobotics",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/Pi07--sources/pi07-steerable-generalist-robotic-foundation-model",
-      "from": "entities/Pi07",
-      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/WorldModelsForEmbodiedAI--entities/Pi07",
-      "from": "entities/Pi07",
-      "to": "concepts/WorldModelsForEmbodiedAI",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/Pixar--sources/openusd-introduction",
-      "from": "entities/Pixar",
-      "to": "sources/openusd-introduction",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/OpenUSDSceneComposition--entities/Pixar",
-      "from": "entities/Pixar",
-      "to": "concepts/OpenUSDSceneComposition",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/RaiSim--sources/contact-models-in-robotics-a-comparative-analysis",
-      "from": "entities/RaiSim",
-      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ContactComplementarity--entities/RaiSim",
-      "from": "entities/RaiSim",
-      "to": "concepts/ContactComplementarity",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ContactSolvers--entities/RaiSim",
-      "from": "entities/RaiSim",
-      "to": "concepts/ContactSolvers",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/RoboCasa365--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
-      "from": "entities/RoboCasa365",
-      "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MuJoCo--entities/RoboCasa365",
-      "from": "entities/RoboCasa365",
-      "to": "entities/MuJoCo",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/RoboCasa365--entities/RoboLab",
-      "from": "entities/RoboCasa365",
-      "to": "entities/RoboLab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "entities/RoboLab--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
       "from": "entities/RoboLab",
       "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
@@ -4452,27 +3311,6 @@
       "id": "concepts/SimulationRealityGap--entities/RoboLab",
       "from": "entities/RoboLab",
       "to": "concepts/SimulationRealityGap",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/Seer--sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
-      "from": "entities/Seer",
-      "to": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/DeFI--entities/Seer",
-      "from": "entities/Seer",
-      "to": "entities/DeFI",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/WorldModelsForEmbodiedAI--entities/Seer",
-      "from": "entities/Seer",
-      "to": "concepts/WorldModelsForEmbodiedAI",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4543,34 +3381,6 @@
       "id": "concepts/CollisionGeometryForRobotSimulation--entities/VHACD",
       "from": "entities/VHACD",
       "to": "concepts/CollisionGeometryForRobotSimulation",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/VHACD--entities/VisACD",
-      "from": "entities/VHACD",
-      "to": "entities/VisACD",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/VIRAL--sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
-      "from": "entities/VIRAL",
-      "to": "sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--entities/VIRAL",
-      "from": "entities/VIRAL",
-      "to": "concepts/SimulationRealityGap",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/VisACD--sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
-      "from": "entities/VisACD",
-      "to": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4771,27 +3581,6 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/VIRAL--overview",
-      "from": "overview",
-      "to": "entities/VIRAL",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/GRAIL--overview",
-      "from": "overview",
-      "to": "entities/GRAIL",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/AGILE--overview",
-      "from": "overview",
-      "to": "entities/AGILE",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/RoboticsSimulationInfrastructure--overview",
       "from": "overview",
       "to": "concepts/RoboticsSimulationInfrastructure",
@@ -4802,13 +3591,6 @@
       "id": "entities/UniLab--overview",
       "from": "overview",
       "to": "entities/UniLab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MagicSim--overview",
-      "from": "overview",
-      "to": "entities/MagicSim",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4890,13 +3672,6 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/RoboCasa365--overview",
-      "from": "overview",
-      "to": "entities/RoboCasa365",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/RobotLearningDataComposition--overview",
       "from": "overview",
       "to": "concepts/RobotLearningDataComposition",
@@ -4904,72 +3679,9 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/WorldModelEvaluation--overview",
-      "from": "overview",
-      "to": "concepts/WorldModelEvaluation",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/Seer--overview",
-      "from": "overview",
-      "to": "entities/Seer",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/DeFI--overview",
-      "from": "overview",
-      "to": "entities/DeFI",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationSensitivityAnalysis--overview",
-      "from": "overview",
-      "to": "concepts/SimulationSensitivityAnalysis",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--overview",
-      "from": "overview",
-      "to": "concepts/SimulationRealityGap",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationReady3DWorldGeneration--overview",
-      "from": "overview",
-      "to": "concepts/SimulationReady3DWorldGeneration",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/AgenticSceneTaskGeneration--overview",
-      "from": "overview",
-      "to": "concepts/AgenticSceneTaskGeneration",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--overview",
-      "from": "overview",
-      "to": "concepts/ExecutableEmbodiedInteractionInfrastructure",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/ContactComplementarity--overview",
       "from": "overview",
       "to": "concepts/ContactComplementarity",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/DifferentiablePhysics--overview",
-      "from": "overview",
-      "to": "concepts/DifferentiablePhysics",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4988,23 +3700,23 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/VisualSimToReal--overview",
+      "id": "concepts/WorldModelEvaluation--overview",
       "from": "overview",
-      "to": "concepts/VisualSimToReal",
+      "to": "concepts/WorldModelEvaluation",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/AssetConditionedHOIGeneration--overview",
+      "id": "concepts/SimulationSensitivityAnalysis--overview",
       "from": "overview",
-      "to": "concepts/AssetConditionedHOIGeneration",
+      "to": "concepts/SimulationSensitivityAnalysis",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/CompositionalGeneralizationInRobotics--overview",
+      "id": "concepts/SimulationReady3DWorldGeneration--overview",
       "from": "overview",
-      "to": "concepts/CompositionalGeneralizationInRobotics",
+      "to": "concepts/SimulationReady3DWorldGeneration",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5016,9 +3728,37 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/AwesomeWorldModels--overview",
+      "id": "concepts/AssetConditionedHOIGeneration--overview",
       "from": "overview",
-      "to": "entities/AwesomeWorldModels",
+      "to": "concepts/AssetConditionedHOIGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--overview",
+      "from": "overview",
+      "to": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--overview",
+      "from": "overview",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--overview",
+      "from": "overview",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai--sources/awesome-world-models",
+      "from": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "to": "sources/awesome-world-models",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5058,13 +3798,6 @@
       "confidence": 1.0
     },
     {
-      "id": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai--sources/awesome-world-models",
-      "from": "sources/awesome-world-models",
-      "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "sources/coacd-approximate-convex-decomposition--sources/coacd-repository",
       "from": "sources/coacd-repository",
       "to": "sources/coacd-approximate-convex-decomposition",
@@ -5079,9 +3812,9 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/DCOL--sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
+      "id": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives--sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
       "from": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
-      "to": "entities/DCOL",
+      "to": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5135,23 +3868,23 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/VIRAL--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "id": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors--sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
       "from": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
-      "to": "entities/VIRAL",
+      "to": "sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "entities/AGILE--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "id": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning--sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
       "from": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
-      "to": "entities/AGILE",
+      "to": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "entities/Mjlab--sources/isaac-lab-repository",
+      "id": "sources/isaac-lab-repository--sources/mjlab-repository",
       "from": "sources/isaac-lab-repository",
-      "to": "entities/Mjlab",
+      "to": "sources/mjlab-repository",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5184,9 +3917,9 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/PhysX--sources/isaac-sim-core-api-collision-approximation",
+      "id": "sources/isaac-sim-core-api-collision-approximation--sources/omniverse-omni-physics-articulations",
       "from": "sources/isaac-sim-core-api-collision-approximation",
-      "to": "entities/PhysX",
+      "to": "sources/omniverse-omni-physics-articulations",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5247,9 +3980,9 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/ManiSkill--sources/maniskill-repository",
+      "id": "sources/maniskill-repository--sources/robotics-simulation-infrastructure",
       "from": "sources/maniskill-repository",
-      "to": "entities/ManiSkill",
+      "to": "sources/robotics-simulation-infrastructure",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5261,16 +3994,9 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/IsaacLab--sources/mjlab-repository",
+      "id": "sources/mjlab-repository--sources/mujoco-warp-mjwarp-documentation",
       "from": "sources/mjlab-repository",
-      "to": "entities/IsaacLab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MJWarp--sources/mjlab-repository",
-      "from": "sources/mjlab-repository",
-      "to": "entities/MJWarp",
+      "to": "sources/mujoco-warp-mjwarp-documentation",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5296,9 +4022,9 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/MJWarp--sources/mujoco-playground-repository",
+      "id": "sources/mujoco-playground-repository--sources/mujoco-warp-mjwarp-documentation",
       "from": "sources/mujoco-playground-repository",
-      "to": "entities/MJWarp",
+      "to": "sources/mujoco-warp-mjwarp-documentation",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5310,16 +4036,9 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/Mjlab--sources/mujoco-warp-mjwarp-documentation",
+      "id": "entities/NVIDIA--sources/mujoco-warp-mjwarp-documentation",
       "from": "sources/mujoco-warp-mjwarp-documentation",
-      "to": "entities/Mjlab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MuJoCoPlayground--sources/mujoco-warp-mjwarp-documentation",
-      "from": "sources/mujoco-warp-mjwarp-documentation",
-      "to": "entities/MuJoCoPlayground",
+      "to": "entities/NVIDIA",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5334,6 +4053,13 @@
       "id": "concepts/SimulationRealityGap--sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
       "from": "sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
       "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/nvidia-ovrtx--syntheses/ovrtx-api-boundary",
+      "from": "sources/nvidia-ovrtx",
+      "to": "syntheses/ovrtx-api-boundary",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5408,6 +4134,13 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/RoboLab--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "from": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "to": "entities/RoboLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/VisionLanguageActionModels--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
       "from": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
       "to": "concepts/VisionLanguageActionModels",
@@ -5422,9 +4155,9 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/Pi07--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "id": "sources/pi07-steerable-generalist-robotic-foundation-model--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
       "from": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
-      "to": "entities/Pi07",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5457,22 +4190,15 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/MuJoCoUni--sources/unilab-repository",
+      "id": "sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco--sources/unilab-repository",
       "from": "sources/unilab-repository",
-      "to": "entities/MuJoCoUni",
+      "to": "sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
       "id": "entities/CoACD--sources/v-hacd-repository",
       "from": "sources/v-hacd-repository",
-      "to": "entities/CoACD",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/CoACD--sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
-      "from": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
       "to": "entities/CoACD",
       "type": "EXTRACTED",
       "confidence": 1.0
@@ -5614,13 +4340,6 @@
       "id": "sources/isaac-sim-asset-structure--syntheses/isaac-sim-mujoco-usda-runtime-semantics",
       "from": "syntheses/isaac-sim-mujoco-usda-runtime-semantics",
       "to": "sources/isaac-sim-asset-structure",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "sources/nvidia-ovrtx--syntheses/ovrtx-api-boundary",
-      "from": "syntheses/ovrtx-api-boundary",
-      "to": "sources/nvidia-ovrtx",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5786,6 +4505,13 @@
       "confidence": 1.0
     },
     {
+      "id": "syntheses/research-questions--syntheses/simulation-post-training-evaluation",
+      "from": "syntheses/research-questions",
+      "to": "syntheses/simulation-post-training-evaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/TaskGeneralistPolicyEvaluation--syntheses/research-questions",
       "from": "syntheses/research-questions",
       "to": "concepts/TaskGeneralistPolicyEvaluation",
@@ -5793,16 +4519,16 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/SimulationSensitivityAnalysis--syntheses/research-questions",
+      "id": "concepts/SimulationRealityGap--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/SimulationSensitivityAnalysis",
+      "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/SimulationRealityGap--syntheses/research-questions",
+      "id": "concepts/SimulationSensitivityAnalysis--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/SimulationRealityGap",
+      "to": "concepts/SimulationSensitivityAnalysis",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5817,13 +4543,6 @@
       "id": "concepts/RobotLearningDataComposition--syntheses/research-questions",
       "from": "syntheses/research-questions",
       "to": "concepts/RobotLearningDataComposition",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/RoboCasa365--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "entities/RoboCasa365",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5912,23 +4631,9 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/AGILE--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "entities/AGILE",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/AssetConditionedHOIGeneration--syntheses/research-questions",
       "from": "syntheses/research-questions",
       "to": "concepts/AssetConditionedHOIGeneration",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/GRAIL--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "entities/GRAIL",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5989,23 +4694,128 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/Pi07--syntheses/research-questions",
+      "id": "concepts/WheeledRobotKinematics--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "entities/Pi07",
+      "to": "concepts/WheeledRobotKinematics",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "entities/LDA1B--syntheses/research-questions",
+      "id": "concepts/WheeledMobileRobotClassification--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "entities/LDA1B",
+      "to": "concepts/WheeledMobileRobotClassification",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "entities/EI30K--syntheses/research-questions",
+      "id": "concepts/OmnidirectionalWheels--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "entities/EI30K",
+      "to": "concepts/OmnidirectionalWheels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/NonholonomicMobileRobots--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/NonholonomicMobileRobots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SteerableWheels--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/SteerableWheels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/research-questions--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/research-questions",
+      "to": "syntheses/wheeled-robot-modeling-learning-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/research-questions--syntheses/wheeled-robot-visual-lab",
+      "from": "syntheses/research-questions",
+      "to": "syntheses/wheeled-robot-visual-lab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MobileRobotOdometry--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/MobileRobotOdometry",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/OpenUSDSceneComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/3d-model-formats-learning-map--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "syntheses/3d-model-formats-learning-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/IsaacSimAssetStructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/isaac-sim-mujoco-control-tuning-notes--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ReducedCoordinateArticulations--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/ReducedCoordinateArticulations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/isaac-sim-mujoco-usda-runtime-semantics--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "syntheses/isaac-sim-mujoco-usda-runtime-semantics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/agentsserver--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/agentsserver",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AgentsDock--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "entities/AgentsDock",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/dsh-learning-map--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "syntheses/dsh-learning-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/awesome-world-models--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/awesome-world-models",
       "type": "EXTRACTED",
       "confidence": 1.0
     },

@@ -1,9 +1,9 @@
 ---
 title: "总览"
 type: synthesis
-tags: [research-dashboard, robotics, embodied-ai]
+tags: [robotics, embodied-ai]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
-last_updated: 2026-07-19
+modified: 2026-09-25
 ---
 
 # 总览
@@ -12,29 +12,11 @@ last_updated: 2026-07-19
 
 ## 当前总判断
 
-当前知识库的中心判断是：机器人学系统中的模型假设会通过仿真器、碰撞几何、世界模型、策略上下文、训练目标、数据生成契约、工作流与导出契约、传感器与渲染契约、训练运行时契约和基准设计进入下游决策与报告性能。这些假设在温和场景里可能被成功率掩盖，但在富接触动力学、长时域轨迹采样、异构数据、未见任务组合和仿真到现实迁移中会成为一阶失败来源。[[CollisionGeometryForRobotSimulation]] 把这条链条进一步推到接触流程上游：球体、胶囊体、圆柱体、凸包、ACD、SDF 或可微基元会改变接触点、法向量、间隙和求解器约束。[[VIRAL]] 的视觉仿真到现实迁移案例进一步说明，基于 RGB 的人形机器人移动操作迁移不是单一算法问题，而是特权教师策略、视觉学生策略蒸馏、视觉随机化、现实到仿真对齐、计算扩展和失败分析的耦合系统。[[GRAIL]] 又把这条链条推到示范数据来源：生成的视频先验只有在已知三维资产、公制相机参数与尺度、深度、交互感知重建、重定向和物理可执行性都成立时，才会变成机器人可用数据。[[AGILE]] 则把人形机器人强化学习的工作流与导出契约纳入同一张图：关节轴、奖励激活、运动诊断、I/O 描述文件和策略导出不匹配也可能造成静默部署失败。[[RoboticsSimulationInfrastructure]] 把链条继续前推：任务/API、资产管理、渲染器、可视化工具和机器学习集成会决定哪些场景容易表达、哪些失败容易发现、多少资源能够留给训练。[[UniLab]] 进一步把训练运行时纳入基础设施层：采集器与学习器的放置、回放边界、主机到设备传输、缓冲和同步会决定机器人 RL 的端到端实际运行效率。[[MagicSim]] 则把回合执行本身定义成基础设施契约：同一初态、任务 MDP、技能 / 规划轨迹、观测、语言和终态需要可重放地对齐，物理时钟同步而语义状态按环境异步推进，成功门控同时成为评测信号和数据写入条件。[[RTXSensorSimulationPipeline]] 则把渲染器与传感器输出契约具体化：在 ovrtx 中，OpenUSD 组合、RenderProduct/RenderVar 结构规范、DLPack 张量映射、GPU 同步和预热策略都会影响观测张量的含义与可靠性。
+当前知识库的中心判断是：机器人学系统中的模型假设会通过仿真器、碰撞几何、世界模型、策略上下文、训练目标、数据生成契约、工作流与导出契约、传感器与渲染契约、训练运行时契约和基准设计进入下游决策与报告性能。这些假设在温和场景里可能被成功率掩盖，但在富接触动力学、长时域轨迹采样、异构数据、未见任务组合和仿真到现实迁移中会成为一阶失败来源。[[CollisionGeometryForRobotSimulation]] 把这条链条进一步推到接触流程上游：球体、胶囊体、圆柱体、凸包、ACD、SDF 或可微基元会改变接触点、法向量、间隙和求解器约束。[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]] 的视觉仿真到现实迁移案例进一步说明，基于 RGB 的人形机器人移动操作迁移不是单一算法问题，而是特权教师策略、视觉学生策略蒸馏、视觉随机化、现实到仿真对齐、计算扩展和失败分析的耦合系统。[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 又把这条链条推到示范数据来源：生成的视频先验只有在已知三维资产、公制相机参数与尺度、深度、交互感知重建、重定向和物理可执行性都成立时，才会变成机器人可用数据。[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] 则把人形机器人强化学习的工作流与导出契约纳入同一张图：关节轴、奖励激活、运动诊断、I/O 描述文件和策略导出不匹配也可能造成静默部署失败。[[RoboticsSimulationInfrastructure]] 把链条继续前推：任务/API、资产管理、渲染器、可视化工具和机器学习集成会决定哪些场景容易表达、哪些失败容易发现、多少资源能够留给训练。[[UniLab]] 进一步把训练运行时纳入基础设施层：采集器与学习器的放置、回放边界、主机到设备传输、缓冲和同步会决定机器人 RL 的端到端实际运行效率。[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] 则把回合执行本身定义成基础设施契约：同一初态、任务 MDP、技能 / 规划轨迹、观测、语言和终态需要可重放地对齐，物理时钟同步而语义状态按环境异步推进，成功门控同时成为评测信号和数据写入条件。[[RTXSensorSimulationPipeline]] 则把渲染器与传感器输出契约具体化：在 ovrtx 中，OpenUSD 组合、RenderProduct/RenderVar 结构规范、DLPack 张量映射、GPU 同步和预热策略都会影响观测张量的含义与可靠性。
 
 这条判断把多类材料连成一条主线。[[ContactModelsInRobotics|机器人学中的接触模型]] 说明底层接触定律与 [[ContactSolvers|求解器]] 不是实现细节，而是任务层级的建模假设；[[WorldModelsForEmbodiedAI|世界模型]] 说明学得的潜在动力学也是一种仿真器，只是失败可能表现为时间漂移、物理一致性弱或对未来状态的误导；[[VisionLanguageActionModels|VLA]] 和 [[RobotContextConditioning|上下文条件化]] 说明机器人基础模型的行为模式由提示、元数据、子目标图像和控制模式共同选择；[[LatentDynamicsActionModels|潜在动力学动作模型]] 与 [[InverseDynamicsModels|逆动力学模型]] 说明数据质量的影响取决于训练目标如何分配数据作用，以及如何把视觉变化转成动作表示；[[TaskGeneralistPolicyEvaluation|任务泛化策略评估]] 说明基准判定条件、语言变体和扰动规程决定哪些失败会被看见；[[HumanoidRLWorkflow|人形机器人强化学习工作流]] 说明即使策略和奖励看起来正常，开发契约仍可能决定仿真到现实迁移是否可靠；[[RoboticsSimulationInfrastructure|仿真基础设施]] 与 [[RTXSensorSimulationPipeline|传感器渲染流程]] 说明场景制作、资产、渲染输出和机器学习循环也会成为研究流程中的隐含假设。[[EmbodiedGen]] 进一步说明，生成式世界只有跨过公制几何、碰撞、物理参数、语义、可供性、接口和可执行验证这些关卡，才会从三维内容变成机器人学习基础设施。
 
-[[RoboCasa365]] 为“数据规模化不是单一数量轴”增加了受控证据。扩大人类示范的任务覆盖和预训练场景覆盖能够改善目标任务与未见组合任务，但向 Human300 中加入规模更大的混合质量 MimicGen 数据没有继续提高结果；两阶段预训练—后训练又明显优于相同数据的单阶段联合训练。由此，[[RobotLearningDataComposition|机器人学习数据构成]] 应把任务、场景、来源、质量、采样权重与训练阶段视为共同决定梯度分布的变量。
-
-## 研究问题面板
-
-| 问题 | 当前判断 | 主要入口 |
-| --- | --- | --- |
-| 世界模型对机器人决策的价值在哪里？ | 有价值的世界模型不只是生成合理的未来，而是能改变动作选择、策略表示或评估信号。π0.7 把它用作视觉子目标生成器，LDA-1B 把它用作潜在动力学预训练。 | [[WorldModelsForEmbodiedAI]], [[WorldModelEvaluation]], [[LatentDynamicsActionModels]] |
-| 逆动力学模型怎么从视频学动作？ | Seer 在动作标注的机器人数据上联合训练未来 RGB 预测与动作序列预测；DeFI 把 IDM 写成自监督潜在动作表示学习，从当前和未来 DINO 特征重建未来特征，并用 VQ 瓶颈得到潜在动作标记。 | [[InverseDynamicsModels]], [[Seer]], [[DeFI]], [[LatentDynamicsActionModels]] |
-| 仿真基准能证明什么？ | 基准更适合作为诊断工具，而不是部署证明。RoboLab 能定位任务、语言、物体、相机和场景敏感性，但真实/仿真代理的有效性仍会随策略与任务族改变。 | [[TaskGeneralistPolicyEvaluation]], [[SimulationSensitivityAnalysis]], [[SimulationRealityGap]] |
-| 生成式三维世界什么时候才算可用于机器人学习？ | 视觉合理性不够；还需要公制、物理、语义、可供性和接口完整性，以及仿真器侧的碰撞、沉降、可达性和任务执行验证。 | [[EmbodiedGen]], [[SimulationReady3DWorldGeneration]], [[AgenticSceneTaskGeneration]] |
-| 基准、数据生成和智能体交互能否共享同一仿真回合？ | MagicSim 的答案是共享任务 MDP 与确定性批处理运行时：驱动器可以不同，但世界、控制、任务终态和记录契约必须相同。当前证据主要是系统架构与能力覆盖，不是统一基准上的定量胜出。 | [[MagicSim]], [[ExecutableEmbodiedInteractionInfrastructure]], [[RoboticsSimulationInfrastructure]] |
-| 接触求解器选择为什么会影响学习/控制？ | 接触求解器选择会改变力、冲量、能量耗散和收敛残差；这些误差会进入 MPC、RL、系统辨识和可微优化。 | [[ContactModelsInRobotics]], [[ContactComplementarity]], [[ContactSolvers]], [[DifferentiablePhysics]] |
-| 碰撞几何选择为什么会影响机器人仿真？ | 碰撞体表示决定候选接触、接触点、法向量和间隙；基元、单一凸包、ACD、SDF 与可微基元在保真度、速度、可编辑性和梯度上有不同取舍。 | [[CollisionGeometryForRobotSimulation]], [[ApproximateConvexDecomposition]], [[DifferentiableCollisionDetection]] |
-| 视觉仿真到现实迁移如何跨过仿真—现实差距？ | VIRAL 说明迁移方案至少要同时处理视觉分布、相机几何、手部动力学、蒸馏分布和计算规模；域随机化与现实到仿真对齐是互补项，不是替代项。 | [[VisualSimToReal]], [[VIRAL]], [[SimulationRealityGap]] |
-| 人形机器人移动操作示范数据如何规模化？ | GRAIL 说明一条全数字化路线：先指定三维资产、公制场景、相机和按机器人比例设计的人体模型，再用 VFM 先验生成交互，并通过四维人物—物体交互重建、重定向和通用任务跟踪器转成机器人动作数据。 | [[AssetConditionedHOIGeneration]], [[GRAIL]], [[VisualSimToReal]] |
-| 异构机器人数据是噪声还是资源？ | 不是数据混杂本身决定成败，而是系统是否显式建模数据作用。π0.7 用运行时上下文引导，LDA-1B 用目标路由和 DINO 潜在动力学。 | [[RobotContextConditioning]], [[LatentDynamicsActionModels]], [[VisionLanguageActionModels]] |
-| 仿真机器人预训练更依赖数据量还是数据构成？ | 总量不是充分条件。RoboCasa365 显示任务和场景覆盖有益，混合质量合成数据可能稀释收益，预训练—后训练顺序也会显著改变结果。 | [[RobotLearningDataComposition]], [[RoboCasa365]], [[CompositionalGeneralizationInRobotics]] |
-| 人形机器人强化学习从训练到硬件怎样减少静默失败？ | AGILE 把验证、训练、评估和部署导出形式化成工作流契约；关键不是单个新算法，而是提前检查 MDP、记录运行信息、做确定性场景诊断，并用 I/O 描述文件避免导出不匹配。 | [[HumanoidRLWorkflow]], [[AGILE]], [[SimulationRealityGap]] |
-| 当前证据最薄弱在哪里？ | 最强证据来自来源特有的基准和消融；最弱环节是跨系统、跨机器人、跨基准的独立复现与真实部署因果验证。 | [[research-questions|研究问题]], [[SimulationRealityGap]] |
+[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 为“数据规模化不是单一数量轴”增加了受控证据。扩大人类示范的任务覆盖和预训练场景覆盖能够改善目标任务与未见组合任务，但向 Human300 中加入规模更大的混合质量 MimicGen 数据没有继续提高结果；两阶段预训练—后训练又明显优于相同数据的单阶段联合训练。由此，[[RobotLearningDataComposition|机器人学习数据构成]] 应把任务、场景、来源、质量、采样权重与训练阶段视为共同决定梯度分布的变量。
 
 ## 证据图谱
 
@@ -64,28 +46,13 @@ last_updated: 2026-07-19
 - 碰撞体保真度与吞吐量/可编辑性：单一凸包和基元快且易编辑，但可能填满任务关键凹度；ACD/SDF 更保真但增加预处理、运行时成本和接触复杂度；可微的基元给梯度，但不是完整接触动力学。见 [[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[DifferentiableCollisionDetection]]。
 - 保真度与决策相关性：世界模型生成未来帧的视觉质量不等于控制价值；对具身智能，更关键的是潜在状态、轨迹采样时域、动作条件化和下游策略/评估是否受益。见 [[WorldModelEvaluation]]。
 - 数据规模化与数据作用：更多机器人/人类/视频数据不自动带来更好的策略；π0.7、LDA-1B、Seer 和 DeFI 都把异构性的关键放在条件化、目标路由、未来条件化的逆动力学或逆动力学代理任务，而不是单纯扩大 BC 语料库。见 [[RobotContextConditioning]]、[[LatentDynamicsActionModels]]、[[InverseDynamicsModels]]。
-- 数据数量与数据构成：RoboCasa365 的任务/场景消融支持扩大覆盖，但 Human300+MG60 低于 Human300，说明合成轨迹的数量、质量、采样权重和训练阶段必须分开审计。见 [[RobotLearningDataComposition]]、[[RoboCasa365]]。
+- 数据数量与数据构成：RoboCasa365 的任务/场景消融支持扩大覆盖，但 Human300+MG60 低于 Human300，说明合成轨迹的数量、质量、采样权重和训练阶段必须分开审计。见 [[RobotLearningDataComposition]]、[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]。
 - 基准覆盖范围与部署置信度：RoboLab 这类基准能系统暴露通用任务策略的失效情形，但它仍是测量基底；真实部署还需要验证 sim 失败因素是否在硬件上因果。见 [[TaskGeneralistPolicyEvaluation]]、[[SimulationSensitivityAnalysis]]。
 - 结构与可修改性：配置驱动的仿真 APIs 更利于序列化、治理和一致的资产；直接使用 Python 的 APIs 更利于快速制作和实验。这个取舍会影响人类开发者、LLM 场景生成和基准可维护性。见 [[RoboticsSimulationInfrastructure]]。
 - 视觉合理性与仿真可用性：生成模型可以产出看起来合理的网格/场景，但机器人学习还要求公制尺度、碰撞体、物理参数、关节语义、可供性、任务约束和稳定的接口；任何一层缺失都可能让内容无法执行或产生静默不匹配。见 [[SimulationReady3DWorldGeneration]]、[[EmbodiedGen]]。
 - 传感器契约与不透明的渲染：把传感器输出写成 `RenderProduct` / `RenderVar` / DLPack 契约可以改善可复现性、调试和机器学习集成；但观测张量的物理真实性仍取决于传感器模型、材质语义、标定和验证。见 [[RTXSensorSimulationPipeline]]。
 - 驻留 GPU 的耦合与异构重叠：把物理、轨迹采样和学习放在 GPU 执行路径上很有效，但也可能制造加速器资源争用、CUDA 技术栈依赖和重放内存压力；CPU 批量仿真 + GPU 学习只有在运行时能把采集 / 打包 / H2D 隐藏的隐藏在学习器更新时才成立。见 [[HeterogeneousRobotRLTraining]]。
-- 算法层面的 novelty 与工作流正确性：AGILE 提示人形机器人强化学习的失败可能来自工作流边界，而不是策略架构本身；关节顺序、历史缓冲区、动作扩展、奖励激活和确定性运动诊断都需要进入开发契约。见 [[HumanoidRLWorkflow]]、[[AGILE]]。
-- 生成先验与指标语义落地：GRAIL 把 VFM 当作交互先验，而不是 4D 真值；已知资产、相机、深度和形态可以降低重建歧义，但 VFM 产物、接触力、重定向和硬件动力学仍要单独验证。见 [[AssetConditionedHOIGeneration]]、[[GRAIL]]。
-- 成功轨迹质量与尝试分布覆盖：MagicSim 只在任务成功后写入完整轨迹，使动作、观测和标注保持一致，却会移除失败、截断与难例。数据生成系统应同时报告总尝试数、失败类型和门控比例。见 [[ExecutableEmbodiedInteractionInfrastructure]]、[[MagicSim]]。
+- 算法层面的 novelty 与工作流正确性：AGILE 提示人形机器人强化学习的失败可能来自工作流边界，而不是策略架构本身；关节顺序、历史缓冲区、动作扩展、奖励激活和确定性运动诊断都需要进入开发契约。见 [[HumanoidRLWorkflow]]、[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]]。
+- 生成先验与指标语义落地：GRAIL 把 VFM 当作交互先验，而不是 4D 真值；已知资产、相机、深度和形态可以降低重建歧义，但 VFM 产物、接触力、重定向和硬件动力学仍要单独验证。见 [[AssetConditionedHOIGeneration]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]]。
+- 成功轨迹质量与尝试分布覆盖：MagicSim 只在任务成功后写入完整轨迹，使动作、观测和标注保持一致，却会移除失败、截断与难例。数据生成系统应同时报告总尝试数、失败类型和门控比例。见 [[ExecutableEmbodiedInteractionInfrastructure]]、[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]]。
 - 可微性与物理真值：可微仿真与可微的渲染让梯度可用，但接触松弛、伪力或学得的动力学产物可能污染梯度方向。见 [[DifferentiablePhysics]]、[[SimulationRealityGap]]。
-
-## 下一步缺口
-
-- 补充独立复现或后续来源：π0.7、LDA-1B、RoboLab、VIRAL 和 AGILE 都有强来源特有的主张，但需要更多外部复现、失败案例或对比评测。
-- 追踪 RoboCasa365 的独立复现、逐轨迹合成数据质量、相同有效样本数/训练预算下的数据构成消融、组合任务逐阶段指标，以及不同机器人和真实厨房中的迁移结果。
-- 追踪 MagicSim 的项目主页、代码、依赖版本和定量报告：重点核对当前 / 计划能力边界，收集环境规模—步频、规划延迟、采集成功率、失败类型、确定性层级和真实机器人或 sim-to-sim 证据。
-- 追踪 AGILE/WBC-AGILE 的后续硬件报告：当前来源对工作流、评估和消融实验很有价值，但现实世界定量跟踪指标与感知驱动的人形机器人操作仍是明显缺口。
-- 追踪 GRAIL 项目页面、代码、数据集和后续报告：当前来源已给出 arXiv v1 的流程、损失项、运行时、基准和现实世界成功比率，但发布产物、失败过滤比率、VFM 版本漂移与独立复现仍是关键缺口。
-- 追踪 EmbodiedGen V2 的代码/数据发布、跨仿真器动力学验证、物理参数真实值、可供性端到端基准和配套策略扩展研究；当前论文证明了流程可行性，但没有把仿真可用性升级成物理等价性保证。
-- 给世界模型论文建立更结构化收录元数据：时域、输入模态、动作耦合、闭环验证、真实机器人验证、基准、代码/数据可用性。这个需求来自 [[WorldModelEvaluation]] 与 [[AwesomeWorldModels]]。
-- 追踪“潜在动力学 + 运行时上下文引导 + predictive 逆动力学”是否会合流：LDA-1B 的目标路由、π0.7 的运行时转向、Seer 的端到端 PIDM 与 DeFI 的解耦的 GFDM/GIDM 看起来互补，但当前来源还没有证明组合系统。
-- 对仿真—现实差距保持多层解释：差距不只来自物理引擎参数，也可能来自学得的动力学目标、策略提示/上下文、工作流/导出契约、传感器/渲染契约、基准判定条件和评估汇总。见 [[SimulationRealityGap]]。
-- 补充仿真基础设施官方来源：ManiSkill、Isaac Lab、MuJoCo Lab、SAPIEN 和 Viser 的文档/代码仓库快照，可以把当前博客层级设计视角转成更可维护的实现笔记。见 [[RoboticsSimulationInfrastructure]]。
-- 补充机器人 RL 训练系统来源：MuJoCoUni、MotrixSim、UniLab 代码仓库、mjlab / MjWarp、MuJoCo Playground、Isaac Lab 和 ManiSkill3 的官方文档/代码仓库快照，可以把 [[HeterogeneousRobotRLTraining]] 从单篇系统论文扩展成可比较的运行时分类体系。
-- 补充引擎特定的碰撞体基准：同一资产的胶囊体 / 基元 / 凸包 / CoACD / VisACD / SDF 碰撞体在 MuJoCo、Isaac Sim / PhysX、Bullet、Drake 中对接触数量、求解器残差、训练吞吐量、操作成功和仿真到现实迁移的影响仍缺系统比较。

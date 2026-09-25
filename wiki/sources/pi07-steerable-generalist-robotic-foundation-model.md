@@ -1,9 +1,9 @@
 ---
 title: "π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities"
 type: source
-tags: [robotics, robot-foundation-models, vla, context-conditioning, generalization]
+tags: [robotics, robot-foundation-models, vla, generalization, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-09-25
 source_file: raw/pi07.pdf
 source_kind: pdf
 source_date: 2026-04-16
@@ -13,7 +13,7 @@ extracted_text: graph/extracts/pi07.md
 
 ## 摘要
 
-物理 Intelligence 的 π0.7 论文提出一个 [[Pi07|π0.7]] 机器人基础模型：它不只把任务语言映射到动作，而是把任务指令、子任务指令、生成的子目标图像、回合元数据和控制模式都放进提示与上下文，让同一个 [[VisionLanguageActionModels|VLA（视觉—语言—动作模型）]] 可以利用示范数据、质量混合的自主数据、人类第一视角视频和网络多模态数据。
+物理 Intelligence 的 π0.7 论文提出一个 [[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 机器人基础模型：它不只把任务语言映射到动作，而是把任务指令、子任务指令、生成的子目标图像、回合元数据和控制模式都放进提示与上下文，让同一个 [[VisionLanguageActionModels|VLA（视觉—语言—动作模型）]] 可以利用示范数据、质量混合的自主数据、人类第一视角视频和网络多模态数据。
 
 论文的核心判断是：大规模异质数据本身不够，机器人策略需要 [[RobotContextConditioning|上下文条件化]] 来区分回合的策略、质量、速度、错误与视觉 outcome。否则模型会在不同 strategy/模式之间平均，学到 suboptimal 行为。π0.7 用更丰富的上下文把“数据多样性”转成可 steer 的行为空间，并在实验中展示 out-的-the-盒体 dexterity、指令 following、跨机器人形态迁移和 [[CompositionalGeneralizationInRobotics|组合式泛化 in 机器人学]]。
 
@@ -42,10 +42,49 @@ extracted_text: graph/extracts/pi07.md
 - "out of the box"
 - "compositional generalization"
 
+### PhysicalIntelligence
+
+物理 Intelligence 是 [[pi07-steerable-generalist-robotic-foundation-model|π0.7 论文]] 的发布组织。当前知识库中它主要作为 [[pi07-steerable-generalist-robotic-foundation-model|π0.7]]、π0.6/MEM/RL-specialist 模型 line、机器人数据采集基础设施与机器人基础模型研究的实体出现。
+
+在这个来源中，物理 Intelligence 的技术 thesis 是：机器人基础模型的泛化不只来自更多参数或更多示范，还来自能把异构数据标注为不同 strategy、质量、速度、错误和目标状态的 [[RobotContextConditioning|上下文条件化]]。这让一个通用型 VLA 在测试时被 steer 到特定行为模式，而不是平均掉数据集中互相冲突的轨迹。
+
+本页只记录该来源对物理 Intelligence 的处理方式；关于公司状态、产品化部署或模型开放性，需要另行收录官方页面、模型 card 或独立 evaluations。
+
+### Pi07
+
+π0.7 是 [[pi07-steerable-generalist-robotic-foundation-model|Physical Intelligence]] 在 [[pi07-steerable-generalist-robotic-foundation-model|π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities]] 中提出的 steerable 通用型机器人基础模型。它属于 [[VisionLanguageActionModels|VLA（视觉语言动作模型）]] 族：输入多视角观测、本体感知历史与提示/上下文，输出 continuous 机器人动作 chunks。
+
+#### 模型结构
+
+π0.7 约 5B 参数：一个 4B Gemma3 VLM 主干网络，一个 MEM-风格视频历史编码器，以及一个 860M-参数流程-匹配动作专家。观测 $o_t=[I_t^1,\dots,I_t^n,q_t]$ 由最多四个相机视图和机器人关节配置 $q_t$ 组成；动作专家预测 50-步骤动作 chunk $a_{t:t+H}$，运行时只执行其中 $H'$ 个步骤并持续异步刷新。
+
+π0.7 的关键不是只换主干网络，而是扩展上下文 $C_t$：任务指令、子任务指令、生成的子目标图像、回合元数据与控制模式都可以进入提示。训练时随机 dropout 这些组件，因此测试时可以只给语言，也可以加元数据、视觉子目标或人类 coaching。
+
+#### 机制角色
+
+π0.7 把大规模混合机器人数据集的问题改写成条件建模问题。失败、低质量示范、RL-trained 策略轨迹采样、人类第一视角视频和 web 数据都可能有用，但前提是上下文让模型知道当前轨迹是快/慢、好/坏、有/无错误、关节/ee 控制，以及 near-未来视觉状态应该是什么。
+
+```mermaid
+flowchart LR
+  A["异构数据<br/>demo / 自主 / 人类 / web"] --> B["上下文 labels<br/>语言, 元数据, 子目标, 控制模式"]
+  B --> C["π0.7 VLA<br/>条件化的动作策略"]
+  D["高层策略或人类 coaching"] --> E["子任务指令"]
+  E --> F["世界模型<br/>子目标图像生成器"]
+  F --> C
+  E --> C
+  C --> G["机器人动作块"]
+```
+
+#### 来源证据
+
+论文报告 π0.7 在灵巧分布内任务上可以 out-的-the-盒体接近任务特定的 specialists；在未见的 kitchens/bedrooms 中提升指令 following；在 bimanual UR5e 上展示跨机器人形态 laundry folding；并能通过语言 coaching 学习未收集动作示范的 appliance 任务。
+
+这些主张需要按来源特有的证据使用：论文的实验规模很大，但模型 weights、完整数据、独立 reproduction 和公开基准并未在本来源中提供。
+
 ## 关联
 
-- [[Pi07]] - 本来源的核心模型/实体页面。
-- [[PhysicalIntelligence]] - 发布 π0.7 论文与相关模型 line 的组织。
+- [[pi07-steerable-generalist-robotic-foundation-model|Pi07]] - 本来源的核心模型/实体页面。
+- [[pi07-steerable-generalist-robotic-foundation-model|PhysicalIntelligence]] - 发布 π0.7 论文与相关模型 line 的组织。
 - [[VisionLanguageActionModels]] - π0.7 所在的动作预测模型族。
 - [[RobotContextConditioning]] - 本文最重要的机制：用更丰富的上下文解开异构机器人数据的歧义。
 - [[CompositionalGeneralizationInRobotics]] - 本文围绕未见的任务、语言 coaching 和跨机器人形态迁移展示的能力类型。

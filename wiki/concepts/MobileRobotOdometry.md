@@ -1,9 +1,9 @@
 ---
 title: "移动机器人里程计"
 type: concept
-tags: [robotics, wheeled-robots, odometry, state-estimation]
+tags: [robotics, wheeled-robots]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 移动机器人里程计

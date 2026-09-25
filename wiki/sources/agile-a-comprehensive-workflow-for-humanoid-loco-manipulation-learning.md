@@ -1,9 +1,9 @@
 ---
 title: "AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning"
 type: source
-tags: [robotics, humanoid-rl, sim-to-real, reinforcement-learning, evaluation]
+tags: [robotics, sim-to-real, reinforcement-learning, evaluation, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-09-25
 source_file: raw/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2603.20147
@@ -14,7 +14,7 @@ code_url: https://github.com/nvidia-isaac/WBC-AGILE
 
 ## 摘要
 
-Huihua Zhao、Rafael Cathomen、Lionel Gulich、Wei Liu、Efe Arda Ongan、Michael Lin、Shalin Jain、Soha Pouya 和 Yan Chang 提出 [[AGILE]]，一个基于 Isaac Lab 与 RSL-RL 的端到端人形机器人 RL 工作流，用来把环境验证、可复现的训练、统一的评估和描述文件驱动的部署接成同一个 development 生命周期。论文的核心判断是：许多人形机器人 RL 部署失败并不主要来自仿真吞吐量或单个 RL 算法不够新，而来自工作流差距与迁移差距，例如关节轴错误、奖励 term 错误、评估只看随机轨迹采样、策略导出时关节顺序/历史/动作扩展不一致。
+Huihua Zhao、Rafael Cathomen、Lionel Gulich、Wei Liu、Efe Arda Ongan、Michael Lin、Shalin Jain、Soha Pouya 和 Yan Chang 提出 [[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]]，一个基于 Isaac Lab 与 RSL-RL 的端到端人形机器人 RL 工作流，用来把环境验证、可复现的训练、统一的评估和描述文件驱动的部署接成同一个 development 生命周期。论文的核心判断是：许多人形机器人 RL 部署失败并不主要来自仿真吞吐量或单个 RL 算法不够新，而来自工作流差距与迁移差距，例如关节轴错误、奖励 term 错误、评估只看随机轨迹采样、策略导出时关节顺序/历史/动作扩展不一致。
 
 AGILE 不是一个单一策略模型，而是一套 [[HumanoidRLWorkflow|人形机器人强化学习工作流]]：训练前用 GUI 验证关节、接触和奖励；训练时记录 git 快照、YAML 配置、W&B/Docker runs，并集成 L2C2、在线奖励归一化、价值-bootstrapped terminations、虚拟的 harness、symmetry 扩充等稳定化模块；评估时同时跑确定性场景测试和随机轨迹采样，并报告 RMS 加速度、加加速度、关节限制 violations 等部署关键指标；部署时导出 TorchScript 策略与 YAML I/O 描述文件，让 MuJoCo 跨仿真器验证和硬件推理复用同一 I/O 契约。
 
@@ -48,9 +48,34 @@ AGILE 不是一个单一策略模型，而是一套 [[HumanoidRLWorkflow|人形�
 - "descriptor-driven deployment"
 - "fix the simulation to match reality"
 
+### AGILE
+
+AGILE（A Generic Isaac-Lab 基于引擎）是一个开源人形机器人 RL 工作流层，构建在 Isaac Lab 与 RSL-RL 之上，用来把机器人/任务配置、训练稳定化、评估指标和部署导出统一到同一个生命周期。它对应的来源是 [[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning]]，代码发布在 https://github.com/nvidia-isaac/WBC-AGILE。
+
+```mermaid
+flowchart LR
+  A["Prepare<br/>关节/物体/奖励 GUI"] --> B["训练<br/>可复现的 runs + 稳定化"]
+  B --> C["Evaluate<br/>场景测试 + 随机轨迹采样"]
+  C --> D["Deploy<br/>TorchScript + YAML descriptors"]
+  D --> E["Sim2Sim / Sim2Real<br/>共享推理契约"]
+```
+
+AGILE 的重要性不在于替代 PPO、Isaac Lab 或 MuJoCo，而在于把容易出错的边界条件变成显式契约。关节轴、奖励 term、物体接触、观测顺序、历史缓冲区和动作规模扩展都是人形机器人 RL 中常见的静默失败来源；AGILE 用 pre-训练 GUIs、git/配置快照、确定性评估和描述文件驱动的导出来减少这些错误进入硬件试验。
+
+#### 组成
+
+- Prepare：关节位置 GUI、物体操作 GUI、奖励可视化工具，用于训练前检查机器人模型与 MDP。
+- 训练：基于 RSL-RL 的训练循环、点云或局部运行、W&B 日志记录、Docker 编排、缩放参数字典扫描和可开关的稳定化模块。
+- Evaluate：Isaac Lab 与 MuJoCo 中共享确定性场景测试、随机轨迹采样、RMS 加速度、加加速度、关节限制 violations 和 HTML 报告。
+- Deploy：TorchScript 策略与 YAML I/O 描述文件记录关节名称、观测顺序、历史缓冲区、动作规模扩展，并支撑 Python/C++ 推理。
+
+#### 证据边界
+
+来源支持 AGILE 在 Unitree G1 与 Booster T1 上覆盖移动、height 控制、stand-up、运动模仿和移动操作/VLA 仿真情形。更广泛的硬件族、感知驱动的操作、running/stair climbing 和定量现实世界跟踪指标仍是开放问题。
+
 ## 关联
 
-- [[AGILE]] - 本来源的工作流/实体页面。
+- [[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] - 本来源的工作流/实体页面。
 - [[HumanoidRLWorkflow]] - 机制页：把验证、训练、评估、描述文件导出和仿真到现实迁移部署写成生命周期。
 - [[SimulationRealityGap]] - AGILE 把现实差距具体化为执行器建模、接触动力学、aggressive 策略和导出契约不匹配。
 - [[TaskGeneralistPolicyEvaluation]] - AGILE 的确定性场景测试与运动质量诊断信息是策略评估的 complementary 视角。

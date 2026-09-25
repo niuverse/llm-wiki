@@ -1,14 +1,14 @@
 ---
 title: "通用任务策略评估"
 type: concept
-tags: [robotics, evaluation, benchmarks, vla]
+tags: [robotics, evaluation, vla]
 sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
-last_updated: 2026-07-19
+modified: 2026-07-19
 ---
 
 # 通用任务策略评估
 
-任务通用策略评估（任务泛化策略评估）关注的不是一个策略能否在单个脚本化操作任务上成功，而是它能否在没有专门共同训练的任务、语言变体、物体、场景和扰动上保持可解释的性能。[[RoboLab]] 把这个问题写成对现成策略的诊断基准：任务库定义目标与判定条件，环境注册组合机器人、策略和传感器，评估脚本记录成功、子任务得分、轨迹指标和错误物体失败。[[RoboCasa365]] 则把同一问题扩展到训练数据与学习阶段：它用原子、已见组合和未见组合任务，分别测量短时域技能、见过的任务序列和零样本任务组合。
+任务通用策略评估（任务泛化策略评估）关注的不是一个策略能否在单个脚本化操作任务上成功，而是它能否在没有专门共同训练的任务、语言变体、物体、场景和扰动上保持可解释的性能。[[RoboLab]] 把这个问题写成对现成策略的诊断基准：任务库定义目标与判定条件，环境注册组合机器人、策略和传感器，评估脚本记录成功、子任务得分、轨迹指标和错误物体失败。[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 则把同一问题扩展到训练数据与学习阶段：它用原子、已见组合和未见组合任务，分别测量短时域技能、见过的任务序列和零样本任务组合。
 
 ## 数学结构
 
@@ -36,7 +36,7 @@ $$
 
 这个形式化表述的重点是把“策略能做什么”拆成多个可诊断轴。任务判定条件决定什么算成功，指令变体决定语言歧义有多大，场景/物体分布决定是否真的 OOD，扰动参数决定鲁棒性的测试范围。一个高分但只在默认语言、已见物体、固定相机下成功的策略，与一个在模糊的/特定的变体、视觉相似物体、相机/光照扰动下稳定的策略，代表的能力不同。
 
-[[robotics-simulation-infrastructure|机器人学仿真基础设施]] 补充了一个基准工程视角：评估是否可扩展，不只取决于任务列表，也取决于任务/API 层、资产 management、渲染吞吐量/保真度、可视化工具诊断信息和 ML 集成。也就是说，基准的 scientific 价值依赖基础设施能否稳定生成场景、并行轨迹采样、暴露失败状态、记录奖励/轨迹/策略行为，并把这些数据连接到评估指标。
+[[robotics-simulation-infrastructure|机器人学仿真基础设施]] 补充了一个基准工程视角：评估是否可扩展，不只取决于任务列表，也取决于任务/API 层、资产管理、渲染吞吐量/保真度、可视化工具诊断信息和 ML 集成。也就是说，基准的 scientific 价值依赖基础设施能否稳定生成场景、并行轨迹采样、暴露失败状态、记录奖励/轨迹/策略行为，并把这些数据连接到评估指标。
 
 [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 给这个概念增加了数据生成 / 跟踪视角：对人形机器人移动操作，不仅要问策略是否在一个任务上重放参考基准，还要问生成的 4D HOI 数据池能否训练任务一般性跟踪器。它把评估分成生成的 HOI 质量、物理可执行性、任务一般性跟踪指标（SR、ObjPos、MPJPE-L）和真实视觉部署成功，避免只用 perceptual 视频得分或单条轨迹跟踪证明机器人实用价值。
 
@@ -84,7 +84,7 @@ flowchart TD
 - 对多任务与基础模型评测，应至少分开原子任务、已见组合任务和未见组合任务，并按阶段数报告成功；目标任务是否在预训练中出现必须显式记录。
 - 对数据消融，应把任务覆盖、场景覆盖、示范来源、轨迹质量、采样权重和训练阶段接到 [[RobotLearningDataComposition|机器人学习数据构成]]，避免把“更多数据”当作单一变量。
 - 对基准设计，任务生成应持续加入低重叠物体/任务和受控扰动，避免模型在固定基准上过拟合。
-- 对 [[SimulationRealityGap|仿真到现实迁移]]，仿真基准更适合作为诊断 instrument：它可以定位敏感性和失败类型，但不能单独证明真实部署可靠。
+- 对 [[SimulationRealityGap|仿真到现实迁移]]，仿真基准更适合作为诊断工具：它可以定位敏感性和失败类型，但不能单独证明真实部署可靠。
 - 对 [[CompositionalGeneralizationInRobotics|组合式泛化]]，短时域任务成功仍需要区分视觉 recognition、关系推理推理、过程推理可供性和动作执行的贡献。
 - 对 [[RoboticsSimulationInfrastructure|仿真基础设施]]，策略基准的可维护性要检查场景制作 API、资产序列化、并行评估、可视化工具诊断工具和 ML 循环资源预算。
 

@@ -1,14 +1,14 @@
 ---
 title: "OpenUSD 场景组合"
 type: concept
-tags: [openusd, usd, scene-description, composition, simulation-assets]
+tags: [openusd, usd, scene-description, simulation-assets]
 sources: ["[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[nvidia-ovrtx]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # OpenUSD 场景组合
 
-[[OpenUSD]] 的核心学习入口不是“USD 是哪种文件后缀”，而是场景描述（场景描述）如何被模式化、组合、覆写、查询和作者。[[openusd-introduction|Introduction 到 USD]] 把 USD 定位为单一场景图 + 组合引擎 + 模式 + 工具集的组合：它让基础资产可以组成集合、场景、镜头和世界，并且允许在更强的层中非破坏性地编辑作为覆盖。[[isaac-sim-asset-structure|Isaac Sim Asset Structure]] 则展示这个思想在机器人学资产制作中如何落到层、载荷、引用和变体。[[nvidia-ovrtx|NVIDIA ovrtx]] 补充了传感器仿真侧的官方示例：应用可以用行内根部层子层原始场景，并在不改来源资产的情况下作者相机、`RenderProduct`、`RenderVar`、语义标签或 non-视觉材质标签。
+[[OpenUSD]] 的核心学习入口不是“USD 是哪种文件后缀”，而是场景描述（场景描述）如何被模式化、组合、覆写、查询和作者。[[openusd-introduction|Introduction 到 USD]] 把 USD 定位为单一场景图 + 组合引擎 + 模式 + 工具集的组合：它让基础资产可以组成集合、场景、镜头和世界，并且允许在更强的层中非破坏性地编辑作为覆盖。[[isaac-sim-asset-structure|Isaac Sim Asset Structure]] 则展示这个思想在机器人学资产制作中如何落到层、载荷、引用和变体。[[nvidia-ovrtx|NVIDIA ovrtx]] 补充了传感器仿真侧的官方示例：应用可以用行内根部层子层原始场景，并在不改来源资产的情况下作者相机、`RenderProduct`、`RenderVar`、语义标签或非视觉材质标签。
 
 证据边界：当前 OpenUSD 来源是官方 Introduction，不是 glossary 或 API 参考基准。它足够支持 `Stage`、`Prim`、`Layer`、模式、组合弧、Hydra、扩展点和 USD 边界的入门级机制解释；但 `LayerStack`、价值分辨率、LIVRPS strength 顺序、列表编辑和命名空间编辑的精确定义仍需要后续收录 `glossary.html` / tutorials。
 
@@ -69,7 +69,7 @@ OpenUSD 解决的是大型 3D 流程的两个长期问题。第一，多个工�
 
 Composition 的要点是“强层的 opinion 可以统一地覆盖弱层”，无论弱内容是 subLayered、引用的还是 inherited。来源列出更强的层可以添加/停用/重排图元、修改变体、覆盖元数据、添加属性、覆盖属性、阻断属性值、修改关系 / connection 目标等。学习时不要把 USD 想成导入/导出，而要把它想成一个可组合的、可覆写的 authored-opinion 图结构。
 
-对机器人学来说，这个直觉尤其重要。一个机器人资产同时有网格、材质、碰撞体、关节、质量、传感器、控制器、ROS 集成、PhysX 调优、MuJoCo 调优等语义。如果这些都写进一个文件，后续很难判断一个行为变更来自视觉几何、碰撞近似、中性物理还是运行时特定的调优。[[IsaacSimAssetStructure]] 把这些职责拆成层，本质上就是在仿真资产里应用 OpenUSD 场景组合的工程原则。[[nvidia-ovrtx|ovrtx]] 的传感器配置进一步说明，渲染/传感器输出本身也应被作者成组合层：`RenderProduct` 用关系连接传感器图元和 `RenderVar`，渲染场景与设备 pinning 作者在 RenderProduct 上，语义/non-视觉标签可以通过覆盖层加到现有场景。
+对机器人学来说，这个直觉尤其重要。一个机器人资产同时有网格、材质、碰撞体、关节、质量、传感器、控制器、ROS 集成、PhysX 调优、MuJoCo 调优等语义。如果这些都写进一个文件，后续很难判断一个行为变更来自视觉几何、碰撞近似、中性物理还是运行时特定的调优。[[IsaacSimAssetStructure]] 把这些职责拆成层，本质上就是在仿真资产里应用 OpenUSD 场景组合的工程原则。[[nvidia-ovrtx|ovrtx]] 的传感器配置进一步说明，渲染/传感器输出本身也应被作者成组合层：`RenderProduct` 用关系连接传感器图元和 `RenderVar`，渲染场景与设备 pinning 作者在 RenderProduct 上，语义/非视觉标签可以通过覆盖层加到现有场景。
 
 Hydra 的位置也要放对：它不是组合引擎，而是 USD 分布中的 imaging 框架。它把场景 delegates 和渲染 delegates 连接起来，让 `usdview` 与第三方插件可以用组合的 USD 场景做预览、渲染和动画 streaming。对学习者来说，Hydra 是“我如何看见组合的结果”的通道，不是“这个结果如何被 resolve”的规则。
 
@@ -79,7 +79,7 @@ Hydra 的位置也要放对：它不是组合引擎，而是 USD 分布中的 im
 - 模式歧义：不同工具对同一个图元/属性语义理解不一致，交换看似成功，但下游渲染器、仿真器或验证工具读到的含义不同。
 - 命名空间脆弱性：USD 使用 textual 分层命名空间，而不是 GUID；当引用的资产的内部命名空间改变时，更高层覆盖可能 fall off。来源明确把这列为 USD 的边界条件。
 - 骨骼绑定 overreach：USD 的场景图是轻量制作 / 组合的数据 extraction 基底，不是高性能骨骼绑定系统；把骨骼绑定运行时行为直接塞进 USD 会损害交换。
-- Working-设置 collapse：载荷的价值是 deferred loading；如果所有密集型资产都无条件参考基准/负载，阶段可以表达场景，但交互式工作流和内存 footprint 会恶化。
+- Working-设置 collapse：载荷的价值是 deferred loading；如果所有密集型资产都无条件参考基准/负载，阶段可以表达场景，但交互式工作流和内存占用会恶化。
 - 单体化的资产漂移：机器人学资产把网格、材质、碰撞体、物理和运行时调优混写，后续重新导入、引擎切换或 regression 调试难以定位来源的变更。这个失效情形已在 [[IsaacSimAssetStructure]] 中具体化。
 - Composition overconfidence：组合能组织资产假设，但不能证明物理运行时与真实世界一致；仿真到现实迁移仍需要 [[SimulationRealityGap]] 层面的验证。
 - Glossary overreach：当前 Introduction 支持入门机制，但不能替代 glossary / API 参考基准；对 `LayerStack`、价值分辨率、列表编辑、命名空间编辑和 LIVRPS strength 顺序的精确定义应等后续收录。

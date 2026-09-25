@@ -1,9 +1,9 @@
 ---
 title: "UniLab Repository"
 type: source
-tags: [robotics, reinforcement-learning, simulation, systems, repository]
+tags: [robotics, reinforcement-learning, simulation, systems, repository, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/unilab-readme.md
 source_kind: repo
 source_url: https://github.com/unilabsim/UniLab
@@ -39,7 +39,7 @@ commit_sha: 2a9e8ae635811a7385bb8ac111acb25f8c819a6c
 
 - [[UniLab]] - 代码仓库对应的系统实体。
 - [[HeterogeneousRobotRLTraining]] - 代码仓库把论文中的运行时抽象具体化为 CLI、任务/后端配置和开发者契约。
-- [[MuJoCoUni]] 与 [[MotrixSim]] - README 明确列出的物理后端。
+- [[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]] 与 [[MotrixSim]] - README 明确列出的物理后端。
 
 ## 开放问题
 

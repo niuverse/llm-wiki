@@ -1,9 +1,9 @@
 ---
 title: "可转向轮"
 type: concept
-tags: [robotics, wheeled-robots, steerable-wheels, swerve, caster]
+tags: [robotics, wheeled-robots]
 sources: ["[[structural-properties-and-classification-of-wheeled-mobile-robots]]", "[[modern-robotics-chapter-13-wheeled-mobile-robots]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 可转向轮

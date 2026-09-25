@@ -1,14 +1,14 @@
 ---
 title: "人形机器人强化学习工作流"
 type: concept
-tags: [robotics, humanoid-rl, sim-to-real, reinforcement-learning, evaluation]
+tags: [robotics, sim-to-real, reinforcement-learning, evaluation]
 sources: ["[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 人形机器人强化学习工作流
 
-人形机器人 RL 工作流（人形机器人强化学习工作流）指从机器人模型 / MDP 验证到训练、评估、跨仿真器验证和硬件部署的完整工程生命周期。[[AGILE]] 来源的核心贡献是说明：对人形机器人移动操作来说，很多失败不来自单个 RL 算法不够强，而来自工作流边界没有被形式化，例如奖励项错、关节轴反、评估方差太高、策略导出后观测/动作契约对不上。
+人形机器人 RL 工作流（人形机器人强化学习工作流）指从机器人模型 / MDP 验证到训练、评估、跨仿真器验证和硬件部署的完整工程生命周期。[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] 来源的核心贡献是说明：对人形机器人移动操作来说，很多失败不来自单个 RL 算法不够强，而来自工作流边界没有被形式化，例如奖励项错、关节轴反、评估方差太高、策略导出后观测/动作契约对不上。
 
 ## 数学结构
 
@@ -92,4 +92,4 @@ AGILE 的确定性场景测试与随机轨迹采样解决的是不同问题。�
 - 对评估，应该同时保存确定性场景报告、随机轨迹采样统计、逐关节运动质量指标和已导出的描述文件，才能定位失败是来自策略、仿真器、奖励、I/O 契约还是硬件。
 - 对 VLA/移动操作流程，解耦的下半身移动策略可以把人形机器人稳定性当作下半身 API，让 IK 或 VLA 上半身控制器专注操作；但这也要求上半身指令在训练中被随机化覆盖，否则组合部署会出现分布偏移。
 
-相关页面：[[AGILE]]、[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]、[[SimulationRealityGap]]、[[TaskGeneralistPolicyEvaluation]]、[[VisionLanguageActionModels]]、[[MuJoCo]]。
+相关页面：[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]]、[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]、[[SimulationRealityGap]]、[[TaskGeneralistPolicyEvaluation]]、[[VisionLanguageActionModels]]、[[MuJoCo]]。

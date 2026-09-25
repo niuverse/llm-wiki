@@ -1,9 +1,9 @@
 ---
 title: "接触互补"
 type: concept
-tags: [robotics, simulation, optimization, contact-dynamics]
+tags: [robotics, simulation, contact-dynamics]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 接触互补

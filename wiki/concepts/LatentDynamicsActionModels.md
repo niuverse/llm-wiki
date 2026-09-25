@@ -1,16 +1,16 @@
 ---
 title: "潜在动力学动作模型"
 type: concept
-tags: [robotics, world-models, vla, diffusion, embodied-data, inverse-dynamics]
+tags: [robotics, world-models, vla, inverse-dynamics]
 sources: ["[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 潜在动力学动作模型
 
 潜在表征动力学动作模型（LDA，潜在动力学动作模型）是 [[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 来源中提出的机器人基础模型训练 paradigm：它把动作策略、正向动力学、逆动力学和视觉预测统一到一个扩散模型中，但把未来视觉状态表示为 DINO 潜在，而不是像素/VAE 重建。核心目标是从异构具身数据中学习动作-induced 状态转移，并让混合质量数据不再只能作为 noisy 模仿数据。
 
-[[Seer]] 和 [[DeFI]] 从两个方向强化了同一判断：动作表示不应只靠行为克隆。Seer 在动作标注的机器人数据上把未来 RGB 预测与逆动力学动作预测端到端结合；DeFI 则让 [[InverseDynamicsModels|逆动力学预训练]] 从 unlabeled 视频转移中学习潜在动作标记。LDA-1B 把逆动力学放进共享扩散目标；DeFI 则把正向动力学和逆动力学分开预训练，先让 GIDM 学潜在动作标记，再在下游机器人数据上用动作 adapter 语义落地到可执行的指令。
+[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]] 和 [[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]] 从两个方向强化了同一判断：动作表示不应只靠行为克隆。Seer 在动作标注的机器人数据上把未来 RGB 预测与逆动力学动作预测端到端结合；DeFI 则让 [[InverseDynamicsModels|逆动力学预训练]] 从 unlabeled 视频转移中学习潜在动作标记。LDA-1B 把逆动力学放进共享扩散目标；DeFI 则把正向动力学和逆动力学分开预训练，先让 GIDM 学潜在动作标记，再在下游机器人数据上用动作 adapter 语义落地到可执行的指令。
 
 ## 数学结构
 
@@ -68,6 +68,6 @@ flowchart LR
 
 对 [[WorldModelsForEmbodiedAI|世界模型]]，LDA 是一个实用的 middle 地面：它不需要生成高保真度 RGB 视频，也不把世界模型单独拿来做 MPC 轨迹采样，而是用潜在正向/逆动力学改善下游动作策略。
 
-对 [[VisionLanguageActionModels|VLA]]，LDA、Seer 和 DeFI 共同提供了 BC 之外的规模扩展路径。策略头仍然输出动作块，但训练信号不只来自专家动作似然，还来自动作条件化的未来状态预测、未来状态到-动作逆动力学，以及动作-free 视频转移重建。
+对 [[VisionLanguageActionModels|VLA]]，LDA、Seer 和 DeFI 共同提供了 BC 之外的规模扩展路径。策略头仍然输出动作块，但训练信号不只来自专家动作似然，还来自动作条件化的未来状态预测、未来状态到-动作逆动力学，以及无动作标注的视频转移重建。
 
-相关页面：[[LDA1B]]、[[EI30K]]、[[Seer]]、[[DeFI]]、[[InverseDynamicsModels]]、[[WorldModelsForEmbodiedAI]]、[[VisionLanguageActionModels]]、[[RobotContextConditioning]]、[[SimulationRealityGap]]。
+相关页面：[[lda-1b-scaling-latent-dynamics-action-model|LDA1B]]、[[lda-1b-scaling-latent-dynamics-action-model|EI30K]]、[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]]、[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]]、[[InverseDynamicsModels]]、[[WorldModelsForEmbodiedAI]]、[[VisionLanguageActionModels]]、[[RobotContextConditioning]]、[[SimulationRealityGap]]。

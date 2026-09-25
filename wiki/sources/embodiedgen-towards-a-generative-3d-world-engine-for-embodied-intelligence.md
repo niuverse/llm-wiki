@@ -1,9 +1,9 @@
 ---
 title: "EmbodiedGen: Towards a Generative 3D World Engine for Embodied Intelligence"
 type: source
-tags: [robotics, embodied-ai, 3d-generation, simulation-assets, real-to-sim]
+tags: [robotics, embodied-ai, 3d-generation, simulation-assets, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/embodiedgen.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2506.10600

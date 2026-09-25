@@ -1,9 +1,9 @@
 ---
 title: "Asset Structure - Isaac Sim Documentation"
 type: source
-tags: [isaac-sim, usd, asset-structure, robot-setup]
+tags: [isaac-sim, usd, asset-structure, robot-setup, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/isaac-sim-6-asset-structure.html
 source_kind: html
 source_url: https://docs.isaacsim.omniverse.nvidia.com/6.0.0/robot_setup/asset_structure.html

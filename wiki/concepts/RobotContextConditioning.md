@@ -1,9 +1,9 @@
 ---
 title: "机器人上下文条件化"
 type: concept
-tags: [robotics, prompting, vla, data-conditioning, multimodal-context]
+tags: [robotics, vla]
 sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 机器人上下文条件化
@@ -81,4 +81,4 @@ flowchart TB
 
 对系统设计，世界模型可以不直接做 MPC 轨迹采样，而是作为视觉提示生成器参与闭环控制。这个设计把 [[WorldModelsForEmbodiedAI|世界模型]] 的作用从“预测整个未来”缩小到“产生可执行的近期未来视觉目标”，更适合实时机器人系统。
 
-相关页面：[[VisionLanguageActionModels]]、[[Pi07]]、[[CompositionalGeneralizationInRobotics]]、[[WorldModelsForEmbodiedAI]]。
+相关页面：[[VisionLanguageActionModels]]、[[pi07-steerable-generalist-robotic-foundation-model|Pi07]]、[[CompositionalGeneralizationInRobotics]]、[[WorldModelsForEmbodiedAI]]。

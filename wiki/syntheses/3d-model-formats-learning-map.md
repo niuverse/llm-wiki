@@ -1,9 +1,9 @@
 ---
 title: "三维模型格式学习地图"
 type: synthesis
-tags: [learn, 3d-formats, assets, geometry]
+tags: [learn]
 sources: ["[[openusd-introduction]]", "[[isaac-sim-asset-structure]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 三维模型格式学习地图

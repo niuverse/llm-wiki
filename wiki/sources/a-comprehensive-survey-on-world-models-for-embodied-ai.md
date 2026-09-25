@@ -1,9 +1,9 @@
 ---
 title: "A Comprehensive Survey on World Models for Embodied AI"
 type: source
-tags: [embodied-ai, world-models, robotics, autonomous-driving, evaluation]
+tags: [embodied-ai, world-models, robotics, evaluation, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/a-comprehensive-survey-on-world-models-for-embodied-ai.html
 source_kind: html
 source_url: https://arxiv.org/abs/2510.16732
@@ -43,7 +43,7 @@ Xinqing Li、Xin He、Le Zhang、Min Wu、Xiaoli Li 和 Yun Liu 的综述把具�
 - [[WorldModelsForEmbodiedAI]] - 论文的数学和机制层核心：POMDP、潜在状态、动力学先验、filtered 后验、ELBO 与轨迹采样直觉。
 - [[WorldModelTaxonomy]] - 论文提出的功能 x 时间建模 x 空间表示三轴分类。
 - [[WorldModelEvaluation]] - 论文中数据集、指标、性能 tables 与评估失效情形的整理。
-- [[AwesomeWorldModels]] - 论文配套 curated bibliography，把分类体系映射到持续维护的论文列表。
+- [[awesome-world-models|AwesomeWorldModels]] - 论文配套 curated bibliography，把分类体系映射到持续维护的论文列表。
 - [[SimulationRealityGap]] - 来源中的 S2R、物理一致性与实时具身控制讨论，为已有接触仿真差距增加学得的仿真器视角。
 - [[DifferentiablePhysics]] - 论文中的 decomposed 渲染、3DGS、可微的渲染和物理-informed 世界模型与可微仿真方向相关。
 
@@ -52,4 +52,4 @@ Xinqing Li、Xin He、Le Zhang、Min Wu、Xiaoli Li 和 Yun Liu 的综述把具�
 - 论文的分类体系是否足够表达混合系统：例如同时有 RSSM 潜在动力学、扩散解码器、几何内存和 VLM critic 的系统？
 - 像素/状态/任务指标之间如何建立因果 relation：像素质量改善在什么条件下会真正提升 MPC、RL 或机器人操作成功比率？
 - 物理一致性应该如何 operationalize：能量 conservation、接触一致性、因果 intervention 准确率、闭环任务成功，还是仿真器到-真实迁移？
-- [[AwesomeWorldModels]] 继续扩展时，分类体系是否需要加上评估协议、可用性、许可证、训练数据规模和真实机器人验证的结构化的元数据？
+- [[awesome-world-models|AwesomeWorldModels]] 继续扩展时，分类体系是否需要加上评估协议、可用性、许可证、训练数据规模和真实机器人验证的结构化的元数据？

@@ -1,9 +1,9 @@
 ---
 title: "异构机器人强化学习训练"
 type: concept
-tags: [robotics, reinforcement-learning, simulation, systems, heterogeneous-computing]
+tags: [robotics, reinforcement-learning, simulation, systems]
 sources: ["[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[unilab-repository]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[motrixsim-documentation]]", "[[mujoco-warp-mjwarp-documentation]]", "[[mjlab-repository]]", "[[mujoco-playground-repository]]", "[[isaac-lab-repository]]", "[[maniskill-repository]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 异构机器人强化学习训练
@@ -64,7 +64,7 @@ CPU 侧仿真只有在能持续喂饱学习器时才有意义；GPU 侧学习只
 
 算法选择也不是纯算法问题，它改变同步工况。PPO 强绑定最新轨迹采样与更新，适合作为严格同步压力测试；APPO 允许采集和学习重叠，但还要用校正保持 near-在策略；FastSAC / FlashSAC 这种重放基于路径允许生产者—消费者解耦，因此更容易受益于 CPU 采样、异步 H2D 和双缓冲。
 
-这轮后续来源把这个概念从单篇论文扩展成运行时分类体系。CPU-批处理的路线由 [[UniLab]]、[[MuJoCoUni]] 和 [[MotrixSim]] 支撑：它保留或强调 CPU 侧物理语义、有状态的批处理的执行、重置生命周期随机化和共享内存 / H2D 交接。面向 GPU 的路线由 [[MJWarp]]、[[Mjlab|mjlab]]、[[MuJoCoPlayground]]、[[IsaacLab]] 和 [[ManiSkill]] 代表：它把仿真、渲染或训练工作负载尽量放在 GPU / accelerator 路径上，以提高 massive 并行采样、视觉数据采集或基于管理器的训练吞吐量。两条路线都不是通用的 winner；它们改变的是瓶颈放置、特征覆盖范围、平台依赖、调试路径和内存压力。
+这轮后续来源把这个概念从单篇论文扩展成运行时分类体系。CPU-批处理的路线由 [[UniLab]]、[[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]] 和 [[MotrixSim]] 支撑：它保留或强调 CPU 侧物理语义、有状态的批处理的执行、重置生命周期随机化和共享内存 / H2D 交接。面向 GPU 的路线由 [[mujoco-warp-mjwarp-documentation|MJWarp]]、[[mjlab-repository|mjlab]]、[[mujoco-playground-repository|MuJoCoPlayground]]、[[isaac-lab-repository|IsaacLab]] 和 [[robotics-simulation-infrastructure|ManiSkill]] 代表：它把仿真、渲染或训练工作负载尽量放在 GPU / accelerator 路径上，以提高 massive 并行采样、视觉数据采集或基于管理器的训练吞吐量。两条路线都不是通用的 winner；它们改变的是瓶颈放置、特征覆盖范围、平台依赖、调试路径和内存压力。
 
 ## 失效情形
 
@@ -73,9 +73,9 @@ CPU 侧仿真只有在能持续喂饱学习器时才有意义；GPU 侧学习只
 - 解耦不匹配：如果任务是 strictly synchronized、视觉/渲染 dominated，或学习器更新不是瓶颈，CPU/GPU 解耦可能隐藏不了 dominant 成本。
 - 重放边界 regression：把重放 storage 放回 GPU cache 可能减少某些迁移，但也可能把 capacity-scaled 重放采样和 lazy 同步放进学习器 hot 路径。
 - 后端语义不匹配：不同物理后端暴露的随机化字段、求解器行为、奖励 shaping 或任务默认值可能不同；训练速度比较不自动等价于物理等价性。
-- 功能一致性 shortcut：[[MJWarp]] 文档明确列出无依据的求解器/积分器/传感器/插件/flex/用户参数情形，并说明当前不可可微；把 GPU 路线直接等同于完整 MuJoCo 语义或可微物理会越过来源边界。
+- 功能一致性 shortcut：[[mujoco-warp-mjwarp-documentation|MJWarp]] 文档明确列出无依据的求解器/积分器/传感器/插件/flex/用户参数情形，并说明当前不可可微；把 GPU 路线直接等同于完整 MuJoCo 语义或可微物理会越过来源边界。
 - 跨平台 overgeneralization：macOS、ROCm 和 XPU trainability 说明可移植性，但不是绝对吞吐量一致性，也不是所有 kernels / algorithms 都有同等成熟度。
-- 技术栈-openness overgeneralization：[[IsaacLab]] README 把框架描述为开源，但同时记录 Isaac Sim / cuRobo 专有的依赖边界；运行时分类体系不能只看代码仓库许可证。
+- 技术栈-openness overgeneralization：[[isaac-lab-repository|IsaacLab]] README 把框架描述为开源，但同时记录 Isaac Sim / cuRobo 专有的依赖边界；运行时分类体系不能只看代码仓库许可证。
 - 刚体范围限制：当前来源主要覆盖刚体机器人控制；deformables、fluids、柔性刚体和视觉-密集型具身 AI 需要重新分析运行时瓶颈。
 
 ## 实践含义
@@ -87,4 +87,4 @@ CPU 侧仿真只有在能持续喂饱学习器时才有意义；GPU 侧学习只
 - 对硬件规划，CPU-丰富 / non-CUDA / Apple / AMD / Intel platforms 不必因缺少驻留 GPU 的物理路径被排除，但需要用目标任务的 actual 关键路径做基准。
 - 对生态选择，应把后端特征一致性、平台依赖、渲染/传感器需要、域随机化生命周期、RL 框架集成和 reproducibility pinning 一起记录；这比单独比较 headline 步骤/s 更接近真实工程决策。
 
-相关页面：[[UniLab]]、[[MuJoCoUni]]、[[MotrixSim]]、[[MJWarp]]、[[Mjlab|mjlab]]、[[MuJoCoPlayground]]、[[IsaacLab]]、[[ManiSkill]]、[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]、[[RoboticsSimulationInfrastructure]]、[[SimulationRealityGap]]、[[HumanoidRLWorkflow]]、[[MuJoCo]]、[[IsaacSim]]、[[TaskGeneralistPolicyEvaluation]]。
+相关页面：[[UniLab]]、[[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]]、[[MotrixSim]]、[[mujoco-warp-mjwarp-documentation|MJWarp]]、[[mjlab-repository|mjlab]]、[[mujoco-playground-repository|MuJoCoPlayground]]、[[isaac-lab-repository|IsaacLab]]、[[robotics-simulation-infrastructure|ManiSkill]]、[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]、[[RoboticsSimulationInfrastructure]]、[[SimulationRealityGap]]、[[HumanoidRLWorkflow]]、[[MuJoCo]]、[[IsaacSim]]、[[TaskGeneralistPolicyEvaluation]]。

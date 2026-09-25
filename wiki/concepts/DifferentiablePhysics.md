@@ -3,7 +3,7 @@ title: "可微物理"
 type: concept
 tags: [robotics, simulation, differentiable-optimization]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 可微物理
@@ -12,7 +12,7 @@ last_updated: 2026-07-13
 
 问题很直接：如果正向仿真引入内部力、人为柔顺性，或物理上 shifted 接触 solutions，那么计算出的梯度可能 encode 这些产物。这对轨迹优化和物理系统辨识很关键，因为梯度是驱动更新的信号。
 
-[[DifferentiableCollisionDetection]] 补充了另一层：在完整可微仿真器之前，可以先把碰撞查询写成可微函数。[[DCOL]] 用最小均匀规模扩展因素 $\alpha$ 表示凸基元的分离 / 穿透，[[DiffPills]] 用邻近度价值 $\phi$ 处理胶囊体和带填充的多边形。这些来源支持把碰撞 avoidance 写成可微约束，但它们不自动解决摩擦接触时间步进、求解器残差和互补 switches。
+[[DifferentiableCollisionDetection]] 补充了另一层：在完整可微仿真器之前，可以先把碰撞查询写成可微函数。[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]] 用最小均匀规模扩展因素 $\alpha$ 表示凸基元的分离 / 穿透，[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]] 用邻近度价值 $\phi$ 处理胶囊体和带填充的多边形。这些来源支持把碰撞 avoidance 写成可微约束，但它们不自动解决摩擦接触时间步进、求解器残差和互补 switches。
 
 可以把一个时间步写成：
 

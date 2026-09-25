@@ -1,9 +1,9 @@
 ---
 title: "Isaac Lab Repository"
 type: source
-tags: [robotics, reinforcement-learning, simulation, nvidia, repository]
+tags: [robotics, reinforcement-learning, simulation, nvidia, repository, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-09-25
 source_file: raw/isaac-lab-readme.md
 source_kind: repo
 source_url: https://github.com/isaac-sim/IsaacLab
@@ -15,9 +15,9 @@ commit_sha: 492751759af72a5d3f7e0e42768b95fd9f1ac6df
 
 ## 摘要
 
-这是 [[IsaacLab|Isaac Lab]] 官方代码仓库 README 快照。README 把 Isaac Lab 定位为 built 在 [[IsaacSim|NVIDIA Isaac Sim]] 的 GPU 加速的开源框架，用来统一机器人学研究流程，例如强化学习、模仿学习和运动规划。
+这是 [[isaac-lab-repository|Isaac Lab]] 官方代码仓库 README 快照。README 把 Isaac Lab 定位为 built 在 [[IsaacSim|NVIDIA Isaac Sim]] 的 GPU 加速的开源框架，用来统一机器人学研究流程，例如强化学习、模仿学习和运动规划。
 
-对知识库的价值是给 NVIDIA 机器人学习技术栈增加代码仓库层级来源：Isaac Lab 提供机器人、就绪到-train 环境、物理/传感器仿真、popular RL 框架 integrations 和点云/局部部署 flexibility。它也是 [[Mjlab|mjlab]] README 中提到的基于管理器的 API 来源，以及 UniLab 论文中驻留 GPU 的训练生态的重要基线上下文。
+对知识库的价值是给 NVIDIA 机器人学习技术栈增加代码仓库层级来源：Isaac Lab 提供机器人、就绪到-train 环境、物理/传感器仿真、popular RL 框架 integrations 和点云/局部部署 flexibility。它也是 [[mjlab-repository|mjlab]] README 中提到的基于管理器的 API 来源，以及 UniLab 论文中驻留 GPU 的训练生态的重要基线上下文。
 
 ## 核心主张
 
@@ -34,9 +34,15 @@ commit_sha: 492751759af72a5d3f7e0e42768b95fd9f1ac6df
 - "Built on NVIDIA Isaac Sim"
 - "Isaac Sim Version Dependency"
 
+### IsaacLab
+
+Isaac Lab 是 [[isaac-lab-repository|官方代码仓库 README]] 中描述的 GPU 加速的开源框架，built 在 [[IsaacSim|NVIDIA Isaac Sim]]，用于强化学习、模仿学习、运动规划和仿真到现实迁移机器人学流程。README 记录它提供机器人模型、就绪到-train 环境、物理/传感器仿真、RL 框架 integrations 和局部/点云部署 options。
+
+在本知识库的运行时分类体系中，Isaac Lab 是 NVIDIA GPU 加速的机器人学习技术栈的主要框架路线，也是 [[mjlab-repository|mjlab]] 借鉴基于管理器的 API 的上游设计来源。需要注意的是，README 同时记录 Isaac Sim 版本依赖与专有的依赖边界；因此 Isaac Lab 开源框架不等于整个运行时技术栈都是 permissive 或完全 open。
+
 ## 关联
 
-- [[IsaacLab]] - 本来源对应的框架实体。
+- [[isaac-lab-repository|IsaacLab]] - 本来源对应的框架实体。
 - [[IsaacSim]] 与 [[NVIDIA]] - Isaac Lab 依赖 Isaac Sim / NVIDIA 技术栈。
 - [[RoboticsSimulationInfrastructure]] - Isaac Lab 代表配置/基于管理器的机器人学仿真与训练框架。
 - [[HeterogeneousRobotRLTraining]] - Isaac Lab 是 GPU 加速的机器人学习基础设施的 major 路线。

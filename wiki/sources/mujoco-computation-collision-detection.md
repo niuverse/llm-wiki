@@ -1,9 +1,9 @@
 ---
 title: "MuJoCo Computation: Collision Detection"
 type: source
-tags: [robotics, simulation, collision-detection, mujoco, contact-dynamics]
+tags: [robotics, simulation, collision-detection, mujoco, contact-dynamics, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/mujoco-computation-collision-detection.html
 source_kind: html
 source_url: https://mujoco.readthedocs.io/en/stable/computation/index.html#collision-detection

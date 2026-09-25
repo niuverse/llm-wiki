@@ -1,9 +1,9 @@
 ---
 title: "OpenUSD"
 type: entity
-tags: [openusd, usd, scene-description, software-platform]
+tags: [openusd, usd, scene-description]
 sources: ["[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[nvidia-ovrtx]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # OpenUSD
@@ -16,4 +16,4 @@ OpenUSD / USD（通用的场景描述）在 [[openusd-introduction|Introduction 
 
 当前证据边界：本页只记录已收录来源覆盖的 OpenUSD Introduction、Isaac Sim 资产结构用法和 ovrtx 传感器配置用法。`LayerStack`、价值分辨率、namespace 编辑、LIVRPS strength 顺序、OpenUSD 物理结构规范、toolset 命令行为和 Python API 需要后续收录条款与概念、Tutorials 或 API 文档后再扩展。
 
-相关页面：[[OpenUSDSceneComposition]]、[[IsaacSimAssetStructure]]、[[RTXSensorSimulationPipeline]]、[[IsaacSim]]、[[Pixar]]。
+相关页面：[[OpenUSDSceneComposition]]、[[IsaacSimAssetStructure]]、[[RTXSensorSimulationPipeline]]、[[IsaacSim]]、[[openusd-introduction|Pixar]]。

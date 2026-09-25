@@ -151,6 +151,108 @@ def check_source_files(root: Path) -> dict[str, list[dict[str, str]]]:
     return {"missing": missing}
 
 
+# --- Language style checks -------------------------------------------------
+# AGENTS.md requires fluent Chinese prose and forbids ordinary English nouns
+# inside Chinese sentences. These patterns are deliberately narrow: the rest of
+# this report is exact, so a false positive costs more than a miss.
+
+BANNED_PROSE_NOUNS = (
+    "source",
+    "claim",
+    "pipeline",
+    "tradeoff",
+    "failure mode",
+    "runtime",
+    "workflow",
+    "boundary",
+)
+
+CJK = r"一-鿿"
+
+_BLANKED_SPANS = (
+    re.compile(r"```.*?```", flags=re.DOTALL),
+    re.compile(r"`[^`]*`"),
+    re.compile(r"\[\[[^\]]*\]\]"),
+    re.compile(r"\]\([^)]*\)"),
+    re.compile(r"\"[^\"]*\"|“[^”]*”"),
+    re.compile(r"\$\$.*?\$\$|\$[^$\n]*\$", flags=re.DOTALL),
+)
+
+BANNED_ALTERNATION = "|".join(re.escape(word) for word in BANNED_PROSE_NOUNS)
+
+# `source-backed` and `source-plan` are this repo's own evidence-level names, not
+# ordinary prose nouns, so they are exempt the same way AGENTS.md exempts MPC/RL.
+_KEEP_AS_TERM = r"(?!-(?:backed|plan)\b)"
+_STUCK_GLUE = re.compile(rf"[{CJK}][A-Za-z]|[A-Za-z][{CJK}]")
+_BANNED_NOUN = re.compile(
+    rf"[{CJK}]\s*(?:{BANNED_ALTERNATION})\b{_KEEP_AS_TERM}"
+    rf"|\b(?:{BANNED_ALTERNATION})\b{_KEEP_AS_TERM}\s*[{CJK}]",
+    flags=re.IGNORECASE,
+)
+
+
+def prose_only(text: str) -> str:
+    """Blank spans where Latin text is legitimate: code, links, quotes, math."""
+    body = strip_frontmatter(text)
+    for pattern in _BLANKED_SPANS:
+        body = pattern.sub(" ", body)
+    return body
+
+
+def check_language_artifacts(root: Path, pages: list[Path]) -> list[dict[str, str]]:
+    findings = []
+    for page in pages:
+        body = prose_only(read_text(page))
+        for kind, pattern in (("stuck", _STUCK_GLUE), ("banned-noun", _BANNED_NOUN)):
+            for match in pattern.finditer(body):
+                start, end = match.span()
+                excerpt = re.sub(r"\s+", " ", body[max(0, start - 20) : end + 20]).strip()
+                findings.append(
+                    {
+                        "page": page.relative_to(root).as_posix(),
+                        "kind": kind,
+                        "excerpt": excerpt,
+                    }
+                )
+    return findings
+
+
+# --- Evidence state checks -------------------------------------------------
+# A page with no sources cannot inherit an evidence level from its folder, so it
+# has to declare one in tags. Readers rely on this to tell a distilled note from
+# a source-backed conclusion.
+
+EVIDENCE_STATE_TAGS = ("unsourced", "source-plan", "learn", "source-backed")
+EVIDENCE_STATE_TYPES = ("concept", "entity", "synthesis")
+
+
+def frontmatter_list(text: str, key: str) -> list[str]:
+    match = re.search(rf"^{key}:\s*\[(.*?)\]", text, flags=re.MULTILINE | re.DOTALL)
+    if not match:
+        return []
+    return [item.strip().strip("\"'") for item in match.group(1).split(",") if item.strip()]
+
+
+def check_evidence_state(root: Path, pages: list[Path]) -> list[dict[str, str]]:
+    findings = []
+    for page in pages:
+        text = read_text(page)
+        fm = parse_frontmatter(text)
+        if fm.get("type", "").strip().lower() not in EVIDENCE_STATE_TYPES:
+            continue
+        if frontmatter_list(text, "sources"):
+            continue
+        tags = frontmatter_list(text, "tags")
+        if not any(tag in EVIDENCE_STATE_TAGS for tag in tags):
+            findings.append(
+                {
+                    "page": page.relative_to(root).as_posix(),
+                    "issue": f"empty sources without one of {', '.join(EVIDENCE_STATE_TAGS)}",
+                }
+            )
+    return findings
+
+
 def run(root: Path) -> dict[str, Any]:
     pages = all_wiki_pages(root)
     return {
@@ -161,6 +263,8 @@ def run(root: Path) -> dict[str, Any]:
         "index_sync": check_index_sync(root, pages),
         "log_coverage": check_log_coverage(root),
         "source_files": check_source_files(root),
+        "language_artifacts": check_language_artifacts(root, pages),
+        "evidence_state": check_evidence_state(root, pages),
     }
 
 
@@ -176,6 +280,8 @@ def format_report(results: dict[str, Any]) -> str:
         ("Broken Wikilinks", results["broken_wikilinks"]),
         ("Log Coverage", results["log_coverage"]),
         ("Missing Source Artifacts", results["source_files"]["missing"]),
+        ("Language Artifacts", results["language_artifacts"]),
+        ("Evidence State", results["evidence_state"]),
     ]
     for title, items in sections:
         lines.extend([f"## {title} ({len(items)})", ""])

@@ -1,9 +1,9 @@
 ---
 title: "Modern Robotics Chapter 13: Wheeled Mobile Robots"
 type: source
-tags: [robotics, wheeled-robots, mobile-robots, kinematics, odometry]
+tags: [robotics, wheeled-robots, mobile-robots, kinematics, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/modern-robotics-preprint-v2.pdf
 source_kind: pdf
 source_url: https://hades.mech.northwestern.edu/images/2/2e/MR-largefont-v2.pdf

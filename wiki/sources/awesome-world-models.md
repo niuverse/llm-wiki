@@ -1,9 +1,9 @@
 ---
 title: "AwesomeWorldModels"
 type: source
-tags: [embodied-ai, world-models, bibliography, github]
+tags: [embodied-ai, world-models, github, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-09-25
 source_file: raw/awesome-world-models-readme.md
 source_kind: repo
 source_url: https://github.com/Li-Zn-H/AwesomeWorldModels
@@ -14,7 +14,7 @@ source_date: 2026-03-28
 
 ## 摘要
 
-[[AwesomeWorldModels]] 是论文 [[a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]] 的配套 GitHub 代码仓库。它不是算法实现，而是按照综述分类体系维护的 curated bibliography。README 把世界模型描述为 environmental 动力学的内部仿真器，并用域 icons 标记自主驱动、机器人操作、导航和视频生成。
+[[awesome-world-models|AwesomeWorldModels]] 是论文 [[a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]] 的配套 GitHub 代码仓库。它不是算法实现，而是按照综述分类体系维护的 curated bibliography。README 把世界模型描述为 environmental 动力学的内部仿真器，并用域 icons 标记自主驱动、机器人操作、导航和视频生成。
 
 本次收录抓取的 README 为 UTF-16LE 编码的 Markdown，包含 193 条论文记录。仓库主分支的提交元数据也保存为 `raw/awesome-world-models-main-commit.json`，其中主提交是 `a512d22526a75974e5fc18da9c09017cd16dfa27`，作者日期为 2026-03-28。
 
@@ -34,10 +34,20 @@ source_date: 2026-03-28
 - "internal simulators"
 - "categories are non-exclusive"
 
+### AwesomeWorldModels
+
+AwesomeWorldModels 是 Li-Zn-H 维护的 GitHub bibliography 代码仓库，对应 survey [[a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]]。它的主要内容是 README 中的论文列表，而不是模型实现。
+
+该代码仓库的组织方式直接跟随 [[WorldModelTaxonomy]]：先区分决策-耦合的与一般性-Purpose，再区分顺序式的仿真与推理与全局 Difference 预测，最后按空间表示分成全局潜在 Vector、标记特征序列、空间潜在 Grid 和 Decomposed 渲染表示。
+
+在本次收录的快照中，README 包含 193 条论文条目，覆盖机器人学操作、自主驱动、导航和视频生成。入口通常链接论文，并在可用时链接代码、项目主页、数据集、poster 或视频。
+
+实践上，这个代码仓库更适合作为 discovery 索引：需要定位某个分类体系 cell 下的代表工作时先查它；需要机制层级 understanding 时再回到对应论文来源。
+
 ## 关联
 
 - [[a-comprehensive-survey-on-world-models-for-embodied-ai]] - 代码仓库对应的综述论文。
-- [[AwesomeWorldModels]] - 代码仓库实体页面，记录维护形态、范围和使用方式。
+- [[awesome-world-models|AwesomeWorldModels]] - 代码仓库实体页面，记录维护形态、范围和使用方式。
 - [[WorldModelsForEmbodiedAI]] - 代码仓库收录论文的共同问题帧。
 - [[WorldModelTaxonomy]] - README 的章节结构直接实例化分类体系。
 - [[WorldModelEvaluation]] - README 中包含 WorldGym、WorldEval 等把世界模型用作策略评估器的方向。

@@ -1,9 +1,9 @@
 ---
 title: "世界模型评估"
 type: concept
-tags: [embodied-ai, world-models, evaluation, benchmarks, metrics]
+tags: [embodied-ai, world-models, evaluation]
 sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 世界模型评估
@@ -63,6 +63,6 @@ flowchart LR
 
 评估世界模型时至少要报告三件事：模型是 [[WorldModelTaxonomy|taxonomy]] 中哪一类；评估使用哪些输入、监督和 horizons；指标是否真的对应目标工作流。对机器人学，优先关心实时推理、闭环成功、样本效率和 [[SimulationRealityGap|仿真到现实迁移]] 行为。对自主驱动，除了 FVD/FID，还要看 occupancy 预测、轨迹 L2、碰撞比率与因果场景响应。
 
-对于本知识库的后续收录，[[AwesomeWorldModels]] 中的论文不应只按 title 收录。更有用的元数据是：基准、时域长度、输入 modality、是否用 GT 状态/occupancy、是否有真实机器人或闭环验证、是否提供代码/数据集。
+对于本知识库的后续收录，[[awesome-world-models|AwesomeWorldModels]] 中的论文不应只按 title 收录。更有用的元数据是：基准、时域长度、输入 modality、是否用 GT 状态/occupancy、是否有真实机器人或闭环验证、是否提供代码/数据集。
 
-相关页面：[[WorldModelsForEmbodiedAI]]、[[WorldModelTaxonomy]]、[[AwesomeWorldModels]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]。
+相关页面：[[WorldModelsForEmbodiedAI]]、[[WorldModelTaxonomy]]、[[awesome-world-models|AwesomeWorldModels]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]。

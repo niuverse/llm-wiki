@@ -1,9 +1,9 @@
 ---
 title: "Introduction to USD"
 type: source
-tags: [openusd, usd, scene-description, composition, hydra]
+tags: [openusd, usd, scene-description, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-09-25
 source_file: raw/openusd-introduction.html
 source_kind: html
 source_url: https://openusd.org/release/intro.html
@@ -42,12 +42,18 @@ source_date: unknown
 - “No GUIDS”
 - “Not a rigging system”
 
+### Pixar
+
+Pixar 动画 Studios 是 [[openusd-introduction|Introduction 到 USD]] 的版权所有者。该来源还把 USD 放在 Pixar 生产流程的历史中：USD 是 Pixar 3D graphics 流程的核心，源自 Pixar 多代组合的场景描述系统的演化，目标是把 Presto 的组合引擎 / 底层数据模型与 TidScene 的 lazy-access、时间采样的数据模型和轻量的场景图结合起来。
+
+这里的实体页面只记录 Pixar 与已收录 OpenUSD 官方文档的关系，不扩展到 Pixar 的更广泛的 company 历史。
+
 ## 关联
 
 - [[OpenUSD]] - 本来源对 USD / OpenUSD 的机制级定义。
 - [[OpenUSDSceneComposition]] - 把 `Stage`、`Layer`、`Prim`、结构规范、组合弧和失效情形编译成学习页。
 - [[IsaacSimAssetStructure]] - 机器人学 / 仿真资产制作中，USD 组合的具体应用。
-- [[Pixar]] - 来源中的 USD 历史传承、生产上下文和版权所有者。
+- [[openusd-introduction|Pixar]] - 来源中的 USD 历史传承、生产上下文和版权所有者。
 
 ## 开放问题
 

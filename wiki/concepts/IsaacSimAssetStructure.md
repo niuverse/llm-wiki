@@ -3,7 +3,7 @@ title: "Isaac Sim 资产结构 3.0"
 type: concept
 tags: [isaac-sim, usd, asset-structure, simulation-assets, robot-setup]
 sources: ["[[isaac-sim-asset-structure]]", "[[isaac-sim-45-asset-structure]]", "[[isaac-sim-core-api-collision-approximation]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # Isaac Sim 资产结构 3.0

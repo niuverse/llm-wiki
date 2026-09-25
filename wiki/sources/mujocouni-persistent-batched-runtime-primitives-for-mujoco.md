@@ -1,9 +1,9 @@
 ---
 title: "MuJoCoUni: Persistent Batched Runtime Primitives for MuJoCo"
 type: source
-tags: [robotics, simulation, mujoco, reinforcement-learning, systems]
+tags: [robotics, simulation, mujoco, reinforcement-learning, systems, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-09-25
 source_file: raw/mujocouni-persistent-batched-runtime-primitives-for-mujoco.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2605.24922
@@ -17,7 +17,7 @@ repo_commit_sha: 5d782a2bb8569f2c79059c9845cae5147dd684a2
 
 ## 摘要
 
-Yufei Jia 和 Junzhe Wu 提出 [[MuJoCoUni]]，一个用于在线机器人学习与批量物理评估的 MuJoCo 下游发行版。它的核心对象是 `BatchEnvPool`：由 C++ / pybind11 实现的执行器为每个环境持有一份 `mjModel`，为每个线程配备 `mjData` 工作实例和内部线程池，面向重复的环境步进、稀疏重置、重置时域随机化、批量传感器前向计算、位点雅可比矩阵和高度场查询。
+Yufei Jia 和 Junzhe Wu 提出 [[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]]，一个用于在线机器人学习与批量物理评估的 MuJoCo 下游发行版。它的核心对象是 `BatchEnvPool`：由 C++ / pybind11 实现的执行器为每个环境持有一份 `mjModel`，为每个线程配备 `mjData` 工作实例和内部线程池，面向重复的环境步进、稀疏重置、重置时域随机化、批量传感器前向计算、位点雅可比矩阵和高度场查询。
 
 这篇来源对 [[HeterogeneousRobotRLTraining]] 的新增价值是明确 CPU-批处理路线的边界：MuJoCoUni 不改 MuJoCo 求解器、接触模型、积分器或 core 来源树；它把吞吐量 improvement 放在 Python 绑定层、物体生命周期、thread scheduling 和有状态的批处理接口上。因此它不是 GPU 仿真的替代宣言，而是当任务需要 upstream CPU MuJoCo 语义、debuggability 或特征覆盖范围时的一条 complementary 路径。
 
@@ -38,9 +38,15 @@ Yufei Jia 和 Junzhe Wu 提出 [[MuJoCoUni]]，一个用于在线机器人学习
 - "upstream CPU MuJoCo semantics"
 - "without changing the physics kernel"
 
+### MuJoCoUni
+
+MuJoCoUni 是 [[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni 技术报告]] 提出的下游 [[MuJoCo]] 分布，面向在线机器人学习和批处理的物理评估。它的核心对象是 `BatchEnvPool`，在 Python 绑定层中维护持久的环境数据池、per-环境 `mjModel` 副本、每个线程 `mjData` 工作线程和内部 thread 数据池。
+
+MuJoCoUni 的关键边界是：它不修改 MuJoCo 求解器、接触模型、积分器或核心源码树，而是通过有状态的批量接口、稀疏重置、重置时域随机化、批量前向与传感器查询、位点雅可比矩阵和高度场查询，降低在线机器人强化学习的运行时开销。它因此是 [[HeterogeneousRobotRLTraining]] 中 CPU 侧批量物理计算路线的代表。
+
 ## 关联
 
-- [[MuJoCoUni]] - 本来源对应的运行时实体。
+- [[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]] - 本来源对应的运行时实体。
 - [[MuJoCo]] - MuJoCoUni 保留 MuJoCo CPU 物理语义。
 - [[HeterogeneousRobotRLTraining]] - MuJoCoUni 是 UniLab 中 CPU-批处理仿真侧的代表后端。
 - [[SimulationRealityGap]] - 重置生命周期域随机化与后端语义会影响训练分布。

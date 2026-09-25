@@ -3,7 +3,7 @@ title: "轮式机器人运动学"
 type: concept
 tags: [robotics, wheeled-robots, mobile-robots, kinematics]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 轮式机器人运动学

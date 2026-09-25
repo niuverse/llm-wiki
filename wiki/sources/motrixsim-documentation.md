@@ -1,9 +1,9 @@
 ---
 title: "MotrixSim Documentation"
 type: source
-tags: [robotics, simulation, physics-engine, documentation]
+tags: [robotics, simulation, physics-engine, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/motrixsim-documentation.html
 source_kind: html
 source_url: https://motrixsim.readthedocs.io/en/v0.2.0/

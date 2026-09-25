@@ -1,9 +1,9 @@
 ---
 title: "UniLab: A Heterogeneous Architecture for Robot RL Beyond GPU-Dominant Paradigms"
 type: source
-tags: [robotics, reinforcement-learning, simulation, systems, heterogeneous-computing]
+tags: [robotics, reinforcement-learning, simulation, systems, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2605.30313

@@ -3,7 +3,7 @@ title: "仿真—现实差距"
 type: concept
 tags: [robotics, simulation, sim-to-real, reinforcement-learning, world-models]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
-last_updated: 2026-07-19
+modified: 2026-07-19
 ---
 
 # 仿真—现实差距
@@ -45,7 +45,7 @@ flowchart LR
 
 ## 基础设施视角
 
-[[robotics-simulation-infrastructure|机器人学仿真基础设施]] 把现实差距的上游再提前一层：在物理/渲染不匹配进入策略之前，框架已经通过任务 APIs、资产 management、渲染器、可视化工具和 ML 集成决定了什么变化容易表达、什么诊断信息容易观察、什么资源预算留给训练。换言之，仿真到现实迁移差距不只是引擎参数的问题，也可能来自基础设施表面。
+[[robotics-simulation-infrastructure|机器人学仿真基础设施]] 把现实差距的上游再提前一层：在物理/渲染不匹配进入策略之前，框架已经通过任务 APIs、资产管理、渲染器、可视化工具和 ML 集成决定了什么变化容易表达、什么诊断信息容易观察、什么资源预算留给训练。换言之，仿真到现实迁移差距不只是引擎参数的问题，也可能来自基础设施表面。
 
 这个视角支持一个实用区分：配置驱动 API 与直接使用 Python 的 API，代表不同的结构性与可修改性取舍；批量渲染的内存/保真度选择，会和 PPO/SAC 等强化学习训练的批次、经验回放缓冲区和神经网络争用 GPU 内存；可视化工具如果只显示物理状态，而不显示奖励曲线、策略行为或历史状态，就可能让评估失败难以定位。来源是工程博客而非定量基准，因此这些判断应作为审计清单，而不是框架排名。
 
@@ -103,4 +103,4 @@ a_t = pi_phi(assemble_deploy(o_{t-k:t}; joint_order', history', scaling'))
 
 AGILE 还说明评估差距是现实差距的前置条件：只看汇总奖励或随机轨迹采样均值，可能错过 RMS 加速度、加加速度、关节限制违反和高频能量比率等执行器相关的 signals。确定性场景测试（速度扫描、高度渐变测试）提供低方差回归测试；随机轨迹采样则估计随机指令分布下的鲁棒性。两者缺一时，仿真到现实迁移风险都可能被误估。
 
-相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[RoboticsSimulationInfrastructure]]、[[SimulationReady3DWorldGeneration]]、[[EmbodiedGen]]、[[HeterogeneousRobotRLTraining]]、[[VisualSimToReal]]、[[AssetConditionedHOIGeneration]]、[[RobotLearningDataComposition]]、[[RoboCasa365]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[HumanoidRLWorkflow]]、[[AGILE]]、[[GRAIL]]、[[UniLab]]、[[MuJoCo]]、[[RaiSim]]。
+相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[ContactComplementarity]]、[[RoboticsSimulationInfrastructure]]、[[SimulationReady3DWorldGeneration]]、[[EmbodiedGen]]、[[HeterogeneousRobotRLTraining]]、[[VisualSimToReal]]、[[AssetConditionedHOIGeneration]]、[[RobotLearningDataComposition]]、[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]、[[WorldModelsForEmbodiedAI]]、[[WorldModelEvaluation]]、[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[HumanoidRLWorkflow]]、[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]]、[[UniLab]]、[[MuJoCo]]、[[contact-models-in-robotics-a-comparative-analysis|RaiSim]]。

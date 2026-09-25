@@ -1,9 +1,9 @@
 ---
 title: "RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots"
 type: source
-tags: [robotics, simulation, benchmark, mobile-manipulation, robot-foundation-models, imitation-learning]
+tags: [robotics, simulation, benchmark, robot-foundation-models, imitation-learning, source-backed]
 sources: []
-last_updated: 2026-07-19
+modified: 2026-09-25
 source_file: raw/robocasa365.pdf
 source_kind: pdf
 source_url: https://robocasa.ai/assets/robocasa365_iclr26.pdf
@@ -15,7 +15,7 @@ code_url: https://github.com/robocasa/robocasa
 
 ## 摘要
 
-Soroush Nasiriany、Sepehr Nasiriany、Abhiram Maddukuri 和 Yuke Zhu 提出 [[RoboCasa365]]：一套基于 RoboCasa、RoboSuite 与 [[MuJoCo]] 的大规模家庭移动操作仿真框架，同时提供资产、厨房场景、任务、示范数据和训练—评测规程。论文的研究目标不是提出单一新策略，而是建立可控实验环境，系统研究任务多样性、场景多样性、数据量、示范质量与训练阶段怎样影响通用机器人策略。
+Soroush Nasiriany、Sepehr Nasiriany、Abhiram Maddukuri 和 Yuke Zhu 提出 [[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]：一套基于 RoboCasa、RoboSuite 与 [[MuJoCo]] 的大规模家庭移动操作仿真框架，同时提供资产、厨房场景、任务、示范数据和训练—评测规程。论文的研究目标不是提出单一新策略，而是建立可控实验环境，系统研究任务多样性、场景多样性、数据量、示范质量与训练阶段怎样影响通用机器人策略。
 
 框架包含 365 个厨房任务，其中 65 个是单技能原子任务，300 个是多技能组合任务；220 个任务需要移动操作。预训练场景由 50 种布局与 50 种风格组合成 2,500 个厨房，目标评测另使用 10 个厨房。数据包括 30,000 条预训练人类遥操作示范、25,000 条目标任务人类示范，以及用 MimicGen 从 60 个原子任务扩增得到的约 600,000 条合成示范。论文统计表给出的时长是 404 小时预训练人类数据、208 小时目标人类数据和 1,615 小时合成数据。
 
@@ -42,9 +42,44 @@ Soroush Nasiriany、Sepehr Nasiriany、Abhiram Maddukuri 和 Yuke Zhu 提出 [[R
 - “3× improvement in data efficiency”
 - “synthetic demonstrations vary in quality”
 
+### RoboCasa365
+
+RoboCasa365 是面向家庭厨房移动操作的仿真框架、机器人示范数据集和训练—评测基准。它建立在 RoboCasa、RoboSuite 与 [[MuJoCo]] 之上，不是一种单独的策略模型；其主要价值是把资产、场景、任务、数据和评测放进同一套可复现实验系统，用来研究通用机器人策略怎样从大量任务与环境中学习。
+
+```mermaid
+flowchart LR
+  A["资产<br/>物体与可交互电器"] --> B["2,500 个预训练厨房<br/>10 个目标厨房"]
+  B --> C["365 个任务<br/>65 原子 + 300 组合"]
+  C --> D["人类遥操作示范<br/>MimicGen 合成示范"]
+  D --> E["多任务训练"]
+  D --> F["预训练—后训练"]
+  D --> G["持续学习"]
+  E --> H["原子 / 已见组合 / 未见组合评测"]
+  F --> H
+  G --> H
+```
+
+#### 关键结构
+
+- 任务：365 个厨房任务，覆盖 60 类活动；65 个原子任务，300 个组合任务，其中 220 个需要移动操作。
+- 场景：50 种布局与 50 种风格组合出 2,500 个预训练厨房；另有 10 个目标厨房。
+- 数据：612 小时人类示范与 1,615 小时 MimicGen 合成示范；每条数据包含语言指令、本体状态、三个相机视角和动作。
+- 机器人：Franka Panda 机械臂与 Omron 全向移动底盘；12 维动作空间，20 Hz 控制。
+- 评测：比较 Diffusion Policy、π0、π0.5 和 GR00T N1.5，并研究数据量、任务/场景多样性、训练阶段、持续学习、输入扰动和仿真加真实数据训练。
+
+#### 研究意义
+
+RoboCasa365 为 [[RobotLearningDataComposition|机器人学习数据构成]] 提供了受控证据：扩大任务覆盖和场景覆盖能改善下游泛化，但加入数量更大的混合质量合成数据不保证提高成功率。它也为 [[CompositionalGeneralizationInRobotics|组合泛化]] 暴露了清晰差距：原子任务明显容易，已见组合任务困难，未见组合任务更困难；长时域错误累积仍是当前 VLA 策略的主要瓶颈。
+
+与 [[RoboLab]] 相比，RoboCasa365 更强调“生成训练数据 + 训练策略 + 系统评测”的一体化规模实验；RoboLab 更强调对现成策略做语言、物体、场景与扰动诊断。两者都属于 [[TaskGeneralistPolicyEvaluation|通用任务策略评估]]，但测量目的不同。
+
+#### 证据边界
+
+论文证据主要来自发布方在 RoboCasa365 上的实验。真实验证只有四个固定任务，且使用真实示范、相机对齐和仿真—真实联合微调；因此不能把仿真成功率或这组真实结果直接外推到开放家庭环境、不同机器人形态或纯仿真零样本部署。框架目前也集中于厨房、刚体和视觉操作，不能代表可变形物体、触觉、精细力控制与完整家庭场景。
+
 ## 关联
 
-- [[RoboCasa365]] - 框架、数据集和基准实体页。
+- [[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] - 框架、数据集和基准实体页。
 - [[RobotLearningDataComposition]] - 任务覆盖、场景覆盖、示范质量、采样与训练阶段共同决定下游收益。
 - [[TaskGeneralistPolicyEvaluation]] - 原子/已见组合/未见组合三分法、二元成功率和评测规程的含义。
 - [[CompositionalGeneralizationInRobotics]] - 从原子技能到未见组合任务的闭环泛化及长时域误差累积。

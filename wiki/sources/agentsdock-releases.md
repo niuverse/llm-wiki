@@ -1,9 +1,9 @@
 ---
 title: "AgentsDock Releases"
 type: source
-tags: [github, release, agent-client, desktop, mobile]
+tags: [github, source-backed]
 sources: []
-last_updated: 2026-08-25
+modified: 2026-08-25
 source_file: raw/agentsdock-releases-readme.md
 source_kind: markdown
 source_url: https://github.com/ZhengyiLuo/AgentsDock-Releases

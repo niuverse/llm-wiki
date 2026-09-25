@@ -3,7 +3,7 @@ title: "机器人仿真的碰撞几何"
 type: concept
 tags: [robotics, simulation, collision-detection, contact-dynamics, simulation-assets]
 sources: ["[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[v-hacd-repository]]", "[[coacd-approximate-convex-decomposition]]", "[[coacd-repository]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 机器人仿真的碰撞几何
@@ -64,7 +64,7 @@ flowchart LR
 
 凸包的直觉是“用一个凸包包住所有点”。它保留外部外包络，但会填满凹陷结构。对抓取把手、抽屉槽、孔、叉状 gaps、工具 notches，这个 false 正占用的空间可能直接改变任务。[[coacd-approximate-convex-decomposition|CoACD 论文]] 的抽屉示例就显示 V-HACD-风格碰撞体填满把手会导致机械臂滑脱把手，而碰撞感知分解提高了报告的抽屉-opening 成功。
 
-近似凸分解的直觉是把单一凸包拆成一组凸包，试图在运行时成本和非凸保真度之间折中。[[v-hacd-repository|V-HACD]] 是历史上常用的 voxelized ACD 基线；[[CoACD]] 用碰撞感知凹陷结构和树搜索关注碰撞条件；[[VisACD]] 用可见性指标和 GPU 加速度减少姿态敏感性与运行时；[[convex-primitive-decomposition-for-collision-detection|凸基元分解]] 则进一步把凸包替换为引擎优化后的基元。
+近似凸分解的直觉是把单一凸包拆成一组凸包，试图在运行时成本和非凸保真度之间折中。[[v-hacd-repository|V-HACD]] 是历史上常用的 voxelized ACD 基线；[[CoACD]] 用碰撞感知凹陷结构和树搜索关注碰撞条件；[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]] 用可见性指标和 GPU 加速度减少姿态敏感性与运行时；[[convex-primitive-decomposition-for-collision-detection|凸基元分解]] 则进一步把凸包替换为引擎优化后的基元。
 
 SDF / 三角形网格碰撞体的直觉是用更多几何保真度换更高计算成本和更复杂的求解器行为。[[isaac-sim-core-api-collision-approximation|Isaac Sim 文档]] 把 SDF 和凸分解列为能更好捕捉细节的选项，同时明确警告 computational 成本。
 
@@ -91,7 +91,7 @@ SDF / 三角形网格碰撞体的直觉是用更多几何保真度换更高计�
 - Over-分解：太多凸包 / 基元会增加宽相 pairs、窄相查询和求解器约束，造成训练吞吐下降或接触抖动。
 - 接触流形 under-采样：单点凸碰撞对面接触、盒体堆叠、平坦 foot 支撑可能不足；MuJoCo 的 `multiccd` 正是为这类问题提供可选补救方法。
 - 引擎专用语义：同一个碰撞体设置在 MuJoCo、PhysX、Bullet、Drake 中可能有不同接触偏移、裕量、流形生成、摩擦 combination 和求解器行为。
-- 优化 surrogate mismatch：[[DCOL]] / [[DiffPills]] 这类可微碰撞指标对轨迹优化很有用，但 $\alpha$ 或 $\phi$ 不是完整摩擦接触动力学。
+- 优化 surrogate mismatch：[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]] / [[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]] 这类可微碰撞指标对轨迹优化很有用，但 $\alpha$ 或 $\phi$ 不是完整摩擦接触动力学。
 
 ## 实践含义
 

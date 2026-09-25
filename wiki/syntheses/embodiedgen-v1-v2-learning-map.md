@@ -1,9 +1,9 @@
 ---
 title: "EmbodiedGen V1/V2 学习地图"
 type: synthesis
-tags: [learn, embodiedgen, simulation, 3d-generation]
+tags: [learn, simulation, 3d-generation]
 sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # EmbodiedGen V1/V2 学习地图

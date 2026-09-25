@@ -238,12 +238,12 @@ last_updated: 2026-08-25
 
 ## [2026-07-15] ingest | MagicSim: A Unified Infrastructure for Executable Embodied Interaction
 
-- 保存 arXiv v1 PDF 与 MarkItDown 阅读缓存，新增来源页、[[MagicSim]] 实体页和 [[ExecutableEmbodiedInteractionInfrastructure|可执行具身交互基础设施]] 概念页。
+- 保存 arXiv v1 PDF 与 MarkItDown 阅读缓存，新增来源页、[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] 实体页和 [[ExecutableEmbodiedInteractionInfrastructure|可执行具身交互基础设施]] 概念页。
 - 更新 [[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、总览和索引，区分当前接口、计划中能力与缺失的定量 / 真实机器人证据。
 
 ## [2026-07-19] ingest | RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots
 
-- 保存 ICLR 2026 官方 PDF 与 MarkItDown 阅读缓存，新增来源页和 [[RoboCasa365]] 实体页。
+- 保存 ICLR 2026 官方 PDF 与 MarkItDown 阅读缓存，新增来源页和 [[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 实体页。
 - 新增 [[RobotLearningDataComposition|机器人学习数据构成]] 概念页，整理任务/场景覆盖、示范质量、采样权重和训练阶段的机制与失效情形。
 - 更新 [[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[CompositionalGeneralizationInRobotics|机器人学中的组合泛化]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[SimulationRealityGap|仿真—现实差距]]、总览、研究问题和索引。
 
@@ -265,3 +265,17 @@ last_updated: 2026-08-25
 - PR 自动验证：运行 `tools/health.py`、Quartz 构建、图谱构建，并强制提交最新 graph 产物。
 - 当 PR 带 `auto-merge` label，或标题/描述包含 `[auto-merge]` 时，自动启用 squash auto-merge。
 - 合并到 `main` 后自动重新生成 graph 产物；若 graph 有变化则直接提交回 `main`。
+
+## [2026-09-25] maintenance | 精简条目与修正展示层
+
+六项决策，按人类阅读优先原则执行。
+
+- **实体层收敛**：27 个只对应单一 source 的实体页并入其来源页，成为 `### <名称>` 小节（`AGENTS.md` 新增 Entity Policy）。实体页从 39 降到 12，仅保留横跨多来源的基础设施枢纽。全库 211 处 Wikilink 与 35 处 Markdown 链接改写为带别名的目标，阅读体验不变。
+- **索引只做目录**：`index.md` 删除 27 行已并实体与整段「从研究问题进入」（与 overview/RQ 三处重复），改为纯目录并内嵌实体名；1526 → 1153 词。
+- **判断与问题分工**：`overview.md` 删除「研究问题面板」（与 RQ 三处重复），「下一步缺口」迁入 RQ 作为唯一位置；719 → 454 词。RQ 收编 4 个 0 入链孤岛主题，488 词。
+- **语言修复与常驻检查**：修复 62 处中文散文里的英文名词替换残留（`闭环s`、`non-根`、`动作-free`、`资产 management`、`评估 signal`、`内存 footprint`、`two-阶段` 等）与 32 处多余空格；`tools/health.py` 新增 Language Artifacts 与 Evidence State 两项窄检查。检查前必须屏蔽代码/链接/引语，否则会凭空造出双空格与断裂词。
+- **证据状态可见**：来源页统一带 `source-backed`，无来源页必须带状态 tag；tag 从 137 收敛到 42 主题 + 5 状态，词表写入 `index.md`。`DeepSeek Harness 学习地图` 正名为 `来源获取计划`（`tags: [source-plan]`），因为它等的是 ingest。
+- **展示层**：frontmatter `last_updated` 改名 `modified`（Quartz 只识别 `created`/`modified`/`published`，原字段一直被静默忽略、fallback 到 git 日期）；`docs/research/robot-simulation-post-training-evaluation.md`（1560 词、零引用、不在 vault 内）迁入 `wiki/syntheses/simulation-post-training-evaluation.md` 并标注 `unsourced`；`WheeledRobotVisualLab` 组件从每页注入收敛到单页（108 → 1 页）；同步修正 `404.tsx` 与 list layout 缺失的 `afterBody`。
+
+wiki 从 134 页降到 106 页，graph 孤儿 0、断链 0。`npm run wiki:build` 通过（此前因 `node_modules` 缺失而无法构建）。
+

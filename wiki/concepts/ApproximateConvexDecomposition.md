@@ -3,7 +3,7 @@ title: "近似凸分解"
 type: concept
 tags: [collision-detection, convex-decomposition, simulation-assets, robotics]
 sources: ["[[v-hacd-repository]]", "[[coacd-approximate-convex-decomposition]]", "[[coacd-repository]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 近似凸分解
@@ -81,4 +81,4 @@ ACD 的直觉是避免两个极端。单个凸包很快，但会把杯子把手�
 
 对评估，建议保存分解场景和生成的碰撞体产物。否则同一个物体网格在不同预处理阈值下可能对应完全不同的接触世界，基准结果不可复现。
 
-相关页面：[[CollisionGeometryForRobotSimulation]]、[[CoACD]]、[[VHACD]]、[[VisACD]]、[[MuJoCo]]、[[IsaacSim]]、[[SimulationRealityGap]]。
+相关页面：[[CollisionGeometryForRobotSimulation]]、[[CoACD]]、[[VHACD]]、[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]、[[MuJoCo]]、[[IsaacSim]]、[[SimulationRealityGap]]。

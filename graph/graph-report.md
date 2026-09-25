@@ -1,26 +1,26 @@
-# Graph Report - 2026-08-25
+# Graph Report - 2026-09-25
 
-- Nodes: 132
-- Edges: 748
-- Orphans: 1
+- Nodes: 106
+- Edges: 604
+- Orphans: 0
 - Missing referenced pages: 0
 
 ## Orphan Nodes
 
-- `syntheses/dsh-learning-map`
+No orphan nodes.
 
 ## Top Degree Nodes
 
-- `concepts/SimulationRealityGap`: 78
-- `overview`: 65
-- `syntheses/research-questions`: 56
-- `concepts/RoboticsSimulationInfrastructure`: 44
-- `entities/MuJoCo`: 37
-- `concepts/CollisionGeometryForRobotSimulation`: 30
-- `concepts/HeterogeneousRobotRLTraining`: 28
-- `concepts/TaskGeneralistPolicyEvaluation`: 28
-- `concepts/VisionLanguageActionModels`: 26
-- `concepts/WorldModelsForEmbodiedAI`: 25
+- `syntheses/research-questions`: 69
+- `concepts/SimulationRealityGap`: 68
+- `overview`: 54
+- `concepts/RoboticsSimulationInfrastructure`: 35
+- `entities/MuJoCo`: 30
+- `concepts/CollisionGeometryForRobotSimulation`: 27
+- `concepts/TaskGeneralistPolicyEvaluation`: 23
+- `concepts/HeterogeneousRobotRLTraining`: 22
+- `entities/IsaacSim`: 20
+- `concepts/VisionLanguageActionModels`: 19
 
 ## Missing Referenced Pages
 

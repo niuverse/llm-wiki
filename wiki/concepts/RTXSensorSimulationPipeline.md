@@ -1,14 +1,14 @@
 ---
 title: "RTX 传感器仿真流程"
 type: concept
-tags: [sensor-simulation, rendering, rtx, openusd, robotics, dlpack]
+tags: [sensor-simulation, openusd, robotics]
 sources: ["[[nvidia-ovrtx]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # RTX 传感器仿真流程
 
-RTX 传感器仿真流程是 [[Ovrtx|ovrtx]] 来源中体现出的 application 契约：用 [[OpenUSD]] 阶段表达场景、传感器图元、`RenderProduct` 和 `RenderVar`，由渲染器在步骤中推进传感器仿真，再把输出映射为 CPU/CUDA DLPack 张量。这个流程把“场景怎么被组合”“哪个传感器被渲染”“输出哪些变量”“数据在哪个设备上被消费”拆成可检查的接口，而不是把传感器仿真当成不透明的 screenshot。
+RTX 传感器仿真流程是 [[nvidia-ovrtx|ovrtx]] 来源中体现出的应用契约：用 [[OpenUSD]] 阶段表达场景、传感器图元、`RenderProduct` 和 `RenderVar`，由渲染器在步骤中推进传感器仿真，再把输出映射为 CPU/CUDA DLPack 张量。这个流程把“场景怎么被组合”“哪个传感器被渲染”“输出哪些变量”“数据在哪个设备上被消费”拆成可检查的接口，而不是把传感器仿真当成不透明的截图。
 
 ## 数学结构
 
@@ -18,7 +18,7 @@ $$
 S_t = \operatorname{Compose}(L_{\text{root}}, L_{\text{inline}}, R_{\text{refs}}, A_t)
 $$
 
-其中 $S_t$ 是当前运行时阶段，$L_{\text{root}}$ 是根部 USD 层，$L_{\text{inline}}$ 是应用为了添加相机、`RenderProduct`、`RenderVar`、语义标签或 non-视觉材质标签而写入的行内 USDA 层，$R_{\text{refs}}$ 是后续添加的 removable 引用，$A_t$ 是通过属性 writes / 映射写入的运行时属性状态。这个式子不是代码仓库中的原始公式，而是对来源 API 的结构化表达。
+其中 $S_t$ 是当前运行时阶段，$L_{\text{root}}$ 是根部 USD 层，$L_{\text{inline}}$ 是应用为了添加相机、`RenderProduct`、`RenderVar`、语义标签或非视觉材质标签而写入的行内 USDA 层，$R_{\text{refs}}$ 是后续添加的可移除引用，$A_t$ 是通过属性写入 / 映射写入的运行时属性状态。这个式子不是代码仓库中的原始公式，而是对来源 API 的结构化表达。
 
 一个 `RenderProduct` 可以抽象为：
 
@@ -61,7 +61,7 @@ flowchart LR
 
 ## 直觉
 
-这个流程的直觉是把传感器仿真分成制作契约和数据契约。制作契约在 USD 里：传感器图元定义传感器，`RenderProduct` 定义这次要从哪个传感器产生输出，`RenderVar` 定义要哪些输出变量。数据契约在 DLPack 输出里：渲染 var 输出不是 ad hoc 缓冲区，而是带 `name`、`type`、`version`、具名的张量、参数和同步提示的容器。
+这个流程的直觉是把传感器仿真分成制作契约和数据契约。制作契约在 USD 里：传感器图元定义传感器，`RenderProduct` 定义这次要从哪个传感器产生输出，`RenderVar` 定义要哪些输出变量。数据契约在 DLPack 输出里：渲染 var 输出不是临时缓冲区，而是带 `name`、`type`、`version`、具名的张量、参数和同步提示的容器。
 
 对机器人学来说，这种拆法重要，因为相机、lidar、radar、语义分割和材质-facing 传感器行为不应该混在一个单体化的 callback 里。Scene 作者可以用 USD 关系、行内子层和引用保持原始资产不变；application 可以按任务选择 RenderProducts、渲染模式、通道和 GPU 设备；ML 或可视化使用方再通过 DLPack 选择 CPU readback、CUDA linear 内存或图像风格 CUDA 数组 interop。
 
@@ -72,7 +72,7 @@ Scene 组合与随机化的归属要分清。ovrtx 可以把已有 USD 内容子
 ## 失效情形
 
 - Sensor 路径 / RenderProduct 路径混淆：来源明确要求 `step` 接收 RenderProduct 路径；把相机/lidar/radar 图元路径直接传给 `step` 会破坏流程边界。
-- 忽略 warm-up：loading 场景、重置或改变路径 tracing 场景后，纹理 streaming 与路径 tracing accumulation 会让前几帧质量不稳定；来源给出 40 warm-up 帧作为 conservative 默认。
+- 忽略 warm-up：loading 场景、重置或改变路径追踪场景后，纹理流式加载与追踪累积会让前几帧质量不稳定；来源给出 40 warm-up 帧作为 conservative 默认。
 - 变量尺寸点点云被当成 dense 数组：lidar/radar 张量的形状是 maximum extent，实际条目数由 `Counts` 给出；使用所有 allocated 条目会读到无效点或旧数据。
 - `Flags` 判断过窄：valid 点/检测应检查 `Flags[i] & 0x40`，不能写成 `Flags[i] == 0x40`，因为其他传感器特定的 bits 可以同时置位。
 - CUDA 映射生命周期 / 同步错误：GPU 映射带 producer event 和 stream 提示；跨 stream 或取消映射后继续读写需要显式同步或拷贝。
@@ -85,11 +85,11 @@ Scene 组合与随机化的归属要分清。ovrtx 可以把已有 USD 内容子
 
 ## 实践含义
 
-- 对 RL / 策略评估，ovrtx 支持把传感器保真度作为实验变量：同一场景可以用 `Minimal` 追求吞吐量，用实时/路径 tracing 追求视觉保真度，用 tiled 渲染把多相机输出合并为一个张量契约。
+- 对 RL / 策略评估，ovrtx 支持把传感器保真度作为实验变量：同一场景可以用 `Minimal` 追求吞吐量，用实时/路径追踪追求视觉保真度，用 tiled 渲染把多相机输出合并为一个张量契约。
 - 对合成数据生成，`RenderVar` 目录使 RGB、HDR、表面法向、距离、3D 位置、语义分割和 ID 映射图成为可显式请求的输出变量，而不是后处理阶段的隐式侧 effect。
 - 对 lidar/radar 流程，`PointCloud` 复合的输出把坐标、signal strength、速度、timestamp/帧元数据、材质/物体 ids 和有效性 flags 放进同一个 schemaed 容器；使用方可以按通道名称而不是硬-coded struct 布局读取。
 - 对仿真到现实迁移，流程只能保证传感器仿真被结构化配置和读取；真实传感器分布、材质响应、运动补偿、相机标定和硬件噪声仍需要单独验证，不能由 RTX 渲染 API 自动推出。
 - 对 [[RoboticsSimulationInfrastructure]]，ovrtx 是一个官方示例：渲染器生命周期、阶段 mutation、GPU 映射、状态查询、调试 picking、选择 outlines 和智能体技能都属于仿真器可用性与 diagnosability，而不只是渲染后端。
 - 对域随机化，ovrtx 更适合作为确定性执行器：上层采样随机变量，写入 USD/运行时属性，重置/warm-up/步骤，再读取传感器输出。这样可以让随机化策略、物理语义和传感器渲染契约分层管理。
 
-相关页面：[[nvidia-ovrtx]]、[[Ovrtx]]、[[ovrtx-api-boundary]]、[[OpenUSDSceneComposition]]、[[RoboticsSimulationInfrastructure]]、[[SimulationRealityGap]]。
+相关页面：[[nvidia-ovrtx]]、[[nvidia-ovrtx|Ovrtx]]、[[ovrtx-api-boundary]]、[[OpenUSDSceneComposition]]、[[RoboticsSimulationInfrastructure]]、[[SimulationRealityGap]]。

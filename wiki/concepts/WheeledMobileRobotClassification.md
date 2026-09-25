@@ -1,9 +1,9 @@
 ---
 title: "轮式移动机器人分类"
 type: concept
-tags: [robotics, wheeled-robots, taxonomy, nonholonomic-systems]
+tags: [robotics, wheeled-robots, nonholonomic-systems]
 sources: ["[[structural-properties-and-classification-of-wheeled-mobile-robots]]", "[[modern-robotics-chapter-13-wheeled-mobile-robots]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 轮式移动机器人分类

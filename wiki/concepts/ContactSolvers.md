@@ -1,9 +1,9 @@
 ---
 title: "接触求解器"
 type: concept
-tags: [robotics, simulation, optimization, numerical-methods]
+tags: [robotics, simulation]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[omniverse-omni-physics-articulations]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 接触求解器

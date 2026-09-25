@@ -1,9 +1,9 @@
 ---
 title: "Isaac Sim Core API Collision Approximation"
 type: source
-tags: [isaac-sim, physx, collision-detection, usd, simulation-assets]
+tags: [isaac-sim, physx, collision-detection, usd, simulation-assets, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/isaac-sim-core-api-collision-approximation.html
 source_kind: html
 source_url: https://docs.isaacsim.omniverse.nvidia.com/5.1.0/py/source/extensions/isaacsim.core.api/docs/index.html
@@ -34,7 +34,7 @@ Isaac Sim Core API 文档中多个基元 / 网格类暴露 `get_collision_approx
 
 - [[CollisionGeometryForRobotSimulation]] - 基元、凸包、SDF、球体 fill 等碰撞体选择的统一解释。
 - [[IsaacSimAssetStructure]] - 碰撞表示在资产结构 3.0 中属于共享实例/碰撞体制作层，而不是单独的运行时调优层。
-- [[IsaacSim]] 与 [[PhysX]] - Isaac Sim / PhysX 上下文。
+- [[IsaacSim]] 与 [[omniverse-omni-physics-articulations|PhysX]] - Isaac Sim / PhysX 上下文。
 - [[SimulationRealityGap]] - 碰撞体近似误差如何成为仿真到现实迁移差距的上游因素。
 
 ## 开放问题

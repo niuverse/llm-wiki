@@ -1,9 +1,9 @@
 ---
 title: "具身智能世界模型"
 type: concept
-tags: [embodied-ai, world-models, model-based-rl, robotics, autonomous-driving]
+tags: [embodied-ai, world-models, robotics]
 sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 具身智能世界模型
@@ -100,4 +100,4 @@ $$
 
 对基础模型风格具身智能体，[[WorldModelTaxonomy]] 提示不要把所有视频 predictors 都叫世界模型。只有当表示、时间轨迹采样和动作耦合能支持下游决策时，它才是具身 AI 意义上的世界模型。
 
-相关页面：[[WorldModelTaxonomy]]、[[WorldModelEvaluation]]、[[AwesomeWorldModels]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]、[[RobotContextConditioning]]、[[LatentDynamicsActionModels]]。
+相关页面：[[WorldModelTaxonomy]]、[[WorldModelEvaluation]]、[[awesome-world-models|AwesomeWorldModels]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]、[[RobotContextConditioning]]、[[LatentDynamicsActionModels]]。

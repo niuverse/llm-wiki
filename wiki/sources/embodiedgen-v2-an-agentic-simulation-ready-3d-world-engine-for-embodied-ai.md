@@ -1,9 +1,9 @@
 ---
 title: "EmbodiedGen V2: An Agentic, Simulation-Ready 3D World Engine for Embodied AI"
 type: source
-tags: [robotics, embodied-ai, 3d-generation, simulation-infrastructure, agentic-generation, sim-to-real]
+tags: [robotics, embodied-ai, 3d-generation, sim-to-real, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/embodiedgen-v2.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2607.07459
@@ -44,7 +44,7 @@ $$
 p_c \in H_p,\qquad \operatorname{Support}(B_c(p_c),H_p)=1,\qquad \operatorname{IoU}\left(B_c(p_c),\bigcup_{j\in P_p}B_j\right)=0.
 $$
 
-$p_c$ 是 child 候选位置；支撑判定条件排除悬空或支撑不足的放置；IoU 约束排除 footprint 重叠。被操作的物体还必须落在机器人可达且正向-facing 的交互区域中，失败时 resample 或使用 relation-特定的回退方案，最终通过 SAPIEN 重力沉降修正残余穿透/floating。
+$p_c$ 是 child 候选位置；支撑判定条件排除悬空或支撑不足的放置；IoU 约束排除轮廓重叠。被操作的物体还必须落在机器人可达且正向-facing 的交互区域中，失败时 resample 或使用 relation-特定的回退方案，最终通过 SAPIEN 重力沉降修正残余穿透/floating。
 
 有状态的编辑的世界状态可以写成：
 

@@ -3,7 +3,7 @@ title: "CoACD"
 type: entity
 tags: [collision-detection, convex-decomposition, simulation-assets]
 sources: ["[[coacd-approximate-convex-decomposition]]", "[[coacd-repository]]", "[[mujoco-computation-collision-detection]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # CoACD
@@ -14,4 +14,4 @@ CoACD 是近似凸分解用于 3D 网格带有碰撞感知凹度与树搜索的�
 
 [[coacd-repository|CoACD 代码仓库]] 提供 Python/C++/Unity 用法，`coacd.run_coacd(mesh)` 返回一组凸包。关键参数包括 `threshold`、`max-convex-hull`、MCTS 迭代 / 深度 / 节点、`resolution`、`decimate`、`max-ch-vertex` 和真实指标模式。[[mujoco-computation-collision-detection|MuJoCo 文档]] 也明确把 CoACD 作为非凸物体预处理的工具例子。
 
-相关页面：[[ApproximateConvexDecomposition]]、[[CollisionGeometryForRobotSimulation]]、[[VHACD]]、[[VisACD]]、[[SimulationRealityGap]]。
+相关页面：[[ApproximateConvexDecomposition]]、[[CollisionGeometryForRobotSimulation]]、[[VHACD]]、[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]、[[SimulationRealityGap]]。

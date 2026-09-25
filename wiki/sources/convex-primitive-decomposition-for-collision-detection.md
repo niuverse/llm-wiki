@@ -1,9 +1,9 @@
 ---
 title: "Convex Primitive Decomposition for Collision Detection"
 type: source
-tags: [collision-detection, convex-decomposition, primitives, game-physics, simulation-assets]
+tags: [collision-detection, convex-decomposition, simulation-assets, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/convex-primitive-decomposition-for-collision-detection.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2602.03865

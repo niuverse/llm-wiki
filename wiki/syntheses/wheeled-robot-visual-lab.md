@@ -1,9 +1,9 @@
 ---
 title: "轮式机器人可视化实验"
 type: synthesis
-tags: [learn, robotics, kinematics, visualization]
+tags: [learn, robotics, kinematics]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 轮式机器人可视化实验

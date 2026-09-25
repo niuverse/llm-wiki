@@ -1,9 +1,9 @@
 ---
 title: "仿真基准报告流程"
 type: concept
-tags: [robotics, simulation, benchmark, evaluation, dashboard]
+tags: [robotics, simulation, benchmark, evaluation]
 sources: ["[[nvlabs-robolab]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[robotics-simulation-infrastructure]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 仿真基准报告流程

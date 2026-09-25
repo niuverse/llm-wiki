@@ -1,9 +1,9 @@
 ---
 title: "视觉仿真到现实迁移"
 type: concept
-tags: [robotics, sim-to-real, visual-policy, humanoid-loco-manipulation, reinforcement-learning]
+tags: [robotics, sim-to-real, reinforcement-learning]
 sources: ["[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # 视觉仿真到现实迁移
@@ -106,4 +106,4 @@ GRAIL 把这个取舍再往上游推一层：视觉策略之前的机器人动�
 
 对系统评估，现实世界视频和连续的 cycles 比单一回合成功更有信息量，但仍不足以证明通用性。需要区分成功分布、失败 categories、OOD 物体覆盖范围、相机/光照扰动、生成的参考基准质量和硬件特定的调优。
 
-相关页面：[[VIRAL]]、[[GRAIL]]、[[AssetConditionedHOIGeneration]]、[[SimulationRealityGap]]、[[TaskGeneralistPolicyEvaluation]]、[[WorldModelsForEmbodiedAI]]。
+相关页面：[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]]、[[AssetConditionedHOIGeneration]]、[[SimulationRealityGap]]、[[TaskGeneralistPolicyEvaluation]]、[[WorldModelsForEmbodiedAI]]。

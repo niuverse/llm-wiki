@@ -1,9 +1,9 @@
 ---
 title: "Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots"
 type: source
-tags: [robotics, wheeled-robots, mobile-robots, nonholonomic-systems, dynamics]
+tags: [robotics, wheeled-robots, mobile-robots, nonholonomic-systems, source-backed]
 sources: []
-last_updated: 2026-07-13
+modified: 2026-07-13
 source_file: raw/campion-bastin-dandrea-novel-wheeled-mobile-robots-nd-2011.pdf
 source_kind: pdf
 source_url: https://nd.ics.org.ru/nd1104002/

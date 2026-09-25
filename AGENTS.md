@@ -7,17 +7,28 @@
 ```text
 raw/                 # 原始 source files。ingest 之后不要编辑。
 wiki/
-  index.md           # 所有 wiki pages 的目录。
+  index.md           # 纯目录：所有页面一行一条，不承载研究判断。
   log.md             # append-only operation history。
-  overview.md        # 跨 source 的 living synthesis。
-  sources/           # 每个已 ingest source 一页。
-  entities/          # 人物、组织、项目、产品等 entities。
+  overview.md        # 当前总判断、证据图谱、关键张力。
+  sources/           # 每个已 ingest source 一页；并发入其专属实体。
   concepts/          # ideas、methods、themes、frameworks。
-  syntheses/         # 保存过的重要 query answers、distill summaries、learning scaffolds。
+  syntheses/         # 研究问题索引、distill 摘要、learning scaffolds。
 graph/               # 可选的 generated graph artifacts。
   extracts/          # 从 PDF/HTML/Markdown 生成的可再生阅读缓存。
 tools/               # deterministic helper scripts，不代替 agent synthesis。
 ```
+
+## Reader Contract
+
+这个 wiki 的第一读者是人，`wiki/` 的阅读流畅度优先于 agent 解析便利。agent 通过 frontmatter、`index.md` 和来源页定位内容，不依赖模板化的重复铺垫。
+
+三层职责必须分开，一个 artifact 只承担一件事：
+
+- `index.md` 回答“有哪些页面”。它不写研究判断、不写阅读路径。
+- `overview.md` 回答“我们现在相信什么”。它只有当前总判断、证据图谱、关键张力。
+- `syntheses/research-questions.md` 回答“什么问题值得追、从哪里进”。它持有问题列表、优先阅读与证据边界，也是 `下一步缺口` 的唯一位置。
+
+同一件事实不要在两层里各写一遍。改 `overview.md` 属于判断变化；改 `research-questions.md` 属于问题增删。
 
 ## Core Rules
 
@@ -92,12 +103,27 @@ wiki pages 使用这个 frontmatter：
 ```yaml
 ---
 title: "Human Readable Title"
-type: source | entity | concept | synthesis
+type: source | concept | synthesis
 tags: []
 sources: []
-last_updated: YYYY-MM-DD
+modified: YYYY-MM-DD
 ---
 ```
+
+字段名是 `modified` 而不是 `last_updated`：Quartz 的 `CreatedModifiedDate` 只识别 `created` / `modified` / `published`，其它名字会被静默忽略、fallback 到 git 日期。
+
+版本控制中的日期与语义日期是两件事，`modified` 不维护会静默失真：
+
+- git 记录的是这个文件最后一次被写入的时间。
+- `modified` 记录的是这个页面的内容最后一次经过人工或 agent 审阅的时间。
+- 批量格式调整（例如全库语言风格统一）不应该刷新 `modified`；只有内容判断变化才刷新。
+
+`tags` 分两类，不要混用：
+
+- 主题 tag：只保留能横跨多页的维度。当前集合见 `wiki/index.md`；不要为单页发明新 tag。
+- 状态 tag：`source-backed`（来源页必带）、`unsourced`、`source-plan`、`learn`、`distill`。
+
+**证据状态必须对读者可见。** 页面如果没有 `sources:`，就必须带一个状态 tag，否则读者无法判断这页能不能引用。`tools/health.py` 会检查这一点。
 
 source pages 还要包含：
 
@@ -119,12 +145,33 @@ source_date: YYYY-MM-DD | unknown
 2. 若 source 不是稳定的 UTF-8 Markdown，先运行 `uv run python tools/extract_source.py <path>` 生成 `graph/extracts/` Markdown reading cache。该 tool 使用 MarkItDown，支持 PDF、HTML、Office docs、images/OCR、audio transcription 等格式；需要 plugins 或 image LLM descriptions 时用 `--use-plugins`、`--llm-model` 或对应环境变量。
 3. 阅读 `wiki/index.md` 和 `wiki/overview.md`。
 4. 创建 `wiki/sources/<slug>.md`，包含摘要、核心主张、有用 quotes、links 和开放问题。
-5. 创建或更新 `wiki/entities/` 与 `wiki/concepts/` 中的相关页面。
+5. 创建或更新 `wiki/concepts/` 中的相关页面。
 6. 只有当新 source 改变 broader synthesis 时，才更新 `wiki/overview.md`。
 7. 把所有新增或变更页面加入 `wiki/index.md`。
 8. 在 `wiki/log.md` 追加条目，格式为：`## [YYYY-MM-DD] ingest | Source Title`
 9. 运行 `python3 tools/health.py` 或等价确定性检查。
 10. 报告 changed files、contradictions，以及值得补充的 follow-up sources。
+
+### Entity Policy
+
+entity 页只用于**横跨多个 source 的基础设施枢纽**（当前：`AgentsDock`、`AgentsServer`、`CoACD`、`EmbodiedGen`、`IsaacSim`、`MotrixSim`、`MuJoCo`、`NVIDIA`、`OpenUSD`、`RoboLab`、`UniLab`、`VHACD`）。这类实体被多个来源反复引用，值得独立成页做共享锚点。
+
+只对应**单一 source** 的模型、论文、框架、机构、产品**不建 entity 页**。把它们的说明并入对应来源页，作为 `### <名称>` 小节：
+
+```markdown
+### LDA1B
+
+#### 模型结构
+#### 来源证据
+```
+
+链接时保留人类可读别名，读者体验不变，只是目标变长：
+
+```markdown
+[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]]
+```
+
+判定规则：一个名字如果只在一个 source 里出现，它是该 source 的内容，不是知识库的枢纽。新增 entity 前先确认它至少被两个来源页引用。
 
 source page body 默认使用中文 heading：
 
@@ -245,6 +292,10 @@ uv run python tools/health.py
 - `wiki/index.md` 中指向 missing files 的 links。
 - 缺少对应 ingest entry 的 source pages。
 - source page frontmatter 中 `source_file` / `extracted_text` 指向 missing artifacts。
+- Language Artifacts：中文散文里出现被 `AGENTS.md` 点名的普通英文名词，或汉字与拉丁字母紧贴（例如复数的 `s` 漏到中文词尾）。这些模式刻意写得很窄：其余检查是精确的，误报比漏报代价更高。
+- Evidence State：`type` 为 `concept` / `entity` / `synthesis` 且 `sources:` 为空的页面，必须带状态 tag。
+
+Language Artifacts 的检查会先屏蔽代码、链接、引语与公式，只扫散文。**不要用剥离后的文本做语言统计**——把 `[[链接]]` 替换成占位符或空格，会凭空造出双空格与断裂词，产出完全虚高的“问题数量”。判定语料问题必须直接扫原文。
 
 除非用户要求修复，否则只报告 findings，不编辑。
 
@@ -277,6 +328,6 @@ uv run python tools/build_graph.py --report
 ## Naming
 
 - Source slugs 使用 `kebab-case`。
-- Entity 和 concept pages 使用 `TitleCase.md`。
+- Entity 和 concept pages 使用 `TitleCase.md`。entity 页只保留横跨多来源的枢纽。
 - Synthesis slugs 使用 `kebab-case`。
 - filenames 可以紧凑，但 titles 要 human-readable。

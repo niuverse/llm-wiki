@@ -1,9 +1,9 @@
 ---
 title: "Isaac Sim 旧版资产结构"
 type: concept
-tags: [isaac-sim, usd, asset-structure, simulation-assets, robot-setup, legacy-assets]
+tags: [isaac-sim, usd, asset-structure, simulation-assets, robot-setup]
 sources: ["[[isaac-sim-45-asset-structure]]", "[[isaac-sim-asset-structure]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # Isaac Sim 旧版资产结构

@@ -3,7 +3,7 @@ title: "UniLab"
 type: entity
 tags: [robotics, reinforcement-learning, simulation, systems]
 sources: ["[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[unilab-repository]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[motrixsim-documentation]]"]
-last_updated: 2026-07-13
+modified: 2026-07-13
 ---
 
 # UniLab
@@ -16,4 +16,4 @@ UniLab 是 [[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominan
 
 UniLab 对本知识库的意义是把 [[RoboticsSimulationInfrastructure|机器人学仿真基础设施]] 的问题推进到运行时关键路径：训练速度不只由物理后端 env 步骤/s 决定，还由学习器利用率、重放边界、H2D 迁移、缓冲区 slotting 和权重同步决定。它也为 [[HeterogeneousRobotRLTraining]] 提供有来源支持的情形：GPU 仿真是有效路径，但不是高效机器人 RL 训练的唯一系统组织方式。
 
-相关页面：[[HeterogeneousRobotRLTraining]]、[[RoboticsSimulationInfrastructure]]、[[SimulationRealityGap]]、[[MuJoCoUni]]、[[MotrixSim]]、[[MuJoCo]]。
+相关页面：[[HeterogeneousRobotRLTraining]]、[[RoboticsSimulationInfrastructure]]、[[SimulationRealityGap]]、[[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]]、[[MotrixSim]]、[[MuJoCo]]。
