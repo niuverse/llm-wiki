@@ -1,7 +1,7 @@
 # Graph Report - 2026-09-25
 
-- Nodes: 106
-- Edges: 604
+- Nodes: 105
+- Edges: 594
 - Orphans: 0
 - Missing referenced pages: 0
 
@@ -11,8 +11,8 @@ No orphan nodes.
 
 ## Top Degree Nodes
 
-- `syntheses/research-questions`: 69
 - `concepts/SimulationRealityGap`: 68
+- `syntheses/research-questions`: 68
 - `overview`: 54
 - `concepts/RoboticsSimulationInfrastructure`: 35
 - `entities/MuJoCo`: 30

@@ -121,7 +121,7 @@ modified: 2026-09-25
 
 当前判断：轮式机器人的建模要点是车轮层约束如何决定底盘的可行运动旋量。[[WheeledRobotKinematics]] 给出 $u=H(0)V_b$ 的统一入口；[[WheeledMobileRobotClassification]] 用机动度与可转向度划分退化与非退化结构；[[OmnidirectionalWheels]]、[[NonholonomicMobileRobots]]、[[SteerableWheels]] 分别覆盖全向轮秩条件、Pfaffian 非完整约束与可转向轮自由度。系统复习路径见 [[wheeled-robot-modeling-learning-map|轮式机器人建模学习地图]]。
 
-优先阅读：[[wheeled-robot-modeling-learning-map|轮式机器人建模学习地图]]、[[wheeled-robot-visual-lab|轮式机器人可视化实验]]、[[WheeledRobotKinematics]]、[[MobileRobotOdometry]]。
+优先阅读：[[wheeled-robot-modeling-learning-map|轮式机器人建模学习地图]]、[[WheeledRobotKinematics]]、[[MobileRobotOdometry]]。
 
 证据边界：运动学与分类体系有 Modern Robotics 教材章节和 Campion 分类论文支撑；可视化实验页是内嵌交互图，属于复习辅助而非独立证据。
 

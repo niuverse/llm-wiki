@@ -29,7 +29,6 @@ modified: 2026-09-25
 - [Isaac Sim 与 MuJoCo 物理和控制笔记](syntheses/isaac-sim-mujoco-control-tuning-notes.md) - 提炼 Isaac Sim 官方文档措辞、PhysX/Isaac Sim 位置驱动语义、刚度/阻尼、力矩限制、七自由度机械臂增益缩放、MuJoCo/PhysX 求解器差异和参数迁移边界
 - [三维模型格式学习地图](syntheses/3d-model-formats-learning-map.md) - OBJ、STL、PLY、glTF/GLB、FBX、USD、步骤、URDF/SDF/MJCF 等三维资产格式的学习脚手架与来源获取计划
 - [轮式机器人建模学习地图](syntheses/wheeled-robot-modeling-learning-map.md) - 轮式机器人建模学习脚手架，覆盖车轮分类体系、运动学、全向转向分配、仿真路径、失效情形和来源获取计划
-- [轮式机器人可视化实验](syntheses/wheeled-robot-visual-lab.md) - 内嵌学术风格交互图，把车轮层约束、接触点速度和底盘矩阵行放在同一张平面图中复习
 - [机器人仿真评测是否需要仿真数据后训练](syntheses/simulation-post-training-evaluation.md) - 仿真 benchmark 数据后训练对评测有效性的影响、按评测目的分类的判断、应报告指标与常见误判　unsourced
 - [DeepSeek Harness 学习地图](syntheses/dsh-learning-map.md) - DeepSeek Harness（dsh）agent 运行时学习脚手架，覆盖 Cordis 插件框架、profile/bundle 组合、session 事件日志、turn/step 循环、能力 seam、沙箱/审批、编排能力与来源获取计划
 

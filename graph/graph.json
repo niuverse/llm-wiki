@@ -735,13 +735,6 @@
       "type": "synthesis",
       "color": "#9C27B0",
       "path": "wiki/syntheses/wheeled-robot-modeling-learning-map.md"
-    },
-    {
-      "id": "syntheses/wheeled-robot-visual-lab",
-      "label": "轮式机器人可视化实验",
-      "type": "synthesis",
-      "color": "#9C27B0",
-      "path": "wiki/syntheses/wheeled-robot-visual-lab.md"
     }
   ],
   "edges": [
@@ -4736,13 +4729,6 @@
       "confidence": 1.0
     },
     {
-      "id": "syntheses/research-questions--syntheses/wheeled-robot-visual-lab",
-      "from": "syntheses/research-questions",
-      "to": "syntheses/wheeled-robot-visual-lab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/MobileRobotOdometry--syntheses/research-questions",
       "from": "syntheses/research-questions",
       "to": "concepts/MobileRobotOdometry",
@@ -4869,13 +4855,6 @@
       "confidence": 1.0
     },
     {
-      "id": "syntheses/wheeled-robot-modeling-learning-map--syntheses/wheeled-robot-visual-lab",
-      "from": "syntheses/wheeled-robot-modeling-learning-map",
-      "to": "syntheses/wheeled-robot-visual-lab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/WheeledRobotKinematics--syntheses/wheeled-robot-modeling-learning-map",
       "from": "syntheses/wheeled-robot-modeling-learning-map",
       "to": "concepts/WheeledRobotKinematics",
@@ -4914,62 +4893,6 @@
       "id": "concepts/SteerableWheels--syntheses/wheeled-robot-modeling-learning-map",
       "from": "syntheses/wheeled-robot-modeling-learning-map",
       "to": "concepts/SteerableWheels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "sources/modern-robotics-chapter-13-wheeled-mobile-robots--syntheses/wheeled-robot-visual-lab",
-      "from": "syntheses/wheeled-robot-visual-lab",
-      "to": "sources/modern-robotics-chapter-13-wheeled-mobile-robots",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "sources/structural-properties-and-classification-of-wheeled-mobile-robots--syntheses/wheeled-robot-visual-lab",
-      "from": "syntheses/wheeled-robot-visual-lab",
-      "to": "sources/structural-properties-and-classification-of-wheeled-mobile-robots",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/WheeledRobotKinematics--syntheses/wheeled-robot-visual-lab",
-      "from": "syntheses/wheeled-robot-visual-lab",
-      "to": "concepts/WheeledRobotKinematics",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/OmnidirectionalWheels--syntheses/wheeled-robot-visual-lab",
-      "from": "syntheses/wheeled-robot-visual-lab",
-      "to": "concepts/OmnidirectionalWheels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/NonholonomicMobileRobots--syntheses/wheeled-robot-visual-lab",
-      "from": "syntheses/wheeled-robot-visual-lab",
-      "to": "concepts/NonholonomicMobileRobots",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SteerableWheels--syntheses/wheeled-robot-visual-lab",
-      "from": "syntheses/wheeled-robot-visual-lab",
-      "to": "concepts/SteerableWheels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/WheeledMobileRobotClassification--syntheses/wheeled-robot-visual-lab",
-      "from": "syntheses/wheeled-robot-visual-lab",
-      "to": "concepts/WheeledMobileRobotClassification",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/MobileRobotOdometry--syntheses/wheeled-robot-visual-lab",
-      "from": "syntheses/wheeled-robot-visual-lab",
-      "to": "concepts/MobileRobotOdometry",
       "type": "EXTRACTED",
       "confidence": 1.0
     }

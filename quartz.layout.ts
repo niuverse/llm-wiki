@@ -5,14 +5,7 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  // The wheeled-robot lab only has markup on one synthesis page; ConditionalRender
-  // keeps its script and stylesheet off the other ~105 pages.
-  afterBody: [
-    Component.ConditionalRender({
-      component: Component.WheeledRobotVisualLab(),
-      condition: (page) => page.fileData.slug === "syntheses/wheeled-robot-visual-lab",
-    }),
-  ],
+  afterBody: [],
   footer: Component.Footer({
     links: {
       GitHub: "https://github.com/niuverse/llm-wiki",

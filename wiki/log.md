@@ -287,3 +287,12 @@ wiki 从 134 页降到 106 页，graph 孤儿 0、断链 0。`npm run wiki:build
 - **日期诚实性**：并页后一度把 100+ 页刷成同一天，按 `AGENTS.md` 自己的规则回退。最终 27 页为真正改过的日期，69 页保持原审阅日期。
 - **顺带修复**：`WheeledRobotVisualLab.tsx` 缺 `@ts-ignore` 导致 `npm run wiki:check` 长期报 1 个类型错误；现已 `tsc` 零错误。
 
+## [2026-09-25] maintenance | 删除 WheeledRobotVisualLab
+
+- 删除自改 Quartz 源码四处：`components/WheeledRobotVisualLab.tsx`、`scripts/wheeledRobotVisualLab.inline.ts`、`scripts/wheeledRobotVisualLab.math.ts`、`styles/wheeledRobotVisualLab.scss`，以及 `tests/wheeledRobotVisualLab.math.test.ts`。
+- 删除 `wiki/syntheses/wheeled-robot-visual-lab.md`：该页的全部意义是为组件提供挂载点和读图说明，组件删除后 `## 交互图` 会成为死 div；其数学内容本就由 [[WheeledRobotKinematics]] 承载。
+- 删除对应的过期计划文档 `docs/plans/2026-05-01-wheeled-robot-visual-lab{,-design}.md`。
+- 清理 `components/index.ts`、`quartz.layout.ts`（去掉唯一的 `afterBody` 块）、`wiki/index.md`、[[wheeled-robot-modeling-learning-map|轮式机器人建模学习地图]] 与 [[research-questions|研究问题]] 中的引用。
+
+结果：Quartz 回到接近上游状态，仓库不再有自改组件，未来升级 Quartz 可直接覆盖。`npm run wiki:check` 与 `npm run wiki:build` 均通过。
+
