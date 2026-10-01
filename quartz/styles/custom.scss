@@ -626,8 +626,10 @@ footer {
   }
 }
 .knowledge-graph {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--lightgray);
-  border-radius: 7px;
+  border-radius: 10px;
   overflow: hidden;
   background: var(--light);
   > p {
@@ -638,42 +640,150 @@ footer {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 7px;
-  padding: 10px;
+  gap: 6px;
+  padding: 10px 12px;
   border-bottom: 1px solid var(--lightgray);
+  background: var(--light);
+  flex-shrink: 0;
   > p {
     margin: 0 auto 0 0;
     font-size: 0.75rem;
     color: var(--gray);
   }
+  button {
+    min-height: 34px;
+    padding: 6px 9px;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease;
+  }
+  button[data-graph-action="pause"][aria-pressed="true"] {
+    background: var(--highlight);
+    border-color: var(--secondary);
+    color: var(--secondary);
+  }
+}
+.graph-stage {
+  position: relative;
+  height: clamp(420px, 60vh, 640px);
+  overflow: hidden;
+  isolation: isolate;
+  background-color: var(--light);
+  background-image: radial-gradient(circle at 1px 1px, var(--lightgray) 0.75px, transparent 0.9px);
+  background-size: 24px 24px;
+  &.compact {
+    height: clamp(360px, 50vh, 480px);
+  }
+}
+.graph-tooltip {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 2;
+  display: grid;
+  gap: 4px;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: min(340px, calc(100% - 28px));
+  padding: 11px 14px;
+  border: 1px solid var(--lightgray);
+  border-radius: 8px;
+  background: var(--light);
+  box-shadow: 0 4px 18px var(--highlight);
+  pointer-events: none;
+  strong {
+    color: var(--dark);
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+  span {
+    color: var(--gray);
+    font-size: 0.73rem;
+    line-height: 1.55;
+  }
+  &[hidden] {
+    display: none;
+  }
+}
+.knowledge-graph:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  border: 0;
+  border-radius: 0;
+  .graph-toolbar {
+    padding: 14px 20px;
+  }
+  .graph-stage {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+  }
+  .relation-svg {
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+  }
+  .graph-tooltip {
+    bottom: 24px;
+    left: 24px;
+    max-width: min(400px, calc(100% - 48px));
+  }
+  button[data-graph-action="fullscreen"] {
+    background: var(--highlight);
+    border-color: var(--secondary);
+    color: var(--secondary);
+  }
+  &::backdrop {
+    background: var(--light);
+  }
 }
 .relation-svg {
   display: block;
   width: 100%;
-  height: auto;
-  min-height: 250px;
-  max-height: 650px;
+  height: 100%;
   touch-action: none;
   color: var(--gray);
   cursor: grab;
+  user-select: none;
+  &.is-panning {
+    cursor: grabbing;
+  }
   .relation-edge {
     stroke: var(--gray);
     stroke-width: 1;
-    opacity: 0.2;
+    opacity: 0.18;
+    vector-effect: non-scaling-stroke;
     pointer-events: none;
+    transition:
+      opacity 180ms ease,
+      stroke 180ms ease,
+      stroke-width 180ms ease;
   }
   .relation-edge.related {
     stroke: var(--secondary);
-    stroke-width: 2;
-    opacity: 0.9;
+    stroke-width: 1.8;
+    opacity: 0.85;
   }
   .relation-node {
-    cursor: pointer;
+    cursor: grab;
+    transition: opacity 180ms ease;
     text {
       fill: var(--darkgray);
       font-size: 12px;
+      font-weight: 500;
       opacity: 0;
       pointer-events: none;
+      paint-order: stroke fill;
+      stroke: var(--light);
+      stroke-width: 4px;
+      stroke-linejoin: round;
+      transition:
+        opacity 180ms ease,
+        fill 180ms ease;
     }
     .relation-hit {
       stroke: none;
@@ -681,16 +791,59 @@ footer {
     .relation-dot {
       stroke: var(--light);
       stroke-width: 2;
+      transform-box: fill-box;
+      transform-origin: center;
+      transition:
+        transform 180ms ease,
+        stroke 180ms ease,
+        stroke-width 180ms ease;
+    }
+    .relation-halo {
+      fill: var(--secondary);
+      stroke: none;
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+      transition:
+        opacity 180ms ease,
+        transform 180ms ease;
     }
     &.current .relation-dot {
       stroke: var(--secondary);
       stroke-width: 3;
     }
+    &.current .relation-halo {
+      opacity: 0.1;
+    }
+    &.related .relation-halo {
+      opacity: 0.08;
+    }
     &:hover text,
     &:focus text,
-    &.related text,
-    &.current text {
+    &.current text,
+    &.active text,
+    &.dragging text {
       opacity: 1;
+    }
+    &:hover .relation-dot,
+    &:focus .relation-dot,
+    &.active .relation-dot,
+    &.dragging .relation-dot {
+      transform: scale(1.12);
+    }
+    &:hover .relation-halo,
+    &:focus .relation-halo,
+    &.active .relation-halo,
+    &.dragging .relation-halo {
+      opacity: 0.18;
+      transform: scale(1.08);
+    }
+    &.active text,
+    &.dragging text {
+      fill: var(--dark);
+    }
+    &.dragging {
+      cursor: grabbing;
     }
     &:focus {
       outline: none;
@@ -701,9 +854,10 @@ footer {
     }
   }
   .dimmed {
-    opacity: 0.08;
+    opacity: 0.12;
   }
-  &.compact .relation-node text {
+  &.compact .relation-node text,
+  &.labels-visible .relation-node text {
     opacity: 1;
   }
 }
@@ -774,7 +928,37 @@ article video {
       grid-row: auto;
     }
   }
-  .relation-svg {
-    min-height: 280px;
+  .graph-stage {
+    height: clamp(340px, 52vh, 460px);
+    &.compact {
+      height: clamp(320px, 48vh, 420px);
+    }
+  }
+  .graph-toolbar {
+    padding: 10px;
+    > p {
+      flex-basis: 100%;
+      margin-bottom: 2px;
+    }
+    button {
+      min-height: 40px;
+      padding: 8px 10px;
+    }
+  }
+  .graph-tooltip {
+    bottom: 10px;
+    left: 10px;
+    max-width: calc(100% - 20px);
+    padding: 9px 11px;
+  }
+  .knowledge-graph:fullscreen {
+    .graph-toolbar {
+      padding: 10px;
+    }
+    .graph-tooltip {
+      bottom: 14px;
+      left: 14px;
+      max-width: calc(100% - 28px);
+    }
   }
 }
