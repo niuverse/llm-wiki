@@ -1,4 +1,4 @@
-# Graph Report - 2026-10-02
+# Graph Report
 
 - Nodes: 145
 - Edges: 917

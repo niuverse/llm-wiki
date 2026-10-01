@@ -170,6 +170,43 @@ class WikiToolTests(unittest.TestCase):
             self.assertTrue((root / "graph/graph.html").exists())
             self.assertTrue((root / "graph/graph-report.md").exists())
 
+    def test_build_graph_is_reproducible_across_dates_and_timezones(self) -> None:
+        # Run the actual CLI with controlled local dates, including the UTC /
+        # Shanghai midnight boundary that made committed artifacts fail in CI.
+        clock_runner = """
+import datetime, os, runpy, sys, time
+class ControlledDate(datetime.date):
+    @classmethod
+    def today(cls):
+        return cls.fromisoformat(os.environ["GRAPH_TEST_TODAY"])
+datetime.date = ControlledDate
+if hasattr(time, "tzset"):
+    time.tzset()
+sys.argv = sys.argv[1:]
+runpy.run_path(sys.argv[0], run_name="__main__")
+"""
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write(root / "wiki/concepts/Concept.md", "---\ntitle: Concept\ntype: concept\n---\n\n[[paper]]")
+            write(root / "wiki/sources/paper.md", "---\ntitle: Paper\ntype: source\n---\n\nEvidence.")
+            outputs = []
+            for timezone, today in (
+                ("UTC", "2026-10-01"),
+                ("Asia/Shanghai", "2026-10-02"),
+                ("UTC", "2027-01-01"),
+            ):
+                env = os.environ | {"TZ": timezone, "GRAPH_TEST_TODAY": today}
+                result = self.run_tool(
+                    "-c", clock_runner, "tools/build_graph.py", "--root", str(root), "--report", env=env
+                )
+                self.assertEqual(result.returncode, 0, result.stderr + result.stdout)
+                outputs.append({
+                    name: (root / "graph" / name).read_bytes()
+                    for name in ("graph.json", "graph.html", "graph-report.md")
+                })
+            self.assertEqual(outputs[0], outputs[1])
+            self.assertEqual(outputs[0], outputs[2])
+
 
 if __name__ == "__main__":
     unittest.main()
