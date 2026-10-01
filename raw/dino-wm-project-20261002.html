@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js">
+</script>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="DINO-WM: World Models on Pre-trained Visual Features enable Zero-shot Planning">
+  <meta property="og:description"
+    content="DINO-WM: World Models on Pre-trained Visual Features enable Zero-shot Planning">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name"
+    content="DINO-WM: World Models on Pre-trained Visual Features enable Zero-shot Planning">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DINO-WM: World Models on Pre-trained Visual Features enable Zero-shot Planning">
+  <meta name="twitter:description"
+    content="DINO-WM: World Models on Pre-trained Visual Features enable Zero-shot Planning">
+  <meta name="twitter:image" content="./mfiles/figs/intro.png" />
+  <link rel="shortcut icon" href="mfiles/favicon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/simple-grid.css">
+  <title>DINO-WM: World Models on Pre-trained Visual Features enable Zero-shot Planning</title>
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-12 center mb-3">
+          <h1 style="font-size: 2.9em;">
+            <b>DINO-WM</b>: World Models on Pre-trained
+          </h1>
+          <h1 style="font-size: 2.8em;">
+            Visual Features enable Zero-shot Planning
+          </h1>
+        </div>
+
+        <div class="row mt-3 mb-3">
+          <div class="center" style="flex: 0 0 15%; white-space: nowrap;">
+            <p class="center">
+              <a href="https://arxiv.org/abs/2411.04983" style=" text-decoration: none; font-size: 25px;">
+                <b style="color: #e88404">Paper</b>
+              </a>
+            </p>
+          </div>
+          <div class="center" style="flex: 0 0 15%; white-space: nowrap;">
+            <p class="center">
+              <!-- <a href="https://gaoyuezhou.github.io/" style=" text-decoration: none; font-size: 20px;"> -->
+              <a href="https://github.com/gaoyuezhou/dino_wm" style=" text-decoration: none; font-size: 25px;">
+                <b style="color: #e88404">Code</b>
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="center" style="flex: 0 0 15%; white-space: nowrap;">
+            <p class="center">
+              <a href="https://gaoyuezhou.github.io/" style="color: #333447">Gaoyue Zhou<sup>1</sup></a>
+            </p>
+          </div>
+
+          <div class="center" style="flex: 0 0 15%; white-space: nowrap;">
+            <p class="center">
+              <a href="https://hengkaipan.github.io/" style="color: #333447">Hengkai Pan<sup>1</sup></a>
+            </p>
+          </div>
+
+          <div class="center" style="flex: 0 0 15%; white-space: nowrap;">
+            <p class="center">
+              <a href="https://yann.lecun.com/" style="color: #333447">Yann LeCun<sup>1,2</sup></a>
+            </p>
+          </div>
+
+          <div class="center" style="flex: 0 0 15%; white-space: nowrap;">
+            <p class="center">
+              <a href="https://lerrelpinto.com" style="color: #333447">Lerrel Pinto<sup>1</sup></a>
+            </p>
+          </div>
+        </div>
+
+        <div class="row" style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+          <div class="col-auto center" style="white-space: nowrap;">
+            <p class="center" style="font-size: larger; margin: 0;"> <b>New York University</b><sup>1</sup> </p>
+          </div>
+          <div class="col-auto center" style="white-space: nowrap;">
+            <p class="center" style="font-size: larger; margin: 0;"> <b>Meta-FAIR</b><sup>2</sup> </p>
+          </div>
+        </div>
+
+
+        <div class="col-3 hidden-sm"></div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12 center img">
+          <video class="center" controls style="width:100%; height:auto; overflow:visible;">
+            <source src="./mfiles/figs/teaser_video_small.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <!--Abstract-->
+      <div class="row mt-3">
+        <div class="col-12">
+          <h2 class="center m-bottom">Abstract</h2>
+          <p>
+            The ability to predict future outcomes given control actions is fundamental for physical reasoning. However,
+            such predictive models, often called world models, remains challenging to learn and are typically developed
+            for task-specific solutions with online policy learning. To unlock world models' true potential, we argue
+            that they should 1) be trainable on offline, pre-collected trajectories, 2) support test-time behavior
+            optimization, and 3) facilitate task-agnostic reasoning.
+          </p>
+          <p>
+            To this end, we present DINO World Model (<b style="color: #e88404">DINO-WM</b>), a new method to model
+            visual dynamics without reconstructing the visual world. DINO-WM leverages spatial patch features
+            pre-trained with DINOv2, enabling it to learn from offline behavioral trajectories by predicting future
+            patch features. This allows DINO-WM to achieve observational goals through action sequence optimization,
+            facilitating task-agnostic planning by treating goal features as prediction targets. We demonstrate that
+            DINO-WM achieves zero-shot behavioral solutions at test time on six environments without expert
+            demonstrations, reward modeling, or pre-learned inverse models, outperforming prior state-of-the-art work
+            across diverse task families such as arbitrarily configured mazes, push manipulation with varied object
+            shapes, and multi-particle scenarios.
+          </p>
+
+
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12 center img">
+          <img class="center" src="./mfiles/figs/intro.png" style="width:100%; height:auto; overflow:visible;"></img>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="center mb-3">Method</h2>
+          <p>
+            In this work, we present a new and simple method to build task-agnostic world models from an
+            offline dataset of trajectories. <b style="color: #e88404">DINO-WM</b> models the world dynamics on compact
+            embeddings of the world,
+            rather than the raw observations themselves. For the embedding, we use pretrained patch-features from the
+            DINOv2 model, which provides both a spatial and object-centric representation prior. We conjecture that this
+            pretrained representation enables robust and consistent world modeling, which relaxes the necessity for
+            task-specific data coverage. Given these visual embeddings and actions, <b
+              style="color: #e88404">DINO-WM</b> uses the ViT architecture
+            to predict future embeddings. Once this model is trained on the offline dataset, planning to solve tasks is
+            constructed as visual goal reaching, i.e. to reach a future desired goal given the current observation.
+            Since the predictions by <b style="color: #e88404">DINO-WM</b> are high quality, we can simply use
+            model predictive control with inference-time optimization to reach desired goals without any extra
+            information during testing.
+          </p>
+
+        </div>
+      </div>
+      <div class="col-12 center img">
+        <img class="center" src="./mfiles/figs/model_arch.png" style="width:100%"></img>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="center mb-3">Optimizing Behaviors with DINO-WM</h2>
+          <p>*For all the images and videos below, the top row shows ground truth rollouts in the environment, while the
+            bottom row presents world model-imagined rollouts. The images on the right represent the goal states in both
+            cases.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="body-content" style="padding-bottom: 0px;">
+      <div class="container">
+        <div class="grid-display"
+          style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: flex-start; gap: 10px;">
+          <div class="video-container" style="flex: 1 1 15%; margin: 0;">
+            <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+              <source src="./mfiles/env/media/exp1_all5envs/pusht_ours.mp4" type="video/mp4">
+            </video>
+            <div style="text-align: center;">
+              <h4 class="with-whitebackdrop">PushT</h4>
+            </div>
+          </div>
+          <div class="video-container" style="flex: 1 1 15%; margin: 0;">
+            <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+              <source src="./mfiles/env/media/exp1_all5envs/wall_ours.mp4" type="video/mp4">
+            </video>
+            <div style="text-align: center;">
+              <h4 class="with-whitebackdrop">Wall</h4>
+            </div>
+          </div>
+          <div class="video-container" style="flex: 1 1 15%; margin: 0;">
+            <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+              <source src="./mfiles/env/media/exp1_all5envs/pointmaze_ours.mp4" type="video/mp4">
+            </video>
+            <div style="text-align: center;">
+              <h4 class="with-whitebackdrop">PointMaze</h4>
+            </div>
+          </div>
+          <div class="video-container" style="flex: 1 1 15%; margin: 0;">
+            <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+              <source src="./mfiles/env/media/exp1_all5envs/rope_ours.mp4" type="video/mp4">
+            </video>
+            <div style="text-align: center;">
+              <h4 class="with-whitebackdrop">Rope</h4>
+            </div>
+          </div>
+          <div class="video-container" style="flex: 1 1 15%; margin: 0;">
+            <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+              <source src="./mfiles/env/media/exp1_all5envs/granular_ours(dino-wm).mp4" type="video/mp4">
+            </video>
+            <div style="text-align: center;">
+              <h4 class="with-whitebackdrop">Granular</h4>
+            </div>
+          </div>
+          <div class="video-container" style="flex: 1 1 15%; margin: 0;">
+            <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+              <source src="./mfiles/env/dmcontrol_reacher/ours/plan0_6_success.mp4" type="video/mp4">
+            </video>
+            <div style="text-align: center;">
+              <h4 class="with-whitebackdrop">Reacher</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="center mb-3">Comparing planning performance with baselines</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="body-content" style="padding-bottom: 0px;">
+      <div class="container">
+        <h4>PushT: horizon = 25</h2>
+          <div class="grid-display"
+            style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 20px;">
+            <div class="video-container" style="flex: 1 1 22%; margin: 0;">
+              <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+                <source src="./mfiles/env/media/exp1_pusht_25_steps/pusht_ours.mp4" type="video/mp4">
+              </video>
+              <div style="text-align: center;">
+                <h4 class="with-whitebackdrop">Ours</h4>
+              </div>
+            </div>
+            <div class="video-container" style="flex: 1 1 22%; margin: 0;">
+              <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+                <source src="./mfiles/env/media/exp1_pusht_25_steps/pusht_dino_cls.mp4" type="video/mp4">
+              </video>
+              <div style="text-align: center;">
+                <h4 class="with-whitebackdrop">DINO CLS</h4>
+              </div>
+            </div>
+            <div class="video-container" style="flex: 1 1 22%; margin: 0;">
+              <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+                <source src="./mfiles/env/media/exp1_pusht_25_steps/pusht_dreamerv3.mp4" type="video/mp4">
+              </video>
+              <div style="text-align: center;">
+                <h4 class="with-whitebackdrop">Dreamer V3</h4>
+              </div>
+            </div>
+            <div class="video-container" style="flex: 1 1 22%; margin: 0;">
+              <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+                <source src="./mfiles/env/media/exp1_pusht_25_steps/pusht_iris.mp4" type="video/mp4">
+              </video>
+              <div style="text-align: center;">
+                <h4 class="with-whitebackdrop">IRIS</h4>
+              </div>
+            </div>
+          </div>
+
+          <h4>Granular:</h2>
+            <div class="grid-display"
+              style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 20px;">
+              <div class="video-container" style="flex: 1 1 22%; margin: 0;">
+                <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+                  <source src="./mfiles/env/media/exp1_granular/granular_ours(dino-wm).mp4" type="video/mp4">
+                </video>
+                <div style="text-align: center;">
+                  <h4 class="with-whitebackdrop">Ours</h4>
+                </div>
+              </div>
+              <div class="video-container" style="flex: 1 1 22%; margin: 0;">
+                <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+                  <source src="./mfiles/env/media/exp1_granular/granular_dino_cls.mp4" type="video/mp4">
+                </video>
+                <div style="text-align: center;">
+                  <h4 class="with-whitebackdrop">DINO CLS</h4>
+                </div>
+              </div>
+              <div class="video-container" style="flex: 1 1 22%; margin: 0;">
+                <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+                  <source src="./mfiles/env/media/exp1_granular/granular_r3m.mp4" type="video/mp4">
+                </video>
+                <div style="text-align: center;">
+                  <h4 class="with-whitebackdrop">R3M</h4>
+                </div>
+              </div>
+              <div class="video-container" style="flex: 1 1 22%; margin: 0;">
+                <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+                  <source src="./mfiles/env/media/exp1_granular/granular_resnet.mp4" type="video/mp4">
+                </video>
+                <div style="text-align: center;">
+                  <h4 class="with-whitebackdrop">ResNet</h4>
+                </div>
+              </div>
+            </div>
+
+            <h4>DM Control Reacher:</h2>
+              <div class="grid-display"
+                style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 20px;">
+                <div class="video-container" style="flex: 1 1 22%; margin: 0;">
+                  <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+                    <source src="./mfiles/env/dmcontrol_reacher/ours/plan0_4_success.mp4" type="video/mp4">
+                  </video>
+                  <div style="text-align: center;">
+                    <h4 class="with-whitebackdrop">Ours Success</h4>
+                  </div>
+                </div>
+                <div class="video-container" style="flex: 1 1 22%; margin: 0;">
+                  <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+                    <source src="./mfiles/env/dmcontrol_reacher/ours/plan0_2_failure.mp4" type="video/mp4">
+                  </video>
+                  <div style="text-align: center;">
+                    <h4 class="with-whitebackdrop">Ours Failure</h4>
+                  </div>
+                </div>
+                <div class="video-container" style="flex: 1 1 22%; margin: 0;">
+                  <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+                    <source src="./mfiles/env/dmcontrol_reacher/dreamer/plan0_5_success.mp4" type="video/mp4">
+                  </video>
+                  <div style="text-align: center;">
+                    <h4 class="with-whitebackdrop">Dreamer V3 Success</h4>
+                  </div>
+                </div>
+                <div class="video-container" style="flex: 1 1 22%; margin: 0;">
+                  <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+                    <source src="./mfiles/env/dmcontrol_reacher/dreamer/plan0_0_failure.mp4" type="video/mp4">
+                  </video>
+                  <div style="text-align: center;">
+                    <h4 class="with-whitebackdrop">Dreamer V3 Failure </h4>
+                  </div>
+                </div>
+              </div>
+
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="center mb-3">Unconditioned DINO-WM on CLEVRER</h2>
+          <p>*For the videos in this section, the top row shows ground truth rollouts in the environment, while the
+            bottom row presents world model-imagined rollouts.</p>
+          <p>1-frame rollouts are conditioned on the first frame only, while 3-frame rollouts are conditioned on the
+            first three frames. This allows the model to better capture physical properties like velocity and
+            trajectories. This added context improves prediction accuracy, whereas conditioning on a single frame leads
+            to open-ended assumptions about object movements and predictions. Both are taken from the validation set.
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="body-content" style="padding-bottom: 0px;">
+      <div class="container">
+        <div class="grid-display"
+          style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 20px;">
+          <div class="video-container" style="flex: 1 1 11%; margin: 0;">
+            <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+              <source src="./mfiles/env/clevrer_videos/video_e15_val_s1_2 copy.mp4" type="video/mp4">
+            </video>
+            <div style="text-align: center;">
+              <h4 class="with-whitebackdrop">3-Frame Context Example 1</h4>
+            </div>
+          </div>
+          <div class="video-container" style="flex: 1 1 11%; margin: 0;">
+            <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+              <source src="./mfiles/env/clevrer_videos/video_e15_val_s1_2_1framestart.mp4" type="video/mp4">
+            </video>
+            <div style="text-align: center;">
+              <h4 class="with-whitebackdrop">1-Frame Context Example 1</h4>
+            </div>
+          </div>
+          <div class="video-container" style="flex: 1 1 11%; margin: 0;">
+            <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+              <source src="./mfiles/env/clevrer_videos/video_e15_val_s1_5.mp4" type="video/mp4">
+            </video>
+            <div style="text-align: center;">
+              <h4 class="with-whitebackdrop">3-Frame Context Example 2</h4>
+            </div>
+          </div>
+          <div class="video-container" style="flex: 1 1 11%; margin: 0;">
+            <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+              <source src="./mfiles/env/clevrer_videos/video_e15_val_s1_5_1framestart.mp4" type="video/mp4">
+            </video>
+            <div style="text-align: center;">
+              <h4 class="with-whitebackdrop">1-Frame Context Example 2</h4>
+            </div>
+          </div>
+          <div class="video-container" style="flex: 1 1 11%; margin: 0;">
+            <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+              <source src="./mfiles/env/clevrer_videos/video_e15_val_s1_6.mp4" type="video/mp4">
+            </video>
+            <div style="text-align: center;">
+              <h4 class="with-whitebackdrop">3-Frame Context Example 3</h4>
+            </div>
+          </div>
+          <div class="video-container" style="flex: 1 1 11%; margin: 0;">
+            <video class="img" style="width: 100%; height: auto;" muted autoplay loop controls>
+              <source src="./mfiles/env/clevrer_videos/video_e15_val_s1_6_1framestart.mp4" type="video/mp4">
+            </video>
+            <div style="text-align: center;">
+              <h4 class="with-whitebackdrop">1-Frame Context Example 3</h4>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="center mb-3">Generalizing to Novel Environment Configurations</h2>
+        </div>
+      </div>
+    </div>
+    <div class="body-content" style="padding: 10px;">
+      <div class="container">
+        <div class="grid-display">
+          <div id="indicator2" class="carousel slide mb-3" data-bs-ride="false">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#indicator2" data-bs-slide-to="0" class="active" aria-current="true"
+                aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#indicator2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#indicator2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#indicator2" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div style="display: flex; justify-content: center; height: 400px;">
+                  <video class="img" style="height: 400px; margin: auto;" muted autoplay loop controls>
+                    <source src="./mfiles/env/media/exp3/WallRandom_ours.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div style="text-align: center;">
+                  <h4 class="caption with-whitebackdrop">WallRandom</h4>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div style="display: flex; justify-content: center; height: 400px;">
+                  <video class="img" style="height: 400px; margin: auto;" muted autoplay loop controls>
+                    <source src="./mfiles/env/media/exp3/PushObj_ours_2.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div style="text-align: center;">
+                  <h4 class="caption with-whitebackdrop">PushObj</h4>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div style="display: flex; justify-content: center; height: 400px;">
+                  <video class="img" style="height: 400px; margin: auto;" muted autoplay loop controls>
+                    <source src="./mfiles/env/media/exp3/PushObj_ours_1.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div style="text-align: center;">
+                  <h4 class="caption with-whitebackdrop">PushObj</h4>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div style="display: flex; justify-content: center; height: 400px;">
+                  <video class="img" style="height: 400px; margin: auto;" muted autoplay loop controls>
+                    <source src="./mfiles/env/media/exp3/GranularRandom_ours.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div style="text-align: center;">
+                  <h4 class="caption with-whitebackdrop">GranularRandom</h4>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#indicator2" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon with-backdrop" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#indicator2" data-bs-slide="next">
+              <span class="carousel-control-next-icon with-backdrop" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="center mb-3">Additional Planning Results</h2>
+        </div>
+      </div>
+    </div>
+    <div class="body-content" style="padding-bottom: 10px;">
+      <div class="container">
+        <div class="grid-display">
+
+          <!-- Pusht: horizon = 25 -->
+          <div class="container-fluid" style="max-width: 100%; padding: 0;">
+            <h4>PushT: horizon = 25</h4>
+            <div class="row d-flex justify-content-center" style="display: flex; flex-wrap: nowrap;">
+              <!-- First Column -->
+              <div class="carousel-column" style="flex: 0 0 45%; padding: 10px;">
+                <div id="indicator3_1" class="carousel slide mb-3" data-bs-ride="false">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#indicator3_1" data-bs-slide-to="0" class="active"
+                      aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#indicator3_1" data-bs-slide-to="1"
+                      aria-label="Slide 2"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/pusht/output_final_3_success.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Success1</h4>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/pusht/output_final_4_success.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Success2</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#indicator3_1"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#indicator3_1"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Second Column -->
+              <div class="carousel-column" style="flex: 0 0 45%; padding: 10px;">
+                <div id="indicator3_2" class="carousel slide mb-3" data-bs-ride="false">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#indicator3_2" data-bs-slide-to="0" class="active"
+                      aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#indicator3_2" data-bs-slide-to="1"
+                      aria-label="Slide 2"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/pusht/output_final_0_failure.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Failure1</h4>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/pusht/output_final_1_failure.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Failure2</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#indicator3_2"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#indicator3_2"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pusht: horizon = 50 -->
+          <div class="container-fluid" style="max-width: 100%; padding: 0;">
+            <h4>PushT: horizon = 50</h4>
+            <div class="row d-flex justify-content-center" style="display: flex; flex-wrap: nowrap;">
+              <!-- First Column -->
+              <div class="carousel-column" style="flex: 0 0 45%; padding: 10px;">
+                <div id="indicator5_1" class="carousel slide mb-3" data-bs-ride="false">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#indicator5_1" data-bs-slide-to="0" class="active"
+                      aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#indicator5_1" data-bs-slide-to="1"
+                      aria-label="Slide 2"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/media/exp1_pusht_50_steps/pusht_ours_success_1.mp4"
+                            type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Success1</h4>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/media/exp1_pusht_50_steps/pusht_ours_success_2.mp4"
+                            type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Success2</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#indicator5_1"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#indicator5_1"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Second Column -->
+              <div class="carousel-column" style="flex: 0 0 45%; padding: 10px;">
+                <div id="indicator5_2" class="carousel slide mb-3" data-bs-ride="false">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#indicator5_2" data-bs-slide-to="0" class="active"
+                      aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#indicator5_2" data-bs-slide-to="1"
+                      aria-label="Slide 2"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/media/exp1_pusht_50_steps/pusht_ours_failure_3.mp4"
+                            type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Failure1</h4>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/media/exp1_pusht_50_steps/pusht_ours_failure_4.mp4"
+                            type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Failure2</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#indicator5_2"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#indicator5_2"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-fluid" style="max-width: 100%; padding: 0;">
+            <h4>PointMaze:</h4>
+            <div class="row d-flex justify-content-center" style="display: flex; flex-wrap: nowrap;">
+              <!-- Success Videos Column -->
+              <div class="carousel-column" style="flex: 0 0 45%; padding: 10px;">
+                <div id="indicator6_1" class="carousel slide mb-3" data-bs-ride="false">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#indicator6_1" data-bs-slide-to="0" class="active"
+                      aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#indicator6_1" data-bs-slide-to="1"
+                      aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#indicator6_1" data-bs-slide-to="2"
+                      aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#indicator6_1" data-bs-slide-to="3"
+                      aria-label="Slide 4"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/point_maze/PointMaze_H5_3.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Success1</h4>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/point_maze/PointMaze_H5_1.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Success2</h4>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/point_maze/PointMaze_H5_2.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Success3</h4>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/point_maze/PointMaze_H5_1.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Failure1</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#indicator6_1"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#indicator6_1"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Failure Videos Column with Carousel Controls -->
+              <div class="carousel-column" style="flex: 0 0 45%; padding: 10px;">
+                <div id="indicator6_2" class="carousel slide mb-3" data-bs-ride="false">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#indicator6_2" data-bs-slide-to="0" class="active"
+                      aria-current="true" aria-label="Slide 1"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/point_maze/PointMaze_H5_1.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Failure1</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#indicator6_2"
+                    data-bs-slide="prev" disabled>
+                    <span class="carousel-control-prev-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#indicator6_2"
+                    data-bs-slide="next" disabled>
+                    <span class="carousel-control-next-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-fluid" style="max-width: 100%; padding: 0;">
+            <h4>DM Control Reacher:</h4>
+            <div class="row d-flex justify-content-center" style="display: flex; flex-wrap: nowrap;">
+              <!-- First Column -->
+              <div class="carousel-column" style="flex: 0 0 45%; padding: 10px;">
+                <div id="indicator8" class="carousel slide mb-3" data-bs-ride="false">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#indicator8" data-bs-slide-to="0" class="active"
+                      aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#indicator8" data-bs-slide-to="1"
+                      aria-label="Slide 2"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/dmcontrol_reacher/ours/plan0_4_success.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Success1</h4>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/dmcontrol_reacher/ours/plan0_6_success.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Success2</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#indicator8" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#indicator8" data-bs-slide="next">
+                    <span class="carousel-control-next-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Second Column -->
+              <div class="carousel-column" style="flex: 0 0 45%; padding: 10px;">
+                <div id="indicator9" class="carousel slide mb-3" data-bs-ride="false">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#indicator9" data-bs-slide-to="0" class="active"
+                      aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#indicator9" data-bs-slide-to="1"
+                      aria-label="Slide 2"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/dmcontrol_reacher/ours/plan0_2_failure.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Failure1</h4>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div
+                        style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                        <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                          <source src="./mfiles/env/dmcontrol_reacher/ours/plan0_8_failure.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                      <div style="text-align: center;">
+                        <h4 class="caption with-whitebackdrop">Failure2</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#indicator9" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#indicator9" data-bs-slide="next">
+                    <span class="carousel-control-next-icon with-backdrop" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h4> Rope:</h4>
+          <div id="indicator7" class="carousel slide mb-3" data-bs-ride="false">
+            <div class="carousel-indicators" style="bottom: 0px;">
+              <button type="button" data-bs-target="#indicator7" data-bs-slide-to="0" class="active" aria-current="true"
+                aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#indicator7" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#indicator7" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#indicator7" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div style="display: flex; justify-content: center; height: 250px;">
+                  <video class="img" style="height: 250px; margin: auto;" muted autoplay loop controls>
+                    <source src="./mfiles/env/rope/rope_concat_0.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div style="display: flex; justify-content: center; height: 250px;">
+                  <video class="img" style="height: 250px; margin: auto;" muted autoplay loop controls>
+                    <source src="./mfiles/env/rope/rope_concat_1.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div style="display: flex; justify-content: center; height: 250px;">
+                  <video class="img" style="height: 250px; margin: auto;" muted autoplay loop controls>
+                    <source src="./mfiles/env/rope/rope_concat_2.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div style="display: flex; justify-content: center; height: 250px;">
+                  <video class="img" style="height: 250px; margin: auto;" muted autoplay loop controls>
+                    <source src="./mfiles/env/rope/rope_concat_3.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#indicator7" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon with-backdrop" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#indicator7" data-bs-slide="next">
+              <span class="carousel-control-next-icon with-backdrop" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="center mb-3">Deformable Dataset Visualizations</h2>
+        </div>
+      </div>
+    </div>
+    <div class="body-content" style="padding-bottom: 10px;">
+      <div class="container">
+        <div class="container-fluid" style="max-width: 100%; padding: 0;">
+          <div class="row d-flex justify-content-center" style="display: flex; flex-wrap: nowrap;">
+            <div class="carousel-column" style="flex: 0 0 45%; padding: 10px;">
+              <div id="indicator10" class="carousel slide mb-3" data-bs-ride="false">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#indicator10" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#indicator10" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div
+                      style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                      <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                        <source src="./mfiles/env/deformable_full/granular1.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div style="text-align: center;">
+                      <h4 class="caption with-whitebackdrop">Granular Example 1</h4>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div
+                      style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                      <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                        <source src="./mfiles/env/deformable_full/granular2.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div style="text-align: center;">
+                      <h4 class="caption with-whitebackdrop">Granular Example 2</h4>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#indicator10" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon with-backdrop" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#indicator10" data-bs-slide="next">
+                  <span class="carousel-control-next-icon with-backdrop" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Second Column -->
+            <div class="carousel-column" style="flex: 0 0 45%; padding: 10px;">
+              <div id="indicator11" class="carousel slide mb-3" data-bs-ride="false">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#indicator11" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#indicator11" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div
+                      style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                      <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                        <source src="./mfiles/env/deformable_full/rope1.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div style="text-align: center;">
+                      <h4 class="caption with-whitebackdrop">Rope Example 1</h4>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div
+                      style="display: flex; justify-content: center; max-height: 250px; max-width: 100%; overflow: hidden;">
+                      <video class="img-fluid" style="max-height: 250px; margin: auto;" muted autoplay loop controls>
+                        <source src="./mfiles/env/deformable_full/rope2.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div style="text-align: center;">
+                      <h4 class="caption with-whitebackdrop">Rope Example 2</h4>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#indicator11" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon with-backdrop" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#indicator11" data-bs-slide="next">
+                  <span class="carousel-control-next-icon with-backdrop" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--Image-->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="center mb-3">Genie Openloop Rollouts</h2>
+      </div>
+    </div>
+    <div class="col-12 center img" style="padding-bottom: 10px;">
+      <img class="center" src="./mfiles/figs/genie.png" style="width:100%"></img>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <h2 class="text-center mb-3">Citation (BibTeX)</h2>
+        <div
+          style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ddd; overflow: auto; max-width: 900px; margin: auto;">
+          <pre style="margin: 0; font-family: monospace; white-space: pre-wrap; word-wrap: break-word;">
+  @misc{zhou2024dinowmworldmodelspretrained,
+    title={DINO-WM: World Models on Pre-trained Visual Features enable Zero-shot Planning}, 
+    author={Gaoyue Zhou and Hengkai Pan and Yann LeCun and Lerrel Pinto},
+    year={2024},
+    eprint={2411.04983},
+    archivePrefix={arXiv},
+    primaryClass={cs.RO},
+    url={https://arxiv.org/abs/2411.04983}
+  }</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -15,11 +15,12 @@ source_date: 2026-06-01
 baseline_source_file: raw/robolab-source.tar.gz
 baseline_commit: 5d3ba41e551aced710b3d585b245a313a9a407ce
 current_commit: 7d45d74904eade3b578a8eb1f2f9f89bc3d40326
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 ## 摘要
 
-[[NVIDIA]] 的 `NVlabs/RoboLab` 代码仓库是 [[RoboLab]] 论文的官方实现产物。本次更新把知识库的代码仓库快照从 2026-04-22 的基线提交 `5d3ba41e551aced710b3d585b245a313a9a407ce` 更新到 2026-06-01 作者 date 的 `main` 提交 `7d45d74904eade3b578a8eb1f2f9f89bc3d40326`。GitHub 比较显示当前输出头相对基线 ahead 由 19 commits、隐藏在由 0，涉及 README/文档、分析、看板、策略、示例、资产、Docker、许可证和 Claude 代码技能等设计面；详细文件 inventory 见 `graph/extracts/robolab-20260612-7d45d749-repository-manifest.md`。
+[[NVIDIA|NVIDIA]] 的 `NVlabs/RoboLab` 代码仓库是 [[RoboLab|RoboLab]] 论文的官方实现产物。本次更新把知识库的代码仓库快照从 2026-04-22 的基线提交 `5d3ba41e551aced710b3d585b245a313a9a407ce` 更新到 2026-06-01 作者 date 的 `main` 提交 `7d45d74904eade3b578a8eb1f2f9f89bc3d40326`。GitHub 比较显示当前输出头相对基线 ahead 由 19 commits、隐藏在由 0，涉及 README/文档、分析、看板、策略、示例、资产、Docker、许可证和 Claude 代码技能等设计面；详细文件 inventory 见 `graph/extracts/robolab-20260612-7d45d749-repository-manifest.md`。
 
 RoboLab 的核心仍是机器人- 与策略-agnostic 任务通用型评估基底：任务文件描述场景、语言指令、终止/子任务判定条件和接触物体；环境 registration 再组合机器人关节系统、动作、观测、相机、光照/背景、仿真参数；策略通过服务端客户端推理接入。新版代码仓库把这个基底向完整基准平台推进一步：新增一等的看板、per-策略后端文件夹、自适应采样 / 置信区间报告、诊断 pytest 套件、VRAM sizing 指南、已知问题页面、Apache-2.0 许可、以及 `/robolab-scenegen` / `/robolab-taskgen` 智能体式生成技能。
 
@@ -75,15 +76,15 @@ flowchart LR
 
 ## 关联
 
-- [[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]] - 代码仓库对应的 arXiv 论文来源页；论文主张与代码仓库后续实现更新需要分开追溯。
-- [[RoboLab]] - 代码仓库实现的基准/平台实体。
-- [[TaskGeneralistPolicyEvaluation]] - 任务/子任务/判定条件/评估 APIs 与自适应采样/报告的概念页。
-- [[SimulationBenchmarkReportingPipeline]] - 看板、分析脚本、回合输出和置信区间的广义的报告流程。
-- [[AgenticSceneTaskGeneration]] - `/robolab-scenegen` 和 `/robolab-taskgen` 暴露的 LLM 辅助的场景/任务制作模式。
-- [[SimulationSensitivityAnalysis]] - 代码仓库中后验推理与受控的 perturbation 工作流对应的概念页。
-- [[RoboticsSimulationInfrastructure]] - RoboLab 的任务 API、策略 adapters、看板、诊断信息、元数据和制作工作流属于基础设施情形研究。
-- [[VisionLanguageActionModels]] - 代码仓库内置 Pi0 族、GR00T、DreamZero、Cosmos 3 客户端示例，服务于 VLA / WAM-风格策略评估。
-- [[SimulationRealityGap]] - 高保真度 sim 与受控的 perturbations 是诊断代理，不等同于真实部署能力。
+- [[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab 论文]] - 代码仓库对应的 arXiv 论文来源页；论文主张与代码仓库后续实现更新需要分开追溯。
+- [[RoboLab|RoboLab]] - 代码仓库实现的基准/平台实体。
+- [[TaskGeneralistPolicyEvaluation|通用任务策略评估]] - 任务/子任务/判定条件/评估 APIs 与自适应采样/报告的概念页。
+- [[SimulationBenchmarkReportingPipeline|仿真基准报告流程]] - 看板、分析脚本、回合输出和置信区间的广义的报告流程。
+- [[AgenticSceneTaskGeneration|智能体式场景与任务生成]] - `/robolab-scenegen` 和 `/robolab-taskgen` 暴露的 LLM 辅助的场景/任务制作模式。
+- [[SimulationSensitivityAnalysis|仿真敏感性分析]] - 代码仓库中后验推理与受控的 perturbation 工作流对应的概念页。
+- [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] - RoboLab 的任务 API、策略 adapters、看板、诊断信息、元数据和制作工作流属于基础设施情形研究。
+- [[VisionLanguageActionModels|视觉—语言—动作模型]] - 代码仓库内置 Pi0 族、GR00T、DreamZero、Cosmos 3 客户端示例，服务于 VLA / WAM-风格策略评估。
+- [[SimulationRealityGap|仿真—现实差距]] - 高保真度 sim 与受控的扰动是诊断代理，不等同于真实部署能力。
 
 ## 开放问题
 

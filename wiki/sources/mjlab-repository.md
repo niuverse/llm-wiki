@@ -11,6 +11,7 @@ extracted_text: graph/extracts/mjlab-readme.md
 source_date: 2026-06-04
 commit_snapshot: raw/mjlab-main-commit.json
 commit_sha: 1d1474040c3887af8419e20a682a132e7bc3fe86
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 ## 摘要
@@ -37,16 +38,16 @@ commit_sha: 1d1474040c3887af8419e20a682a132e7bc3fe86
 
 ### Mjlab
 
-mjlab 是 [[mjlab-repository|官方代码仓库 README]] 中描述的机器人学习框架：它把 [[isaac-lab-repository|Isaac Lab]] 的基于管理器的 API 与 [[mujoco-warp-mjwarp-documentation|MuJoCo Warp]] GPU 加速的物理结合起来，目标是提供 composable 环境设计、minimal 依赖和直接访问原生 [[MuJoCo]] 数据 structures。
+mjlab 是 [[mjlab-repository|官方代码仓库 README]] 中描述的机器人学习框架：它把 [[isaac-lab-repository|Isaac Lab]] 的基于管理器的 API 与 [[mujoco-warp-mjwarp-documentation|MuJoCo Warp]] GPU 加速的物理结合起来，目标是提供 composable 环境设计、minimal 依赖和直接访问原生 [[MuJoCo|MuJoCo]] 数据 structures。
 
-在 [[HeterogeneousRobotRLTraining]] 分类体系中，mjlab 代表面向 GPU 的 MuJoCo 路线：物理在 MJWarp / NVIDIA GPU 路径上运行，框架层采用 Isaac Lab-风格 managers 来组织观测、奖励、events 和训练任务。README 明确说训练 requires NVIDIA GPU，macOS 只支持评估。
+在 [[HeterogeneousRobotRLTraining|异构机器人强化学习训练]] 分类体系中，mjlab 代表面向 GPU 的 MuJoCo 路线：物理在 MJWarp / NVIDIA GPU 路径上运行，框架层采用 Isaac Lab-风格 managers 来组织观测、奖励、events 和训练任务。README 明确说训练 requires NVIDIA GPU，macOS 只支持评估。
 
 ## 关联
 
 - [[mjlab-repository|mjlab]] - 本来源对应的框架实体。
 - [[mujoco-warp-mjwarp-documentation|MJWarp]] - mjlab 的物理后端。
 - [[isaac-lab-repository|IsaacLab]] - mjlab 借鉴的基于管理器的 API。
-- [[HeterogeneousRobotRLTraining]] - mjlab 是驻留 GPU、面向 GPU 的训练技术栈，强调模块化接口以及 MuJoCo 运行细节的透明性。
+- [[HeterogeneousRobotRLTraining|异构机器人强化学习训练]] - mjlab 是驻留 GPU、面向 GPU 的训练技术栈，强调模块化接口以及 MuJoCo 运行细节的透明性。
 
 ## 开放问题
 

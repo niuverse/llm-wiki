@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, simulation, collision-detection, contact-dynamics, simulation-assets]
 sources: ["[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[v-hacd-repository]]", "[[coacd-approximate-convex-decomposition]]", "[[coacd-repository]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 机器人仿真的碰撞几何
@@ -64,7 +65,7 @@ flowchart LR
 
 凸包的直觉是“用一个凸包包住所有点”。它保留外部外包络，但会填满凹陷结构。对抓取把手、抽屉槽、孔、叉状 gaps、工具 notches，这个 false 正占用的空间可能直接改变任务。[[coacd-approximate-convex-decomposition|CoACD 论文]] 的抽屉示例就显示 V-HACD-风格碰撞体填满把手会导致机械臂滑脱把手，而碰撞感知分解提高了报告的抽屉-opening 成功。
 
-近似凸分解的直觉是把单一凸包拆成一组凸包，试图在运行时成本和非凸保真度之间折中。[[v-hacd-repository|V-HACD]] 是历史上常用的 voxelized ACD 基线；[[CoACD]] 用碰撞感知凹陷结构和树搜索关注碰撞条件；[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]] 用可见性指标和 GPU 加速度减少姿态敏感性与运行时；[[convex-primitive-decomposition-for-collision-detection|凸基元分解]] 则进一步把凸包替换为引擎优化后的基元。
+近似凸分解的直觉是把单一凸包拆成一组凸包，试图在运行时成本和非凸保真度之间折中。[[v-hacd-repository|V-HACD]] 是历史上常用的 voxelized ACD 基线；[[CoACD|CoACD]] 用碰撞感知凹陷结构和树搜索关注碰撞条件；[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]] 用可见性指标和 GPU 加速度减少姿态敏感性与运行时；[[convex-primitive-decomposition-for-collision-detection|凸基元分解]] 则进一步把凸包替换为引擎优化后的基元。
 
 SDF / 三角形网格碰撞体的直觉是用更多几何保真度换更高计算成本和更复杂的求解器行为。[[isaac-sim-core-api-collision-approximation|Isaac Sim 文档]] 把 SDF 和凸分解列为能更好捕捉细节的选项，同时明确警告 computational 成本。
 
@@ -97,10 +98,10 @@ SDF / 三角形网格碰撞体的直觉是用更多几何保真度换更高计�
 
 对机器人仿真，碰撞体设计应从任务交互表面反推，而不是只从视觉网格自动生成。机器人链接默认可从胶囊体 / 圆柱体 / 盒体开始；复杂末端执行器、夹爪 fingers、物体把手、抽屉 pulls、孔、槽、足部和车轮需要单独检查接触关键凹陷结构、边接触和流形质量。
 
-资产流程上，优先把碰撞体表示作为可审计的资产层。[[IsaacSimAssetStructure]] 已经把碰撞体表示放在 `instances.usda` 这类共享资产组合角色中；这意味着共享碰撞体几何不应被混进 `mujoco.usda` 或 `physx.usda` 这类运行时特定的调优层，除非该碰撞语义只属于某个后端。
+资产流程上，优先把碰撞体表示作为可审计的资产层。[[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] 已经把碰撞体表示放在 `instances.usda` 这类共享资产组合角色中；这意味着共享碰撞体几何不应被混进 `mujoco.usda` 或 `physx.usda` 这类运行时特定的调优层，除非该碰撞语义只属于某个后端。
 
 评估时不要只看视觉叠加显示。更有用的检查包括：接触点位置、接触法向量、接触数量、穿透 / 分离分布、抓取滑移比率、抽屉把手闭合、foot 支撑多边形、求解器残差、策略成功敏感性到碰撞体模式。对仿真到现实迁移，应该把碰撞体近似和质量/摩擦/延迟/相机对齐一样纳入 [[SimulationRealityGap|现实差距]] audit。
 
 未来趋势可以概括为三条：更具碰撞感知能力的分解（CoACD / VisACD）、更面向运行时的基元拟合（凸基元分解），以及更适合优化的可微基元碰撞（DCOL / DiffPills）。它们不是互相替代关系，而是服务不同约束：离线资产保真度、运行时吞吐量、人类可编辑性、梯度可用性和任务特定的接触正确性。
 
-相关页面：[[ApproximateConvexDecomposition]]、[[DifferentiableCollisionDetection]]、[[ContactModelsInRobotics]]、[[ContactSolvers]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]、[[MuJoCo]]、[[IsaacSim]]。
+相关页面：[[ApproximateConvexDecomposition|近似凸分解]]、[[DifferentiableCollisionDetection|可微碰撞检测]]、[[ContactModelsInRobotics|机器人学中的接触模型]]、[[ContactSolvers|接触求解器]]、[[SimulationRealityGap|仿真—现实差距]]、[[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]]、[[MuJoCo|MuJoCo]]、[[IsaacSim|Isaac Sim]]。

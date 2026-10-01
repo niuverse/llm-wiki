@@ -4,6 +4,7 @@ type: entity
 tags: [self-hosted, claude, codex]
 sources: ["[[agentsserver]]", "[[agentsdock-releases]]"]
 modified: 2026-08-25
+study_topic: syntheses/agent-tools-learning-path
 ---
 
 # AgentsServer
@@ -68,7 +69,7 @@ flowchart LR
 
 ## 关联
 
-- [[AgentsDock]] - AgentsServer 的客户端前端。
-- [[agentsserver]] - AgentsServer 官方 README 来源页。
-- [[agentsdock-releases]] - AgentsDock 发布仓库来源页。
+- [[AgentsDock|AgentsDock]] - AgentsServer 的客户端前端。
+- [[agentsserver|AgentsServer 来源档案]] - AgentsServer 官方 README 来源页。
+- [[agentsdock-releases|AgentsDock 发布记录]] - AgentsDock 发布仓库来源页。
 - [[lda-1b-scaling-latent-dynamics-action-model|Galbot]] - 用户安装 AgentsServer 的 Galbot 主机上下文。

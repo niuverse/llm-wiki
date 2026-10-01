@@ -109,9 +109,16 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
         }
       }
 
+      // The home page derives counts and learning paths from all Markdown files.
+      // Re-render navigation everywhere when the page set or a study hub changes.
+      changedSlugs.add("index")
+      const navigationChanged = changeEvents.some(
+        (event) => event.type !== "change" || event.file?.data.frontmatter?.study_order != null,
+      )
+
       for (const [tree, file] of content) {
         const slug = file.data.slug!
-        if (!changedSlugs.has(slug)) continue
+        if (!navigationChanged && !changedSlugs.has(slug)) continue
         if (slug.endsWith("/index") || slug.startsWith("tags/")) continue
 
         yield processContent(ctx, tree, file.data, allFiles, opts, resources)

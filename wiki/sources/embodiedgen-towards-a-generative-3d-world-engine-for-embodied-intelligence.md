@@ -10,11 +10,12 @@ source_url: https://arxiv.org/abs/2506.10600
 extracted_text: graph/extracts/embodiedgen.md
 source_date: 2025-06-12
 project_url: https://github.com/HorizonRobotics/EmbodiedGen
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
 
-Xinjie Wang、Liu Liu、Yu Cao、Ruiqi Wu、Wenkang Qin、Dehui Wang、Wei Sui 和 Zhizhong Su 提出 [[EmbodiedGen]] V1：一个面向具身 intelligence 的 generative 3D 世界工具包。它针对普通 3D 生成输出“视觉可用、仿真不可用”的缺口，把图像/文本到三维、纹理生成、关节化的物体生成、全景图基于场景生成、质量检查、物理 property recovery 和 URDF packaging 组合成 [[SimulationReady3DWorldGeneration|可用于仿真的 3D 生成]] 流程。
+Xinjie Wang、Liu Liu、Yu Cao、Ruiqi Wu、Wenkang Qin、Dehui Wang、Wei Sui 和 Zhizhong Su 提出 [[EmbodiedGen|EmbodiedGen]] V1：一个面向具身 intelligence 的 generative 3D 世界工具包。它针对普通 3D 生成输出“视觉可用、仿真不可用”的缺口，把图像/文本到三维、纹理生成、关节化的物体生成、全景图基于场景生成、质量检查、物理 property recovery 和 URDF packaging 组合成 [[SimulationReady3DWorldGeneration|可用于仿真的 3D 生成]] 流程。
 
 V1 的主要工作单位仍是资产，而不是持久的可执行的世界。刚性物体流程使用 TRELLIS 生成网格与 3D Gaussian Splatting（3DGS），再通过 foreground/几何/审美检查、失败重试、纹理 delighting、super-分辨率、真实规模 recovery、质量/摩擦估计和 URDF 转换形成可进入 MuJoCo、Isaac Lab、SAPIEN 等仿真器的资产。文本到-3D 被分解为文本到-图像与统一的图像到-3D service，以换取 modularity、早期 rejection 和对 community 模型进步的复用。
 
@@ -40,12 +41,12 @@ V1 的主要工作单位仍是资产，而不是持久的可执行的世界。�
 
 ## 关联
 
-- [[EmbodiedGen]] - 工具包 / 世界引擎实体与 V1→V2 演进。
-- [[SimulationReady3DWorldGeneration]] - 从视觉 3D 内容到指标、物理、交互式、portable 世界产物的统一概念。
-- [[CollisionGeometryForRobotSimulation]] - V1 的 watertightness 与几何检查是碰撞体制作的前置条件，但来源对视觉/碰撞分离的机制不如 V2 完整。
-- [[RoboticsSimulationInfrastructure]] - EmbodiedGen 把资产生成、场景生成、渲染与仿真器导入作为基础设施问题。
+- [[EmbodiedGen|EmbodiedGen]] - 工具包 / 世界引擎实体与 V1→V2 演进。
+- [[SimulationReady3DWorldGeneration|可用于仿真的三维世界生成]] - 从视觉 3D 内容到指标、物理、交互式、portable 世界产物的统一概念。
+- [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]] - V1 的 watertightness 与几何检查是碰撞体制作的前置条件，但来源对视觉/碰撞分离的机制不如 V2 完整。
+- [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] - EmbodiedGen 把资产生成、场景生成、渲染与仿真器导入作为基础设施问题。
 - [[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] - 把 V1 的资产工具包扩展成任务驱动的、可供性感知、有状态的、跨仿真器世界引擎。
-- [[embodiedgen-v1-v2-learning-map]] - 两篇工作的机制对照与阅读路径。
+- [[embodiedgen-v1-v2-learning-map|EmbodiedGen V1/V2 学习地图]] - 两篇工作的机制对照与阅读路径。
 
 ## 开放问题
 

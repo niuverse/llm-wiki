@@ -9,6 +9,7 @@ source_kind: pdf
 source_url: https://arxiv.org/abs/2207.00670
 extracted_text: graph/extracts/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons.md
 source_date: 2022-07-01
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
@@ -40,9 +41,9 @@ DiffPills 是可微碰撞检测用于胶囊体与带填充的多边形。它用�
 
 ## 关联
 
-- [[DifferentiableCollisionDetection]] - DiffPills 的邻近度表述。
-- [[CollisionGeometryForRobotSimulation]] - 胶囊体 / 带填充的多边形基元的建模意义。
-- [[DifferentiablePhysics]] - 碰撞梯度如何进入优化。
+- [[DifferentiableCollisionDetection|可微碰撞检测]] - DiffPills 的邻近度表述。
+- [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]] - 胶囊体 / 带填充的多边形基元的建模意义。
+- [[DifferentiablePhysics|可微物理]] - 碰撞梯度如何进入优化。
 - [[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]] - 实体页面。
 - [[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]] - 后续更一般的凸基元方法。
 

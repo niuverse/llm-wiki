@@ -4,6 +4,7 @@ type: entity
 tags: [robotics, reinforcement-learning, simulation, systems]
 sources: ["[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[unilab-repository]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[motrixsim-documentation]]"]
 modified: 2026-07-13
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 # UniLab
@@ -14,6 +15,6 @@ UniLab 是 [[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominan
 
 [[unilab-repository|UniLab 代码仓库]] 把论文层级架构落到代码仓库契约：CPU 物理仿真、统一的共享内存和 GPU 策略训练被暴露为统一 CLI 与 Hydra 任务/后端配置。README 列出 MuJoCoUni 与 MotrixSim 后端，以及 PPO、MLX PPO、APPO、SAC、TD3 和 FlashSAC 等算法入口。[[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni 技术报告]] 补强了 CPU-批处理的侧：`BatchEnvPool` 维护持久的环境、每个线程 `mjData` 工作线程和有状态的批处理的基元，同时不改 MuJoCo core 求解器/接触/积分器。[[motrixsim-documentation|MotrixSim 文档]] 目前只支持高层引擎 positioning，不能推出具体求解器层级等价性。
 
-UniLab 对本知识库的意义是把 [[RoboticsSimulationInfrastructure|机器人学仿真基础设施]] 的问题推进到运行时关键路径：训练速度不只由物理后端 env 步骤/s 决定，还由学习器利用率、重放边界、H2D 迁移、缓冲区 slotting 和权重同步决定。它也为 [[HeterogeneousRobotRLTraining]] 提供有来源支持的情形：GPU 仿真是有效路径，但不是高效机器人 RL 训练的唯一系统组织方式。
+UniLab 对本知识库的意义是把 [[RoboticsSimulationInfrastructure|机器人学仿真基础设施]] 的问题推进到运行时关键路径：训练速度不只由物理后端 env 步骤/s 决定，还由学习器利用率、重放边界、H2D 迁移、缓冲区 slotting 和权重同步决定。它也为 [[HeterogeneousRobotRLTraining|异构机器人强化学习训练]] 提供有来源支持的情形：GPU 仿真是有效路径，但不是高效机器人 RL 训练的唯一系统组织方式。
 
-相关页面：[[HeterogeneousRobotRLTraining]]、[[RoboticsSimulationInfrastructure]]、[[SimulationRealityGap]]、[[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]]、[[MotrixSim]]、[[MuJoCo]]。
+相关页面：[[HeterogeneousRobotRLTraining|异构机器人强化学习训练]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[SimulationRealityGap|仿真—现实差距]]、[[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]]、[[MotrixSim|MotrixSim]]、[[MuJoCo|MuJoCo]]。

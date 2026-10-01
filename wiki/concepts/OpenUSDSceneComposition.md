@@ -2,15 +2,16 @@
 title: "OpenUSD 场景组合"
 type: concept
 tags: [openusd, usd, scene-description, simulation-assets]
-sources: ["[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[nvidia-ovrtx]]"]
-modified: 2026-07-13
+sources: ["[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[nvidia-ovrtx]]", "[[learn-openusd-stage]]", "[[learn-openusd-file-formats]]", "[[learn-openusd-prim-composition]]", "[[openusd-glossary]]"]
+modified: 2026-09-30
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # OpenUSD 场景组合
 
-[[OpenUSD]] 的核心学习入口不是“USD 是哪种文件后缀”，而是场景描述（场景描述）如何被模式化、组合、覆写、查询和作者。[[openusd-introduction|Introduction 到 USD]] 把 USD 定位为单一场景图 + 组合引擎 + 模式 + 工具集的组合：它让基础资产可以组成集合、场景、镜头和世界，并且允许在更强的层中非破坏性地编辑作为覆盖。[[isaac-sim-asset-structure|Isaac Sim Asset Structure]] 则展示这个思想在机器人学资产制作中如何落到层、载荷、引用和变体。[[nvidia-ovrtx|NVIDIA ovrtx]] 补充了传感器仿真侧的官方示例：应用可以用行内根部层子层原始场景，并在不改来源资产的情况下作者相机、`RenderProduct`、`RenderVar`、语义标签或非视觉材质标签。
+[[OpenUSD|OpenUSD]] 的核心学习入口不是“USD 是哪种文件后缀”，而是场景描述（场景描述）如何被模式化、组合、覆写、查询和作者。[[openusd-introduction|Introduction 到 USD]] 把 USD 定位为单一场景图 + 组合引擎 + 模式 + 工具集的组合：它让基础资产可以组成集合、场景、镜头和世界，并且允许在更强的层中非破坏性地编辑作为覆盖。[[isaac-sim-asset-structure|Isaac Sim Asset Structure]] 则展示这个思想在机器人学资产制作中如何落到层、载荷、引用和变体。[[nvidia-ovrtx|NVIDIA ovrtx]] 补充了传感器仿真侧的官方示例：应用可以用行内根部层子层原始场景，并在不改来源资产的情况下作者相机、`RenderProduct`、`RenderVar`、语义标签或非视觉材质标签。
 
-证据边界：当前 OpenUSD 来源是官方 Introduction，不是 glossary 或 API 参考基准。它足够支持 `Stage`、`Prim`、`Layer`、模式、组合弧、Hydra、扩展点和 USD 边界的入门级机制解释；但 `LayerStack`、价值分辨率、LIVRPS strength 顺序、列表编辑和命名空间编辑的精确定义仍需要后续收录 `glossary.html` / tutorials。
+证据边界：当前 OpenUSD coverage 已从官方 Introduction 扩展到 Learn OpenUSD 的 Stage、File Formats、Prim Composition lessons、官方 Glossary、Isaac Sim asset structure 和 ovrtx。它足以支持 `Stage`、`Prim`、`Layer`、`PrimSpec`、`Opinion`、`Specifier`、`LayerStack`、composition 与 value resolution 的入门机制解释；`LIVRPS`、list-editing、namespace editing、variants 和 payload loading 的操作级细节仍需要后续收录对应 tutorials。
 
 ## 数学结构
 
@@ -20,7 +21,7 @@ $$
 S = \operatorname{Resolve}(L, C, \Sigma)
 $$
 
-其中 $L=\{L_1,\dots,L_n\}$ 是 authored 层（保存图元 specs、属性 specs、元数据和组合弧的层集合），$C$ 是组合弧 / strength 顺序（怎样技术栈、参考基准、载荷、变体、inherit 或 specialize），$\Sigma$ 是模式 vocabulary（例如 `UsdGeom`、`UsdShade`、光照、物理等域模式），$S$ 是最终被 `Stage` 暴露的组合的场景描述。变量含义要分清：层保存 authored 意见；组合引擎负责 resolve；阶段是 resolved 结果的运行时场景图视角。
+其中 $L=\{L_1,\dots,L_n\}$ 是 authored 层（保存图元 specs、属性 specs、元数据和组合弧的层集合），$C$ 是组合弧 / strength 顺序（怎样技术栈、参考基准、载荷、变体、inherit 或 specialize），$\Sigma$ 是模式词汇表（例如 `UsdGeom`、`UsdShade`、光照、物理等域模式），$S$ 是最终被 `Stage` 暴露的组合的场景描述。变量含义要分清：层保存 authored 意见；组合引擎负责 resolve；阶段是 resolved 结果的运行时场景图视角。
 
 USD 数据模型的局部结构可以写成：
 
@@ -36,7 +37,7 @@ $$
 R = \operatorname{Compose}(L_{\text{geom}}, L_{\text{mat}}, L_{\text{physics}}, L_{\text{runtime}}, L_{\text{feature}}, V)
 $$
 
-其中 $L_{\text{geom}}$ 保存网格 / 几何数据，$L_{\text{mat}}$ 保存材质，$L_{\text{physics}}$ 保存中性物理，$L_{\text{runtime}}$ 保存 PhysX / MuJoCo 这类引擎特定的调优，$L_{\text{feature}}$ 保存控制 / ROS / 夹爪特征载荷，$V$ 是变体集。[[IsaacSimAssetStructure]] 的例子说明这些职责不应该混成单体化的 USD，而应该放在职责清晰的层中。
+其中 $L_{\text{geom}}$ 保存网格 / 几何数据，$L_{\text{mat}}$ 保存材质，$L_{\text{physics}}$ 保存中性物理，$L_{\text{runtime}}$ 保存 PhysX / MuJoCo 这类引擎特定的调优，$L_{\text{feature}}$ 保存控制 / ROS / 夹爪特征载荷，$V$ 是变体集。[[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] 的例子说明这些职责不应该混成单体化的 USD，而应该放在职责清晰的层中。
 
 ```mermaid
 flowchart LR
@@ -69,7 +70,7 @@ OpenUSD 解决的是大型 3D 流程的两个长期问题。第一，多个工�
 
 Composition 的要点是“强层的 opinion 可以统一地覆盖弱层”，无论弱内容是 subLayered、引用的还是 inherited。来源列出更强的层可以添加/停用/重排图元、修改变体、覆盖元数据、添加属性、覆盖属性、阻断属性值、修改关系 / connection 目标等。学习时不要把 USD 想成导入/导出，而要把它想成一个可组合的、可覆写的 authored-opinion 图结构。
 
-对机器人学来说，这个直觉尤其重要。一个机器人资产同时有网格、材质、碰撞体、关节、质量、传感器、控制器、ROS 集成、PhysX 调优、MuJoCo 调优等语义。如果这些都写进一个文件，后续很难判断一个行为变更来自视觉几何、碰撞近似、中性物理还是运行时特定的调优。[[IsaacSimAssetStructure]] 把这些职责拆成层，本质上就是在仿真资产里应用 OpenUSD 场景组合的工程原则。[[nvidia-ovrtx|ovrtx]] 的传感器配置进一步说明，渲染/传感器输出本身也应被作者成组合层：`RenderProduct` 用关系连接传感器图元和 `RenderVar`，渲染场景与设备 pinning 作者在 RenderProduct 上，语义/非视觉标签可以通过覆盖层加到现有场景。
+对机器人学来说，这个直觉尤其重要。一个机器人资产同时有网格、材质、碰撞体、关节、质量、传感器、控制器、ROS 集成、PhysX 调优、MuJoCo 调优等语义。如果这些都写进一个文件，后续很难判断一个行为变更来自视觉几何、碰撞近似、中性物理还是运行时特定的调优。[[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] 把这些职责拆成层，本质上就是在仿真资产里应用 OpenUSD 场景组合的工程原则。[[nvidia-ovrtx|ovrtx]] 的传感器配置进一步说明，渲染/传感器输出本身也应被作者成组合层：`RenderProduct` 用关系连接传感器图元和 `RenderVar`，渲染场景与设备 pinning 作者在 RenderProduct 上，语义/非视觉标签可以通过覆盖层加到现有场景。
 
 Hydra 的位置也要放对：它不是组合引擎，而是 USD 分布中的 imaging 框架。它把场景 delegates 和渲染 delegates 连接起来，让 `usdview` 与第三方插件可以用组合的 USD 场景做预览、渲染和动画 streaming。对学习者来说，Hydra 是“我如何看见组合的结果”的通道，不是“这个结果如何被 resolve”的规则。
 
@@ -80,9 +81,9 @@ Hydra 的位置也要放对：它不是组合引擎，而是 USD 分布中的 im
 - 命名空间脆弱性：USD 使用 textual 分层命名空间，而不是 GUID；当引用的资产的内部命名空间改变时，更高层覆盖可能 fall off。来源明确把这列为 USD 的边界条件。
 - 骨骼绑定 overreach：USD 的场景图是轻量制作 / 组合的数据 extraction 基底，不是高性能骨骼绑定系统；把骨骼绑定运行时行为直接塞进 USD 会损害交换。
 - Working-设置 collapse：载荷的价值是 deferred loading；如果所有密集型资产都无条件参考基准/负载，阶段可以表达场景，但交互式工作流和内存占用会恶化。
-- 单体化的资产漂移：机器人学资产把网格、材质、碰撞体、物理和运行时调优混写，后续重新导入、引擎切换或 regression 调试难以定位来源的变更。这个失效情形已在 [[IsaacSimAssetStructure]] 中具体化。
-- Composition overconfidence：组合能组织资产假设，但不能证明物理运行时与真实世界一致；仿真到现实迁移仍需要 [[SimulationRealityGap]] 层面的验证。
-- Glossary overreach：当前 Introduction 支持入门机制，但不能替代 glossary / API 参考基准；对 `LayerStack`、价值分辨率、列表编辑、命名空间编辑和 LIVRPS strength 顺序的精确定义应等后续收录。
+- 单体化的资产漂移：机器人学资产把网格、材质、碰撞体、物理和运行时调优混写，后续重新导入、引擎切换或 regression 调试难以定位来源的变更。这个失效情形已在 [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] 中具体化。
+- Composition overconfidence：组合能组织资产假设，但不能证明物理运行时与真实世界一致；仿真到现实迁移仍需要 [[SimulationRealityGap|仿真—现实差距]] 层面的验证。
+- Reference overreach：官方 Glossary 支持术语和入门机制，但不能替代 tutorials / API reference；对列表编辑、命名空间编辑、variants、payload loading 和完整 Python API 的操作级结论仍需补充对应来源。
 
 ## 实践含义
 
@@ -90,12 +91,13 @@ Hydra 的位置也要放对：它不是组合引擎，而是 USD 分布中的 im
 
 | 学习问题 | 当前知识库入口 | 证据状态 |
 | --- | --- | --- |
-| OpenUSD 的官方定位是什么？ | [[openusd-introduction]], [[OpenUSD]] | 有来源支持的 |
-| 阶段 / 图元 / 层的基本关系是什么？ | [[OpenUSDSceneComposition]], [[openusd-introduction]] | 有来源支持的入门层级 |
-| 为什么组合是核心能力？ | [[OpenUSDSceneComposition]], [[IsaacSimAssetStructure]] | 有来源支持的；精确定义待 glossary |
-| Hydra 在 USD 里负责什么？ | [[openusd-introduction]] | 有来源支持的 |
-| 机器人学资产为什么要拆层？ | [[IsaacSimAssetStructure]] | 有来源支持的 |
-| USD 物理模式和 Isaac Sim 运行时调优怎么衔接？ | [[IsaacSimAssetStructure]], [[SimulationRealityGap]] | 部分有来源支持的；需要补充 OpenUSD 物理 / Isaac 文档 |
-| OpenUSD 场景如何变成传感器输出？ | [[nvidia-ovrtx]], [[RTXSensorSimulationPipeline]] | 有来源支持的在 SDK/API 契约层级 |
+| OpenUSD 的官方定位是什么？ | [[openusd-introduction|OpenUSD 官方介绍]], [[OpenUSD|OpenUSD]] | 有来源支持的 |
+| Stage / Prim / Layer 的基本关系是什么？ | [[OpenUSDSceneComposition|OpenUSD 场景组合]], [[openusd-introduction|OpenUSD 官方介绍]], [[learn-openusd-stage|OpenUSD 场景教程]], [[openusd-glossary|OpenUSD 术语与概念]] | 有来源支持的 |
+| 为什么 composition 是核心能力？ | [[OpenUSDSceneComposition|OpenUSD 场景组合]], [[learn-openusd-prim-composition|OpenUSD 图元组合教程]], [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] | 有来源支持的；部分操作细节待更多 tutorials |
+| `.usda` 语法怎么读写？ | [[USDAFileSyntax|USDA 文件语法]], [[learn-openusd-file-formats|OpenUSD 文件格式教程]], [[learn-openusd-stage|OpenUSD 场景教程]], [[openusd-glossary|OpenUSD 术语与概念]] | 有来源支持的入门层级 |
+| Hydra 在 USD 里负责什么？ | [[openusd-introduction|OpenUSD 官方介绍]] | 有来源支持的 |
+| 机器人学资产为什么要拆层？ | [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] | 有来源支持的 |
+| USD 物理模式和 Isaac Sim 运行时调优怎么衔接？ | [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]], [[SimulationRealityGap|仿真—现实差距]] | 部分有来源支持的；需要补充 OpenUSD 物理 / Isaac 文档 |
+| OpenUSD 场景如何变成传感器输出？ | [[nvidia-ovrtx|NVIDIA ovrtx 文档]], [[RTXSensorSimulationPipeline|RTX 传感器仿真流程]] | 有来源支持的在 SDK/API 契约层级 |
 
-相关页面：[[OpenUSD]]、[[IsaacSimAssetStructure]]、[[RTXSensorSimulationPipeline]]、[[IsaacSim]]、[[SimulationRealityGap]]。
+相关页面：[[OpenUSD|OpenUSD]]、[[USDAFileSyntax|USDA 文件语法]]、[[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]]、[[RTXSensorSimulationPipeline|RTX 传感器仿真流程]]、[[IsaacSim|Isaac Sim]]、[[SimulationRealityGap|仿真—现实差距]]。

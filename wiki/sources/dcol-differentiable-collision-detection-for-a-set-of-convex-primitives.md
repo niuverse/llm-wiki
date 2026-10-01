@@ -9,6 +9,7 @@ source_kind: pdf
 source_url: https://arxiv.org/abs/2207.00669
 extracted_text: graph/extracts/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives.md
 source_date: 2023-05-18
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
@@ -41,9 +42,9 @@ DCOL 是用于一组凸基元的可微碰撞检测方法。它把包含大量分
 
 ## 关联
 
-- [[DifferentiableCollisionDetection]] - DCOL 的数学结构和优化含义。
-- [[CollisionGeometryForRobotSimulation]] - 凸基元表示如何服务优化。
-- [[DifferentiablePhysics]] - 可微碰撞查询与可微的仿真的关系。
+- [[DifferentiableCollisionDetection|可微碰撞检测]] - DCOL 的数学结构和优化含义。
+- [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]] - 凸基元表示如何服务优化。
+- [[DifferentiablePhysics|可微物理]] - 可微碰撞查询与可微的仿真的关系。
 - [[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]] - 实体页面。
 
 ## 开放问题

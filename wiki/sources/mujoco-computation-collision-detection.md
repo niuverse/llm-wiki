@@ -1,46 +1,48 @@
 ---
-title: "MuJoCo Computation: Collision Detection"
+title: "MuJoCo Computation：动力学、积分与接触"
 type: source
 tags: [robotics, simulation, collision-detection, mujoco, contact-dynamics, source-backed]
 sources: []
-modified: 2026-07-13
-source_file: raw/mujoco-computation-collision-detection.html
+modified: 2026-10-02
+source_file: raw/mujoco-3-8-computation.html
 source_kind: html
-source_url: https://mujoco.readthedocs.io/en/stable/computation/index.html#collision-detection
-extracted_text: graph/extracts/mujoco-computation-collision-detection.md
+source_url: https://mujoco.readthedocs.io/en/3.8.0/computation/
+extracted_text: graph/extracts/mujoco-3-8-computation.md
 source_date: unknown
+source_version: mujoco-3.8.0-documentation
+acquired: 2026-10-02
+snapshot_sha256: d67c4888c7756d8e82e027faf4976216639272eb5b2322a3b5f2ca3897947b93
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
 
-MuJoCo computation 文档的碰撞检测章节说明了 [[MuJoCo]] 如何把 rigidly attached geoms 转换成活跃接触：先筛选候选 geom pairs，再运行 narrowphase 碰撞函数，最后把接触写入 `mjData.contact`，供约束雅可比矩阵结构和接触力 computation 使用。这个来源是研究 [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]] 的基础，因为它明确区分视觉网格与碰撞 geom，并说明 MuJoCo 碰撞默认受凸几何假设约束。
-
-来源网址: https://mujoco.readthedocs.io/en/stable/computation/index.html#collision-detection
+MuJoCo 官方计算章从 $M\dot v+c=\tau+J^Tf$ 连接执行器、连续动力学、柔性约束、接触求解、积分及仿真数据一致性。本轮完整阅读固定 3.8.0 文档，保留原来源页 ID；机制分别整理到 [[RobotRigidBodyDynamics|刚体动力学]]、[[SimulationTimeStepping|步长与控制频率]] 和 [[ContactSolvers|接触求解器]]。
 
 ## 核心主张
 
-- MuJoCo 的碰撞检测作用在 geoms 上，输出活跃接触；这些接触后续参与约束雅可比矩阵与约束力 computation，因此碰撞体选择会直接影响 [[ContactSolvers|接触求解器]] 输入。
-- 候选配对选择包含宽相扫描与剪枝、静态机体中间阶段 BVH / AABB 树，以及按碰撞函数、包围球体、相同/父级机体排除、`contype` / `conaffinity` 做过滤。
-- MuJoCo 支持平面、球体、胶囊体、圆柱体、ellipsoid、盒体、网格和 height-字段等 geom 类型；其中基元是凸的，非凸用户网格在碰撞中会用凸包替代。
-- 除 SDF 插件例外，MuJoCo 碰撞检测受凸 geoms 限制。要表达非凸物体，应把对象分解成同一机体上的一组凸 geoms，而不是把三角形 soup 直接交给运行时。
-- 一般性凸碰撞默认使用原生 GJK/EPA 流程；旧版 libccd / MPR 仍存在，但文档说明原生实现更快、更 robust。
-- 标准 GJK/EPA/MPR 通常只返回单一接触点；这对盒体堆叠等表面接触可能不足。MuJoCo 提供 `multiccd` 作为多接触点的 option，但也带来额外代价和不同接触行为。
-- 文档明确提到 [[CoACD]] 可用于自动凸分解；预处理成凸 geoms 通常比运行时三角形 soup 更快、更稳定。
+- 广义位置与速度可能不同维：球关节和自由关节以四元数表示姿态，而角速度只有三维；不能直接做普通数组差分与加法。
+- 执行器包含传动、可选内部状态与力生成。`ctrl` 可能是力、位置目标或速度目标；经传动映射才成为广义力。
+- 软接触通过正则化的凸优化产生约束力；放松严格互补有其模型语义。精确求解一个模型不意味着它完全复现真实接触。
+- `Euler`、`implicit`、`implicitfast` 与 `RK4` 有不同稳定性和代价；步长是否合适依赖模型，不能用一种积分器或一个固定值概括所有机器人。
+- 碰撞对由宽相、刚体内包围盒树及过滤规则筛选；普通非凸网格在碰撞中用凸包表示，通常应分解成多个凸几何体。
+- 原生 GJK/EPA 与旧 libccd/MPR 的距离查询和多接触点行为不同；单次多接触生成仅支持相应几何与接触边距条件。
+- `mj_step` 推进状态后，部分派生量仍对应先前状态。保存全部积分状态、版本和体系结构，才可讨论确定性重放。
 
-## 关键引文
+## 版本刷新记录
 
-- "convex geoms"
-- "faster and more stable simulation"
+旧快照保留在 `raw/mujoco-computation-collision-detection.html`，旧缓存为 `graph/extracts/mujoco-computation-collision-detection.md`；当时记录的地址是移动的 `stable` 碰撞章节。原文件实际包含完整计算章，因此此次扩展覆盖使用同一来源页，避免把同一文档计成第二份独立证据。
+
+本轮新快照采用固定版本 URL。旧快照文字将自由刚体中点积分限定于 `implicitfast`；3.8.0 文档说明 `implicit` 与 `implicitfast` 均对符合条件的自由刚体应用中点积分。正文条件和配置须随版本读取，不能反推旧快照所用运行时版本，也不能把版本间开环轨迹差异都判成实现错误。
+
+## 阅读边界
+
+这是一份实现语义文档，性能和稳定性建议以 MuJoCo 内部模型为条件。它不证明其它引擎使用同样约束模型，也不提供真实硬件迁移成功率。文档未明示这份页面的发布日期，故 `source_date` 保留 `unknown`。
 
 ## 关联
 
-- [[CollisionGeometryForRobotSimulation]] - 碰撞体表示如何进入接触流程。
-- [[ApproximateConvexDecomposition]] - 非凸资产如何被拆成凸组件。
-- [[ContactModelsInRobotics]] 与 [[ContactSolvers]] - 碰撞接触之后的接触定律 / 求解器层。
-- [[MuJoCo]] - 仿真器实体页面。
+[[MuJoCo|MuJoCo]]、[[RobotCoordinateFrames|坐标与位姿]]、[[RobotRigidBodyDynamics|动力学]]、[[SimulationTimeStepping|数值积分]]、[[CollisionGeometryForRobotSimulation|碰撞几何]]、[[ApproximateConvexDecomposition|凸分解]]、[[ContactModelsInRobotics|接触模型]]、[[RoboticsSimulationLoop|仿真循环]]、[[SimulationRealityGap|现实差距]]。
 
-## 开放问题
+## 归档记录
 
-- MuJoCo 当前 SDF 插件在机器人学 RL / MPC 工作流中的实际性能、稳定性和制作成本如何？
-- `multiccd` 在操作、堆叠、移动中何时值得打开，何时会改变基准 comparability？
-- MJCF geom 制作与 USD/MJCF 资产转换中的碰撞体 ownership 边界仍需要结合 XML 参考和 converter 文档继续收录。
+规范网址、版本与获取日期见页首；本次原始文件的 SHA-256 为 `d67c4888c7756d8e82e027faf4976216639272eb5b2322a3b5f2ca3897947b93`，归档登记在 `graph/acquisitions.jsonl`。

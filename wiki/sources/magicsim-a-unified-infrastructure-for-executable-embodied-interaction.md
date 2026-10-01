@@ -9,6 +9,7 @@ source_kind: pdf
 source_url: https://arxiv.org/abs/2606.17511
 extracted_text: graph/extracts/magicsim-a-unified-infrastructure-for-executable-embodied-interaction.md
 source_date: 2026-06-16
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
@@ -87,13 +88,13 @@ MagicSim 最值得学习的不是支持对象、机器人或任务的数量，�
 ## 关联
 
 - [[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] - 本来源对应的系统实体。
-- [[ExecutableEmbodiedInteractionInfrastructure]] - “回合而非帧”、共享 MDP、异步语义状态与成功门控数据的机制页。
-- [[RoboticsSimulationInfrastructure]] - MagicSim 是构建在 Isaac Sim 之上的管理器化中间件案例。
-- [[AgenticSceneTaskGeneration]] - VLM 可以提出布局或选择高层命令，但必须经过布局验证和物理执行接口。
-- [[TaskGeneralistPolicyEvaluation]] - MagicSim 提供统一任务契约与协议字段，但当前来源没有给出 RoboLab 风格的策略敏感性实验。
-- [[SimulationReady3DWorldGeneration]] - MagicSim 从另一端补充“仿真就绪”：资产不仅要能导入，还要能被布局、执行、标注、重放和成功判定。
-- [[HeterogeneousRobotRLTraining]] - 两者都强调批次内异步语义进度；MagicSim 关注单个 Isaac Sim 进程内的多环境执行，UniLab 关注 CPU 采集器与 GPU 学习器的系统放置。
-- [[ContactModelsInRobotics]]、[[SimulationRealityGap]] - 论文承认跨求解器接触、材料参数与成功门控数据偏差是重要边界。
+- [[ExecutableEmbodiedInteractionInfrastructure|可执行具身交互基础设施]] - “回合而非帧”、共享 MDP、异步语义状态与成功门控数据的机制页。
+- [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] - MagicSim 是构建在 Isaac Sim 之上的管理器化中间件案例。
+- [[AgenticSceneTaskGeneration|智能体式场景与任务生成]] - VLM 可以提出布局或选择高层命令，但必须经过布局验证和物理执行接口。
+- [[TaskGeneralistPolicyEvaluation|通用任务策略评估]] - MagicSim 提供统一任务契约与协议字段，但当前来源没有给出 RoboLab 风格的策略敏感性实验。
+- [[SimulationReady3DWorldGeneration|可用于仿真的三维世界生成]] - MagicSim 从另一端补充“仿真就绪”：资产不仅要能导入，还要能被布局、执行、标注、重放和成功判定。
+- [[HeterogeneousRobotRLTraining|异构机器人强化学习训练]] - 两者都强调批次内异步语义进度；MagicSim 关注单个 Isaac Sim 进程内的多环境执行，UniLab 关注 CPU 采集器与 GPU 学习器的系统放置。
+- [[ContactModelsInRobotics|机器人学中的接触模型]]、[[SimulationRealityGap|仿真—现实差距]] - 论文承认跨求解器接触、材料参数与成功门控数据偏差是重要边界。
 
 ## 开放问题
 

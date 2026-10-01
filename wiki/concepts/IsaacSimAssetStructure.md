@@ -4,6 +4,7 @@ type: concept
 tags: [isaac-sim, usd, asset-structure, simulation-assets, robot-setup]
 sources: ["[[isaac-sim-asset-structure]]", "[[isaac-sim-45-asset-structure]]", "[[isaac-sim-core-api-collision-approximation]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # Isaac Sim 资产结构 3.0
@@ -12,7 +13,7 @@ Isaac Sim 资产结构 3.0 是 [[isaac-sim-asset-structure|Asset Structure - Isa
 
 来源的证据边界很重要：这是 Isaac Sim 6.0 早期开发者发布文档中的指引，页面最后更新时间是 2026-03-18；它说明的是当前 EDR 文档对导入的资产的结构约定，而不是所有旧版 Isaac Sim 资产都已经符合这个布局。
 
-命名上也要保持精确：[[isaac-sim-45-asset-structure|Isaac Sim 4.5 Asset Structure]] 描述的是旧版 / 3.0 之前布局，来源本身没有把旧布局称为 `Asset Structure 2.0`。本页中的 3.0 对照应理解为“旧版与. 3.0”，不是“2.0 与. 3.0”。旧布局的机制页见 [[IsaacSimLegacyAssetStructure]]。
+命名上也要保持精确：[[isaac-sim-45-asset-structure|Isaac Sim 4.5 Asset Structure]] 描述的是旧版 / 3.0 之前布局，来源本身没有把旧布局称为 `Asset Structure 2.0`。本页中的 3.0 对照应理解为“旧版与. 3.0”，不是“2.0 与. 3.0”。旧布局的机制页见 [[IsaacSimLegacyAssetStructure|Isaac Sim 旧版资产结构]]。
 
 ## 数学结构
 
@@ -34,7 +35,7 @@ $$
 | 物理运行时 | `physics.usd(a)`, `mujoco.usda`, `physx.usda` | 常见的刚性刚体 / masses / 关节 / 关节系统，以及 MuJoCo 或 PhysX 特定的属性 | unrelated 视觉/材质编辑 |
 | 接口 / 功能 | `asset.usd` 或 `interface.usda`, 功能载荷 | 最终入口图元、载荷、变体、控制/ROS/gripper 技术栈 | 破坏性的编辑到来源导入的层级 |
 
-`physics.usd(a)` 扮演中性层：它保存跨运行时的 core 物理行为。`mujoco.usda` 和 `physx.usda` 在它之上加入引擎特定的行为，这样 [[MuJoCo]] 阻尼/frictionloss 或 PhysX mimic/求解器属性不会写进同一个层互相覆盖。
+`physics.usd(a)` 扮演中性层：它保存跨运行时的 core 物理行为。`mujoco.usda` 和 `physx.usda` 在它之上加入引擎特定的行为，这样 [[MuJoCo|MuJoCo]] 阻尼/frictionloss 或 PhysX mimic/求解器属性不会写进同一个层互相覆盖。
 
 ### 图 1：资产组合图
 
@@ -141,7 +142,7 @@ flowchart LR
 
 ### `mujoco.usda` 的归属边界
 
-`mujoco.usda` 不应理解成“MuJoCo 版视觉或碰撞资产”，也不等价于原生 MJCF。有来源支持的部分是：[[isaac-sim-asset-structure]] 把 `mujoco.usda` 放在 MuJoCo 物理设置与引擎专用调优的位置，并把视觉网格、材质、实例、碰撞体和中性物理拆到其他层。由此可以得到一个来自讨论的制作启发式：`mujoco.usda` 保存 [[MuJoCo]] 对已有 USD 机器人资产的运行时解释和调优叠加，而不是机器人资产网格、材质或共享碰撞体的唯一事实来源。更完整的提炼见 [[isaac-sim-mujoco-usda-runtime-semantics]]。
+`mujoco.usda` 不应理解成“MuJoCo 版视觉或碰撞资产”，也不等价于原生 MJCF。有来源支持的部分是：[[isaac-sim-asset-structure|Isaac Sim 资产结构文档]] 把 `mujoco.usda` 放在 MuJoCo 物理设置与引擎专用调优的位置，并把视觉网格、材质、实例、碰撞体和中性物理拆到其他层。由此可以得到一个来自讨论的制作启发式：`mujoco.usda` 保存 [[MuJoCo|MuJoCo]] 对已有 USD 机器人资产的运行时解释和调优叠加，而不是机器人资产网格、材质或共享碰撞体的唯一事实来源。更完整的提炼见 [[isaac-sim-mujoco-usda-runtime-semantics|Isaac Sim `mujoco.usda` 运行时语义]]。
 
 | 语义类型 | 先看哪个层？ | 判断 |
 | --- | --- | --- |
@@ -154,4 +155,4 @@ flowchart LR
 
 对 RL、MPC、仿真到现实迁移或多引擎 benchmarking，这个结构的实际价值是让资产假设可定位。你可以明确说“这是共享几何/碰撞体变更”“这是中性动力学变更”“这是 PhysX 专用调优变更”或“这是 MuJoCo 专用调优变更”。这不能消除 [[SimulationRealityGap|仿真—现实差距]]，但能减少资产制作层面的不可解释差异。
 
-相关页面：[[CollisionGeometryForRobotSimulation]]、[[IsaacSimLegacyAssetStructure]]、[[IsaacSim]]、[[NVIDIA]]、[[MuJoCo]]、[[SimulationRealityGap]]、[[ContactModelsInRobotics]]。
+相关页面：[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[IsaacSimLegacyAssetStructure|Isaac Sim 旧版资产结构]]、[[IsaacSim|Isaac Sim]]、[[NVIDIA|NVIDIA]]、[[MuJoCo|MuJoCo]]、[[SimulationRealityGap|仿真—现实差距]]、[[ContactModelsInRobotics|机器人学中的接触模型]]。

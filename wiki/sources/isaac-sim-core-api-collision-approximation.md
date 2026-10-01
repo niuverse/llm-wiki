@@ -9,11 +9,12 @@ source_kind: html
 source_url: https://docs.isaacsim.omniverse.nvidia.com/5.1.0/py/source/extensions/isaacsim.core.api/docs/index.html
 extracted_text: graph/extracts/isaac-sim-core-api-collision-approximation.md
 source_date: unknown
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
 
-Isaac Sim Core API 文档中多个基元 / 网格类暴露 `get_collision_approximation` 与 `set_collision_approximation`，列出三角形网格、凸分解、凸包、包围球体、包围 cube、网格 simplification、SDF 和球体 fill 等碰撞近似模式。这个来源把 [[IsaacSim]] 中碰撞体制作的选项具体化：同一个视觉物体可以用不同碰撞体表示参与 PhysX 碰撞/接触 computation，且更精细的近似会带来性能成本。
+Isaac Sim Core API 文档中多个基元 / 网格类暴露 `get_collision_approximation` 与 `set_collision_approximation`，列出三角形网格、凸分解、凸包、包围球体、包围 cube、网格 simplification、SDF 和球体 fill 等碰撞近似模式。这个来源把 [[IsaacSim|Isaac Sim]] 中碰撞体制作的选项具体化：同一个视觉物体可以用不同碰撞体表示参与 PhysX 碰撞/接触 computation，且更精细的近似会带来性能成本。
 
 来源网址: https://docs.isaacsim.omniverse.nvidia.com/5.1.0/py/source/extensions/isaacsim.core.api/docs/index.html
 
@@ -32,10 +33,10 @@ Isaac Sim Core API 文档中多个基元 / 网格类暴露 `get_collision_approx
 
 ## 关联
 
-- [[CollisionGeometryForRobotSimulation]] - 基元、凸包、SDF、球体 fill 等碰撞体选择的统一解释。
-- [[IsaacSimAssetStructure]] - 碰撞表示在资产结构 3.0 中属于共享实例/碰撞体制作层，而不是单独的运行时调优层。
-- [[IsaacSim]] 与 [[omniverse-omni-physics-articulations|PhysX]] - Isaac Sim / PhysX 上下文。
-- [[SimulationRealityGap]] - 碰撞体近似误差如何成为仿真到现实迁移差距的上游因素。
+- [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]] - 基元、凸包、SDF、球体 fill 等碰撞体选择的统一解释。
+- [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] - 碰撞表示在资产结构 3.0 中属于共享实例/碰撞体制作层，而不是单独的运行时调优层。
+- [[IsaacSim|Isaac Sim]] 与 [[omniverse-omni-physics-articulations|PhysX]] - Isaac Sim / PhysX 上下文。
+- [[SimulationRealityGap|仿真—现实差距]] - 碰撞体近似误差如何成为仿真到现实迁移差距的上游因素。
 
 ## 开放问题
 

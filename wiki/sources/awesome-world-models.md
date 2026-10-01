@@ -10,6 +10,7 @@ source_url: https://github.com/Li-Zn-H/AwesomeWorldModels
 source_metadata: raw/awesome-world-models-main-commit.json
 extracted_text: graph/extracts/awesome-world-models-readme.md
 source_date: 2026-03-28
+study_topic: syntheses/world-models-learning-path
 ---
 
 ## 摘要
@@ -38,7 +39,7 @@ source_date: 2026-03-28
 
 AwesomeWorldModels 是 Li-Zn-H 维护的 GitHub bibliography 代码仓库，对应 survey [[a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]]。它的主要内容是 README 中的论文列表，而不是模型实现。
 
-该代码仓库的组织方式直接跟随 [[WorldModelTaxonomy]]：先区分决策-耦合的与一般性-Purpose，再区分顺序式的仿真与推理与全局 Difference 预测，最后按空间表示分成全局潜在 Vector、标记特征序列、空间潜在 Grid 和 Decomposed 渲染表示。
+该代码仓库的组织方式直接跟随 [[WorldModelTaxonomy|世界模型分类体系]]：先区分决策-耦合的与一般性-Purpose，再区分顺序式的仿真与推理与全局 Difference 预测，最后按空间表示分成全局潜在 Vector、标记特征序列、空间潜在 Grid 和 Decomposed 渲染表示。
 
 在本次收录的快照中，README 包含 193 条论文条目，覆盖机器人学操作、自主驱动、导航和视频生成。入口通常链接论文，并在可用时链接代码、项目主页、数据集、poster 或视频。
 
@@ -46,11 +47,11 @@ AwesomeWorldModels 是 Li-Zn-H 维护的 GitHub bibliography 代码仓库，对�
 
 ## 关联
 
-- [[a-comprehensive-survey-on-world-models-for-embodied-ai]] - 代码仓库对应的综述论文。
+- [[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]] - 代码仓库对应的综述论文。
 - [[awesome-world-models|AwesomeWorldModels]] - 代码仓库实体页面，记录维护形态、范围和使用方式。
-- [[WorldModelsForEmbodiedAI]] - 代码仓库收录论文的共同问题帧。
-- [[WorldModelTaxonomy]] - README 的章节结构直接实例化分类体系。
-- [[WorldModelEvaluation]] - README 中包含 WorldGym、WorldEval 等把世界模型用作策略评估器的方向。
+- [[WorldModelsForEmbodiedAI|具身智能世界模型]] - 代码仓库收录论文的共同问题帧。
+- [[WorldModelTaxonomy|世界模型分类体系]] - README 的章节结构直接实例化分类体系。
+- [[WorldModelEvaluation|世界模型评估]] - README 中包含 WorldGym、WorldEval 等把世界模型用作策略评估器的方向。
 
 ## 开放问题
 

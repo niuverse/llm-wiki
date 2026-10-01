@@ -11,6 +11,7 @@ extracted_text: graph/extracts/maniskill-readme.md
 source_date: 2026-05-20
 commit_snapshot: raw/maniskill-main-commit.json
 commit_sha: ea2e7faf6b37742e0147147ad125b6d114722698
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 ## 摘要
@@ -39,9 +40,9 @@ commit_sha: ea2e7faf6b37742e0147147ad125b6d114722698
 ## 关联
 
 - [[robotics-simulation-infrastructure|ManiSkill]] - 本来源对应的框架实体。
-- [[RoboticsSimulationInfrastructure]] - ManiSkill 是仿真框架 API / 渲染 / ML 集成的具体的情形。
-- [[HeterogeneousRobotRLTraining]] - ManiSkill 是 GPU-并行化的仿真/渲染路线，和 UniLab 的 CPU-仿真 / GPU-学习路线构成对照。
-- [[TaskGeneralistPolicyEvaluation]] - ManiSkill 的 broad 任务/基线主张可作为未来基准/来源 plan 的入口。
+- [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] - ManiSkill 是仿真框架 API / 渲染 / ML 集成的具体的情形。
+- [[HeterogeneousRobotRLTraining|异构机器人强化学习训练]] - ManiSkill 是 GPU-并行化的仿真/渲染路线，和 UniLab 的 CPU-仿真 / GPU-学习路线构成对照。
+- [[TaskGeneralistPolicyEvaluation|通用任务策略评估]] - ManiSkill 的 broad 任务/基线主张可作为未来基准/来源 plan 的入口。
 
 ## 开放问题
 

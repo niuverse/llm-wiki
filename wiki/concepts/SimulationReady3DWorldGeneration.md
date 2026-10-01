@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, embodied-ai, simulation, 3d-generation]
 sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[robotics-simulation-infrastructure]]", "[[mujoco-computation-collision-detection]]", "[[coacd-approximate-convex-decomposition]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 可用于仿真的三维世界生成
@@ -57,7 +58,7 @@ V1 的经验是：模块化流程能把图形资产推向仿真器可用状态�
 ## 失效情形
 
 - 视觉到物理类别错误：网格看起来完整，但 non-流形、open 表面、细薄 shell 或 wrong 规模使碰撞体/惯量不可靠。
-- 视觉/碰撞 conflation：直接把高分辨率非凸视觉网格当碰撞体，增加接触不稳定、运行时成本或任务关键 false 接触。见 [[CollisionGeometryForRobotSimulation]]。
+- 视觉/碰撞 conflation：直接把高分辨率非凸视觉网格当碰撞体，增加接触不稳定、运行时成本或任务关键 false 接触。见 [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]。
 - VLM 物理属性 overconfidence：类别先验能给看似合理规模/质量/摩擦，却不能替代测量、系统辨识或不确定性感知随机化。
 - 语义 QA circularity：VLM 生成或解释属性，再由相似 VLM checker 验证，可能共享盲点；manual 跨验证与执行测试仍重要。
 - 可供性 cascade attrition：部件分割、语义标注、抓取生成任一阶段失败都会降低端到端 yield；V2 的完整可供性 pass 比率只有 50%。
@@ -73,6 +74,6 @@ V1 的经验是：模块化流程能把图形资产推向仿真器可用状态�
 - 世界基准至少记录任务 relation 正确性、稳定性、可达性、导航可行性、manual-fix 比率和生成延迟。
 - 跨仿真器主张应加入同一场景的沉降位姿、接触数量、抓取结果、轨迹 divergence 与策略成功比较。
 - 有状态的编辑应使用类型化的实例 identifiers、受限增量、no-mutation-在失败、编辑日志与 rollback/versioning，而不只保存 dialogue 文本。
-- 策略证据要把 “场景可以加载” 与 “场景能训练出 transferable 策略” 分开；后者需要 [[SimulationRealityGap]]、域随机化与真实机器人验证。
+- 策略证据要把 “场景可以加载” 与 “场景能训练出 transferable 策略” 分开；后者需要 [[SimulationRealityGap|仿真—现实差距]]、域随机化与真实机器人验证。
 
-相关页面：[[EmbodiedGen]]、[[AgenticSceneTaskGeneration]]、[[RoboticsSimulationInfrastructure]]、[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[OpenUSDSceneComposition]]、[[SimulationRealityGap]]。
+相关页面：[[EmbodiedGen|EmbodiedGen]]、[[AgenticSceneTaskGeneration|智能体式场景与任务生成]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[ApproximateConvexDecomposition|近似凸分解]]、[[OpenUSDSceneComposition|OpenUSD 场景组合]]、[[SimulationRealityGap|仿真—现实差距]]。

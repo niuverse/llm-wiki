@@ -4,11 +4,12 @@ type: concept
 tags: [robotics, simulation, benchmark]
 sources: ["[[nvlabs-robolab]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[robotics-simulation-infrastructure]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 智能体式场景与任务生成
 
-智能体式场景/任务生成（智能体式场景/任务生成）指用 LLM/代码智能体把自然语言需求转成可运行仿真产物，同时用目录、判定条件求解器、模式、验证和重复项检查约束生成结果。[[RoboLab]] 代码仓库的 `/robolab-scenegen` 与 `/robolab-taskgen` Claude Code 技能是一个具体的示例：场景生成生成 USDA 场景，任务生成生成 `Task` 数据类；两者共同服务于可扩展基准任务库。
+智能体式场景/任务生成（智能体式场景/任务生成）指用 LLM/代码智能体把自然语言需求转成可运行仿真产物，同时用目录、判定条件求解器、模式、验证和重复项检查约束生成结果。[[RoboLab|RoboLab]] 代码仓库的 `/robolab-scenegen` 与 `/robolab-taskgen` Claude Code 技能是一个具体的示例：场景生成生成 USDA 场景，任务生成生成 `Task` 数据类；两者共同服务于可扩展基准任务库。
 
 ## 数学结构
 
@@ -68,4 +69,4 @@ LLM 生成机器人学场景/任务的难点不是写文本，而是让文本落
 - 对 [[SimulationBenchmarkReportingPipeline|报告流程]]，生成的任务需要重新生成元数据，才能进入看板、分析分组和置信区间报告。
 - 对 [[SimulationRealityGap|仿真到现实迁移]]，智能体式场景/任务生成可以提高覆盖范围，但不能证明现实世界迁移；仍需要物理/渲染/接触有效性和真实机器人检查。
 
-相关页面：[[nvlabs-robolab]]、[[RoboLab]]、[[EmbodiedGen]]、[[SimulationReady3DWorldGeneration]]、[[RoboticsSimulationInfrastructure]]、[[TaskGeneralistPolicyEvaluation]]、[[SimulationBenchmarkReportingPipeline]]、[[SimulationRealityGap]]。
+相关页面：[[nvlabs-robolab|RoboLab 代码仓库]]、[[RoboLab|RoboLab]]、[[EmbodiedGen|EmbodiedGen]]、[[SimulationReady3DWorldGeneration|可用于仿真的三维世界生成]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[SimulationBenchmarkReportingPipeline|仿真基准报告流程]]、[[SimulationRealityGap|仿真—现实差距]]。

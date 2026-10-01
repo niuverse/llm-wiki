@@ -9,6 +9,7 @@ source_kind: html
 source_url: https://stoneztao.substack.com/p/robotics-simulation-infrastructure
 extracted_text: graph/extracts/robotics-simulation-infrastructure.md
 source_date: 2026-05-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
@@ -48,12 +49,12 @@ ManiSkill 的 `Pose` 数据类是来源中的 API 设计案例：位置和四元
 
 ## 关联
 
-- [[RoboticsSimulationInfrastructure]] - 把 article 的框架技术栈视角编译成概念页。
+- [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] - 把 article 的框架技术栈视角编译成概念页。
 - [[robotics-simulation-infrastructure|ManiSkill]] - article 作者关联的仿真框架，文章用它说明 Python API、批处理渲染和 `Pose` 抽象。
-- [[SimulationRealityGap]] - 仿真差距不只来自物理/接触，也来自资产、渲染、API、可视化和 ML 循环的基础设施选择。
-- [[TaskGeneralistPolicyEvaluation]] - 基准与策略评估依赖任务 APIs、资产管理、诊断信息和并行评估基础设施。
-- [[IsaacSim]] - article 讨论 Isaac Lab 的配置驱动的资产/API 风格和批处理渲染取舍；当前知识库对 Isaac Sim 的主要证据仍来自官方文档。
-- [[MuJoCo]] - article 提到 MuJoCo Lab；当前实体页面主要覆盖 MuJoCo 物理引擎与 Isaac 资产上下文，不能直接等同于 MuJoCo Lab。
+- [[SimulationRealityGap|仿真—现实差距]] - 仿真差距不只来自物理/接触，也来自资产、渲染、API、可视化和 ML 循环的基础设施选择。
+- [[TaskGeneralistPolicyEvaluation|通用任务策略评估]] - 基准与策略评估依赖任务 APIs、资产管理、诊断信息和并行评估基础设施。
+- [[IsaacSim|Isaac Sim]] - article 讨论 Isaac Lab 的配置驱动的资产/API 风格和批处理渲染取舍；当前知识库对 Isaac Sim 的主要证据仍来自官方文档。
+- [[MuJoCo|MuJoCo]] - article 提到 MuJoCo Lab；当前实体页面主要覆盖 MuJoCo 物理引擎与 Isaac 资产上下文，不能直接等同于 MuJoCo Lab。
 
 ## 开放问题
 

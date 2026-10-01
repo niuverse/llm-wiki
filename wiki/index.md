@@ -3,7 +3,9 @@ title: "知识库索引"
 type: synthesis
 tags: [navigation, source-backed]
 sources: []
-modified: 2026-09-25
+modified: 2026-10-02
+home_title: "把知识连成理解"
+description: "围绕机器人仿真、学习与世界模型，建立从基础机制到研究实践的阅读路径。读懂一个问题，也知道接下来该学什么。"
 ---
 
 # 知识库索引
@@ -22,6 +24,10 @@ modified: 2026-09-25
 
 ## 综合页
 
+- [仿真与资产学习路径](syntheses/simulation-and-assets-learning-path.md)
+- [机器人学习与评测学习路径](syntheses/robot-learning-and-evaluation-learning-path.md)
+- [世界模型学习路径](syntheses/world-models-learning-path.md)
+- [智能体工具学习路径](syntheses/agent-tools-learning-path.md)
 - [研究问题](syntheses/research-questions.md) - 当前知识库支持的高价值研究问题、阅读路径和证据边界
 - [EmbodiedGen V1/V2 学习地图](syntheses/embodiedgen-v1-v2-learning-map.md) - 对照两代 EmbodiedGen 的系统边界、核心机制、证据强度、常见误解和推荐阅读路径
 - [ovrtx API 边界](syntheses/ovrtx-api-boundary.md) - 提炼 ovrtx 的场景组合、物理物体制作、灯光/相机随机化和上层归属边界
@@ -32,11 +38,26 @@ modified: 2026-09-25
 - [机器人仿真评测是否需要仿真数据后训练](syntheses/simulation-post-training-evaluation.md) - 仿真 benchmark 数据后训练对评测有效性的影响、按评测目的分类的判断、应报告指标与常见误判　unsourced
 - [DeepSeek Harness 学习地图](syntheses/dsh-learning-map.md) - DeepSeek Harness（dsh）agent 运行时学习脚手架，覆盖 Cordis 插件框架、profile/bundle 组合、session 事件日志、turn/step 循环、能力 seam、沙箱/审批、编排能力与来源获取计划
 
+### 本轮研究覆盖
+
+- [世界模型与机器人仿真：研究覆盖地图](syntheses/world-models-and-simulation-research.md)
+
 ## 来源页
+
+### 学习基础
+
+- [Overview - MuJoCo Documentation](sources/mujoco-overview.md) - 模型、状态、执行器、几何、传感器与仿真数值行为的官方说明
+- [Part 1: Key Concepts in RL - Spinning Up](sources/spinning-up-rl-key-concepts.md) - MDP、策略、回报、价值与 Bellman 方程
+- [Part 2: Kinds of RL Algorithms - Spinning Up](sources/spinning-up-rl-algorithm-taxonomy.md) - 策略与价值学习、环境模型与规划的基础分类
+- [The Basic Structure of glTF - Khronos glTF Tutorials](sources/gltf-basic-structure.md) - 场景关系与二进制资源读取的官方教程
 
 ### OpenUSD 与资产基础设施
 
 - [Introduction to USD](sources/openusd-introduction.md) - OpenUSD 官方介绍，解释场景描述、阶段/层/图元数据模型、结构规范、组合弧、Hydra、扩展点与边界条件　含 Pixar
+- [Stage - Learn OpenUSD](sources/learn-openusd-stage.md) - NVIDIA Learn OpenUSD 的 Stage lesson，解释 stage 是 composed scenegraph，并给出 Python 创建、打开、保存 `.usda` 与 root layer / sublayer examples
+- [OpenUSD File Formats - Learn OpenUSD](sources/learn-openusd-file-formats.md) - NVIDIA Learn OpenUSD 的 file formats lesson，区分 `.usd`、`.usda`、`.usdc`、`.usdz`，并说明 `.usda` 适合 small interface layers、debugging 和 diffing
+- [What Is Prim Composition? - Learn OpenUSD](sources/learn-openusd-prim-composition.md) - NVIDIA Learn OpenUSD 的 prim composition lesson，解释 PrimSpec、property spec、opinion、layer 和 composition 的关系
+- [USD Terms and Concepts](sources/openusd-glossary.md) - OpenUSD official glossary，定义 Stage、Layer、Prim、PrimSpec、Attribute、Relationship、Specifier、Over、Opinion、LayerStack 和 Value Resolution 等术语
 
 ### 传感器仿真与渲染
 
@@ -46,6 +67,10 @@ modified: 2026-09-25
 
 - [A Comprehensive Survey on World Models for Embodied AI](sources/a-comprehensive-survey-on-world-models-for-embodied-ai.md) - 具身智能世界模型的 POMDP/ELBO 形式化、三轴分类体系、数据集/指标与开放挑战
 - [AwesomeWorldModels](sources/awesome-world-models.md) - 综述配套 GitHub 代码仓库，按分类体系维护世界模型参考文献表　含 AwesomeWorldModels
+
+- [模型预测控制：预测、优化、执行、重规划](concepts/ModelPredictiveControl.md)
+- [想象中的策略学习：世界模型到演员与价值评估器](concepts/ImaginedPolicyLearning.md)
+- [视觉目标规划：让动作后果接近目标图像](concepts/VisualGoalPlanning.md)
 
 ### 机器人基础模型
 
@@ -85,7 +110,7 @@ modified: 2026-09-25
 
 ### 碰撞几何与碰撞体制作
 
-- [MuJoCo Computation: Collision Detection](sources/mujoco-computation-collision-detection.md) - MuJoCo 官方文档中的基于几何体的碰撞流程、凸几何体限制、GJK/EPA、单一与多接触点和凸分解指南
+- [MuJoCo 3.8 计算：动力学、积分与碰撞](sources/mujoco-computation-collision-detection.md) - 固定版本计算章，保留旧碰撞文档快照和版本差异
 - [Isaac Sim Core API Collision Approximation](sources/isaac-sim-core-api-collision-approximation.md) - Isaac Sim Core API 文档中的碰撞近似模式，包括三角形网格、凸分解、凸包、包围球与包围盒、SDF 和球体填充
 - [V-HACD Repository](sources/v-hacd-repository.md) - 已弃用并归档的 V-HACD README，说明近似凸分解的动机、NP 困难精确分解边界和实用的凸包数量预算取舍
 - [CoACD Repository](sources/coacd-repository.md) - CoACD 实现 README，覆盖 `run_coacd` 用法、阈值 / 凸包数量 / MCTS 参数、真实指标模式和预处理说明
@@ -105,11 +130,45 @@ modified: 2026-09-25
 - [AgentsDock Releases](sources/agentsdock-releases.md) - AgentsDock 桌面/移动构建的公开只读发布仓库，包含签名安装包、更新元数据和发布说明
 - [AgentsServer](sources/agentsserver.md) - AgentsDock 自托管执行后端官方 README，覆盖本地 Claude/Codex 执行、事件流、定时任务、tmux、托管更新与 Team Hub
 
+### 世界模型：规划与闭环评估
+
+- [PlaNet：从像素学习潜在动力学并规划](sources/planet-learning-latent-dynamics.md)
+- [DreamerV3：在想象中学习控制策略](sources/dreamerv3-mastering-diverse-control.md)
+- [TD-MPC2：以任务价值学习潜在模型并规划](sources/td-mpc2-scalable-robust-world-models.md)
+- [DINO-WM：用预训练视觉特征进行目标规划](sources/dino-wm-pretrained-visual-features.md)
+- [V-JEPA 2：视频表征怎样接到机器人规划](sources/v-jepa-2-understanding-prediction-planning.md)
+- [WorldEcho／WorldSync：世界模型是否忠实执行动作](sources/worldecho-worldsync-action-following.md)
+
+### 仿真：物理、随机化与部署
+
+- [Modern Robotics 3.3.1: Homogeneous Transformation Matrices](sources/modern-robotics-homogeneous-transformations.md)
+- [Modern Robotics 8.1: Lagrangian Formulation of Dynamics (Part 1 of 2)](sources/modern-robotics-lagrangian-dynamics.md)
+- [Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World](sources/tobin-domain-randomization.md)
+- [Sim-to-Real Transfer of Robotic Control with Dynamics Randomization](sources/peng-dynamics-randomization.md)
+- [Closing the Sim-to-Real Loop: Adapting Simulation Randomization with Real World Experience](sources/simopt-adaptive-randomization.md)
+- [Isaac Sim 6.1: Deploying policies in Isaac Sim](sources/isaac-sim-policy-deployment.md)
+
 ## 概念页
+
+### 共同基础
+
+- [机器人坐标系与位姿](concepts/RobotCoordinateFrames.md)
+- [机器人刚体动力学](concepts/RobotRigidBodyDynamics.md)
+- [仿真步长、积分器与控制频率](concepts/SimulationTimeStepping.md)
+- [域随机化：学习一组环境中的行为](concepts/DomainRandomization.md)
+- [仿真系统辨识与闭环分布校准](concepts/SystemIdentificationForSimulation.md)
+- [策略部署契约：同一模型如何执行同一行为](concepts/PolicyDeploymentContract.md)
+
+- [机器人仿真循环](concepts/RoboticsSimulationLoop.md) - 模型、状态、控制与观测的分工
+- [MDP 与强化学习基础](concepts/MarkovDecisionProcesses.md) - 任务建模、交互、回报、价值与状态观测区别
+- [机器人学习目标](concepts/RobotLearningObjectives.md) - 示范、期望回报与动力学预测的机制比较
+- [潜在状态空间模型](concepts/LatentStateSpaceModels.md) - 观测后验、预测先验与 ELBO 推导
+- [glTF 场景与数据结构](concepts/GLTFSceneStructure.md) - 场景图、访问器、缓冲区与纹理引用
 
 ### OpenUSD 与资产基础设施
 
 - [OpenUSD 场景组合](concepts/OpenUSDSceneComposition.md) - 把 OpenUSD 的阶段、层、图元数据模型、结构规范、组合弧、Hydra 与 Isaac Sim 机器人学资产分层连接起来的学习页
+- [USDA 文件语法](concepts/USDAFileSyntax.md) - `.usda` human-readable layer syntax 的读写入口，连接 header、metadata、`def` / `over` / `class`、attributes、relationships、sublayers 和 composition / value resolution
 
 ### 传感器仿真与渲染
 
@@ -118,7 +177,7 @@ modified: 2026-09-25
 ### 世界模型
 
 - [具身智能世界模型](concepts/WorldModelsForEmbodiedAI.md) - 动作条件化的潜在仿真器的 POMDP/ELBO 机制与实用的失效情形
-- [World Model Taxonomy](concepts/WorldModelTaxonomy.md) - 功能、时间建模、空间表示三轴分类
+- [世界模型分类体系](concepts/WorldModelTaxonomy.md) - 功能、时间建模、空间表示三轴分类
 - [世界模型评估](concepts/WorldModelEvaluation.md) - 从像素保真度、状态理解到任务性能的世界模型评估层次
 - [潜在动力学动作模型](concepts/LatentDynamicsActionModels.md) - 用 DINO 潜在表示、扩散动作块与多任务目标路由学习机器人交互动力学
 - [逆动力学模型](concepts/InverseDynamicsModels.md) - 从当前/未来视觉转移推断动作或潜在动作的模型，包含 DeFI/GIDM 的自监督视频预训练机制

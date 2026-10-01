@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, wheeled-robots, mobile-robots, kinematics]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 轮式机器人运动学
@@ -87,10 +88,10 @@ flowchart LR
 - 粗劣的条件化：秩为 3 但条件数值很差，车轮速度噪声会被放大成里程计或控制错误。
 - 饱和不匹配：pseudo-逆输出可行速度，但某些车轮速度超出 motor 限制，需要统一缩放或重新优化。
 - No-滑移假设失败：加速、转弯、低摩擦地面或载荷偏置会破坏滚动不含 skidding。
-- 接触层级不匹配：运动学 equations 不包含法向负载、Coulomb 摩擦、柔顺性和 [[ContactSolvers|接触求解器]] 残差；这些会进入 [[SimulationRealityGap]]。
+- 接触层级不匹配：运动学 equations 不包含法向负载、Coulomb 摩擦、柔顺性和 [[ContactSolvers|接触求解器]] 残差；这些会进入 [[SimulationRealityGap|仿真—现实差距]]。
 
 ## 实践含义
 
 建模顺序应先写清楚帧约定和车轮 sign 约定，再推导 $H(0)$ 或约束矩阵。不要从网上直接复制 mecanum 或 omni 公式；轮序、坐标系、滚轮角度和正方向一变，矩阵符号就会变。
 
-仿真中可以分三层：运动学控制器层验证 $u\leftrightarrow V_b$；物理关节层加入质量、惯量、执行器限制；接触层再处理摩擦、滑移、滚轮几何和求解器场景。相关页面：[[OmnidirectionalWheels]]、[[NonholonomicMobileRobots]]、[[SteerableWheels]]、[[MobileRobotOdometry]]、[[WheeledMobileRobotClassification]]。
+仿真中可以分三层：运动学控制器层验证 $u\leftrightarrow V_b$；物理关节层加入质量、惯量、执行器限制；接触层再处理摩擦、滑移、滚轮几何和求解器场景。相关页面：[[OmnidirectionalWheels|全向轮]]、[[NonholonomicMobileRobots|非完整约束移动机器人]]、[[SteerableWheels|可转向轮]]、[[MobileRobotOdometry|移动机器人里程计]]、[[WheeledMobileRobotClassification|轮式移动机器人分类]]。

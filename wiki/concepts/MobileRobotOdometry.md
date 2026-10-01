@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, wheeled-robots]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 移动机器人里程计
@@ -86,4 +87,4 @@ Omni/mecanum 的里程计还多一个矩阵条件化问题：$H^\dagger$ 会把�
 
 车轮里程计不应单独作为长期全局位姿。它适合作为高比率局部估计值，再与 IMU、视觉、lidar、GPS、beacon 或 landmark 观测通过 Kalman filter、particle filter 或因素图结构融合。
 
-仿真验证时，应单独检查指令到-车轮、车轮到-旋量、旋量到-位姿三层误差。相关页面：[[WheeledRobotKinematics]]、[[OmnidirectionalWheels]]、[[NonholonomicMobileRobots]]、[[SimulationRealityGap]]。
+仿真验证时，应单独检查指令到-车轮、车轮到-旋量、旋量到-位姿三层误差。相关页面：[[WheeledRobotKinematics|轮式机器人运动学]]、[[OmnidirectionalWheels|全向轮]]、[[NonholonomicMobileRobots|非完整约束移动机器人]]、[[SimulationRealityGap|仿真—现实差距]]。

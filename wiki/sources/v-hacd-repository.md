@@ -9,11 +9,12 @@ source_kind: repo
 source_url: https://github.com/kmammou/v-hacd
 extracted_text: graph/extracts/v-hacd-readme.md
 source_date: unknown
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
 
-V-HACD 代码仓库 README 描述了 Voxelized Hierarchical 近似凸分解：把 3D 表面分解成一组近似凸的部件，用于碰撞检测等需要凸形状的应用。该 README 同时说明项目已经已弃用的 / 已归档的，新开发转移到 [[CoACD]]。它仍是理解 [[ApproximateConvexDecomposition|近似凸分解]] 历史和基线的重要来源。
+V-HACD 代码仓库 README 描述了 Voxelized Hierarchical 近似凸分解：把 3D 表面分解成一组近似凸的部件，用于碰撞检测等需要凸形状的应用。该 README 同时说明项目已经已弃用的 / 已归档的，新开发转移到 [[CoACD|CoACD]]。它仍是理解 [[ApproximateConvexDecomposition|近似凸分解]] 历史和基线的重要来源。
 
 来源网址: https://github.com/kmammou/v-hacd
 
@@ -31,10 +32,10 @@ V-HACD 代码仓库 README 描述了 Voxelized Hierarchical 近似凸分解：�
 
 ## 关联
 
-- [[ApproximateConvexDecomposition]] - V-HACD 是常用 ACD 基线，也是 CoACD / VisACD / 基元分解对比对象。
-- [[CollisionGeometryForRobotSimulation]] - 解释为什么单凸包 / 基元对凹度容易产生误报。
-- [[VHACD]] - 实体页面。
-- [[CoACD]] - README 推荐的新开发方向。
+- [[ApproximateConvexDecomposition|近似凸分解]] - V-HACD 是常用 ACD 基线，也是 CoACD / VisACD / 基元分解对比对象。
+- [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]] - 解释为什么单凸包 / 基元对凹度容易产生误报。
+- [[VHACD|V-HACD]] - 实体页面。
+- [[CoACD|CoACD]] - README 推荐的新开发方向。
 
 ## 开放问题
 

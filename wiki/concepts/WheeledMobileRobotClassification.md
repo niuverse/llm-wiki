@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, wheeled-robots, nonholonomic-systems]
 sources: ["[[structural-properties-and-classification-of-wheeled-mobile-robots]]", "[[modern-robotics-chapter-13-wheeled-mobile-robots]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 轮式移动机器人分类
@@ -87,4 +88,4 @@ flowchart TD
 
 ## 实践含义
 
-对 [[WheeledRobotKinematics]]，这套分类给出几何矩阵的秩/零空间解释。对 [[SteerableWheels]]，它说明转向 DOFs 不等于 instant 平移 DOFs。对 [[NonholonomicMobileRobots]]，它把类汽车、diff-驱动-like 和 steerable-车轮机器人放进统一机动性/steerability 坐标系。
+对 [[WheeledRobotKinematics|轮式机器人运动学]]，这套分类给出几何矩阵的秩/零空间解释。对 [[SteerableWheels|可转向轮]]，它说明转向 DOFs 不等于 instant 平移 DOFs。对 [[NonholonomicMobileRobots|非完整约束移动机器人]]，它把类汽车、diff-驱动-like 和 steerable-车轮机器人放进统一机动性/steerability 坐标系。

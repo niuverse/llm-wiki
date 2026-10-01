@@ -9,6 +9,7 @@ source_kind: pdf
 source_url: https://nd.ics.org.ru/nd1104002/
 extracted_text: graph/extracts/campion-bastin-dandrea-novel-wheeled-mobile-robots-nd-2011.md
 source_date: unknown
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
@@ -37,11 +38,11 @@ Guy Campion、Georges Bastin 和 Brigitte D'Andrea-Novel 的经典 WMR 分类论
 
 ## 关联
 
-- [[WheeledMobileRobotClassification]] - $\delta_m$、$\delta_s$、$\delta_M$ 与五类 WMR 的主概念页。
-- [[WheeledRobotKinematics]] - 车轮层级约束与广义的 WMR 运动学。
-- [[SteerableWheels]] - 中心化的 steerable 车轮、off-中心化的 steerable/脚轮车轮和转向 DOFs 的数学角色。
-- [[OmnidirectionalWheels]] - 类型 $(3,0)$ 的 omni-移动式机器人与全向轮示例。
-- [[NonholonomicMobileRobots]] - limited-机动性类型与非完整约束可控性的连接。
+- [[WheeledMobileRobotClassification|轮式移动机器人分类]] - $\delta_m$、$\delta_s$、$\delta_M$ 与五类 WMR 的主概念页。
+- [[WheeledRobotKinematics|轮式机器人运动学]] - 车轮层级约束与广义的 WMR 运动学。
+- [[SteerableWheels|可转向轮]] - 中心化的 steerable 车轮、off-中心化的 steerable/脚轮车轮和转向 DOFs 的数学角色。
+- [[OmnidirectionalWheels|全向轮]] - 类型 $(3,0)$ 的 omni-移动式机器人与全向轮示例。
+- [[NonholonomicMobileRobots|非完整约束移动机器人]] - limited-机动性类型与非完整约束可控性的连接。
 
 ## 开放问题
 

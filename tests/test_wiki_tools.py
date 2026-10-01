@@ -53,7 +53,9 @@ class WikiToolTests(unittest.TestCase):
             write(root / "wiki/log.md", "## [2026-04-27] ingest | Paper")
             write(
                 root / "wiki/overview.md",
-                "---\ntitle: Overview\ntype: synthesis\n---\n\n[[Paper]] with enough overview content to avoid being treated as an accidental stub file.",
+                "---\ntitle: Overview\ntype: synthesis\nsources: [\"[[Paper]]\"]\n---\n\n"
+                "[[Paper]] supports this overview. This fixture represents a reviewed synthesis "
+                "and explicitly declares its evidence so the quality gate can distinguish it from an unsourced note.",
             )
             write(
                 root / "wiki/sources/paper.md",
@@ -61,6 +63,7 @@ class WikiToolTests(unittest.TestCase):
                 ---
                 title: "Paper"
                 type: source
+                tags: [source-backed]
                 source_file: raw/paper.pdf
                 extracted_text: graph/extracts/paper.md
                 ---
@@ -72,7 +75,9 @@ class WikiToolTests(unittest.TestCase):
             )
             write(
                 root / "wiki/concepts/Concept.md",
-                "---\ntitle: Concept\ntype: concept\n---\n\nLinks to [[Paper]] with enough concept content to avoid being treated as an accidental stub page.",
+                "---\ntitle: Concept\ntype: concept\nsources: [\"[[Paper]]\"]\n---\n\n"
+                "Links to [[Paper]] and explains the mechanism supported by that evidence. "
+                "This fixture is a complete concept rather than an empty navigation target or a generated stub.",
             )
             write(root / "raw/paper.pdf", "%PDF fixture")
             write(root / "graph/extracts/paper.md", "Extracted text")

@@ -3,82 +3,61 @@ title: "机器人上下文条件化"
 type: concept
 tags: [robotics, vla]
 sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]"]
-modified: 2026-07-13
+modified: 2026-09-30
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 # 机器人上下文条件化
 
-机器人上下文条件化（机器人上下文条件化）是在机器人策略的提示/上下文中加入足够信息，让同一个模型区分任务、子任务、策略、质量、速度、mistakes、控制模式和期望视觉结果。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 论文]] 的核心贡献可以理解为：把机器人数据异构性从 nuisance 变成可控的条件。
+上下文条件化让同一个策略区分任务、子任务、质量、速度、错误、控制模式与期望视觉结果。[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 将这些信息纳入提示，以处理异构机器人数据中的行为歧义。
 
 ## 数学结构
 
-π0.7 把 VLA 上下文写成一个更丰富的提示 $C_t$。可以抽象为：
+用教学记号汇总来源中的上下文：
 
 $$
-C_t = (\ell_t,\hat{\ell}_t,g_t,m,c),
+C_t=(\ell_t,\hat\ell_t,g_t,m,c),\qquad
+\pi_\theta(A_t\mid O_t,C_t).
 $$
 
-其中 $\ell_t$ 是总体任务指令，$\hat{\ell}_t$ 是当前语义子任务指令，$g_t=[G_t^1,\dots,G_t^n]$ 是多视角子目标图像，$m$ 是回合元数据，$c\in\{\mathrm{joint},\mathrm{ee}\}$ 是控制模式。策略使用：
+$\ell_t$ 为总体任务语言，$\hat\ell_t$ 为当前子任务语言，$g_t$ 为多视角视觉子目标，$m$ 为回合元数据，$c$ 为关节或末端控制模式；$O_t$ 为观测历史，$A_t$ 为动作块，$\theta$ 为策略参数。动作块长度的明确记法见 [[VisionLanguageActionModels|VLA]]。
+
+来源中的元数据包括速度（回合长度按 500 步分箱）、质量（1 至 5 人工评分）和错误标签。测试通常选择最高质量、无错误与较快的速度提示；这是一组来源设置，不是任意系统的通用最优值。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 论文]]
+
+视觉子目标由生成器参数 $\psi$ 决定：
 
 $$
-\pi_\theta(a_{t:t+H}\mid o_{t-T:t}, C_t).
+g^\star\sim p_\psi(g^\star\mid o_t,\hat\ell_t,m).
 $$
 
-回合元数据 $m$ 在来源中主要包含三类：总体速度（回合长度，被离散到 500-步骤 bins）、总体质量（1 到 5 的人工评分）和错误标签（动作片段中是否出现错误）。测试时通常把质量设为最高、错误设为 false，并为每个任务选择快速速度提示。
-
-子目标图像由世界模型 $g_\psi$ 生成。它接收当前观测 $o_t$、子任务指令 $\hat{\ell}_t$ 和元数据 $m$，产生近期未来视觉目标：
-
-$$
-g^\star \sim p_\psi(g^\star \mid o_t,\hat{\ell}_t,m).
-$$
-
-论文用流程匹配损失 $L_{\mathrm{CFM}}$ 训练这个生成器，使目标未来图像 $g_t^\star$ 与 $g_\psi(o_t,\hat{\ell}_t,m)$ 对齐。这里 $g_t^\star$ 来自 segment end 帧或采样的未来帧。
+$o_t$ 为当前观测，$g^\star$ 为目标图像。来源使用片段末帧或采样未来帧作为训练目标，并用条件流匹配训练生成器；生成结果再进入 VLA 上下文。详见 [[WorldModelsForEmbodiedAI|世界模型]]。
 
 ## 直觉
 
-如果只给任务语言，两个示范数据可能都标成“fold the shirt”，但一个很慢、一个很快，一个失败、一个成功，一个适合小型 bimanual 机器人、另一个适合 UR5e。上下文条件化把这些隐藏的模式显式化，让模型学到条件分布，而不是在模式之间平均。
-
-子目标图像的作用是把语言难以表达的空间细节变成视觉目标。比如“open the fridge door”没有说明怎么抓把手；多视角子目标图像可以同时表达物体中心化结果、夹爪位姿和场景布局。
+同一句“折好衣服”可以对应不同速度、质量和机器人形态的示范。把这些模式显式写入条件，模型就可以学习条件分布，而不是只拟合混合行为。视觉目标进一步表达语言难以说明的位姿或结果形状。这是依据来源机制整理的解释，不保证任意标签都能带来收益。
 
 ```mermaid
-flowchart TB
-  D["质量混合的机器人数据"] --> M["元数据<br/>速度 / 质量 / 错误"]
-  D --> L["语言<br/>任务 + 子任务"]
-  D --> G["未来帧<br/>子目标目标"]
-  L --> W["世界模型 g_psi"]
-  M --> W
-  O["当前观测"] --> W
-  W --> SG["生成的子目标图像"]
-  M --> C["上下文 C_t"]
-  L --> C
-  SG --> C
-  CM["控制模式"] --> C
-  C --> P["VLA 策略 pi_theta"]
-  O --> P
-  P --> A["动作块"]
+flowchart LR
+  A[质量混合的轨迹] --> B[语言、速度、质量与错误标签]
+  B --> C[世界模型生成视觉子目标]
+  D[当前观测] --> C
+  C --> E[策略上下文]
+  B --> E
+  F[控制模式] --> E
+  E --> G[VLA 动作块]
+  D --> G
 ```
 
-## 失效情形
+## 失效情形与证据边界
 
-- 元数据 mislabeling：质量、错误或速度标签是粗略人类标注；错误标签会把不良轨迹包装成期望模式。
-- 提示词 overconfidence：测试时要求高质量/no 错误不保证当前状态可恢复；策略可能输出看似 confident 但不可执行的动作序列。
-- 子目标幻觉：世界模型可能生成视觉上看似合理，但按机器人运动学、接触条件或物体动力学无法到达的目标图像。
-- Train-测试提示不匹配：训练中只有一部分示例带子目标图像，运行时若依赖生成的子目标，图像质量和延迟都可能影响策略。
-- Novelty 歧义：大规模数据中很难证明某个任务真正未见；上下文条件化可能是在 remix 已见 fragments，而不是学习可组合因果 program。
-- 较低零样本可靠性：来源明确说已见任务 often exceed 90% 成功，而未见任务或未见任务机器人 combinations 通常只有 60-80% 成功 range。
+来源报告，已见任务常超过 90% 成功，而未见任务或任务—机器人组合通常处于 60%–80% 区间；这是其评测结果，不能当作任意 VLA 的可靠性范围。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 论文]]
 
-## 证据边界
+以下是**机制推导的待验证风险**：质量或错误误标、测试提示与当前状态不匹配、生成目标不可达、子目标延迟，以及把已有片段重组误判为未见任务。当前来源没有独立验证全部风险，不将它们伪装成已观察的通用失败。
 
-[[nvlabs-robolab|RoboLab]] 2026-06 代码仓库更新增加 per-策略后端文件夹和 Cosmos 3 客户端，但当前来源主要证明后端组织与推理客户端契约，而不是证明新的上下文条件化训练方法。因此本页只把 RoboLab 作为评估/集成证据，不把它写成模型侧条件化证据。
-
-π0.7 来源支持的是一个 empirical 系统主张：丰富上下文 + diverse 数据在该团队的机器人技术栈、数据 mixture 和评估任务上显著改善 out-的-the-盒体性能。它不证明元数据 prompting 在任意机器人平台上都 calibrated，也不证明子目标图像总是物理上 reachable。后续收录如果包含 independent reproduction、模型 card、open 基准或失败报告，应优先回到本页更新失效情形，而不是只把 π0.7 的正结果加进总览。
+[[nvlabs-robolab|RoboLab 仓库]] 的策略后端与客户端组织支持集成语义，不是新的上下文训练方法证据。π0.7 的正结果来自发布方技术栈与评测；跨平台校准和独立复现仍需补充。
 
 ## 实践含义
 
-对数据收集，π0.7 的经验反对“只保留完美示范数据”的单一路径。混合质量数据可以有价值，但需要记录足够的元数据，让训练目标能区分期望行为与失败行为。
+数据收集要记录模式与质量，而不只保留一条任务语言。实验时分别移除元数据、评估数据和生成子目标，辨别贡献。π0.7 中无元数据与无评估数据的消融影响吞吐量，这为组件分析提供具体证据；是否适用于自己的平台仍需重做实验。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 论文]]
 
-对评估，上下文条件化需要消融实验：去掉元数据、去掉自主评估数据、去掉生成的子目标图像，才能判断性能来自哪些上下文组件。π0.7 论文中吞吐量差距最大的消融实验正是 no-元数据和 no-eval-数据。
-
-对系统设计，世界模型可以不直接做 MPC 轨迹采样，而是作为视觉提示生成器参与闭环控制。这个设计把 [[WorldModelsForEmbodiedAI|世界模型]] 的作用从“预测整个未来”缩小到“产生可执行的近期未来视觉目标”，更适合实时机器人系统。
-
-相关页面：[[VisionLanguageActionModels]]、[[pi07-steerable-generalist-robotic-foundation-model|Pi07]]、[[CompositionalGeneralizationInRobotics]]、[[WorldModelsForEmbodiedAI]]。
+继续读 [[RobotLearningDataComposition|数据构成]]、[[RobotLearningObjectives|学习目标]] 和 [[CompositionalGeneralizationInRobotics|组合泛化]]。

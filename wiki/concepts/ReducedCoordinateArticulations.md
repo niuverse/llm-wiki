@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, simulation, physx]
 sources: ["[[omniverse-omni-physics-articulations]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 约化坐标关节系统
@@ -133,6 +134,6 @@ Mimic 关节、固定肌腱和空间肌腱都是在关节系统内加入额外�
 
 对控制调优，先区分三层：驱动 gain、驱动外包络、求解器 / 时间步。驱动器可以按类 PD 控制器理解；性能外包络决定可行速度作用力区域；闭环、mimic 柔顺性、接触和 TGS 位置迭代决定求解器能否稳定满足这些约束。把这些都写进同一个“刚度/阻尼”心智模型会漏掉关键失效情形。
 
-对资产制作，PhysX 专用关节系统细节适合放进 [[IsaacSimAssetStructure|PhysX-特定的调优层]]，而不是污染共享几何、材质或中性物理。这样同一个机器人资产在 PhysX、[[MuJoCo]] 或其他运行时中比较时，至少可以定位行为变更是拓扑、中性动力学还是运行时特定的调优引起的。
+对资产制作，PhysX 专用关节系统细节适合放进 [[IsaacSimAssetStructure|PhysX-特定的调优层]]，而不是污染共享几何、材质或中性物理。这样同一个机器人资产在 PhysX、[[MuJoCo|MuJoCo]] 或其他运行时中比较时，至少可以定位行为变更是拓扑、中性动力学还是运行时特定的调优引起的。
 
-相关页面：[[omniverse-omni-physics-articulations|PhysX]]、[[IsaacSim]]、[[ContactSolvers]]、[[SimulationRealityGap]]、[[IsaacSimAssetStructure]]、[[isaac-sim-mujoco-control-tuning-notes]]。
+相关页面：[[omniverse-omni-physics-articulations|PhysX]]、[[IsaacSim|Isaac Sim]]、[[ContactSolvers|接触求解器]]、[[SimulationRealityGap|仿真—现实差距]]、[[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]]、[[isaac-sim-mujoco-control-tuning-notes|Isaac Sim 与 MuJoCo 物理和控制笔记]]。

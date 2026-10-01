@@ -4,6 +4,7 @@ type: concept
 tags: [collision-detection, convex-decomposition, simulation-assets, robotics]
 sources: ["[[v-hacd-repository]]", "[[coacd-approximate-convex-decomposition]]", "[[coacd-repository]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 近似凸分解
@@ -59,7 +60,7 @@ flowchart LR
 
 ACD 的直觉是避免两个极端。单个凸包很快，但会把杯子把手、抽屉槽、叉状差距、工具缺口这类任务相关的凹陷结构填满。原始三角形网格或 SDF 可以更接近视觉形状，但在大量引擎 / 实时机器人学工作负载中更贵、更引擎特定的。ACD 试图把“哪里需要细、哪里可以粗”编码进分解。
 
-[[CoACD]] 的贡献在于把 “碰撞条件” 作为指标的中心。它不是只追求表面重建，而是避免碰撞体改变物体功能。抽屉把手示例说明这不是审美细节：碰撞凸包填满把手孔会改变夹爪 / 机械臂是否能形成形状闭合。
+[[CoACD|CoACD]] 的贡献在于把 “碰撞条件” 作为指标的中心。它不是只追求表面重建，而是避免碰撞体改变物体功能。抽屉把手示例说明这不是审美细节：碰撞凸包填满把手孔会改变夹爪 / 机械臂是否能形成形状闭合。
 
 [[convex-primitive-decomposition-for-collision-detection|凸基元分解]] 提醒另一条工程轴：即使凸包分解准确，基元碰撞体也可能更快、更可编辑、更符合引擎优化路径。对机器人链接、车轮、固定设施和粗略障碍物，基元分解可能比大量凸包更实用的。
 
@@ -75,10 +76,10 @@ ACD 的直觉是避免两个极端。单个凸包很快，但会把杯子把手�
 
 ## 实践含义
 
-使用 ACD 时，先定义任务关键接触表面：把手、孔、槽、足部、车轮、工具尖端、夹爪接触垫、支撑面。然后选择分解预算，而不是盲目追求视觉拟合。[[CoACD]] 的 `threshold`、`max-convex-hull`、`max-ch-vertex` 和 MCTS 参数需要和仿真器吞吐量、接触稳定性、物体类别一起调。
+使用 ACD 时，先定义任务关键接触表面：把手、孔、槽、足部、车轮、工具尖端、夹爪接触垫、支撑面。然后选择分解预算，而不是盲目追求视觉拟合。[[CoACD|CoACD]] 的 `threshold`、`max-convex-hull`、`max-ch-vertex` 和 MCTS 参数需要和仿真器吞吐量、接触稳定性、物体类别一起调。
 
 如果目标是大规模 RL 资产流程，未来趋势更可能是混合：CoACD / VisACD 负责保留碰撞相关的凹陷结构，基元分解负责把可用球体/胶囊体/盒体/圆柱体表达的部件压到更低运行时成本，SDF 或网格碰撞体只留给少数细节关键静态几何。这个判断是综合整理：不同来源分别支持碰撞感知 ACD、GPU ACD、基元拟合和 SDF/convexDecomposition 模式，但还没有一个来源证明统一混合流程最优。
 
 对评估，建议保存分解场景和生成的碰撞体产物。否则同一个物体网格在不同预处理阈值下可能对应完全不同的接触世界，基准结果不可复现。
 
-相关页面：[[CollisionGeometryForRobotSimulation]]、[[CoACD]]、[[VHACD]]、[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]、[[MuJoCo]]、[[IsaacSim]]、[[SimulationRealityGap]]。
+相关页面：[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[CoACD|CoACD]]、[[VHACD|V-HACD]]、[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]、[[MuJoCo|MuJoCo]]、[[IsaacSim|Isaac Sim]]、[[SimulationRealityGap|仿真—现实差距]]。

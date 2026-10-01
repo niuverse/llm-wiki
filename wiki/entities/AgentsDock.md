@@ -4,11 +4,12 @@ type: entity
 tags: [self-hosted, claude, codex]
 sources: ["[[agentsdock-releases]]", "[[agentsserver]]"]
 modified: 2026-08-25
+study_topic: syntheses/agent-tools-learning-path
 ---
 
 # AgentsDock
 
-AgentsDock 是 [[AgentsServer]] 的配套客户端，提供多聊天与文件夹、队列和定时任务、富 Markdown/代码渲染、内联媒体、下载与拖出、代码审查、搜索、通知和每聊天持久终端。它本身不是云端服务：聊天体验在客户端，但实际执行发生在用户自己的 AgentsServer 主机上。
+AgentsDock 是 [[AgentsServer|AgentsServer]] 的配套客户端，提供多聊天与文件夹、队列和定时任务、富 Markdown/代码渲染、内联媒体、下载与拖出、代码审查、搜索、通知和每聊天持久终端。它本身不是云端服务：聊天体验在客户端，但实际执行发生在用户自己的 AgentsServer 主机上。
 
 ## 产品边界
 
@@ -46,7 +47,7 @@ AgentsDock 通过 `/api` 管理会话、消息、文件、任务和终端，并�
 
 ## 关联
 
-- [[AgentsServer]] - 自托管执行后端。
-- [[agentsdock-releases]] - AgentsDock 发布仓库来源页。
-- [[agentsserver]] - AgentsServer 官方 README 来源页。
+- [[AgentsServer|AgentsServer]] - 自托管执行后端。
+- [[agentsdock-releases|AgentsDock 发布记录]] - AgentsDock 发布仓库来源页。
+- [[agentsserver|AgentsServer 来源档案]] - AgentsServer 官方 README 来源页。
 - [[lda-1b-scaling-latent-dynamics-action-model|Galbot]] - 用户当前在 Galbot 主机上安装 AgentsServer 的上下文。

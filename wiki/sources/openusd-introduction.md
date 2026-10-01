@@ -9,6 +9,7 @@ source_kind: html
 source_url: https://openusd.org/release/intro.html
 extracted_text: graph/extracts/openusd-introduction.md
 source_date: unknown
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # Introduction to USD
@@ -50,9 +51,9 @@ Pixar 动画 Studios 是 [[openusd-introduction|Introduction 到 USD]] 的版权
 
 ## 关联
 
-- [[OpenUSD]] - 本来源对 USD / OpenUSD 的机制级定义。
-- [[OpenUSDSceneComposition]] - 把 `Stage`、`Layer`、`Prim`、结构规范、组合弧和失效情形编译成学习页。
-- [[IsaacSimAssetStructure]] - 机器人学 / 仿真资产制作中，USD 组合的具体应用。
+- [[OpenUSD|OpenUSD]] - 本来源对 USD / OpenUSD 的机制级定义。
+- [[OpenUSDSceneComposition|OpenUSD 场景组合]] - 把 `Stage`、`Layer`、`Prim`、结构规范、组合弧和失效情形编译成学习页。
+- [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] - 机器人学 / 仿真资产制作中，USD 组合的具体应用。
 - [[openusd-introduction|Pixar]] - 来源中的 USD 历史传承、生产上下文和版权所有者。
 
 ## 开放问题

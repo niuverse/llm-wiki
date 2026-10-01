@@ -9,13 +9,14 @@ source_kind: html
 source_url: https://docs.isaacsim.omniverse.nvidia.com/4.5.0/robot_setup/asset_structure.html
 extracted_text: graph/extracts/isaac-sim-45-asset-structure.md
 source_date: 2025-09-25
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # Asset Structure - Isaac Sim 4.5 Documentation
 
 ## 摘要
 
-这是 [[NVIDIA]] Isaac Sim 4.5 文档中的机器人设置 / 资产结构页面，说明导入的资产如何按来源资产、转换后的 optimized 资产、特征层和最终 `asset.usd` 组织。它是 [[IsaacSimLegacyAssetStructure|Isaac Sim 旧版 / pre-3.0 资产结构]] 的主要证据：页面本身只称为 `Asset Structure`，没有把这套布局命名为 `Asset Structure 2.0` 或 `Asset Directory 2.0`。
+这是 [[NVIDIA|NVIDIA]] Isaac Sim 4.5 文档中的机器人设置 / 资产结构页面，说明导入的资产如何按来源资产、转换后的 optimized 资产、特征层和最终 `asset.usd` 组织。它是 [[IsaacSimLegacyAssetStructure|Isaac Sim 旧版 / pre-3.0 资产结构]] 的主要证据：页面本身只称为 `Asset Structure`，没有把这套布局命名为 `Asset Structure 2.0` 或 `Asset Directory 2.0`。
 
 核心结构是：来源阶段保留 `asset_base.usd`、`parts.usd` 和 `materials.usd`；transformation 阶段生成可用于仿真的 `asset_sim_optimized.usd`；物理、传感器、控制 graphs 和 ROS 集成作为 separate 轻量的特征层添加；最终 `asset.usd` 用子层、载荷、参考资料和变体组合仿真资产。
 
@@ -39,11 +40,11 @@ source_date: 2025-09-25
 
 ## 关联
 
-- [[IsaacSimLegacyAssetStructure]] - 将本来源编译成旧版 / pre-3.0 资产结构的机制页，并与 [[IsaacSimAssetStructure|资产结构 3.0]] 对照。
-- [[IsaacSimAssetStructure]] - Isaac Sim 6.0 EDR 文档中明确命名的 USD 资产结构 3.0 指南。
-- [[IsaacSim]] - 本来源对 Isaac Sim 4.5 机器人资产组织的描述。
-- [[NVIDIA]] - 来源 publisher 与 Isaac Sim 文档 owner。
-- [[OpenUSD]] - 本来源使用 USD 子层、载荷、参考资料和变体组织仿真资产。
+- [[IsaacSimLegacyAssetStructure|Isaac Sim 旧版资产结构]] - 将本来源编译成旧版 / pre-3.0 资产结构的机制页，并与 [[IsaacSimAssetStructure|资产结构 3.0]] 对照。
+- [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] - Isaac Sim 6.0 EDR 文档中明确命名的 USD 资产结构 3.0 指南。
+- [[IsaacSim|Isaac Sim]] - 本来源对 Isaac Sim 4.5 机器人资产组织的描述。
+- [[NVIDIA|NVIDIA]] - 来源 publisher 与 Isaac Sim 文档 owner。
+- [[OpenUSD|OpenUSD]] - 本来源使用 USD 子层、载荷、参考资料和变体组织仿真资产。
 
 ## 开放问题
 

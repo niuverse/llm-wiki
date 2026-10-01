@@ -4,6 +4,7 @@ type: synthesis
 tags: [learn, simulation, 3d-generation]
 sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # EmbodiedGen V1/V2 学习地图
@@ -53,12 +54,12 @@ EmbodiedGen 研究的是生成式仿真基础设施：如何把文本、图像�
 
 | Insight | 证据层级 | 知识库目标 |
 | --- | --- | --- |
-| V1 自动 QA 能减少人工筛选，但远未解决 | 有来源支持的 | [[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]] |
-| V2 网格修复与 CoACD 改善处理/接触指标 | 有来源支持的消融 | [[SimulationReady3DWorldGeneration]], [[CollisionGeometryForRobotSimulation]] |
-| V2 可供性的最大损耗来自部件分割 | 有来源支持的分阶段评估 | [[SimulationReady3DWorldGeneration]] |
-| 跨格式导出不等于跨引擎轨迹等价性 | 有来源支持的接口 + 知识库推理 | [[SimulationReady3DWorldGeneration]], [[SimulationRealityGap]] |
-| 生成式世界 diversity 很可能是策略泛化的重要资源 | 有来源支持的配套摘要；因果 isolation incomplete | [[SimulationRealityGap]], [[RoboticsSimulationInfrastructure]] |
-| 有状态的世界编辑应采用 transactional 状态语义 | 有来源支持的机制 + 可复用设计推理 | [[AgenticSceneTaskGeneration]] |
+| V1 自动 QA 能减少人工筛选，但远未解决 | 有来源支持的 | [[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen V1 论文]] |
+| V2 网格修复与 CoACD 改善处理/接触指标 | 有来源支持的消融 | [[SimulationReady3DWorldGeneration|可用于仿真的三维世界生成]], [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]] |
+| V2 可供性的最大损耗来自部件分割 | 有来源支持的分阶段评估 | [[SimulationReady3DWorldGeneration|可用于仿真的三维世界生成]] |
+| 跨格式导出不等于跨引擎轨迹等价性 | 有来源支持的接口 + 知识库推理 | [[SimulationReady3DWorldGeneration|可用于仿真的三维世界生成]], [[SimulationRealityGap|仿真—现实差距]] |
+| 生成式世界 diversity 很可能是策略泛化的重要资源 | 有来源支持的配套摘要；因果 isolation incomplete | [[SimulationRealityGap|仿真—现实差距]], [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] |
+| 有状态的世界编辑应采用 transactional 状态语义 | 有来源支持的机制 + 可复用设计推理 | [[AgenticSceneTaskGeneration|智能体式场景与任务生成]] |
 
 ## 来源获取计划
 
@@ -67,4 +68,4 @@ EmbodiedGen 研究的是生成式仿真基础设施：如何把文本、图像�
 - `medium priority`：收录 DIPO、3D-Fixer、P3-SAM 与 GraspGen，拆分关节化的生成、遮挡完成度、部件分割和抓取验证的贡献。
 - `medium priority`：补充独立跨仿真器比较，测同一生成的场景在 MuJoCo、SAPIEN、Isaac Sim/PhysX、Genesis 与 Bullet 中的沉降/接触/策略 divergence。
 
-相关页面：[[EmbodiedGen]]、[[SimulationReady3DWorldGeneration]]、[[AgenticSceneTaskGeneration]]、[[RoboticsSimulationInfrastructure]]、[[CollisionGeometryForRobotSimulation]]、[[SimulationRealityGap]]。
+相关页面：[[EmbodiedGen|EmbodiedGen]]、[[SimulationReady3DWorldGeneration|可用于仿真的三维世界生成]]、[[AgenticSceneTaskGeneration|智能体式场景与任务生成]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[SimulationRealityGap|仿真—现实差距]]。

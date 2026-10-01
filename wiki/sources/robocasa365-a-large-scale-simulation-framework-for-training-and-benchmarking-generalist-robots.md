@@ -11,11 +11,12 @@ extracted_text: graph/extracts/robocasa365.md
 source_date: 2026-03-04
 project_url: https://robocasa.ai/
 code_url: https://github.com/robocasa/robocasa
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 ## 摘要
 
-Soroush Nasiriany、Sepehr Nasiriany、Abhiram Maddukuri 和 Yuke Zhu 提出 [[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]：一套基于 RoboCasa、RoboSuite 与 [[MuJoCo]] 的大规模家庭移动操作仿真框架，同时提供资产、厨房场景、任务、示范数据和训练—评测规程。论文的研究目标不是提出单一新策略，而是建立可控实验环境，系统研究任务多样性、场景多样性、数据量、示范质量与训练阶段怎样影响通用机器人策略。
+Soroush Nasiriany、Sepehr Nasiriany、Abhiram Maddukuri 和 Yuke Zhu 提出 [[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]：一套基于 RoboCasa、RoboSuite 与 [[MuJoCo|MuJoCo]] 的大规模家庭移动操作仿真框架，同时提供资产、厨房场景、任务、示范数据和训练—评测规程。论文的研究目标不是提出单一新策略，而是建立可控实验环境，系统研究任务多样性、场景多样性、数据量、示范质量与训练阶段怎样影响通用机器人策略。
 
 框架包含 365 个厨房任务，其中 65 个是单技能原子任务，300 个是多技能组合任务；220 个任务需要移动操作。预训练场景由 50 种布局与 50 种风格组合成 2,500 个厨房，目标评测另使用 10 个厨房。数据包括 30,000 条预训练人类遥操作示范、25,000 条目标任务人类示范，以及用 MimicGen 从 60 个原子任务扩增得到的约 600,000 条合成示范。论文统计表给出的时长是 404 小时预训练人类数据、208 小时目标人类数据和 1,615 小时合成数据。
 
@@ -44,7 +45,7 @@ Soroush Nasiriany、Sepehr Nasiriany、Abhiram Maddukuri 和 Yuke Zhu 提出 [[r
 
 ### RoboCasa365
 
-RoboCasa365 是面向家庭厨房移动操作的仿真框架、机器人示范数据集和训练—评测基准。它建立在 RoboCasa、RoboSuite 与 [[MuJoCo]] 之上，不是一种单独的策略模型；其主要价值是把资产、场景、任务、数据和评测放进同一套可复现实验系统，用来研究通用机器人策略怎样从大量任务与环境中学习。
+RoboCasa365 是面向家庭厨房移动操作的仿真框架、机器人示范数据集和训练—评测基准。它建立在 RoboCasa、RoboSuite 与 [[MuJoCo|MuJoCo]] 之上，不是一种单独的策略模型；其主要价值是把资产、场景、任务、数据和评测放进同一套可复现实验系统，用来研究通用机器人策略怎样从大量任务与环境中学习。
 
 ```mermaid
 flowchart LR
@@ -71,7 +72,7 @@ flowchart LR
 
 RoboCasa365 为 [[RobotLearningDataComposition|机器人学习数据构成]] 提供了受控证据：扩大任务覆盖和场景覆盖能改善下游泛化，但加入数量更大的混合质量合成数据不保证提高成功率。它也为 [[CompositionalGeneralizationInRobotics|组合泛化]] 暴露了清晰差距：原子任务明显容易，已见组合任务困难，未见组合任务更困难；长时域错误累积仍是当前 VLA 策略的主要瓶颈。
 
-与 [[RoboLab]] 相比，RoboCasa365 更强调“生成训练数据 + 训练策略 + 系统评测”的一体化规模实验；RoboLab 更强调对现成策略做语言、物体、场景与扰动诊断。两者都属于 [[TaskGeneralistPolicyEvaluation|通用任务策略评估]]，但测量目的不同。
+与 [[RoboLab|RoboLab]] 相比，RoboCasa365 更强调“生成训练数据 + 训练策略 + 系统评测”的一体化规模实验；RoboLab 更强调对现成策略做语言、物体、场景与扰动诊断。两者都属于 [[TaskGeneralistPolicyEvaluation|通用任务策略评估]]，但测量目的不同。
 
 #### 证据边界
 
@@ -80,12 +81,12 @@ RoboCasa365 为 [[RobotLearningDataComposition|机器人学习数据构成]] 提
 ## 关联
 
 - [[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] - 框架、数据集和基准实体页。
-- [[RobotLearningDataComposition]] - 任务覆盖、场景覆盖、示范质量、采样与训练阶段共同决定下游收益。
-- [[TaskGeneralistPolicyEvaluation]] - 原子/已见组合/未见组合三分法、二元成功率和评测规程的含义。
-- [[CompositionalGeneralizationInRobotics]] - 从原子技能到未见组合任务的闭环泛化及长时域误差累积。
-- [[RoboticsSimulationInfrastructure]] - RoboSuite/MuJoCo、资产、任务、数据生成、策略接口与评测组成的一体化基础设施。
-- [[SimulationRealityGap]] - 场景与相机变化、仿真加真实数据训练，以及四任务真实实验的证据边界。
-- [[VisionLanguageActionModels]] - 论文比较 Diffusion Policy、π0、π0.5 与 GR00T N1.5。
+- [[RobotLearningDataComposition|机器人学习数据构成]] - 任务覆盖、场景覆盖、示范质量、采样与训练阶段共同决定下游收益。
+- [[TaskGeneralistPolicyEvaluation|通用任务策略评估]] - 原子/已见组合/未见组合三分法、二元成功率和评测规程的含义。
+- [[CompositionalGeneralizationInRobotics|机器人学中的组合泛化]] - 从原子技能到未见组合任务的闭环泛化及长时域误差累积。
+- [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] - RoboSuite/MuJoCo、资产、任务、数据生成、策略接口与评测组成的一体化基础设施。
+- [[SimulationRealityGap|仿真—现实差距]] - 场景与相机变化、仿真加真实数据训练，以及四任务真实实验的证据边界。
+- [[VisionLanguageActionModels|视觉—语言—动作模型]] - 论文比较 Diffusion Policy、π0、π0.5 与 GR00T N1.5。
 
 ## 开放问题
 

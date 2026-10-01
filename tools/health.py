@@ -222,7 +222,7 @@ def check_language_artifacts(root: Path, pages: list[Path]) -> list[dict[str, st
 # has to declare one in tags. Readers rely on this to tell a distilled note from
 # a source-backed conclusion.
 
-EVIDENCE_STATE_TAGS = ("unsourced", "source-plan", "learn", "source-backed")
+EVIDENCE_STATE_TAGS = ("unsourced", "source-plan", "learn", "distill")
 EVIDENCE_STATE_TYPES = ("concept", "entity", "synthesis")
 
 
@@ -308,11 +308,14 @@ def format_report(results: dict[str, Any]) -> str:
 
 def has_failures(results: dict[str, Any]) -> bool:
     return bool(
-        results["broken_wikilinks"]
+        results["empty_files"]
+        or results["broken_wikilinks"]
         or results["index_sync"]["in_index_not_on_disk"]
         or results["index_sync"]["on_disk_not_in_index"]
         or results["log_coverage"]
         or results["source_files"]["missing"]
+        or results["language_artifacts"]
+        or results["evidence_state"]
     )
 
 

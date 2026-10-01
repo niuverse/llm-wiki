@@ -4,6 +4,7 @@ type: synthesis
 tags: [robotics, simulation, evaluation, benchmark, reinforcement-learning, unsourced]
 sources: []
 modified: 2026-09-25
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 # 机器人仿真评测是否需要仿真数据后训练
@@ -39,7 +40,7 @@ modified: 2026-09-25
 - online RL 或 preference/reward-guided optimization；
 - sim pretraining 后再用少量 real data fine-tuning。
 
-以下操作应单独记录，不宜悄悄计入“zero-shot”：action normalization、camera calibration、IK / operational-space controller、control frequency resampling、observation adapter、prompt template 和 system identification。它们未必更新模型参数，但仍可能显著改变结果。
+以下操作应单独记录，不宜悄悄计入“zero-shot”：action normalization、camera calibration、IK / operational-space controller、control frequency resampling、observation 适配器、prompt template 和 system identification。它们未必更新模型参数，但仍可能显著改变结果。
 
 另一个容易混淆的词是“zero-shot”：
 
@@ -77,7 +78,7 @@ $$
 
 | 评测目的 | 是否用目标仿真数据 post-train | 原因 | 推荐标签 |
 | --- | --- | --- | --- |
-| 测 frozen foundation-model capability | 不应 | 避免 benchmark leakage 与 simulator overfitting | `Frozen/OOD` |
+| 测 frozen foundation-model capability | 不应 | 避免 benchmark 泄漏与 simulator overfitting | `Frozen/OOD` |
 | 测跨任务、跨场景或跨 embodiment zero-shot | 原则上不应 | 目标域适配会改变 generalization 问题 | `Target-sim zero-shot` |
 | 测 few-shot learning / adaptation efficiency | 应该 | 微调本身就是被测能力 | `Adapt-k`，报告 $k$ 和 compute |
 | 测 continual / lifelong learning | 应该 | 要观察 sequential adaptation 与 forgetting | `Continual` |
@@ -90,7 +91,7 @@ $$
 
 ### 4.1 不用目标仿真数据：RoboLab 和 SIMPLER 的诊断式路线
 
-[RoboLab](https://arxiv.org/html/2604.09860)（2026）明确把“训练域”和“仿真评测域”解耦：被测策略在真实 DROID 数据上 fine-tune，随后作为 off-the-shelf policy 进入 RoboLab；目标 simulator 不提供训练数据。作者指出，LIBERO 等 benchmark 在同一 simulated domain 内训练和评测，使用 simulator demonstrations 微调会使任务变容易，却难以回答模型能否对未见环境泛化。RoboLab 因而把 simulator 定位为 受控的诊断工具，而不是训练场。
+[RoboLab](https://arxiv.org/html/2604.09860)（2026）明确把“训练域”和“仿真评测域”解耦：被测策略在真实 DROID 数据上 fine-tune，随后作为 off-the-shelf policy 进入 RoboLab；目标 simulator 不提供训练数据。作者指出，LIBERO 等 benchmark 在同一 simulated domain 内训练和评测，使用 simulator demonstrations 微调会使任务变容易，却难以回答模型能否对未见环境泛化。RoboLab 因而把 simulator 定位为受控的诊断工具，而不是训练场。
 
 [SIMPLER](https://simpler-env.github.io/) 同样主要把 simulation 用作 real-world policy evaluation proxy：给定在真实数据上训练的 RT-1、RT-1-X、Octo 等策略，在视觉匹配的仿真场景中执行 inference，并用 Pearson correlation 和 Mean Maximum Rank Violation（MMRV）比较模拟与真实排序。这个协议要测的正是“现有真实策略在仿真里能否被正确区分”，所以在目标 simulator 上 fine-tune 会破坏问题定义。
 
@@ -116,7 +117,7 @@ $$
 2. **仿真数据可以帮助真实部署。** 在四个真实机器人任务上，real-only GR00T N1.5 平均成功率为 61.8，sim-and-real midtraining / co-finetuning 后为 79.8，提升约 18.1 percentage points。
 3. **质量和多样性比单纯数量重要。** Human300 pretraining 在多个设置中优于 Human300+MimicGen60；作者将差异归因于 synthetic demonstrations 质量不均。场景数量从 5、25 增加到 2,500 时，zero-shot 与 fine-tuned 性能均持续提高，说明 diversity 是关键变量。
 
-RoboCasa365 还报告了 来源特有的优化结论：在其 GR00T N1.5 设置中，two-stage post-training 明显优于简单 joint co-training，LoRA 也优于 full fine-tuning。它们值得作为实验起点，但不能未经复现就推广到所有架构。
+RoboCasa365 还报告了来源特有的优化结论：在其 GR00T N1.5 设置中，two-stage post-training 明显优于简单 joint co-training，LoRA 也优于 full fine-tuning。它们值得作为实验起点，但不能未经复现就推广到所有架构。
 
 ### 4.4 少量仿真 post-training 能否让评测更像真实世界：最新证据
 
@@ -139,7 +140,7 @@ OpenVLA 的官方说明也指出，对新 task / embodiment，通常需要约 10
 #### Track A — Frozen/OOD
 
 - 禁止使用 target simulator 的 trajectory、reward、success label 和 test-time feedback 更新权重。
-- 只允许事先声明的 interface adapter；冻结后不得按 test results 调参。
+- 只允许事先声明的 interface 适配器；冻结后不得按 test results 调参。
 - 对所有模型使用相同 controller、action horizon、observation preprocessing 和 rollout budget。
 - 报告 base checkpoint 的 pretraining overlap，尤其是 robot embodiment、场景资产、任务文本和数据来源。
 
@@ -225,8 +226,8 @@ RoboCasa365 的结果说明，若没有 per-trajectory filtering 和质量审计
 - **副榜使用 Adaptation track**，允许相同数量和质量的仿真数据，展示 0/5/10/20/50/100-shot learning curve；这通常比单一 fine-tuned score 更有研究价值。
 - 对新的 embodiment 或 action interface，允许一份明确记录的 calibration set，但 frozen 结果仍需保留；若 base model 根本无法表达目标 action space，则声明 frozen track 为 `not applicable`，不要伪造公平性。
 - 若最终要部署真实机器人，优先尝试 `diverse randomized sim pretraining → small real fine-tuning`，并与 `small real only` 做 matched-real-data 对照。
-- 不要默认追求最大仿真数据量。先做 5/10/20-shot dose sweep 和 held-out perturbation 验证，再扩大规模。
-- 将真实评测作为最终 gate；sim-real correlation 应在多个 policies、多个 tasks 和多种 perturbations 上验证，而不是只检查一个模型的平均成功率。
+- 不要默认追求最大仿真数据量。先做 5/10/20-shot dose sweep 和留出集 perturbation 验证，再扩大规模。
+- 将真实评测作为最终 gate；sim-real correlation 应在多个 policies、多个 tasks 和多种扰动上验证，而不是只检查一个模型的平均成功率。
 
 一句话概括：**仿真数据 post-training 对“把模型做得更好”通常有价值，但对“测清模型原本有多好”通常不应存在；一个可信的评测体系应同时保留这两个问题，而不是让 adaptation 覆盖掉 zero-shot 诊断。**
 
@@ -247,4 +248,4 @@ RoboCasa365 的结果说明，若没有 per-trajectory filtering 和质量审计
 - 机器人 foundation model 的公开评测协议仍快速变化，不同 paper 对 zero-shot、fine-tuning 和 embodiment adaptation 的命名并不统一。
 - RoboLab、SIMPLER、RoboTwin 2.0、RoboCasa365 覆盖的 robot embodiment、task family 和 simulator 各不相同；数值不能跨论文直接横比。
 - 2026 年的 sim-real correlation 研究仍是 arXiv v1，结论需要更多 robot、policy family 和真实环境复现。
-- 成功率提升不能单独归因于“仿真”这一变量；data quantity、demonstration quality、domain randomization、controller、camera alignment、优化配方和真实数据混合比例 都是潜在 confounders。
+- 成功率提升不能单独归因于“仿真”这一变量；data quantity、demonstration quality、domain randomization、controller、camera alignment、优化配方和真实数据混合比例都是潜在 confounders。

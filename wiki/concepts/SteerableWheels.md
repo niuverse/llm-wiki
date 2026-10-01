@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, wheeled-robots]
 sources: ["[[structural-properties-and-classification-of-wheeled-mobile-robots]]", "[[modern-robotics-chapter-13-wheeled-mobile-robots]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 可转向轮
@@ -61,4 +62,4 @@ Steerable 车轮的优势是 traction 好：它仍是传统车轮，不依赖 om
 
 建模时先区分中心化的 steerable 车轮、off-中心化的脚轮和 independently 驱动的 swerve 模块。运动学分配可以先按期望接触点速度求转向角度与驱动速度；工程控制必须再加转向比率限制、车轮速度饱和、角度 wrapping、模块标定和滑移检测。
 
-仿真时，steerable 车轮比 mecanum/omni 更需要正确的关节层级：转向关节、驱动关节、车轮碰撞、摩擦 anisotropy 和执行器限制都会影响行为。相关页面：[[WheeledMobileRobotClassification]]、[[WheeledRobotKinematics]]、[[MobileRobotOdometry]]、[[SimulationRealityGap]]。
+仿真时，steerable 车轮比 mecanum/omni 更需要正确的关节层级：转向关节、驱动关节、车轮碰撞、摩擦 anisotropy 和执行器限制都会影响行为。相关页面：[[WheeledMobileRobotClassification|轮式移动机器人分类]]、[[WheeledRobotKinematics|轮式机器人运动学]]、[[MobileRobotOdometry|移动机器人里程计]]、[[SimulationRealityGap|仿真—现实差距]]。

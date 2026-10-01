@@ -1,6 +1,20 @@
 const userPref = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"
-const currentTheme = localStorage.getItem("theme") ?? userPref
+let currentTheme = userPref
+try {
+  const saved = localStorage.getItem("theme")
+  if (saved === "light" || saved === "dark") currentTheme = saved
+} catch {
+  // Theme switching still works when browser storage is unavailable.
+}
 document.documentElement.setAttribute("saved-theme", currentTheme)
+
+const saveTheme = (theme: "light" | "dark") => {
+  try {
+    localStorage.setItem("theme", theme)
+  } catch {
+    // Keep the selected theme for this page even if it cannot be persisted.
+  }
+}
 
 const emitThemeChangeEvent = (theme: "light" | "dark") => {
   const event: CustomEventMap["themechange"] = new CustomEvent("themechange", {
@@ -14,14 +28,14 @@ document.addEventListener("nav", () => {
     const newTheme =
       document.documentElement.getAttribute("saved-theme") === "dark" ? "light" : "dark"
     document.documentElement.setAttribute("saved-theme", newTheme)
-    localStorage.setItem("theme", newTheme)
+    saveTheme(newTheme)
     emitThemeChangeEvent(newTheme)
   }
 
   const themeChange = (e: MediaQueryListEvent) => {
     const newTheme = e.matches ? "dark" : "light"
     document.documentElement.setAttribute("saved-theme", newTheme)
-    localStorage.setItem("theme", newTheme)
+    saveTheme(newTheme)
     emitThemeChangeEvent(newTheme)
   }
 
