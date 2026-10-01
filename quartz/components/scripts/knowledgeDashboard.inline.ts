@@ -1,30 +1,9 @@
 import type { ContentDetails } from "../../plugins/emitters/contentIndex"
-import {
-  forceCenter,
-  forceCollide,
-  forceLink,
-  forceManyBody,
-  forceSimulation,
-  SimulationNodeDatum,
-} from "d3"
+import { renderGraph, knowledgeKinds as kinds } from "./knowledgeGraph"
 import { FullSlug, SimpleSlug, getFullSlug, resolveRelative, simplifySlug } from "../../util/path"
 
 type ReadingState = { read: string[]; favorites: string[] }
-type GraphNode = SimulationNodeDatum & { id: string; page: ContentDetails }
-type GraphEdge = { source: string | GraphNode; target: string | GraphNode }
 const storageKey = "llm-wiki:reading:v1"
-const kinds: Record<string, string> = {
-  concept: "概念讲解",
-  source: "来源档案",
-  synthesis: "学习与研究",
-  entity: "项目与工具",
-}
-const colors: Record<string, string> = {
-  concept: "#358579",
-  source: "#648ac4",
-  synthesis: "#aa79b8",
-  entity: "#bc8b40",
-}
 let reading: ReadingState = { read: [], favorites: [] }
 let storageNotice = ""
 
@@ -103,213 +82,6 @@ function pageLink(slug: string, page: ContentDetails) {
   link.className = "internal"
   link.textContent = page.title
   return link
-}
-
-const svgNS = "http://www.w3.org/2000/svg"
-function svgElement<K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string>) {
-  const el = document.createElementNS(svgNS, tag)
-  for (const [name, value] of Object.entries(attrs)) el.setAttribute(name, value)
-  return el
-}
-
-function renderGraph(
-  container: HTMLElement,
-  pages: Map<string, ContentDetails>,
-  centerSlug?: string,
-) {
-  container.replaceChildren()
-  const nodes: GraphNode[] = [...pages].map(([id, page]) => ({ id, page }))
-  if (nodes.length === 0) {
-    const empty = document.createElement("p")
-    empty.textContent = "没有符合筛选的页面，请调整主题、类型或阅读记录。"
-    container.append(empty)
-    return () => {}
-  }
-  const edges: GraphEdge[] = []
-  for (const [source, page] of pages) {
-    for (const target of page.links ?? []) {
-      if (source !== target && pages.has(target)) edges.push({ source, target })
-    }
-  }
-  const width = Math.max(520, Math.min(960, container.clientWidth || 960))
-  const height = nodes.length < 25 ? 460 : 620
-  const simulation = forceSimulation(nodes)
-    .force(
-      "link",
-      forceLink<GraphNode, GraphEdge>(edges)
-        .id((n) => n.id)
-        .distance(nodes.length < 25 ? 105 : 70)
-        .strength(0.12),
-    )
-    .force("charge", forceManyBody().strength(-170))
-    .force("center", forceCenter(width / 2, height / 2))
-    .force("collide", forceCollide<GraphNode>(25))
-    .stop()
-  const center = nodes.find((n) => n.id === centerSlug)
-  if (center) {
-    center.fx = width / 2
-    center.fy = height / 2
-  }
-  simulation.tick(160)
-  // Fit deterministic layout to the viewport; zoom is a separate display transform.
-  const xmin = Math.min(...nodes.map((n) => n.x ?? 0))
-  const xmax = Math.max(...nodes.map((n) => n.x ?? 0))
-  const ymin = Math.min(...nodes.map((n) => n.y ?? 0))
-  const ymax = Math.max(...nodes.map((n) => n.y ?? 0))
-  const fit = Math.min(
-    (width - 140) / Math.max(xmax - xmin, 1),
-    (height - 110) / Math.max(ymax - ymin, 1),
-    1.4,
-  )
-  for (const node of nodes) {
-    node.x = (node.x! - (xmin + xmax) / 2) * fit + width / 2
-    node.y = (node.y! - (ymin + ymax) / 2) * fit + height / 2
-  }
-  const toolbar = document.createElement("div")
-  toolbar.className = "graph-toolbar"
-  const description = document.createElement("p")
-  description.textContent = `${nodes.length} 个页面 · ${edges.length} 条引用`
-  toolbar.append(description)
-  const svg = svgElement("svg", {
-    viewBox: `0 0 ${width} ${height}`,
-    role: "group",
-    "aria-label": "知识引用图，节点链接可通过 Tab 键选择",
-    class: `relation-svg${nodes.length <= 25 ? " compact" : ""}`,
-  })
-  const defs = svgElement("defs", {})
-  const markerId = `relation-arrow-${container.closest(".knowledge-explorer") ? "global" : "local"}`
-  const marker = svgElement("marker", {
-    id: markerId,
-    viewBox: "0 0 8 8",
-    refX: "8",
-    refY: "4",
-    markerWidth: "5",
-    markerHeight: "5",
-    orient: "auto-start-reverse",
-  })
-  marker.append(svgElement("path", { d: "M0,0 L8,4 L0,8", fill: "currentColor" }))
-  defs.append(marker)
-  svg.append(defs)
-  const scene = svgElement("g", {})
-  svg.append(scene)
-  const edgeElements: { el: SVGLineElement; source: string; target: string }[] = []
-  for (const edge of edges) {
-    const source = edge.source as GraphNode
-    const target = edge.target as GraphNode
-    const dx = target.x! - source.x!,
-      dy = target.y! - source.y!
-    const length = Math.hypot(dx, dy) || 1
-    const line = svgElement("line", {
-      x1: String(source.x! + (dx / length) * 8),
-      y1: String(source.y! + (dy / length) * 8),
-      x2: String(target.x! - (dx / length) * 12),
-      y2: String(target.y! - (dy / length) * 12),
-      class: "relation-edge",
-      "marker-end": `url(#${markerId})`,
-    })
-    scene.append(line)
-    edgeElements.push({ el: line, source: source.id, target: target.id })
-  }
-  const nodeElements: { el: SVGAElement; id: string }[] = []
-  const highlight = (id?: string) => {
-    const neighbors = new Set(id ? [id] : [])
-    if (id)
-      for (const edge of edgeElements) {
-        if (edge.source === id) neighbors.add(edge.target)
-        if (edge.target === id) neighbors.add(edge.source)
-      }
-    for (const node of nodeElements) {
-      node.el.classList.toggle("dimmed", Boolean(id) && !neighbors.has(node.id))
-      node.el.classList.toggle("related", neighbors.has(node.id))
-    }
-    for (const edge of edgeElements) {
-      edge.el.classList.toggle("dimmed", Boolean(id) && edge.source !== id && edge.target !== id)
-      edge.el.classList.toggle("related", Boolean(id) && (edge.source === id || edge.target === id))
-    }
-  }
-  for (const node of nodes) {
-    const link = svgElement("a", {
-      href: resolveRelative(getFullSlug(window), node.id as FullSlug),
-      tabindex: "0",
-      "aria-label": `${node.page.title}，${kinds[node.page.type ?? ""] ?? "知识页"}`,
-      class: `relation-node${node.id === centerSlug ? " current" : ""}`,
-      transform: `translate(${node.x},${node.y})`,
-    })
-    const title = svgElement("title", {})
-    title.textContent = node.page.title
-    const hit = svgElement("circle", {
-      r: width <= 600 ? "33" : "22",
-      class: "relation-hit",
-      fill: "transparent",
-    })
-    const dot = svgElement("circle", {
-      r: node.id === centerSlug ? "10" : "7",
-      fill: colors[node.page.type ?? ""] ?? "#7e8d98",
-      class: "relation-dot",
-    })
-    const label = svgElement("text", {
-      x: node.x! > width / 2 ? "-11" : "11",
-      y: "4",
-      "text-anchor": node.x! > width / 2 ? "end" : "start",
-    })
-    label.textContent =
-      node.page.title.length > 22 ? `${node.page.title.slice(0, 22)}…` : node.page.title
-    link.append(title, hit, dot, label)
-    link.addEventListener("mouseenter", () => highlight(node.id))
-    link.addEventListener("mouseleave", () => highlight())
-    link.addEventListener("focus", () => highlight(node.id))
-    link.addEventListener("blur", () => highlight())
-    scene.append(link)
-    nodeElements.push({ el: link, id: node.id })
-  }
-  let scale = 1,
-    panX = 0,
-    panY = 0
-  const updateTransform = () =>
-    scene.setAttribute(
-      "transform",
-      `translate(${width / 2 + panX},${height / 2 + panY}) scale(${scale}) translate(${-width / 2},${-height / 2})`,
-    )
-  for (const [label, change] of [
-    ["放大", 1],
-    ["缩小", -1],
-    ["复位", 0],
-  ] as const) {
-    const button = document.createElement("button")
-    button.type = "button"
-    button.textContent = label
-    button.addEventListener("click", () => {
-      if (change === 0) {
-        scale = 1
-        panX = 0
-        panY = 0
-      } else scale = Math.max(0.6, Math.min(4, scale * (change > 0 ? 1.3 : 1 / 1.3)))
-      updateTransform()
-    })
-    toolbar.append(button)
-  }
-  let dragging: { x: number; y: number; panX: number; panY: number } | undefined
-  const pointerDown = (event: PointerEvent) => {
-    if ((event.target as Element).closest("a")) return
-    dragging = { x: event.clientX, y: event.clientY, panX, panY }
-    svg.setPointerCapture(event.pointerId)
-  }
-  const pointerMove = (event: PointerEvent) => {
-    if (!dragging) return
-    const bounds = svg.getBoundingClientRect()
-    panX = dragging.panX + ((event.clientX - dragging.x) * width) / Math.max(bounds.width, 1)
-    panY = dragging.panY + ((event.clientY - dragging.y) * height) / Math.max(bounds.height, 1)
-    updateTransform()
-  }
-  const pointerEnd = () => {
-    dragging = undefined
-  }
-  svg.addEventListener("pointerdown", pointerDown)
-  svg.addEventListener("pointermove", pointerMove)
-  svg.addEventListener("pointerup", pointerEnd)
-  svg.addEventListener("pointercancel", pointerEnd)
-  container.append(toolbar, svg)
-  return () => simulation.stop()
 }
 
 function isKnowledgePage(slug: string, page: ContentDetails) {
@@ -451,7 +223,10 @@ document.addEventListener("nav", async () => {
     const graphView = explorer.querySelector<HTMLElement>(".explorer-graph-view")!
     let view = "list",
       limit = 12
+    let filterTimer: ReturnType<typeof setTimeout> | undefined
+    cleanups.push(() => clearTimeout(filterTimer))
     redrawExplorer = () => {
+      clearTimeout(filterTimer)
       const active = document.activeElement as HTMLElement | null
       const activeSlug = active?.closest<HTMLElement>(".reading-actions")?.dataset.readingSlug
       const activeAction = active?.dataset.readingAction
@@ -523,10 +298,16 @@ document.addEventListener("nav", async () => {
       limit = 12
       redrawExplorer()
     }
-    for (const input of [topic, type, scope, query]) {
-      input.addEventListener(input === query ? "input" : "change", onFilter)
-      cleanups.push(() => input.removeEventListener(input === query ? "input" : "change", onFilter))
+    for (const input of [topic, type, scope]) {
+      input.addEventListener("change", onFilter)
+      cleanups.push(() => input.removeEventListener("change", onFilter))
     }
+    const onQuery = () => {
+      clearTimeout(filterTimer)
+      filterTimer = setTimeout(onFilter, 160)
+    }
+    query.addEventListener("input", onQuery)
+    cleanups.push(() => query.removeEventListener("input", onQuery))
     const onMore = () => {
       limit += 24
       redrawExplorer()

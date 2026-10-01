@@ -112,7 +112,7 @@ export default (() => {
           </div>
           <div class="explorer-graph-view" hidden>
             <p class="relation-help">
-              筛选同时限定节点与连接。箭头指向被引用页；悬停或键盘选中节点可突出双向邻居，点击打开页面。
+              筛选同时限定节点与引用。拖动节点调整位置，拖动空白平移；用滚轮或双指缩放，点击节点打开页面。箭头指向被引用页，悬停或键盘选中节点可突出双向邻居。
             </p>
             <div class="knowledge-graph" aria-label="筛选后的知识引用关系"></div>
             <p class="graph-legend">
