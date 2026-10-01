@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, sim-to-real, reinforcement-learning, evaluation]
 sources: ["[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]"]
 modified: 2026-07-13
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 # 人形机器人强化学习工作流
@@ -92,4 +93,4 @@ AGILE 的确定性场景测试与随机轨迹采样解决的是不同问题。�
 - 对评估，应该同时保存确定性场景报告、随机轨迹采样统计、逐关节运动质量指标和已导出的描述文件，才能定位失败是来自策略、仿真器、奖励、I/O 契约还是硬件。
 - 对 VLA/移动操作流程，解耦的下半身移动策略可以把人形机器人稳定性当作下半身 API，让 IK 或 VLA 上半身控制器专注操作；但这也要求上半身指令在训练中被随机化覆盖，否则组合部署会出现分布偏移。
 
-相关页面：[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]]、[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]、[[SimulationRealityGap]]、[[TaskGeneralistPolicyEvaluation]]、[[VisionLanguageActionModels]]、[[MuJoCo]]。
+相关页面：[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]]、[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE 论文]]、[[SimulationRealityGap|仿真—现实差距]]、[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[VisionLanguageActionModels|视觉—语言—动作模型]]、[[MuJoCo|MuJoCo]]。

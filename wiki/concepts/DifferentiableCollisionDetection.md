@@ -4,6 +4,7 @@ type: concept
 tags: [collision-detection, differentiable-optimization, robotics]
 sources: ["[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[mujoco-computation-collision-detection]]", "[[contact-models-in-robotics-a-comparative-analysis]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 可微碰撞检测
@@ -61,7 +62,7 @@ flowchart LR
 
 ## 直觉
 
-可微碰撞检测的核心价值不是“碰撞检测更准确”，而是“optimizer 能知道往哪个方向离开碰撞或接近接触”。对轨迹优化，finite 差异或 non-平滑碰撞 branches 会导致 noisy / missing 梯度；DCOL 和 DiffPills 用优化-定义的指标给出 smoother, 结构化的梯度。
+可微碰撞检测的核心价值不是“碰撞检测更准确”，而是“optimizer 能知道往哪个方向离开碰撞或接近接触”。对轨迹优化，finite 差异或 non-平滑碰撞 branches 会导致含噪 / missing 梯度；DCOL 和 DiffPills 用优化-定义的指标给出 smoother, 结构化的梯度。
 
 这也解释了为什么基元表示重要。胶囊体、带填充的多边形、ellipsoid、锥、圆柱体和 polytope 不只是运行时碰撞体，它们也是凸 programs 的可行设置。复杂视觉网格要进入可微碰撞流程，通常需要先变成一组凸基元；这把 [[ApproximateConvexDecomposition|凸分解]] 和可微碰撞检测连接起来。
 
@@ -81,4 +82,4 @@ flowchart LR
 
 未来趋势是把机器人友好的碰撞体族与优化友好的碰撞指标结合：离线用 ACD / 基元分解产生 manageable 基元集合，在线用可微凸 programs 提供约束与梯度，再把少数接触丰富 interactions 交给更完整的仿真器 / 求解器验证。
 
-相关页面：[[CollisionGeometryForRobotSimulation]]、[[ApproximateConvexDecomposition]]、[[DifferentiablePhysics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]]、[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]]。
+相关页面：[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[ApproximateConvexDecomposition|近似凸分解]]、[[DifferentiablePhysics|可微物理]]、[[ContactComplementarity|接触互补]]、[[ContactSolvers|接触求解器]]、[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]]、[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]]。

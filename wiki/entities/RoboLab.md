@@ -4,11 +4,12 @@ type: entity
 tags: [robotics, benchmark, simulation]
 sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]"]
 modified: 2026-07-13
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 # RoboLab
 
-RoboLab 是 [[NVIDIA]] 发布的高保真度仿真基准/平台，用于分析任务通用型机器人策略的操作泛化、语言语义落地、鲁棒性和环境敏感性。它不是一个单一模型，而是一套任务库 + Isaac Lab 环境生成 + 策略后端 + 评估运行器 + 分析/看板框架。2026-06 代码仓库更新显示 RoboLab 正从论文产物扩展为更完整的局部基准平台：策略后端文件夹、自适应采样、置信区间报告、看板、诊断测试和智能体式场景/任务生成都成为代码仓库设计表面。
+RoboLab 是 [[NVIDIA|NVIDIA]] 发布的高保真度仿真基准/平台，用于分析任务通用型机器人策略的操作泛化、语言语义落地、鲁棒性和环境敏感性。它不是一个单一模型，而是一套任务库 + Isaac Lab 环境生成 + 策略后端 + 评估运行器 + 分析/看板框架。2026-06 代码仓库更新显示 RoboLab 正从论文产物扩展为更完整的局部基准平台：策略后端文件夹、自适应采样、置信区间报告、看板、诊断测试和智能体式场景/任务生成都成为代码仓库设计表面。
 
 ```mermaid
 flowchart LR

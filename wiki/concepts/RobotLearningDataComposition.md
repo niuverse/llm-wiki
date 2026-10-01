@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, imitation-learning, generalization]
 sources: ["[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]"]
 modified: 2026-07-19
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 # 机器人学习数据构成
@@ -88,4 +89,4 @@ flowchart LR
 - 对 [[CompositionalGeneralizationInRobotics|组合泛化]]，任务覆盖应按技能图和阶段组合统计，而不是按任务名计数。
 - 对 [[SimulationRealityGap|仿真—现实差距]]，视觉/几何覆盖和已知相机对齐可以互补，但都不能替代真实机器人闭环验证。
 
-相关页面：[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]、[[TaskGeneralistPolicyEvaluation]]、[[CompositionalGeneralizationInRobotics]]、[[RobotContextConditioning]]、[[LatentDynamicsActionModels]]、[[RoboticsSimulationInfrastructure]]、[[SimulationRealityGap]]。
+相关页面：[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]、[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[CompositionalGeneralizationInRobotics|机器人学中的组合泛化]]、[[RobotContextConditioning|机器人上下文条件化]]、[[LatentDynamicsActionModels|潜在动力学动作模型]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[SimulationRealityGap|仿真—现实差距]]。

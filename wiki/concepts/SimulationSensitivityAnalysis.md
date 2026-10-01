@@ -4,11 +4,12 @@ type: concept
 tags: [robotics, simulation, evaluation]
 sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]"]
 modified: 2026-07-13
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 # 仿真敏感性分析
 
-仿真敏感性分析（仿真敏感度分析）用受控扰动研究策略结果对环境参数的依赖。[[RoboLab]] 的例子包括光照、相机位姿、背景、纹理、物体位姿和 shadows；代码仓库中的敏感性脚本使用混合神经网络后验估计（MNPE）从实验数据估计哪些参数值最可能对应成功或失败。
+仿真敏感性分析（仿真敏感度分析）用受控扰动研究策略结果对环境参数的依赖。[[RoboLab|RoboLab]] 的例子包括光照、相机位姿、背景、纹理、物体位姿和 shadows；代码仓库中的敏感性脚本使用混合神经网络后验估计（MNPE）从实验数据估计哪些参数值最可能对应成功或失败。
 
 ## 数学结构
 

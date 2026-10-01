@@ -1,5 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import KnowledgeContent from "./quartz/components/KnowledgeContent"
 
 /**
  * Quartz 4 Configuration
@@ -18,7 +19,7 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates", ".obsidian", "**/.obsidian", "log.md"],
     defaultDateType: "modified",
     theme: {
-      fontOrigin: "googleFonts",
+      fontOrigin: "local",
       cdnCaching: true,
       typography: {
         header: "Noto Sans SC",
@@ -27,26 +28,26 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
+          light: "#ffffff",
+          lightgray: "#e5e9ed",
+          gray: "#667281",
+          darkgray: "#39434f",
+          dark: "#192531",
+          secondary: "#25645c",
+          tertiary: "#358579",
+          highlight: "rgba(37, 100, 92, 0.06)",
+          textHighlight: "#d9ebe3",
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
+          light: "#151c22",
+          lightgray: "#303b44",
+          gray: "#9ca9b5",
+          darkgray: "#c8d1d9",
+          dark: "#edf3f6",
+          secondary: "#8bc8b9",
+          tertiary: "#acd9cd",
+          highlight: "rgba(139, 200, 185, 0.08)",
+          textHighlight: "#395c51",
         },
       },
     },
@@ -75,7 +76,7 @@ const config: QuartzConfig = {
     emitters: [
       Plugin.AliasRedirects(),
       Plugin.ComponentResources(),
-      Plugin.ContentPage(),
+      Plugin.ContentPage({ pageBody: KnowledgeContent() }),
       Plugin.FolderPage(),
       Plugin.TagPage(),
       Plugin.ContentIndex({

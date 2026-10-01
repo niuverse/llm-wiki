@@ -4,7 +4,6 @@ from __future__ import annotations
 import argparse
 import json
 import re
-from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -118,7 +117,7 @@ code {{ background: #f4f4f4; padding: 0.1rem 0.25rem; border-radius: 4px; }}
 pre {{ overflow: auto; background: #f8f8f8; padding: 1rem; }}
 </style>
 <h1>LLM Wiki Graph</h1>
-<p>Built: {graph["built"]}. Nodes: {len(graph["nodes"])}. Edges: {len(graph["edges"])}.</p>
+<p>Nodes: {len(graph["nodes"])}. Edges: {len(graph["edges"])}.</p>
 <h2>Nodes</h2>
 <ul>{rows}</ul>
 <h2>Edges</h2>
@@ -142,7 +141,7 @@ def generate_report(graph: dict[str, Any], missing: list[dict[str, str]]) -> str
     orphans = sorted(node_id for node_id, degree in degrees.items() if degree == 0)
     hubs = sorted(degrees.items(), key=lambda item: item[1], reverse=True)[:10]
     lines = [
-        f"# Graph Report - {graph['built']}",
+        "# Graph Report",
         "",
         f"- Nodes: {len(graph['nodes'])}",
         f"- Edges: {len(graph['edges'])}",
@@ -173,7 +172,7 @@ def main() -> int:
     wiki_pages = pages(root)
     nodes = build_nodes(root, wiki_pages)
     edges, missing = build_edges(root, wiki_pages)
-    graph = {"built": date.today().isoformat(), "nodes": nodes, "edges": edges, "missing": missing}
+    graph = {"nodes": nodes, "edges": edges, "missing": missing}
 
     (graph_dir / "graph.json").write_text(json.dumps(graph, ensure_ascii=False, indent=2), encoding="utf-8")
     (graph_dir / "graph.html").write_text(generate_html(graph), encoding="utf-8")

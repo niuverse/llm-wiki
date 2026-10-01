@@ -1,333 +1,72 @@
 # Personal LLM Wiki
 
-这是一个由 LLM 维护的个人 wiki。核心规则很简单：`raw/` 保存不可变的 source material；`wiki/` 保存由 Codex 维护的、经过编译和互链的 knowledge layer。
+这是以人为第一读者、由 Codex 维护的个人知识库。优先写简洁、互链、能复习的知识，不为模板重复铺垫。
 
-## Directory Layout
+## 内容与证据
 
-```text
-raw/                 # 原始 source files。ingest 之后不要编辑。
-wiki/
-  index.md           # 纯目录：所有页面一行一条，不承载研究判断。
-  log.md             # append-only operation history。
-  overview.md        # 当前总判断、证据图谱、关键张力。
-  sources/           # 每个已 ingest source 一页；并发入其专属实体。
-  concepts/          # ideas、methods、themes、frameworks。
-  syntheses/         # 研究问题索引、distill 摘要、learning scaffolds。
-graph/               # 可选的 generated graph artifacts。
-  extracts/          # 从 PDF/HTML/Markdown 生成的可再生阅读缓存。
-tools/               # deterministic helper scripts，不代替 agent synthesis。
-```
+- `raw/` 保存不可变的原始证据：官方 PDF、网页、代码仓库快照等。不得改写、覆盖、重排或删除；更新资料另存快照，不能放入 LLM 摘要。
+- `graph/extracts/` 保存可重建的阅读缓存。非稳定 UTF-8 Markdown 用 `uv run python tools/extract_source.py <path>` 提取，再完整阅读；证据仍追溯到原始资料。
+- `wiki/` 是唯一知识内容目录，同时供 Obsidian、Codex 和 Quartz 使用。Obsidian 只打开 `wiki/`，不复制到 `content/`。
+- 非显然事实必须链接来源页；区分来源支持、讨论解释与待验证假设。对话和搜索结果摘要都不是外部证据；候选资料未完成阅读与收录前不能支持知识结论。
+- 保持文件名、链接目标稳定；内部用 `[[WikiLinks]]`，优先中文显示别名，例如 `[[ContactSolvers|接触求解器]]`。来源、综合页用 `kebab-case`，概念和实体用 `TitleCase`。
+- `wiki/sources/` 记录来源特有主张、证据、引文与问题；`wiki/concepts/` 解释机制；`wiki/syntheses/` 保存学习路径和可复用综合。
+- `wiki/entities/` 仅保留被至少两个来源引用的共享枢纽。单篇论文、模型或项目说明并入来源页，不另建实体。
 
-## Reader Contract
+三个入口各负其责，避免重复事实：
 
-这个 wiki 的第一读者是人，`wiki/` 的阅读流畅度优先于 agent 解析便利。agent 通过 frontmatter、`index.md` 和来源页定位内容，不依赖模板化的重复铺垫。
+| 页面                                   | 职责                                                 |
+| -------------------------------------- | ---------------------------------------------------- |
+| `wiki/index.md`                        | 纯目录，一行一页；不放研究判断或阅读路径             |
+| `wiki/overview.md`                     | 当前总判断、证据图谱、关键张力；判断变化时才修改     |
+| `wiki/syntheses/research-questions.md` | 问题、优先阅读、证据边界；全库“下一步缺口”的唯一位置 |
 
-三层职责必须分开，一个 artifact 只承担一件事：
+每次知识修改都同步目录，并向 `wiki/log.md` 追加 `## [YYYY-MM-DD] <操作> | <标题>`，不改旧日志。收录每个来源需有对应 `ingest` 记录。
 
-- `index.md` 回答“有哪些页面”。它不写研究判断、不写阅读路径。
-- `overview.md` 回答“我们现在相信什么”。它只有当前总判断、证据图谱、关键张力。
-- `syntheses/research-questions.md` 回答“什么问题值得追、从哪里进”。它持有问题列表、优先阅读与证据边界，也是 `下一步缺口` 的唯一位置。
+## 阅读与深度
 
-同一件事实不要在两层里各写一遍。改 `overview.md` 属于判断变化；改 `research-questions.md` 属于问题增删。
+- 正文、标题、导航、表格和图示默认简体中文。保留官方标题、专名、引文、代码与通用缩写；术语首次出现可附英文便于查找。修改内容时清理中英混写，普通名词不用 `source`、`claim`、`pipeline`、`tradeoff`、`failure mode`、`runtime`、`workflow`、`boundary`。
+- 自然段一行，不为列宽手动换行；保留 Markdown 的结构性换行，不重排 `raw/`。
+- 数学、仿真、机器人、优化、ML、系统主题须解释机制，不能止于摘要。按内容需要写数学结构、直觉、来源支持的失败情形与实践含义；首次定义变量，说明假设和适用范围。
+- 公式用 `$...$` 或 `$$...$$`，不要用 `\(...\)` / `\[...\]`。结构、分类、因果链适合用 Mermaid 时，使用兼容 Obsidian/Quartz 的 fenced `mermaid` 图，并用正文解释。
 
-## Core Rules
-
-- 把 `raw/` 当作 read-only evidence。不要 rewrite、in-place summarize 或清理 source files。
-- `raw/` 优先保存 canonical source：官方 PDF、官方 HTML capture、repo README/metadata snapshot 等。不要把 LLM 生成摘要或 extraction cache 放进 `raw/`。
-- `graph/extracts/` 保存可再生的 reading cache，例如 PDF text extraction、HTML text extraction、Markdown normalized text。extract 可以重建，不作为 canonical evidence。
-- 把 `wiki/` 当作 agent-owned layer。内容要 concise、linked、current。
-- `wiki/` 中每个 non-obvious claim 都应该能追溯到某个 source page。
-- 内部引用使用 `[[WikiLinks]]`。
-- 只要 wiki content 发生变化，就同步更新 `wiki/index.md` 和 `wiki/log.md`。
-- 优先写小而稳定的 Markdown pages，不要把重要知识只留在长聊天回复里。
-- 除非用户明确要求，不要添加 dependencies 或 automation。
-
-## Publishing Workflow
-
-- `wiki/` 是唯一 content source，同时服务 Obsidian、Codex 和 Quartz。
-- 用 Obsidian 打开 `wiki/`，不要把 repo root 当作 vault。
-- Quartz 作为 publishing layer 接在 repo root；不要把 `wiki/` 内容复制到 `content/`。
-- 本地预览：`npm run wiki:preview`。
-- 生产构建：`npm run wiki:build`，输出到 `public/`。
-- GitHub Pages 使用 `.github/workflows/deploy.yml`，从 `main` 分支运行 `npm run wiki:build`。
-- 运行 Quartz 命令时必须显式指定 `-d wiki`，避免默认读取不存在或过期的 `content/`。
-
-## Language Style
-
-- The default writing language for `wiki/` is Simplified Chinese. Reading fluency in Chinese takes priority over preserving English terminology.
-- Write explanations, judgments, derivations, headings, table labels, diagram labels, summaries, and navigation text in Chinese.
-- Keep English only when it is genuinely necessary: official paper or project titles, proper names, product names, code identifiers, commands, file names, frontmatter fields, direct quotes, and established abbreviations such as `MPC`, `RL`, `NCP`, and `PGS`.
-- When a technical term has a stable Chinese translation, use the Chinese term. On first mention, add the English term in parentheses only when it helps disambiguation or later lookup, as in “刚性接触（rigid contact）”; use Chinese or the established abbreviation afterward.
-- If translating a term would lose important technical meaning or make source lookup difficult, keep the English term but explain it briefly in Chinese on first mention.
-- Do not habitually use ordinary English nouns such as `source`, `claim`, `pipeline`, `tradeoff`, `failure mode`, `runtime`, `workflow`, or `boundary` inside Chinese prose. Prefer their natural Chinese equivalents.
-- Preserve source titles, paper titles, direct quotes, proper names, API names, formula variables, and command parameters in their original form. Add a nearby Chinese explanation when helpful.
-- Keep file names, slugs, frontmatter field names, `type` enum values, and `[[WikiLinks]]` targets stable unless the user explicitly asks for renaming. Use Chinese display aliases where useful, for example `[[ContactSolvers|接触求解器]]`.
-- When editing an existing page, clean up unnecessary Chinese-English mixing in the touched material instead of applying the rule only to new paragraphs.
-- Query answers should be in Chinese by default and use `[[WikiLinks]]` as citations.
-
-## Markdown Formatting
-
-- 普通 prose 不做 hard wrap：一个自然段写成一行，让 Obsidian、Quartz 和 browser 自己换行。
-- 保留 Markdown 结构性换行：frontmatter、headings、lists、tables、block quotes、code fences、Mermaid blocks、LaTeX display blocks。
-- 列表项尽量一条 item 一行；只有嵌套列表、代码块、表格或可读性确实需要时才手动断行。
-- 不要为了 80/100 column width 主动拆中文段落。中文/hybrid 文档的编辑体验优先于终端定宽排版。
-- Quartz 当前通过 `remark-math` + KaTeX 渲染公式；inline math 使用 `$...$`，display math 使用 `$$...$$`。不要使用 `\(...\)` 或 `\[...\]`，它们在发布构建中不会被解析为公式。
-- `raw/` 保持原样，不做 reflow。
-
-## Depth Standard
-
-- 默认知识解析不能停留在摘要层。对 math-heavy、simulation、robotics、optimization、ML、systems 相关 sources，必须补充可复习的 mechanism-level explanation。
-- Concept pages 应优先包含：
-  - `## 数学结构`：核心 variables、constraints、objective、residual 或 update rule。
-  - `## 直觉`：用中文解释公式在系统里控制什么、放松了什么、牺牲了什么。
-  - `## Failure Modes`：列出 source 支持的 failure modes，不做无证据扩展。
-  - `## 实践含义`：说明对 MPC、RL、differentiable optimization、sim-to-real 等工作流的影响。
-- Source pages 负责记录 evidence、claims、quotes 和 source-specific conclusions；deeper derivation 应放到 concept pages，并从 source page 链接过去。
-- 数学表达优先使用 LaTeX；变量第一次出现时必须说明含义，例如 gap、normal force、tangential force、velocity、residual、dual variable。
-- 当一个概念涉及 pipeline、taxonomy、causal chain 或 architecture 时，优先添加 Mermaid diagrams。图应解释结构，不要装饰性作图。
-- Mermaid diagrams 应保持 Obsidian/Quartz 兼容，使用 fenced code block：
-
-````markdown
-```mermaid
-flowchart LR
-  A[Source] --> B[Concept]
-```
-````
-
-- 图表也要有文字解释：图说明结构，正文说明 assumptions、tradeoffs 和 consequences。
-
-## Page Frontmatter
-
-wiki pages 使用这个 frontmatter：
+## 页面元数据
 
 ```yaml
 ---
-title: "Human Readable Title"
-type: source | concept | synthesis
+title: "便于阅读的标题"
+type: source | concept | synthesis | entity
 tags: []
 sources: []
 modified: YYYY-MM-DD
 ---
 ```
 
-字段名是 `modified` 而不是 `last_updated`：Quartz 的 `CreatedModifiedDate` 只识别 `created` / `modified` / `published`，其它名字会被静默忽略、fallback 到 git 日期。
-
-版本控制中的日期与语义日期是两件事，`modified` 不维护会静默失真：
-
-- git 记录的是这个文件最后一次被写入的时间。
-- `modified` 记录的是这个页面的内容最后一次经过人工或 agent 审阅的时间。
-- 批量格式调整（例如全库语言风格统一）不应该刷新 `modified`；只有内容判断变化才刷新。
-
-`tags` 分两类，不要混用：
-
-- 主题 tag：只保留能横跨多页的维度。当前集合见 `wiki/index.md`；不要为单页发明新 tag。
-- 状态 tag：`source-backed`（来源页必带）、`unsourced`、`source-plan`、`learn`、`distill`。
-
-**证据状态必须对读者可见。** 页面如果没有 `sources:`，就必须带一个状态 tag，否则读者无法判断这页能不能引用。`tools/health.py` 会检查这一点。
-
-source pages 还要包含：
-
-```yaml
-source_file: raw/path/to/source.md
-source_kind: pdf | html | repo | image | office | audio | markdown | unknown
-source_url: https://...
-extracted_text: graph/extracts/path.md
-source_date: YYYY-MM-DD | unknown
-```
-
-`source_file` 指 canonical evidence；`extracted_text` 是 optional Markdown reading cache。PDF、HTML、Office、image/audio 或编码不稳定的 source ingest 时，应优先用 MarkItDown 生成并记录 `extracted_text`，但 claims 仍追溯到 source page 与 canonical source。
-
-## Ingest Workflow
-
-触发方式：`ingest <path>`，或用户要求把 source 加入 wiki。
-
-1. 完整阅读 source file。
-2. 若 source 不是稳定的 UTF-8 Markdown，先运行 `uv run python tools/extract_source.py <path>` 生成 `graph/extracts/` Markdown reading cache。该 tool 使用 MarkItDown，支持 PDF、HTML、Office docs、images/OCR、audio transcription 等格式；需要 plugins 或 image LLM descriptions 时用 `--use-plugins`、`--llm-model` 或对应环境变量。
-3. 阅读 `wiki/index.md` 和 `wiki/overview.md`。
-4. 创建 `wiki/sources/<slug>.md`，包含摘要、核心主张、有用 quotes、links 和开放问题。
-5. 创建或更新 `wiki/concepts/` 中的相关页面。
-6. 只有当新 source 改变 broader synthesis 时，才更新 `wiki/overview.md`。
-7. 把所有新增或变更页面加入 `wiki/index.md`。
-8. 在 `wiki/log.md` 追加条目，格式为：`## [YYYY-MM-DD] ingest | Source Title`
-9. 运行 `python3 tools/health.py` 或等价确定性检查。
-10. 报告 changed files、contradictions，以及值得补充的 follow-up sources。
-
-### Entity Policy
-
-entity 页只用于**横跨多个 source 的基础设施枢纽**（当前：`AgentsDock`、`AgentsServer`、`CoACD`、`EmbodiedGen`、`IsaacSim`、`MotrixSim`、`MuJoCo`、`NVIDIA`、`OpenUSD`、`RoboLab`、`UniLab`、`VHACD`）。这类实体被多个来源反复引用，值得独立成页做共享锚点。
-
-只对应**单一 source** 的模型、论文、框架、机构、产品**不建 entity 页**。把它们的说明并入对应来源页，作为 `### <名称>` 小节：
-
-```markdown
-### LDA1B
-
-#### 模型结构
-#### 来源证据
-```
-
-链接时保留人类可读别名，读者体验不变，只是目标变长：
-
-```markdown
-[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]]
-```
-
-判定规则：一个名字如果只在一个 source 里出现，它是该 source 的内容，不是知识库的枢纽。新增 entity 前先确认它至少被两个来源页引用。
-
-source page body 默认使用中文 heading：
-
-```markdown
-## 摘要
-
-## 核心主张
-
-## 关键引文
-
-## 关联
-
-## 开放问题
-```
-
-## Query Workflow
-
-触发方式：`query: <question>`，或用户要求 ask the wiki。
-
-1. 阅读 `wiki/index.md`。
-2. 选择并阅读最小相关集合的 wiki pages。
-3. 用中文/hybrid style 回答，并使用 `[[WikiLinks]]` 作为 citations。
-4. 如果答案以后可能复用，询问是否保存到 `wiki/syntheses/<slug>.md`。
-5. 如果保存，同步更新 `wiki/index.md`，并在 `wiki/log.md` 追加 `query` 条目。
-
-## Distill Workflow
-
-触发方式：`distill`、`distill this`、`把刚才讨论沉淀进 wiki`，或用户明确要求把对话中的洞见、判断、假设、研究路线或框架整合进知识库。
-
-`distill` 的输入是当前对话，不是 external canonical source。它用于把 conversation-derived knowledge 编译进 `wiki/`，同时明确 evidence boundary，避免把讨论中的想法伪装成 source-backed claim。
-
-1. 回顾当前对话，提取有长期价值的信息：新概念或已有概念的澄清、研究判断、假设、decision rationale、framework/taxonomy、open questions、follow-up source candidates。
-2. 阅读 `wiki/index.md`、`wiki/overview.md` 和最小相关集合的 wiki pages。
-3. 将提炼结果分成三类：
-   - `source-backed`：已有 wiki source 支持的判断，必须链接到相关 source/concept page。
-   - `conversation-derived`：来自本次讨论的框架、偏好、解释或 meta-level 判断，不能写成外部证据结论。
-   - `hypothesis`：值得保留但仍需外部 source 验证的想法，优先进入 open questions 或 follow-up sources。
-4. 根据内容写入合适位置：
-   - 稳定研究判断：更新相关 `wiki/concepts/`、`wiki/syntheses/` 或 `wiki/overview.md`。
-   - 可复用讨论结果：新建 `wiki/syntheses/<slug>.md`。
-   - 待验证方向：更新 `wiki/syntheses/research-questions.md` 或目标 synthesis 的 `开放问题` / `Follow-up Sources` 部分。
-5. 新建或更新一个 distillation 摘要页，通常放在 `wiki/syntheses/`：
-   - frontmatter 使用 `type: synthesis` 与 `tags: [distill]`。
-   - `sources:` 只填已有 wiki source links；不要把 conversation 当作 source。
-   - body 默认包含 `## 讨论背景`、`## 提炼结果`、`## Evidence Boundaries`、`## 写入位置`、`## Follow-up Sources`。
-6. 同步更新 `wiki/index.md`。
-7. 在 `wiki/log.md` 追加条目，格式为：`## [YYYY-MM-DD] distill | <Title>`。
-8. 运行 `python3 tools/health.py` 或等价确定性检查。
-9. 报告 changed files、`source-backed` / `conversation-derived` / `hypothesis` 分类，以及值得后续 ingest 的 source 类型。
-
-推荐在 distill synthesis 中使用简短表格：
-
-```markdown
-| Insight | Evidence Level | Wiki Target |
-| --- | --- | --- |
-| ... | source-backed / conversation-derived / hypothesis | ... |
-```
-
-## Learn Workflow
-
-触发方式：`learn <topic>`、`系统学习 <topic>`，或用户希望 wiki 帮助理解一个当前没有明确 source 的主题，例如 `learn MPC and RL`。
-
-`learn` 的目标是从 unknown topic 启动学习，生成 learning scaffold（学习脚手架）和后续 source plan；它不是 ingest，不应创建 `wiki/sources/` 页面，也不应把 LLM explanation 写成 source-backed claim。
-
-1. 阅读 `wiki/index.md`、`wiki/overview.md` 和最小相关集合的 wiki pages。
-2. 判断当前 wiki 是否已有相关 source-backed coverage；如果没有，明确说明当前回答主要是 `conversation-derived` / `unsourced learning scaffold`。
-3. 用中文/hybrid style 生成学习脚手架，优先包含：
-   - topic boundary：这个主题包含什么、不包含什么。
-   - prerequisite map：需要先理解的数学、系统或工程概念。
-   - core concepts：核心概念、变量、对象和常见 notation。
-   - mechanism-level explanation：核心机制、公式直觉、pipeline 或算法 loop。
-   - misconception map：常见误解和概念混淆。
-   - practice hooks：和当前 wiki 主题、用户研究方向或工程任务的连接。
-4. 对所有非 wiki-source 支持的解释标注为 `conversation-derived` 或 `unsourced learning note`；不要把它们写成 external evidence。
-5. 产出 Source Acquisition Plan，列出值得后续 `source <topic>` 或 `ingest` 的资料类型，例如 textbook chapters、lecture notes、survey papers、seminal papers、implementation docs、tutorial repos。
-6. 如果 learning scaffold 以后可能复用，询问是否保存到 `wiki/syntheses/<slug>-learning-map.md`；如果保存，frontmatter 使用 `type: synthesis`、`tags: [learn]`，`sources:` 只填已有 wiki source links。
-7. 保存时同步更新 `wiki/index.md`，并在 `wiki/log.md` 追加条目，格式为：`## [YYYY-MM-DD] learn | <Topic>`。
-8. 保存后运行 `python3 tools/health.py` 或等价确定性检查。
-
-learning scaffold 不进入 `raw/`。如果后续找到 canonical external source，必须通过 `ingest` 才能升级为 source-backed wiki knowledge。
-
-## Source Workflow
-
-触发方式：`source <topic>`、`find sources for <topic>`、`sources for <topic>`、`learn <topic> --with-sources`，或用户要求 wiki 帮忙搜集某个学习主题的资料来源。
-
-`source` 的目标是建立候选 source 清单和 ingest priority；它不直接生成知识结论。只有用户选定资料并执行 `ingest` 后，才创建 `wiki/sources/` 页面。
-
-1. 阅读 `wiki/index.md`、`wiki/overview.md` 和相关 pages，确认当前 wiki 已有哪些 source-backed coverage 与缺口。
-2. 如果用户要求联网搜集，或 topic 依赖最新资料，使用 web search；优先官方课程、教材、经典论文、survey papers、作者/机构主页、官方 docs、维护良好的 repo。避免把 SEO 内容、二手摘要或低可信博客作为优先 source。
-3. 对候选资料按用途分类：
-   - `intro`：入门解释和 intuition。
-   - `mathematical`：定义、定理、推导、notation。
-   - `implementation`：代码、API、工程实践、tutorial repo。
-   - `survey`：taxonomy、历史脉络、open problems。
-   - `seminal`：奠基论文或领域内高影响 source。
-4. 对每个候选 source 记录 title、URL/path、source kind、推荐理由、适合的学习阶段、是否建议 ingest。
-5. 给出 ingest priority：哪些资料最应该先进入 `raw/` 并执行 `ingest`，哪些只适合作为背景阅读。
-6. 如果用户要求保存 source plan，创建或更新 `wiki/syntheses/<slug>-source-plan.md`，frontmatter 使用 `type: synthesis`、`tags: [source-plan]`，并把候选资料作为 follow-up ingest queue，而不是 source-backed claims。
-7. 保存时同步更新 `wiki/index.md`，并在 `wiki/log.md` 追加条目，格式为：`## [YYYY-MM-DD] source | <Topic>`。
-8. 保存后运行 `python3 tools/health.py` 或等价确定性检查。
-
-`source` 可以推荐 source，但不能替代 `ingest`。不要把候选 source 的内容直接写入 concepts，除非已经完成对应 source 的 ingest。
-
-## Health Workflow
-
-触发方式：`health`。
-
-优先运行：
-
-```bash
-uv run python tools/health.py
-```
-
-确定性检查：
-
-- Broken `[[WikiLinks]]`。
-- 没有登记到 `wiki/index.md` 的 wiki pages。
-- `wiki/index.md` 中指向 missing files 的 links。
-- 缺少对应 ingest entry 的 source pages。
-- source page frontmatter 中 `source_file` / `extracted_text` 指向 missing artifacts。
-- Language Artifacts：中文散文里出现被 `AGENTS.md` 点名的普通英文名词，或汉字与拉丁字母紧贴（例如复数的 `s` 漏到中文词尾）。这些模式刻意写得很窄：其余检查是精确的，误报比漏报代价更高。
-- Evidence State：`type` 为 `concept` / `entity` / `synthesis` 且 `sources:` 为空的页面，必须带状态 tag。
-
-Language Artifacts 的检查会先屏蔽代码、链接、引语与公式，只扫散文。**不要用剥离后的文本做语言统计**——把 `[[链接]]` 替换成占位符或空格，会凭空造出双空格与断裂词，产出完全虚高的“问题数量”。判定语料问题必须直接扫原文。
-
-除非用户要求修复，否则只报告 findings，不编辑。
-
-## Lint Workflow
-
-触发方式：`lint`。
-
-检查内容质量：
-
-- 没有 inbound links 的 orphan pages。
-- outbound links 太少的 sparse pages。
-- sources 之间的 contradictions。
-- stale 的 overview、entity 或 concept pages。
-- 值得单独建页的重要 recurring topics。
-
-做 broad rewrites 前先询问用户。
-
-## Graph Workflow
-
-触发方式：`build graph`。
-
-运行：
-
-```bash
-uv run python tools/build_graph.py --report
-```
-
-当前 graph tool 是 deterministic v1：只解析显式 `[[WikiLinks]]`，生成 `graph/graph.json`、`graph/graph.html` 和可选 `graph/graph-report.md`。不要自动创建 broken-link target pages；missing targets 只报告。
-
-## Naming
-
-- Source slugs 使用 `kebab-case`。
-- Entity 和 concept pages 使用 `TitleCase.md`。entity 页只保留横跨多来源的枢纽。
-- Synthesis slugs 使用 `kebab-case`。
-- filenames 可以紧凑，但 titles 要 human-readable。
+- `modified` 是内容最后审阅日期，判断或内容实质变化才更新；批量格式、标签或布局调整不刷新。不要使用 Quartz 不识别的 `last_updated`。
+- 主题标签沿用全库跨页维度，不为单页发明标签。来源页必带 `source-backed`；无 `sources` 的知识页必须带 `unsourced`、`source-plan`、`learn` 或 `distill`，并向读者说明哪些内容未经来源验证。
+- 来源页另填 `source_file`（原始证据）、`source_kind`（`pdf/html/repo/image/office/audio/markdown/unknown`）、`source_url`、`source_date`（日期或 `unknown`）；有缓存时填 `extracted_text`。
+- 主题入口由学习路径的 `study_order`、`nav_title`、`description` 生成；`study_topic` 关联所属主题，沿用已有目标。
+
+## 操作入口
+
+先读目录、总览和最小相关页面集合，沿现有知识更新，避免平行重复建页。
+
+| 请求 | 行为 |
+| --- | --- |
+| `ingest <path>` | 完整阅读原始资料或缓存，建来源页和必要概念，互链、登记、记录并检查 |
+| `query: <question>` | 用中文和 WikiLinks 答复；未要求保存时，询问是否沉淀可复用答案 |
+| `distill` | 保存对话洞见，明确来源支持／讨论解释／假设；对话不进入 `raw/` |
+| `learn <topic>` | 解释基础、机制、误解与实践；无来源部分标注学习笔记，未授权保存时先询问 |
+| `source <topic>` | 搜集可信候选资料和收录优先级；只建资料计划，不自动收录或生成知识结论 |
+| `research <topic>` | 按需自动搜索、归档、完整阅读并整合本地知识；使用 [.agents/skills/wiki-research/SKILL.md](.agents/skills/wiki-research/SKILL.md) |
+| `refresh <topic>` | 用同一技能检查资料和知识的新变化，去重并保留原快照，仅整合有意义的更新 |
+| `health` / `lint` | 分别报告确定性问题／孤页、稀疏页、矛盾、陈旧与拆页机会；未要求修复时不编辑 |
+| `build graph` | 运行 `uv run python tools/build_graph.py --report`；只解析显式链接，不为失效目标自动建页 |
+
+`research` / `refresh` 是交给 Codex 的请求，不是 shell 命令。一次调用授权范围内的搜索和本地整合，无需逐篇确认；公开发布仍由用户触发。不设置定期调度、后端或额外依赖，除非另有明确要求。
+
+## 验证与发布
+
+- 知识修改后运行 `uv run python tools/health.py`，检查链接、目录、日志、证据文件、语言与证据状态；修复本次引入的问题。语言统计直接核对原文，不能把屏蔽链接后的断裂文本当作真实语病。
+- 大规模知识修改或发布层修改运行 `npm run wiki:build`；前端代码按变化做类型与浏览器验证。检查成功不等于事实正确。
+- 本地预览 `npm run wiki:preview`；生产构建 `npm run wiki:build`，输出 `public/`。直接运行 Quartz 时必须指定 `-d wiki`。
+- 不自动 `git push`、合并 PR 或部署。现有 GitHub Pages 从 `main` 部署；推送到 `main` 等同触发公开发布。

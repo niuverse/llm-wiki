@@ -4,11 +4,12 @@ type: concept
 tags: [robotics, simulation, benchmark, evaluation]
 sources: ["[[nvlabs-robolab]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[robotics-simulation-infrastructure]]"]
 modified: 2026-07-13
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 # 仿真基准报告流程
 
-仿真基准报告流程（仿真基准报告流水线）指从回合轨迹采样到可审计结果报告之间的基础设施层：它把原始轨迹、event logs、子任务得分、视频、任务元数据、策略元数据和 statistical 不确定性转成可比较、可浏览、可复查的基准证据。[[RoboLab]] 的 2026-06 代码仓库更新把这个层从脚本升级为一等的设计表面：`analysis/read_results.py`、`docs/statistical_significance.md`、`dashboard/`、`episode_results.jsonl`、HDF5 回合数据和 `robolab-dashboard` CLI 共同形成报告契约。
+仿真基准报告流程（仿真基准报告流水线）指从回合轨迹采样到可审计结果报告之间的基础设施层：它把原始轨迹、event logs、子任务得分、视频、任务元数据、策略元数据和 statistical 不确定性转成可比较、可浏览、可复查的基准证据。[[RoboLab|RoboLab]] 的 2026-06 代码仓库更新把这个层从脚本升级为一等的设计表面：`analysis/read_results.py`、`docs/statistical_significance.md`、`dashboard/`、`episode_results.jsonl`、HDF5 回合数据和 `robolab-dashboard` CLI 共同形成报告契约。
 
 ## 数学结构
 
@@ -67,7 +68,7 @@ flowchart LR
 - 小-N overconfidence：少量回合的点估计值会误导；RoboLab 用 Beta 可信区间暴露不确定性，但读者仍可能只看中间值。
 - 自适应采样 comparability：如果不同策略/任务使用不同 stopping 结果，必须报告 $n$、区间 width 和 stopping rule，否则计算-saving 规程可能影响可比性。
 - 看板 locality：局部看板提升可审计性，但不等于公开 leaderboard 治理；路径、来源文件夹和视频可用性仍需记录。
-- 元数据漂移：任务元数据、场景元数据和结果文件夹如果不同步，看板可能展示 stale 任务属性或场景链接。
+- 元数据漂移：任务元数据、场景元数据和结果文件夹如果不同步，看板可能展示过期任务属性或场景链接。
 - 指标 overload：成功、得分、轨迹平滑性、错误物体 events、置信区间和视频同时存在时，必须明确 primary 主张，否则报告容易变成指标 shopping。
 
 ## 实践含义
@@ -77,4 +78,4 @@ flowchart LR
 - 对 [[SimulationSensitivityAnalysis|敏感性 analysis]]，报告流程提供后验推理需要的结构化的结果；如果结果只有二元成功结果，后验解释会变粗。
 - 对 [[TaskGeneralistPolicyEvaluation|任务泛化策略评估]]，自适应采样提供了计算感知规程，但 leaderboard/论文比较必须固定或充分披露 stopping rule。
 
-相关页面：[[nvlabs-robolab]]、[[RoboLab]]、[[TaskGeneralistPolicyEvaluation]]、[[RoboticsSimulationInfrastructure]]、[[SimulationSensitivityAnalysis]]、[[SimulationRealityGap]]。
+相关页面：[[nvlabs-robolab|RoboLab 代码仓库]]、[[RoboLab|RoboLab]]、[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[SimulationSensitivityAnalysis|仿真敏感性分析]]、[[SimulationRealityGap|仿真—现实差距]]。

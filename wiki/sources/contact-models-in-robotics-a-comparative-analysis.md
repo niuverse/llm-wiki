@@ -9,6 +9,7 @@ source_kind: pdf
 source_url: https://arxiv.org/abs/2304.06372
 extracted_text: graph/extracts/contact-models-in-robotics-a-comparative-analysis.md
 source_date: 2024-07-21
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
@@ -54,13 +55,13 @@ RaiSim 是 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in
 
 ## 关联
 
-- [[ContactModelsInRobotics]] - central 域概念：仿真器的接触定律是模型的一部分，不只是实现；该页包含接触流程图。
-- [[ContactComplementarity]] - 论文比较的精确与松弛的数学 formulations；该页补充 Signorini、Coulomb 锥体、最大耗散与残差直觉。
-- [[ContactSolvers]] - 按物理准确率、鲁棒性和速度评估的数值 algorithms；该页补充求解器分类体系与 PGS/ADMM/交错投影的求解直觉。
-- [[SimulationRealityGap]] - 接触 approximations 会扩大 MPC 与 RL 场景中的迁移错误；该页补充接触产物到硬件迁移不匹配的因果流程。
-- [[DifferentiablePhysics]] - 接触产物可能污染梯度；该页补充 chain-rule 风格的梯度污染解释。
+- [[ContactModelsInRobotics|机器人学中的接触模型]] - central 域概念：仿真器的接触定律是模型的一部分，不只是实现；该页包含接触流程图。
+- [[ContactComplementarity|接触互补]] - 论文比较的精确与松弛的数学 formulations；该页补充 Signorini、Coulomb 锥体、最大耗散与残差直觉。
+- [[ContactSolvers|接触求解器]] - 按物理准确率、鲁棒性和速度评估的数值 algorithms；该页补充求解器分类体系与 PGS/ADMM/交错投影的求解直觉。
+- [[SimulationRealityGap|仿真—现实差距]] - 接触 approximations 会扩大 MPC 与 RL 场景中的迁移错误；该页补充接触产物到硬件迁移不匹配的因果流程。
+- [[DifferentiablePhysics|可微物理]] - 接触产物可能污染梯度；该页补充 chain-rule 风格的梯度污染解释。
 - [[contact-models-in-robotics-a-comparative-analysis|ContactBench]] - 论文中的统一的 C++ 基准实现。
-- [[MuJoCo]] 与 [[contact-models-in-robotics-a-comparative-analysis|RaiSim]] - 作为不同接触模型取舍示例的重要仿真器实体。
+- [[MuJoCo|MuJoCo]] 与 [[contact-models-in-robotics-a-comparative-analysis|RaiSim]] - 作为不同接触模型取舍示例的重要仿真器实体。
 
 ## 开放问题
 

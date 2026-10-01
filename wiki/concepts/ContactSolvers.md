@@ -3,66 +3,70 @@ title: "接触求解器"
 type: concept
 tags: [robotics, simulation]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[omniverse-omni-physics-articulations]]"]
-modified: 2026-07-13
+modified: 2026-09-30
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 接触求解器
 
-接触求解器是数值 routines：当仿真器检测到接触几何并构造出接触问题后，它们负责计算力或冲量。在 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]] 中，求解器的评估维度包括物理残差、鲁棒性到 ill-条件化、内部力产物、self-一致性和运行时。
-
-关键点是：求解器不是在孤立地“修正每个接触点”。一个接触冲量会通过刚体动力学改变整机速度，再通过雅可比矩阵影响所有其他接触速度。因此接触分辨率本质上是一个耦合的不动点问题：找到一组法向/切向力，使不穿透、摩擦边界和能量耗散的残差同时足够小。
+接触模型规定“什么力是可接受的”，接触求解器负责“怎样算出这组力或冲量”。同一模型可能有不同算法；同一算法也可能求解不同近似。[[contact-models-in-robotics-a-comparative-analysis|比较论文]] 因而同时检查物理残差、病态问题鲁棒性、内部力和计算时间。
 
 ## 数学结构
 
-一个简化的数学图像是：
+以下是**无摩擦、已激活接触、忽略恢复和位置稳定化的教学模型**，用来解释耦合与迭代，不替代完整摩擦接触算法。
 
-- 法向方向：`lambda_n >= 0`、`v_n >= 0`、`lambda_n * v_n = 0`，表示接触不能拉住物体，也不能在分离时仍施加法向力。
-- 切向方向：`||lambda_t|| <= mu * lambda_n`，摩擦力被库仑摩擦锥限制。
-- 滑动时：最大耗散要求摩擦方向与切向运动相反。
+令 $M$ 为广义质量矩阵，$J$ 为接触法向雅可比矩阵，$v_{\mathrm{free}}$ 为尚未施加接触冲量的广义速度，$p$ 为各接触法向冲量。则：
 
-这些条件共同形成 [[ContactComplementarity|接触互补]]。论文比较的求解器可以按表述和数值策略两层理解：
+$$
+v^+=v_{\mathrm{free}}+M^{-1}J^\top p,\qquad
+v_n^+=b+Wp,\quad b=Jv_{\mathrm{free}},\quad W=JM^{-1}J^\top.
+$$
+
+$v^+$ 为冲量后的广义速度，$v_n^+$ 为所有接触的法向相对速度；$W$ 称为 Delassus 算子。其非对角项 $W_{ij}$ 表示第 $j$ 个接触冲量如何改变第 $i$ 个接触速度。动力学与 [[ContactComplementarity|互补条件]] 合起来给出：
+
+$$
+0\le p\perp b+Wp\ge0.
+$$
+
+在 $W_{ii}>0$ 时，投影高斯—赛德尔法（PGS）的单分量教学更新为：
+
+$$
+p_i\leftarrow\max\left(0,\ p_i-\frac{b_i+\sum_j W_{ij}p_j}{W_{ii}}\right).
+$$
+
+处理下一个分量时使用刚更新的冲量。**PGS 会通过迭代传播接触耦合**；它的问题在于有限预算、病态或冗余系统下可能难以充分收敛，而不是完全忽略其他接触。完整摩擦模型的局部投影和更新比此式复杂。模型与算法比较见 [[contact-models-in-robotics-a-comparative-analysis|接触模型比较论文]]。
+
+## 直觉：算一次静止支撑
+
+教学例子：质量 $m=1\,\mathrm{kg}$ 的物体恰好接触地面，初始速度为零，步长 $h=0.01\,\mathrm{s}$，重力加速度取 $9.81\,\mathrm{m/s^2}$。自由速度为 $b=-0.0981\,\mathrm{m/s}$，单接触 $W=1/m$。为使 $v_n^+=0$，需要冲量 $p=0.0981\,\mathrm{N\,s}$，对应平均支撑力 $p/h=9.81\,\mathrm{N}$。
+
+这个例子说明求解器如何抵消向地面的运动。多接触时不能逐点套这个答案：一个支撑点的冲量会改变其他支撑点的速度，冗余支撑还可能让力分配不唯一。
+
+## 算法取舍
 
 ```mermaid
 flowchart TD
-  A["刚性接触目标<br/>Signorini + Coulomb + 最大耗散"] --> B{"表述"}
-  B --> C["NCP<br/>更接近参考模型"]
-  B --> D["LCP<br/>多面体摩擦锥体"]
-  B --> E["CCP<br/>凸松弛"]
-  B --> F["RaiSim-风格模型<br/>接触状态启发式规则"]
-  C --> G{"求解器 strategy"}
-  D --> G
-  E --> G
-  F --> G
-  G --> H["逐接触点 / 局部迭代<br/>PGS, RaiSim-风格二分法"]
-  G --> I["全局 / 近端迭代<br/>ADMM, 交错投影"]
+  A[碰撞检测产生接触几何] --> B[接触模型定义约束与耗散]
+  B --> C[构造耦合接触问题]
+  C --> D[局部迭代：PGS 等]
+  C --> E[整体或近端方法：ADMM、交错投影等]
+  D --> F[冲量、更新速度与残差]
+  E --> F
+  F --> G[核对精度与实际耗时]
 ```
 
-接触耦合可以通过 Delassus 算子直观理解：$W=J M^{-1}J^\top$，其中 $M$ 是质量矩阵，$J$ 是接触雅可比矩阵。一个接触冲量 $\lambda_i$ 会通过 $W$ 改变其他接触的法向/切向速度，所以求解不是每个接触独立截断，而是在耦合的系统中找到全局一致的 $\lambda$。
-
-## 直觉
-
-论文区分了两个实用的族：
-
-- Per-接触方法，例如 PGS 与 RaiSim-风格二分法：每次迭代成本低，在温和的接触场景中通常足够快；但它们可能遗漏接触之间的全局耦合，产生内部力，并在病态问题上失败。
-- 全局或近端方法，例如 ADMM 与交错投影：使用更多完整接触问题的结构。它们通常更鲁棒，也能产生更干净的接触力，但每次迭代成本更高。从上一时间步热启动可以在实用的仿真 loops 中缩小这个差距。
-
-算法直觉上，PGS-风格方法像是在接触约束之间做顺序投影：更新一个接触的冲量后，立刻用它修正当前速度估计值，再处理下一个接触。它便宜、incremental，也容易热启动；但在冗余支撑、滑动或不良条件化下，局部修正可能互相抵消，留下 self-一致性残差或内部力。
-
-ADMM 与交错投影这类方法更像是在 whole 接触 vector 上交替满足动力学、锥约束和互补相关的约束。它们每步更重，但能更直接处理接触之间的耦合与 underdetermination，因此论文把它们描述为更鲁棒的方向。
-
-[[omniverse-omni-physics-articulations|Omni 物理关节系统]] 给这个求解器视角增加了关节系统内部约束。来源说明闭环关节系统更难求解，建议降低仿真时间步；mimic 关节如果没有柔顺性，会用冲量瞬时地维持 mimic 方程；夹爪场景中高刚度的驱动的关节、轻量的手指惯量、硬 mimic 约束和硬接触会互相竞争，导致不稳定。它还说明增加 TGS 求解器位置迭代会降低 compliant mimic 关节看到的有效的时间步，尤其在行为不由碰撞响应主导时。
+局部方法每次更新便宜，容易沿用上一时间步的解进行热启动；但困难系统可能需要很多迭代。比较论文中的 ADMM、交错投影等方法利用更多完整问题结构，在其基准上更鲁棒，但单次迭代通常更贵。算法选择应比较达到相同残差所需的总时间，而不是只比较单次迭代。结论受模型、实现、热启动和任务约束影响。[[contact-models-in-robotics-a-comparative-analysis|接触模型比较论文]]
 
 ## 失效情形
 
-- 局部耦合 miss：PGS/逐接触点更新可能只在局部改善残差，却没有解决全身接触耦合。
-- 病态收敛失败：质量分布、冗余接触或 near-singular 接触几何会让局部求解器难以收敛。
-- 内部力产物：underdetermined 支撑中，求解器可能返回物理残差看似可接受但力分布不可信的 solution。
-- 相互竞争的关节系统约束：硬 mimic / tendon / 闭环约束与硬接触或高刚度的驱动同时存在时，求解器可能出现不稳定、颤振或需要更小时间步。
-- 运行时/保真度取舍 inversion：全局方法每步更贵，但如果局部求解器需要大量迭代或失败的收敛，实际控制循环中未必更便宜。
-- 热启动依赖：热启动能显著改善运行时，但也可能让求解器行为依赖先前的步骤产物。
+- **收敛慢与残差偏大**：病态系统、冗余接触可能让局部更新互相抵消，有限迭代下留下误差。[[contact-models-in-robotics-a-comparative-analysis|接触模型比较论文]]
+- **力分配不可信**：冗余支撑可能产生内部力；运动看起来稳定不代表每个接触力都可信。[[contact-models-in-robotics-a-comparative-analysis|接触模型比较论文]]
+- **关节与接触约束竞争**：高刚度驱动、轻手指惯量、硬 mimic 约束与硬接触同时作用时可能不稳定。闭环关节系统也更难求解，官方文档建议降低时间步。[[omniverse-omni-physics-articulations|Omni 物理关节文档]]
+
+Omni 文档还指出，增加 TGS 位置迭代会减小柔顺 mimic 关节感受到的有效时间步，尤其在行为不由碰撞响应主导时。这是特定求解器语义，不能直接当作所有引擎的调参规律。[[ReducedCoordinateArticulations|约化坐标关节系统]]
 
 ## 实践含义
 
-对机器人学来说，合适的求解器取决于任务容差。某些 MPC 与 RL 工作负载可能能接受快速的近似 answers；而接触丰富地形、冗余支撑、力感知、可微目标、闭环机制和夹爪 mimic 约束会对物理一致性提出更高要求。
+排查顺序建议：先确认 [[CollisionGeometryForRobotSimulation|碰撞几何]] 和模型语义，再固定步长与初态，比较迭代预算、残差、力分配和总耗时。这是依据上述机制整理的实验方法，不是论文中的统一调参配方。
 
-相关页面：[[ContactComplementarity]]、[[ContactModelsInRobotics]]、[[ReducedCoordinateArticulations]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]。
+RL 看任务收益与吞吐量；MPC 和力控制还看力的一致性；可微优化要另查 [[DifferentiablePhysics|梯度质量]]。把设置、热启动和终止条件一起记录，才能复现实验。

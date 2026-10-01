@@ -11,6 +11,7 @@ extracted_text: graph/extracts/isaac-lab-readme.md
 source_date: 2026-06-04
 commit_snapshot: raw/isaac-lab-main-commit.json
 commit_sha: 492751759af72a5d3f7e0e42768b95fd9f1ac6df
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 ## 摘要
@@ -43,9 +44,9 @@ Isaac Lab 是 [[isaac-lab-repository|官方代码仓库 README]] 中描述的 GP
 ## 关联
 
 - [[isaac-lab-repository|IsaacLab]] - 本来源对应的框架实体。
-- [[IsaacSim]] 与 [[NVIDIA]] - Isaac Lab 依赖 Isaac Sim / NVIDIA 技术栈。
-- [[RoboticsSimulationInfrastructure]] - Isaac Lab 代表配置/基于管理器的机器人学仿真与训练框架。
-- [[HeterogeneousRobotRLTraining]] - Isaac Lab 是 GPU 加速的机器人学习基础设施的 major 路线。
+- [[IsaacSim|Isaac Sim]] 与 [[NVIDIA|NVIDIA]] - Isaac Lab 依赖 Isaac Sim / NVIDIA 技术栈。
+- [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] - Isaac Lab 代表配置/基于管理器的机器人学仿真与训练框架。
+- [[HeterogeneousRobotRLTraining|异构机器人强化学习训练]] - Isaac Lab 是 GPU 加速的机器人学习基础设施的 major 路线。
 
 ## 开放问题
 

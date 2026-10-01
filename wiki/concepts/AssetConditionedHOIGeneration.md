@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, humanoid, data-generation, sim-to-real]
 sources: ["[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]"]
 modified: 2026-07-13
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 # 资产条件化人物—物体交互生成
@@ -98,4 +99,4 @@ flowchart LR
 - 对策略架构，物体感知潜在 adaptor 是一种 conservative adaptation：冻结移动控制器的主要解码器，只在潜在标记空间注入操作残差，并补手部基元。这适合保护 pretrained 移动先验，但也可能限制族外操作。
 - 对评估，GRAIL 提示要把 4D HOI 质量、物理可执行性、任务一般性跟踪和真实视觉部署分层报告。单独的 VLM 交互得分或视频平滑性不足以证明机器人实用价值。
 
-相关页面：[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]、[[VisualSimToReal]]、[[SimulationRealityGap]]、[[TaskGeneralistPolicyEvaluation]]、[[HumanoidRLWorkflow]]。
+相关页面：[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL 论文]]、[[VisualSimToReal|视觉仿真到现实迁移]]、[[SimulationRealityGap|仿真—现实差距]]、[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[HumanoidRLWorkflow|人形机器人强化学习工作流]]。

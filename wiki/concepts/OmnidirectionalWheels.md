@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, wheeled-robots]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 全向轮
@@ -66,4 +67,4 @@ flowchart LR
 
 控制上，先用 $u=H(0)V_b$ 做逆运动学；若有车轮限制，就在刚体旋量空间中约束 $V_b$ 或对 $u$ 做 desaturation。状态估计上，用 $V_b=H^\dagger(0)\Delta\theta$ 做车轮里程计，但需要 IMU、视觉、lidar 或 beacon 等外部观测定期校正。
 
-仿真上，早期可以把 omni/mecanum 基座当成运动学完整约束基座；做仿真到现实迁移或接触敏感任务时，再显式检查滚轮摩擦、法向负载、地面粗糙度和 [[ContactSolvers|求解器]] 场景。相关页面：[[WheeledRobotKinematics]]、[[MobileRobotOdometry]]、[[SimulationRealityGap]]。
+仿真上，早期可以把 omni/mecanum 基座当成运动学完整约束基座；做仿真到现实迁移或接触敏感任务时，再显式检查滚轮摩擦、法向负载、地面粗糙度和 [[ContactSolvers|求解器]] 场景。相关页面：[[WheeledRobotKinematics|轮式机器人运动学]]、[[MobileRobotOdometry|移动机器人里程计]]、[[SimulationRealityGap|仿真—现实差距]]。

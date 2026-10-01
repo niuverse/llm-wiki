@@ -2,102 +2,83 @@
 title: "具身智能世界模型"
 type: concept
 tags: [embodied-ai, world-models, robotics]
-sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]"]
-modified: 2026-07-13
+sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[planet-learning-latent-dynamics]]", "[[dreamerv3-mastering-diverse-control]]", "[[td-mpc2-scalable-robust-world-models]]", "[[dino-wm-pretrained-visual-features]]", "[[v-jepa-2-understanding-prediction-planning]]", "[[worldecho-worldsync-action-following]]"]
+modified: 2026-10-02
+study_topic: syntheses/world-models-learning-path
 ---
 
 # 具身智能世界模型
 
-世界模型（世界模型）在具身 AI 中是学得的内部仿真器：它把观测和动作压缩成预测式潜在状态，并轨迹采样未来状态来支持感知、预测、规划、控制和反事实推理。[[a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]] 明确把范围限定在能产生 actionable 预测的模型，而不是单纯静态场景描述文件或不受动作控制的视觉 generators。
+世界模型把观测历史和动作转成对未来的预测。在具身智能中，预测需要服务动作选择、规划或策略学习。[[a-comprehensive-survey-on-world-models-for-embodied-ai|世界模型综述]] 用这一目标组织模型；静态场景表示、视频生成和机器人策略仍应按具体角色区分。
 
 ## 数学结构
 
-论文用 POMDP formalization 描述具身交互。变量含义如下：$o_t$ 是第 $t$ 步观测，$a_t$ 是动作，$s_t$ 是不可直接观测的真实状态，$z_t$ 是学得的潜在状态，$\theta$ 是 generative 模型参数，$\phi$ 是推理模型参数。
-
-核心世界模型由三部分组成：
+机器人通常只能看到部分真实状态。令 $o_t$ 为观测，$a_t$ 为动作，$s_t$ 为不可完全观测的真实状态，$z_t$ 为学得的潜在状态，$\theta$ 与 $\phi$ 分别为生成模型和推断模型参数。典型潜在状态模型包含：
 
 $$
-\begin{array}{ll}
-\text{Dynamics Prior:} & p_\theta(z_t \mid z_{t-1}, a_{t-1}) \\
-\text{Filtered Posterior:} & q_\phi(z_t \mid z_{t-1}, a_{t-1}, o_t) \\
-\text{Reconstruction:} & p_\theta(o_t \mid z_t)
-\end{array}
+\begin{aligned}
+\text{动力学先验：}&\quad p_\theta(z_t\mid z_{t-1},a_{t-1}),\\
+\text{近似滤波后验：}&\quad q_\phi(z_t\mid z_{t-1},a_{t-1},o_t),\\
+\text{观测解码：}&\quad p_\theta(o_t\mid z_t).
+\end{aligned}
 $$
 
-关节分布写成动作条件化的潜在转移与观测解码器的乘积：
-
-$$
-p_\theta(o_{1:T}, z_{0:T} \mid a_{0:T-1}) = p_\theta(z_0)\prod_{t=1}^{T} p_\theta(z_t \mid z_{t-1}, a_{t-1})p_\theta(o_t \mid z_t).
-$$
-
-真实后验 $p_\theta(z_{0:T} \mid o_{1:T}, a_{0:T-1})$ 不可直接求，论文使用时间-factorized variational 后验：
-
-$$
-q_\phi(z_{0:T} \mid o_{1:T}, a_{0:T-1}) = q_\phi(z_0 \mid o_1)\prod_{t=1}^{T} q_\phi(z_t \mid z_{t-1}, a_{t-1}, o_t).
-$$
-
-训练目标是 ELBO（证据较低边界）：
-
-$$
-\log p_\theta(o_{1:T} \mid a_{0:T-1}) \ge \mathbb{E}_{q_\phi}\left[\log \frac{p_\theta(o_{1:T}, z_{0:T} \mid a_{0:T-1})}{q_\phi(z_{0:T} \mid o_{1:T}, a_{0:T-1})}\right] = \mathcal{L}(\theta,\phi).
-$$
-
-在 Markov 分解下，ELBO 可理解为重建目标加上 KL 正则化：
-
-$$
-\mathcal{L}(\theta,\phi)=\sum_{t=1}^{T}\mathbb{E}_{q_\phi(z_t)}[\log p_\theta(o_t \mid z_t)] - D_{\mathrm{KL}}\left(q_\phi(z_{0:T}\mid o_{1:T},a_{0:T-1})\,\|\,p_\theta(z_{0:T}\mid a_{0:T-1})\right).
-$$
+先验在没有未来观测时推进状态；后验结合新观测修正状态；解码器要求状态保留可解释观测的信息。$q_\phi$ 是近似后验，不是已经精确求出的贝叶斯后验。完整联合分布、证据下界（ELBO）和推导见 [[LatentStateSpaceModels|潜在状态空间模型]]。综述中的框架不是所有世界模型都必须采用的唯一结构。
 
 ## 直觉
 
-Filtered 后验 $q_\phi$ 是识别侧：它看见当前观测 $o_t$，把历史压进潜在状态 $z_t$。动力学先验 $p_\theta$ 是想象侧：它在没有未来观测的情况下，根据 $z_{t-1}$ 和动作 $a_{t-1}$ 推进潜在未来。重建 $p_\theta(o_t \mid z_t)$ 让潜在状态不只是任意嵌入，而是保留可预测观测的信息。
-
-ELBO 的两个项对应一个 tension：重建项希望 $z_t$ 对观测足够 informative；KL 项希望滤波后验不要偏离动作条件化的动力学先验太远。若 KL 太弱，模型可能只学到后验编码而不会轨迹采样；若重建太弱，潜在动力学可能可轨迹采样但失去可解释的状态保真度。
+学习时有真实观测，可以不断校正潜在状态；想象未来时没有这些观测，只能依赖模型自己的预测。这解释了为什么重建当前帧很好，不代表多步预测可靠。ELBO 的重建项保留观测信息，KL 项约束推断与动力学预测的一致性；具体权重的最优选择需要方法来源和实验支持。[[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]
 
 ```mermaid
 flowchart LR
-  A["历史<br/>o_1:t, a_0:t-1"] --> B["filtered 后验<br/>q_phi(z_t 给定 z_{t-1}, a_{t-1}, o_t)"]
-  B --> C["潜在状态 z_t<br/>预测式内存"]
-  C --> D["动力学先验<br/>p_theta(z_{t+1} 给定 z_t, a_t)"]
-  D --> E["imagined 未来<br/>z_{t+1:T}"]
-  C --> F["重建<br/>p_theta(o_t 给定 z_t)"]
-  E --> G["规划 / 策略优化 / MPC / counterfactuals"]
+  A[历史与新观测] --> B[推断当前潜在状态]
+  B --> C[动作条件化的未来预测]
+  C --> D[规划或策略学习]
+  B --> E[观测重建与训练校验]
+  D --> F[执行动作并获得新观测]
+  F --> A
 ```
 
-## 作为视觉子目标生成器
+图表达决策循环，不表示每个模型都显式执行在线规划。怎样生成未来、用什么状态表示，见 [[WorldModelTaxonomy|世界模型分类体系]]。
 
-[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 给了一个更窄但很实用的世界模型角色：世界模型不直接输出机器人动作，也不一定轨迹采样长时域轨迹，而是把当前观测 $o_t$、semantic 子任务 $\hat{\ell}_t$ 和元数据 $m$ 转成近期未来视觉目标：
+## 未来怎样进入决策
+
+| 角色 | 未来预测如何被使用 | 当前证据 |
+| --- | --- | --- |
+| 在线规划 | 测试时预测候选动作的奖励或目标距离，再搜索并执行 | [[planet-learning-latent-dynamics|PlaNet]]、[[td-mpc2-scalable-robust-world-models|TD-MPC2]]、[[VisualGoalPlanning|DINO-WM 与 V-JEPA 2-AC]] |
+| 想象策略学习 | 模型在训练时生成轨迹，演员和价值评估器学习；执行时直接出动作 | [[dreamerv3-mastering-diverse-control|DreamerV3]]、[[ImaginedPolicyLearning|算法机制]] |
+| 视觉子目标生成器 | 将未来目标图像放进策略上下文 | [[pi07-steerable-generalist-robotic-foundation-model|π0.7]] |
+| 动力学与动作预训练 | 用未来表示训练共享模型或动作表示 | [[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]]、[[InverseDynamicsModels|Seer 与 DeFI]] |
+| 学习仿真与策略评估 | 对给定策略动作预测观测，用于评估或策略后训练 | [[worldecho-worldsync-action-following|WorldEcho／WorldSync 的评测与限制]] |
+
+这些角色可以组合，但不能互相替代证据。想象策略在执行时没有候选搜索；视觉目标规划不必学习逆动力学；视频仿真也未必提供物理引擎的接触力、状态回滚和硬约束接口。先确定模型在 [[RoboticsSimulationLoop|仿真与控制循环]] 中替代哪一步，再判断它是否足够准确。
+
+### 规划和想象学习
+
+[[ModelPredictiveControl|MPC]] 把计算留在每次决策：滚动预测、优化一段动作、执行首步并重规划。PlaNet 学奖励而不用价值网络；TD-MPC2 用短时域和终端价值；DINO-WM 与 V-JEPA 2-AC 用视觉特征距离指定目标。相比之下，[[ImaginedPolicyLearning|DreamerV3]] 用想象轨迹反复训练策略，将动作偏好压进参数。计算位置、训练信号和更换任务的接口因此不同，不能仅凭都预测未来就直接排成一个排行榜。
+
+### 视觉子目标
+
+π0.7 将当前观测 $o_t$、子任务语言 $\hat\ell_t$ 和元数据 $m$ 条件化为多视角视觉子目标 $g^\star$：
 
 $$
-g^\star \sim p_\psi(g^\star \mid o_t,\hat{\ell}_t,m).
+g^\star\sim p_\psi(g^\star\mid o_t,\hat\ell_t,m).
 $$
 
-这个 $g^\star$ 是多视角子目标图像，随后进入 [[VisionLanguageActionModels|VLA]] 的上下文 $C_t$，条件动作块预测。直觉上，它把语言中难以说明的空间细节转成视觉目标，例如夹爪应该如何接近把手、布料应该折到什么形状、或物体应该出现在什么视角中。
+$\psi$ 为生成器参数。子目标进入 [[RobotContextConditioning|策略上下文]]，再由 [[VisionLanguageActionModels|VLA]] 预测动作；生成器本身不直接输出机器人控制量。评估要检查加入目标后是否改善闭环任务，而不只看图像。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 论文]]
 
-这说明世界模型可以作为决策-耦合的中间表示：它未必自己完成规划，但会改变策略的动作分布。因此评估也不能只看生成的图像保真度，而要看子目标图像是否提升闭环指令 following、跨本体迁移或 [[CompositionalGeneralizationInRobotics|组合式泛化]]。
+### 潜在动力学预训练
 
-## 用于潜在动力学预训练
-
-[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 给出另一种决策-耦合的世界模型角色：世界模型不生成 RGB 子目标图像，也不单独做 MPC，而是在 DINO 潜在空间中 cotrain 策略、正向动力学、逆动力学和视觉预测。未来观测目标被表示为 $z_{t+1:t+k}=f_{\mathrm{DINO}}(o_{t+1:t+k})$，然后与动作块 $a_{t+1:t+k}$ 一起进入扩散风格 denoising 目标。
-
-这个设计把世界模型的价值放在表示学习和策略预训练上。高质量示范数据可以训练动作策略；低质量轨迹仍可训练动作条件化的动力学；无动作标注的第一视角视频则训练视觉预测。相比像素空间 UWM，LDA-1B 来源的核心主张是结构化的 DINO 潜在能减少外观建模，扩大混合质量具身数据的可用范围。
+LDA-1B 在 DINO 视觉潜在空间联合建模未来表示与动作，并按数据类型分配策略、正向动力学、逆动力学和视觉预测目标。高质量示范、低质量轨迹与无动作视频承担不同作用；“更多数据”因此不等于“更多行为克隆样本”。机制见 [[LatentDynamicsActionModels|潜在动力学动作模型]]、[[RobotLearningObjectives|机器人学习目标：示范、回报与动力学]]，证据见 [[lda-1b-scaling-latent-dynamics-action-model|LDA-1B 论文]]。
 
 ## 失效情形
 
-- 长时域错误 accumulation：顺序式的仿真与推理一步步轨迹采样，早期状态错误会进入后续输入，导致时间漂移。
-- 弱物理一致性：FID、FVD、LPIPS 等像素层级指标可能给出高分，但不检查动力学、causality 或物理约束。
-- 真实时间延迟：Transformer 和扩散 backbones 表现强，但推理成本可能不满足机器人控制循环或自主驱动规划的时限。
-- 数据集 fragmentation：操作、导航、驱动和视频预训练使用不同 modality、规模与规程，限制跨域泛化。
-- 空间瓶颈：全局潜在表征 Vector 高效但丢失细节；标记功能序列表达力强但序列长度变重；空间潜在表征 Grid 依赖几何先验；NeRF/3DGS-风格 Decomposed 渲染表征保真但动力学场景可扩展性较弱。
-- 评估异构性：基准比较常被输入 modality、auxiliary 监督、分辨率、回合预算和任务 subset 差异混淆。
-- 冻结的潜在瓶颈：LDA-1B 说明 DINO 潜在有助于规模扩展，但也承认固定 DINO 视觉特征是局限；如果下游控制需要的力、触觉或材质状态不在潜在中，世界模型可能预测看似合理未来特征却缺少控制变量。
+综述支持的风险包括多步误差累积、物理一致性不足、实时推理成本、不同任务数据与评测协议难以对齐，以及空间表示的细节／计算取舍。LDA-1B 另把冻结 DINO 视觉特征列为局限；不能据此假定其表示已覆盖触觉和力状态。[[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]、[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B 论文]]
+
+像素指标无法单独验证动作可控性和任务收益。WorldEcho 的近期预印本进一步显示，专家演示上的预测可能掩盖非专家动作的忽略与视觉崩坏；其结果受查询分布和训练预算限制，不是所有模型失效的普遍定理。如何拆开测量见 [[WorldModelEvaluation|世界模型评估]]。
 
 ## 实践含义
 
-对 MPC 和基于模型的强化学习，世界模型的价值在于可供轨迹采样的转移模型，而不是漂亮的重建。评估时需要检查想象出的未来是否能改变动作选择，并且在闭环场景下仍然稳定。
+阅读一个新方法，先写清“观测什么、条件化什么动作、预测什么、未来怎样影响决策”。如果准备做 MPC，再检查候选动作预测与规划时限；如果做策略预训练，再检查目标路由、数据标签和动作落地。这是基于当前分类的阅读方法，不是模型效果保证。
 
-对机器人学仿真到现实迁移，学得的世界模型可能缓解手部-designed 仿真器的不匹配，也可能把数据集偏差或像素层级产物变成新的 [[SimulationRealityGap|仿真—现实差距]]。因此需要把真实机器人验证、物理一致性和因果 intervention 指标放进评估循环。
-
-对基础模型风格具身智能体，[[WorldModelTaxonomy]] 提示不要把所有视频 predictors 都叫世界模型。只有当表示、时间轨迹采样和动作耦合能支持下游决策时，它才是具身 AI 意义上的世界模型。
-
-相关页面：[[WorldModelTaxonomy]]、[[WorldModelEvaluation]]、[[awesome-world-models|AwesomeWorldModels]]、[[SimulationRealityGap]]、[[DifferentiablePhysics]]、[[RobotContextConditioning]]、[[LatentDynamicsActionModels]]。
+学习顺序与小实验见 [[world-models-learning-path|世界模型学习路径]]；研究缺口集中在 [[research-questions|研究问题]]。

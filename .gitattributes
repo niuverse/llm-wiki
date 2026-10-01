@@ -1,0 +1,3 @@
+# Preserve canonical source bytes on every platform.
+raw/** -text
+*.pdf binary

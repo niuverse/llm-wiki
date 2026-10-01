@@ -9,11 +9,12 @@ source_kind: repo
 source_url: https://github.com/SarahWeiii/CoACD
 extracted_text: graph/extracts/coacd-readme.md
 source_date: unknown
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
 
-CoACD 代码仓库 README 是 [[CoACD]] 的实现-facing 来源，说明 `coacd.run_coacd(mesh)` 如何把输入网格转换成一组凸包，并列出阈值、最大凸包数量、MCTS 搜索、preprocess、真实指标模式等参数。它补充了论文的算法动机：工程上需要把非凸资产变成可被碰撞检测使用的凸组件，同时控制细节、组件数量和运行时成本。
+CoACD 代码仓库 README 是 [[CoACD|CoACD]] 的实现-facing 来源，说明 `coacd.run_coacd(mesh)` 如何把输入网格转换成一组凸包，并列出阈值、最大凸包数量、MCTS 搜索、preprocess、真实指标模式等参数。它补充了论文的算法动机：工程上需要把非凸资产变成可被碰撞检测使用的凸组件，同时控制细节、组件数量和运行时成本。
 
 来源网址: https://github.com/SarahWeiii/CoACD
 
@@ -33,9 +34,9 @@ CoACD 代码仓库 README 是 [[CoACD]] 的实现-facing 来源，说明 `coacd.
 ## 关联
 
 - [[coacd-approximate-convex-decomposition|CoACD 论文]] - 算法和基准证据。
-- [[ApproximateConvexDecomposition]] - 参数如何影响 ACD 的实践。
-- [[CollisionGeometryForRobotSimulation]] - collider 制作流程。
-- [[CoACD]] - 实体页面。
+- [[ApproximateConvexDecomposition|近似凸分解]] - 参数如何影响 ACD 的实践。
+- [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]] - collider 制作流程。
+- [[CoACD|CoACD]] - 实体页面。
 
 ## 开放问题
 

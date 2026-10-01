@@ -10,6 +10,7 @@ source_url: https://arxiv.org/abs/2603.20147
 extracted_text: graph/extracts/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.md
 source_date: 2026-03-20
 code_url: https://github.com/nvidia-isaac/WBC-AGILE
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 ## 摘要
@@ -76,12 +77,12 @@ AGILE 的重要性不在于替代 PPO、Isaac Lab 或 MuJoCo，而在于把容�
 ## 关联
 
 - [[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] - 本来源的工作流/实体页面。
-- [[HumanoidRLWorkflow]] - 机制页：把验证、训练、评估、描述文件导出和仿真到现实迁移部署写成生命周期。
-- [[SimulationRealityGap]] - AGILE 把现实差距具体化为执行器建模、接触动力学、aggressive 策略和导出契约不匹配。
-- [[TaskGeneralistPolicyEvaluation]] - AGILE 的确定性场景测试与运动质量诊断信息是策略评估的 complementary 视角。
-- [[VisionLanguageActionModels]] - AGILE 的移动操作情形用 RL 专家示范数据微调 GR00T N1.5 VLA。
-- [[NVIDIA]] - 来源代码发布在 `nvidia-isaac/WBC-AGILE`，并构建在 Isaac Lab 技术栈上。
-- [[MuJoCo]] - AGILE 用 MuJoCo 做描述文件驱动的跨仿真器验证。
+- [[HumanoidRLWorkflow|人形机器人强化学习工作流]] - 机制页：把验证、训练、评估、描述文件导出和仿真到现实迁移部署写成生命周期。
+- [[SimulationRealityGap|仿真—现实差距]] - AGILE 把现实差距具体化为执行器建模、接触动力学、aggressive 策略和导出契约不匹配。
+- [[TaskGeneralistPolicyEvaluation|通用任务策略评估]] - AGILE 的确定性场景测试与运动质量诊断信息是策略评估的 complementary 视角。
+- [[VisionLanguageActionModels|视觉—语言—动作模型]] - AGILE 的移动操作情形用 RL 专家示范数据微调 GR00T N1.5 VLA。
+- [[NVIDIA|NVIDIA]] - 来源代码发布在 `nvidia-isaac/WBC-AGILE`，并构建在 Isaac Lab 技术栈上。
+- [[MuJoCo|MuJoCo]] - AGILE 用 MuJoCo 做描述文件驱动的跨仿真器验证。
 
 ## 开放问题
 

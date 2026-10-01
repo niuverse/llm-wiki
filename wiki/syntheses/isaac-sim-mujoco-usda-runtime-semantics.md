@@ -4,6 +4,7 @@ type: synthesis
 tags: [distill, isaac-sim, mujoco, usd, asset-structure]
 sources: ["[[isaac-sim-asset-structure]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # Isaac Sim `mujoco.usda` 运行时语义
@@ -16,10 +17,10 @@ modified: 2026-07-13
 
 | Insight | 证据层级 | 知识库目标 |
 | --- | --- | --- |
-| `mujoco.usda` 不等价于 MJCF，也不是 MuJoCo 版视觉/碰撞资产；它是 Isaac USD 资产图结构中隔离 MuJoCo 物理设置 / 调优的层。 | 有来源支持的 + 源自讨论的 clarification | [[IsaacSimAssetStructure]], 本页 |
-| 视觉网格、材质、网格拓扑和视觉/碰撞 assembly 应优先归入 `geometries.usdc`、`materials.usda`、`instances.usda` 或共享物理/实例层，而不是 `mujoco.usda`。 | 有来源支持的用于层 ownership | [[isaac-sim-asset-structure]], [[IsaacSimAssetStructure]] |
-| 碰撞形状 / 碰撞体表示如果是跨引擎共享资产语义，应优先放在共享碰撞体 / 中性物理层；只有 MuJoCo-特定的接触解释或求解器调优才进入 `mujoco.usda`。 | 有来源支持的层 principle + 来自讨论的边界 | [[IsaacSimAssetStructure]] |
-| 执行器类型、关节阻尼、frictionloss 等是 `mujoco.usda` 的典型用途，但不应把该文件简化成执行器-仅层。 | 有来源支持的示例 + 源自讨论的 clarification | [[IsaacSimAssetStructure]], 本页 |
+| `mujoco.usda` 不等价于 MJCF，也不是 MuJoCo 版视觉/碰撞资产；它是 Isaac USD 资产图结构中隔离 MuJoCo 物理设置 / 调优的层。 | 有来源支持的 + 源自讨论的 clarification | [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]], 本页 |
+| 视觉网格、材质、网格拓扑和视觉/碰撞 assembly 应优先归入 `geometries.usdc`、`materials.usda`、`instances.usda` 或共享物理/实例层，而不是 `mujoco.usda`。 | 有来源支持的用于层 ownership | [[isaac-sim-asset-structure|Isaac Sim 资产结构文档]], [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] |
+| 碰撞形状 / 碰撞体表示如果是跨引擎共享资产语义，应优先放在共享碰撞体 / 中性物理层；只有 MuJoCo-特定的接触解释或求解器调优才进入 `mujoco.usda`。 | 有来源支持的层 principle + 来自讨论的边界 | [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] |
+| 执行器类型、关节阻尼、frictionloss 等是 `mujoco.usda` 的典型用途，但不应把该文件简化成执行器-仅层。 | 有来源支持的示例 + 源自讨论的 clarification | [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]], 本页 |
 | `condim`、MuJoCo 摩擦 vector、`solref`、`solimp`、`armature`、tendon/equality 约束调优、碰撞过滤等是否能写入 Isaac `mujoco.usda`，需要后续收录 MuJoCo XML 参考和 Isaac 后端结构规范/支持文档验证。 | hypothesis / 后续来源需要 | 本页后续来源 |
 
 ## 分层归属判断法
@@ -41,7 +42,7 @@ flowchart TD
 
 ## 证据边界
 
-有来源支持的部分：[[isaac-sim-asset-structure]] 明确把导入资产拆成几何、材质、实例、物理、MuJoCo、PhysX 和机器人等组件，并把 `mujoco.usda` 描述为 MuJoCo 物理设置与引擎专用调优层。该来源也明确要求隔离不同物理引擎的属性，避免后端专用属性发生冲突。
+有来源支持的部分：[[isaac-sim-asset-structure|Isaac Sim 资产结构文档]] 明确把导入资产拆成几何、材质、实例、物理、MuJoCo、PhysX 和机器人等组件，并把 `mujoco.usda` 描述为 MuJoCo 物理设置与引擎专用调优层。该来源也明确要求隔离不同物理引擎的属性，避免后端专用属性发生冲突。
 
 源自讨论的：本页把这个有来源支持的层 principle 进一步转成实践判断：`mujoco.usda` 应理解为 MuJoCo 对已有 USD 机器人资产的运行时解释 / 调优叠加层，而不是 MuJoCo 视觉/碰撞模型的替代文件。这个判断来自本次讨论的工程归纳，不等同于官方结构规范清单。
 
@@ -49,7 +50,7 @@ Hypothesis / 后续需要：MuJoCo 原生 XML 参考中的许多字段看起来�
 
 ## 写入位置
 
-- 更新 [[IsaacSimAssetStructure]]，加入 `mujoco.usda` 归属边界和运行时语义示例。
+- 更新 [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]]，加入 `mujoco.usda` 归属边界和运行时语义示例。
 - 本页保存本次源自讨论的提炼，避免把未收录的 MuJoCo XML 属性列表写成有来源支持的主张。
 
 ## 后续来源

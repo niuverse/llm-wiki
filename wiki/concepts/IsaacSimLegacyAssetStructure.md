@@ -4,6 +4,7 @@ type: concept
 tags: [isaac-sim, usd, asset-structure, simulation-assets, robot-setup]
 sources: ["[[isaac-sim-45-asset-structure]]", "[[isaac-sim-asset-structure]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # Isaac Sim 旧版资产结构
@@ -92,4 +93,4 @@ flowchart LR
 
 维护旧资产的实用原则是：来源文件保持可重新导入；仿真层级变更去 `asset_sim_optimized.usd`；物理 / 传感器 / 控制 / ROS 变更去特征层；最终 `asset.usd` 负责组合，而不是承载所有编辑。迁移到 3.0 时，优先把网格数据、assembly/碰撞体、中性物理和引擎特定的调优拆开，而不是只做文件名重命名。
 
-相关页面：[[IsaacSimAssetStructure]]、[[IsaacSim]]、[[OpenUSD]]、[[NVIDIA]]、[[SimulationRealityGap]]。
+相关页面：[[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]]、[[IsaacSim|Isaac Sim]]、[[OpenUSD|OpenUSD]]、[[NVIDIA|NVIDIA]]、[[SimulationRealityGap|仿真—现实差距]]。

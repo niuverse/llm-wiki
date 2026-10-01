@@ -91,6 +91,10 @@ async function mouseEnterHandler(
       const contents = await response.text()
       const html = p.parseFromString(contents, "text/html")
       normalizeRelativeURLs(html, targetUrl)
+      // A preview should not duplicate the full page's personal-state controls.
+      html
+        .querySelectorAll(".reading-actions, .reading-status, .knowledge-relations")
+        .forEach((el) => el.remove())
       // prepend all IDs inside popovers to prevent duplicates
       html.querySelectorAll("[id]").forEach((el) => {
         const targetID = `popover-internal-${el.id}`

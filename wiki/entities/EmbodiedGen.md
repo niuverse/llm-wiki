@@ -4,6 +4,7 @@ type: entity
 tags: [robotics, embodied-ai, 3d-generation]
 sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # EmbodiedGen
@@ -44,4 +45,4 @@ flowchart LR
 - 不应把 VLM-estimated 物理属性当作真实测量，也不应把跨格式导出当作跨引擎动力学等价性。
 - 评估 EmbodiedGen 时要分层报告资产验收、碰撞行为、可供性 yield、世界验收、生成成本、策略 trainability 与真实机器人迁移，不能用单一视觉指标代表全部。
 
-相关页面：[[SimulationReady3DWorldGeneration]]、[[AgenticSceneTaskGeneration]]、[[CollisionGeometryForRobotSimulation]]、[[SimulationRealityGap]]、[[embodiedgen-v1-v2-learning-map]]。
+相关页面：[[SimulationReady3DWorldGeneration|可用于仿真的三维世界生成]]、[[AgenticSceneTaskGeneration|智能体式场景与任务生成]]、[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[SimulationRealityGap|仿真—现实差距]]、[[embodiedgen-v1-v2-learning-map|EmbodiedGen V1/V2 学习地图]]。

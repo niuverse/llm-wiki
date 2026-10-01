@@ -9,6 +9,7 @@ source_kind: pdf
 source_url: https://arxiv.org/abs/2602.03865
 extracted_text: graph/extracts/convex-primitive-decomposition-for-collision-detection.md
 source_date: unknown
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
@@ -33,9 +34,9 @@ source_date: unknown
 
 ## 关联
 
-- [[CollisionGeometryForRobotSimulation]] - 基元与凸包 / ACD 的取舍。
-- [[ApproximateConvexDecomposition]] - 凸基元分解是 ACD 的一个面向运行时的分支。
-- [[VHACD]] 与 [[CoACD]] - 论文对比对象。
+- [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]] - 基元与凸包 / ACD 的取舍。
+- [[ApproximateConvexDecomposition|近似凸分解]] - 凸基元分解是 ACD 的一个面向运行时的分支。
+- [[VHACD|V-HACD]] 与 [[CoACD|CoACD]] - 论文对比对象。
 
 ## 开放问题
 

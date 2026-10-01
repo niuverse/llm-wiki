@@ -4,11 +4,12 @@ type: concept
 tags: [sensor-simulation, openusd, robotics]
 sources: ["[[nvidia-ovrtx]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # RTX 传感器仿真流程
 
-RTX 传感器仿真流程是 [[nvidia-ovrtx|ovrtx]] 来源中体现出的应用契约：用 [[OpenUSD]] 阶段表达场景、传感器图元、`RenderProduct` 和 `RenderVar`，由渲染器在步骤中推进传感器仿真，再把输出映射为 CPU/CUDA DLPack 张量。这个流程把“场景怎么被组合”“哪个传感器被渲染”“输出哪些变量”“数据在哪个设备上被消费”拆成可检查的接口，而不是把传感器仿真当成不透明的截图。
+RTX 传感器仿真流程是 [[nvidia-ovrtx|ovrtx]] 来源中体现出的应用契约：用 [[OpenUSD|OpenUSD]] 阶段表达场景、传感器图元、`RenderProduct` 和 `RenderVar`，由渲染器在步骤中推进传感器仿真，再把输出映射为 CPU/CUDA DLPack 张量。这个流程把“场景怎么被组合”“哪个传感器被渲染”“输出哪些变量”“数据在哪个设备上被消费”拆成可检查的接口，而不是把传感器仿真当成不透明的截图。
 
 ## 数学结构
 
@@ -67,13 +68,13 @@ flowchart LR
 
 渲染模式是保真度/吞吐量的显式调节项。`Real-Time Path-Tracing` 是默认高保真路径，`PathTracing` 适合参考基准质量离线收敛，`Minimal` 适合高 FPS 强化学习、分割掩码或调试可视化。因为模式是每个 RenderProduct 属性，同一个阶段可以让不同传感器产品使用不同质量/性能点。
 
-Scene 组合与随机化的归属要分清。ovrtx 可以把已有 USD 内容子层/参考基准/clone 到运行时阶段，也可以通过属性 write/映射改相机、轻量的、材质、变换、语义标签、RenderProduct 场景等属性；因此上层应用可以实现相机位姿、focal 长度、exposure、轻量的 intensity/旋转、材质绑定、实例变换或渲染场景随机化。当前来源没有显示内置域随机化模块，也没有高层物理物体创建 API；随机化策略与物理丰富资产制作更适合放在 env 封装、Isaac Lab 任务层、ovPhysX/Isaac Sim 或离线 USD 生成层。详见 [[ovrtx-api-boundary]]。
+Scene 组合与随机化的归属要分清。ovrtx 可以把已有 USD 内容子层/参考基准/clone 到运行时阶段，也可以通过属性 write/映射改相机、轻量的、材质、变换、语义标签、RenderProduct 场景等属性；因此上层应用可以实现相机位姿、focal 长度、exposure、轻量的 intensity/旋转、材质绑定、实例变换或渲染场景随机化。当前来源没有显示内置域随机化模块，也没有高层物理物体创建 API；随机化策略与物理丰富资产制作更适合放在 env 封装、Isaac Lab 任务层、ovPhysX/Isaac Sim 或离线 USD 生成层。详见 [[ovrtx-api-boundary|ovrtx API 边界]]。
 
 ## 失效情形
 
 - Sensor 路径 / RenderProduct 路径混淆：来源明确要求 `step` 接收 RenderProduct 路径；把相机/lidar/radar 图元路径直接传给 `step` 会破坏流程边界。
 - 忽略 warm-up：loading 场景、重置或改变路径追踪场景后，纹理流式加载与追踪累积会让前几帧质量不稳定；来源给出 40 warm-up 帧作为 conservative 默认。
-- 变量尺寸点点云被当成 dense 数组：lidar/radar 张量的形状是 maximum extent，实际条目数由 `Counts` 给出；使用所有 allocated 条目会读到无效点或旧数据。
+- 变量尺寸点云被当成 dense 数组：lidar/radar 张量的形状是 maximum extent，实际条目数由 `Counts` 给出；使用所有 allocated 条目会读到无效点或旧数据。
 - `Flags` 判断过窄：valid 点/检测应检查 `Flags[i] & 0x40`，不能写成 `Flags[i] == 0x40`，因为其他传感器特定的 bits 可以同时置位。
 - CUDA 映射生命周期 / 同步错误：GPU 映射带 producer event 和 stream 提示；跨 stream 或取消映射后继续读写需要显式同步或拷贝。
 - USD 插件路径注册顺序错误：当 ovrtx 和其他 OpenUSD subsystem 共进程时，模式/插件路径必须在 USD 模式 registry 第一次 populate 前发布；来源中 `ovrtx_register_schema_paths` 的契约是 first-调用 wins。
@@ -89,7 +90,7 @@ Scene 组合与随机化的归属要分清。ovrtx 可以把已有 USD 内容子
 - 对合成数据生成，`RenderVar` 目录使 RGB、HDR、表面法向、距离、3D 位置、语义分割和 ID 映射图成为可显式请求的输出变量，而不是后处理阶段的隐式侧 effect。
 - 对 lidar/radar 流程，`PointCloud` 复合的输出把坐标、signal strength、速度、timestamp/帧元数据、材质/物体 ids 和有效性 flags 放进同一个 schemaed 容器；使用方可以按通道名称而不是硬-coded struct 布局读取。
 - 对仿真到现实迁移，流程只能保证传感器仿真被结构化配置和读取；真实传感器分布、材质响应、运动补偿、相机标定和硬件噪声仍需要单独验证，不能由 RTX 渲染 API 自动推出。
-- 对 [[RoboticsSimulationInfrastructure]]，ovrtx 是一个官方示例：渲染器生命周期、阶段 mutation、GPU 映射、状态查询、调试 picking、选择 outlines 和智能体技能都属于仿真器可用性与 diagnosability，而不只是渲染后端。
+- 对 [[RoboticsSimulationInfrastructure|机器人仿真基础设施]]，ovrtx 是一个官方示例：渲染器生命周期、阶段 mutation、GPU 映射、状态查询、调试 picking、选择 outlines 和智能体技能都属于仿真器可用性与 diagnosability，而不只是渲染后端。
 - 对域随机化，ovrtx 更适合作为确定性执行器：上层采样随机变量，写入 USD/运行时属性，重置/warm-up/步骤，再读取传感器输出。这样可以让随机化策略、物理语义和传感器渲染契约分层管理。
 
-相关页面：[[nvidia-ovrtx]]、[[nvidia-ovrtx|Ovrtx]]、[[ovrtx-api-boundary]]、[[OpenUSDSceneComposition]]、[[RoboticsSimulationInfrastructure]]、[[SimulationRealityGap]]。
+相关页面：[[nvidia-ovrtx|NVIDIA ovrtx 文档]]、[[nvidia-ovrtx|Ovrtx]]、[[ovrtx-api-boundary|ovrtx API 边界]]、[[OpenUSDSceneComposition|OpenUSD 场景组合]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[SimulationRealityGap|仿真—现实差距]]。

@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, wheeled-robots, nonholonomic-systems]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 非完整约束移动机器人
@@ -77,4 +78,4 @@ Modern 机器人学的关键对比是：unicycle、diff-驱动和类汽车机器
 
 路径规划应使用满足车辆约束的基元，例如 Dubins、Reeds-Shepp、lattice 或 kinodynamic 规划。轨迹跟踪可以在可行参考基准轨迹周围做 feedback，而不是要求机器人直接执行任意位姿错误 vector。
 
-与 [[WheeledMobileRobotClassification]] 连接时，非完整约束机器人覆盖 Campion 分类体系中 $\delta_m<3$ 的 limited-机动性类型。与 [[SimulationRealityGap]] 连接时，关键是区分“真实非完整约束无滑移约束”和“仿真/硬件中的滑移近似”。
+与 [[WheeledMobileRobotClassification|轮式移动机器人分类]] 连接时，非完整约束机器人覆盖 Campion 分类体系中 $\delta_m<3$ 的 limited-机动性类型。与 [[SimulationRealityGap|仿真—现实差距]] 连接时，关键是区分“真实非完整约束无滑移约束”和“仿真/硬件中的滑移近似”。

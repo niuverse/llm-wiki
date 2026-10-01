@@ -11,11 +11,12 @@ extracted_text: graph/extracts/unilab-readme.md
 source_date: 2026-06-04
 commit_snapshot: raw/unilab-main-commit.json
 commit_sha: 2a9e8ae635811a7385bb8ac111acb25f8c819a6c
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 ## 摘要
 
-这是 [[UniLab]] 的官方 GitHub README 快照，补充 [[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab 论文]] 的实现-facing 证据。README 把 UniLab 定位为“不依赖 GPU 仿真后端的机器人 RL 训练”系统：CPU 物理仿真通过统一的共享内存向 GPU 策略训练发送转移，支持 MuJoCo / Motrix 后端与 CUDA、MPS、ROCm、XPU accelerator 路径。
+这是 [[UniLab|UniLab]] 的官方 GitHub README 快照，补充 [[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab 论文]] 的实现-facing 证据。README 把 UniLab 定位为“不依赖 GPU 仿真后端的机器人 RL 训练”系统：CPU 物理仿真通过统一的共享内存向 GPU 策略训练发送转移，支持 MuJoCo / Motrix 后端与 CUDA、MPS、ROCm、XPU accelerator 路径。
 
 对知识库来说，这个来源的价值是把论文层级架构落到代码仓库契约：`uv run train` / `uv run eval` / `uv run demo` 作为统一 CLI，Hydra owner YAML 负责任务、奖励、后端、算法组合，后端选择通过 `task=<task>/<backend>` 显式表达。它还列出文档 entrypoints、后端支撑矩阵、开发者指南与 ADR 索引，说明 UniLab 把运行时架构当作代码仓库层级治理表面。
 
@@ -37,9 +38,9 @@ commit_sha: 2a9e8ae635811a7385bb8ac111acb25f8c819a6c
 
 ## 关联
 
-- [[UniLab]] - 代码仓库对应的系统实体。
-- [[HeterogeneousRobotRLTraining]] - 代码仓库把论文中的运行时抽象具体化为 CLI、任务/后端配置和开发者契约。
-- [[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]] 与 [[MotrixSim]] - README 明确列出的物理后端。
+- [[UniLab|UniLab]] - 代码仓库对应的系统实体。
+- [[HeterogeneousRobotRLTraining|异构机器人强化学习训练]] - 代码仓库把论文中的运行时抽象具体化为 CLI、任务/后端配置和开发者契约。
+- [[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]] 与 [[MotrixSim|MotrixSim]] - README 明确列出的物理后端。
 
 ## 开放问题
 

@@ -10,6 +10,7 @@ source_url: https://arxiv.org/abs/2606.05160
 extracted_text: graph/extracts/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.md
 source_date: 2026-06-03
 project_url: https://research.nvidia.com/labs/dair/grail/
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 ## 摘要
@@ -71,11 +72,11 @@ flowchart LR
 ## 关联
 
 - [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] - 本来源对应的框架 / 项目实体。
-- [[AssetConditionedHOIGeneration]] - 本来源最核心的机制层级概念：先规定 3D 资产 / 相机 / 指标世界，再用 VFM 先验生成和重建机器人兼容的 HOI 轨迹。
-- [[VisualSimToReal]] - GRAIL 的生成的数据最终通过第一视角 RGB 策略部署到真实 Unitree G1。
-- [[SimulationRealityGap]] - GRAIL 把差距的一部分前移到数据/重建阶段：已知几何和公制尺度可以减少视频到-4D 歧义，但 VFM 产物、相机/手部动力学和现实世界接触仍会留下差距。
-- [[TaskGeneralistPolicyEvaluation]] - GRAIL 明确比较 per-任务/per-序列风格基线与任务族 pooled 跟踪器，并用 SR、ObjPos、MPJPE-L 评估。
-- [[NVIDIA]] - 作者团队主要来自 NVIDIA，项目主页位于 NVIDIA 研究。
+- [[AssetConditionedHOIGeneration|资产条件化人物—物体交互生成]] - 本来源最核心的机制层级概念：先规定 3D 资产 / 相机 / 指标世界，再用 VFM 先验生成和重建机器人兼容的 HOI 轨迹。
+- [[VisualSimToReal|视觉仿真到现实迁移]] - GRAIL 的生成的数据最终通过第一视角 RGB 策略部署到真实 Unitree G1。
+- [[SimulationRealityGap|仿真—现实差距]] - GRAIL 把差距的一部分前移到数据/重建阶段：已知几何和公制尺度可以减少视频到-4D 歧义，但 VFM 产物、相机/手部动力学和现实世界接触仍会留下差距。
+- [[TaskGeneralistPolicyEvaluation|通用任务策略评估]] - GRAIL 明确比较 per-任务/per-序列风格基线与任务族 pooled 跟踪器，并用 SR、ObjPos、MPJPE-L 评估。
+- [[NVIDIA|NVIDIA]] - 作者团队主要来自 NVIDIA，项目主页位于 NVIDIA 研究。
 
 ## 开放问题
 

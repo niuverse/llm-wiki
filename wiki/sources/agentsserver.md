@@ -9,6 +9,7 @@ source_kind: markdown
 source_url: https://github.com/ZhengyiLuo/AgentsServer
 source_date: unknown
 source_metadata: raw/agentsserver-version.txt
+study_topic: syntheses/agent-tools-learning-path
 ---
 
 ## 摘要
@@ -52,9 +53,9 @@ flowchart LR
 
 ## 关联
 
-- [[AgentsDock]] - AgentsServer 对应的前端客户端实体。
-- [[AgentsServer]] - 自托管执行后端实体页。
-- [[agentsdock-releases]] - AgentsDock 桌面发布仓库来源页。
+- [[AgentsDock|AgentsDock]] - AgentsServer 对应的前端客户端实体。
+- [[AgentsServer|AgentsServer]] - 自托管执行后端实体页。
+- [[agentsdock-releases|AgentsDock 发布记录]] - AgentsDock 桌面发布仓库来源页。
 
 ## 开放问题
 

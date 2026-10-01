@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, generalization, robot-foundation-models, evaluation]
 sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
 modified: 2026-07-19
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 # 机器人学中的组合泛化
@@ -81,4 +82,4 @@ RoboCasa365 补充说明，任务覆盖还必须和数据质量、场景覆盖�
 
 对机器人 teaching，语言 coaching 是一个实际路径：先让人类给子任务层级指令，让策略执行；再用这些 traces 训练高层策略自动生成子任务。它减少低层遥操作 demand，但仍依赖 VLA 对每个子任务的语义落地能力。
 
-相关页面：[[RobotContextConditioning]]、[[VisionLanguageActionModels]]、[[pi07-steerable-generalist-robotic-foundation-model|Pi07]]、[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]、[[RobotLearningDataComposition]]、[[TaskGeneralistPolicyEvaluation]]。
+相关页面：[[RobotContextConditioning|机器人上下文条件化]]、[[VisionLanguageActionModels|视觉—语言—动作模型]]、[[pi07-steerable-generalist-robotic-foundation-model|Pi07]]、[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]、[[RobotLearningDataComposition|机器人学习数据构成]]、[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]。

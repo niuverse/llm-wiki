@@ -9,6 +9,7 @@ source_kind: pdf
 source_url: https://arxiv.org/abs/2205.02961
 extracted_text: graph/extracts/coacd-approximate-convex-decomposition.md
 source_date: 2022-07-01
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
@@ -34,11 +35,11 @@ CoACD 论文提出近似凸分解用于 3D 网格带有碰撞感知凹度与树�
 
 ## 关联
 
-- [[ApproximateConvexDecomposition]] - CoACD 的数学结构、直觉和失效情形。
-- [[CollisionGeometryForRobotSimulation]] - 碰撞体不匹配如何改变抓取 / 操作 outcome。
-- [[SimulationRealityGap]] - 资产层级碰撞体错误是策略现实差距的上游因素。
-- [[CoACD]] - 实体页面。
-- [[VHACD]] - 基线实体。
+- [[ApproximateConvexDecomposition|近似凸分解]] - CoACD 的数学结构、直觉和失效情形。
+- [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]] - 碰撞体不匹配如何改变抓取 / 操作 outcome。
+- [[SimulationRealityGap|仿真—现实差距]] - 资产层级碰撞体错误是策略现实差距的上游因素。
+- [[CoACD|CoACD]] - 实体页面。
+- [[VHACD|V-HACD]] - 基线实体。
 
 ## 开放问题
 

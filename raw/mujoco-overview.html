@@ -1,0 +1,1354 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link sizes="16x16" href="_static/favicons/favicon-16x16.png" rel="icon" type="image/png">
+    <link sizes="32x32" href="_static/favicons/favicon-32x32.png" rel="icon" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="_static/favicons/favicon-180x180.png" type="image/png">
+    <link sizes="180x180" href="_static/favicons/favicon-180x180.png" rel="icon" type="image/png">
+    <link sizes="192x192" href="_static/favicons/favicon-192x192.png" rel="icon" type="image/png"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Computation" href="computation/index.html" /><link rel="prev" title="&lt;no title&gt;" href="index.html" />
+
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
+        <title>Overview - MuJoCo Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=9b8f763b" />
+    <link rel="stylesheet" type="text/css" href="_static/theme_overrides_mjwarp.css?v=e08d3b36" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --color-brand-visited: var(--color-brand-content);
+  --font-stack--monospace: Inconsolata,Consolas,ui-monospace,monospace;
+  --at-color: #830b2b;
+  --at-val-color: #bc103e;
+  --body-color: #14234b;
+  --color-highlight-on-target: #e5e8ed;
+  --primary-header-color: #0053d6;
+  --row-odd-background-color: #f0f3f7;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #123693;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 130%;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-visited: var(--color-brand-content);
+  --at-color: #ffaab7;
+  --at-val-color: #ff95a6;
+  --body-color: #14234b;
+  --color-admonition-background: #1e1e21;
+  --color-highlight-on-target: #3d4045;
+  --primary-header-color: #a8caff;
+  --row-odd-background-color: #222326;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #458dff;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 130%;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-visited: var(--color-brand-content);
+  --at-color: #ffaab7;
+  --at-val-color: #ff95a6;
+  --body-color: #14234b;
+  --color-admonition-background: #1e1e21;
+  --color-highlight-on-target: #3d4045;
+  --primary-header-color: #a8caff;
+  --row-odd-background-color: #222326;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #458dff;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 130%;
+  
+      }
+    }
+  }
+</style><script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="mujoco" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/overview.html" /><meta name="readthedocs-http-status" content="200" /></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">MuJoCo Documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/banner.svg" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">MuJoCo Documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="computation/index.html">Computation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Computation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="computation/fluid.html">Fluid forces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modeling.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XMLreference.html">XML Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="programming/index.html">Programming</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Programming</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="programming/simulation.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="programming/visualization.html">Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="programming/ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="programming/modeledit.html">Model Editing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="programming/samples.html">Code samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="programming/extension.html">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="APIreference/index.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="APIreference/APItypes.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIreference/APIfunctions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIreference/APIglobals.html">Globals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="mjx.html">MuJoCo XLA</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of MuJoCo XLA</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="mjx_api.html">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="mjwarp/index.html">MuJoCo Warp</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MuJoCo Warp</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="mjwarp/api.html">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="unity.html">Unity Plug-in</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="OpenUSD/index.html">OpenUSD</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of OpenUSD</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="OpenUSD/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OpenUSD/mjcPhysics.html">mjcPhysics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OpenUSD/mjcf_file_format_plugin.html">File Format Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OpenUSD/importing.html">Importing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OpenUSD/exporting.html">Exporting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Model Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/google-deepmind/mujoco">GitHub</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/overview.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p><strong>MuJoCo</strong> stands for <strong>Mu</strong>lti-<strong>Jo</strong>int dynamics with <strong>Co</strong>ntact. It is a general purpose physics engine that
+aims to facilitate research and development in robotics, biomechanics, graphics and animation, machine learning, and
+other areas that demand fast and accurate simulation of articulated structures interacting with their environment.
+Initially developed by Roboti LLC, it was acquired and made <a class="reference external" href="https://github.com/google-deepmind/mujoco/blob/main/LICENSE">freely available</a> by Google DeepMind in October 2021, and open sourced in
+May 2022. The MuJoCo codebase is available at the <a class="reference external" href="https://github.com/google-deepmind/mujoco">google-deepmind/mujoco</a> repository on GitHub.</p>
+<p>MuJoCo is a C/C++ library with a C API, intended for researchers and developers. The runtime simulation module is tuned
+to maximize performance and operates on low-level data structures which are preallocated by the built-in XML parser and
+compiler. The user defines models in the native MJCF scene description language – an XML file format designed to be as
+human readable and editable as possible. URDF model files can also be loaded. The library includes interactive
+visualization with a native GUI, rendered in OpenGL. MuJoCo further exposes a large number of utility functions for
+computing physics-related quantities.</p>
+<p>MuJoCo can be used to implement model-based computations such as control synthesis, state estimation, system
+identification, mechanism design, data analysis through inverse dynamics, and parallel sampling for machine learning
+applications. It can also be used as a more traditional simulator, including for gaming and interactive virtual
+environments.</p>
+<section id="key-features">
+<span id="features"></span><h3>Key features<a class="headerlink" href="#key-features" title="Link to this heading">#</a></h3>
+<p>MuJoCo has a long list of features. Here we outline the most notable ones.</p>
+<dl class="simple">
+<dt>Generalized coordinates combined with modern contact dynamics</dt><dd><p>Physics engines have traditionally separated in two categories. Robotics and biomechanics engines use efficient and
+accurate recursive algorithms in generalized or joint coordinates. However they either leave out contact dynamics, or
+rely on the earlier spring-damper approach which requires very small time-steps. Gaming engines use a more modern
+approach where contact forces are found by solving an optimization problem. However, they often resort to the
+over-specified Cartesian representation where joint constraints are imposed numerically, causing inaccuracies and
+instabilities when elaborate kinematic structures are involved. MuJoCo pioneered the combination of simulation in
+generalized coordinates with optimization-based contact dynamics. This approach has since been adopted by other
+simulators. Users accustomed to gaming engines may find the generalized coordinates counterintuitive at first; see
+<a class="reference internal" href="#clarifications"><span class="std std-ref">Clarifications</span></a> section below.</p>
+</dd>
+<dt>Soft, convex and analytically-invertible contact dynamics</dt><dd><p>In the modern approach to contact dynamics, the forces or impulses caused by frictional contacts are usually defined
+as the solution to a linear or non-linear complementarity problem (LCP or NCP), both of which are NP-hard. MuJoCo is
+based on a different formulation of the physics of contact which reduces to a convex optimization problem, as
+explained in detail in the <a class="reference internal" href="computation/index.html"><span class="doc">Computation</span></a> chapter. Our model allows soft contacts and other constraints,
+and has a uniquely-defined inverse facilitating data analysis and control applications. The default Newton solver
+provides quadratic convergence; alternative algorithms include a conjugate gradient method and a generalized
+Projected Gauss-Seidel method that can handle elliptic friction cones. The solver provides unified treatment of
+frictional contacts including torsional and rolling friction, frictionless contacts, joint and tendon limits, dry
+friction in joints and tendons, as well as a variety of equality constraints.</p>
+</dd>
+<dt>Tendon geometry</dt><dd><p>MuJoCo can model the 3D geometry of tendons – which are minimum-path-length strings obeying wrapping and via-point
+constraints. The mechanism is similar to the one in OpenSim but implements a more restricted, closed-form set of
+wrapping options to speed up computation. It also offers robotics-specific structures such as pulleys and coupled
+degrees of freedom. Tendons can be used for actuation as well as to impose inequality or equality constraints on the
+tendon length.</p>
+</dd>
+<dt>General actuation model</dt><dd><p>Designing a sufficiently rich actuation model while using a model-agnostic API is challenging. MuJoCo achieves this
+goal by adopting an abstract actuation model that can have different types of transmission, force generation, and
+internal dynamics (i.e., state variables which make the overall dynamics 3rd order). These components can be
+instantiated so as to model motors, pneumatic and hydraulic cylinders, PD controllers, biological muscles and many
+other actuators in a unified way.</p>
+</dd>
+<dt>Reconfigurable computation pipeline</dt><dd><p>MuJoCo has a top-level stepper function <a class="reference internal" href="APIreference/APIfunctions.html#mj-step"><span class="std std-ref">mj_step</span></a> which runs the entire forward dynamics and advances the state
+of the simulation. In many applications beyond simulation, however, it is beneficial to be able to run selected parts
+of the computation pipeline. To this end MuJoCo provides a large number of <a class="reference internal" href="XMLreference.html#option-flag"><span class="std std-ref">flags</span></a> which can be
+set in any combination, allowing the user to reconfigure the pipeline as needed, beyond the selection of algorithms
+and algorithm parameters via <a class="reference internal" href="XMLreference.html#option"><span class="std std-ref">options</span></a>. Furthermore many lower-level functions can be called directly.
+User-defined callbacks can implement custom force fields, actuators, collision routines, and feedback controllers.</p>
+</dd>
+<dt>Model compilation</dt><dd><p>As mentioned above, the user defines a MuJoCo model in an XML file format called MJCF. This model is then compiled by
+the built-in compiler into the low-level data structure <a class="reference internal" href="APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a>, which is cross-indexed and optimized for
+runtime computation. The compiled model can also be saved in a binary MJB file.</p>
+</dd>
+</dl>
+<dl id="modelanddata">
+<dt>Separation of model and data</dt><dd><p>MuJoCo separates simulation parameters into two data structures (C structs) at runtime:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> contains the model description and is expected to remain constant. There are other structures
+embedded in it that contain simulation and visualization options, and those options need to be changed
+occasionally, but this is done by the user.</p></li>
+<li><p><a class="reference internal" href="APIreference/APItypes.html#mjdata"><span class="std std-ref">mjData</span></a> contains all dynamic variables and intermediate results. It is used as a scratch pad where all
+functions read their inputs and write their outputs – which then become the inputs to subsequent stages in the
+simulation pipeline. It also contains a preallocated and internally managed stack, so that the runtime module
+does not need to call memory allocation functions after the model is initialized.</p></li>
+</ul>
+<p><a class="reference internal" href="APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> is constructed by the compiler. <a class="reference internal" href="APIreference/APItypes.html#mjdata"><span class="std std-ref">mjData</span></a> is constructed at runtime, given
+<a class="reference internal" href="APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a>. This separation makes it easy to simulate multiple models as well as multiple states and controls for
+each model, in turn facilitating <a class="reference internal" href="programming/simulation.html#simultithread"><span class="std std-ref">multi-threading</span></a> for sampling and <a class="reference internal" href="APIreference/APIfunctions.html#mjd-transitionfd"><span class="std std-ref">finite
+differences</span></a>. The top-level API functions reflect this basic separation, and have
+the format:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">mj_step</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">mjModel</span><span class="o">*</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">mjData</span><span class="o">*</span><span class="w"> </span><span class="n">d</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+<dt>Performance</dt><dd><p>MuJoCo’s runtime performs zero memory allocations after initialization – all working memory is preallocated in
+<code class="docutils literal notranslate"><span class="pre">mjData</span></code>. A single simulation step is single-threaded by default, but <a class="reference internal" href="computation/index.html#soisland"><span class="std std-ref">constraint islands</span></a> enable
+per-island parallelism within a step. Large-scale data-parallel sampling is achieved by creating multiple <code class="docutils literal notranslate"><span class="pre">mjData</span></code>
+instances that share the same <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> and running them on separate threads; see <a class="reference internal" href="programming/simulation.html#simultithread"><span class="std std-ref">multi-threading</span></a>.</p>
+</dd>
+<dt>Interactive simulation and visualization</dt><dd><p>The native <a class="reference internal" href="programming/visualization.html#visualization"><span class="std std-ref">3D visualizer</span></a> provides rendering of meshes and geometric primitives, textures,
+reflections, shadows, fog, transparency, wireframes, skyboxes, stereoscopic visualization (on video cards supporting
+quad-buffered OpenGL). This functionality is used to generate 3D rendering that helps the user gain insight into the
+physics simulation, including visual aids such as automatically generated model skeletons, equivalent inertia boxes,
+contact positions and normals, contact forces that can be separated into normal and tangential components, external
+perturbation forces, local frames, joint and actuator axes, and text labels. The visualizer expects a generic window
+with an OpenGL rendering context, thereby allowing users to adopt a GUI library of their choice. The code sample
+<a class="reference internal" href="programming/samples.html#sasimulate"><span class="std std-ref">simulate.cc</span></a> distributed with MuJoCo shows how to do that with the GLFW library. A related
+usability feature is the ability to “reach into” the simulation, push objects around and see how the physics respond.
+The user selects the body to which the external forces and torques will be applied, and sees a real-time rendering of
+the perturbations together with their dynamic consequences. This can be used to debug the model visually, to test the
+response of a feedback controller, or to configure the model into a desired pose.</p>
+</dd>
+<dt>Powerful yet intuitive modeling language</dt><dd><p>MuJoCo has its own modeling language called MJCF. The goal of MJCF is to provide access to all of MuJoCo’s compute
+capabilities, and at the same time enable users to develop new models quickly and experiment with them. This goal is
+achieved in large part due to an extensive <a class="reference internal" href="modeling.html#cdefault"><span class="std std-ref">default setting</span></a> mechanism that resembles Cascading Style
+Sheets (CSS) inlined in HTML. While MJCF has many elements and attributes, the user needs to set surprisingly few of
+them in any given model. This makes MJCF files shorter and more readable than many other formats.</p>
+</dd>
+<dt>Automated generation of composite flexible objects</dt><dd><p>MuJoCo’s soft constraints can be used to model ropes, cloth, and deformable 3D objects. This requires a large
+collection of regular bodies, joint, tendons and constraints to work together. The modeling language has high-level
+macros which are automatically expanded by the model compiler into the necessary collections of standard model
+elements. Importantly, these resulting flexible objects are able to fully interact with the rest of the simulation.</p>
+</dd>
+<dt>Constraint islands and sleeping</dt><dd><p>The constraint solver automatically discovers independent <a class="reference internal" href="computation/index.html#soisland"><span class="std std-ref">constraint islands</span></a> – groups of bodies
+coupled by constraints that can be solved independently. This enables per-island parallelism and avoids over-solving:
+each island converges with the number of iterations it needs, and unconstrained degrees of freedom are skipped
+entirely. Additionally, <a class="reference internal" href="computation/index.html#sleeping"><span class="std std-ref">island sleeping</span></a> can freeze stationary islands, substantially reducing
+computation when parts of the scene are at rest.</p>
+</dd>
+<dt>Plugin system</dt><dd><p>MuJoCo supports <a class="reference internal" href="programming/extension.html"><span class="doc">engine plugins</span></a> that extend the physics engine with custom
+elements: sensors, actuators, and passive forces. Plugins are dynamically loaded shared libraries that register
+themselves with the engine and are instantiated per model element. This allows extending MuJoCo without modifying
+the core engine.</p>
+</dd>
+<dt>GPU-accelerated backends</dt><dd><p>In addition to the C engine, MuJoCo has GPU-accelerated backends for large-scale parallel simulation:
+<a class="reference internal" href="mjx.html"><span class="doc">MJX</span></a> (JAX) and <a class="reference internal" href="mjwarp/index.html"><span class="doc">MuJoCo Warp</span></a> (NVIDIA Warp). Both backends consume the same
+<code class="docutils literal notranslate"><span class="pre">mjModel</span></code> and <code class="docutils literal notranslate"><span class="pre">mjData</span></code> structures, allowing seamless transfer between CPU and GPU. First-class
+<a class="reference internal" href="python.html"><span class="doc">Python bindings</span></a> provide access to the full C API.</p>
+</dd>
+</dl>
+</section>
+<section id="model-instances">
+<span id="instance"></span><h3>Model instances<a class="headerlink" href="#model-instances" title="Link to this heading">#</a></h3>
+<p>There are several entities called “model” in MuJoCo. The user defines the model in an XML file written in MJCF or URDF.
+The software can then create multiple instances of the same model in different media (file or memory) and on different
+levels of description (high or low). All combinations are possible as shown in the following table:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.6%" />
+<col style="width: 48.1%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>High level</p></th>
+<th class="head"><p>Low level</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>File</strong></p></td>
+<td><p>MJCF/URDF (XML), MJZ (Zip archive)</p></td>
+<td><p>MJB (binary)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Memory</strong></p></td>
+<td><p><a class="reference internal" href="APIreference/APItypes.html#mjspec"><span class="std std-ref">mjSpec</span></a> (C struct)</p></td>
+<td><p><a class="reference internal" href="APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> (C struct)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>All runtime computations are performed with <a class="reference internal" href="APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> which is too complex to create manually. This is why we have
+two levels of modeling. The high level exists for user convenience: its sole purpose is to be compiled into a low level
+model on which computations can be performed. The resulting <a class="reference internal" href="APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> can be loaded and saved into a binary file
+(MJB), however those are version-specific and cannot be decompiled, thus models should always be maintained as XML
+files or packaged into MJZ archives.</p>
+<p>The <a class="reference internal" href="APIreference/APItypes.html#mjspec"><span class="std std-ref">mjSpec</span></a> C struct is in one-to-one correspondence with the MJCF file format. The XML loader interprets the MJCF
+or URDF file, creates the corresponding <a class="reference internal" href="APIreference/APItypes.html#mjspec"><span class="std std-ref">mjSpec</span></a> and compiles it to <a class="reference internal" href="APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a>. The user can create
+<a class="reference internal" href="APIreference/APItypes.html#mjspec"><span class="std std-ref">mjSpec</span></a> programmatically and then save it to MJCF/MJZ or compile it. Procedural model creation and editing is
+described in the <a class="reference internal" href="programming/modeledit.html"><span class="doc">Model Editing</span></a> chapter.</p>
+<p>The following diagram shows the different paths to obtaining an <a class="reference internal" href="APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a>:</p>
+<ul class="simple">
+<li><p>(text editor) → MJCF/URDF file → (MuJoCo parser → mjSpec → compiler) → mjModel</p></li>
+<li><p>MJZ archive → (MJZ decoder → mjSpec → compiler) → mjModel</p></li>
+<li><p>(user code) → mjSpec → (MuJoCo compiler) → mjModel</p></li>
+<li><p>MJB file → (model loader) → mjModel</p></li>
+</ul>
+<p>Models and specs can also be serialized or packaged back to disk using <a class="reference internal" href="APIreference/APIfunctions.html#mj-encode"><span class="std std-ref">mj_encode</span></a>.</p>
+</section>
+<section id="examples">
+<span id="id1"></span><h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<p>Here is a simple model in MuJoCo’s MJCF format. It defines a plane fixed to the world, a light to better illuminate
+objects and cast shadows, and a floating box with 6 DOFs (this is what the “free” joint does).</p>
+<p><a class="reference external" href="_static/hello.xml">hello.xml</a>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mujoco&gt;</span>
+<span class="w">  </span><span class="nt">&lt;worldbody&gt;</span>
+<span class="w">    </span><span class="nt">&lt;light</span><span class="w"> </span><span class="na">diffuse=</span><span class="s">&quot;.5 .5 .5&quot;</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0 0 3&quot;</span><span class="w"> </span><span class="na">dir=</span><span class="s">&quot;0 0 -1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;geom</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;plane&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;1 1 0.1&quot;</span><span class="w"> </span><span class="na">rgba=</span><span class="s">&quot;.9 0 0 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;body</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0 0 1&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;free&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;geom</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;box&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;.1 .2 .3&quot;</span><span class="w"> </span><span class="na">rgba=</span><span class="s">&quot;0 .9 0 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/body&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/worldbody&gt;</span>
+<span class="nt">&lt;/mujoco&gt;</span>
+</pre></div>
+</div>
+<p>The built-in OpenGL visualizer renders this model as:</p>
+<a class="reference internal image-reference" href="_images/hello.png"><img alt="_images/hello.png" class="align-center" src="_images/hello.png" style="width: 300px;" />
+</a>
+<p>If this model is simulated, the box will fall on the ground. Basic simulation code for the passive dynamics, without
+rendering, is given below.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mujoco.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;stdio.h&quot;</span>
+
+<span class="kt">char</span><span class="w"> </span><span class="n">error</span><span class="p">[</span><span class="mi">1000</span><span class="p">];</span>
+<span class="n">mjModel</span><span class="o">*</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
+<span class="n">mjData</span><span class="o">*</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// load model from file and check for errors</span>
+<span class="w">  </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mj_loadXML</span><span class="p">(</span><span class="s">&quot;hello.xml&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// make data corresponding to model</span>
+<span class="w">  </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mj_makeData</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// run simulation for 10 seconds</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">d</span><span class="o">-&gt;</span><span class="n">time</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<span class="w">    </span><span class="n">mj_step</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// free model and data</span>
+<span class="w">  </span><span class="n">mj_deleteData</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+<span class="w">  </span><span class="n">mj_deleteModel</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is technically a C file, but it is also a legitimate C++ file. Indeed the MuJoCo API is compatible with both C and
+C++. Normally user code would be written in C++ because it adds convenience, and does not sacrifice efficiency because
+the computational bottlenecks are in the simulator which is already highly optimized.</p>
+<p>The function <a class="reference internal" href="APIreference/APIfunctions.html#mj-step"><span class="std std-ref">mj_step</span></a> is the top-level function which advances the simulation state by one time step. This example
+of course is just a passive dynamical system. Things get more interesting when the user specifies controls or applies
+forces and starts interacting with the system.</p>
+<p>Next we provide a more elaborate example illustrating several features of MJCF. Consider the following
+<a class="reference external" href="_static/example.xml">example.xml</a>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mujoco</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;example&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;default&gt;</span>
+<span class="w">    </span><span class="nt">&lt;geom</span><span class="w"> </span><span class="na">rgba=</span><span class="s">&quot;.8 .6 .4 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/default&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;asset&gt;</span>
+<span class="w">    </span><span class="nt">&lt;texture</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;skybox&quot;</span><span class="w"> </span><span class="na">builtin=</span><span class="s">&quot;gradient&quot;</span><span class="w"> </span><span class="na">rgb1=</span><span class="s">&quot;1 1 1&quot;</span><span class="w"> </span><span class="na">rgb2=</span><span class="s">&quot;.6 .8 1&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;256&quot;</span><span class="w"> </span><span class="na">height=</span><span class="s">&quot;256&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/asset&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;worldbody&gt;</span>
+<span class="w">    </span><span class="nt">&lt;light</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0 1 1&quot;</span><span class="w"> </span><span class="na">dir=</span><span class="s">&quot;0 -1 -1&quot;</span><span class="w"> </span><span class="na">diffuse=</span><span class="s">&quot;1 1 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;body</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0 0 1&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;ball&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;geom</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;capsule&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;0.06&quot;</span><span class="w"> </span><span class="na">fromto=</span><span class="s">&quot;0 0 0  0 0 -.4&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;body</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0 0 -0.4&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">axis=</span><span class="s">&quot;0 1 0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">axis=</span><span class="s">&quot;1 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;geom</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;capsule&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;0.04&quot;</span><span class="w"> </span><span class="na">fromto=</span><span class="s">&quot;0 0 0  .3 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;body</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;.3 0 0&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">axis=</span><span class="s">&quot;0 1 0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">axis=</span><span class="s">&quot;0 0 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;geom</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;.1 0 0&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;0.1 0.08 0.02&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;ellipsoid&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;site</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;end1&quot;</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0.2 0 0&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;0.01&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/body&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/body&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/body&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;body</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0.3 0 0.1&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;free&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;geom</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;0.07 0.1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;cylinder&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;site</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;end2&quot;</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0 0 0.1&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;0.01&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/body&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/worldbody&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;tendon&gt;</span>
+<span class="w">    </span><span class="nt">&lt;spatial</span><span class="w"> </span><span class="na">limited=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">range=</span><span class="s">&quot;0 0.6&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;0.005&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;site</span><span class="w"> </span><span class="na">site=</span><span class="s">&quot;end1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;site</span><span class="w"> </span><span class="na">site=</span><span class="s">&quot;end2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/spatial&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/tendon&gt;</span>
+<span class="nt">&lt;/mujoco&gt;</span>
+</pre></div>
+</div>
+<figure class="align-right">
+   <video width="200" height="295" muted autoplay loop>
+      <source src="_static/example.mp4" type="video/mp4">
+   </video>
+</figure><p>This model is a 7 degree-of-freedom arm “holding” a string with a cylinder attached at the other end. The string is
+implemented as a tendon with length limits. There is ball joint at the shoulder and pairs of hinge joints at the elbow
+and wrist. The box inside the cylinder indicates a free “joint”. The outer body element in the XML is the required
+<span class="el">worldbody</span>. Note that using multiple joints between two bodies does not require creating dummy bodies.</p>
+<p>The MJCF file contains the minimum information needed to specify the model. Capsules are defined by line-segments in
+space – in which case only the radius of the capsule is needed. The positions and orientations of body frames are
+inferred from the geoms belonging to them. Inertial properties are inferred from the geom shape under a uniform density
+assumption. The two sites are named because the tendon definition needs to reference them, but nothing else is named.
+Joint axes are defined only for the hinge joints but not the ball joint. Collision rules are defined automatically.
+Friction properties, gravity, simulation time step etc. are set to their defaults. The default geom color specified at
+the top applies to all geoms.</p>
+<p>Apart from saving the compiled model in the binary MJB format, we can save it as MJCF or as human-readable text; see
+<a class="reference external" href="_static/example_saved.xml">example_saved.xml</a> and <a class="reference external" href="_static/example_saved.txt">example_saved.txt</a>
+respectively. The XML version is similar to the original, while the text version contains all information from
+<code class="docutils literal notranslate"><span class="pre">mjModel</span></code>. Comparing the text version to the XML version reveals how much work the model compiler did for us.</p>
+</section>
+</section>
+<section id="model-elements">
+<span id="elements"></span><h2>Model elements<a class="headerlink" href="#model-elements" title="Link to this heading">#</a></h2>
+<p>This section provides brief descriptions of all elements that can be included in a MuJoCo model. Later we explain in
+more detail the underlying computations, the way elements are specified in MJCF, and their representation in
+<code class="docutils literal notranslate"><span class="pre">mjModel</span></code>.</p>
+<section id="options">
+<span id="id2"></span><h3>Options<a class="headerlink" href="#options" title="Link to this heading">#</a></h3>
+<p>Each model has three sets of options listed below. They are always included. If their values are not specified in the
+XML file, default values are used. The options are designed such that the user can change their values before each
+simulation time step. Within a time step however none of the options should be changed.</p>
+<section id="mjoption">
+<h4><code class="docutils literal notranslate"><span class="pre">mjOption</span></code><a class="headerlink" href="#mjoption" title="Link to this heading">#</a></h4>
+<p>This structure contains all options that affect the physics simulation. It is used to select algorithms and set their
+parameters, enable and disable different portions of the simulation pipeline, and adjust system-level physical
+properties such as gravity.</p>
+</section>
+<section id="mjvisual">
+<h4><code class="docutils literal notranslate"><span class="pre">mjVisual</span></code><a class="headerlink" href="#mjvisual" title="Link to this heading">#</a></h4>
+<p>This structure contains all visualization options. There are additional OpenGL rendering options, but these are
+session-dependent and are not part of the model.</p>
+</section>
+<section id="mjstatistic">
+<h4><code class="docutils literal notranslate"><span class="pre">mjStatistic</span></code><a class="headerlink" href="#mjstatistic" title="Link to this heading">#</a></h4>
+<p>This structure contains statistics about the model which are computed by the compiler: average body mass, spatial
+extent of the model etc. It is included for information purposes, and also because the visualizer uses it for
+automatic scaling.</p>
+</section>
+</section>
+<section id="assets">
+<span id="id3"></span><h3>Assets<a class="headerlink" href="#assets" title="Link to this heading">#</a></h3>
+<p>Assets are not in themselves model elements. Model elements can reference them, in which case the asset somehow changes
+the properties of the referencing element. One asset can be referenced by multiple model elements. Since the sole
+purpose of including an asset is to reference it, and referencing can only be done by name, every asset has a name
+(which may be inferred from a file name when applicable). In contrast, the names of regular elements can be left
+undefined.</p>
+<section id="mesh">
+<h4>Mesh<a class="headerlink" href="#mesh" title="Link to this heading">#</a></h4>
+<p>MuJoCo can load triangulated meshes from OBJ files and binary STL. Software such as <a class="reference external" href="https://www.meshlab.net/">MeshLab</a> can be used to convert from other formats. While any collection of triangles can be
+loaded and visualized as a mesh, the collision detector works with the convex hull. There are compile-time options
+for scaling the mesh, as well as fitting a primitive geometric shape to it. The mesh can also be used to
+automatically infer inertial properties – by treating it as a union of triangular pyramids and combining their
+masses and inertias. Note that meshes have no color, instead the mesh is colored using the material properties of the
+referencing geom. In contrast, all spatial properties are determined by the mesh data. MuJoCo supports both OBJ and a
+custom binary file format for normals and texture coordinates. Meshes can also be embedded directly in the XML.</p>
+</section>
+<section id="skin">
+<h4>Skin<a class="headerlink" href="#skin" title="Link to this heading">#</a></h4>
+<p>Skinned meshes (or skins) are meshes whose shape can deform at runtime. Their vertices are attached to rigid bodies
+(called bones in this context) and each vertex can belong to multiple bones, resulting in smooth deformations of the
+skin. Skins are purely visualization objects and do not affect the physics, but nevertheless they can enhance visual
+realism significantly. Skins can be loaded from custom binary files, or embedded directly in the XML, similar to
+meshes. When generating composite flexible objects automatically, the model compiler also generates skins for these
+objects.</p>
+</section>
+<section id="height-field">
+<h4>Height field<a class="headerlink" href="#height-field" title="Link to this heading">#</a></h4>
+<p>Height fields can be loaded from PNG files (converted to gray-scale internally) or from files in a custom binary
+format described later. A height field is a rectangular grid of elevation data. The compiler normalizes the data to
+the range [0-1]. The actual spatial extent of the height field is then determined by the size parameters of the
+referencing geom. Height fields can only be referenced from geoms that are attached to the world body. For rendering
+and collision detection purposes, the grid rectangles are automatically triangulated, thus the height field is
+treated as a union of triangular prisms. Collision detection with such a composite object can in principle generate a
+large number of contact points for a single geom pair. If that happens, only the first 64 contact points are kept.
+The rationale is that height fields should be used to model terrain maps whose spatial features are large compared to
+the other objects in the simulation, so the number of contacts will be small for well-designed models.</p>
+</section>
+<section id="texture">
+<h4>Texture<a class="headerlink" href="#texture" title="Link to this heading">#</a></h4>
+<p>Textures can be loaded from PNG or KTX files or synthesized by the compiler based on user-defined procedural parameters.
+There is also the option to leave the texture empty at model creation time and change it later at runtime – so as to
+render video in a MuJoCo simulation, or create other dynamic effects. The visualizer supports two types of texture
+mapping: 2D and cube. 2D mapping is useful for planes and height fields. Cube mapping is useful for “shrink-wrapping”
+textures around 3D objects without having to specify texture coordinates. It is also used to create a skybox. The six
+sides of a cube maps can be loaded from separate image files, or from one composite image file, or generated by
+repeating the same image. Unlike all other assets which are referenced directly from model elements, textures can
+only be referenced from another asset (namely material) which is then referenced from model elements.</p>
+</section>
+<section id="material">
+<h4>Material<a class="headerlink" href="#material" title="Link to this heading">#</a></h4>
+<p>Materials are used to control the appearance of geoms, sites and tendons. This is done by referencing the material
+from the corresponding model element. Appearance includes texture mapping as well as other properties that interact
+with OpenGL lights below: RGBA, specularity, shininess, emission. Materials can also be used to make objects
+reflective. Currently reflections are rendered only on planes and on the Z+ faces of boxes. Note that model elements
+can also have their local RGBA parameter for setting color. If both material and local RGBA are specified, the local
+definition has precedence.</p>
+</section>
+</section>
+<section id="kinematic-tree">
+<span id="kinematic"></span><h3>Kinematic tree<a class="headerlink" href="#kinematic-tree" title="Link to this heading">#</a></h3>
+<p>MuJoCo simulates the dynamics of a collection of rigid bodies whose motion is usually constrained. The system state is
+represented in joint coordinates and the bodies are explicitly organized into kinematic trees. The tree structure is
+given by <code class="docutils literal notranslate"><span class="pre">mjModel.body_parentid</span></code>, an integer array of length <code class="docutils literal notranslate"><span class="pre">nbody</span> <span class="pre">&gt;=</span> <span class="pre">1</span></code>. The top-level “world” body always exists
+(with id <code class="docutils literal notranslate"><span class="pre">0</span></code>) and is its own parent, thus <code class="docutils literal notranslate"><span class="pre">body_parentid[0]</span> <span class="pre">==</span> <span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">body_parentid[i]</span> <span class="pre">&lt;</span> <span class="pre">i</span></code> for all other <code class="docutils literal notranslate"><span class="pre">i</span></code>.
+Note that the world body and other static (joint-less) child bodies form a unique “static tree” with no associated
+degrees of freedom. Below this top-level static tree, multiple kinematic trees can be attached, see <a class="reference internal" href="#elemtree"><span class="std std-ref">Tree</span></a> below.</p>
+<p>Kinematic loops are not allowed; if loop joints are needed they should be modeled with equality constraints. Thus the
+backbone of a MuJoCo model is one or several kinematic trees formed by nested body definitions; an isolated floating
+body counts as a tree. Several other elements listed below are defined within a body and belong to that body. This is in
+contrast with the stand-alone elements listed later which cannot be associated with a single body.</p>
+<section id="body">
+<span id="elembody"></span><h4>Body<a class="headerlink" href="#body" title="Link to this heading">#</a></h4>
+<p>Bodies have mass and inertial properties but do not have any geometric properties. Instead geometric shapes (or
+geoms) are attached to the bodies. Each body has two coordinate frames: the frame used to define it as well as to
+position other elements relative to it, and an inertial frame centered at the body’s center of mass and aligned with
+its principal axes of inertia. The body inertia matrix is therefore diagonal in this frame. At each time step MuJoCo
+computes the forward kinematics recursively, yielding all body positions and orientations in global Cartesian
+coordinates. This provides the basis for all subsequent computations.
+The number of bodies is given by <code class="docutils literal notranslate"><span class="pre">mjModel.nbody</span></code>.</p>
+</section>
+<section id="joint">
+<span id="elemjoint"></span><h4>Joint<a class="headerlink" href="#joint" title="Link to this heading">#</a></h4>
+<p>Joints are defined within bodies. They create motion degrees of freedom (DOFs) between the body and its parent. In
+the absence of joints the body is welded to its parent. This is the opposite of gaming engines which use
+over-complete Cartesian coordinates, where joints remove DOFs instead of adding them. There are four types of joints:
+ball, slide, hinge, and a “free joint” which creates floating bodies. A single body can have multiple joints. In this
+way composite joints are created automatically, without having to define dummy bodies. The orientation components of
+ball and free joints are represented as unit quaternions, and all computations in MuJoCo respect the properties of
+quaternions. The number of joints is given by <code class="docutils literal notranslate"><span class="pre">mjModel.njnt</span></code>.</p>
+<section id="joint-reference">
+<h5>Joint reference<a class="headerlink" href="#joint-reference" title="Link to this heading">#</a></h5>
+<p>The reference pose is a vector of joint positions stored in <code class="docutils literal notranslate"><span class="pre">mjModel.qpos0</span></code>. It corresponds to the numeric values
+of the joints when the model is in its initial configuration. In our earlier example the elbow was created in a bent
+configuration at 90° angle. But MuJoCo does not know what an elbow is, and so by default it treats this joint
+configuration as having numeric value of 0. We can override the default behavior and specify that the initial
+configuration corresponds to 90°, using the ref attribute of <a class="reference internal" href="XMLreference.html#body-joint"><span class="std std-ref">joint</span></a>. The reference values of all
+joints are assembled into the vector <code class="docutils literal notranslate"><span class="pre">mjModel.qpos0</span></code>. Whenever the simulation is reset, the joint configuration
+<code class="docutils literal notranslate"><span class="pre">mjData.qpos</span></code> is set to <code class="docutils literal notranslate"><span class="pre">mjModel.qpos0</span></code>. At runtime the joint position vector is interpreted relative to the
+reference pose. In particular, the amount of spatial transformation applied by the joints is <code class="docutils literal notranslate"><span class="pre">mjData.qpos</span> <span class="pre">-</span>
+<span class="pre">mjModel.qpos0</span></code>. This transformation is in addition to the parent-child translation and rotation offsets stored in
+the body elements of <code class="docutils literal notranslate"><span class="pre">mjModel</span></code>. The ref attribute only applies to scalar joints (slide and hinge). For ball joints,
+the quaternion saved in <code class="docutils literal notranslate"><span class="pre">mjModel.qpos0</span></code> is always (1,0,0,0) which corresponds to the null rotation. For free
+joints, the global 3D position and quaternion of the floating body are saved in <code class="docutils literal notranslate"><span class="pre">mjModel.qpos0</span></code>.</p>
+</section>
+<section id="spring-reference">
+<h5>Spring reference<a class="headerlink" href="#spring-reference" title="Link to this heading">#</a></h5>
+<p>This is the pose in which all joint and tendon springs achieve their resting length. Spring forces are generated
+when the joint configuration deviates from the spring reference pose, and are linear in the amount of deviation. The
+spring reference pose is saved in <code class="docutils literal notranslate"><span class="pre">mjModel.qpos_spring</span></code>. For slide and hinge joints, the spring reference is
+specified with the attribute springref. For ball and free joints, the spring reference corresponds to the initial
+model configuration.</p>
+</section>
+</section>
+<section id="dof">
+<span id="elemdof"></span><h4>DOF<a class="headerlink" href="#dof" title="Link to this heading">#</a></h4>
+<p>Degrees of freedom are closely related to joints, but are not in one-to-one correspondence because ball and free
+joints have multiple DOFs. Think of joints as specifying positional information, and of DOFs as specifying velocity
+and force information. More formally, the joint positions are coordinates over the configuration manifold of the
+system, while the joint velocities are coordinates over the tangent space to this manifold at the current position.
+DOFs have velocity-related properties such as friction loss, damping, armature inertia. All generalized forces acting
+on the system are expressed in the space of DOFs. In contrast, joints have position-related properties such as limits
+and spring stiffness. DOFs are not specified directly by the user. Instead they are created by the compiler given the
+joints. The number of DOFs is given by <code class="docutils literal notranslate"><span class="pre">mjModel.nv</span></code>.</p>
+</section>
+<section id="tree">
+<span id="elemtree"></span><h4>Tree<a class="headerlink" href="#tree" title="Link to this heading">#</a></h4>
+<p>As explained <a class="reference internal" href="#kinematic"><span class="std std-ref">above</span></a>, moving bodies are organized into kinematic trees. A kinematic tree or “tree” is
+<em>a movable body and all of its descendants</em>. Thus the world and other static bodies are in the global tree structure but
+not associated with any <em>tree</em>. Because the global tree structure uses a depth-first organization, all bodies, joints
+and DOFs belonging to a single tree are always sequential. Note that unlike bodies which (if static) are not associated
+with any tree, joints and DOFs are always associated with a tree. Both <a class="reference internal" href="computation/index.html#soisland"><span class="std std-ref">island discovery</span></a> and
+<a class="reference internal" href="computation/index.html#sleeping"><span class="std std-ref">island sleeping</span></a> operate on the level of trees.</p>
+<p>The number of trees is given by <code class="docutils literal notranslate"><span class="pre">mjModel.ntree</span></code>. For example, a model containing three free bodies and the <a class="reference external" href="https://github.com/google-deepmind/mujoco/blob/main/model/humanoid/humanoid.xml">standard
+humanoid</a> has <code class="docutils literal notranslate"><span class="pre">ntree</span> <span class="pre">=</span> <span class="pre">4</span></code>. Note
+that while trees are indeed subtrees of the global tree (whose root is the world), this should not be confused with the
+specific term <code class="docutils literal notranslate"><span class="pre">subtree</span></code>, which is reserved for per-body partial trees, thus <code class="docutils literal notranslate"><span class="pre">mjModel.body_subtreemass</span></code> gives the
+total mass of the partial tree under each body, for all bodies.</p>
+</section>
+<section id="geom">
+<span id="elemgeom"></span><h4>Geom<a class="headerlink" href="#geom" title="Link to this heading">#</a></h4>
+<p>Geoms are 3D shapes rigidly attached to the bodies. Multiple geoms can be attached to the same body. This is
+particularly useful in light of the fact that MuJoCo only supports convex geom-geom collisions, and the only way to
+create non-convex objects is to represent them as a union of convex geoms. Apart from collision detection and
+subsequent computation of contact forces, geoms are used for rendering, as well as automatic inference of body masses
+and inertias when the latter are omitted. MuJoCo supports several primitive geometric shapes: plane, sphere, capsule,
+ellipsoid, cylinder, box. A geom can also be a mesh or a height field; this is done by referencing the corresponding
+asset. Geoms have a number of material properties that affect the simulation and visualization.
+The number of geoms is given by <code class="docutils literal notranslate"><span class="pre">mjModel.ngeom</span></code>.</p>
+</section>
+<section id="site">
+<span id="elemsite"></span><h4>Site<a class="headerlink" href="#site" title="Link to this heading">#</a></h4>
+<p>Sites are essentially light geoms. They represent locations of interest within the body frame. Sites do not
+participate in collision detection or automated computation of inertial properties, however they can be used to
+specify the spatial properties of other objects like sensors, tendon routing, and slider-crank endpoints.
+The number of sites is given by <code class="docutils literal notranslate"><span class="pre">mjModel.nsite</span></code>.</p>
+</section>
+<section id="camera">
+<span id="elemcamera"></span><h4>Camera<a class="headerlink" href="#camera" title="Link to this heading">#</a></h4>
+<p>Multiple cameras can be defined in a model. There is always a default camera which the user can freely move with the
+mouse in the interactive visualizer. However it is often convenient to define additional cameras that are either
+fixed to the world, or are attached to one of the bodies and move with it. In addition to the camera position and
+orientation, the user can adjust the vertical field of view and the inter-pupilary distance for stereoscopic rendering,
+as well as create oblique projections needed for stereoscopic virtual environments. When modeling real cameras with
+imperfect optics, it is possible to specify separate focal lengths for the horizontal and vertical directions and a
+non-centered principal point.
+The number of cameras is given by <code class="docutils literal notranslate"><span class="pre">mjModel.ncam</span></code>.</p>
+</section>
+<section id="light">
+<span id="elemlight"></span><h4>Light<a class="headerlink" href="#light" title="Link to this heading">#</a></h4>
+<p>Lights can be fixed to the world body or attached to moving bodies. The visualizer provides access to the full
+lighting model in OpenGL (fixed function) including ambient, diffuse and specular components, attenuation and cutoff,
+positional and directional lighting, fog. Lights, or rather the objects illuminated by them, can also cast shadows.
+However, similar to material reflections, each shadow-casting light adds one rendering pass so this feature should be
+used with caution. Documenting the lighting model in detail is beyond the scope of this chapter; see <a class="reference external" href="http://www.glprogramming.com/red/chapter05.html">OpenGL
+documentation</a> instead. Note that in addition to lights defined
+by the user in the kinematic tree, there is a default headlight that moves with the camera. Its properties are
+adjusted through the mjVisual options.
+The number of lights is given by <code class="docutils literal notranslate"><span class="pre">mjModel.nlight</span></code>.</p>
+</section>
+</section>
+<section id="stand-alone">
+<span id="standalone"></span><h3>Stand-alone<a class="headerlink" href="#stand-alone" title="Link to this heading">#</a></h3>
+<p>Here we describe the model elements which do not belong to an individual body, and therefore are described outside the
+kinematic tree.</p>
+<section id="tendon">
+<span id="elemtendon"></span><h4>Tendon<a class="headerlink" href="#tendon" title="Link to this heading">#</a></h4>
+<p>Tendons are scalar length elements that can be used for actuation, imposing limits and equality constraints, or
+creating spring-dampers and friction loss. There are two types of tendons: fixed and spatial. Fixed tendons are
+linear combinations of (scalar) joint positions. They are useful for modeling mechanical coupling. Spatial tendons
+are defined as the shortest path that passes through a sequence of specified sites (or via-points) or wraps around
+specified geoms. Only spheres and cylinders are supported as wrapping geoms, and cylinders are treated as having
+infinite length for wrapping purposes. To avoid abrupt jumps of the tendon from one side of the wrapping geom to the
+other, the user can also specify the preferred side. If there are multiple wrapping geoms in the tendon path they
+must be separated by sites, so as to avoid the need for an iterative solver. Spatial tendons can also be split into
+multiple branches using pulleys.</p>
+</section>
+<section id="actuator">
+<span id="elemactuator"></span><h4>Actuator<a class="headerlink" href="#actuator" title="Link to this heading">#</a></h4>
+<p>MuJoCo provides a flexible actuator model, with three components that can be specified independently. Together they
+determine how the actuator works. Common actuator types are obtained by specifying these components in a coordinated
+way. The three components are transmission, activation dynamics, and force generation. The transmission specifies how
+the actuator is attached to the rest of the system; available types are joint, tendon, slider-crank, site and body. The
+activation dynamics can be used to model internal activation states of pneumatic or hydraulic cylinders as well as
+biological muscles; using such actuators makes the overall system dynamics 3rd-order. The force generation mechanism
+determines how the scalar control signal provided as input to the actuator is mapped into a scalar force, which is in
+turn mapped into a generalized force by the moment arms inferred from the transmission.</p>
+</section>
+<section id="sensor">
+<span id="elemsensor"></span><h4>Sensor<a class="headerlink" href="#sensor" title="Link to this heading">#</a></h4>
+<p>MuJoCo can generate simulated sensor data which is saved in the global array <code class="docutils literal notranslate"><span class="pre">mjData.sensordata</span></code>. The result is not
+used in any internal computations; instead it is provided because the user presumably needs it for custom computation
+or data analysis. Available sensor types include touch sensors, inertial measurement units (IMUs), force-torque
+sensors, joint and tendon position and velocity sensors, actuator sensors, body frame sensors, rangefinders, and
+many others; see the <a class="reference internal" href="XMLreference.html#sensor"><span class="std std-ref">Sensor</span></a> section of the XML reference for the complete list. There is also a user
+sensor type, allowing user code to insert any other quantity of interest in the sensor data array. MuJoCo also has
+off-screen rendering capabilities, making it straightforward to simulate both color and depth camera sensors. This is
+not included in the standard sensor model and instead has to be done programmatically, as illustrated in the code
+sample <a class="reference internal" href="programming/samples.html#sasimulate"><span class="std std-ref">simulate.cc</span></a>.</p>
+</section>
+<section id="equality">
+<span id="elemequality"></span><h4>Equality<a class="headerlink" href="#equality" title="Link to this heading">#</a></h4>
+<p>Equality constraints can impose additional constraints beyond those already imposed by the kinematic tree structure
+and the joints/DOFs defined in it. They can be used to create loop joints, or in general model mechanical coupling.
+The internal forces that enforce these constraints are computed together with all other constraint forces. The
+available equality constraint types are: connect two bodies at a point (creating a ball joint outside the kinematic
+tree); weld two bodies together; fix the position of a joint or tendon; couple the positions of two joints or two
+tendons via a cubic polynomial; constrain the edges of a flex (i.e. deformable mesh) to their initial lengths.</p>
+</section>
+<section id="flex">
+<span id="elemflex"></span><h4>Flex<a class="headerlink" href="#flex" title="Link to this heading">#</a></h4>
+<p>Flexes represent deformable meshes that can be 1, 2 or 3 dimensional (thus their elements
+are capsules, triangles or tetrahedra). Unlike geoms which are static shapes attached rigidly to a single body, the
+elements of a flex are deformable: they are constructed by connecting multiple bodies, thus the body positions and
+orientations determine the shape of the flex elements at runtime. These deformable elements support collisions and
+contact forces, as well as generate passive and constraint forces which softly preserve the shape of the deformable
+entity. Automation is provided to load a mesh from a file, construct bodies corresponding to the mesh vertices,
+construct flex elements corresponding to the mesh faces (or lines or tetrahedra, depending on dimensionality), and
+obtain a corresponding deformable mesh.</p>
+</section>
+<section id="contact-pair">
+<h4>Contact pair<a class="headerlink" href="#contact-pair" title="Link to this heading">#</a></h4>
+<p>Contact generation in MuJoCo is an elaborate process. Geom pairs that are checked for contact can come from two
+sources: automated proximity tests and other filters collectively called “dynamic”, as well as an explicit list of
+geom pairs provided in the model. The latter is a separate type of model element. Because a contact involves a
+combination of two geoms, the explicit specification allows the user to define contact parameters in ways that cannot
+be done with the dynamic mechanism. It is also useful for fine-tuning the contact model, in particular adding contact
+pairs that were removed by an aggressive filtering scheme. The contact machinery is now extended to flex elements,
+which can create contact interactions between more than two bodies. However such collisions are automated and cannot
+be finetuned using contact pairs.</p>
+</section>
+<section id="contact-exclude">
+<h4>Contact exclude<a class="headerlink" href="#contact-exclude" title="Link to this heading">#</a></h4>
+<p>This is the opposite of contact pairs: it specifies pairs of bodies (rather than geoms) which should be excluded from
+the generation of candidate contact pairs. It is useful for disabling contacts between bodies whose geometry causes
+an undesirable permanent contact. Note that MuJoCo has other mechanisms for dealing with this situation (in
+particular geoms cannot collide if they belong to the same body or to a parent and a child body), but sometimes these
+automated mechanisms are not sufficient and explicit exclusion becomes necessary.</p>
+</section>
+<section id="custom-numeric">
+<h4>Custom numeric<a class="headerlink" href="#custom-numeric" title="Link to this heading">#</a></h4>
+<p>There are three ways to enter custom numbers in a MuJoCo simulation. First, global numeric fields can be defined in
+the XML. They have a name and an array of real values. Second, the definition of certain model elements can be
+extended with element-specific custom arrays. This is done by setting the attributes <code class="docutils literal notranslate"><span class="pre">nuser_XXX</span></code> in the XML element
+<code class="docutils literal notranslate"><span class="pre">size</span></code>. Third, there is the array <code class="docutils literal notranslate"><span class="pre">mjData.userdata</span></code> which is not used by any MuJoCo computations. The user can
+store results from custom computations there; recall that everything that changes over time should be stored in
+<code class="docutils literal notranslate"><span class="pre">mjData</span></code> and not in <code class="docutils literal notranslate"><span class="pre">mjModel</span></code>.</p>
+</section>
+<section id="custom-text">
+<h4>Custom text<a class="headerlink" href="#custom-text" title="Link to this heading">#</a></h4>
+<p>Custom text fields can be saved in the model. They can be used in custom computations – either to specify keyword
+commands, or to provide some other textual information. Do not use them for comments though; there is no benefit to
+saving comments in a compiled model. XML has its own commenting mechanism (ignored by MuJoCo’s parser and compiler)
+which is more suitable.</p>
+</section>
+<section id="custom-tuple">
+<h4>Custom tuple<a class="headerlink" href="#custom-tuple" title="Link to this heading">#</a></h4>
+<p>Custom tuples are lists of MuJoCo model elements, possibly including other tuples. They are not used by the
+simulator, but are available for specifying groups of elements that are needed for user code. For example, one can
+use tuples to define pairs of bodies for custom contact processing.</p>
+</section>
+<section id="keyframe">
+<h4>Keyframe<a class="headerlink" href="#keyframe" title="Link to this heading">#</a></h4>
+<p>A keyframe is a snapshot of the simulation state variables. It contains joint positions, joint velocities, actuator
+activations, controls, mocap body poses, and the simulation time. The model can contain a library of keyframes.
+They are useful for resetting the state of the system to a point of interest. Note that keyframes are not intended
+for storing trajectory data in the model; external files should be used for this purpose.</p>
+</section>
+</section>
+</section>
+<section id="clarifications">
+<span id="id4"></span><h2>Clarifications<a class="headerlink" href="#clarifications" title="Link to this heading">#</a></h2>
+<p>The reader is likely to have experience with other physics simulators and related conventions, as well as general
+programming practices that are not aligned with MuJoCo. This has the potential to cause confusion. The goal of this
+section is to preemptively clarify the aspects that are most likely to be confusing; it is somewhere in-between a FAQ
+and a tutorial on selected topics. We will need to refer to material covered later in the documentation, but
+nevertheless the text below is as self-contained and introductory as possible.</p>
+<section id="divergence">
+<span id="id5"></span><h3>Divergence<a class="headerlink" href="#divergence" title="Link to this heading">#</a></h3>
+<p>Divergence of a simulation happens when elements of the state tend quickly to infinity. In MuJoCo this is usually
+manifested as an <a class="reference internal" href="APIreference/APItypes.html#mjtwarning"><span class="std std-ref">mjWARN_BADQACC</span></a> warning. Divergence is endemic to all physics simulation and is not
+necessarily indicative of a bad model or bug in the simulator, but is rather a hint that the timestep  is too large for
+the given choice of integrator. In physics simulation there is always a tension between speed (large time steps) and
+stability (small timesteps). A model which is well-tuned for speed has the largest possible timestep that does not
+diverge, which usually means that it <em>can</em> be made to diverge under extreme conditions. In that sense <em>rare</em> cases of
+divergence can actually be indicative of a well-tuned model. In all cases it should be possible to prevent divergence by
+reducing the timestep and/or switching to a more stable <a class="reference internal" href="computation/index.html#geintegration"><span class="std std-ref">integrator</span></a>. If that fails, the culprit is
+different. For example in models where bodies are initialized in penetration, large repulsive forces could push them
+away and cause divergence.</p>
+</section>
+<section id="units-are-unspecified">
+<span id="units"></span><h3>Units are unspecified<a class="headerlink" href="#units-are-unspecified" title="Link to this heading">#</a></h3>
+<p>MuJoCo does not specify basic physical units. The user may interpret the system of units as they choose, as long as it
+is consistent. To understand this, consider an example: the dynamics of a 1 meter spaceship that weighs 1 kilogram and
+has a 1 Newton thruster are the same as those of a 1 cm spaceship that weighs 1 gram and has a 1 dyn thruster. This is
+because both <a class="reference external" href="https://en.wikipedia.org/wiki/MKS_system_of_units">MKS</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Centimetre%E2%80%93gram%E2%80%93second_system_of_units">CGS</a> are consistent systems of
+units. This property allows the user to scale their model as they choose, which is useful when simulating very small or
+very large things, to improve the numerical properties of the simulation.</p>
+<p>That said, users are encouraged to use MKS, as there are two places where MuJoCo uses MKS-like default values:</p>
+<ul class="simple">
+<li><p>The default value of <a class="reference internal" href="XMLreference.html#option"><span class="std std-ref">gravity</span></a> is (0, 0, -9.81), which corresponds to Earth surface gravity in MKS.
+Note that this does not really specify the MKS system of units, since we might be using CGS on
+<a class="reference external" href="https://en.wikipedia.org/wiki/Enceladus">Enceladus</a>.</p></li>
+<li><p>The default value of <a class="reference internal" href="XMLreference.html#body-geom"><span class="std std-ref">geom density</span></a> (used to infer body masses and inertias) is 1000, which
+corresponds to the density of water in MKS.</p></li>
+</ul>
+<p>Once a consistent system of basic units (length, mass, time) is chosen, all derived units correspond to this system, as
+in <a class="reference external" href="https://en.wikipedia.org/wiki/Dimensional_analysis">Dimensional Analysis</a>. For example if our model is
+interpreted as MKS, then forces and torques are in Newton and Newton-Meter, respectively.</p>
+<p><strong>Angles:</strong> Although angles can be specified using degrees in MJCF (and indeed degrees are the
+<a class="reference internal" href="XMLreference.html#compiler"><span class="std std-ref">default</span></a>), all angular quantities <a class="reference internal" href="APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> and <a class="reference internal" href="APIreference/APItypes.html#mjdata"><span class="std std-ref">mjData</span></a> are expressed in
+<a class="reference external" href="https://en.wikipedia.org/wiki/Radian">radians</a>. So, for example, if we are using MKS, angular velocities reported by
+<a class="reference internal" href="XMLreference.html#sensor-gyro"><span class="std std-ref">gyroscopes</span></a> would be in rad/s while stiffness of hinge joints would be in Nm/rad.</p>
+</section>
+<section id="surprising-collisions">
+<span id="surprisingcollisions"></span><h3>Surprising Collisions<a class="headerlink" href="#surprising-collisions" title="Link to this heading">#</a></h3>
+<p>MuJoCo by default excludes collisions between geoms that belong to body pairs which have a direct parent-child
+relationship. For example, consider the arm model in the <a class="reference internal" href="#examples"><span class="std std-ref">Examples</span></a> section above: there is no collision at the
+“elbow” even though the capsule geoms are penetrating, because the forearm is an immediate child of the upper arm.</p>
+<p>However, this exclusion is <strong>not applied if the parent is a static body</strong> i.e., the world body, or a body without any
+degrees of freedom relative to the world body. This behavior, documented in the <a class="reference internal" href="computation/index.html#collision"><span class="std std-ref">Collision detection</span></a>
+section, prevents objects from falling through the floor or moving through walls. However, this behavior often leads to
+the following situation:</p>
+<p>The user comments out the root joint of a floating-base model, perhaps in order to prevent it from falling; now that the
+base body is counted as static, new collisions appear that were not there before and the user is confused. There are
+three easy ways to avoid this problem:</p>
+<ol class="arabic simple">
+<li><p>Make the newly static body a <a class="reference internal" href="XMLreference.html#body-mocap"><span class="std std-ref">mocap body</span></a>. Mocap bodies are the root of their own body group for
+the purposes of collision filtering, rather than being welded to the world, so the parent-child exclusion applies to
+their children as usual. As a bonus, the body can be moved around interactively.</p></li>
+<li><p>Don’t remove the root joint. Perhaps it is enough to <a class="reference internal" href="XMLreference.html#option-flag"><span class="std std-ref">disable gravity</span></a> and possibly add some
+<a class="reference internal" href="XMLreference.html#option"><span class="std std-ref">fluid viscosity</span></a> in order to prevent your model from moving around too much.</p></li>
+<li><p>Use <a class="reference internal" href="computation/index.html#collision"><span class="std std-ref">collision filtering</span></a> to explicitly disable the unwanted collisions, either by setting the
+relevant <span class="at">contype</span> and <span class="at">conaffinity</span> attributes, or by using a contact <a class="reference internal" href="XMLreference.html#contact-exclude"><span class="std std-ref">exclude</span></a>
+directive.</p></li>
+</ol>
+</section>
+<section id="data-oriented-design">
+<span id="notobject"></span><h3>Data-oriented design<a class="headerlink" href="#data-oriented-design" title="Link to this heading">#</a></h3>
+<p>MuJoCo uses a data-oriented architecture rather than an object-oriented one. The natural semantic entity here is the
+entire physics simulator, rather than individual objects with private state and methods. Instead of objects, we have a
+small number of data structures and a large number of functions that operate on them.</p>
+<p>We separate the model (<code class="docutils literal notranslate"><span class="pre">mjModel</span></code>) from the data (<code class="docutils literal notranslate"><span class="pre">mjData</span></code>). These are both data structures. The model contains
+everything needed to describe the constant properties of the physical system being modeled, while the data contains the
+time-varying state and the reusable intermediate results of internal computations. All top-level functions expect
+pointers to <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> and <code class="docutils literal notranslate"><span class="pre">mjData</span></code> as arguments. This design avoids global variables and naturally supports
+multi-threading: each thread simply operates on its own <code class="docutils literal notranslate"><span class="pre">mjData</span></code> instance.</p>
+</section>
+<section id="softness-and-slip">
+<span id="soft"></span><h3>Softness and slip<a class="headerlink" href="#softness-and-slip" title="Link to this heading">#</a></h3>
+<p>As we will explain at length in the <a class="reference internal" href="computation/index.html"><span class="doc">Computation</span></a> chapter, MuJoCo is based on a mathematical model of the
+physics of contact and other constraints. This model is inherently soft, in the sense that pushing harder against a
+constraint will always result in larger acceleration, and so the inverse dynamics can be uniquely defined. This is
+desirable because it yields a convex optimization problem and enables analyses that rely on inverse dynamics, and
+furthermore, most contacts that we need to model in practice have some softness. However once we allow soft constraints,
+we are effectively creating a new type of dynamics – namely deformation dynamics – and now we must specify how these
+dynamics behave. This calls for elaborate parameterization of contacts and other constraints, involving the attributes
+<span class="at">solref</span> and <span class="at">solimp</span> that can be set per constraints and will be described later.</p>
+<p>An often confusing aspect of this soft model is that gradual contact slip cannot be avoided. Similarly, frictional
+joints will gradually yield under gravity. This is not because the solver is unable to prevent slip, in the sense of
+reaching the friction cone or friction loss limit, but because it is not trying to prevent slip in the first place.
+Recall that larger force against a given constraint must result in larger acceleration. If slip were to be fully
+suppressed, this key property would have to be violated. So if you see gradual slip in your simulation, the intuitive
+explanation may be that the friction is insufficient, but that is rarely the case in MuJoCo. Instead the <code class="docutils literal notranslate"><span class="pre">solref</span></code> and
+<code class="docutils literal notranslate"><span class="pre">solimp</span></code> parameter vectors need to be adjusted in order to reduce this effect. Increasing constraint impedance (first
+two elements of <code class="docutils literal notranslate"><span class="pre">solimp</span></code>) as well as the global <code class="docutils literal notranslate"><span class="pre">mjModel.opt.impratio</span></code> setting can be particularly effective. Such
+adjustment often requires smaller time steps to keep the simulation stable, because they make the nonlinear dynamics
+more difficult to integrate numerically. Slip is also reduced by the Newton solver which is more accurate in general.</p>
+<p>For situations where stronger slip suppression is required, there is a <a class="reference internal" href="computation/index.html#sonoslip"><span class="std std-ref">NoSlip</span></a>
+post-processing solver which runs after the main solver. It updates the contact forces in friction dimensions by
+disregarding constraint softness. When this option is used however, MuJoCo is no longer solving the convex optimization
+problem it was designed to solve, and the simulation may become less robust. Thus using the Newton solver with elliptic
+friction cones and large value of <code class="docutils literal notranslate"><span class="pre">impratio</span></code> is the recommended way of reducing slip. For more detailed
+recommendations, see <a class="reference internal" href="modeling.html#cslippage"><span class="std std-ref">preventing slip</span></a> in the Modeling chapter.</p>
+</section>
+<section id="types-names-ids">
+<span id="typenameid"></span><h3>Types, names, ids<a class="headerlink" href="#types-names-ids" title="Link to this heading">#</a></h3>
+<p>MuJoCo supports a large number of model elements, as summarized earlier. Each element type has a corresponding section
+in <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> listing its various properties. For example the joint limit data is in the array</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">mjtNum</span><span class="o">*</span><span class="w"> </span><span class="n">jnt_range</span><span class="p">;</span><span class="w">             </span><span class="c1">// joint limits       (njnt x 2)</span>
+</pre></div>
+</div>
+<p>The size of each array (<code class="docutils literal notranslate"><span class="pre">njnt</span></code> in this case) is also given in <code class="docutils literal notranslate"><span class="pre">mjModel</span></code>. The limits of the first joint are included
+first, followed by the limits of the second joint etc. This ordering reflects the fact that all matrices in MuJoCo have
+row-major format.</p>
+<p>The available element types are defined in <a class="reference external" href="https://github.com/google-deepmind/mujoco/blob/main/include/mujoco/mjtype.h">mjtype.h</a>, in the enum type <a class="reference internal" href="APIreference/APItypes.html#mjtobj"><span class="std std-ref">mjtObj</span></a>.
+These enums are mostly used internally. One exception are the functions <a class="reference internal" href="APIreference/APIfunctions.html#mj-name2id"><span class="std std-ref">mj_name2id</span></a> and <a class="reference internal" href="APIreference/APIfunctions.html#mj-id2name"><span class="std std-ref">mj_id2name</span></a> in the
+MuJoCo API, which map element names to integer ids and vice versa. These functions take an element type as input.</p>
+<p>Naming model elements in the XML is optional. Two elements of the same type (e.g. two joints) cannot have the same name.
+Naming is required only when a given element needs to be referenced elsewhere in the model; referencing in the XML can
+only be done by name. Once the model is compiled, the names are still stored in <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> for user convenience,
+although they have no further effect on the simulation. Names are useful for finding the corresponding integer ids, as
+well as rendering: if you enable joint labels for example, a string will be shown next to each joint (elements with
+undefined names are labeled as “joint N” where N is the id).</p>
+<p>The integer ids of the elements are essential for indexing the MuJoCo data arrays. The ids are 0-based, following the C
+convention. Suppose we already have <code class="docutils literal notranslate"><span class="pre">mjModel*</span> <span class="pre">m</span></code>. To print the range of a joint named “elbow”, do:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">jntid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mj_name2id</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">mjOBJ_JOINT</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;elbow&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">jntid</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">   </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;(%f, %f)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="o">-&gt;</span><span class="n">jnt_range</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">jntid</span><span class="p">],</span><span class="w"> </span><span class="n">m</span><span class="o">-&gt;</span><span class="n">jnt_range</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">jntid</span><span class="o">+</span><span class="mi">1</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>If the name is not found the function returns -1, which is why one should always check for id&gt;=0.</p>
+</section>
+<section id="bodies-geoms-sites">
+<span id="bodygeomsite"></span><h3>Bodies, geoms, sites<a class="headerlink" href="#bodies-geoms-sites" title="Link to this heading">#</a></h3>
+<p>Bodies, geoms and sites are MuJoCo elements which roughly correspond to rigid bodies in the physical world. So why are
+they separate? For semantic as well as computational reasons explained here.</p>
+<p>First the similarities. Bodies, geoms and sites all have spatial frames attached to them (although bodies also have a
+second frame which is centered at the body center of mass and aligned with the principal axes of inertia). The positions
+and orientations of these frames are computed at each time step from <code class="docutils literal notranslate"><span class="pre">mjData.qpos</span></code> via forward kinematics. The results
+of forward kinematics are available in <code class="docutils literal notranslate"><span class="pre">mjData</span></code> as xpos, xquat and xmat for bodies, geom_xpos and geom_xmat for geoms,
+site_xpos and site_xmat for sites.</p>
+<p>Now the differences. Bodies are used to construct the kinematic tree and are containers for other elements, including
+geoms and sites. Bodies have a spatial frame, inertial properties, but no properties related to appearance or collision
+geometry. This is because such properties do not affect the physics (except for contacts of course, but these are
+handled separately). If you have seen diagrams of kinematic trees in robotics textbooks, the bodies are usually drawn as
+amorphous shapes – to make the point that their actual shape is irrelevant to the physics.</p>
+<p>Geoms (short for geometric primitive) are used to specify appearance and collision geometry. Each geom belongs to a body
+and is rigidly attached to that body. Multiple geoms can be attached to the same body. This is particularly useful in
+light of the fact that MuJoCo’s collision detector assumes that all geoms are convex (it internally replaces meshes with
+their convex hulls if the meshes are not convex). Thus if you want to model a non-convex shape, you have to decompose it
+into a union of convex geoms and attach all of them to the same body.</p>
+<p>A geom can also have density or mass values specified in the XML, which the model compiler uses to compute the parent
+body’s mass and inertia. Mass is either specified or computed from a geom’s volume and <a class="reference internal" href="XMLreference.html#body-geom-density"><span class="std std-ref">density</span></a>. Inertia is computed from the mass, shape, and uniform density assumption. If the
+<a class="reference internal" href="XMLreference.html#body-geom-shellinertia"><span class="std std-ref">shellinertia</span></a> flag is set, mass is assumed to be uniformly distributed on the <strong>surface</strong>,
+<span class="at">density</span> is interpreted as mass-per-area, and the inertia contribution to the parent body is computed accordingly.
+In the actual <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> being simulated, geoms do not have inertial properties.</p>
+<p>Sites are light geoms. They have the same appearance properties but cannot participate in collisions and cannot be used
+to infer body masses. On the other hand sites can do things that geoms cannot do: they can specify the volumes of touch
+sensors, the attachment of IMU sensors, the routing of spatial tendons, the end-points of slider-crank actuators. These
+are all spatial quantities, and yet they do not correspond to entities that should have mass or collide with other
+entities – which is why the site element was created. Sites can also be used to specify points (or rather frames) of
+interest to the user.</p>
+<p>The following example illustrates the point that multiple sites and geoms can be attached to the same body: two sites
+and two geoms to one body in this case.</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mujoco&gt;</span>
+<span class="w">  </span><span class="nt">&lt;worldbody&gt;</span>
+<span class="w">    </span><span class="nt">&lt;body</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;geom</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;sphere&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;.1&quot;</span><span class="w"> </span><span class="na">rgba=</span><span class="s">&quot;.9 .9 .1 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;geom</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;capsule&quot;</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0 0 .1&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;.05 .1&quot;</span><span class="w"> </span><span class="na">rgba=</span><span class="s">&quot;.9 .9 .1 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;site</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;box&quot;</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0 -.1 .3&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;.02 .02 .02&quot;</span><span class="w"> </span><span class="na">rgba=</span><span class="s">&quot;.9 .1 .9 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;site</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;ellipsoid&quot;</span><span class="w"> </span><span class="na">pos=</span><span class="s">&quot;0 .1 .3&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;.02 .03 .04&quot;</span><span class="w"> </span><span class="na">rgba=</span><span class="s">&quot;.9 .1 .9 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/body&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/worldbody&gt;</span>
+<span class="nt">&lt;/mujoco&gt;</span>
+</pre></div>
+</div>
+<figure class="align-right">
+<a class="reference internal image-reference" href="_images/bodygeomsite.png"><img alt="_images/bodygeomsite.png" src="_images/bodygeomsite.png" style="width: 200px;" />
+</a>
+</figure>
+<p>This model is rendered by the OpenGL visualizer as:</p>
+<p>Note the red box. This is an equivalent-inertia box rendering of the body inertial properties, and is generated by
+MuJoCo internally. The box is over the geoms but not over the sites. This is because only the geoms were used to
+(automatically) infer the inertial properties of the body. If we happen to know the latter, we can of course specify
+them directly. But it is often more convenient to let the model compiler infer these body properties from the geoms
+attached to it, using the assumption of uniform density (geom density can be specified in the XML; the default is the
+density of water).</p>
+</section>
+<section id="joint-coordinates">
+<span id="jointco"></span><h3>Joint coordinates<a class="headerlink" href="#joint-coordinates" title="Link to this heading">#</a></h3>
+<p>One of the key distinctions between MuJoCo and gaming engines is that MuJoCo operates in generalized or joint
+coordinates, while most gaming engines operate in Cartesian coordinates. The differences between these two approaches
+can be summarized as follows:</p>
+<p>Joint coordinates:</p>
+<ul class="simple">
+<li><p>Best suited for elaborate kinematic structures such as robots;</p></li>
+<li><p>Joints <strong>add</strong> degrees of freedom among bodies that would be welded together by default;</p></li>
+<li><p>Joint constraints are implicit in the representation and cannot be violated;</p></li>
+<li><p>The positions and orientations of the simulated bodies are obtained from the generalized coordinates via forward
+kinematics, and cannot be manipulated directly (except for root bodies).</p></li>
+</ul>
+<p>Cartesian coordinates:</p>
+<ul class="simple">
+<li><p>Best suited for many bodies that bounce off each other, as in molecular dynamics and box stacking;</p></li>
+<li><p>Joints <strong>remove</strong> degrees of freedom among bodies that would be free-floating by default;</p></li>
+<li><p>Joint constraints are enforced numerically and can be violated;</p></li>
+<li><p>The positions and orientations of the simulated bodies are represented explicitly and can be manipulated directly,
+although this can introduce further joint constraint violations.</p></li>
+</ul>
+<p>Joint coordinates can be particularly confusing when working with free-floating bodies that are part of a model which
+also contains kinematic trees. This is clarified below.</p>
+</section>
+<section id="floating-objects">
+<span id="floating"></span><h3>Floating objects<a class="headerlink" href="#floating-objects" title="Link to this heading">#</a></h3>
+<p>When working in joint coordinates, you cannot simply set the position and orientation of an arbitrary body to whatever
+you want. To achieve that effect you would have to implement some form of inverse kinematics, which computes a (not
+necessarily unique) set of joint coordinates for which the forward kinematics place the body where you want it to be.</p>
+<p>The situation is different for floating bodies, i.e., bodies that are connected to the world with a free joint. The
+positions and orientations as well as the linear and angular velocities of such bodies are explicitly represented in
+<code class="docutils literal notranslate"><span class="pre">mjData.qpos</span></code> and <code class="docutils literal notranslate"><span class="pre">mjData.qvel</span></code>, and can therefore be manipulated directly. For structured state manipulation and
+serialization, see <a class="reference internal" href="programming/simulation.html#sistatecontrol"><span class="std std-ref">State and control</span></a> in the Simulation chapter.</p>
+<p>The semantics of free joints are as follows. The position data is 7 numbers (3D position followed
+by unit quaternion) while the velocity data is 6 numbers (3D linear velocity followed by 3D angular velocity).
+The linear positions of free joints are in the global frame, as are
+linear velocities. The orientation of a free joint (the quaternion) is also in the global frame. However, the rotational
+velocities of a free joint are in the local body frame. This is not so much a design decision but rather correct
+use of the topology of quaternions. Angular velocities live in the quaternion tangent space, which is defined locally
+for a certain orientation, so frame-local angular velocities are the natural parameterization.
+Accelerations are defined in the same space as the corresponding velocities.</p>
+<p>Free joints are always defined in the body frame, yet it is computationally favorable to align this frame with the
+body’s inertia. Read more about this option in the documentation of the <a class="reference internal" href="XMLreference.html#body-freejoint-align"><span class="std std-ref">freejoint/align</span></a>
+attribute.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="computation/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Computation</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; DeepMind Technologies Limited
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Overview</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#key-features">Key features</a></li>
+<li><a class="reference internal" href="#model-instances">Model instances</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model-elements">Model elements</a><ul>
+<li><a class="reference internal" href="#options">Options</a><ul>
+<li><a class="reference internal" href="#mjoption"><code class="docutils literal notranslate"><span class="pre">mjOption</span></code></a></li>
+<li><a class="reference internal" href="#mjvisual"><code class="docutils literal notranslate"><span class="pre">mjVisual</span></code></a></li>
+<li><a class="reference internal" href="#mjstatistic"><code class="docutils literal notranslate"><span class="pre">mjStatistic</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#assets">Assets</a><ul>
+<li><a class="reference internal" href="#mesh">Mesh</a></li>
+<li><a class="reference internal" href="#skin">Skin</a></li>
+<li><a class="reference internal" href="#height-field">Height field</a></li>
+<li><a class="reference internal" href="#texture">Texture</a></li>
+<li><a class="reference internal" href="#material">Material</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#kinematic-tree">Kinematic tree</a><ul>
+<li><a class="reference internal" href="#body">Body</a></li>
+<li><a class="reference internal" href="#joint">Joint</a><ul>
+<li><a class="reference internal" href="#joint-reference">Joint reference</a></li>
+<li><a class="reference internal" href="#spring-reference">Spring reference</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dof">DOF</a></li>
+<li><a class="reference internal" href="#tree">Tree</a></li>
+<li><a class="reference internal" href="#geom">Geom</a></li>
+<li><a class="reference internal" href="#site">Site</a></li>
+<li><a class="reference internal" href="#camera">Camera</a></li>
+<li><a class="reference internal" href="#light">Light</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#stand-alone">Stand-alone</a><ul>
+<li><a class="reference internal" href="#tendon">Tendon</a></li>
+<li><a class="reference internal" href="#actuator">Actuator</a></li>
+<li><a class="reference internal" href="#sensor">Sensor</a></li>
+<li><a class="reference internal" href="#equality">Equality</a></li>
+<li><a class="reference internal" href="#flex">Flex</a></li>
+<li><a class="reference internal" href="#contact-pair">Contact pair</a></li>
+<li><a class="reference internal" href="#contact-exclude">Contact exclude</a></li>
+<li><a class="reference internal" href="#custom-numeric">Custom numeric</a></li>
+<li><a class="reference internal" href="#custom-text">Custom text</a></li>
+<li><a class="reference internal" href="#custom-tuple">Custom tuple</a></li>
+<li><a class="reference internal" href="#keyframe">Keyframe</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#clarifications">Clarifications</a><ul>
+<li><a class="reference internal" href="#divergence">Divergence</a></li>
+<li><a class="reference internal" href="#units-are-unspecified">Units are unspecified</a></li>
+<li><a class="reference internal" href="#surprising-collisions">Surprising Collisions</a></li>
+<li><a class="reference internal" href="#data-oriented-design">Data-oriented design</a></li>
+<li><a class="reference internal" href="#softness-and-slip">Softness and slip</a></li>
+<li><a class="reference internal" href="#types-names-ids">Types, names, ids</a></li>
+<li><a class="reference internal" href="#bodies-geoms-sites">Bodies, geoms, sites</a></li>
+<li><a class="reference internal" href="#joint-coordinates">Joint coordinates</a></li>
+<li><a class="reference internal" href="#floating-objects">Floating objects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/katex.min.js?v=1ff01101"></script>
+    <script src="_static/auto-render.min.js?v=8b9f325c"></script>
+    <script src="_static/katex_autorenderer.js?v=ae454eff"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/linenumbers.js?v=0c413467"></script>
+    <script src="_static/onthispage_mjwarp.js?v=7109a5a0"></script>
+    </body>
+</html>

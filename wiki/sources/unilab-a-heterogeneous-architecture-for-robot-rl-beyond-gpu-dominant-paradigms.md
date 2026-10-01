@@ -10,11 +10,12 @@ source_url: https://arxiv.org/abs/2605.30313
 extracted_text: graph/extracts/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms.md
 source_date: 2026-06-02
 project_url: https://unilabsim.github.io
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 ## 摘要
 
-Yufei Jia 等提出 [[UniLab]]，一个面向基于仿真的机器人 RL 的异构 CPU-仿真 / GPU-学习训练架构。它反对把高效机器人 RL 训练等同于驻留 GPU 的物理：核心问题不是物理必须跑在 GPU 上，而是仿真吞吐量、策略学习、数据移动、缓冲和同步能否形成高效端到端循环。
+Yufei Jia 等提出 [[UniLab|UniLab]]，一个面向基于仿真的机器人 RL 的异构 CPU-仿真 / GPU-学习训练架构。它反对把高效机器人 RL 训练等同于驻留 GPU 的物理：核心问题不是物理必须跑在 GPU 上，而是仿真吞吐量、策略学习、数据移动、缓冲和同步能否形成高效端到端循环。
 
 这篇来源对知识库的新增价值是把 [[RoboticsSimulationInfrastructure|仿真基础设施]] 从仿真器 / 渲染器 / 资产 API 扩展到训练运行时架构：轨迹采样采集、重放边界、H2D 迁移、参数同步和学习器利用率都会决定实际运行时间效率。UniLab 使用 MuJoCoUni 和 MotrixSim 作为 CPU-批处理物理后端，在一个统一的运行时下支持 PPO、APPO、FastSAC 和 FlashSAC；来源报告在 representative 机器人控制任务上有 3-10× 端到端训练效率 gain，并展示 Apple macOS、AMD ROCm 和 Intel XPU 执行证据。
 
@@ -43,12 +44,12 @@ Yufei Jia 等提出 [[UniLab]]，一个面向基于仿真的机器人 RL 的异�
 
 ## 关联
 
-- [[UniLab]] - 本来源对应的训练系统实体。
-- [[HeterogeneousRobotRLTraining]] - 本来源最核心的机制层级概念：CPU 批处理仿真、GPU 学习器、运行时重叠、重放边界和同步 regime。
-- [[RoboticsSimulationInfrastructure]] - UniLab 把基础设施视角推到 ML 训练运行时和硬件放置。
-- [[SimulationRealityGap]] - UniLab 不直接解决真实/仿真差距，但它把后端契约、域随机化生命周期和 sim2sim 验证纳入训练系统证据边界。
-- [[MuJoCo]] - 来源中的 MuJoCoUni 和 MjWarp 说明 MuJoCo 生态同时存在 CPU-批处理与面向 GPU 的训练路径。
-- [[TaskGeneralistPolicyEvaluation]] - 来源的任务集合覆盖移动、运动跟踪、操作移动和灵巧 in-手部操作；它评估的是训练系统效率，不是任务通用型语义策略 capability。
+- [[UniLab|UniLab]] - 本来源对应的训练系统实体。
+- [[HeterogeneousRobotRLTraining|异构机器人强化学习训练]] - 本来源最核心的机制层级概念：CPU 批处理仿真、GPU 学习器、运行时重叠、重放边界和同步 regime。
+- [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] - UniLab 把基础设施视角推到 ML 训练运行时和硬件放置。
+- [[SimulationRealityGap|仿真—现实差距]] - UniLab 不直接解决真实/仿真差距，但它把后端契约、域随机化生命周期和 sim2sim 验证纳入训练系统证据边界。
+- [[MuJoCo|MuJoCo]] - 来源中的 MuJoCoUni 和 MjWarp 说明 MuJoCo 生态同时存在 CPU-批处理与面向 GPU 的训练路径。
+- [[TaskGeneralistPolicyEvaluation|通用任务策略评估]] - 来源的任务集合覆盖移动、运动跟踪、操作移动和灵巧 in-手部操作；它评估的是训练系统效率，不是任务通用型语义策略 capability。
 
 ## 开放问题
 

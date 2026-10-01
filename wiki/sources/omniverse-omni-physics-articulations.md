@@ -9,13 +9,14 @@ source_kind: html
 source_url: https://docs.omniverse.nvidia.com/kit/docs/omni_physics/latest/dev_guide/rigid_bodies_articulations/articulations.html
 extracted_text: graph/extracts/omniverse-omni-physics-articulations.md
 source_date: 2026-05-01
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # Articulations - Omni Physics
 
 ## 摘要
 
-这是 [[NVIDIA]] Omni 物理文档中的关节系统页面，最后更新时间为 2026-05-01。它说明 [[omniverse-omni-physics-articulations|PhysX]] 如何用约化坐标关节系统（约化坐标关节系统）模拟由关节连接的刚体，并给出 USD / PhysX API 层面的根部放置、关节状态、驱动器 envelope、关节摩擦、闭环 breaking、mimic 关节和 tendons rules。
+这是 [[NVIDIA|NVIDIA]] Omni 物理文档中的关节系统页面，最后更新时间为 2026-05-01。它说明 [[omniverse-omni-physics-articulations|PhysX]] 如何用约化坐标关节系统（约化坐标关节系统）模拟由关节连接的刚体，并给出 USD / PhysX API 层面的根部放置、关节状态、驱动器 envelope、关节摩擦、闭环 breaking、mimic 关节和 tendons rules。
 
 本页对 Isaac Sim / PhysX 机器人仿真的价值在于：它把“关节系统只是 jointed 刚体的加速实现”纠正为一个更具体的建模选择。关节系统用根部机体和关节角度表达配置，而不是让每个链接拥有独立世界位姿；这带来 zero 关节错误由设计和更好的质量比率处理，但也要求拓扑基本是树，并引入根部选择、闭环处理、关节限制、mimic 柔顺性和张量 API access 等约束。
 
@@ -44,7 +45,7 @@ source_date: 2026-05-01
 
 ### PhysX
 
-PhysX 是 [[NVIDIA]] 的物理运行时 / SDK 族。本知识库当前对 PhysX 的有来源支持的覆盖范围来自 [[omniverse-omni-physics-articulations|关节系统 - Omni 物理]]：该来源说明 PhysX 用约化坐标关节系统表达 jointed 机制，并把机器人 / 机制状态组织成根部机体 + 关节 DOFs，而不是每个链接的独立世界位姿。
+PhysX 是 [[NVIDIA|NVIDIA]] 的物理运行时 / SDK 族。本知识库当前对 PhysX 的有来源支持的覆盖范围来自 [[omniverse-omni-physics-articulations|关节系统 - Omni 物理]]：该来源说明 PhysX 用约化坐标关节系统表达 jointed 机制，并把机器人 / 机制状态组织成根部机体 + 关节 DOFs，而不是每个链接的独立世界位姿。
 
 在这个来源中，PhysX 的关键机器人学语义包括：关节系统拓扑由 USD 关节的 `Body 0` / `Body 1` 关系决定；`UsdPhysics.ArticulationRootAPI` 控制固定基座或 floating-基座关节系统创建；关节系统驱动器是 per-轴类 PD 驱动器；`PhysxDrivePerformanceEnvelopeAPI` 用作用力 / 速度约束表达执行器可行区域；关节摩擦、mimic 关节、mimic 柔顺性和 tendons 都作为关节系统特定的约束暴露。
 
@@ -52,12 +53,12 @@ PhysX 是 [[NVIDIA]] 的物理运行时 / SDK 族。本知识库当前对 PhysX 
 
 ## 关联
 
-- [[ReducedCoordinateArticulations]] - 把本来源编译成机制层级概念：拓扑、坐标、驱动器 envelope、mimic/tendon 约束和失效情形。
+- [[ReducedCoordinateArticulations|约化坐标关节系统]] - 把本来源编译成机制层级概念：拓扑、坐标、驱动器 envelope、mimic/tendon 约束和失效情形。
 - [[omniverse-omni-physics-articulations|PhysX]] - 本来源的物理运行时 / 结构规范上下文。
-- [[IsaacSim]] - Isaac Sim 机器人仿真中关节系统、驱动器、关节状态和张量 API 的有来源支持的语义。
-- [[NVIDIA]] - 来源 publisher 与 Omni 物理 / PhysX 文档 owner。
-- [[ContactSolvers]] - 来源中的闭环、mimic 柔顺性、TGS 位置迭代和硬接触 competition 扩展了求解器 / 约束交互视角。
-- [[isaac-sim-mujoco-control-tuning-notes]] - 本来源将其中一部分 PhysX 位置驱动器讨论升级为有来源支持的，但 MuJoCo 对比与七自由度机械臂增益分组仍是来自讨论的。
+- [[IsaacSim|Isaac Sim]] - Isaac Sim 机器人仿真中关节系统、驱动器、关节状态和张量 API 的有来源支持的语义。
+- [[NVIDIA|NVIDIA]] - 来源 publisher 与 Omni 物理 / PhysX 文档 owner。
+- [[ContactSolvers|接触求解器]] - 来源中的闭环、mimic 柔顺性、TGS 位置迭代和硬接触 competition 扩展了求解器 / 约束交互视角。
+- [[isaac-sim-mujoco-control-tuning-notes|Isaac Sim 与 MuJoCo 物理和控制笔记]] - 本来源将其中一部分 PhysX 位置驱动器讨论升级为有来源支持的，但 MuJoCo 对比与七自由度机械臂增益分组仍是来自讨论的。
 
 ## 开放问题
 

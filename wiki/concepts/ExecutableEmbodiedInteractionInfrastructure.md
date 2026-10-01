@@ -4,6 +4,7 @@ type: concept
 tags: [robotics, simulation, embodied-ai, data-generation, systems]
 sources: ["[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]"]
 modified: 2026-07-15
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 可执行具身交互基础设施
@@ -107,4 +108,4 @@ AtomicSkill 的价值是固定“触碰物理”的层。高层可以由脚本�
 - 做数据质量评估时，应同时保留总尝试数、成功门控比例、候选筛选比例和按失败类型的统计，才能判断保存语料的选择偏差。
 - 做仿真到现实研究时，统一接口只解决软件组合问题；碰撞几何、材料参数、传感器标定、控制延迟与硬件动力学仍需独立验证。
 
-相关页面：[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]]、[[RoboticsSimulationInfrastructure]]、[[SimulationReady3DWorldGeneration]]、[[AgenticSceneTaskGeneration]]、[[TaskGeneralistPolicyEvaluation]]、[[HeterogeneousRobotRLTraining]]、[[SimulationRealityGap]]、[[ContactModelsInRobotics]]。
+相关页面：[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[SimulationReady3DWorldGeneration|可用于仿真的三维世界生成]]、[[AgenticSceneTaskGeneration|智能体式场景与任务生成]]、[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[HeterogeneousRobotRLTraining|异构机器人强化学习训练]]、[[SimulationRealityGap|仿真—现实差距]]、[[ContactModelsInRobotics|机器人学中的接触模型]]。

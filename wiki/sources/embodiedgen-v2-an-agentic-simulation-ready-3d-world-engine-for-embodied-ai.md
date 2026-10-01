@@ -11,11 +11,12 @@ extracted_text: graph/extracts/embodiedgen-v2.md
 source_date: 2026-07-08
 project_url: https://horizonrobotics.github.io/EmbodiedGen/
 code_url: https://github.com/HorizonRobotics/EmbodiedGen
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 ## 摘要
 
-Xinjie Wang、Liu Liu、Taojun Ding、Andrew Choi、Chaodong Huang、Mengao Zhao、Ziang Li、Jackson Jiang、Chunlei Yu、Shengxiang Liu、Wei Xu 和 Zhizhong Su 提出 [[EmbodiedGen]] V2：一个把开放式意图编译成可执行仿真环境的生成式三维世界引擎。相较 V1 主要生成孤立资产与全景背景，V2 用统一的物体/场景表示连接可用于仿真的资产生成、部件级可供性、任务驱动世界、多房间场景、有状态自然语言编辑、跨仿真器导出和下游策略学习。
+Xinjie Wang、Liu Liu、Taojun Ding、Andrew Choi、Chaodong Huang、Mengao Zhao、Ziang Li、Jackson Jiang、Chunlei Yu、Shengxiang Liu、Wei Xu 和 Zhizhong Su 提出 [[EmbodiedGen|EmbodiedGen]] V2：一个把开放式意图编译成可执行仿真环境的生成式三维世界引擎。相较 V1 主要生成孤立资产与全景背景，V2 用统一的物体/场景表示连接可用于仿真的资产生成、部件级可供性、任务驱动世界、多房间场景、有状态自然语言编辑、跨仿真器导出和下游策略学习。
 
 V2 把“可用于仿真”定义为四项联合输出契约：公制几何、兼容仿真的物理资产、任务层级语义与可供性，以及标准化的仿真器接口。物体层级保存带纹理的视觉几何、碰撞几何、物理参数和可供性标注；场景层级使用类型化场景图表达背景、上下文、被操作物体、干扰物、机器人及其空间和交互关系，再把图结构落实为目标仿真器中物理稳定的六自由度位姿。
 
@@ -26,7 +27,7 @@ V2 把“可用于仿真”定义为四项联合输出契约：公制几何、�
 ## 核心主张
 
 - 具身 3D 生成的工作单位应从 isolated 产物升级为完整的可执行的环境；几何、物理、可供性、任务语义、编辑历史与仿真器接口必须在共享表示中持续存在。
-- 资产流程的完整配置在 200 个 held-out 资产上达到 96.5% 人类验收、98.6% scripted 碰撞/抓取成功，平均处理时间为 2.6±0.4 分钟；去掉网格 fixing 会把视觉网格从 1.43MB 放大到 51.63MB，并把处理时间提高到 21.3±22.8 分钟。
+- 资产流程的完整配置在 200 个留出集资产上达到 96.5% 人类验收、98.6% scripted 碰撞/抓取成功，平均处理时间为 2.6±0.4 分钟；去掉网格 fixing 会把视觉网格从 1.43MB 放大到 51.63MB，并把处理时间提高到 21.3±22.8 分钟。
 - CoACD 碰撞代理将平均碰撞网格从视觉网格层级 1.45MB 降到 0.29MB，并把 scripted 碰撞成功从 96.5% 提高到 98.6%；这个结果支持凸分解对接触可靠性与 batching 成本有帮助，但不等于所有任务上的操作成功。
 - 可供性流程的主要瓶颈是部件分割。完整流程在 200 资产上达到 69.5% 分割 pass、99.3% 条件语义有效性、72.5% 条件抓取覆盖范围，最终端到端可供性 pass 比率只有 50.0%。
 - 任务驱动的世界生成在 150 任务上生成 778 交互式资产 instances、覆盖 128 物体 categories；平均每个世界 5.19 个资产。完全在线顺序式的生成在单张 RTX 4090 上平均需要 47.7±5.4 分钟，其中背景生成占 25.5±3.5 分钟。
@@ -62,15 +63,15 @@ $$
 
 ## 关联
 
-- [[EmbodiedGen]] - V1/V2 平台实体。
-- [[SimulationReady3DWorldGeneration]] - V2 的双层表示、约束求解与验证技术栈。
-- [[AgenticSceneTaskGeneration]] - 自然语言到场景图结构、类型化的技能、确定性求解器和可执行的产物。
-- [[CollisionGeometryForRobotSimulation]] - 网格修复、视觉/碰撞分离、CoACD 代理物与接触可靠性证据。
-- [[RoboticsSimulationInfrastructure]] - V2 把资产/世界制作、跨仿真器接口、编辑与 ML 循环连接成基础设施。
-- [[SimulationRealityGap]] - 生成的环境、域随机化、跨仿真器语义与真实机器人迁移的证据边界。
-- [[OpenUSDSceneComposition]] - V2 能输出 USD，但来源聚焦格式转换与运行时部署，不足以证明完整 OpenUSD 组合/layering strategy。
+- [[EmbodiedGen|EmbodiedGen]] - V1/V2 平台实体。
+- [[SimulationReady3DWorldGeneration|可用于仿真的三维世界生成]] - V2 的双层表示、约束求解与验证技术栈。
+- [[AgenticSceneTaskGeneration|智能体式场景与任务生成]] - 自然语言到场景图结构、类型化的技能、确定性求解器和可执行的产物。
+- [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]] - 网格修复、视觉/碰撞分离、CoACD 代理物与接触可靠性证据。
+- [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] - V2 把资产/世界制作、跨仿真器接口、编辑与 ML 循环连接成基础设施。
+- [[SimulationRealityGap|仿真—现实差距]] - 生成的环境、域随机化、跨仿真器语义与真实机器人迁移的证据边界。
+- [[OpenUSDSceneComposition|OpenUSD 场景组合]] - V2 能输出 USD，但来源聚焦格式转换与运行时部署，不足以证明完整 OpenUSD 组合/layering strategy。
 - [[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen V1]] - V2 的直接前身。
-- [[embodiedgen-v1-v2-learning-map]] - 机制、证据与阅读顺序对照。
+- [[embodiedgen-v1-v2-learning-map|EmbodiedGen V1/V2 学习地图]] - 机制、证据与阅读顺序对照。
 
 ## 开放问题
 

@@ -4,11 +4,12 @@ type: concept
 tags: [robotics, evaluation, vla]
 sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
 modified: 2026-07-19
+study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ---
 
 # 通用任务策略评估
 
-任务通用策略评估（任务泛化策略评估）关注的不是一个策略能否在单个脚本化操作任务上成功，而是它能否在没有专门共同训练的任务、语言变体、物体、场景和扰动上保持可解释的性能。[[RoboLab]] 把这个问题写成对现成策略的诊断基准：任务库定义目标与判定条件，环境注册组合机器人、策略和传感器，评估脚本记录成功、子任务得分、轨迹指标和错误物体失败。[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 则把同一问题扩展到训练数据与学习阶段：它用原子、已见组合和未见组合任务，分别测量短时域技能、见过的任务序列和零样本任务组合。
+任务通用策略评估（任务泛化策略评估）关注的不是一个策略能否在单个脚本化操作任务上成功，而是它能否在没有专门共同训练的任务、语言变体、物体、场景和扰动上保持可解释的性能。[[RoboLab|RoboLab]] 把这个问题写成对现成策略的诊断基准：任务库定义目标与判定条件，环境注册组合机器人、策略和传感器，评估脚本记录成功、子任务得分、轨迹指标和错误物体失败。[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 则把同一问题扩展到训练数据与学习阶段：它用原子、已见组合和未见组合任务，分别测量短时域技能、见过的任务序列和零样本任务组合。
 
 ## 数学结构
 

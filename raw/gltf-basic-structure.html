@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>glTF-Tutorials | glTF Tutorials</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="glTF-Tutorials" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="glTF Tutorials" />
+<meta property="og:description" content="glTF Tutorials" />
+<link rel="canonical" href="https://github.khronos.org/glTF-Tutorials/gltfTutorial/gltfTutorial_002_BasicGltfStructure.html" />
+<meta property="og:url" content="https://github.khronos.org/glTF-Tutorials/gltfTutorial/gltfTutorial_002_BasicGltfStructure.html" />
+<meta property="og:site_name" content="glTF-Tutorials" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="glTF-Tutorials" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"glTF Tutorials","headline":"glTF-Tutorials","url":"https://github.khronos.org/glTF-Tutorials/gltfTutorial/gltfTutorial_002_BasicGltfStructure.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/glTF-Tutorials/assets/css/style.css?v=2f4c4d75d3881a66e1b8367771a0e56ea7bcbed2">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/glTF-Tutorials/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="https://github.khronos.org/glTF-Tutorials/">glTF-Tutorials</a></h1>
+      
+
+      <table>
+  <tbody>
+    <tr>
+      <td>Previous: <a href="/glTF-Tutorials/gltfTutorial/gltfTutorial_001_Introduction.html">Introduction</a></td>
+      <td><a href="/glTF-Tutorials/gltfTutorial/">Table of Contents</a></td>
+      <td>Next: <a href="/glTF-Tutorials/gltfTutorial/gltfTutorial_003_MinimalGltfFile.html">A Minimal glTF File</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="the-basic-structure-of-gltf">The Basic Structure of glTF</h1>
+
+<p>The core of glTF is a JSON file. This file describes the whole contents of the 3D scene. It consists of a description of the scene structure itself, which is given by a hierarchy of nodes that define a scene graph. The 3D objects that appear in the scene are defined using meshes that are attached to the nodes. Materials define the appearance of the objects. Animations describe how the 3D objects are transformed (e.g., rotated or translated) over time, and skins define how the geometry of the objects is deformed based on a skeleton pose. Cameras describe the view configuration for the renderer.</p>
+
+<h2 id="the-json-structure">The JSON structure</h2>
+
+<p>The scene objects are stored in arrays in the JSON file. They can be accessed using the index of the respective object in the array:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">meshes</span><span class="dl">"</span> <span class="p">:</span> 
+<span class="p">[</span>
+    <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="p">...</span>
+<span class="p">],</span>
+</code></pre></div></div>
+
+<p>These indices are also used to define the <em>relationships</em> between the objects. The example above defines multiple meshes, and a node may refer to one of these meshes, using the mesh index, to indicate that the mesh should be attached to this node:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">nodes</span><span class="dl">"</span><span class="p">:</span> 
+<span class="p">[</span>
+    <span class="p">{</span> <span class="dl">"</span><span class="s2">mesh</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="p">...</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="dl">"</span><span class="s2">mesh</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="p">...</span> <span class="p">},</span>
+    <span class="p">...</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>The following image (adapted from the <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#concepts">glTF concepts section</a>) gives an overview of the top-level elements of the JSON part of a glTF asset:</p>
+
+<p align="center">
+<img src="images/gltfJsonStructure.png" /><br />
+<a name="gltfJsonStructure-png"></a>Image 2a: The glTF JSON structure
+</p>
+
+<p>These elements are summarized here quickly, to give an overview, with links to the respective sections of the glTF specification. More detailed explanations of the relationships between these elements will be given in the following sections.</p>
+
+<ul>
+  <li>The <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-scene"><code class="language-plaintext highlighter-rouge">scene</code></a> is the entry point for the description of the scene that is stored in the glTF. It refers to the <code class="language-plaintext highlighter-rouge">node</code>s that define the scene graph.</li>
+  <li>The <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-node"><code class="language-plaintext highlighter-rouge">node</code></a> is one node in the scene graph hierarchy. It can contain a transformation (e.g., rotation or translation), and it may refer to further (child) nodes. Additionally, it may refer to <code class="language-plaintext highlighter-rouge">mesh</code> or <code class="language-plaintext highlighter-rouge">camera</code> instances that are “attached” to the node, or to a <code class="language-plaintext highlighter-rouge">skin</code> that describes a mesh deformation.</li>
+  <li>The <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-camera"><code class="language-plaintext highlighter-rouge">camera</code></a> defines the view configuration for rendering the scene.</li>
+  <li>A <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-mesh"><code class="language-plaintext highlighter-rouge">mesh</code></a> describes a geometric object that appears in the scene. It refers to <code class="language-plaintext highlighter-rouge">accessor</code> objects that are used for accessing the actual geometry data, and to <code class="language-plaintext highlighter-rouge">material</code>s that define the appearance of the object when it is rendered.</li>
+  <li>The <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-skin"><code class="language-plaintext highlighter-rouge">skin</code></a> defines parameters that are required for vertex skinning, which allows the deformation of a mesh based on the pose of a virtual character. The values of these parameters are obtained from an <code class="language-plaintext highlighter-rouge">accessor</code>.</li>
+  <li>An <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-animation"><code class="language-plaintext highlighter-rouge">animation</code></a> describes how transformations of certain nodes (e.g., rotation or translation) change over time.</li>
+  <li>The <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-accessor"><code class="language-plaintext highlighter-rouge">accessor</code></a> is used as an abstract source of arbitrary data. It is used by the <code class="language-plaintext highlighter-rouge">mesh</code>, <code class="language-plaintext highlighter-rouge">skin</code>, and <code class="language-plaintext highlighter-rouge">animation</code>, and provides the geometry data, the skinning parameters and the time-dependent animation values. It refers to a <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-bufferview"><code class="language-plaintext highlighter-rouge">bufferView</code></a>, which is a part of a <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-buffer"><code class="language-plaintext highlighter-rouge">buffer</code></a> that contains the actual raw binary data.</li>
+  <li>The <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-material"><code class="language-plaintext highlighter-rouge">material</code></a> contains the parameters that define the appearance of an object. It usually refers to <code class="language-plaintext highlighter-rouge">texture</code> objects that will be applied to the rendered geometry.</li>
+  <li>The <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-texture"><code class="language-plaintext highlighter-rouge">texture</code></a> is defined by a <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-sampler"><code class="language-plaintext highlighter-rouge">sampler</code></a> and an <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-image"><code class="language-plaintext highlighter-rouge">image</code></a>. The <code class="language-plaintext highlighter-rouge">sampler</code> defines how the texture <code class="language-plaintext highlighter-rouge">image</code> should be placed on the object.</li>
+</ul>
+
+<h2 id="references-to-external-data">References to external data</h2>
+
+<p>The binary data, like geometry and textures of the 3D objects, are usually not contained in the JSON file. Instead, they are stored in dedicated files, and the JSON part only contains links to these files. This allows the binary data to be stored in a form that is very compact and can efficiently be transferred over the web. Additionally, the data can be stored in a format that can be used directly in the renderer, without having to parse, decode, or preprocess the data.</p>
+
+<p align="center">
+<img src="images/gltfStructure.png" /><br />
+<a name="gltfStructure-png"></a>Image 2b: The glTF structure
+</p>
+
+<p>As shown in the image above, there are two types of objects that may contain such links to external resources, namely <code class="language-plaintext highlighter-rouge">buffers</code> and <code class="language-plaintext highlighter-rouge">images</code>. These objects will later be explained in more detail.</p>
+
+<h2 id="reading-and-managing-external-data">Reading and managing external data</h2>
+
+<p>Reading and processing a glTF asset starts with parsing the JSON structure. After the structure has been parsed, the <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-buffer"><code class="language-plaintext highlighter-rouge">buffer</code></a> and <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-image"><code class="language-plaintext highlighter-rouge">image</code></a> objects are available in the top-level <code class="language-plaintext highlighter-rouge">buffers</code> and <code class="language-plaintext highlighter-rouge">images</code> arrays, respectively. Each of these objects may refer to blocks of binary data. For further processing, this data is read into memory. Usually, the data will be be stored in an array so that they may be looked up using the same index that is used for referring to the <code class="language-plaintext highlighter-rouge">buffer</code> or <code class="language-plaintext highlighter-rouge">image</code> object that they belong to.</p>
+
+<h2 id="binary-data-in-buffers">Binary data in <code class="language-plaintext highlighter-rouge">buffers</code></h2>
+
+<p>A <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-buffer"><code class="language-plaintext highlighter-rouge">buffer</code></a> contains a URI that points to a file containing the raw, binary buffer data:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">buffer01</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">byteLength</span><span class="dl">"</span><span class="p">:</span> <span class="mi">12352</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">arraybuffer</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">uri</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">buffer01.bin</span><span class="dl">"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This binary data is just a raw block of memory that is read from the URI of the <code class="language-plaintext highlighter-rouge">buffer</code>, with no inherent meaning or structure. The <a href="/glTF-Tutorials/gltfTutorial/gltfTutorial_005_BuffersBufferViewsAccessors.html">Buffers, BufferViews, and Accessors</a> section will show how this raw data is extended with information about data types and the data layout. With this information, one part of the data may, for example, be interpreted as animation data, and another part may be interpreted as geometry data. Storing the data in a binary form allows it to be transferred over the web much more efficiently than in the JSON format, and the binary data can be passed directly to the renderer without having to decode or pre-process it.</p>
+
+<h2 id="image-data-in-images">Image data in <code class="language-plaintext highlighter-rouge">images</code></h2>
+
+<p>An <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#reference-image"><code class="language-plaintext highlighter-rouge">image</code></a> may refer to an external image file that can be used as the texture of a rendered object:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">image01</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">uri</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">image01.png</span><span class="dl">"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The reference is given as a URI that usually points to a PNG or JPG file. These formats significantly reduce the size of the files so that they may efficiently be transferred over the web. In some cases, the <code class="language-plaintext highlighter-rouge">image</code> objects may not refer to an external file, but to data that is stored in a <code class="language-plaintext highlighter-rouge">buffer</code>. The details of this indirection will be explained in the <a href="/glTF-Tutorials/gltfTutorial/gltfTutorial_012_TexturesImagesSamplers.html">Textures, Images, and Samplers</a> section.</p>
+
+<h2 id="binary-data-in-data-uris">Binary data in data URIs</h2>
+
+<p>Usually, the URIs that are contained in the <code class="language-plaintext highlighter-rouge">buffer</code> and <code class="language-plaintext highlighter-rouge">image</code> objects will point to a file that contains the actual data. As an alternative, the data may be <em>embedded</em> into the JSON, in binary format, by using a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">data URI</a>.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Previous: <a href="/glTF-Tutorials/gltfTutorial/gltfTutorial_001_Introduction.html">Introduction</a></td>
+      <td><a href="/glTF-Tutorials/gltfTutorial/">Table of Contents</a></td>
+      <td>Next: <a href="/glTF-Tutorials/gltfTutorial/gltfTutorial_003_MinimalGltfFile.html">A Minimal glTF File</a></td>
+    </tr>
+  </tbody>
+</table>
+
+
+      
+      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+        This site is open source. <a href="https://github.com/KhronosGroup/glTF-Tutorials/edit/main/gltfTutorial/gltfTutorial_002_BasicGltfStructure.md">Improve this page</a>.
+      </div>
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>

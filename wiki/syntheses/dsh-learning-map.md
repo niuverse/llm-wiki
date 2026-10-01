@@ -4,15 +4,16 @@ type: synthesis
 tags: [source-plan]
 sources: []
 modified: 2026-08-18
+study_topic: syntheses/agent-tools-learning-path
 ---
 
 # DeepSeek Harness 来源获取计划
 
-这个页面是 DeepSeek Harness（`dsh`）的来源获取计划（source plan），不是学习地图：它等的是后续 `ingest`，而不是复习路径。当前知识库还没有 ingest 任何 DSH 相关 canonical 来源，本页内容基于对本机安装包源码（`@deepseek-ai/dsh` 0.1.0-rc.7）和官方 GitHub 仓库文档的一手调研，属于 `conversation-derived` / `unsourced learning scaffold`：机制描述可靠，但尚未升级为 source-backed claim。来源获取计划见文末。
+这个页面是 DeepSeek Harness（`dsh`）的来源获取计划（来源 plan），不是学习地图：它等的是后续 `ingest`，而不是复习路径。当前知识库还没有 ingest 任何 DSH 相关 canonical 来源，本页内容基于对本机安装包源码（`@deepseek-ai/dsh` 0.1.0-rc.7）和官方 GitHub 仓库文档的一手调研，属于 `conversation-derived` / `unsourced learning scaffold`：机制描述可靠，但尚未升级为 source-backed claim。来源获取计划见文末。
 
 ## 主题边界
 
-本主题关注 DeepSeek Harness 这个 **agent harness（智能体运行时）**：它如何用"一切皆插件"的架构承载一个可运行、可替换、可热修改的 agent 系统。核心对象包括 Cordis 插件框架、profile/bundle 组合层、session 事件日志、turn/step 驱动循环、工具注册表、LLM 适配器 seam、沙箱/审批、以及 goal/subagent/workflow/plan/compaction 等编排能力。
+本主题关注 DeepSeek Harness 这个 **agent harness（智能体运行时）**：它如何用"一切皆插件"的架构承载一个可运行、可替换、可热修改的 agent 系统。核心对象包括 Cordis 插件框架、profile/bundle 组合层、session 事件日志、turn/step 驱动循环、工具注册表、LLM 适配器 seam、沙箱/审批、以及 goal/subagent/工作流/plan/compaction 等编排能力。
 
 暂时不把以下内容作为主线：DSH 上跑的具体 coding agent 产品策略、DeepSeek 模型本身的训练与推理细节、其他 agent 框架（Claude Code、Codex 等）的横向对比实现。它们会在需要理解 seam 边界或接口兼容时作为扩展。
 
@@ -46,7 +47,7 @@ flowchart LR
 | Session 事件日志 | conversation-derived | append-only typed `SessionEvent` 日志是唯一事实源；模型历史由 `deriveMessages()` 从日志投影，不单独存储。 |
 | Capability Seam | conversation-derived | 可替换能力的三角色结构：Service Definition（接口）/ Provider（实现）/ Consumer（通常模型向工具）；换 provider 整体迁移。 |
 | 沙箱与审批 | conversation-derived | `ctx.sandbox` 用 `SandboxMode` 限制文件效果；`ctx.approval` 按会话 `ask`/`never` 策略决定放行。 |
-| 编排能力 | conversation-derived | goal/subagent/workflow/plan/compaction/session-projection 都是可选 seam，不属于 agent-loop 主干。 |
+| 编排能力 | conversation-derived | goal/subagent/工作流/plan/compaction/session-projection 都是可选 seam，不属于 agent-loop 主干。 |
 
 ## 机制级解释
 
@@ -103,7 +104,7 @@ compaction 是可选 seam：`agent/pre-step` 压力触发（`pressure`）或 `ag
 
 - **goal**：事件溯源服务（`ctx.goals`），`goal/change` 全量快照事件 + strict fold 派生 `GoalPhase`（active/paused/blocked/complete）；`GoalRef{id, revision}` 做 compare-and-set，每次变更递增 revision；durable phase 与 process-local activation 分离。
 - **subagent**：`ctx.subagents` 多 provider 注册表；one-shot（`SubagentRun`）vs continuable（持久 Session + 至多一个进程内 Activation）；Agent inbox 是唯一 FIFO。
-- **workflow**：`ctx.workflowEngine` 执行模型编写的 plain-JS 脚本（worker-thread，每 run 一 worker）；`meta`/`args` 是纯 JSON、运行前 schema 校验；钩子误用被 re-throw 杀死脚本（fail loud），逐项 null 只留给 child-run 失败。
+- **工作流**：`ctx.workflowEngine` 执行模型编写的 plain-JS 脚本（worker-thread，每 run 一 worker）；`meta`/`args` 是纯 JSON、运行前 schema 校验；钩子误用被 re-throw 杀死脚本（fail loud），逐项 null 只留给 child-run 失败。
 - **plan mode**：`ctx.planMode` 逐 agent 协作状态，**soft guidance**，与 sandbox/approval 独立；`plan/mode` 是 log-only 整值替换事件，生效状态是日志纯折叠；`exit_plan_mode` 要求 `#` 开头的完整 markdown 计划经 user-questions 评审。
 - **session-projection**：registry 单次订阅 `session/event`、eager 折叠所有 unit（框架驱动、领域计算）；`ProjectionDefinition` 纯同步 `init`/`apply`/`view` + schema + `stateVersion`，apply 无关事件须返回同一引用（`Object.is` → 零下游工作）。
 
@@ -112,7 +113,7 @@ compaction 是可选 seam：`agent/pre-step` 压力触发（`pressure`）或 `ag
 | 误解 | 校正 |
 | --- | --- |
 | "一切皆插件"= 所有功能都是可选小玩具 | 核心 spine（session、loop、tools）本身也是插件，只是默认装载；可替换 ≠ 不重要。 |
-| dsh 是又一个 coding agent 框架 | 它是 agent **runtime**：模型适配器、工具、UI 都可换，agent 配置由你组装；coding agent 只是运行在它上面的一个组合。 |
+| dsh 是又一个 coding agent 框架 | 它是 agent **运行时**：模型适配器、工具、UI 都可换，agent 配置由你组装；coding agent 只是运行在它上面的一个组合。 |
 | plugin = tool | tool 只是模型向能力（注册在 `ctx.tools`）；plugin 是任意运行时组件（服务、监听器、UI 均可）。 |
 | 插件卸载 = 恢复一切 | 恢复的是**环境/注册**（可逆 effect）；**会话状态**在 append-only 日志里，卸载不丢。 |
 | headless 是"无界面的 web" | headless 是 one-shot runner：跑一个任务、打印结果、退出，根本没有 server。 |
@@ -122,7 +123,7 @@ compaction 是可选 seam：`agent/pre-step` 压力触发（`pressure`）或 `ag
 
 ## 实践连接
 
-- **当前会话就跑在 DSH 上**：本会话运行于 `dsh web`（127.0.0.1:3080）。goal 工具（同会话目标 + round 续跑）、subagent、workflow、plan mode、sandbox 审批（本会话是 `never` 策略）都是活例子。
+- **当前会话就跑在 DSH 上**：本会话运行于 `dsh web`（127.0.0.1:3080）。goal 工具（同会话目标 + round 续跑）、subagent、工作流、plan mode、sandbox 审批（本会话是 `never` 策略）都是活例子。
 - **本机有完整实现可读**：`/Users/ruziniu/.npm/_npx/1e7f6d9597241db0/node_modules/@deepseek-ai/` 下 219 个已编译包；`dsh --profile web --dump-config` 可看本机实际组合的配置树。
 - **Python SDK**：`pip install deepseek-harness-sdk`（Python 3.10+，自带内置运行时）；`DeepSeekHarness(provider, model, ...)` 延迟启动并复用运行时，`harness.run(task, session_id)` 返回 `result.final_response`；**复用同一 session id 会保留该会话的 Bash 进程**（cwd、导出变量、shell 函数）。
 - **试插件开发**：官方 cookbook 有 `adding-a-tool.md`、`adding-an-llm-adapter.md`、`adding-a-settings-card.md` 等分步指南。
@@ -139,8 +140,8 @@ compaction 是可选 seam：`agent/pre-step` 压力触发（`pressure`）或 `ag
 | 1 | [deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) repo（README + docs/ 关键文档 + packages/） | repo | 官方架构、子系统、用户指南的 canonical 证据 | 已克隆到 `/tmp/dsh-repo`，待 ingest |
 | 1 | [_A Programming Paradigm for Spatiotemporal Composability_](https://github.com/cordiverse/paper)（Cordis 论文，作者含 DeepSeek-AI 成员） | 论文 PDF | 可逆 effect / reactive coeffect 的形式化基础 | 已克隆到 `/tmp/cordis-paper`，待 ingest |
 | 2 | `docs/architecture.md` + `docs/cordis-primer.md` | 官方文档 | 架构总览与 Cordis 入门 | 随 repo ingest |
-| 2 | `docs/subsystems/*`（session、tools、core、sandbox、goal、subagent、workflow 等） | 官方文档 | 子系统机制细节 | 随 repo ingest |
+| 2 | `docs/subsystems/*`（session、tools、core、sandbox、goal、subagent、工作流等） | 官方文档 | 子系统机制细节 | 随 repo ingest |
 | 3 | `docs/user/guide/`（Web UI、providers、Python SDK） | 官方文档 | 用户侧使用方式 | 随 repo ingest |
-| 4 | `dsh-handbook` 等社区手册 | 二手资料 | 仅背景参考，不建议作为 canonical source | 不 ingest |
+| 4 | `dsh-handbook` 等社区手册 | 二手资料 | 仅背景参考，不建议作为 canonical 来源 | 不 ingest |
 
 后续收录顺序建议：先 ingest repo（README + 架构/子系统/用户指南 selected 文档），再 ingest Cordis 论文 PDF；论文的数学结构（扭曲复合、$\partial\Gamma$、coeffect 激活）适合放进 concept page 的 `## 数学结构` 部分。

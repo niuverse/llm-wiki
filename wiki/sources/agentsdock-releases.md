@@ -8,6 +8,7 @@ source_file: raw/agentsdock-releases-readme.md
 source_kind: markdown
 source_url: https://github.com/ZhengyiLuo/AgentsDock-Releases
 source_date: unknown
+study_topic: syntheses/agent-tools-learning-path
 ---
 
 ## 摘要
@@ -33,9 +34,9 @@ source_date: unknown
 
 ## 关联
 
-- [[AgentsDock]] - 该发布仓库对应的桌面/移动客户端实体。
-- [[AgentsServer]] - AgentsDock 配套的自托管执行后端。
-- [[agentsserver]] - AgentsServer 官方 README 来源页。
+- [[AgentsDock|AgentsDock]] - 该发布仓库对应的桌面/移动客户端实体。
+- [[AgentsServer|AgentsServer]] - AgentsDock 配套的自托管执行后端。
+- [[agentsserver|AgentsServer 来源档案]] - AgentsServer 官方 README 来源页。
 
 ## 开放问题
 

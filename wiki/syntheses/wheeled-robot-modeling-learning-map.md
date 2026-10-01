@@ -4,11 +4,12 @@ type: synthesis
 tags: [learn, robotics, wheeled-robots, simulation]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]", "[[contact-models-in-robotics-a-comparative-analysis]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # 轮式机器人建模学习地图
 
-这个页面是轮式移动机器人建模的学习脚手架。当前知识库已经收录 [[modern-robotics-chapter-13-wheeled-mobile-robots|《现代机器人学》第 13 章]] 和 [[structural-properties-and-classification-of-wheeled-mobile-robots|Campion 等人的 WMR 分类论文]]，因此基础运动学、全向与非完整约束的区别、里程计、$\delta_m/\delta_s$ 分类体系，以及中心式与偏心式可转向轮已有来源支持。全向转向实现、滑移转向/履带车辆、轮胎动力学和仿真器专用控制器文档仍需补充来源；接触、求解器和仿真到现实迁移差距的判断回连到 [[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]] 和 [[SimulationRealityGap]]。
+这个页面是轮式移动机器人建模的学习脚手架。当前知识库已经收录 [[modern-robotics-chapter-13-wheeled-mobile-robots|《现代机器人学》第 13 章]] 和 [[structural-properties-and-classification-of-wheeled-mobile-robots|Campion 等人的 WMR 分类论文]]，因此基础运动学、全向与非完整约束的区别、里程计、$\delta_m/\delta_s$ 分类体系，以及中心式与偏心式可转向轮已有来源支持。全向转向实现、滑移转向/履带车辆、轮胎动力学和仿真器专用控制器文档仍需补充来源；接触、求解器和仿真到现实迁移差距的判断回连到 [[ContactModelsInRobotics|机器人学中的接触模型]]、[[ContactComplementarity|接触互补]]、[[ContactSolvers|接触求解器]] 和 [[SimulationRealityGap|仿真—现实差距]]。
 
 ## 主题边界
 
@@ -39,7 +40,7 @@ flowchart LR
 | 非完整约束 | 有来源支持的 | [[modern-robotics-chapter-13-wheeled-mobile-robots|《现代机器人学》]] 用 $A(q)\dot q=0$ 和李括号解释机器人不能直接侧移，却可以通过组合运动实现横向位移。 |
 | 完整约束 / 全向基座 | 有来源支持的 | [[modern-robotics-chapter-13-wheeled-mobile-robots|Modern 机器人学]] 用 $u=H(0)V_b$ 与秩-3 条件建模 omni / mecanum；Campion 对应类型 $(3,0)$。 |
 | 控制分配 | 有来源支持的 / 实现差距 | 章节 13 支持 $H(0)$、$H^\dagger$ 和车轮速度限制；全向转向模块饱和策略仍需实现文档。 |
-| 接触模型 | 有来源支持的 | 车轮地面力由接触定律、摩擦模型和求解器近似决定；见 [[ContactModelsInRobotics]]。 |
+| 接触模型 | 有来源支持的 | 车轮地面力由接触定律、摩擦模型和求解器近似决定；见 [[ContactModelsInRobotics|机器人学中的接触模型]]。 |
 | 求解器残差 | 有来源支持的 | 仿真中的车轮滑移、支持力和摩擦行为可能受 [[ContactSolvers|接触求解器]] 残差影响。 |
 
 ## 车轮分类
@@ -133,7 +134,7 @@ $$
 
 其中 $M(q)$ 是质量矩阵，$h(q,v)$ 包含重力、Coriolis 和其他偏差条款，$S^T\tau$ 是执行器力矩，$J_c(q)$ 是接触雅可比矩阵，$\lambda$ 是接触力或冲量。轮式机器人中，$\lambda$ 会受法向负载、摩擦 coefficient、滑移速度、地面几何、车轮柔顺性和求解器残差影响。
 
-这部分与当前知识库的有来源支持的接触页面直接相连：[[ContactComplementarity]] 解释 non-穿透与摩擦边界的数学约束，[[ContactSolvers]] 解释仿真器如何近似求解接触冲量，[[SimulationRealityGap]] 解释这些近似如何进入 MPC、RL 和硬件迁移。
+这部分与当前知识库的有来源支持的接触页面直接相连：[[ContactComplementarity|接触互补]] 解释 non-穿透与摩擦边界的数学约束，[[ContactSolvers|接触求解器]] 解释仿真器如何近似求解接触冲量，[[SimulationRealityGap|仿真—现实差距]] 解释这些近似如何进入 MPC、RL 和硬件迁移。
 
 ## 仿真路径
 
@@ -173,14 +174,14 @@ $$
 
 ## 证据边界
 
-当前页面中关于基础轮式运动学、全向轮/麦克纳姆轮秩条件、非完整约束规范模型、里程计和 Campion $\delta_m/\delta_s$ 分类体系的判断，由 [[modern-robotics-chapter-13-wheeled-mobile-robots]] 与 [[structural-properties-and-classification-of-wheeled-mobile-robots]] 支持。关于接触定律、求解器残差和仿真到现实迁移差距的判断，由 [[ContactModelsInRobotics]]、[[ContactComplementarity]]、[[ContactSolvers]]、[[SimulationRealityGap]] 支持。全向转向专用控制器、滑移转向/履带车辆、可变形轮胎动力学和仿真器专用 API 仍属于待收录缺口。
+当前页面中关于基础轮式运动学、全向轮/麦克纳姆轮秩条件、非完整约束规范模型、里程计和 Campion $\delta_m/\delta_s$ 分类体系的判断，由 [[modern-robotics-chapter-13-wheeled-mobile-robots|Modern Robotics 轮式机器人章节]] 与 [[structural-properties-and-classification-of-wheeled-mobile-robots|轮式机器人结构与分类论文]] 支持。关于接触定律、求解器残差和仿真到现实迁移差距的判断，由 [[ContactModelsInRobotics|机器人学中的接触模型]]、[[ContactComplementarity|接触互补]]、[[ContactSolvers|接触求解器]]、[[SimulationRealityGap|仿真—现实差距]] 支持。全向转向专用控制器、滑移转向/履带车辆、可变形轮胎动力学和仿真器专用 API 仍属于待收录缺口。
 
 ## 来源获取计划
 
 | 优先级 | 候选来源 | Kind | 用途 | 建议 |
 | --- | --- | --- | --- | --- |
-| 已完成 | Modern 机器人学章节 13: 轮式移动式机器人 | 教材 / 讲义 | 已建立 [[WheeledRobotKinematics]]、[[OmnidirectionalWheels]]、[[NonholonomicMobileRobots]]、[[MobileRobotOdometry]] 的基础。 | 已收录 |
-| 已完成 | Campion, Bastin, D'Andrea-Novel, "Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots" | 奠基论文 | 已建立 [[WheeledMobileRobotClassification]] 与 [[SteerableWheels]] 的分类体系基础。 | 已收录 |
+| 已完成 | Modern 机器人学章节 13: 轮式移动式机器人 | 教材 / 讲义 | 已建立 [[WheeledRobotKinematics|轮式机器人运动学]]、[[OmnidirectionalWheels|全向轮]]、[[NonholonomicMobileRobots|非完整约束移动机器人]]、[[MobileRobotOdometry|移动机器人里程计]] 的基础。 | 已收录 |
+| 已完成 | Campion, Bastin, D'Andrea-Novel, "Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots" | 奠基论文 | 已建立 [[WheeledMobileRobotClassification|轮式移动机器人分类]] 与 [[SteerableWheels|可转向轮]] 的分类体系基础。 | 已收录 |
 | 1 | ROS 2 控制移动式基座控制器文档 | 实现文档 | 对接差分驱动器、Ackermann、mecanum 等控制器接口、里程计和命令语义。 | 收录 selected 页面 |
 | 2 | Isaac Sim 移动式机器人控制器文档 | 实现文档 | 理解 Isaac Sim 中差分、完整约束/mecanum 和轮式机器人控制器工作流。 | 收录 selected 页面 |
 | 3 | MuJoCo 接触 / 摩擦文档 | 仿真器文档 | 理解车轮仿真中摩擦锥体、接触 dimension、滚动/sliding 摩擦和求解器参数。 | 收录 selected 页面 |

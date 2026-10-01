@@ -6,10 +6,10 @@ on:
   push:
     branches: [main]
     paths:
-      - 'wiki/**'
-      - 'raw/**'
-      - 'tools/**'
-      - '.github/workflows/**'
+      - "wiki/**"
+      - "raw/**"
+      - "tools/**"
+      - ".github/workflows/**"
   workflow_dispatch:
 
 permissions:
@@ -29,7 +29,12 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
+
+      - name: Validate deterministic research tools
+        run: |
+          python3 -m unittest discover -s tools -p 'test_*.py'
+          python3 -m unittest discover -s tests -p 'test_*.py'
 
       - name: Wiki structural health
         run: python3 tools/health.py --json
@@ -58,11 +63,11 @@ jobs:
   auto-merge:
     needs: validate
     if: >-
-      github.event_name == 'pull_request' &&
-      github.event.pull_request.draft == false &&
-      (contains(github.event.pull_request.labels.*.name, 'auto-merge') ||
+      github.event_name == 'pull_request' && github.event.pull_request.draft == false && (contains(github.event.pull_request.labels.*.name, 'auto-merge') ||
        contains(github.event.pull_request.title, '[auto-merge]') ||
        contains(github.event.pull_request.body, '[auto-merge]'))
+
+
     runs-on: ubuntu-22.04
     steps:
       - name: Enable GitHub auto-merge
@@ -81,7 +86,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
       - name: Wiki structural health
         run: python3 tools/health.py --json

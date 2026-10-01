@@ -4,6 +4,7 @@ type: synthesis
 tags: [distill, isaac-sim, mujoco, physx, simulation]
 sources: ["[[isaac-sim-asset-structure]]", "[[contact-models-in-robotics-a-comparative-analysis]]", "[[omniverse-omni-physics-articulations]]"]
 modified: 2026-07-13
+study_topic: syntheses/simulation-and-assets-learning-path
 ---
 
 # Isaac Sim 与 MuJoCo 物理和控制笔记
@@ -17,14 +18,14 @@ modified: 2026-07-13
 | Insight | 证据层级 | 知识库目标 |
 | --- | --- | --- |
 | Isaac Sim 教程里的 “高刚度与相对低或 zero 阻尼” 更应读作控制模式设置启发式规则：位置控制需要非零刚度；速度控制通常主要靠阻尼；作用力控制则关闭驱动器增益。它不是“最终稳定调参规则”。 | 源自讨论的解释; 需要 Isaac 文档收录 | 本页 |
-| PhysX/Isaac Sim 关节系统驱动器可以按弹簧—阻尼 / 类 PD 驱动器理解：Omni 物理来源明确说关节系统驱动器 is 类似 PD 控制器；`stiffness` / `damping` 的精确 discrete 求解器语义仍需关节调优文档。 | 有来源支持的用于 PD 类比; 细节仍需后续 | [[omniverse-omni-physics-articulations]], 本页 |
-| PhysX 驱动器不是单纯在外部控制循环里显式计算力矩的连续时间 PD；它受到性能适用范围、力 / 速度限制、接触、闭环机构、mimic 柔顺性、时间步和 TGS 迭代影响。 | 部分有来源支持的由 Omni 物理关节系统文档; 更广泛的调优仍需源自讨论的 | [[ReducedCoordinateArticulations]], [[ContactSolvers]], 本页 |
+| PhysX/Isaac Sim 关节系统驱动器可以按弹簧—阻尼 / 类 PD 驱动器理解：Omni 物理来源明确说关节系统驱动器 is 类似 PD 控制器；`stiffness` / `damping` 的精确 discrete 求解器语义仍需关节调优文档。 | 有来源支持的用于 PD 类比; 细节仍需后续 | [[omniverse-omni-physics-articulations|Omni 物理关节文档]], 本页 |
+| PhysX 驱动器不是单纯在外部控制循环里显式计算力矩的连续时间 PD；它受到性能适用范围、力 / 速度限制、接触、闭环机构、mimic 柔顺性、时间步和 TGS 迭代影响。 | 部分有来源支持的由 Omni 物理关节系统文档; 更广泛的调优仍需源自讨论的 | [[ReducedCoordinateArticulations|约化坐标关节系统]], [[ContactSolvers|接触求解器]], 本页 |
 | `Max Force` / 力矩限制是位置控制的一等参数，不是事后细节；它会限幅驱动器力矩/力，决定跟踪错误是增益不足还是执行器能力不足。 | 源自讨论的; 需要 Isaac 关节调优文档收录 | 本页 |
 | 七自由度机械臂的增益不应机械地按关节索引递减，而应按有效的惯量、载荷、重力力矩、任务刚度和接触要求分组调；肩部/肘部通常需要更高绝对刚度，腕部通常可以更小。 | 源自讨论的启发式规则 | 本页 |
 | `Kd/Kp` 不是无量纲固定比例；更稳定的参数化是自然频率 $\omega_n$ 和阻尼比率 $\zeta$。常用起点是 $\zeta \approx 0.7-1.0$，接触任务可更高。 | 源自讨论的控制启发式规则 | 本页 |
-| PhysX 和 MuJoCo 的关键差异不只在增益字段名，而在物理解算和执行器抽象：PhysX/Isaac Sim 更偏约化坐标关节系统 + 迭代式的约束求解器 + 内置驱动器；MuJoCo 更偏广义的坐标动力学 + 优化基于约束 + 显式执行器模型。 | 源自讨论的; 部分一致带有 [[ContactSolvers]] | [[MuJoCo]], [[IsaacSim]], [[ContactSolvers]], 本页 |
-| MuJoCo 与 PhysX 的增益不能原始-数值迁移；应迁移闭环带宽、阻尼比率、作用力/力限制和接触 regime，而不是直接复制刚度/阻尼数字。 | 源自讨论的; 部分一致带有 [[ContactSolvers]] | [[MuJoCo]], [[ContactSolvers]], 本页 |
-| 当前知识库已有来源支持：接触求解器与模型选择会影响力、残差，以及下游的 MPC、RL 和可微优化；但 PhysX 关节系统驱动器与 MuJoCo 执行器 API 在当前版本中的具体语义，仍需后续收录官方文档。 | 一般性的求解器影响已有来源支持；当前 API 语义仍待补充 | [[contact-models-in-robotics-a-comparative-analysis]], [[ContactSolvers]] |
+| PhysX 和 MuJoCo 的关键差异不只在增益字段名，而在物理解算和执行器抽象：PhysX/Isaac Sim 更偏约化坐标关节系统 + 迭代式的约束求解器 + 内置驱动器；MuJoCo 更偏广义的坐标动力学 + 优化基于约束 + 显式执行器模型。 | 源自讨论的; 部分一致带有 [[ContactSolvers|接触求解器]] | [[MuJoCo|MuJoCo]], [[IsaacSim|Isaac Sim]], [[ContactSolvers|接触求解器]], 本页 |
+| MuJoCo 与 PhysX 的增益不能原始-数值迁移；应迁移闭环带宽、阻尼比率、作用力/力限制和接触 regime，而不是直接复制刚度/阻尼数字。 | 源自讨论的; 部分一致带有 [[ContactSolvers|接触求解器]] | [[MuJoCo|MuJoCo]], [[ContactSolvers|接触求解器]], 本页 |
+| 当前知识库已有来源支持：接触求解器与模型选择会影响力、残差，以及下游的 MPC、RL 和可微优化；但 PhysX 关节系统驱动器与 MuJoCo 执行器 API 在当前版本中的具体语义，仍需后续收录官方文档。 | 一般性的求解器影响已有来源支持；当前 API 语义仍待补充 | [[contact-models-in-robotics-a-comparative-analysis|接触模型比较论文]], [[ContactSolvers|接触求解器]] |
 
 ## 讨论地图
 
@@ -116,7 +117,7 @@ $$
 | 参数迁移 | 增益的效果强依赖时间步、求解器迭代、力限制、驱动器模式和接触状态 | 增益的效果强依赖执行器类型、forcerange、armature、积分器、接触软化参数和求解器场景 |
 | 实践风险 | 硬驱动器 + 大力矩限制容易产生不真实强伺服或接触颤振 | 软约束 / regularization 可能 shift 物理 solution，并影响轨迹优化或 RL 梯度 |
 
-当前知识库已有 [[ContactSolvers]] 和 [[ContactModelsInRobotics]] 支持一般性判断：求解器/模型选择会改变力、残差、条件化和下游行为。但上表中关于 PhysX 当前关节系统驱动器与 MuJoCo 当前执行器 API 的具体字段语义仍是本次讨论的工程归纳，需要后续收录官方文档。
+当前知识库已有 [[ContactSolvers|接触求解器]] 和 [[ContactModelsInRobotics|机器人学中的接触模型]] 支持一般性判断：求解器/模型选择会改变力、残差、条件化和下游行为。但上表中关于 PhysX 当前关节系统驱动器与 MuJoCo 当前执行器 API 的具体字段语义仍是本次讨论的工程归纳，需要后续收录官方文档。
 
 ## Isaac Sim / PhysX 调参经验
 
@@ -133,7 +134,7 @@ $$
 2. 设置并监控 `forcerange` / 执行器力饱和。和 Isaac 一样，力限制太小会导致跟踪错误，太大会生成不真实强伺服。
 3. MuJoCo 的 `armature`、被动关节 damping、接触 `solref/solimp`、积分器和时间步会显著影响稳定性；不要只调执行器增益。
 4. MuJoCo 增益和 PhysX 增益不应直接复制。更可迁移的是目标闭环带宽、阻尼比率、力限制、轨迹平滑性和允许的接触柔顺性。
-5. 对 RL 或 MPC，MuJoCo 的软约束 / 正则化的接触选择会影响梯度、轨迹采样和策略行为；这与 [[ContactModelsInRobotics]] 中“接触模型选择是建模假设而非实现细节”的判断一致。
+5. 对 RL 或 MPC，MuJoCo 的软约束 / 正则化的接触选择会影响梯度、轨迹采样和策略行为；这与 [[ContactModelsInRobotics|机器人学中的接触模型]] 中“接触模型选择是建模假设而非实现细节”的判断一致。
 
 ## 失效情形
 
@@ -146,7 +147,7 @@ $$
 
 ## 证据边界
 
-有来源支持的：当前知识库已收录的 [[contact-models-in-robotics-a-comparative-analysis]] 支持一个更一般性的判断：接触模型和求解器选择会改变力、残差、条件化和下游 MPC/RL/可微的优化；[[isaac-sim-asset-structure]] 支持 Isaac Sim 资产图结构中 PhysX/MuJoCo-特定的调优应被隔离在运行时特定的层的制作 principle；[[omniverse-omni-physics-articulations]] 支持 PhysX 关节系统驱动器的 PD 类比、性能适用范围、关节摩擦、mimic 柔顺性、TGS 位置迭代 effect 和闭环 / 硬接触稳定性 warnings。
+有来源支持的：当前知识库已收录的 [[contact-models-in-robotics-a-comparative-analysis|接触模型比较论文]] 支持一个更一般性的判断：接触模型和求解器选择会改变力、残差、条件化和下游 MPC/RL/可微的优化；[[isaac-sim-asset-structure|Isaac Sim 资产结构文档]] 支持 Isaac Sim 资产图结构中 PhysX/MuJoCo-特定的调优应被隔离在运行时特定的层的制作 principle；[[omniverse-omni-physics-articulations|Omni 物理关节文档]] 支持 PhysX 关节系统驱动器的 PD 类比、性能适用范围、关节摩擦、mimic 柔顺性、TGS 位置迭代 effect 和闭环 / 硬接触稳定性 warnings。
 
 源自讨论的：本页关于 Isaac Sim 官方教程措辞的解释、具体刚度/阻尼调优工作流、seven-DOF 机械臂增益分组、PhysX 与 MuJoCo 物理解算对比、Isaac 增益调参器-风格调优和 MuJoCo 执行器调优，来自本次讨论中的工程归纳。它们应作为工作笔记使用，不应被当作已收录的有来源支持的主张。
 
@@ -155,7 +156,7 @@ Hypothesis / 后续需要：需要后续收录 PhysX 关节系统 / 关节驱动
 ## 写入位置
 
 - 本页保存物理/控制 conversation 的复用框架。
-- [[IsaacSim]] 与 [[MuJoCo]] 实体页面增加到本页的链接，明确这是源自讨论的物理与控制笔记。
+- [[IsaacSim|Isaac Sim]] 与 [[MuJoCo|MuJoCo]] 实体页面增加到本页的链接，明确这是源自讨论的物理与控制笔记。
 - 暂不更新 [[overview|总览]]：这次讨论补充的是仿真器特定的实践框架，尚未改变当前知识库的更广泛的综合整理。
 
 ## 后续来源

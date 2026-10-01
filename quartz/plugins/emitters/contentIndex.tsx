@@ -19,6 +19,9 @@ export type ContentDetails = {
   richContent?: string
   date?: Date
   description?: string
+  type?: string
+  studyTopic?: string
+  evidence?: string
 }
 
 interface Options {
@@ -115,6 +118,17 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
               : undefined,
             date: date,
             description: file.data.description ?? "",
+            type: String(file.data.frontmatter?.type ?? ""),
+            studyTopic: String(file.data.frontmatter?.study_topic ?? ""),
+            evidence:
+              file.data.frontmatter?.type === "source"
+                ? "原始来源已归档"
+                : Array.isArray(file.data.frontmatter?.sources) &&
+                    file.data.frontmatter.sources.length > 0
+                  ? "含来源支持"
+                  : file.data.frontmatter?.tags?.includes("source-plan")
+                    ? "资料计划"
+                    : "待来源验证",
           })
         }
       }
@@ -140,11 +154,9 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       const fp = joinSegments("static", "contentIndex") as FullSlug
       const simplifiedIndex = Object.fromEntries(
         Array.from(linkIndex).map(([slug, content]) => {
-          // remove description and from content index as nothing downstream
-          // actually uses it. we only keep it in the index as we need it
-          // for the RSS feed
+          // Descriptions are only needed for RSS. Keep the existing modified-derived
+          // date so the dashboard can sort pages by their latest content review.
           delete content.description
-          delete content.date
           return [slug, content]
         }),
       )

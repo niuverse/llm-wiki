@@ -1,5 +1,4 @@
 {
-  "built": "2026-09-25",
   "nodes": [
     {
       "id": "concepts/AgenticSceneTaskGeneration",
@@ -72,11 +71,25 @@
       "path": "wiki/concepts/DifferentiablePhysics.md"
     },
     {
+      "id": "concepts/DomainRandomization",
+      "label": "域随机化：学习一组环境中的行为",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/DomainRandomization.md"
+    },
+    {
       "id": "concepts/ExecutableEmbodiedInteractionInfrastructure",
       "label": "可执行具身交互基础设施",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/ExecutableEmbodiedInteractionInfrastructure.md"
+    },
+    {
+      "id": "concepts/GLTFSceneStructure",
+      "label": "glTF 场景与数据结构",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/GLTFSceneStructure.md"
     },
     {
       "id": "concepts/HeterogeneousRobotRLTraining",
@@ -91,6 +104,13 @@
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/HumanoidRLWorkflow.md"
+    },
+    {
+      "id": "concepts/ImaginedPolicyLearning",
+      "label": "想象中的策略学习：世界模型到演员与价值评估器",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/ImaginedPolicyLearning.md"
     },
     {
       "id": "concepts/InverseDynamicsModels",
@@ -121,11 +141,32 @@
       "path": "wiki/concepts/LatentDynamicsActionModels.md"
     },
     {
+      "id": "concepts/LatentStateSpaceModels",
+      "label": "潜在状态空间模型：估计与预测",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/LatentStateSpaceModels.md"
+    },
+    {
+      "id": "concepts/MarkovDecisionProcesses",
+      "label": "MDP 与强化学习基础",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/MarkovDecisionProcesses.md"
+    },
+    {
       "id": "concepts/MobileRobotOdometry",
       "label": "移动机器人里程计",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/MobileRobotOdometry.md"
+    },
+    {
+      "id": "concepts/ModelPredictiveControl",
+      "label": "模型预测控制：预测、优化、执行、重规划",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/ModelPredictiveControl.md"
     },
     {
       "id": "concepts/NonholonomicMobileRobots",
@@ -149,6 +190,13 @@
       "path": "wiki/concepts/OpenUSDSceneComposition.md"
     },
     {
+      "id": "concepts/PolicyDeploymentContract",
+      "label": "策略部署契约：同一模型如何执行同一行为",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/PolicyDeploymentContract.md"
+    },
+    {
       "id": "concepts/RTXSensorSimulationPipeline",
       "label": "RTX 传感器仿真流程",
       "type": "concept",
@@ -170,6 +218,13 @@
       "path": "wiki/concepts/RobotContextConditioning.md"
     },
     {
+      "id": "concepts/RobotCoordinateFrames",
+      "label": "机器人坐标系与位姿",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/RobotCoordinateFrames.md"
+    },
+    {
       "id": "concepts/RobotLearningDataComposition",
       "label": "机器人学习数据构成",
       "type": "concept",
@@ -177,11 +232,32 @@
       "path": "wiki/concepts/RobotLearningDataComposition.md"
     },
     {
+      "id": "concepts/RobotLearningObjectives",
+      "label": "机器人学习目标：示范、回报与动力学",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/RobotLearningObjectives.md"
+    },
+    {
+      "id": "concepts/RobotRigidBodyDynamics",
+      "label": "机器人刚体动力学",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/RobotRigidBodyDynamics.md"
+    },
+    {
       "id": "concepts/RoboticsSimulationInfrastructure",
       "label": "机器人仿真基础设施",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/RoboticsSimulationInfrastructure.md"
+    },
+    {
+      "id": "concepts/RoboticsSimulationLoop",
+      "label": "机器人仿真循环",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/RoboticsSimulationLoop.md"
     },
     {
       "id": "concepts/SimulationBenchmarkReportingPipeline",
@@ -212,11 +288,25 @@
       "path": "wiki/concepts/SimulationSensitivityAnalysis.md"
     },
     {
+      "id": "concepts/SimulationTimeStepping",
+      "label": "仿真步长、积分器与控制频率",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/SimulationTimeStepping.md"
+    },
+    {
       "id": "concepts/SteerableWheels",
       "label": "可转向轮",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/SteerableWheels.md"
+    },
+    {
+      "id": "concepts/SystemIdentificationForSimulation",
+      "label": "仿真系统辨识与闭环分布校准",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/SystemIdentificationForSimulation.md"
     },
     {
       "id": "concepts/TaskGeneralistPolicyEvaluation",
@@ -226,11 +316,25 @@
       "path": "wiki/concepts/TaskGeneralistPolicyEvaluation.md"
     },
     {
+      "id": "concepts/USDAFileSyntax",
+      "label": "USDA 文件语法",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/USDAFileSyntax.md"
+    },
+    {
       "id": "concepts/VisionLanguageActionModels",
       "label": "视觉—语言—动作模型",
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/VisionLanguageActionModels.md"
+    },
+    {
+      "id": "concepts/VisualGoalPlanning",
+      "label": "视觉目标规划：让动作后果接近目标图像",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/VisualGoalPlanning.md"
     },
     {
       "id": "concepts/VisualSimToReal",
@@ -443,11 +547,25 @@
       "path": "wiki/sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons.md"
     },
     {
+      "id": "sources/dino-wm-pretrained-visual-features",
+      "label": "DINO-WM：用预训练视觉特征进行目标规划",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/dino-wm-pretrained-visual-features.md"
+    },
+    {
       "id": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
       "label": "Disentangled Robot Learning via Separate Forward and Inverse Dynamics Pretraining",
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining.md"
+    },
+    {
+      "id": "sources/dreamerv3-mastering-diverse-control",
+      "label": "DreamerV3：在想象中学习控制策略",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/dreamerv3-mastering-diverse-control.md"
     },
     {
       "id": "sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence",
@@ -462,6 +580,13 @@
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai.md"
+    },
+    {
+      "id": "sources/gltf-basic-structure",
+      "label": "The Basic Structure of glTF - Khronos glTF Tutorials",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/gltf-basic-structure.md"
     },
     {
       "id": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
@@ -499,11 +624,39 @@
       "path": "wiki/sources/isaac-sim-core-api-collision-approximation.md"
     },
     {
+      "id": "sources/isaac-sim-policy-deployment",
+      "label": "Isaac Sim 6.1: Deploying policies in Isaac Sim",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/isaac-sim-policy-deployment.md"
+    },
+    {
       "id": "sources/lda-1b-scaling-latent-dynamics-action-model",
       "label": "LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion",
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/lda-1b-scaling-latent-dynamics-action-model.md"
+    },
+    {
+      "id": "sources/learn-openusd-file-formats",
+      "label": "OpenUSD File Formats - Learn OpenUSD",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/learn-openusd-file-formats.md"
+    },
+    {
+      "id": "sources/learn-openusd-prim-composition",
+      "label": "What Is Prim Composition? - Learn OpenUSD",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/learn-openusd-prim-composition.md"
+    },
+    {
+      "id": "sources/learn-openusd-stage",
+      "label": "Stage - Learn OpenUSD",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/learn-openusd-stage.md"
     },
     {
       "id": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
@@ -534,6 +687,20 @@
       "path": "wiki/sources/modern-robotics-chapter-13-wheeled-mobile-robots.md"
     },
     {
+      "id": "sources/modern-robotics-homogeneous-transformations",
+      "label": "Modern Robotics 3.3.1: Homogeneous Transformation Matrices",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/modern-robotics-homogeneous-transformations.md"
+    },
+    {
+      "id": "sources/modern-robotics-lagrangian-dynamics",
+      "label": "Modern Robotics 8.1: Lagrangian Formulation of Dynamics (Part 1 of 2)",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/modern-robotics-lagrangian-dynamics.md"
+    },
+    {
       "id": "sources/motrixsim-documentation",
       "label": "MotrixSim Documentation",
       "type": "source",
@@ -542,10 +709,17 @@
     },
     {
       "id": "sources/mujoco-computation-collision-detection",
-      "label": "MuJoCo Computation: Collision Detection",
+      "label": "MuJoCo Computation：动力学、积分与接触",
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/mujoco-computation-collision-detection.md"
+    },
+    {
+      "id": "sources/mujoco-overview",
+      "label": "Overview - MuJoCo Documentation",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/mujoco-overview.md"
     },
     {
       "id": "sources/mujoco-playground-repository",
@@ -590,6 +764,13 @@
       "path": "wiki/sources/omniverse-omni-physics-articulations.md"
     },
     {
+      "id": "sources/openusd-glossary",
+      "label": "USD Terms and Concepts",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/openusd-glossary.md"
+    },
+    {
       "id": "sources/openusd-introduction",
       "label": "Introduction to USD",
       "type": "source",
@@ -597,11 +778,25 @@
       "path": "wiki/sources/openusd-introduction.md"
     },
     {
+      "id": "sources/peng-dynamics-randomization",
+      "label": "Sim-to-Real Transfer of Robotic Control with Dynamics Randomization",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/peng-dynamics-randomization.md"
+    },
+    {
       "id": "sources/pi07-steerable-generalist-robotic-foundation-model",
       "label": "π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities",
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/pi07-steerable-generalist-robotic-foundation-model.md"
+    },
+    {
+      "id": "sources/planet-learning-latent-dynamics",
+      "label": "PlaNet：从像素学习潜在动力学并规划",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/planet-learning-latent-dynamics.md"
     },
     {
       "id": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
@@ -632,11 +827,46 @@
       "path": "wiki/sources/robotics-simulation-infrastructure.md"
     },
     {
+      "id": "sources/simopt-adaptive-randomization",
+      "label": "Closing the Sim-to-Real Loop: Adapting Simulation Randomization with Real World Experience",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/simopt-adaptive-randomization.md"
+    },
+    {
+      "id": "sources/spinning-up-rl-algorithm-taxonomy",
+      "label": "Part 2: Kinds of RL Algorithms - Spinning Up",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/spinning-up-rl-algorithm-taxonomy.md"
+    },
+    {
+      "id": "sources/spinning-up-rl-key-concepts",
+      "label": "Part 1: Key Concepts in RL - Spinning Up",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/spinning-up-rl-key-concepts.md"
+    },
+    {
       "id": "sources/structural-properties-and-classification-of-wheeled-mobile-robots",
       "label": "Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots",
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/structural-properties-and-classification-of-wheeled-mobile-robots.md"
+    },
+    {
+      "id": "sources/td-mpc2-scalable-robust-world-models",
+      "label": "TD-MPC2：以任务价值学习潜在模型并规划",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/td-mpc2-scalable-robust-world-models.md"
+    },
+    {
+      "id": "sources/tobin-domain-randomization",
+      "label": "Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/tobin-domain-randomization.md"
     },
     {
       "id": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
@@ -660,6 +890,13 @@
       "path": "wiki/sources/v-hacd-repository.md"
     },
     {
+      "id": "sources/v-jepa-2-understanding-prediction-planning",
+      "label": "V-JEPA 2：视频表征怎样接到机器人规划",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/v-jepa-2-understanding-prediction-planning.md"
+    },
+    {
       "id": "sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation",
       "label": "VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation",
       "type": "source",
@@ -674,11 +911,25 @@
       "path": "wiki/sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition.md"
     },
     {
+      "id": "sources/worldecho-worldsync-action-following",
+      "label": "WorldEcho／WorldSync：世界模型是否忠实执行动作",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/worldecho-worldsync-action-following.md"
+    },
+    {
       "id": "syntheses/3d-model-formats-learning-map",
       "label": "三维模型格式学习地图",
       "type": "synthesis",
       "color": "#9C27B0",
       "path": "wiki/syntheses/3d-model-formats-learning-map.md"
+    },
+    {
+      "id": "syntheses/agent-tools-learning-path",
+      "label": "智能体工具：运行、会话与自托管",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/agent-tools-learning-path.md"
     },
     {
       "id": "syntheses/dsh-learning-map",
@@ -723,6 +974,20 @@
       "path": "wiki/syntheses/research-questions.md"
     },
     {
+      "id": "syntheses/robot-learning-and-evaluation-learning-path",
+      "label": "机器人学习与评测：从目标到可靠结论",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/robot-learning-and-evaluation-learning-path.md"
+    },
+    {
+      "id": "syntheses/simulation-and-assets-learning-path",
+      "label": "仿真与资产：从模型到可信观测",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/simulation-and-assets-learning-path.md"
+    },
+    {
       "id": "syntheses/simulation-post-training-evaluation",
       "label": "机器人仿真评测是否需要仿真数据后训练",
       "type": "synthesis",
@@ -735,6 +1000,20 @@
       "type": "synthesis",
       "color": "#9C27B0",
       "path": "wiki/syntheses/wheeled-robot-modeling-learning-map.md"
+    },
+    {
+      "id": "syntheses/world-models-and-simulation-research",
+      "label": "世界模型与机器人仿真：研究覆盖地图",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/world-models-and-simulation-research.md"
+    },
+    {
+      "id": "syntheses/world-models-learning-path",
+      "label": "世界模型：从潜在状态到机器人决策",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/world-models-learning-path.md"
     }
   ],
   "edges": [
@@ -1117,6 +1396,13 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/ContactComplementarity--concepts/ContactSolvers",
+      "from": "concepts/ContactComplementarity",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/ContactComplementarity--concepts/ContactModelsInRobotics",
       "from": "concepts/ContactComplementarity",
       "to": "concepts/ContactModelsInRobotics",
@@ -1124,9 +1410,9 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/ContactComplementarity--concepts/ContactSolvers",
+      "id": "concepts/ContactComplementarity--concepts/DifferentiablePhysics",
       "from": "concepts/ContactComplementarity",
-      "to": "concepts/ContactSolvers",
+      "to": "concepts/DifferentiablePhysics",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1152,13 +1438,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/ContactModelsInRobotics--concepts/DifferentiablePhysics",
-      "from": "concepts/ContactModelsInRobotics",
-      "to": "concepts/DifferentiablePhysics",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/ContactModelsInRobotics--concepts/SimulationRealityGap",
       "from": "concepts/ContactModelsInRobotics",
       "to": "concepts/SimulationRealityGap",
@@ -1166,9 +1445,9 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/ContactModelsInRobotics--entities/MuJoCo",
+      "id": "concepts/ContactModelsInRobotics--concepts/DifferentiablePhysics",
       "from": "concepts/ContactModelsInRobotics",
-      "to": "entities/MuJoCo",
+      "to": "concepts/DifferentiablePhysics",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1190,13 +1469,6 @@
       "id": "concepts/ContactSolvers--concepts/ReducedCoordinateArticulations",
       "from": "concepts/ContactSolvers",
       "to": "concepts/ReducedCoordinateArticulations",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ContactSolvers--concepts/SimulationRealityGap",
-      "from": "concepts/ContactSolvers",
-      "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1285,23 +1557,44 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/ContactComplementarity--concepts/DifferentiablePhysics",
+      "id": "concepts/DifferentiablePhysics--concepts/SimulationRealityGap",
       "from": "concepts/DifferentiablePhysics",
-      "to": "concepts/ContactComplementarity",
+      "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/CollisionGeometryForRobotSimulation--concepts/DifferentiablePhysics",
-      "from": "concepts/DifferentiablePhysics",
-      "to": "concepts/CollisionGeometryForRobotSimulation",
+      "id": "concepts/DomainRandomization--sources/tobin-domain-randomization",
+      "from": "concepts/DomainRandomization",
+      "to": "sources/tobin-domain-randomization",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/DifferentiablePhysics--entities/MuJoCo",
-      "from": "concepts/DifferentiablePhysics",
-      "to": "entities/MuJoCo",
+      "id": "concepts/DomainRandomization--sources/peng-dynamics-randomization",
+      "from": "concepts/DomainRandomization",
+      "to": "sources/peng-dynamics-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DomainRandomization--sources/simopt-adaptive-randomization",
+      "from": "concepts/DomainRandomization",
+      "to": "sources/simopt-adaptive-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DomainRandomization--concepts/SystemIdentificationForSimulation",
+      "from": "concepts/DomainRandomization",
+      "to": "concepts/SystemIdentificationForSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DomainRandomization--concepts/PolicyDeploymentContract",
+      "from": "concepts/DomainRandomization",
+      "to": "concepts/PolicyDeploymentContract",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1358,6 +1651,41 @@
       "id": "concepts/ContactModelsInRobotics--concepts/ExecutableEmbodiedInteractionInfrastructure",
       "from": "concepts/ExecutableEmbodiedInteractionInfrastructure",
       "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/GLTFSceneStructure--sources/gltf-basic-structure",
+      "from": "concepts/GLTFSceneStructure",
+      "to": "sources/gltf-basic-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/GLTFSceneStructure--sources/isaac-sim-asset-structure",
+      "from": "concepts/GLTFSceneStructure",
+      "to": "sources/isaac-sim-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/GLTFSceneStructure--concepts/IsaacSimAssetStructure",
+      "from": "concepts/GLTFSceneStructure",
+      "to": "concepts/IsaacSimAssetStructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/GLTFSceneStructure--syntheses/3d-model-formats-learning-map",
+      "from": "concepts/GLTFSceneStructure",
+      "to": "syntheses/3d-model-formats-learning-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/GLTFSceneStructure--concepts/OpenUSDSceneComposition",
+      "from": "concepts/GLTFSceneStructure",
+      "to": "concepts/OpenUSDSceneComposition",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1523,6 +1851,55 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/ImaginedPolicyLearning--sources/dreamerv3-mastering-diverse-control",
+      "from": "concepts/ImaginedPolicyLearning",
+      "to": "sources/dreamerv3-mastering-diverse-control",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ImaginedPolicyLearning--sources/planet-learning-latent-dynamics",
+      "from": "concepts/ImaginedPolicyLearning",
+      "to": "sources/planet-learning-latent-dynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ImaginedPolicyLearning--sources/td-mpc2-scalable-robust-world-models",
+      "from": "concepts/ImaginedPolicyLearning",
+      "to": "sources/td-mpc2-scalable-robust-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ImaginedPolicyLearning--concepts/ModelPredictiveControl",
+      "from": "concepts/ImaginedPolicyLearning",
+      "to": "concepts/ModelPredictiveControl",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ImaginedPolicyLearning--concepts/LatentStateSpaceModels",
+      "from": "concepts/ImaginedPolicyLearning",
+      "to": "concepts/LatentStateSpaceModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ImaginedPolicyLearning--concepts/WorldModelEvaluation",
+      "from": "concepts/ImaginedPolicyLearning",
+      "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ImaginedPolicyLearning--concepts/VisualGoalPlanning",
+      "from": "concepts/ImaginedPolicyLearning",
+      "to": "concepts/VisualGoalPlanning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/InverseDynamicsModels--sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
       "from": "concepts/InverseDynamicsModels",
       "to": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
@@ -1544,6 +1921,20 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/InverseDynamicsModels--sources/dino-wm-pretrained-visual-features",
+      "from": "concepts/InverseDynamicsModels",
+      "to": "sources/dino-wm-pretrained-visual-features",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--sources/v-jepa-2-understanding-prediction-planning",
+      "from": "concepts/InverseDynamicsModels",
+      "to": "sources/v-jepa-2-understanding-prediction-planning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/InverseDynamicsModels--concepts/LatentDynamicsActionModels",
       "from": "concepts/InverseDynamicsModels",
       "to": "concepts/LatentDynamicsActionModels",
@@ -1551,23 +1942,23 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/InverseDynamicsModels--concepts/VisionLanguageActionModels",
+      "id": "concepts/InverseDynamicsModels--concepts/VisualGoalPlanning",
       "from": "concepts/InverseDynamicsModels",
-      "to": "concepts/VisionLanguageActionModels",
+      "to": "concepts/VisualGoalPlanning",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/InverseDynamicsModels--concepts/WorldModelsForEmbodiedAI",
+      "id": "concepts/InverseDynamicsModels--concepts/ModelPredictiveControl",
       "from": "concepts/InverseDynamicsModels",
-      "to": "concepts/WorldModelsForEmbodiedAI",
+      "to": "concepts/ModelPredictiveControl",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/InverseDynamicsModels--concepts/SimulationRealityGap",
+      "id": "concepts/InverseDynamicsModels--concepts/WorldModelEvaluation",
       "from": "concepts/InverseDynamicsModels",
-      "to": "concepts/SimulationRealityGap",
+      "to": "concepts/WorldModelEvaluation",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1733,6 +2124,118 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/LatentStateSpaceModels--sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "from": "concepts/LatentStateSpaceModels",
+      "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentStateSpaceModels--sources/spinning-up-rl-key-concepts",
+      "from": "concepts/LatentStateSpaceModels",
+      "to": "sources/spinning-up-rl-key-concepts",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentStateSpaceModels--sources/planet-learning-latent-dynamics",
+      "from": "concepts/LatentStateSpaceModels",
+      "to": "sources/planet-learning-latent-dynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentStateSpaceModels--sources/dreamerv3-mastering-diverse-control",
+      "from": "concepts/LatentStateSpaceModels",
+      "to": "sources/dreamerv3-mastering-diverse-control",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentStateSpaceModels--concepts/MarkovDecisionProcesses",
+      "from": "concepts/LatentStateSpaceModels",
+      "to": "concepts/MarkovDecisionProcesses",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentStateSpaceModels--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/LatentStateSpaceModels",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--concepts/LatentStateSpaceModels",
+      "from": "concepts/LatentStateSpaceModels",
+      "to": "concepts/LatentDynamicsActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentStateSpaceModels--concepts/ModelPredictiveControl",
+      "from": "concepts/LatentStateSpaceModels",
+      "to": "concepts/ModelPredictiveControl",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentStateSpaceModels--concepts/WorldModelTaxonomy",
+      "from": "concepts/LatentStateSpaceModels",
+      "to": "concepts/WorldModelTaxonomy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentStateSpaceModels--concepts/WorldModelEvaluation",
+      "from": "concepts/LatentStateSpaceModels",
+      "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MarkovDecisionProcesses--sources/spinning-up-rl-key-concepts",
+      "from": "concepts/MarkovDecisionProcesses",
+      "to": "sources/spinning-up-rl-key-concepts",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MarkovDecisionProcesses--sources/spinning-up-rl-algorithm-taxonomy",
+      "from": "concepts/MarkovDecisionProcesses",
+      "to": "sources/spinning-up-rl-algorithm-taxonomy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MarkovDecisionProcesses--sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "from": "concepts/MarkovDecisionProcesses",
+      "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MarkovDecisionProcesses--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/MarkovDecisionProcesses",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MarkovDecisionProcesses--concepts/RobotLearningObjectives",
+      "from": "concepts/MarkovDecisionProcesses",
+      "to": "concepts/RobotLearningObjectives",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MarkovDecisionProcesses--concepts/RobotLearningDataComposition",
+      "from": "concepts/MarkovDecisionProcesses",
+      "to": "concepts/RobotLearningDataComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/MobileRobotOdometry--sources/modern-robotics-chapter-13-wheeled-mobile-robots",
       "from": "concepts/MobileRobotOdometry",
       "to": "sources/modern-robotics-chapter-13-wheeled-mobile-robots",
@@ -1764,6 +2267,48 @@
       "id": "concepts/MobileRobotOdometry--concepts/SimulationRealityGap",
       "from": "concepts/MobileRobotOdometry",
       "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ModelPredictiveControl--sources/planet-learning-latent-dynamics",
+      "from": "concepts/ModelPredictiveControl",
+      "to": "sources/planet-learning-latent-dynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ModelPredictiveControl--sources/td-mpc2-scalable-robust-world-models",
+      "from": "concepts/ModelPredictiveControl",
+      "to": "sources/td-mpc2-scalable-robust-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ModelPredictiveControl--sources/dino-wm-pretrained-visual-features",
+      "from": "concepts/ModelPredictiveControl",
+      "to": "sources/dino-wm-pretrained-visual-features",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ModelPredictiveControl--sources/v-jepa-2-understanding-prediction-planning",
+      "from": "concepts/ModelPredictiveControl",
+      "to": "sources/v-jepa-2-understanding-prediction-planning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ModelPredictiveControl--sources/worldecho-worldsync-action-following",
+      "from": "concepts/ModelPredictiveControl",
+      "to": "sources/worldecho-worldsync-action-following",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ModelPredictiveControl--concepts/VisualGoalPlanning",
+      "from": "concepts/ModelPredictiveControl",
+      "to": "concepts/VisualGoalPlanning",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1852,6 +2397,34 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/OpenUSDSceneComposition--sources/learn-openusd-stage",
+      "from": "concepts/OpenUSDSceneComposition",
+      "to": "sources/learn-openusd-stage",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--sources/learn-openusd-file-formats",
+      "from": "concepts/OpenUSDSceneComposition",
+      "to": "sources/learn-openusd-file-formats",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--sources/learn-openusd-prim-composition",
+      "from": "concepts/OpenUSDSceneComposition",
+      "to": "sources/learn-openusd-prim-composition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--sources/openusd-glossary",
+      "from": "concepts/OpenUSDSceneComposition",
+      "to": "sources/openusd-glossary",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/OpenUSDSceneComposition--entities/OpenUSD",
       "from": "concepts/OpenUSDSceneComposition",
       "to": "entities/OpenUSD",
@@ -1873,6 +2446,13 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/OpenUSDSceneComposition--concepts/USDAFileSyntax",
+      "from": "concepts/OpenUSDSceneComposition",
+      "to": "concepts/USDAFileSyntax",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/OpenUSDSceneComposition--concepts/RTXSensorSimulationPipeline",
       "from": "concepts/OpenUSDSceneComposition",
       "to": "concepts/RTXSensorSimulationPipeline",
@@ -1883,6 +2463,41 @@
       "id": "concepts/OpenUSDSceneComposition--entities/IsaacSim",
       "from": "concepts/OpenUSDSceneComposition",
       "to": "entities/IsaacSim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--sources/isaac-sim-policy-deployment",
+      "from": "concepts/PolicyDeploymentContract",
+      "to": "sources/isaac-sim-policy-deployment",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "from": "concepts/PolicyDeploymentContract",
+      "to": "sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--sources/peng-dynamics-randomization",
+      "from": "concepts/PolicyDeploymentContract",
+      "to": "sources/peng-dynamics-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--concepts/SimulationTimeStepping",
+      "from": "concepts/PolicyDeploymentContract",
+      "to": "concepts/SimulationTimeStepping",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--concepts/SystemIdentificationForSimulation",
+      "from": "concepts/PolicyDeploymentContract",
+      "to": "concepts/SystemIdentificationForSimulation",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1971,9 +2586,9 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/RobotContextConditioning--sources/nvlabs-robolab",
+      "id": "concepts/RobotContextConditioning--concepts/VisionLanguageActionModels",
       "from": "concepts/RobotContextConditioning",
-      "to": "sources/nvlabs-robolab",
+      "to": "concepts/VisionLanguageActionModels",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -1985,9 +2600,58 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/RobotContextConditioning--concepts/VisionLanguageActionModels",
+      "id": "concepts/RobotContextConditioning--sources/nvlabs-robolab",
       "from": "concepts/RobotContextConditioning",
-      "to": "concepts/VisionLanguageActionModels",
+      "to": "sources/nvlabs-robolab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--concepts/RobotLearningDataComposition",
+      "from": "concepts/RobotContextConditioning",
+      "to": "concepts/RobotLearningDataComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--concepts/RobotLearningObjectives",
+      "from": "concepts/RobotContextConditioning",
+      "to": "concepts/RobotLearningObjectives",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--sources/modern-robotics-homogeneous-transformations",
+      "from": "concepts/RobotCoordinateFrames",
+      "to": "sources/modern-robotics-homogeneous-transformations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--sources/mujoco-computation-collision-detection",
+      "from": "concepts/RobotCoordinateFrames",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--sources/isaac-sim-policy-deployment",
+      "from": "concepts/RobotCoordinateFrames",
+      "to": "sources/isaac-sim-policy-deployment",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--concepts/RobotRigidBodyDynamics",
+      "from": "concepts/RobotCoordinateFrames",
+      "to": "concepts/RobotRigidBodyDynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--concepts/RobotCoordinateFrames",
+      "from": "concepts/RobotCoordinateFrames",
+      "to": "concepts/PolicyDeploymentContract",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2027,13 +2691,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/RobotContextConditioning--concepts/RobotLearningDataComposition",
-      "from": "concepts/RobotLearningDataComposition",
-      "to": "concepts/RobotContextConditioning",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "concepts/LatentDynamicsActionModels--concepts/RobotLearningDataComposition",
       "from": "concepts/RobotLearningDataComposition",
       "to": "concepts/LatentDynamicsActionModels",
@@ -2044,6 +2701,118 @@
       "id": "concepts/RobotLearningDataComposition--concepts/RoboticsSimulationInfrastructure",
       "from": "concepts/RobotLearningDataComposition",
       "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningObjectives--sources/spinning-up-rl-key-concepts",
+      "from": "concepts/RobotLearningObjectives",
+      "to": "sources/spinning-up-rl-key-concepts",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningObjectives--sources/spinning-up-rl-algorithm-taxonomy",
+      "from": "concepts/RobotLearningObjectives",
+      "to": "sources/spinning-up-rl-algorithm-taxonomy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningObjectives--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "from": "concepts/RobotLearningObjectives",
+      "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningObjectives--sources/lda-1b-scaling-latent-dynamics-action-model",
+      "from": "concepts/RobotLearningObjectives",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningDataComposition--concepts/RobotLearningObjectives",
+      "from": "concepts/RobotLearningObjectives",
+      "to": "concepts/RobotLearningDataComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--concepts/RobotLearningObjectives",
+      "from": "concepts/RobotLearningObjectives",
+      "to": "concepts/LatentDynamicsActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningObjectives--concepts/VisionLanguageActionModels",
+      "from": "concepts/RobotLearningObjectives",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningObjectives--syntheses/world-models-learning-path",
+      "from": "concepts/RobotLearningObjectives",
+      "to": "syntheses/world-models-learning-path",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotRigidBodyDynamics--sources/modern-robotics-lagrangian-dynamics",
+      "from": "concepts/RobotRigidBodyDynamics",
+      "to": "sources/modern-robotics-lagrangian-dynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotRigidBodyDynamics--sources/mujoco-computation-collision-detection",
+      "from": "concepts/RobotRigidBodyDynamics",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotRigidBodyDynamics--concepts/RoboticsSimulationLoop",
+      "from": "concepts/RobotRigidBodyDynamics",
+      "to": "concepts/RoboticsSimulationLoop",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--concepts/RobotRigidBodyDynamics",
+      "from": "concepts/RobotRigidBodyDynamics",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--concepts/RobotRigidBodyDynamics",
+      "from": "concepts/RobotRigidBodyDynamics",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotRigidBodyDynamics--concepts/SimulationTimeStepping",
+      "from": "concepts/RobotRigidBodyDynamics",
+      "to": "concepts/SimulationTimeStepping",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotRigidBodyDynamics--concepts/SystemIdentificationForSimulation",
+      "from": "concepts/RobotRigidBodyDynamics",
+      "to": "concepts/SystemIdentificationForSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotRigidBodyDynamics--concepts/SimulationRealityGap",
+      "from": "concepts/RobotRigidBodyDynamics",
+      "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2160,37 +2929,44 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/MotrixSim",
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/isaac-sim-policy-deployment",
       "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/MotrixSim",
+      "to": "sources/isaac-sim-policy-deployment",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/RoboticsSimulationInfrastructure--concepts/TaskGeneralistPolicyEvaluation",
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/mujoco-computation-collision-detection",
       "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "to": "sources/mujoco-computation-collision-detection",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/RoboticsSimulationInfrastructure--concepts/SimulationRealityGap",
+      "id": "concepts/IsaacSimAssetStructure--concepts/RoboticsSimulationInfrastructure",
       "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "concepts/SimulationRealityGap",
+      "to": "concepts/IsaacSimAssetStructure",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/EmbodiedGen",
+      "id": "concepts/RobotRigidBodyDynamics--concepts/RoboticsSimulationInfrastructure",
       "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/EmbodiedGen",
+      "to": "concepts/RobotRigidBodyDynamics",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/RoboticsSimulationInfrastructure--concepts/SimulationReady3DWorldGeneration",
+      "id": "concepts/PolicyDeploymentContract--concepts/RoboticsSimulationInfrastructure",
       "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "concepts/SimulationReady3DWorldGeneration",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--concepts/RoboticsSimulationLoop",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "concepts/RoboticsSimulationLoop",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2202,37 +2978,128 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/RoboLab",
+      "id": "concepts/RobotCoordinateFrames--concepts/RoboticsSimulationInfrastructure",
       "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/RoboLab",
+      "to": "concepts/RobotCoordinateFrames",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/UniLab",
+      "id": "concepts/IsaacSimLegacyAssetStructure--concepts/RoboticsSimulationInfrastructure",
       "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/UniLab",
+      "to": "concepts/IsaacSimLegacyAssetStructure",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/IsaacSim",
+      "id": "concepts/RoboticsSimulationInfrastructure--syntheses/research-questions",
       "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/IsaacSim",
+      "to": "syntheses/research-questions",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/RoboticsSimulationInfrastructure--entities/MuJoCo",
+      "id": "concepts/RoboticsSimulationInfrastructure--concepts/SimulationRealityGap",
       "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "entities/MuJoCo",
+      "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/IsaacSimAssetStructure--concepts/RoboticsSimulationInfrastructure",
-      "from": "concepts/RoboticsSimulationInfrastructure",
-      "to": "concepts/IsaacSimAssetStructure",
+      "id": "concepts/RoboticsSimulationLoop--sources/mujoco-overview",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "sources/mujoco-overview",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationLoop--sources/omniverse-omni-physics-articulations",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "sources/omniverse-omni-physics-articulations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationLoop--sources/nvidia-ovrtx",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "sources/nvidia-ovrtx",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationLoop--sources/mujoco-computation-collision-detection",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationLoop--sources/isaac-sim-policy-deployment",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "sources/isaac-sim-policy-deployment",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ReducedCoordinateArticulations--concepts/RoboticsSimulationLoop",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "concepts/ReducedCoordinateArticulations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RTXSensorSimulationPipeline--concepts/RoboticsSimulationLoop",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "concepts/RTXSensorSimulationPipeline",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--concepts/RoboticsSimulationLoop",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "concepts/RobotCoordinateFrames",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationLoop--concepts/SimulationTimeStepping",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "concepts/SimulationTimeStepping",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--concepts/RoboticsSimulationLoop",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--concepts/RoboticsSimulationLoop",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--concepts/RoboticsSimulationLoop",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MarkovDecisionProcesses--concepts/RoboticsSimulationLoop",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "concepts/MarkovDecisionProcesses",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationLoop--concepts/SimulationRealityGap",
+      "from": "concepts/RoboticsSimulationLoop",
+      "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2342,6 +3209,13 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/RoboticsSimulationInfrastructure--concepts/SimulationReady3DWorldGeneration",
+      "from": "concepts/SimulationReady3DWorldGeneration",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/ApproximateConvexDecomposition--concepts/SimulationReady3DWorldGeneration",
       "from": "concepts/SimulationReady3DWorldGeneration",
       "to": "concepts/ApproximateConvexDecomposition",
@@ -2447,6 +3321,90 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/SimulationRealityGap--sources/tobin-domain-randomization",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/tobin-domain-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/peng-dynamics-randomization",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/peng-dynamics-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/simopt-adaptive-randomization",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/simopt-adaptive-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/isaac-sim-policy-deployment",
+      "from": "concepts/SimulationRealityGap",
+      "to": "sources/isaac-sim-policy-deployment",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DomainRandomization--concepts/SimulationRealityGap",
+      "from": "concepts/SimulationRealityGap",
+      "to": "concepts/DomainRandomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--concepts/SystemIdentificationForSimulation",
+      "from": "concepts/SimulationRealityGap",
+      "to": "concepts/SystemIdentificationForSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--concepts/SimulationRealityGap",
+      "from": "concepts/SimulationRealityGap",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--concepts/SimulationTimeStepping",
+      "from": "concepts/SimulationRealityGap",
+      "to": "concepts/SimulationTimeStepping",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--concepts/VisualSimToReal",
+      "from": "concepts/SimulationRealityGap",
+      "to": "concepts/VisualSimToReal",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--concepts/SimulationRealityGap",
+      "from": "concepts/SimulationRealityGap",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--concepts/SimulationRealityGap",
+      "from": "concepts/SimulationRealityGap",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/SimulationRealityGap",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/SimulationRealityGap--concepts/WorldModelsForEmbodiedAI",
       "from": "concepts/SimulationRealityGap",
       "to": "concepts/WorldModelsForEmbodiedAI",
@@ -2461,44 +3419,9 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/RobotContextConditioning--concepts/SimulationRealityGap",
+      "id": "concepts/SimulationRealityGap--syntheses/research-questions",
       "from": "concepts/SimulationRealityGap",
-      "to": "concepts/RobotContextConditioning",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--entities/EmbodiedGen",
-      "from": "concepts/SimulationRealityGap",
-      "to": "entities/EmbodiedGen",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--concepts/VisualSimToReal",
-      "from": "concepts/SimulationRealityGap",
-      "to": "concepts/VisualSimToReal",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--concepts/VisionLanguageActionModels",
-      "from": "concepts/SimulationRealityGap",
-      "to": "concepts/VisionLanguageActionModels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--entities/UniLab",
-      "from": "concepts/SimulationRealityGap",
-      "to": "entities/UniLab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationRealityGap--entities/MuJoCo",
-      "from": "concepts/SimulationRealityGap",
-      "to": "entities/MuJoCo",
+      "to": "syntheses/research-questions",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2527,6 +3450,34 @@
       "id": "concepts/SimulationRealityGap--concepts/SimulationSensitivityAnalysis",
       "from": "concepts/SimulationSensitivityAnalysis",
       "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationTimeStepping--sources/mujoco-computation-collision-detection",
+      "from": "concepts/SimulationTimeStepping",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationTimeStepping--sources/peng-dynamics-randomization",
+      "from": "concepts/SimulationTimeStepping",
+      "to": "sources/peng-dynamics-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationTimeStepping--sources/isaac-sim-policy-deployment",
+      "from": "concepts/SimulationTimeStepping",
+      "to": "sources/isaac-sim-policy-deployment",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RTXSensorSimulationPipeline--concepts/SimulationTimeStepping",
+      "from": "concepts/SimulationTimeStepping",
+      "to": "concepts/RTXSensorSimulationPipeline",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2569,6 +3520,48 @@
       "id": "concepts/SimulationRealityGap--concepts/SteerableWheels",
       "from": "concepts/SteerableWheels",
       "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SystemIdentificationForSimulation--sources/simopt-adaptive-randomization",
+      "from": "concepts/SystemIdentificationForSimulation",
+      "to": "sources/simopt-adaptive-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SystemIdentificationForSimulation--sources/peng-dynamics-randomization",
+      "from": "concepts/SystemIdentificationForSimulation",
+      "to": "sources/peng-dynamics-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SystemIdentificationForSimulation--sources/mujoco-computation-collision-detection",
+      "from": "concepts/SystemIdentificationForSimulation",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--concepts/SystemIdentificationForSimulation",
+      "from": "concepts/SystemIdentificationForSimulation",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--concepts/SystemIdentificationForSimulation",
+      "from": "concepts/SystemIdentificationForSimulation",
+      "to": "concepts/RobotCoordinateFrames",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationTimeStepping--concepts/SystemIdentificationForSimulation",
+      "from": "concepts/SystemIdentificationForSimulation",
+      "to": "concepts/SimulationTimeStepping",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2622,9 +3615,51 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/SimulationRealityGap--concepts/TaskGeneralistPolicyEvaluation",
+      "id": "concepts/RoboticsSimulationInfrastructure--concepts/TaskGeneralistPolicyEvaluation",
       "from": "concepts/TaskGeneralistPolicyEvaluation",
-      "to": "concepts/SimulationRealityGap",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/USDAFileSyntax--sources/learn-openusd-stage",
+      "from": "concepts/USDAFileSyntax",
+      "to": "sources/learn-openusd-stage",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/USDAFileSyntax--sources/learn-openusd-file-formats",
+      "from": "concepts/USDAFileSyntax",
+      "to": "sources/learn-openusd-file-formats",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/USDAFileSyntax--sources/learn-openusd-prim-composition",
+      "from": "concepts/USDAFileSyntax",
+      "to": "sources/learn-openusd-prim-composition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/USDAFileSyntax--sources/openusd-glossary",
+      "from": "concepts/USDAFileSyntax",
+      "to": "sources/openusd-glossary",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/USDAFileSyntax--sources/openusd-introduction",
+      "from": "concepts/USDAFileSyntax",
+      "to": "sources/openusd-introduction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--concepts/USDAFileSyntax",
+      "from": "concepts/USDAFileSyntax",
+      "to": "concepts/IsaacSimAssetStructure",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2653,6 +3688,48 @@
       "id": "concepts/VisionLanguageActionModels--sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
       "from": "concepts/VisionLanguageActionModels",
       "to": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--concepts/VisionLanguageActionModels",
+      "from": "concepts/VisionLanguageActionModels",
+      "to": "concepts/InverseDynamicsModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "concepts/VisionLanguageActionModels",
+      "to": "syntheses/robot-learning-and-evaluation-learning-path",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualGoalPlanning--sources/dino-wm-pretrained-visual-features",
+      "from": "concepts/VisualGoalPlanning",
+      "to": "sources/dino-wm-pretrained-visual-features",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualGoalPlanning--sources/v-jepa-2-understanding-prediction-planning",
+      "from": "concepts/VisualGoalPlanning",
+      "to": "sources/v-jepa-2-understanding-prediction-planning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualGoalPlanning--sources/pi07-steerable-generalist-robotic-foundation-model",
+      "from": "concepts/VisualGoalPlanning",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualGoalPlanning--concepts/WorldModelEvaluation",
+      "from": "concepts/VisualGoalPlanning",
+      "to": "concepts/WorldModelEvaluation",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2762,16 +3839,37 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/WorldModelEvaluation--concepts/WorldModelTaxonomy",
+      "id": "concepts/WorldModelEvaluation--sources/dreamerv3-mastering-diverse-control",
       "from": "concepts/WorldModelEvaluation",
-      "to": "concepts/WorldModelTaxonomy",
+      "to": "sources/dreamerv3-mastering-diverse-control",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/WorldModelEvaluation--concepts/WorldModelsForEmbodiedAI",
+      "id": "concepts/WorldModelEvaluation--sources/td-mpc2-scalable-robust-world-models",
       "from": "concepts/WorldModelEvaluation",
-      "to": "concepts/WorldModelsForEmbodiedAI",
+      "to": "sources/td-mpc2-scalable-robust-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--sources/dino-wm-pretrained-visual-features",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "sources/dino-wm-pretrained-visual-features",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--sources/v-jepa-2-understanding-prediction-planning",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "sources/v-jepa-2-understanding-prediction-planning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--sources/worldecho-worldsync-action-following",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "sources/worldecho-worldsync-action-following",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2790,6 +3888,27 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/WorldModelEvaluation--concepts/WorldModelTaxonomy",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "concepts/WorldModelTaxonomy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--concepts/WorldModelEvaluation",
+      "from": "concepts/WorldModelEvaluation",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/WorldModelTaxonomy--sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
       "from": "concepts/WorldModelTaxonomy",
       "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
@@ -2804,9 +3923,65 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/WorldModelTaxonomy--sources/planet-learning-latent-dynamics",
+      "from": "concepts/WorldModelTaxonomy",
+      "to": "sources/planet-learning-latent-dynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelTaxonomy--sources/dreamerv3-mastering-diverse-control",
+      "from": "concepts/WorldModelTaxonomy",
+      "to": "sources/dreamerv3-mastering-diverse-control",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelTaxonomy--sources/td-mpc2-scalable-robust-world-models",
+      "from": "concepts/WorldModelTaxonomy",
+      "to": "sources/td-mpc2-scalable-robust-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelTaxonomy--sources/dino-wm-pretrained-visual-features",
+      "from": "concepts/WorldModelTaxonomy",
+      "to": "sources/dino-wm-pretrained-visual-features",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelTaxonomy--sources/v-jepa-2-understanding-prediction-planning",
+      "from": "concepts/WorldModelTaxonomy",
+      "to": "sources/v-jepa-2-understanding-prediction-planning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/WorldModelTaxonomy--concepts/WorldModelsForEmbodiedAI",
       "from": "concepts/WorldModelTaxonomy",
       "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ModelPredictiveControl--concepts/WorldModelTaxonomy",
+      "from": "concepts/WorldModelTaxonomy",
+      "to": "concepts/ModelPredictiveControl",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ImaginedPolicyLearning--concepts/WorldModelTaxonomy",
+      "from": "concepts/WorldModelTaxonomy",
+      "to": "concepts/ImaginedPolicyLearning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualGoalPlanning--concepts/WorldModelTaxonomy",
+      "from": "concepts/WorldModelTaxonomy",
+      "to": "concepts/VisualGoalPlanning",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2839,6 +4014,83 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/WorldModelsForEmbodiedAI--sources/planet-learning-latent-dynamics",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "sources/planet-learning-latent-dynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--sources/dreamerv3-mastering-diverse-control",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "sources/dreamerv3-mastering-diverse-control",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--sources/td-mpc2-scalable-robust-world-models",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "sources/td-mpc2-scalable-robust-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--sources/dino-wm-pretrained-visual-features",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "sources/dino-wm-pretrained-visual-features",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--sources/v-jepa-2-understanding-prediction-planning",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "sources/v-jepa-2-understanding-prediction-planning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--sources/worldecho-worldsync-action-following",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "sources/worldecho-worldsync-action-following",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualGoalPlanning--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "concepts/VisualGoalPlanning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ImaginedPolicyLearning--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "concepts/ImaginedPolicyLearning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "concepts/InverseDynamicsModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationLoop--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "concepts/RoboticsSimulationLoop",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ModelPredictiveControl--concepts/WorldModelsForEmbodiedAI",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "concepts/ModelPredictiveControl",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/VisionLanguageActionModels--concepts/WorldModelsForEmbodiedAI",
       "from": "concepts/WorldModelsForEmbodiedAI",
       "to": "concepts/VisionLanguageActionModels",
@@ -2846,16 +4098,23 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/CompositionalGeneralizationInRobotics--concepts/WorldModelsForEmbodiedAI",
+      "id": "concepts/RobotLearningObjectives--concepts/WorldModelsForEmbodiedAI",
       "from": "concepts/WorldModelsForEmbodiedAI",
-      "to": "concepts/CompositionalGeneralizationInRobotics",
+      "to": "concepts/RobotLearningObjectives",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/DifferentiablePhysics--concepts/WorldModelsForEmbodiedAI",
+      "id": "concepts/WorldModelsForEmbodiedAI--syntheses/world-models-learning-path",
       "from": "concepts/WorldModelsForEmbodiedAI",
-      "to": "concepts/DifferentiablePhysics",
+      "to": "syntheses/world-models-learning-path",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--syntheses/research-questions",
+      "from": "concepts/WorldModelsForEmbodiedAI",
+      "to": "syntheses/research-questions",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2965,9 +4224,23 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/EmbodiedGen",
+      "from": "entities/EmbodiedGen",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/CollisionGeometryForRobotSimulation--entities/EmbodiedGen",
       "from": "entities/EmbodiedGen",
       "to": "concepts/CollisionGeometryForRobotSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/EmbodiedGen",
+      "from": "entities/EmbodiedGen",
+      "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3077,6 +4350,13 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/MotrixSim",
+      "from": "entities/MotrixSim",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "entities/MuJoCo--sources/contact-models-in-robotics-a-comparative-analysis",
       "from": "entities/MuJoCo",
       "to": "sources/contact-models-in-robotics-a-comparative-analysis",
@@ -3140,6 +4420,13 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/DifferentiablePhysics--entities/MuJoCo",
+      "from": "entities/MuJoCo",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "entities/CoACD--entities/MuJoCo",
       "from": "entities/MuJoCo",
       "to": "entities/CoACD",
@@ -3161,6 +4448,13 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/ContactModelsInRobotics--entities/MuJoCo",
+      "from": "entities/MuJoCo",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/ContactComplementarity--entities/MuJoCo",
       "from": "entities/MuJoCo",
       "to": "concepts/ContactComplementarity",
@@ -3171,6 +4465,20 @@
       "id": "concepts/ContactSolvers--entities/MuJoCo",
       "from": "entities/MuJoCo",
       "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/MuJoCo",
+      "from": "entities/MuJoCo",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/MuJoCo",
+      "from": "entities/MuJoCo",
+      "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3266,9 +4574,44 @@
       "confidence": 1.0
     },
     {
+      "id": "entities/OpenUSD--sources/learn-openusd-stage",
+      "from": "entities/OpenUSD",
+      "to": "sources/learn-openusd-stage",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/OpenUSD--sources/learn-openusd-file-formats",
+      "from": "entities/OpenUSD",
+      "to": "sources/learn-openusd-file-formats",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/OpenUSD--sources/learn-openusd-prim-composition",
+      "from": "entities/OpenUSD",
+      "to": "sources/learn-openusd-prim-composition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/OpenUSD--sources/openusd-glossary",
+      "from": "entities/OpenUSD",
+      "to": "sources/openusd-glossary",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/IsaacSimAssetStructure--entities/OpenUSD",
       "from": "entities/OpenUSD",
       "to": "concepts/IsaacSimAssetStructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/USDAFileSyntax--entities/OpenUSD",
+      "from": "entities/OpenUSD",
+      "to": "concepts/USDAFileSyntax",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3332,6 +4675,20 @@
       "id": "entities/UniLab--sources/motrixsim-documentation",
       "from": "entities/UniLab",
       "to": "sources/motrixsim-documentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--entities/UniLab",
+      "from": "entities/UniLab",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--entities/UniLab",
+      "from": "entities/UniLab",
+      "to": "concepts/SimulationRealityGap",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3560,6 +4917,69 @@
       "confidence": 1.0
     },
     {
+      "id": "overview--sources/planet-learning-latent-dynamics",
+      "from": "overview",
+      "to": "sources/planet-learning-latent-dynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/dreamerv3-mastering-diverse-control",
+      "from": "overview",
+      "to": "sources/dreamerv3-mastering-diverse-control",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/td-mpc2-scalable-robust-world-models",
+      "from": "overview",
+      "to": "sources/td-mpc2-scalable-robust-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/dino-wm-pretrained-visual-features",
+      "from": "overview",
+      "to": "sources/dino-wm-pretrained-visual-features",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/v-jepa-2-understanding-prediction-planning",
+      "from": "overview",
+      "to": "sources/v-jepa-2-understanding-prediction-planning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/worldecho-worldsync-action-following",
+      "from": "overview",
+      "to": "sources/worldecho-worldsync-action-following",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/modern-robotics-lagrangian-dynamics",
+      "from": "overview",
+      "to": "sources/modern-robotics-lagrangian-dynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/simopt-adaptive-randomization",
+      "from": "overview",
+      "to": "sources/simopt-adaptive-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/isaac-sim-policy-deployment",
+      "from": "overview",
+      "to": "sources/isaac-sim-policy-deployment",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "overview--syntheses/research-questions",
       "from": "overview",
       "to": "syntheses/research-questions",
@@ -3574,16 +4994,9 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/RoboticsSimulationInfrastructure--overview",
+      "id": "concepts/ContactModelsInRobotics--overview",
       "from": "overview",
-      "to": "concepts/RoboticsSimulationInfrastructure",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/UniLab--overview",
-      "from": "overview",
-      "to": "entities/UniLab",
+      "to": "concepts/ContactModelsInRobotics",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3595,51 +5008,9 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/ContactModelsInRobotics--overview",
+      "id": "concepts/RobotLearningDataComposition--overview",
       "from": "overview",
-      "to": "concepts/ContactModelsInRobotics",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ContactSolvers--overview",
-      "from": "overview",
-      "to": "concepts/ContactSolvers",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/WorldModelsForEmbodiedAI--overview",
-      "from": "overview",
-      "to": "concepts/WorldModelsForEmbodiedAI",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/VisionLanguageActionModels--overview",
-      "from": "overview",
-      "to": "concepts/VisionLanguageActionModels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/RobotContextConditioning--overview",
-      "from": "overview",
-      "to": "concepts/RobotContextConditioning",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/LatentDynamicsActionModels--overview",
-      "from": "overview",
-      "to": "concepts/LatentDynamicsActionModels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/InverseDynamicsModels--overview",
-      "from": "overview",
-      "to": "concepts/InverseDynamicsModels",
+      "to": "concepts/RobotLearningDataComposition",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3651,44 +5022,23 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/HumanoidRLWorkflow--overview",
+      "id": "concepts/ModelPredictiveControl--overview",
       "from": "overview",
-      "to": "concepts/HumanoidRLWorkflow",
+      "to": "concepts/ModelPredictiveControl",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "entities/EmbodiedGen--overview",
+      "id": "concepts/ImaginedPolicyLearning--overview",
       "from": "overview",
-      "to": "entities/EmbodiedGen",
+      "to": "concepts/ImaginedPolicyLearning",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/RobotLearningDataComposition--overview",
+      "id": "concepts/VisualGoalPlanning--overview",
       "from": "overview",
-      "to": "concepts/RobotLearningDataComposition",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ContactComplementarity--overview",
-      "from": "overview",
-      "to": "concepts/ContactComplementarity",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ApproximateConvexDecomposition--overview",
-      "from": "overview",
-      "to": "concepts/ApproximateConvexDecomposition",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/DifferentiableCollisionDetection--overview",
-      "from": "overview",
-      "to": "concepts/DifferentiableCollisionDetection",
+      "to": "concepts/VisualGoalPlanning",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3700,9 +5050,30 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/SimulationSensitivityAnalysis--overview",
+      "id": "concepts/SystemIdentificationForSimulation--overview",
       "from": "overview",
-      "to": "concepts/SimulationSensitivityAnalysis",
+      "to": "concepts/SystemIdentificationForSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--overview",
+      "from": "overview",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotRigidBodyDynamics--overview",
+      "from": "overview",
+      "to": "concepts/RobotRigidBodyDynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationTimeStepping--overview",
+      "from": "overview",
+      "to": "concepts/SimulationTimeStepping",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3714,9 +5085,23 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/HeterogeneousRobotRLTraining--overview",
+      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--overview",
       "from": "overview",
-      "to": "concepts/HeterogeneousRobotRLTraining",
+      "to": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HumanoidRLWorkflow--overview",
+      "from": "overview",
+      "to": "concepts/HumanoidRLWorkflow",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualSimToReal--overview",
+      "from": "overview",
+      "to": "concepts/VisualSimToReal",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3728,9 +5113,51 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--overview",
+      "id": "entities/RoboLab--overview",
       "from": "overview",
-      "to": "concepts/ExecutableEmbodiedInteractionInfrastructure",
+      "to": "entities/RoboLab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/EmbodiedGen--overview",
+      "from": "overview",
+      "to": "entities/EmbodiedGen",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--overview",
+      "from": "overview",
+      "to": "concepts/HeterogeneousRobotRLTraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DomainRandomization--overview",
+      "from": "overview",
+      "to": "concepts/DomainRandomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--overview",
+      "from": "overview",
+      "to": "concepts/ApproximateConvexDecomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--overview",
+      "from": "overview",
+      "to": "concepts/ContactComplementarity",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--overview",
+      "from": "overview",
+      "to": "concepts/ContactSolvers",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3738,6 +5165,41 @@
       "id": "concepts/DifferentiablePhysics--overview",
       "from": "overview",
       "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--overview",
+      "from": "overview",
+      "to": "concepts/LatentDynamicsActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--overview",
+      "from": "overview",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningObjectives--overview",
+      "from": "overview",
+      "to": "concepts/RobotLearningObjectives",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--overview",
+      "from": "overview",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationSensitivityAnalysis--overview",
+      "from": "overview",
+      "to": "concepts/SimulationSensitivityAnalysis",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3812,6 +5274,13 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/dino-wm-pretrained-visual-features--sources/v-jepa-2-understanding-prediction-planning",
+      "from": "sources/dino-wm-pretrained-visual-features",
+      "to": "sources/v-jepa-2-understanding-prediction-planning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/WorldModelsForEmbodiedAI--sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
       "from": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
       "to": "concepts/WorldModelsForEmbodiedAI",
@@ -3822,6 +5291,20 @@
       "id": "concepts/SimulationRealityGap--sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
       "from": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
       "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dreamerv3-mastering-diverse-control--sources/planet-learning-latent-dynamics",
+      "from": "sources/dreamerv3-mastering-diverse-control",
+      "to": "sources/planet-learning-latent-dynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dreamerv3-mastering-diverse-control--sources/td-mpc2-scalable-robust-world-models",
+      "from": "sources/dreamerv3-mastering-diverse-control",
+      "to": "sources/td-mpc2-scalable-robust-world-models",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3857,6 +5340,20 @@
       "id": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai--syntheses/embodiedgen-v1-v2-learning-map",
       "from": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
       "to": "syntheses/embodiedgen-v1-v2-learning-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/gltf-basic-structure--syntheses/3d-model-formats-learning-map",
+      "from": "sources/gltf-basic-structure",
+      "to": "syntheses/3d-model-formats-learning-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--sources/gltf-basic-structure",
+      "from": "sources/gltf-basic-structure",
+      "to": "concepts/IsaacSimAssetStructure",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3917,6 +5414,20 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/isaac-sim-policy-deployment--syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "from": "sources/isaac-sim-policy-deployment",
+      "to": "syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ReducedCoordinateArticulations--sources/isaac-sim-policy-deployment",
+      "from": "sources/isaac-sim-policy-deployment",
+      "to": "concepts/ReducedCoordinateArticulations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/RobotContextConditioning--sources/lda-1b-scaling-latent-dynamics-action-model",
       "from": "sources/lda-1b-scaling-latent-dynamics-action-model",
       "to": "concepts/RobotContextConditioning",
@@ -3927,6 +5438,34 @@
       "id": "sources/lda-1b-scaling-latent-dynamics-action-model--sources/pi07-steerable-generalist-robotic-foundation-model",
       "from": "sources/lda-1b-scaling-latent-dynamics-action-model",
       "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/learn-openusd-prim-composition--sources/openusd-glossary",
+      "from": "sources/learn-openusd-prim-composition",
+      "to": "sources/openusd-glossary",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/learn-openusd-stage--sources/openusd-glossary",
+      "from": "sources/learn-openusd-stage",
+      "to": "sources/openusd-glossary",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/learn-openusd-file-formats--sources/learn-openusd-stage",
+      "from": "sources/learn-openusd-stage",
+      "to": "sources/learn-openusd-file-formats",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/learn-openusd-prim-composition--sources/learn-openusd-stage",
+      "from": "sources/learn-openusd-stage",
+      "to": "sources/learn-openusd-prim-composition",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4001,6 +5540,55 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/RobotRigidBodyDynamics--sources/modern-robotics-homogeneous-transformations",
+      "from": "sources/modern-robotics-homogeneous-transformations",
+      "to": "concepts/RobotRigidBodyDynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationLoop--sources/modern-robotics-homogeneous-transformations",
+      "from": "sources/modern-robotics-homogeneous-transformations",
+      "to": "concepts/RoboticsSimulationLoop",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WheeledRobotKinematics--sources/modern-robotics-homogeneous-transformations",
+      "from": "sources/modern-robotics-homogeneous-transformations",
+      "to": "concepts/WheeledRobotKinematics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--sources/modern-robotics-lagrangian-dynamics",
+      "from": "sources/modern-robotics-lagrangian-dynamics",
+      "to": "concepts/RobotCoordinateFrames",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ReducedCoordinateArticulations--sources/modern-robotics-lagrangian-dynamics",
+      "from": "sources/modern-robotics-lagrangian-dynamics",
+      "to": "concepts/ReducedCoordinateArticulations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--sources/modern-robotics-lagrangian-dynamics",
+      "from": "sources/modern-robotics-lagrangian-dynamics",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/modern-robotics-lagrangian-dynamics--sources/mujoco-computation-collision-detection",
+      "from": "sources/modern-robotics-lagrangian-dynamics",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/ContactSolvers--sources/mujoco-computation-collision-detection",
       "from": "sources/mujoco-computation-collision-detection",
       "to": "concepts/ContactSolvers",
@@ -4011,6 +5599,27 @@
       "id": "concepts/ContactModelsInRobotics--sources/mujoco-computation-collision-detection",
       "from": "sources/mujoco-computation-collision-detection",
       "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--sources/mujoco-overview",
+      "from": "sources/mujoco-overview",
+      "to": "concepts/ContactComplementarity",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--sources/mujoco-overview",
+      "from": "sources/mujoco-overview",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--sources/mujoco-overview",
+      "from": "sources/mujoco-overview",
+      "to": "concepts/CollisionGeometryForRobotSimulation",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4099,6 +5708,20 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/peng-dynamics-randomization--sources/tobin-domain-randomization",
+      "from": "sources/peng-dynamics-randomization",
+      "to": "sources/tobin-domain-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/peng-dynamics-randomization--sources/simopt-adaptive-randomization",
+      "from": "sources/peng-dynamics-randomization",
+      "to": "sources/simopt-adaptive-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining--sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
       "from": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
       "to": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
@@ -4169,6 +5792,48 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/DifferentiablePhysics--sources/simopt-adaptive-randomization",
+      "from": "sources/simopt-adaptive-randomization",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentStateSpaceModels--sources/spinning-up-rl-algorithm-taxonomy",
+      "from": "sources/spinning-up-rl-algorithm-taxonomy",
+      "to": "concepts/LatentStateSpaceModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelsForEmbodiedAI--sources/spinning-up-rl-algorithm-taxonomy",
+      "from": "sources/spinning-up-rl-algorithm-taxonomy",
+      "to": "concepts/WorldModelsForEmbodiedAI",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/spinning-up-rl-algorithm-taxonomy--sources/spinning-up-rl-key-concepts",
+      "from": "sources/spinning-up-rl-key-concepts",
+      "to": "sources/spinning-up-rl-algorithm-taxonomy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dino-wm-pretrained-visual-features--sources/td-mpc2-scalable-robust-world-models",
+      "from": "sources/td-mpc2-scalable-robust-world-models",
+      "to": "sources/dino-wm-pretrained-visual-features",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualSimToReal--sources/tobin-domain-randomization",
+      "from": "sources/tobin-domain-randomization",
+      "to": "concepts/VisualSimToReal",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/TaskGeneralistPolicyEvaluation--sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
       "from": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
       "to": "concepts/TaskGeneralistPolicyEvaluation",
@@ -4197,6 +5862,27 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/RoboticsSimulationLoop--sources/v-jepa-2-understanding-prediction-planning",
+      "from": "sources/v-jepa-2-understanding-prediction-planning",
+      "to": "concepts/RoboticsSimulationLoop",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--sources/worldecho-worldsync-action-following",
+      "from": "sources/worldecho-worldsync-action-following",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/v-jepa-2-understanding-prediction-planning--sources/worldecho-worldsync-action-following",
+      "from": "sources/worldecho-worldsync-action-following",
+      "to": "sources/v-jepa-2-understanding-prediction-planning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/openusd-introduction--syntheses/3d-model-formats-learning-map",
       "from": "syntheses/3d-model-formats-learning-map",
       "to": "sources/openusd-introduction",
@@ -4211,16 +5897,44 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/OpenUSD--syntheses/3d-model-formats-learning-map",
+      "id": "sources/openusd-glossary--syntheses/3d-model-formats-learning-map",
       "from": "syntheses/3d-model-formats-learning-map",
-      "to": "entities/OpenUSD",
+      "to": "sources/openusd-glossary",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/OpenUSDSceneComposition--syntheses/3d-model-formats-learning-map",
+      "id": "sources/learn-openusd-file-formats--syntheses/3d-model-formats-learning-map",
       "from": "syntheses/3d-model-formats-learning-map",
-      "to": "concepts/OpenUSDSceneComposition",
+      "to": "sources/learn-openusd-file-formats",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/learn-openusd-stage--syntheses/3d-model-formats-learning-map",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "sources/learn-openusd-stage",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/learn-openusd-prim-composition--syntheses/3d-model-formats-learning-map",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "sources/learn-openusd-prim-composition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/mujoco-overview--syntheses/3d-model-formats-learning-map",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "sources/mujoco-overview",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/USDAFileSyntax--syntheses/3d-model-formats-learning-map",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "concepts/USDAFileSyntax",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4232,23 +5946,79 @@
       "confidence": 1.0
     },
     {
-      "id": "entities/IsaacSim--syntheses/3d-model-formats-learning-map",
+      "id": "concepts/RoboticsSimulationLoop--syntheses/3d-model-formats-learning-map",
       "from": "syntheses/3d-model-formats-learning-map",
-      "to": "entities/IsaacSim",
+      "to": "concepts/RoboticsSimulationLoop",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "entities/MuJoCo--syntheses/3d-model-formats-learning-map",
+      "id": "concepts/OpenUSDSceneComposition--syntheses/3d-model-formats-learning-map",
       "from": "syntheses/3d-model-formats-learning-map",
-      "to": "entities/MuJoCo",
+      "to": "concepts/OpenUSDSceneComposition",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/SimulationRealityGap--syntheses/3d-model-formats-learning-map",
+      "id": "concepts/CollisionGeometryForRobotSimulation--syntheses/3d-model-formats-learning-map",
       "from": "syntheses/3d-model-formats-learning-map",
-      "to": "concepts/SimulationRealityGap",
+      "to": "concepts/CollisionGeometryForRobotSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ApproximateConvexDecomposition--syntheses/3d-model-formats-learning-map",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "concepts/ApproximateConvexDecomposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/3d-model-formats-learning-map--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "syntheses/simulation-and-assets-learning-path",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/3d-model-formats-learning-map--syntheses/research-questions",
+      "from": "syntheses/3d-model-formats-learning-map",
+      "to": "syntheses/research-questions",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/agentsserver--syntheses/agent-tools-learning-path",
+      "from": "syntheses/agent-tools-learning-path",
+      "to": "sources/agentsserver",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/agentsdock-releases--syntheses/agent-tools-learning-path",
+      "from": "syntheses/agent-tools-learning-path",
+      "to": "sources/agentsdock-releases",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "entities/AgentsDock--syntheses/agent-tools-learning-path",
+      "from": "syntheses/agent-tools-learning-path",
+      "to": "entities/AgentsDock",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/agent-tools-learning-path--syntheses/dsh-learning-map",
+      "from": "syntheses/agent-tools-learning-path",
+      "to": "syntheses/dsh-learning-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/agent-tools-learning-path--syntheses/research-questions",
+      "from": "syntheses/agent-tools-learning-path",
+      "to": "syntheses/research-questions",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4470,114 +6240,86 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/WorldModelsForEmbodiedAI--syntheses/research-questions",
+      "id": "sources/planet-learning-latent-dynamics--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/WorldModelsForEmbodiedAI",
+      "to": "sources/planet-learning-latent-dynamics",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/WorldModelEvaluation--syntheses/research-questions",
+      "id": "sources/dreamerv3-mastering-diverse-control--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/WorldModelEvaluation",
+      "to": "sources/dreamerv3-mastering-diverse-control",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/WorldModelTaxonomy--syntheses/research-questions",
+      "id": "sources/td-mpc2-scalable-robust-world-models--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/WorldModelTaxonomy",
+      "to": "sources/td-mpc2-scalable-robust-world-models",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/LatentDynamicsActionModels--syntheses/research-questions",
+      "id": "sources/dino-wm-pretrained-visual-features--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/LatentDynamicsActionModels",
+      "to": "sources/dino-wm-pretrained-visual-features",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "syntheses/research-questions--syntheses/simulation-post-training-evaluation",
+      "id": "sources/v-jepa-2-understanding-prediction-planning--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "syntheses/simulation-post-training-evaluation",
+      "to": "sources/v-jepa-2-understanding-prediction-planning",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/TaskGeneralistPolicyEvaluation--syntheses/research-questions",
+      "id": "sources/worldecho-worldsync-action-following--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "to": "sources/worldecho-worldsync-action-following",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/SimulationRealityGap--syntheses/research-questions",
+      "id": "sources/modern-robotics-lagrangian-dynamics--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/SimulationRealityGap",
+      "to": "sources/modern-robotics-lagrangian-dynamics",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/SimulationSensitivityAnalysis--syntheses/research-questions",
+      "id": "sources/simopt-adaptive-randomization--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/SimulationSensitivityAnalysis",
+      "to": "sources/simopt-adaptive-randomization",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "entities/RoboLab--syntheses/research-questions",
+      "id": "sources/isaac-sim-policy-deployment--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "entities/RoboLab",
+      "to": "sources/isaac-sim-policy-deployment",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/RobotLearningDataComposition--syntheses/research-questions",
+      "id": "syntheses/research-questions--syntheses/simulation-and-assets-learning-path",
       "from": "syntheses/research-questions",
-      "to": "concepts/RobotLearningDataComposition",
+      "to": "syntheses/simulation-and-assets-learning-path",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/CompositionalGeneralizationInRobotics--syntheses/research-questions",
+      "id": "syntheses/research-questions--syntheses/robot-learning-and-evaluation-learning-path",
       "from": "syntheses/research-questions",
-      "to": "concepts/CompositionalGeneralizationInRobotics",
+      "to": "syntheses/robot-learning-and-evaluation-learning-path",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/RobotContextConditioning--syntheses/research-questions",
+      "id": "syntheses/research-questions--syntheses/world-models-learning-path",
       "from": "syntheses/research-questions",
-      "to": "concepts/RobotContextConditioning",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SimulationReady3DWorldGeneration--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "concepts/SimulationReady3DWorldGeneration",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "syntheses/embodiedgen-v1-v2-learning-map--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "syntheses/embodiedgen-v1-v2-learning-map",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/EmbodiedGen--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "entities/EmbodiedGen",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/AgenticSceneTaskGeneration--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "concepts/AgenticSceneTaskGeneration",
+      "to": "syntheses/world-models-learning-path",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4589,58 +6331,9 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/RoboticsSimulationInfrastructure--syntheses/research-questions",
+      "id": "concepts/ContactModelsInRobotics--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/RoboticsSimulationInfrastructure",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/HeterogeneousRobotRLTraining--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "concepts/HeterogeneousRobotRLTraining",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/UniLab--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "entities/UniLab",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "entities/MuJoCo--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "entities/MuJoCo",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/HumanoidRLWorkflow--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "concepts/HumanoidRLWorkflow",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/AssetConditionedHOIGeneration--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "concepts/AssetConditionedHOIGeneration",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/VisualSimToReal--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "concepts/VisualSimToReal",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/ContactComplementarity--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "concepts/ContactComplementarity",
+      "to": "concepts/ContactModelsInRobotics",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4659,79 +6352,44 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/ContactModelsInRobotics--syntheses/research-questions",
+      "id": "concepts/SimulationReady3DWorldGeneration--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/ContactModelsInRobotics",
+      "to": "concepts/SimulationReady3DWorldGeneration",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/ApproximateConvexDecomposition--syntheses/research-questions",
+      "id": "concepts/AgenticSceneTaskGeneration--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/ApproximateConvexDecomposition",
+      "to": "concepts/AgenticSceneTaskGeneration",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/DifferentiableCollisionDetection--syntheses/research-questions",
+      "id": "entities/EmbodiedGen--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/DifferentiableCollisionDetection",
+      "to": "entities/EmbodiedGen",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/VisionLanguageActionModels--syntheses/research-questions",
+      "id": "concepts/ExecutableEmbodiedInteractionInfrastructure--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/VisionLanguageActionModels",
+      "to": "concepts/ExecutableEmbodiedInteractionInfrastructure",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/WheeledRobotKinematics--syntheses/research-questions",
+      "id": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/WheeledRobotKinematics",
+      "to": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/WheeledMobileRobotClassification--syntheses/research-questions",
+      "id": "concepts/GLTFSceneStructure--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "concepts/WheeledMobileRobotClassification",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/OmnidirectionalWheels--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "concepts/OmnidirectionalWheels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/NonholonomicMobileRobots--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "concepts/NonholonomicMobileRobots",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/SteerableWheels--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "concepts/SteerableWheels",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "syntheses/research-questions--syntheses/wheeled-robot-modeling-learning-map",
-      "from": "syntheses/research-questions",
-      "to": "syntheses/wheeled-robot-modeling-learning-map",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/MobileRobotOdometry--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "concepts/MobileRobotOdometry",
+      "to": "concepts/GLTFSceneStructure",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4743,16 +6401,16 @@
       "confidence": 1.0
     },
     {
-      "id": "syntheses/3d-model-formats-learning-map--syntheses/research-questions",
+      "id": "concepts/USDAFileSyntax--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "syntheses/3d-model-formats-learning-map",
+      "to": "concepts/USDAFileSyntax",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
     {
-      "id": "concepts/IsaacSimAssetStructure--syntheses/research-questions",
+      "id": "syntheses/research-questions--syntheses/wheeled-robot-modeling-learning-map",
       "from": "syntheses/research-questions",
-      "to": "concepts/IsaacSimAssetStructure",
+      "to": "syntheses/wheeled-robot-modeling-learning-map",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4764,13 +6422,6 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/ReducedCoordinateArticulations--syntheses/research-questions",
-      "from": "syntheses/research-questions",
-      "to": "concepts/ReducedCoordinateArticulations",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
       "id": "syntheses/isaac-sim-mujoco-usda-runtime-semantics--syntheses/research-questions",
       "from": "syntheses/research-questions",
       "to": "syntheses/isaac-sim-mujoco-usda-runtime-semantics",
@@ -4778,9 +6429,177 @@
       "confidence": 1.0
     },
     {
-      "id": "sources/agentsserver--syntheses/research-questions",
+      "id": "concepts/ReducedCoordinateArticulations--syntheses/research-questions",
       "from": "syntheses/research-questions",
-      "to": "sources/agentsserver",
+      "to": "concepts/ReducedCoordinateArticulations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationLoop--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/RoboticsSimulationLoop",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/RobotCoordinateFrames",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotRigidBodyDynamics--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/RobotRigidBodyDynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationTimeStepping--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/SimulationTimeStepping",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DomainRandomization--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/DomainRandomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SystemIdentificationForSimulation--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/SystemIdentificationForSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationSensitivityAnalysis--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/SimulationSensitivityAnalysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/research-questions--syntheses/simulation-post-training-evaluation",
+      "from": "syntheses/research-questions",
+      "to": "syntheses/simulation-post-training-evaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningObjectives--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/RobotLearningObjectives",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningDataComposition--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/RobotLearningDataComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/CompositionalGeneralizationInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/LatentDynamicsActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/HeterogeneousRobotRLTraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HumanoidRLWorkflow--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/HumanoidRLWorkflow",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualSimToReal--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/VisualSimToReal",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AssetConditionedHOIGeneration--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/AssetConditionedHOIGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ModelPredictiveControl--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/ModelPredictiveControl",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ImaginedPolicyLearning--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/ImaginedPolicyLearning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualGoalPlanning--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/VisualGoalPlanning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/InverseDynamicsModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "concepts/WorldModelEvaluation",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4792,6 +6611,13 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/agentsserver--syntheses/research-questions",
+      "from": "syntheses/research-questions",
+      "to": "sources/agentsserver",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "syntheses/dsh-learning-map--syntheses/research-questions",
       "from": "syntheses/research-questions",
       "to": "syntheses/dsh-learning-map",
@@ -4799,9 +6625,401 @@
       "confidence": 1.0
     },
     {
-      "id": "sources/awesome-world-models--syntheses/research-questions",
+      "id": "syntheses/research-questions--syntheses/world-models-and-simulation-research",
       "from": "syntheses/research-questions",
-      "to": "sources/awesome-world-models",
+      "to": "syntheses/world-models-and-simulation-research",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/spinning-up-rl-key-concepts--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "sources/spinning-up-rl-key-concepts",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/spinning-up-rl-algorithm-taxonomy--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "sources/spinning-up-rl-algorithm-taxonomy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/pi07-steerable-generalist-robotic-foundation-model--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/nvlabs-robolab--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "sources/nvlabs-robolab",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MarkovDecisionProcesses--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "concepts/MarkovDecisionProcesses",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningObjectives--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "concepts/RobotLearningObjectives",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotContextConditioning--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "concepts/RobotContextConditioning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningDataComposition--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "concepts/RobotLearningDataComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HeterogeneousRobotRLTraining--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "concepts/HeterogeneousRobotRLTraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/HumanoidRLWorkflow--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "concepts/HumanoidRLWorkflow",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualSimToReal--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "concepts/VisualSimToReal",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationBenchmarkReportingPipeline--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "concepts/SimulationBenchmarkReportingPipeline",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationSensitivityAnalysis--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "concepts/SimulationSensitivityAnalysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "concepts/CompositionalGeneralizationInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/robot-learning-and-evaluation-learning-path--syntheses/simulation-post-training-evaluation",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "syntheses/simulation-post-training-evaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AssetConditionedHOIGeneration--syntheses/robot-learning-and-evaluation-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "concepts/AssetConditionedHOIGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/robot-learning-and-evaluation-learning-path--syntheses/world-models-learning-path",
+      "from": "syntheses/robot-learning-and-evaluation-learning-path",
+      "to": "syntheses/world-models-learning-path",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/mujoco-overview--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "sources/mujoco-overview",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/openusd-introduction--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "sources/openusd-introduction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/isaac-sim-asset-structure--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "sources/isaac-sim-asset-structure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/contact-models-in-robotics-a-comparative-analysis--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "sources/contact-models-in-robotics-a-comparative-analysis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/nvidia-ovrtx--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "sources/nvidia-ovrtx",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/mujoco-computation-collision-detection--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/modern-robotics-homogeneous-transformations--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "sources/modern-robotics-homogeneous-transformations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/modern-robotics-lagrangian-dynamics--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "sources/modern-robotics-lagrangian-dynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/tobin-domain-randomization--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "sources/tobin-domain-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/peng-dynamics-randomization--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "sources/peng-dynamics-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/simopt-adaptive-randomization--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "sources/simopt-adaptive-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/isaac-sim-policy-deployment--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "sources/isaac-sim-policy-deployment",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationLoop--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/RoboticsSimulationLoop",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/RobotCoordinateFrames",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotRigidBodyDynamics--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/RobotRigidBodyDynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationTimeStepping--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/SimulationTimeStepping",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/OpenUSDSceneComposition--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/OpenUSDSceneComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/USDAFileSyntax--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/USDAFileSyntax",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimAssetStructure--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/IsaacSimAssetStructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CollisionGeometryForRobotSimulation--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/CollisionGeometryForRobotSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactModelsInRobotics--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/ContactModelsInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactSolvers--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/ContactSolvers",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ReducedCoordinateArticulations--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/ReducedCoordinateArticulations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RTXSensorSimulationPipeline--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/RTXSensorSimulationPipeline",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/RoboticsSimulationInfrastructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DomainRandomization--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/DomainRandomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SystemIdentificationForSimulation--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/SystemIdentificationForSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationRealityGap--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/SimulationRealityGap",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ContactComplementarity--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/ContactComplementarity",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/isaac-sim-mujoco-control-tuning-notes--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "syntheses/isaac-sim-mujoco-control-tuning-notes",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiablePhysics--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/DifferentiablePhysics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DifferentiableCollisionDetection--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/DifferentiableCollisionDetection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/simulation-and-assets-learning-path--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "syntheses/world-models-and-simulation-research",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/simulation-and-assets-learning-path--syntheses/wheeled-robot-modeling-learning-map",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "syntheses/wheeled-robot-modeling-learning-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/IsaacSimLegacyAssetStructure--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/IsaacSimLegacyAssetStructure",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationReady3DWorldGeneration--syntheses/simulation-and-assets-learning-path",
+      "from": "syntheses/simulation-and-assets-learning-path",
+      "to": "concepts/SimulationReady3DWorldGeneration",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4893,6 +7111,328 @@
       "id": "concepts/SteerableWheels--syntheses/wheeled-robot-modeling-learning-map",
       "from": "syntheses/wheeled-robot-modeling-learning-map",
       "to": "concepts/SteerableWheels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/planet-learning-latent-dynamics--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "sources/planet-learning-latent-dynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dreamerv3-mastering-diverse-control--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "sources/dreamerv3-mastering-diverse-control",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/td-mpc2-scalable-robust-world-models--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "sources/td-mpc2-scalable-robust-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dino-wm-pretrained-visual-features--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "sources/dino-wm-pretrained-visual-features",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/v-jepa-2-understanding-prediction-planning--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "sources/v-jepa-2-understanding-prediction-planning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/worldecho-worldsync-action-following--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "sources/worldecho-worldsync-action-following",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/modern-robotics-homogeneous-transformations--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "sources/modern-robotics-homogeneous-transformations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/modern-robotics-lagrangian-dynamics--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "sources/modern-robotics-lagrangian-dynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/tobin-domain-randomization--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "sources/tobin-domain-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/peng-dynamics-randomization--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "sources/peng-dynamics-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/simopt-adaptive-randomization--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "sources/simopt-adaptive-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/isaac-sim-policy-deployment--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "sources/isaac-sim-policy-deployment",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/mujoco-computation-collision-detection--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/world-models-and-simulation-research--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "syntheses/world-models-learning-path",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentStateSpaceModels--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "concepts/LatentStateSpaceModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ModelPredictiveControl--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "concepts/ModelPredictiveControl",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ImaginedPolicyLearning--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "concepts/ImaginedPolicyLearning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualGoalPlanning--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "concepts/VisualGoalPlanning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "concepts/RobotCoordinateFrames",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotRigidBodyDynamics--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "concepts/RobotRigidBodyDynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SimulationTimeStepping--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "concepts/SimulationTimeStepping",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DomainRandomization--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "concepts/DomainRandomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SystemIdentificationForSimulation--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "concepts/SystemIdentificationForSimulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--syntheses/world-models-and-simulation-research",
+      "from": "syntheses/world-models-and-simulation-research",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/pi07-steerable-generalist-robotic-foundation-model--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/lda-1b-scaling-latent-dynamics-action-model--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/planet-learning-latent-dynamics--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "sources/planet-learning-latent-dynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dreamerv3-mastering-diverse-control--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "sources/dreamerv3-mastering-diverse-control",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/td-mpc2-scalable-robust-world-models--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "sources/td-mpc2-scalable-robust-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dino-wm-pretrained-visual-features--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "sources/dino-wm-pretrained-visual-features",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/v-jepa-2-understanding-prediction-planning--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "sources/v-jepa-2-understanding-prediction-planning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/worldecho-worldsync-action-following--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "sources/worldecho-worldsync-action-following",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/MarkovDecisionProcesses--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "concepts/MarkovDecisionProcesses",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentStateSpaceModels--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "concepts/LatentStateSpaceModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ModelPredictiveControl--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "concepts/ModelPredictiveControl",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ImaginedPolicyLearning--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "concepts/ImaginedPolicyLearning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisualGoalPlanning--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "concepts/VisualGoalPlanning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InverseDynamicsModels--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "concepts/InverseDynamicsModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/LatentDynamicsActionModels--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "concepts/LatentDynamicsActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelTaxonomy--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "concepts/WorldModelTaxonomy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/awesome-world-models--syntheses/world-models-learning-path",
+      "from": "syntheses/world-models-learning-path",
+      "to": "sources/awesome-world-models",
       "type": "EXTRACTED",
       "confidence": 1.0
     }
