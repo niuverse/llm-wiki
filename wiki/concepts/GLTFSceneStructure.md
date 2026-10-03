@@ -4,7 +4,7 @@ type: concept
 tags: [simulation-assets]
 sources: ["[[gltf-basic-structure]]", "[[isaac-sim-asset-structure]]"]
 modified: 2026-09-30
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 ---
 
 # glTF 场景与数据结构
@@ -45,3 +45,7 @@ flowchart LR
 ## 实践含义
 
 glTF 在本知识库用于理解三维场景的组织与读取。GLB 容器、扩展、验证器和材质细节仍待专门收录。更广的格式选择见 [[3d-model-formats-learning-map|三维模型格式学习地图]]；非破坏式资产组合见 [[OpenUSDSceneComposition|OpenUSD 场景组合]]。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。

@@ -3,7 +3,7 @@ title: "NVlabs/RoboLab"
 type: source
 tags: [github, robotics, simulation, benchmark, source-backed]
 sources: []
-modified: 2026-07-13
+modified: 2026-10-04
 source_file: raw/robolab-20260612-7d45d749-source.tar.gz
 source_kind: repo
 source_url: https://github.com/NVlabs/RoboLab
@@ -15,82 +15,75 @@ source_date: 2026-06-01
 baseline_source_file: raw/robolab-source.tar.gz
 baseline_commit: 5d3ba41e551aced710b3d585b245a313a9a407ce
 current_commit: 7d45d74904eade3b578a8eb1f2f9f89bc3d40326
-study_topic: syntheses/robot-learning-and-evaluation-learning-path
+topics: ["topics/assets-and-world-generation", "topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/simulation-ready-worlds", "topics/policy-evaluation"]
+source_type: repository
 ---
 
-## 摘要
+# RoboLab 实现：从任务定义到可追溯的评估记录
 
-[[NVIDIA|NVIDIA]] 的 `NVlabs/RoboLab` 代码仓库是 [[RoboLab|RoboLab]] 论文的官方实现产物。本次更新把知识库的代码仓库快照从 2026-04-22 的基线提交 `5d3ba41e551aced710b3d585b245a313a9a407ce` 更新到 2026-06-01 作者 date 的 `main` 提交 `7d45d74904eade3b578a8eb1f2f9f89bc3d40326`。GitHub 比较显示当前输出头相对基线 ahead 由 19 commits、隐藏在由 0，涉及 README/文档、分析、看板、策略、示例、资产、Docker、许可证和 Claude 代码技能等设计面；详细文件 inventory 见 `graph/extracts/robolab-20260612-7d45d749-repository-manifest.md`。
+RoboLab 将任务语义、机器人与传感器配置、策略通信、回合执行和结果分析分开，使同一任务可以配上不同策略或扰动配置。本页固定于本地归档提交 `7d45d74904eade3b578a8eb1f2f9f89bc3d40326`（作者日期2026-06-01）；旧快照 `5d3ba41e…` 仍保留。[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|论文页]] 负责实验结论，本页解释这个较晚代码版本实际如何工作。
 
-RoboLab 的核心仍是机器人- 与策略-agnostic 任务通用型评估基底：任务文件描述场景、语言指令、终止/子任务判定条件和接触物体；环境 registration 再组合机器人关节系统、动作、观测、相机、光照/背景、仿真参数；策略通过服务端客户端推理接入。新版代码仓库把这个基底向完整基准平台推进一步：新增一等的看板、per-策略后端文件夹、自适应采样 / 置信区间报告、诊断 pytest 套件、VRAM sizing 指南、已知问题页面、Apache-2.0 许可、以及 `/robolab-scenegen` / `/robolab-taskgen` 智能体式生成技能。
+**阅读与验证范围。** 本轮静态追踪了任务、环境工厂、π0客户端、评估循环、结果持久化和自适应采样的关键路径；下面链接固定到归档提交的文件行号。没有安装或运行 Isaac Sim、策略服务或第三方测试，因此代码路径支持“如何实现”，不支持吞吐量、稳定性或论文成绩已复现。
 
-来源网址: https://github.com/NVlabs/RoboLab
+## 一条具体任务怎样成为环境
 
-## 核心主张
+以 `BananaInBowlTask` 为例，任务文件绑定 `banana_bowl.usda`、香蕉／碗／桌子的接触对象、三种指令详略版本、50秒时域及成功条件。成功要求香蕉满足容器几何判定、与碗接触且与夹爪分离；超时另作截断。子任务进度由 `pick_and_place` 组合。这里的任务是可执行的判定定义，不是只有一句自然语言。[任务文件 L15–45](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/tasks/benchmark/banana_in_bowl_task.py#L15-L45)
 
-- README 仍定义 RoboLab 为任务基于评估基准，包含 100+ 操作任务、automated 成功检测、服务端客户端策略架构和多环境并行评估；新增重点是“结果看板带有回合视频与跨实验分析”。
-- 许可证与 packaging 发生实质变化：当前 README 将框架置于 Apache 许可证 2.0，并新增 `THIRD_PARTY_NOTICES.md`；`pyproject.toml` 将 `robolab-dashboard` 暴露为 console 脚本，默认依赖集合包含看板依赖。
-- 安装验证从旧的 `scripts/check_registered_envs.py` 风格转为 `uv run pytest tests/`，README 说明该测试套件覆盖 IsaacLab 导入、任务 definition 有效性、env factory、单一完整回合，并在测试中自动接受 Omniverse EULA；常规入口仍需用户在首次运行时设置 `OMNI_KIT_ACCEPT_EULA=Y`。
-- 策略集成从单一推理文档 / 示例路径重组为 `policies/<backend>/` 文件夹。`policies/README.md` 明确每个后端含 `client.py`、`run.py`、`__init__.py` 和后端 README；具体的客户端继承 `robolab.eval.InferenceClient`，实现 `_extract_observation`、`_pack_request`、`_query_server`、`_unpack_response`，运行器构造 `make_client(args)` 并调用 `run_evaluation`。
-- 新增 Cosmos 3 后端。`policies/cosmos3/README.md` 把 Cosmos3-Nano-策略-DROID 描述为基于 Cosmos 3、在 DROID 上继续训练的世界动作模型（WAM），RoboLab 客户端通过 OpenPI WebSocket 协议连接服务端。
-- 评估运行器新增自适应采样表面：`--num-episodes-adaptive` 让 per-任务循环按批次运行，使用 95% Beta 后验可信区间 width 与 `--ci-pp-width` 判断是否继续；这把 “跑多少回合” 从固定 `num_runs * num_envs` 扩展为精度-targeted 采样。
-- 分析/报告现在显式显示不确定性：`analysis/read_results.py` 的成功比率 columns 带 95% Beta 后验可信区间；看板结果 cells 也显示区间和 half-width 标注；得分使用学生 t 分布区间。
-- 看板是新的一等用户体验层。`docs/dashboard.md` 与 `dashboard/app.py` 显示它是 FastAPI 应用，支持持久化输出来源、场景/任务目录浏览、回合视频与缩略图、事件日志、时间序列、总览与逐次运行摘要，以及局域网托管；它读取元数据 JSON 与输出文件夹，不需要导入 IsaacLab 就能浏览目录。
-- 任务/环境文档更强调外部 extensibility：`docs/environment_registration.md` 明确用户可以在自己的代码仓库中注册 RoboLab 任务，无需修改 RoboLab；环境名称是任务 + 机器人/配置变体的组合，任务名称可对应多个环境变体。
-- `docs/task_conditionals.md` 增加机制解释：包含使用 centroid-in-凸包 / 顶部开放的面 logic；`object_on_top` 使用接触力分析判断稳定的支撑，这说明成功判定条件不只是 string-层级语义，而是几何 + 物理查询。
-- 调试/运维表面明显增强：`docs/debug.md` 定义 `VERBOSE`、`DEBUG`、`VISUALIZE`、WorldState 检查和诊断 pytest 脚本；`docs/known_issues.md` 记录非无头模式的视口 VRAM 泄漏和渲染伪影；`docs/env_vram_size_guide.md` 给出 L40 48GB 上每个任务的 `num_envs` 上限。
-- `/robolab-scenegen` Claude 代码技能把自然语言场景描述转成 USDA 场景：读取物体目录，生成判定条件 JSON，使用 pure Python + numpy/scipy 判定条件求解器做无碰撞的放置，再写场景文件。
-- `/robolab-taskgen` Claude 代码技能把自然语言操作目标转成 `Task` 数据类：选择条件函数、写指令变体、终止、contact_object_list、episode_length 和可选子任务；这把场景/任务制作变成 [[AgenticSceneTaskGeneration|智能体式场景/任务生成]] 流程。
-- 资产 churn 主要是 `_wip` 资产 removal、场景元数据/图像更新和 utility 脚本维护；除非具体资产影响基准覆盖范围，应作为 curation/治理证据，而不是概念层级机制变化。
+`EnvFactory.create_env_cfg` 解析任务文件，再将机器人、观测、动作、相机、光照、背景和仿真时序配置交给环境生成器；生成的配置类注册到 Gym，并进入任务／标签索引。`create_env` 按名字加载配置，选择指令变体、合并重置事件，创建环境，并将实际 `env_cfg` 写到输出目录。因此任务名标识语义，环境名还可以标识机器人或扰动变体。[factory.py L92–190](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/core/environments/factory.py#L92-L190)、[config.py L255–288](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/core/environments/config.py#L255-L288)、[runtime.py L108–203](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/core/environments/runtime.py#L108-L203)
 
-## 关键引文
+### “香蕉在碗里”如何被计算
 
-- "Results Dashboard with Episode Videos and Cross-Experiment Analysis"
-- "Apache License 2.0"
-- "Adaptive sampling"
-- "Every per-policy runner"
-- "A self-contained web dashboard"
+关键实现比函数注释更具体。`object_in_container` 的注释仍写局部 AABB，但实际调用 `in_opentop_container`，后者使用**对象凸包顶点的均值点**和**移除朝上面的容器凸包半空间**。均值点不是物体质量中心；旧 `tolerance` 参数在这个几何路径中不参与计算。[conditionals.py L189–231](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/core/task/conditionals.py#L189-L231)、[predicate_logic.py L330–403](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/core/task/predicate_logic.py#L330-L403)
 
-## 设计面分解
+下面是对该实现的数学转写。设对象局部均值点为 $c_o$，对象位姿为 $(R_o,t_o)$，容器位姿为 $(R_c,t_c)$，则容器局部点为：
+
+$$
+c_c=R_c^\top(R_oc_o+t_o-t_c),\qquad
+\mathrm{inside}=\mathbf1[\max_j(n_j^\top c_c+d_j)\le0].
+$$
+
+$(n_j,d_j)$ 是保留的容器凸包平面；默认移除局部向上法向分量不小于0.7的面。这样物体位姿和容器位姿改变时，判定仍在容器坐标下进行。它是一种几何代理，不检查整个物体是否完全位于真实容器空腔；香蕉任务额外要求接触和松爪，收紧了仅靠均值点的条件。[hull_check.py L43–110](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/core/task/hull_check.py#L43-L110)
+
+接触由 `WorldState.in_contact` 读取接触力矩阵，按默认0.1阈值检查任一分量是否超过阈值，并保留环境维度；不是从 RGB 图像判断接触。一般的坐标变换基础见 [[RobotCoordinateFrames|机器人坐标系]]，评估判定器与语义的关系见 [[TaskGeneralistPolicyEvaluation|策略评测]]。[world_state.py L551–573](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/core/world/world_state.py#L551-L573)
+
+## 从观测到一次控制动作
+
+`InferenceClient` 把策略适配拆成四步：抽取仿真观测、打包服务请求、发送请求、解包动作块。基类按 `env_id` 分开保存动作块与消费计数；缓存到达 `open_loop_horizon` 后才重新请求策略。子类可以更换通信协议和动作后处理，而评估主循环不必识别具体模型。[base_client.py L13–78、L131–141](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/eval/base_client.py#L13-L78)
+
+π0系列客户端提供一个可检查的例子：从批量观测按环境索引取外置／腕部 RGB、7维关节位置与夹爪状态，复制到 CPU NumPy，图像补边缩放为224×224，再加指令发送到 OpenPI WebSocket 服务。返回 `actions` 后，最后一维以0.5为阈值二值化；默认开环长度 π0 为10、π0.5 为15。相机键名、通道和动作含义都属于策略的输入输出契约。[client.py L19–39、L80–119](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/policies/pi0_family/client.py#L80-L119)
+
+**教学例子：** π0.5在第一个时刻返回一段动作，随后15次控制调用依次使用这段缓存，第16次才以新观测重新规划。这个间隔描述客户端闭环频率，并不意味着物理只积分15步，也不说明服务器输出长度恰好等于15。改变开环长度会同时改变反馈频率和请求成本，应随评测配置保存。接口语义见 [[PolicyDeploymentContract|策略部署契约]]。
+
+## 并行环境中的执行和终止
 
 ```mermaid
 flowchart LR
-  A[任务 / 场景来源] --> B[Environment 注册]
-  B --> C[策略后端文件夹]
-  C --> D[评估运行器]
-  D --> E[回合 outputs]
-  E --> F[Analysis 脚本]
-  E --> G[看板]
-  D --> H[自适应采样]
-  F --> I[置信度 intervals]
-  J[智能体式场景/任务技能] --> A
+  T["任务和环境配置"] --> R["创建并重置批量环境"]
+  R --> O["各活跃环境的观测"]
+  O --> I["逐环境读取或刷新动作缓存"]
+  I --> A["组装批量动作"]
+  A --> S["env.step"]
+  S --> G["成功、超时、子任务与事件"]
+  G --> O
+  G --> W["逐环境记录及汇总"]
 ```
 
-这次代码仓库更新的设计意义不是“RoboLab 多了一个 UI”，而是评估契约更完整：策略后端、运行器、回合输出、分析脚本、看板、不确定性报告和自适应采样现在构成 [[SimulationBenchmarkReportingPipeline|仿真基准报告流程]]。同时，Claude 代码技能把场景/任务库扩展流程写成 LLM 辅助的制作契约，但这仍应被看作 [[RoboticsSimulationInfrastructure|仿真基础设施]] 的制作层，而不是论文结论的一部分。
+图为对归档代码的教学重画。`run_episode` 共用一个客户端对象，在活跃环境上逐个调用 `infer`，再把动作堆成批量张量交给 `env.step`。**并行物理环境不等于批量策略推理**；此处客户端请求仍按循环顺序发生。结束时清空客户端缓存，避免下一批沿用旧动作。[episode.py L86–107、L138–158、L180–195](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/eval/episode.py#L138-L158)
 
-## 与旧快照的差异
+`RobolabEnv` 截获自动重置：记录终止结果、导出该环境回合，然后把它标为“冻结”，后续不再请求策略并将其动作置零。底层仍调用父类的批量物理步，所以这里的冻结首先是评估控制与重置语义，不能仅凭名称断言物体状态绝对不再变化。代码还把前两步终止当作初始物理伪影重新重置。该细节会影响最早期终止的含义，应随版本理解。[env.py L65–120](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/core/environments/env.py#L65-L120)
 
-- 基线 `5d3ba41e...` 的知识库重点是任务数据类、conditionals/子任务、WorldState、环境 registration、策略客户端、分析工具和 MNPE 敏感性脚本。
-- 当前 `7d45d749...` 保留这些核心，但新增或强化了看板、statistical significance/自适应采样、策略后端组织、Cosmos 3 客户端、pytest 安装验证、调试/已知问题/VRAM operational 文档、Apache-2.0 许可、third-party notices、智能体式场景/任务生成技能和资产 curation。
-- GitHub 代码仓库元数据在本次抓取中显示 `pushed_at` 为 2026-06-01，`updated_at` 为 2026-06-12；star/叉状数是时间敏感元数据，不作为长期知识结论。
+## 结果如何成为报告
 
-## 关联
+每个并行环境都有成功值、终止步、事件和轨迹。汇总阶段使用 `dt = sim.dt × decimation` 将控制步转换为时长；从 `run_N.hdf5` 读取轨迹和子任务最终分数，保存版本2事件日志，再把逐回合摘要追加到 `episode_results.jsonl`。回合编号按 `run_idx × num_envs + env_id` 生成，重启时可检查已完成编号。[summarize.py L145–198、L239–310](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/eval/summarize.py#L239-L310)、[results.py L604–638、L785–801](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/core/logging/results.py#L604-L638)
 
-- [[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab 论文]] - 代码仓库对应的 arXiv 论文来源页；论文主张与代码仓库后续实现更新需要分开追溯。
-- [[RoboLab|RoboLab]] - 代码仓库实现的基准/平台实体。
-- [[TaskGeneralistPolicyEvaluation|通用任务策略评估]] - 任务/子任务/判定条件/评估 APIs 与自适应采样/报告的概念页。
-- [[SimulationBenchmarkReportingPipeline|仿真基准报告流程]] - 看板、分析脚本、回合输出和置信区间的广义的报告流程。
-- [[AgenticSceneTaskGeneration|智能体式场景与任务生成]] - `/robolab-scenegen` 和 `/robolab-taskgen` 暴露的 LLM 辅助的场景/任务制作模式。
-- [[SimulationSensitivityAnalysis|仿真敏感性分析]] - 代码仓库中后验推理与受控的 perturbation 工作流对应的概念页。
-- [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] - RoboLab 的任务 API、策略 adapters、看板、诊断信息、元数据和制作工作流属于基础设施情形研究。
-- [[VisionLanguageActionModels|视觉—语言—动作模型]] - 代码仓库内置 Pi0 族、GR00T、DreamZero、Cosmos 3 客户端示例，服务于 VLA / WAM-风格策略评估。
-- [[SimulationRealityGap|仿真—现实差距]] - 高保真度 sim 与受控的扰动是诊断代理，不等同于真实部署能力。
+固定采样跑 `num_runs × num_envs` 个回合；自适应采样则每批之后根据当前成功数和总数，检查95% Beta 可信区间宽度，达到目标或上限后停止。该逻辑发生在下一批开始前，实际数量可能越过上限至批次边界。数学与“文档声称无偏但未证明”的限制集中见 [[SimulationBenchmarkReportingPipeline|报告流程]]，避免在本页重复推导。[runner.py L189–252](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/eval/runner.py#L189-L252)、[adaptive_sampling.py L20–40](https://github.com/NVlabs/RoboLab/blob/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/robolab/core/utils/adaptive_sampling.py#L20-L40)
 
-## 开放问题
+## 能力和证据边界
 
-- 看板与 leaderboard 是否会形成稳定的公开投稿工作流，还是主要作为局部实验 browser？
-- 自适应采样的 Beta 区间 stopping rule 是否会成为 RoboLab leaderboard 的必需协议，还是只是 per-策略运行器的可选计算-saving 模式？
-- Cosmos 3 / WAM-风格策略后端与 VLA 后端在观测/动作打包、延迟、动作 chunking 上是否可公平比较？
-- 智能体式场景/任务生成技能的求解器/验证循环能否稳定扩展基准，同时避免 LLM 生成的任务偏差？
-- Apache-2.0 代码仓库代码许可证与资产 / third-party 材质的具体用法边界是否需要后续单独整理？
-- Non-headless 视口 VRAM 泄漏和渲染伪影会不会影响交互式调试的可复现性，尤其在看板/视频审查与 GUI eval 混用时？
+归档 README／文档另介绍结果看板、场景／任务制作技能、更多策略后端、调试和显存规划。它们是该版本的文档能力说明；本轮没有逐个执行，也没有将其回填为论文已经测量的效果。基准结果还取决于相机与动作适配、成功判定器、种子、时序、模型检查点和训练数据，单独固定仓库提交并不足以固定整个实验。
+
+这条实现路径提供了一个具体判断：策略错误、接口错误和判定错误可能产生同样的低成功率，但应在不同层排查。[[SimulationSensitivityAnalysis|参数敏感性分析]] 研究环境变化，[[RoboticsSimulationInfrastructure|仿真基础设施]] 研究这些层之间的接口，[[RoboLab|项目入口]] 汇合论文与实现。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/simulation-ready-worlds|生成世界何时成为可执行环境]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。

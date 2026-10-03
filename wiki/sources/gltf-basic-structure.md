@@ -9,7 +9,8 @@ source_kind: html
 source_url: https://github.khronos.org/glTF-Tutorials/gltfTutorial/gltfTutorial_002_BasicGltfStructure.html
 extracted_text: graph/extracts/gltf-basic-structure.md
 source_date: unknown
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
+source_type: tutorial
 ---
 
 ## 摘要
@@ -36,3 +37,7 @@ JSON 组织关系，几何和图像数据还需要沿引用读取。
 ## 开放问题
 
 本章不覆盖 GLB 容器细节、完整 PBR 规则或机器人动力学扩展，不能把场景可渲染性当成物理可执行性。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。

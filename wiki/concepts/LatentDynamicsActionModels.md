@@ -3,72 +3,57 @@ title: "潜在动力学动作模型"
 type: concept
 tags: [robotics, world-models, vla, inverse-dynamics]
 sources: ["[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]"]
-modified: 2026-09-30
-study_topic: syntheses/world-models-learning-path
+modified: 2026-10-04
+topics: ["topics/robot-policy-learning", "topics/world-models-and-representations", "topics/future-conditioned-action"]
 ---
 
 # 潜在动力学动作模型
 
-潜在动力学动作模型（LDA）是 [[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 来源中提出的机器人基础模型训练框架：它把动作策略、正向动力学、逆动力学和视觉预测统一到一个扩散模型中，但把未来视觉状态表示为 DINO 潜在，而不是像素/VAE 重建。核心目标是从异构具身数据中学习动作引起的状态转移，并让混合质量数据不再只能作为含噪模仿数据。
+潜在动力学动作建模把未来视觉表示与机器人动作放到共享学习系统中。这里以 [[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 的框架为主要证据：它用 DINO 特征作为未来目标，用流匹配训练共享模型，并按数据质量和标签选择训练任务。“潜在”指视觉状态表示，不能自动理解为无动作标签的潜在动作码本。
 
-[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]] 和 [[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]] 从两个方向强化了同一判断：动作表示不应只靠行为克隆。Seer 在动作标注的机器人数据上把未来 RGB 预测与逆动力学动作预测端到端结合；DeFI 则让 [[InverseDynamicsModels|逆动力学预训练]] 从无标签视频转移中学习潜在动作标记。LDA-1B 把逆动力学放进共享扩散目标；DeFI 则把正向动力学和逆动力学分开预训练，先让 GIDM 学潜在动作标记，再在下游机器人数据上用动作适配器语义落地到可执行的指令。
+## 四种条件任务
 
-## 数学结构
-
-设 $o_t$ 是当前观测，$\ell$ 是语言指令，$a_{t+1:t+k}$ 是未来动作块，$z_{t+1:t+k}$ 是由 DINO 编码器提取的未来视觉潜在状态，$\theta$ 为模型参数，$k$ 为预测长度。LDA 继承 UWM（统一的世界模型）的四个目标：
+令 $o_t$ 为当前观测，$\ell$ 为语言，$A$ 为未来动作块，$Z$ 为未来图像经 DINO 编码的特征序列。动作和视觉的采样频率可以不同，不假定两者具有相同序列长度。四种条件关系是：
 
 $$
 \begin{array}{ll}
-\text{策略：} & p_\theta(a_{t+1:t+k}\mid o_t,\ell) \\
-\text{正向动力学：} & p_\theta(z_{t+1:t+k}\mid o_t,a_{t+1:t+k},\ell) \\
-\text{逆动力学：} & p_\theta(a_{t+1:t+k}\mid o_t,z_{t+1:t+k},\ell) \\
-\text{视觉预测：} & p_\theta(z_{t+1:t+k}\mid o_t,\ell)
+\text{策略：}&p_\theta(A\mid o_t,\ell),\\
+\text{正向动力学：}&p_\theta(Z\mid o_t,A,\ell),\\
+\text{逆动力学：}&p_\theta(A\mid o_t,Z,\ell),\\
+\text{视觉预测：}&p_\theta(Z\mid o_t,\ell).
 \end{array}
 $$
 
-来源中的 UWM 写法使用未来观测 $o_{t+1:t+k}$；LDA 的关键替换是令视觉目标进入结构化的 DINO 潜在 $z_{t+1:t+k}=f_{\mathrm{DINO}}(o_{t+1:t+k})$。模型对动作块与视觉潜在分别加高斯噪声，并训练向量场/去噪头。抽象地写：
+$\theta$ 是共享模型参数。这里描述条件分布，不是四个独立网络；LDA-1B 用任务嵌入、模态噪声与损失掩码区分任务，缺失模态用可学习占位标记表示。逆动力学的输入包含目标未来，普通策略推理不要求先提供真实未来。[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B §III]]
+
+## 共享模型怎样训练
+
+LDA-1B 采用 [[FlowMatching|流匹配]]，分别为动作和未来视觉特征学习生成向量场。这里更关键的是损失的选择：
 
 $$
-\mathcal{L}_{\theta}=\lambda_a\mathbb{E}\left[\left\|v_\theta^a(\tilde{a}_{\tau_a},\tilde{z}_{\tau_z},o_t,\ell,e_m)-(\epsilon_a-a_{t+1:t+k})\right\|_2^2\right]+\lambda_z\mathbb{E}\left[\left\|v_\theta^z(\tilde{a}_{\tau_a},\tilde{z}_{\tau_z},o_t,\ell,e_m)-(\epsilon_z-z_{t+1:t+k})\right\|_2^2\right],
+\mathcal L=\lambda_A(m)\mathcal L_A+\lambda_Z(m)\mathcal L_Z.
 $$
 
-其中 $\theta$ 为模型参数，$k$ 为预测长度，$\tau_a,\tau_z$ 为动作与视觉插值／噪声时刻，$v_\theta^a,v_\theta^z$ 为对应预测向量场。$\tilde{a}_{\tau_a}$ 是含噪动作块，$\tilde{z}_{\tau_z}$ 是含噪未来 DINO 潜在，$\epsilon_a,\epsilon_z$ 是高斯噪声，$e_m$ 是任务/目标嵌入（策略、正向动力学、逆动力学、视觉预测），$\lambda_a,\lambda_z$ 表示该训练任务是否激活动作损失或视觉损失。没有某个模态时，LDA 使用可学习的寄存标记作为占位符。
+$m$ 是训练任务类型，$\mathcal L_A,\mathcal L_Z$ 是相应速度预测损失，$\lambda_A(m),\lambda_Z(m)$ 表示启用哪个分支。这不是用零向量填补缺失动作标签：未提供的模态由占位标记表达，未激活的损失不拿伪造标签回归。速度目标与积分的推导集中在流匹配页，论文特有的任务嵌入、MM-DiT 与调用输入见 [[lda-1b-scaling-latent-dynamics-action-model|LDA-1B §III]]。
 
-## 直觉
+| 数据条件 | 原文分配的任务 | 原因 |
+| --- | --- | --- |
+| 高质量、带动作轨迹 | 四种任务 | 可同时学习期望行为和动作后果 |
+| 低质量、带动作轨迹 | 正向动力学、视觉预测 | 行为不理想仍可提供状态转移监督 |
+| 无动作的人类视频 | 视觉预测 | 缺少真实动作条件，不能直接监督机器人逆映射 |
 
-行为克隆只问“这个观测下专家做了什么动作”。LDA 还问三个额外问题：给定动作会导致什么未来状态，给定当前/未来状态需要什么动作，以及没有动作标签时未来视觉状态如何变化。这让低质量轨迹可以提供动作条件化动力学监督，无动作视频可以提供视觉预测监督，而不是被 BC 当成有害数据丢掉。
+这使“可用于学习世界变化的数据”和“可用于模仿的示范”分开。它不是低质量数据永远有益的定理，效果取决于路由、覆盖和表示；具体消融见 [[lda-1b-scaling-latent-dynamics-action-model|来源页]]。
 
-DINO 潜在的作用是把预测目标从偏重外观的像素移到语义/空间特征。像素/VAE 目标会把光照、纹理、背景和相机视角的低层变化也算进损失；来源把 DINO 特征作为结构化视觉预测目标，以减少对低层外观的建模；这不保证其完整编码物理可供性。代价是模型继承了 DINO 表示的盲点：没有被 DINO 编进潜在的力、触觉或材质状态很难由下游动力学输出头补回来。
+**同一轨迹可以产生不同学习问题。** 给定一段带动作的推物视频，正向任务把动作当已知条件、预测物体后续特征；逆向任务反过来把未来特征当条件、预测动作。后者只是数据中的条件推断，不证明该动作是达到目标的最优解；低质量动作不能因为换名为逆动力学就自动成为优质控制示范。LDA-1B 因此只把高质量带动作数据分配给逆动力学与策略任务。[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B §III-B]]
 
-```mermaid
-flowchart LR
-  D1["高质量轨迹"] --> O1["策略 + 正向 + 逆 + 预测"]
-  D2["低质量轨迹"] --> O2["正向动力学 + 视觉预测"]
-  D3["无动作的人类视频"] --> O3["视觉预测"]
-  O1 --> M["MM-DiT<br/>共享潜在动作模型"]
-  O2 --> M
-  O3 --> M
-  V["DINO 潜在状态<br/>z_t"] --> M
-  L["语言 / 任务嵌入"] --> M
-  M --> A["动作块"]
-  M --> Z["未来 DINO 潜在"]
-```
+## 表示的收益与边界
 
-## 失效情形
+DINO 特征减少直接拟合所有像素细节的需求，也保留空间结构；但特征距离小不等于接触力、摩擦或材质状态正确。来源把冻结视觉表示列为局限。**进一步推论：** 如果关键控制变量在视觉表示中不可区分，下游预测头无法仅靠同一表示恢复它。
 
-- 冻结的视觉表示瓶颈：来源明确把固定 DINO 视觉特征列为局限；来源未证明潜在状态完整覆盖力与触觉等控制变量；这些信息缺失的任务影响仍需验证。
-- 训练目标路由错误：来源采用按质量和标签路由目标；由此推导的风险是误标或路由错误，这仍需具体实验验证。
-- 无动作标注的视频歧义：无动作标注的第一视角视频只能提供视觉预测监督；没有动作条件时，模型可能学到常见的运动先验，但无法区分哪些状态变更是机器人可控的。
-- 第一视角偏差：来源说训练和评估主要依赖第一视角相机视角；换成第三人称、多相机、触觉/深度-密集型设置时，潜在/动作对齐可能需要重建。
-- 离线代理指标差距：规模扩展分析使用留出集动作预测 L1 误差；它测量离线动作误差，不等于闭环成功，尤其在接触丰富任务中误差的时机和方向比平均 L1 更重要。
-- 来源层面可复现性：论文报告大规模数据集和模型训练，但独立复现依赖代码/数据/检查点可用性和评估规程发布。
+评估应同时检查表征预测和闭环动作。LDA-1B 的规模曲线使用离线动作 L1 误差；部分真机“成功率”实际是完成比例或加权进度分数，不能混作完整任务成功概率。数据路由收益也应在相同数据和预算下比较。[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B 图 10、附录表 VII–VIII]]
 
-## 实践含义
+与 [[InverseDynamicsModels|逆动力学模型]]、[[RobotContextConditioning|上下文条件化]] 的关系见 [[topics/future-conditioned-action|未来条件动作学习专题]]；动作执行接口见 [[VisionLanguageActionModels|视觉—语言—动作模型]]。
 
-对机器人基础模型预训练，LDA 的重要启发是把数据质量变成训练目标路由，而不是数据集过滤。收集到的停顿、重试、次优运动可能不适合作为策略目标，但仍可能告诉模型物体如何移动、什么接触会失败、哪些视觉转移常见。
+## 研究归属
 
-对 [[WorldModelsForEmbodiedAI|世界模型]]，LDA 是一个折中路线：它不需要生成高保真度 RGB 视频，也不把世界模型单独拿来做 MPC 轨迹采样，而是用潜在正向/逆动力学改善下游动作策略。
-
-对 [[VisionLanguageActionModels|VLA]]，LDA、Seer 和 DeFI 共同提供了 BC 之外的规模扩展路径。策略头仍然输出动作块，但训练信号不只来自专家动作似然，还来自动作条件化的未来状态预测、未来状态到动作的逆动力学，以及无动作标注的视频转移重建。
-
-相关页面：[[lda-1b-scaling-latent-dynamics-action-model|LDA1B]]、[[lda-1b-scaling-latent-dynamics-action-model|EI30K]]、[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]]、[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]]、[[InverseDynamicsModels|逆动力学模型]]、[[WorldModelsForEmbodiedAI|具身智能世界模型]]、[[VisionLanguageActionModels|视觉—语言—动作模型]]、[[RobotContextConditioning|机器人上下文条件化]]、[[SimulationRealityGap|仿真—现实差距]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|世界模型与表征]] · [[topics/future-conditioned-action|未来预测怎样帮助动作学习]]。

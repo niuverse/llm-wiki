@@ -3,99 +3,118 @@ title: "潜在状态空间模型：估计与预测"
 type: concept
 tags: [world-models, embodied-ai]
 sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[spinning-up-rl-key-concepts]]", "[[planet-learning-latent-dynamics]]", "[[dreamerv3-mastering-diverse-control]]"]
-modified: 2026-10-02
-study_topic: syntheses/world-models-learning-path
+modified: 2026-10-04
+topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/world-model-decision"]
 ---
 
 # 潜在状态空间模型：估计与预测
 
-世界模型常把观测历史压成潜在状态 $z_t$，再根据动作预测未来。理解它的关键是分开**看见当前观测后的状态估计**与**尚未看见未来观测时的预测**。前者对应后验，后者对应动力学先验。[[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]
+潜在状态空间模型用不可直接观测的状态组织序列：一部分模型解释观测怎样产生，另一部分预测状态如何随动作变化。关键分工是**读取新观测后的状态估计**与**没有未来观测时的动力学预测**。潜在变量可帮助压缩历史，但不能仅凭名字就断言它等于真实物理状态。[[planet-learning-latent-dynamics|PlaNet 的潜在建模]]、[[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]
 
 ## 从速度不可见的例子理解
 
-教学例子：两张相同的杯子图像可能来自静止杯子，也可能来自正在运动的杯子。单帧相似不代表下一帧相同。历史帮助判断运动趋势；动作则决定未来还会受到怎样的干预。潜在状态应该保留预测所需的信息，而不是只记录当前图像的外观。状态与观测的区别见 [[MarkovDecisionProcesses|MDP 与强化学习基础]]。
+**教学例子。** 两张相同位置的杯子图像，可能分别来自静止杯子与运动杯子。单帧外观相同，下一帧却可能不同；历史帮助推断速度，动作还会改变后果。模型应保留预测所需的信息，而非只描述当前外观。状态与观测的基础区别见 [[MarkovDecisionProcesses|MDP 与强化学习基础]]。
 
-## 数学结构
+## 生成假设与近似推断
 
-令 $o_t$ 为观测，$a_t$ 为动作，$z_t$ 为潜在状态，$\theta$ 为生成模型参数，$\phi$ 为推断模型参数。三个核心分布为：
-
-$$
-\underbrace{p_\theta(z_t\mid z_{t-1},a_{t-1})}_{\text{预测先验}},\qquad
-\underbrace{q_\phi(z_t\mid z_{t-1},a_{t-1},o_t)}_{\text{观测后验}},\qquad
-\underbrace{p_\theta(o_t\mid z_t)}_{\text{观测模型}}.
-$$
-
-动作先让模型预测，再用新观测修正状态。训练时有后验可以读取观测；想象未来时只能沿先验推进，未来观测不能作为输入。这里的 $q_\phi$ 是近似推断分布，不保证等于真实贝叶斯后验。[[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]
-
-在初始状态先验为 $p_\theta(z_0)$、转移满足马尔可夫假设、观测在给定当前潜在状态后条件独立的约定下，联合分布是：
+令 $o_t$ 为观测，$a_t$ 为动作，$z_t$ 为潜在状态，$\theta$ 为生成参数。假设给定 $z_t$ 后观测条件独立、状态转移满足马尔可夫结构，并取初始先验 $p_\theta(z_0)$：
 
 $$
-p_\theta(o_{1:T},z_{0:T}\mid a_{0:T-1})=p_\theta(z_0)\prod_{t=1}^T p_\theta(z_t\mid z_{t-1},a_{t-1})p_\theta(o_t\mid z_t).
+p_\theta(o_{1:T},z_{0:T}\mid a_{0:T-1})=
+ p_\theta(z_0)\prod_{t=1}^T p_\theta(z_t\mid z_{t-1},a_{t-1})p_\theta(o_t\mid z_t).
 $$
 
-这是上面三部分的序列展开；它说明潜在状态既要能推进，也要能解释观测。[[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]
+$T$ 是序列长度。转移模型 $p_\theta(z_t\mid z_{t-1},a_{t-1})$ 给出预测先验，观测模型 $p_\theta(o_t\mid z_t)$ 解释状态怎样产生传感信息；有任务奖励时还可增加奖励预测头。以上是模型选择的假设，不是已经证明学习到的状态足够描述所有真实动力学。[[planet-learning-latent-dynamics|§2–3 的生成结构]]
 
-### RSSM：记忆与随机状态分开
+非线性模型通常难以精确计算状态后验，于是引入参数为 $\phi$ 的近似推断分布，例如
 
-[[planet-learning-latent-dynamics|PlaNet]] 的循环状态空间模型（RSSM）把上述一般潜在状态进一步分成确定性记忆 $h_t$ 与随机状态 $u_t$。为避免和上文整体状态 $z_t$ 混淆，这里用 $u_t$ 表示论文中随机分量：
+$$
+q_\phi(z_t\mid z_{t-1},a_{t-1},o_t).
+$$
+
+它结合历史状态、动作与新观测估计当前状态。在线控制只能利用当前及过去观测；训练中若使用看见整段未来的平滑后验，需要另行说明部署时如何处理这个信息差异。这里的近似后验也不保证等于真实贝叶斯后验。[[planet-learning-latent-dynamics|§3 的滤波与平滑区别]]
+
+### “预测—纠正”为什么能分开
+
+**教学推导。**令 $b_{t-1}(z)=p(z_{t-1}=z\mid o_{1:t-1},a_{0:t-2})$ 为上一步信念，先按动作传播：
+
+$$
+b_t^-(z_t)=\int p_\theta(z_t\mid z_{t-1},a_{t-1})b_{t-1}(z_{t-1})\,dz_{t-1}.
+$$
+
+新图像到来后，再以观测似然重新加权：
+
+$$
+b_t(z_t)=\frac{p_\theta(o_t\mid z_t)b_t^-(z_t)}{\int p_\theta(o_t\mid u)b_t^-(u)\,du}.
+$$
+
+分母只是将概率归一化。这是上述生成假设下的贝叶斯滤波关系：动作先把“可能在哪”往前推，图像再排除不相符的可能。RSSM 的编码器学习近似纠正步骤，并不实际逐点计算这个积分。规划中的未来图像尚不存在，因此只能反复传播，不能偷偷用未来真值纠正。[[planet-learning-latent-dynamics|§3 的近似滤波]]
+
+停止梯度（$\operatorname{sg}$）又是另一种操作：前向数值保持不变，反向传播时该分支的导数视为零。它不表示冻结整个网络，也不表示下一批数据的目标不会变化；后文用它分别控制“先验追后验”与“后验适应先验”的更新方向。[[dreamerv3-mastering-diverse-control|KL 平衡]]
+
+## 训练：为什么重建与先验对齐需要同时存在
+
+把整段变量简记为 $o,z,a$，证据下界（ELBO）满足
+
+$$
+\log p_\theta(o\mid a)=
+\underbrace{\mathbb E_{q_\phi}\!\left[\log p_\theta(o\mid z,a)\right]-D_{\rm KL}\!\left(q_\phi(z\mid o,a)\Vert p_\theta(z\mid a)\right)}_{\mathcal J_{\rm ELBO}}
++D_{\rm KL}\!\left(q_\phi(z\mid o,a)\Vert p_\theta(z\mid o,a)\right).
+$$
+
+KL 散度非负，因此最大化 $\mathcal J_{\rm ELBO}$ 是优化对数似然的下界。第一项使状态解释观测，第二项使利用观测推断的状态与仅按动作预测的状态相容。这是标准变分分解的教学展开，序列推导见 [[planet-learning-latent-dynamics|附录 F]]；它并不证明潜在各维具有可解释的物理语义。
+
+从推导上看，先写 $\log p(o\mid a)=\log\mathbb E_q[p(o,z\mid a)/q(z\mid o,a)]$，再用 Jensen 不等式把对数移入期望，就得到下界。把 $p(o,z\mid a)$ 分解为观测似然与潜在先验，便出现重建项和 KL 项；它们不是任意拼接的两个正则。上述等式还显示，下界与真实对数似然之间的差距就是近似后验与模型后验的 KL。[[planet-learning-latent-dynamics|附录 F]]
+
+如果只奖励“容易预测”，潜在变量可能丢掉输入信息；如果只强调重建，又可能让表示保留大量难以预测、却不影响控制的视觉细节。KL 的梯度平衡、最低信息阈值等方法用于调节这种压力；采用加权、截断目标后，不能不加说明地把具体实现都称作同一个原始 ELBO。[[dreamerv3-mastering-diverse-control|表示、动力学与预测损失]]
+
+## RSSM：记忆与随机分量分开
+
+循环状态空间模型（RSSM）把上面的整体状态拆成确定性记忆 $h_t$ 和随机分量 $u_t$。为避免与整体状态 $z_t$ 混淆，这里用 $u_t$ 表示随机分量：
 
 $$
 \begin{aligned}
 h_t&=f_\theta(h_{t-1},u_{t-1},a_{t-1}),\\
-u_t&\sim p_\theta(u_t\mid h_t),\qquad
-u_t\sim q_\phi(u_t\mid h_t,o_t),\\
-o_t,r_t&\sim p_\theta(o_t,r_t\mid h_t,u_t).
+ p_t(u_t)&=p_\theta(u_t\mid h_t),\qquad q_t(u_t)=q_\phi(u_t\mid h_t,o_t),\\
+ p(o_t,r_t\mid h_t,u_t)&=p(o_t\mid h_t,u_t)p(r_t\mid h_t,u_t).
 \end{aligned}
 $$
 
-$f_\theta$ 是循环更新，$r_t$ 为奖励；第二行的两个分布分别用于预测与看到观测后的估计，不能把两次采样当成同一步同时执行的动作。记忆路径有助于跨多步保存信息，随机路径表达观测不足造成的多种可能。PlaNet 的消融支持组合在其六个控制任务上更有效，不表示任何模型都必须采用同样架构。[[planet-learning-latent-dynamics|PlaNet §3]]
+$f_\theta$ 是循环更新，$r_t$ 是奖励。真实观测可用时从 $q_t$ 估计状态，想象未来时从 $p_t$ 预测；二者不是同时对同一状态执行两次独立采样。记忆提供跨步保留信息的路径，随机分量表达多个可能状态。两类路径的实验依据与具体分布见 [[planet-learning-latent-dynamics|RSSM 与消融]]。
 
-[[dreamerv3-mastering-diverse-control|DreamerV3]] 沿用这一分工，但随机状态使用分类分布，另外预测回合继续标记；重建和 KL 的梯度平衡也有所变化。因此“RSSM”描述结构家族，不能用一个 ELBO 配方覆盖所有实现。
-
-## 直觉：ELBO 为什么有两项
-
-证据下界（ELBO）把观测重建与后验—先验对齐连接起来：
+DreamerV3 延续这一结构，但改用分类随机变量，并预测回合继续标记。其先验—后验对齐还把梯度分成两个方向，可概括为
 
 $$
-\mathcal L=\mathbb E_{q_\phi}[\log p_\theta(o_{1:T}\mid z_{0:T})]-D_{\mathrm{KL}}\!\left(q_\phi(z_{0:T}\mid o_{1:T},a_{0:T-1})\,\Vert\,p_\theta(z_{0:T}\mid a_{0:T-1})\right).
+\mathcal L_{\rm dyn}=\max\{\kappa,D_{\rm KL}(\operatorname{sg}(q_t)\Vert p_t)\},\qquad
+\mathcal L_{\rm rep}=\max\{\kappa,D_{\rm KL}(q_t\Vert\operatorname{sg}(p_t))\}.
 $$
 
-$T$ 为序列长度，$D_{\mathrm{KL}}$ 为 KL 散度。重建项要求潜在状态保留观测信息，KL 项要求使用观测修正后的状态与仅依赖历史和动作的预测具有一致性。它们共同约束“看见后能解释”和“看见前能预测”。[[WorldModelsForEmbodiedAI|具身智能世界模型]]
+$\operatorname{sg}$ 为停止梯度，$\kappa$ 为最低阈值：前者让先验追随后验，后者让后验更可预测；低于阈值时暂停压缩梯度。它们配合观测与任务预测损失、以不同权重优化，不能作为两个相同的损失随意合并。具体阈值、权重和稳定性设计留在 [[dreamerv3-mastering-diverse-control|DreamerV3 来源页]]。
 
-<details>
-<summary>深入推导：下界与真实后验的关系</summary>
+## 多步预测与不确定性的边界
 
-令 $o$、$z$、$a$ 分别简记整段观测、潜在状态与动作序列，且省略参数。利用联合分布 $p(o,z\mid a)$，有：
+一步预测训练常以真实观测推断出的状态为输入；多步想象却持续使用自己预测的状态。早期误差可能因此进入下一步输入。增加跨多步的先验—后验一致性约束是一种缓解手段，**不属于 RSSM 的定义，也不是默认必需项**：PlaNet 的多步正则对另一模型有益，对最终 RSSM 未带来收益。依据与适用范围见 [[planet-learning-latent-dynamics|潜在多步预测正则消融]]。
 
-$$
-\log p(o\mid a)=\mathbb E_q\!\left[\log\frac{p(o,z\mid a)}{q(z\mid o,a)}\right]+D_{\mathrm{KL}}\!\left(q(z\mid o,a)\,\Vert\,p(z\mid o,a)\right).
-$$
-
-第二项非负，所以第一项是下界。它是基于变分目标展开的教学推导，原始序列推导可核对 [[planet-learning-latent-dynamics|PlaNet 附录 F]]：训练优化下界，同时依赖生成模型和近似后验的表达能力，并不意味着学得的潜在状态自动具有真实物理语义。
-
-</details>
+**我们的解释。** 随机潜在状态允许表示多个未来，却不自动提供校准好的模型不确定性；同样，重建看起来合理不等于接触后果或任务价值预测可靠。后验纠正也只有在重新观测时发生，不能凭空修复无反馈长滚动。
 
 ```mermaid
 flowchart LR
-  A["上一状态与动作"] --> B["预测先验"]
-  B --> C["观测后验"]
-  D["新观测"] --> C
-  C --> E["更新后的潜在状态"]
-  E --> F["重建观测"]
-  E --> G["预测未来"]
+  A[历史状态与动作] --> B[预测先验]
+  B --> C[当前状态估计]
+  D[新观测] --> C
+  C --> E[重建与任务预测]
+  C --> F[无观测未来滚动]
+  F --> F
 ```
 
-图中的新观测只进入估计环节；开放式未来预测必须避免读取真实未来信息。
+图中状态估计利用新观测，未来滚动不读取真实未来。需要分别验证表示保留了什么、一步预测是否准、多步误差如何积累，以及动作决策是否受益。
 
-## 失效情形
+## 与决策的连接
 
-- 多步预测误差累积，早期错误进入后续输入。
-- 外观重建好但接触、力或微小状态信息不足，预测对控制无效。
-- 潜在表示与推理成本无法同时满足精细表达和实时控制要求。
-- 评测使用额外真值或特权状态，能力不能直接与普通观测条件比较。
+同一类状态模型可以供 [[ModelPredictiveControl|在线动作规划]]使用，也可以供 [[ImaginedPolicyLearning|想象中的策略学习]]使用；状态结构相近不意味着执行算法相同。冻结视觉特征上的确定性动力学是另一类表示选择，见 [[VisualGoalPlanning|视觉目标规划]]，不能全部称作带变分后验的 RSSM。
 
-上述风险来自 [[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]；具体冻结视觉特征的限制见 [[LatentDynamicsActionModels|潜在动力学动作模型]]。
+更广的表示与用途分类见 [[WorldModelTaxonomy|世界模型分类]]、[[WorldModelsForEmbodiedAI|具身世界模型]]；预测与控制表现的区分见 [[WorldModelEvaluation|世界模型评估]]。与机器人动作模型的连接可读 [[LatentDynamicsActionModels|潜在动力学动作模型]]。
 
-## 实践含义
+## 研究归属
 
-读一个世界模型，分别标注训练时可见信息与预测时可见信息，再检查潜在状态如何影响动作。RSSM 可接到 [[ModelPredictiveControl|在线规划]]，也可接到 [[ImaginedPolicyLearning|想象中的策略学习]]，结构相近不代表执行算法相同。进入具体机制时读 [[WorldModelsForEmbodiedAI|具身智能世界模型]]；需要比较用途时读 [[WorldModelTaxonomy|世界模型分类体系]]；检查预测是否改善决策时读 [[WorldModelEvaluation|世界模型评估]]。
+[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|世界模型如何用于决策]]。

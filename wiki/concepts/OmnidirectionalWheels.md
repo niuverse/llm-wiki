@@ -3,68 +3,64 @@ title: "全向轮"
 type: concept
 tags: [robotics, wheeled-robots]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]"]
-modified: 2026-07-13
-study_topic: syntheses/simulation-and-assets-learning-path
+modified: 2026-10-04
+topics: ["topics/planning-and-control", "topics/wheeled-robot-modeling"]
 ---
 
 # 全向轮
 
-全向车轮（全向轮）让轮式基座在平面内直接控制正向、横向和偏航角运动。[[modern-robotics-chapter-13-wheeled-mobile-robots|Modern 机器人学章节 13]] 主要讨论全向轮与 mecanum 车轮的运动学映射；[[structural-properties-and-classification-of-wheeled-mobile-robots|Campion et al.]] 把完全移动式全向机器人归入 WMR 类型 $(3,0)$，即 $\delta_m=3,\delta_s=0$。
+全向轮与麦克纳姆轮通过被动滚子允许一个方向的相对运动。**单个全向轮不提供完整的底盘全向能力**；只有车轮布局与驱动映射满足条件，底盘才能直接选择平面中的纵向、横向和旋转速度。[[modern-robotics-chapter-13-wheeled-mobile-robots|《现代机器人学》§13.1–13.2]]
 
-## 数学结构
+## 滚子如何改变速度关系
 
-对一个 omni/mecanum 车轮，在车轮帧中，接触点速度 $v=(v_x,v_y)$ 可以分解为驱动组件和 free-滑动组件。Modern 机器人学用滚轮/free-滑动角度 $\gamma$ 写成：
-
-$$
-u_i = \frac{1}{r_i}(v_x+v_y\tan\gamma_i)
-$$
-
-其中 $u_i$ 是第 $i$ 个车轮的驱动角速度，$r_i$ 是车轮半径。将车轮帧速度从底盘旋量 $V_b$ 变换过来，就得到每个车轮的一行 $h_i(0)$；堆叠所有车轮 rows：
+在轮子坐标系中，$x$ 轴沿驱动方向。设轮心平移速度为 $(v_x,v_y)$，轮半径 $r_i$，滚子允许的被动运动角为 $\gamma_i$。按教材的角度约定，驱动角速度为
 
 $$
-u = H(0)V_b
+u_i=\frac{v_x+v_y\tan\gamma_i}{r_i}.
 $$
 
-Proper 结构的核心条件是：
+普通全向轮对应 $\gamma_i=0$；典型麦克纳姆轮对应 $\pm45^\circ$。角度正负和轮子坐标约定决定矩阵符号，不宜脱离示意图复制整车公式。[[modern-robotics-chapter-13-wheeled-mobile-robots|式 13.3–13.5]]
+
+将轮心速度从底盘旋量 $V_b=(\omega,v_x^b,v_y^b)^\top$ 变换过来，所有轮子形成
 
 $$
-\operatorname{rank}H(0)=3
+u=H V_b,\qquad \operatorname{rank}H=3.
 $$
 
-若车轮速度有界：
+$u$ 为轮驱动角速度向量，$H$ 包含轮几何与半径。满秩意味着三个底盘速度方向可由轮速控制，不表示速度可以无限大。若 $|u_i|\le u_{i,\max}$，则
 
 $$
-|u_i| \le u_{i,\max}
+-u_{i,\max}\le h_iV_b\le u_{i,\max}
 $$
 
-则每个车轮在 $V_b$ 空间中生成两张并行平面，所有车轮约束的交集是可行刚体旋量多面体。
+定义可行旋量的半空间交集，其中 $h_i$ 是 $H$ 第 $i$ 行。[[modern-robotics-chapter-13-wheeled-mobile-robots|§13.2.1]]
 
-```mermaid
-flowchart LR
-  A["desired 机体旋量 Vb"] --> B["H(0) projection"]
-  B --> C["车轮速度 u"]
-  C --> D{"within 车轮速度限制?"}
-  D -- "是" --> E["track command"]
-  D -- "否" --> F["desaturate 或 re-优化旋量"]
-  C --> G["里程计 uses pseudo-逆 H dagger"]
-```
+### 为什么投影中出现 $\tan\gamma$
 
-## 直觉
+**对教材式 13.3–13.4 的代数展开。** 按该角度正方向，允许的被动相对运动单位方向为 $s=(-\sin\gamma,\cos\gamma)^\top$，驱动方向为 $e_x=(1,0)^\top$。轮心运动可分解成
 
-全向轮不是“没有约束”，而是把一部分 relative 运动交给被动 rollers。全向轮通常让车轮横向方向被动滚动；mecanum 车轮用 angled rollers 把每个车轮速度投影到正向、横向和偏航角。多个车轮的投影组合起来，如果秩足够，底盘就可以生成任意平面旋量。
+$$
+v=r_i u_i e_x+v_{\rm slide}s.
+$$
 
-三全向轮和四 mecanum 是两个典型结构。三轮结构刚好提供三行约束；四 mecanum 是 over-actuated 映射，正常跟踪要求车轮速度落在 $H(0)$ 的 column 空间中，否则意味着某些车轮必须在驱动方向上 skid。
+第二行给出 $v_{\rm slide}=v_y/\cos\gamma$，代回第一行得到 $r_i u_i=v_x+v_y\tan\gamma$；前提为 $\cos\gamma\ne0$。因此 $u_i$ 只控制去掉被动分量后的驱动速度，不独立控制任意二维轮心运动。[[modern-robotics-chapter-13-wheeled-mobile-robots|§13.2.1]]
 
-## 失效情形
+**教学例子。** $r=0.1$ m、轮系中某轮速度为 $(0,0.2)$ m/s。普通全向轮 $\gamma=0$ 时该轮无需驱动自转，运动由被动滚子承担；$\gamma=45^\circ$ 时须 $u=2$ rad/s，驱动产生的纵向分量与斜向被动分量恰好抵消。其余轮是否允许整车这么运动，仍由整车矩阵决定。
 
-- Geometry 秩失败：车轮驱动/free-滑动方向对齐过多，导致无法控制某个平面方向。
-- Over-驱动 inconsistency：四轮 mecanum 的 $u$ 若不满足某个 $V_b$，真实系统会通过滑移或柔顺性解决矛盾。
-- 滚轮接触产物：滚轮离散接触会产生 ripple、vibration 和力 discontinuity；低保真仿真常把它平均化。
-- 弱 traction：全向能力依赖滚轮接触与地面摩擦，低摩擦或载荷偏置会导致横向跟踪错误。
-- 里程计漂移：$H^\dagger$ 反算 $V_b$ 假设 no skidding in 驱动方向；真实滑移会积累位姿错误。
+## 四轮系统为何可能自相矛盾
 
-## 实践含义
+三轮满秩时可以用方阵反解；四轮及更多轮的任意速度向量不一定在 $H$ 的列空间内。控制应先选择可行 $V_b$，再由 $HV_b$ 生成一致轮速。从测得轮速反算 $H^\dagger u$ 只是最小二乘估计；不相容残差不能靠伪逆变成满足无滑移的真实运动。[[WheeledRobotKinematics|轮式运动学]]、[[modern-robotics-chapter-13-wheeled-mobile-robots|§13.2、§13.4]]
 
-控制上，先用 $u=H(0)V_b$ 做逆运动学；若有车轮限制，就在刚体旋量空间中约束 $V_b$ 或对 $u$ 做 desaturation。状态估计上，用 $V_b=H^\dagger(0)\Delta\theta$ 做车轮里程计，但需要 IMU、视觉、lidar 或 beacon 等外部观测定期校正。
+**我们的实现建议。** 遇到速度上限，可统一缩放整组一致轮速，或在旋量可行域中重新选择命令；各轮独立截断可能破坏一致性。动力学与摩擦仍应另查，运动学满秩没有检验所需接触力能否实现。
 
-仿真上，早期可以把 omni/mecanum 基座当成运动学完整约束基座；做仿真到现实迁移或接触敏感任务时，再显式检查滚轮摩擦、法向负载、地面粗糙度和 [[ContactSolvers|求解器]] 场景。相关页面：[[WheeledRobotKinematics|轮式机器人运动学]]、[[MobileRobotOdometry|移动机器人里程计]]、[[SimulationRealityGap|仿真—现实差距]]。
+## 全向不等于无约束或无漂移
+
+滚子释放一个被动方向，其余接触和驱动关系仍须满足。教材将适用地面限定为硬、平地面；离开这个模型时，车轮滑移会令编码器不再对应真实位移，里程计误差累积。[[modern-robotics-chapter-13-wheeled-mobile-robots|§13.1、§13.4]]
+
+Campion 的 $(3,0)$ 表示**底盘位姿层面**的即时全向；把轮子自转角也加入状态后，完整配置仍可有非完整约束。也有由适当驱动的偏置脚轮实现的 $(3,0)$，所以“全向底盘”不是某一种轮子名称的同义词。[[structural-properties-and-classification-of-wheeled-mobile-robots|§III、§V]]
+
+轮角增量应先转换成积分旋量，再更新位姿，不能把未除采样时间的增量直接叫速度；计算见 [[MobileRobotOdometry|移动机器人里程计]]。真实接触与理想关系的差异见 [[SimulationRealityGap|仿真—现实差距]]、[[ContactSolvers|接触求解器]]。
+
+## 研究归属
+
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。

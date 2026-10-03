@@ -9,7 +9,8 @@ source_kind: html
 source_url: https://docs.nvidia.com/learn-openusd/latest/stage-setting/usd-file-formats.html
 extracted_text: graph/extracts/learn-openusd-file-formats.md
 source_date: unknown
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
+source_type: tutorial
 ---
 
 # OpenUSD File Formats - Learn OpenUSD
@@ -38,3 +39,7 @@ NVIDIA Learn OpenUSD 解释 `.usd`、`.usda`、`.usdc` 和 `.usdz` 的差别：U
 ## 开放问题
 
 这是入门教程，不是完整 USDA 文法；细粒度语法仍需 `Sdf` API 与官方参考。后续补 `usdcat`、`usdedit`、`usdview` 文档，连接格式选择与调试。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。

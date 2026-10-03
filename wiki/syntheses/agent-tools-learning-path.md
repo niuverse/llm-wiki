@@ -4,10 +4,9 @@ type: synthesis
 tags: [learn]
 sources: ["[[agentsserver]]", "[[agentsdock-releases]]"]
 modified: 2026-09-30
-study_order: 4
-study_topic: syntheses/agent-tools-learning-path
 nav_title: "智能体工具"
 description: "独立整理客户端、执行后端、会话与插件的职责，理解已有自托管工具及尚待验证的运行机制。"
+topics: ["topics/agent-execution"]
 ---
 
 # 智能体工具：运行、会话与自托管
@@ -34,4 +33,8 @@ flowchart LR
 
 ## 覆盖与缺口
 
-当前资料提供产品与运行结构说明，缺少系统化的权限模型、故障恢复实验、可复现的并行任务评测和不同运行时的比较。先依据自己的使用场景选择资料，后续收录计划统一见 [[research-questions|研究问题与缺口]]。
+当前资料提供产品与运行结构说明，缺少系统化的权限模型、故障恢复实验、可复现的并行任务评测和不同运行时的比较。先依据自己的使用场景选择资料，后续收录与验证问题见 [[agent-execution#未解问题与优先补证|会话与工具执行专题]]。
+
+## 研究归属
+
+[[topics/agent-execution|智能体会话与工具执行怎样分工]]。

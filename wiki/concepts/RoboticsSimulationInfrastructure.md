@@ -3,8 +3,8 @@ title: "机器人仿真基础设施"
 type: concept
 tags: [robotics, simulation, reinforcement-learning]
 sources: ["[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[nvlabs-robolab]]", "[[unilab-repository]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[motrixsim-documentation]]", "[[mujoco-warp-mjwarp-documentation]]", "[[mjlab-repository]]", "[[mujoco-playground-repository]]", "[[isaac-lab-repository]]", "[[maniskill-repository]]", "[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[isaac-sim-policy-deployment]]", "[[mujoco-computation-collision-detection]]"]
-modified: 2026-10-02
-study_topic: syntheses/simulation-and-assets-learning-path
+modified: 2026-10-04
+topics: ["topics/assets-and-world-generation", "topics/robot-policy-learning", "topics/physics-simulation", "topics/simulation-ready-worlds", "topics/robot-learning-systems"]
 ---
 
 # 机器人仿真基础设施
@@ -42,9 +42,17 @@ flowchart LR
 | 资产 → 物理 | 尺度、惯量、碰撞、关节和驱动归属 | [[IsaacSimAssetStructure|资产分层]]、[[RobotRigidBodyDynamics|动力学]] |
 | 环境 → 策略 | 观测顺序、形状、单位、动作含义与历史 | [[PolicyDeploymentContract|部署契约]] |
 | 物理 → 观测 | 采样阶段、时间戳与同步 | [[RoboticsSimulationLoop|仿真循环]]、[[RTXSensorSimulationPipeline|传感器输出]] |
-| 环境 → 采集 | 重置、随机化、终止与记录条件 | [[ExecutableEmbodiedInteractionInfrastructure|可执行交互]] |
+| 环境 → 采集 | 重置、随机化、终止与记录条件 | [[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|可执行交互]] |
 | 采集 → 学习 | 设备、缓冲区、打包、传输与权重同步 | [[HeterogeneousRobotRLTraining|异构训练]] |
 | 评测 → 结论 | 任务／场景划分、试验量、失败分类与版本 | [[SimulationBenchmarkReportingPipeline|基准报告]] |
+
+## 跟踪一条动作和一帧观测
+
+**教学执行链：** 环境先按重置配置建立初态，读取传感器与本体状态；策略把观测变成动作目标；控制器在若干物理步内执行目标；随后更新观测、任务判定和记录。若物理周期是 $\Delta t_p$、每 $d$ 个物理步更新控制，则控制周期为 $\Delta t_c=d\Delta t_p$。渲染可以另有采样周期，所以每条记录需要说明图像对应哪次物理状态。详细时序见 [[RoboticsSimulationLoop|仿真循环]]，动作单位与顺序见 [[PolicyDeploymentContract|部署契约]]。
+
+两段静态实现说明这种分层为何重要：[[nvlabs-robolab|RoboLab]] 逐环境获取或读取动作块，之后批量 `env.step`，所以批量环境并不自动让策略推理批量化；[[nvidia-ovrtx|ovrtx]] 返回 DLPack 视图后仍需满足消费流同步，拿到张量地址也不自动等于拿到已完成的观测。前者是计算组织问题，后者是数据可见性问题。
+
+在完全串行的教学模型中，一次迭代耗时约为物理、渲染、传输、推理和记录时间之和；异步重叠后要沿实际依赖链寻找瓶颈，不能直接把各模块峰值相加成端到端吞吐。[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] 的异步规划正是让等待规划的环境不阻止别的环境推进技能，但仍保留物理步同步点。
 
 ## 接口和资源怎样影响体验
 
@@ -67,16 +75,22 @@ flowchart LR
 | [[mujoco-warp-mjwarp-documentation|MJWarp]]、[[mujoco-playground-repository|Playground]]、[[mjlab-repository|mjlab]] | MuJoCo 生态 GPU 与训练路线 | 比较需固定版本和支持的物理／传感器特性 |
 | [[isaac-lab-repository|Isaac Lab]]、[[maniskill-repository|ManiSkill]] | 任务组合与操作／视觉学习 | 框架 API 取舍不能直接成为引擎精度排名 |
 | [[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen]]／[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|V2]] | 从生成到修复、碰撞、参数与接口验证 | 可执行资产不等于真实物理参数 |
-| [[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] | 同一运行时对齐初态、任务、技能、动作、终态和记录门控 | 已实现与计划能力分开，接口存在不代表任务效果已测量 |
+| [[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] | 每个任务的环境定义统一服务采集、训练和评估，对齐初态、任务、动作与记录门控 | 已实现与计划能力分开，接口存在不代表任务效果已测量 |
 | [[nvlabs-robolab|RoboLab]] | 任务数据类、策略适配、诊断、结果分析和场景制作 | 代码快照能力与可复现基准结果分开 |
 
 RoboLab 的许可证、第三方声明、已知问题、安装测试和资产治理同样影响可复现性；智能体生成场景必须接入任务注册与验证。[[AgenticSceneTaskGeneration|场景与任务生成]] 的低制作成本，不能替代任务语义和成功条件检查。
+
+### 执行基础设施的验证边界
+
+[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] 用分层管理器维护重置、物理推进、传感器和任务状态；逻辑物体身份与场景路径分开，以适应不同后端的动态导入／删除能力。语义动作可异步推进，物理时钟仍需同步。规划恢复和默认成功才写出的示范记录会影响失败可见性及训练分布。论文主要给出结构与案例，未提供统一任务成功率或吞吐消融，不能由组件齐全推出整体性能已获验证。
+
+[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 把资产格式、几何稳定、交互可行与任务可用分开测试；98.6% 脚本抓取成功、50% 可供性通过和83.3%世界接受分别采用不同分母。基础设施比较应保留这种区别，而不制造统一的“可用率”。
 
 ### RoboCasa365：数据与评测共享定义
 
 [[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 将 50 种布局与 50 种风格组合为 2,500 个预训练厨房，65 个原子任务与 300 个组合任务共用示范生成、训练和评测定义。它的 12 维动作包含机械臂／夹爪与移动底盘控制，任务控制周期为 20 Hz；这不意味着底层物理积分也只有 20 Hz。
 
-人类遥操作与 MimicGen 合成示范共用实验表面，使场景、任务、来源与训练阶段可作为变量；但 Human300+MG60 数据更多而下游表现略低，说明数据生成规模不能代替质量、过滤与采样权重。具体实验与统计范围见来源页和 [[RobotLearningDataComposition|数据构成]]。
+人类遥操作与 MimicGen 合成示范共用实验表面，使场景、任务、来源与训练阶段可作为变量；但 Human300+MG60 数据更多而下游表现略低，只能说明该混合配置的增量收益没有出现；论文没有分别隔离质量、过滤与采样权重的因果作用。两阶段训练与联合训练还使用不同总步数，不能把全部差距归因于先后顺序。具体实验与统计范围见来源页和 [[RobotLearningDataComposition|数据构成]]。
 
 ## 失效情形
 
@@ -89,3 +103,7 @@ RoboLab 的许可证、第三方声明、已知问题、安装测试和资产治
 ## 实践含义
 
 比较技术栈时，先描述 CPU／GPU 物理、渲染、任务组织和学习运行时路线，再比较具体能力与成本。记录任务／资产划分、随机化时刻、控制周期、观测接口、生成尝试与过滤比例、训练采样权重和部署产物；这些建议来自上述机制与案例，不构成统一框架排名。问题队列统一见 [[research-questions|研究问题与缺口]]，硬件迁移诊断见 [[SimulationRealityGap|现实差距]]。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/simulation-ready-worlds|生成世界何时成为可执行环境]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。

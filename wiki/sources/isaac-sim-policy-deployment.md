@@ -12,7 +12,8 @@ source_date: 2026-09-18
 source_version: isaac-sim-6.1.0-documentation
 acquired: 2026-10-02
 snapshot_sha256: d9e59e49dd99b47608238c048d135b5ec0f116ec4c876a04731a1dbec1007c20
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
+source_type: documentation
 ---
 
 ## 摘要
@@ -38,3 +39,7 @@ study_topic: syntheses/simulation-and-assets-learning-path
 ## 归档记录
 
 规范网址、版本与获取日期见页首；本次原始文件的 SHA-256 为 `d9e59e49dd99b47608238c048d135b5ec0f116ec4c876a04731a1dbec1007c20`，归档登记在 `graph/acquisitions.jsonl`。
+
+## 研究归属
+
+[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。

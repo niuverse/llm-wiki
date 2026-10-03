@@ -9,7 +9,8 @@ source_kind: html
 source_url: https://docs.isaacsim.omniverse.nvidia.com/5.1.0/py/source/extensions/isaacsim.core.api/docs/index.html
 extracted_text: graph/extracts/isaac-sim-core-api-collision-approximation.md
 source_date: unknown
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/physics-simulation", "topics/collision-geometry"]
+source_type: documentation
 ---
 
 ## 摘要
@@ -43,3 +44,7 @@ Isaac Sim Core API 文档中多个基元 / 网格类暴露 `get_collision_approx
 - Isaac Sim / PhysX 中各碰撞近似模式的具体 narrowphase 实现、GPU 支撑和关节系统约束需要进一步收录官方 PhysX / Isaac Sim 文档。
 - `sphereFill` 与机器人学抓取 / 移动中的接触稳定性之间关系如何，当前文档只列出模式，没有提供基准。
 - SDF 碰撞体的分辨率、内存成本、接触偏移和策略训练吞吐量需要更具体的来源。
+
+## 研究归属
+
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。

@@ -4,7 +4,7 @@ type: concept
 tags: [robotics, reinforcement-learning]
 sources: ["[[spinning-up-rl-key-concepts]]", "[[spinning-up-rl-algorithm-taxonomy]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]"]
 modified: 2026-09-30
-study_topic: syntheses/robot-learning-and-evaluation-learning-path
+topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/world-model-decision", "topics/policy-evaluation"]
 ---
 
 # MDP 与强化学习基础
@@ -69,3 +69,7 @@ $$
 ## 自测
 
 一个策略获得更高奖励，却更少把杯子抬离桌面：应该先比较奖励定义和成功条件。另一个策略在静止杯子上成功，在运动杯子上失败：先检查观测或记忆是否包含速度信息，再检查训练分布。第二个问题是诊断练习，不构成对某一策略失败原因的实证判断。
+
+## 研究归属
+
+[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-model-decision|世界模型如何用于决策]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。

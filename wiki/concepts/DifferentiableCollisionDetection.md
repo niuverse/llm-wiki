@@ -3,83 +3,88 @@ title: "可微碰撞检测"
 type: concept
 tags: [collision-detection, differentiable-optimization, robotics]
 sources: ["[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[mujoco-computation-collision-detection]]", "[[contact-models-in-robotics-a-comparative-analysis]]"]
-modified: 2026-07-13
-study_topic: syntheses/simulation-and-assets-learning-path
+modified: 2026-10-04
+topics: ["topics/physics-simulation", "topics/collision-geometry"]
 ---
 
 # 可微碰撞检测
 
-可微碰撞检测（可微碰撞检测）把碰撞查询写成对几何 / 配置可微的函数，使轨迹优化、状态估计、系统辨识、可微物理和学习流程可以使用碰撞梯度。它和 [[DifferentiablePhysics|可微物理]] 相邻但不等价：前者通常给出距离 / 邻近度 / 接触点梯度，后者还要处理时间步进、接触定律、摩擦和求解器动力学。
+可微碰撞检测将物体配置映射为碰撞指标及其导数，让梯度优化器能使用几何约束。需要分清三个对象：**碰撞判定指标、表面点或最近点、完整接触动力学**。一个对象可求导，不代表其他对象都光滑或物理正确。[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]]、[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]]
 
-## 数学结构
+## 两种优化定义的碰撞指标
 
-传统碰撞检测 algorithms（例如 GJK、EPA、MPR、FCL-风格 routines）在工程上成熟高效，但通常包含 branching、支撑点 pivoting、情形 splits 和有效设置 switches。[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]] 的做法是把两两碰撞指标写成凸优化问题：寻找让两基元相交所需的最小均匀规模扩展因素 $\alpha$。
+设 $q$ 为两物体配置，$j$ 为基元配对编号，$t$ 为轨迹时间节点。
 
-$$
-\alpha^\star(q) = \min_{\alpha, z} \alpha
-$$
+| 方法 | 指标 | 无穿透约束 | 需要保留的区别 |
+| --- | --- | --- | --- |
+| DCOL | 使两个凸基元刚好相交的最小共同缩放 $\alpha^\star(q)$ | $\alpha_j^\star(q_t)\ge1$ | 无量纲，依赖尺寸与缩放中心，不等于欧氏距离 |
+| DiffPills | 中心线段／多边形最近距离的平方，减去厚度和的平方 $\phi(q)$ | $\phi_j(q_t)\ge0$ | 长度平方量纲，不是有符号距离；中心几何相交时可能缺少脱离方向 |
 
-并满足缩放后基元相交的约束。这里 $q$ 是物体或机器人的配置，$z$ 是凸优化问题的内部变量。DCOL 的解释是：
+### 最小缩放
 
-$$
-\alpha^\star(q) > 1 \Rightarrow \text{separated}
-$$
-
-$$
-\alpha^\star(q) = 1 \Rightarrow \text{touching}
-$$
+令 $S_i(\alpha;q)$ 为围绕第 $i$ 个物体参考点缩放 $\alpha$ 后的凸集合，$x$ 为公共点：
 
 $$
-\alpha^\star(q) < 1 \Rightarrow \text{interpenetrating}
+\alpha^\star(q)=\min_{x,\alpha\ge0}\alpha,
+\qquad x\in S_1(\alpha;q)\cap S_2(\alpha;q).
 $$
 
-因此轨迹优化的碰撞 avoidance 约束可以写成：
+$\alpha^\star>1$ 表示分离，等于 1 表示接触，小于 1 表示原形状相交。多面体可用线性不等式描述，椭球、胶囊体等可用二阶锥约束描述，从而共用凸锥规划。六类基元定义和完整求解结构见 [[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL 方法解析]]。
+
+### 中心几何距离
+
+胶囊体是线段加半径，带厚度多边形是二维凸多边形加半径。令 $p_i^\star$ 为两个中心几何的最近点，$R_i$ 为各自半径，则：
 
 $$
-\alpha^\star_k(q_t) \ge 1
+\phi(q)=\|p_1^\star-p_2^\star\|_2^2-(R_1+R_2)^2.
 $$
 
-其中 $k$ 是基元配对索引，$t$ 是轨迹时间索引。DCOL 通过可微凸优化和 primal-dual interior-点 conic 求解器获得 $\partial \alpha^\star / \partial q$ 与接触点 derivatives。
+中心最近点通过小型凸二次规划求出。$\phi>0$ 表示分离，等于零表示接触，小于零表示相交。中心线段或中心多边形本身已相交时，最优距离可维持为零；此时负指标仍能判相交，梯度却未必提供有用的脱离方向。这是对公式的解释，并非 [[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]] 已完成的失效概率实验。
 
-[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]] 使用邻近度价值 $\phi$：$\phi>0$ 表示分离，$\phi=0$ 表示接触，$\phi<0$ 表示碰撞。胶囊体 / 带填充的多边形约束可写成：
+## 为什么能求导，何时不能直接求导
+
+将最优性条件记为 $g(y^\star,q)=0$，其中 $y$ 包含优化变量与约束乘子。在局部解满足条件且 $\partial g/\partial y$ 可逆时，隐函数定理给出：
 
 $$
-\phi_j(q_t) \ge 0
+\frac{\partial y^\star}{\partial q}
+=-\left(\frac{\partial g}{\partial y}\right)^{-1}\frac{\partial g}{\partial q}.
 $$
 
-DiffPills 通过可微凸 quadratic programs 计算邻近度和 closest 点，并将它们交给基于梯度的轨迹 optimizer。
+内点求解器可复用已有矩阵分解降低求导成本。如果只需要最优目标值的梯度，还可利用最优解处拉格朗日函数对参数的导数。方法依据分别见 [[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills 第 II 节]] 与 [[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL 第 II 节]]。
+
+### 不用记住矩阵求逆，也能理解隐式微分
+
+把参数改变一个小量 $\delta q$，最优解相应改变 $\delta y$。由于改变前后都应满足最优性条件，一阶展开为：
+
+$$
+0\approx g(y^\star,q)+G_y\delta y+G_q\delta q
+=G_y\delta y+G_q\delta q.
+$$
+
+$G_y=\partial_y g$、$G_q=\partial_q g$，所以实际计算是**求解线性系统** $G_y\delta y=-G_q\delta q$，无须显式形成逆矩阵。直觉上，参数移动把原最优解推离约束平衡，导数告诉我们最优解必须如何移动才能恢复平衡。这个展开对应两篇论文的最优性条件微分。
+
+作为一维教学例，$\min_{z\ge0}\frac12(z-a)^2$ 的最优解为 $z^\star=\max(a,0)$。在 $a<0$ 时约束卡住解，导数为 0；在 $a>0$ 时解跟随参数，导数为 1；在 $a=0$ 时两侧导数不同。这个小凸问题说明为什么约束切换处可能出现非光滑。碰撞查询中应分别问“最优距离值是否可微”和“选择的最近点是否可微”；非唯一最近点不必然使最优值不可微。理论入口见 [[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills 第 II 节]]、[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL 第 II 节]]。
+
+**凸问题不自动意味着最优解处处唯一或经典可微。** 对称、退化或活动约束变化可能影响最近点和最优解的敏感性。碰撞指标与表面点也有不同条件：DiffPills 的表面点恢复需要除以中心最近距离，DCOL 的缩放恢复需要除以 $\alpha^\star$；相应量为零时不能直接代入。DCOL 按尺度恢复的表面对应点，也不能未经证明就当成一般凸体的欧氏最近点。
 
 ```mermaid
 flowchart LR
-  A["基元碰撞体集合<br/>胶囊体 / 多边形 / 锥体 / 圆柱体 / 椭球体 / 多面体"] --> B["凸优化碰撞查询<br/>QP / conic 规划问题"]
-  B --> C["指标<br/>alpha 或 phi"]
-  B --> D["最近/接触点"]
-  C --> E["梯度关于 q"]
-  D --> E
-  E --> F["轨迹优化<br/>碰撞约束"]
-  E --> G["可微物理<br/>接触感知梯度"]
+  A[位姿与基元参数] --> B[构造凸优化查询]
+  B --> C[碰撞指标与局部导数]
+  B --> D[表面点及其适用条件]
+  C --> E[轨迹优化约束]
+  D --> F[接触几何输入]
+  F --> G[另行求解摩擦、冲量与时间推进]
 ```
 
-## 直觉
+图中的最后一步属于 [[DifferentiablePhysics|可微物理]]，不会因碰撞查询可微而自动完成。
 
-可微碰撞检测的核心价值不是“碰撞检测更准确”，而是“optimizer 能知道往哪个方向离开碰撞或接近接触”。对轨迹优化，finite 差异或 non-平滑碰撞 branches 会导致含噪 / missing 梯度；DCOL 和 DiffPills 用优化-定义的指标给出 smoother, 结构化的梯度。
+## 证据与使用边界
 
-这也解释了为什么基元表示重要。胶囊体、带填充的多边形、ellipsoid、锥、圆柱体和 polytope 不只是运行时碰撞体，它们也是凸 programs 的可行设置。复杂视觉网格要进入可微碰撞流程，通常需要先变成一组凸基元；这把 [[ApproximateConvexDecomposition|凸分解]] 和可微碰撞检测连接起来。
+[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]] 给出胶囊体车辆的轨迹优化示例；[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]] 进一步展示搬钢琴、四旋翼、圆锥过孔和凸体接触仿真。它们支持“优化定义的几何约束可以接入机器人问题”，没有证明任意非凸场景都能找到全局最优轨迹，也没有完成所有摩擦接触梯度的验证。
 
-## 失效情形
+**我们的实践解释。** 同时检查形状近似、指标量纲、局部梯度与所需物理间隙；轨迹节点无碰撞也不自动证明两个节点之间的连续运动无碰撞。复杂形状转为基元集合时，梯度首先描述这个近似集合，几何误差应回到 [[CollisionGeometryForRobotSimulation|碰撞几何]] 和 [[ApproximateConvexDecomposition|凸分解]] 验证。接触动力学则继续检查 [[ContactComplementarity|互补与摩擦]]、[[ContactSolvers|求解残差]]。
 
-- 指标 is not 完整物理：$\alpha$ 或 $\phi$ 是碰撞/邻近度替代，不包含摩擦锥、冲击定律、法向/切向冲量耦合或求解器残差。
-- 有效设置 / 求解器容差产物：即使凸 program 可微，数值求解器容差、约束 activity 变更和 ill-条件化仍可能造成梯度 discontinuity 或噪声。
-- 基元分解依赖：复杂物体的梯度质量取决于如何分解成基元；粗劣的碰撞体近似会给出 clean but wrong 梯度。
-- 规模扩展指标 interpretation：DCOL 的均匀规模扩展因素很适合可微分离 measure，但它不等同于某个引擎的穿透深度或接触偏移。
-- 接触密集轨迹采样耦合：单个两两可微查询不能自动解决大量-接触时间步进中的互补、stick-滑移、冗余接触和能量耗散。
+## 研究归属
 
-## 实践含义
-
-对轨迹优化，DCOL / DiffPills-风格方法适合把碰撞 avoidance 写成可微约束：$\alpha_k(q_t)\ge 1$ 或 $\phi_j(q_t)\ge 0$。它们特别适合胶囊体、机器人链接、车辆、凸障碍物和需要平滑梯度的规划问题。
-
-对可微仿真，不要把可微碰撞查询直接等同于可微刚性接触仿真器。它可以提供碰撞指标、closest 点和梯度，但时间-stepping 接触动力学仍需要 [[ContactComplementarity|互补]]、摩擦、求解器和正则化选择；这些选择仍可能污染 [[DifferentiablePhysics|物理梯度]]。
-
-未来趋势是把机器人友好的碰撞体族与优化友好的碰撞指标结合：离线用 ACD / 基元分解产生 manageable 基元集合，在线用可微凸 programs 提供约束与梯度，再把少数接触丰富 interactions 交给更完整的仿真器 / 求解器验证。
-
-相关页面：[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[ApproximateConvexDecomposition|近似凸分解]]、[[DifferentiablePhysics|可微物理]]、[[ContactComplementarity|接触互补]]、[[ContactSolvers|接触求解器]]、[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]]、[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。

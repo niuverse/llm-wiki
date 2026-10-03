@@ -6,6 +6,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from health import check_research_structure, frontmatter_list
 
 
 HEALTH = Path(__file__).with_name("health.py")
@@ -63,6 +64,45 @@ class HealthGateTests(unittest.TestCase):
         code, report = self.check_page(body="")
         self.assertEqual(code, 1)
         self.assertEqual(report["empty_files"][0]["status"], "empty")
+
+
+class ResearchStructureTests(unittest.TestCase):
+    def test_source_list_preserves_multiple_wikilinks_and_ignores_body(self):
+        text = '---\nsources: ["[[first-paper]]", "[[second-paper]]"]\n---\ntopics: ["body-only"]\n'
+        self.assertEqual(frontmatter_list(text, "sources"), ["[[first-paper]]", "[[second-paper]]"])
+        self.assertEqual(frontmatter_list(text, "topics"), [])
+
+    def check_memberships(self, topic_field, *, domain=None):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            files = {
+                "domains/robotics.md": "type: domain",
+                "topics/control.md": "type: topic" + (f"\ndomain: {domain}" if domain else ""),
+                "topics/learning.md": "type: topic",
+                "concepts/Example.md": f"type: concept\ntopics: {topic_field}",
+            }
+            pages = []
+            for name, meta in files.items():
+                path = root / "wiki" / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(f"---\n{meta}\n---\n{BODY}")
+                pages.append(path)
+            return check_research_structure(root, pages)
+
+    def test_shared_concept_can_belong_to_two_topics(self):
+        self.assertEqual(self.check_memberships('["topics/control", "topics/learning"]'), [])
+
+    def test_missing_topic_is_rejected(self):
+        issues = self.check_memberships('["topics/missing"]')
+        self.assertIn("missing or not a topic", issues[0]["issue"])
+
+    def test_domain_cannot_substitute_for_topic(self):
+        issues = self.check_memberships('["domains/robotics"]')
+        self.assertIn("missing or not a topic", issues[0]["issue"])
+
+    def test_topic_cannot_be_nested_under_another_topic(self):
+        issues = self.check_memberships('[]', domain="topics/learning")
+        self.assertIn("no mandatory parent", issues[0]["issue"])
 
 
 if __name__ == "__main__":

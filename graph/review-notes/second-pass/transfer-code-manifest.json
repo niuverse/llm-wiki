@@ -1,0 +1,200 @@
+[
+  {
+    "group": "isaac",
+    "repo": "isaac-sim/IsaacLab",
+    "commit": "492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+    "path": "scripts/reinforcement_learning/rsl_rl/train.py",
+    "url": "https://raw.githubusercontent.com/isaac-sim/IsaacLab/492751759af72a5d3f7e0e42768b95fd9f1ac6df/scripts/reinforcement_learning/rsl_rl/train.py",
+    "file": "/tmp/transfer-code/isaac/scripts/reinforcement_learning/rsl_rl/train.py",
+    "lines": 232,
+    "source_file": "raw/code-isaac-scripts-reinforcement-learning-rsl-rl-train-py-2026-10-04-9d5242bfc27e.py",
+    "sha256": "9d5242bfc27e25edffe2531a963006c50dbfebe8b77ed1679e38e181e6426e27"
+  },
+  {
+    "group": "isaac",
+    "repo": "isaac-sim/IsaacLab",
+    "commit": "492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+    "path": "source/isaaclab/isaaclab/envs/manager_based_rl_env.py",
+    "url": "https://raw.githubusercontent.com/isaac-sim/IsaacLab/492751759af72a5d3f7e0e42768b95fd9f1ac6df/source/isaaclab/isaaclab/envs/manager_based_rl_env.py",
+    "file": "/tmp/transfer-code/isaac/source/isaaclab/isaaclab/envs/manager_based_rl_env.py",
+    "lines": 394,
+    "source_file": "raw/code-isaac-source-isaaclab-isaaclab-envs-manager-based-rl-env-py-2026-10-04-974977825dbb.py",
+    "sha256": "974977825dbbd916460b4f9bb12176ab2cde41026fadc05e1de02d8fbbc94725"
+  },
+  {
+    "group": "isaac",
+    "repo": "isaac-sim/IsaacLab",
+    "commit": "492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+    "path": "source/isaaclab_tasks/isaaclab_tasks/manager_based/classic/cartpole/cartpole_env_cfg.py",
+    "url": "https://raw.githubusercontent.com/isaac-sim/IsaacLab/492751759af72a5d3f7e0e42768b95fd9f1ac6df/source/isaaclab_tasks/isaaclab_tasks/manager_based/classic/cartpole/cartpole_env_cfg.py",
+    "file": "/tmp/transfer-code/isaac/source/isaaclab_tasks/isaaclab_tasks/manager_based/classic/cartpole/cartpole_env_cfg.py",
+    "lines": 181,
+    "source_file": "raw/code-isaac-source-isaaclab-tasks-isaaclab-tasks-manager-based-classic-cartpole-cartpole-env-cfg-py-2026-10-04-a75db6d3c805.py",
+    "sha256": "a75db6d3c805e4a393f49d67933e0b8077c9006d4f48dd86696be3ad795a2e0d"
+  },
+  {
+    "group": "isaac",
+    "repo": "isaac-sim/IsaacLab",
+    "commit": "492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+    "path": "source/isaaclab_tasks/isaaclab_tasks/manager_based/classic/cartpole/__init__.py",
+    "url": "https://raw.githubusercontent.com/isaac-sim/IsaacLab/492751759af72a5d3f7e0e42768b95fd9f1ac6df/source/isaaclab_tasks/isaaclab_tasks/manager_based/classic/cartpole/__init__.py",
+    "file": "/tmp/transfer-code/isaac/source/isaaclab_tasks/isaaclab_tasks/manager_based/classic/cartpole/__init__.py",
+    "lines": 70,
+    "source_file": "raw/code-isaac-source-isaaclab-tasks-isaaclab-tasks-manager-based-classic-cartpole-init-py-2026-10-04-650bbc7bae68.py",
+    "sha256": "650bbc7bae68220d8a43fd56737af1cf04c36f0ff66d8441de305e4b7cb93b66"
+  },
+  {
+    "group": "isaac",
+    "repo": "isaac-sim/IsaacLab",
+    "commit": "492751759af72a5d3f7e0e42768b95fd9f1ac6df",
+    "path": "source/isaaclab_rl/isaaclab_rl/rsl_rl/vecenv_wrapper.py",
+    "url": "https://raw.githubusercontent.com/isaac-sim/IsaacLab/492751759af72a5d3f7e0e42768b95fd9f1ac6df/source/isaaclab_rl/isaaclab_rl/rsl_rl/vecenv_wrapper.py",
+    "file": "/tmp/transfer-code/isaac/source/isaaclab_rl/isaaclab_rl/rsl_rl/vecenv_wrapper.py",
+    "lines": 186,
+    "source_file": "raw/code-isaac-source-isaaclab-rl-isaaclab-rl-rsl-rl-vecenv-wrapper-py-2026-10-04-1d27c1a7ac75.py",
+    "sha256": "1d27c1a7ac75d6bc62ce5376bceb23cac08c168a1343930a72073acddaf76693"
+  },
+  {
+    "group": "mjlab",
+    "repo": "mujocolab/mjlab",
+    "commit": "1d1474040c3887af8419e20a682a132e7bc3fe86",
+    "path": "src/mjlab/scripts/train.py",
+    "url": "https://raw.githubusercontent.com/mujocolab/mjlab/1d1474040c3887af8419e20a682a132e7bc3fe86/src/mjlab/scripts/train.py",
+    "file": "/tmp/transfer-code/mjlab/src/mjlab/scripts/train.py",
+    "lines": 258,
+    "source_file": "raw/code-mjlab-src-mjlab-scripts-train-py-2026-10-04-25da18c990b2.py",
+    "sha256": "25da18c990b2267dfa14db97b10397caa089fe9fafa071a614e166cbb75af0f7"
+  },
+  {
+    "group": "mjlab",
+    "repo": "mujocolab/mjlab",
+    "commit": "1d1474040c3887af8419e20a682a132e7bc3fe86",
+    "path": "src/mjlab/envs/manager_based_rl_env.py",
+    "url": "https://raw.githubusercontent.com/mujocolab/mjlab/1d1474040c3887af8419e20a682a132e7bc3fe86/src/mjlab/envs/manager_based_rl_env.py",
+    "file": "/tmp/transfer-code/mjlab/src/mjlab/envs/manager_based_rl_env.py",
+    "lines": 591,
+    "source_file": "raw/code-mjlab-src-mjlab-envs-manager-based-rl-env-py-2026-10-04-df814fc0ad36.py",
+    "sha256": "df814fc0ad36b9a4099884f06dea04b43187eb80f3784b6306e2884bc62bfe92"
+  },
+  {
+    "group": "mjlab",
+    "repo": "mujocolab/mjlab",
+    "commit": "1d1474040c3887af8419e20a682a132e7bc3fe86",
+    "path": "src/mjlab/tasks/cartpole/cartpole_env_cfg.py",
+    "url": "https://raw.githubusercontent.com/mujocolab/mjlab/1d1474040c3887af8419e20a682a132e7bc3fe86/src/mjlab/tasks/cartpole/cartpole_env_cfg.py",
+    "file": "/tmp/transfer-code/mjlab/src/mjlab/tasks/cartpole/cartpole_env_cfg.py",
+    "lines": 309,
+    "source_file": "raw/code-mjlab-src-mjlab-tasks-cartpole-cartpole-env-cfg-py-2026-10-04-f37800dc7d21.py",
+    "sha256": "f37800dc7d21a22d2d8a6091958b07566000b0cbc9d6073b34531f94e52f4c35"
+  },
+  {
+    "group": "mjlab",
+    "repo": "mujocolab/mjlab",
+    "commit": "1d1474040c3887af8419e20a682a132e7bc3fe86",
+    "path": "src/mjlab/tasks/cartpole/__init__.py",
+    "url": "https://raw.githubusercontent.com/mujocolab/mjlab/1d1474040c3887af8419e20a682a132e7bc3fe86/src/mjlab/tasks/cartpole/__init__.py",
+    "file": "/tmp/transfer-code/mjlab/src/mjlab/tasks/cartpole/__init__.py",
+    "lines": 20,
+    "source_file": "raw/code-mjlab-src-mjlab-tasks-cartpole-init-py-2026-10-04-161dd6cccab6.py",
+    "sha256": "161dd6cccab68333cd14fa206aba646b78ea2fb0ed191e59bdc943f9e761bd5a"
+  },
+  {
+    "group": "mjlab",
+    "repo": "mujocolab/mjlab",
+    "commit": "1d1474040c3887af8419e20a682a132e7bc3fe86",
+    "path": "src/mjlab/tasks/registry.py",
+    "url": "https://raw.githubusercontent.com/mujocolab/mjlab/1d1474040c3887af8419e20a682a132e7bc3fe86/src/mjlab/tasks/registry.py",
+    "file": "/tmp/transfer-code/mjlab/src/mjlab/tasks/registry.py",
+    "lines": 71,
+    "source_file": "raw/code-mjlab-src-mjlab-tasks-registry-py-2026-10-04-f1c82c8f1ff5.py",
+    "sha256": "f1c82c8f1ff5d24263787f4cfc2805b7b4103253fe59c054bf649d24c7cc9476"
+  },
+  {
+    "group": "mjlab",
+    "repo": "mujocolab/mjlab",
+    "commit": "1d1474040c3887af8419e20a682a132e7bc3fe86",
+    "path": "src/mjlab/rl/vecenv_wrapper.py",
+    "url": "https://raw.githubusercontent.com/mujocolab/mjlab/1d1474040c3887af8419e20a682a132e7bc3fe86/src/mjlab/rl/vecenv_wrapper.py",
+    "file": "/tmp/transfer-code/mjlab/src/mjlab/rl/vecenv_wrapper.py",
+    "lines": 107,
+    "source_file": "raw/code-mjlab-src-mjlab-rl-vecenv-wrapper-py-2026-10-04-d458aa421d72.py",
+    "sha256": "d458aa421d72c979d0269a24e51a4b49a02e4ec8cb5a9d10e47290aa5d86a3e2"
+  },
+  {
+    "group": "mjlab",
+    "repo": "mujocolab/mjlab",
+    "commit": "1d1474040c3887af8419e20a682a132e7bc3fe86",
+    "path": "src/mjlab/sim/sim.py",
+    "url": "https://raw.githubusercontent.com/mujocolab/mjlab/1d1474040c3887af8419e20a682a132e7bc3fe86/src/mjlab/sim/sim.py",
+    "file": "/tmp/transfer-code/mjlab/src/mjlab/sim/sim.py",
+    "lines": 545,
+    "source_file": "raw/code-mjlab-src-mjlab-sim-sim-py-2026-10-04-e9e7eb9bb404.py",
+    "sha256": "e9e7eb9bb404322d5e2296094981ce25d8efd69dd7f65d4aa72c3e95dd5c2c12"
+  },
+  {
+    "group": "playground",
+    "repo": "google-deepmind/mujoco_playground",
+    "commit": "33f1b2843a7ec5537c4882177aa2a9f236e9b692",
+    "path": "learning/train_jax_ppo.py",
+    "url": "https://raw.githubusercontent.com/google-deepmind/mujoco_playground/33f1b2843a7ec5537c4882177aa2a9f236e9b692/learning/train_jax_ppo.py",
+    "file": "/tmp/transfer-code/playground/learning/train_jax_ppo.py",
+    "lines": 568,
+    "source_file": "raw/code-playground-learning-train-jax-ppo-py-2026-10-04-c082570f0e72.py",
+    "sha256": "c082570f0e72bb9761fb409167c16de881172ead076b353cdc9e636eeb38982b"
+  },
+  {
+    "group": "playground",
+    "repo": "google-deepmind/mujoco_playground",
+    "commit": "33f1b2843a7ec5537c4882177aa2a9f236e9b692",
+    "path": "mujoco_playground/_src/mjx_env.py",
+    "url": "https://raw.githubusercontent.com/google-deepmind/mujoco_playground/33f1b2843a7ec5537c4882177aa2a9f236e9b692/mujoco_playground/_src/mjx_env.py",
+    "file": "/tmp/transfer-code/playground/mujoco_playground/_src/mjx_env.py",
+    "lines": 413,
+    "source_file": "raw/code-playground-mujoco-playground-src-mjx-env-py-2026-10-04-0f51d368c77e.py",
+    "sha256": "0f51d368c77e9a7d1e63674f091fb8c983ccd7a0bd82f9e5603d3b126ad37f1b"
+  },
+  {
+    "group": "playground",
+    "repo": "google-deepmind/mujoco_playground",
+    "commit": "33f1b2843a7ec5537c4882177aa2a9f236e9b692",
+    "path": "mujoco_playground/_src/wrapper.py",
+    "url": "https://raw.githubusercontent.com/google-deepmind/mujoco_playground/33f1b2843a7ec5537c4882177aa2a9f236e9b692/mujoco_playground/_src/wrapper.py",
+    "file": "/tmp/transfer-code/playground/mujoco_playground/_src/wrapper.py",
+    "lines": 248,
+    "source_file": "raw/code-playground-mujoco-playground-src-wrapper-py-2026-10-04-23c072737b98.py",
+    "sha256": "23c072737b9895c52d61372d67f5359c77613f71a4f363f80681ac48ba79aa3d"
+  },
+  {
+    "group": "playground",
+    "repo": "google-deepmind/mujoco_playground",
+    "commit": "33f1b2843a7ec5537c4882177aa2a9f236e9b692",
+    "path": "mujoco_playground/_src/dm_control_suite/cartpole.py",
+    "url": "https://raw.githubusercontent.com/google-deepmind/mujoco_playground/33f1b2843a7ec5537c4882177aa2a9f236e9b692/mujoco_playground/_src/dm_control_suite/cartpole.py",
+    "file": "/tmp/transfer-code/playground/mujoco_playground/_src/dm_control_suite/cartpole.py",
+    "lines": 348,
+    "source_file": "raw/code-playground-mujoco-playground-src-dm-control-suite-cartpole-py-2026-10-04-24983aeae334.py",
+    "sha256": "24983aeae334e51435f323be711c976a35d721c30d9dd5372be25625e2b82e62"
+  },
+  {
+    "group": "playground",
+    "repo": "google-deepmind/mujoco_playground",
+    "commit": "33f1b2843a7ec5537c4882177aa2a9f236e9b692",
+    "path": "mujoco_playground/_src/registry.py",
+    "url": "https://raw.githubusercontent.com/google-deepmind/mujoco_playground/33f1b2843a7ec5537c4882177aa2a9f236e9b692/mujoco_playground/_src/registry.py",
+    "file": "/tmp/transfer-code/playground/mujoco_playground/_src/registry.py",
+    "lines": 71,
+    "source_file": "raw/code-playground-mujoco-playground-src-registry-py-2026-10-04-b23d5dd0d18d.py",
+    "sha256": "b23d5dd0d18dcb2b9737b20a0fbeea0c31fc0915332fdc8616161923113f197f"
+  },
+  {
+    "group": "playground",
+    "repo": "google-deepmind/mujoco_playground",
+    "commit": "33f1b2843a7ec5537c4882177aa2a9f236e9b692",
+    "path": "mujoco_playground/config/dm_control_suite_params.py",
+    "url": "https://raw.githubusercontent.com/google-deepmind/mujoco_playground/33f1b2843a7ec5537c4882177aa2a9f236e9b692/mujoco_playground/config/dm_control_suite_params.py",
+    "file": "/tmp/transfer-code/playground/mujoco_playground/config/dm_control_suite_params.py",
+    "lines": 150,
+    "source_file": "raw/code-playground-mujoco-playground-config-dm-control-suite-params-py-2026-10-04-ba246dffcc43.py",
+    "sha256": "ba246dffcc43635c1cd6adda012fb20cb27b972176043a99e927ac2d56147f4f"
+  }
+]

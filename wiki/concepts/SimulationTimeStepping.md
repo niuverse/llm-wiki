@@ -4,7 +4,7 @@ type: concept
 tags: [robotics, simulation, sim-to-real]
 sources: ["[[mujoco-computation-collision-detection]]", "[[peng-dynamics-randomization]]", "[[isaac-sim-policy-deployment]]"]
 modified: 2026-10-02
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ---
 
 # 仿真步长、积分器与控制频率
@@ -55,3 +55,7 @@ $M$ 是质量矩阵，$D$ 是相应力对速度的导数；不同积分器保留
 ## 实践含义
 
 复现实验时分别记录物理步长、积分器、求解器迭代、策略周期、传感器采样与输出时间。比较两种设置的建议是：先固定动作时序与初态，再缩小物理步长检查结果是否趋于稳定；这是机制导出的诊断方法，不是已验证的统一评测规程。继续读 [[PolicyDeploymentContract|部署契约]] 与 [[SimulationRealityGap|现实差距]]。
+
+## 研究归属
+
+[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。

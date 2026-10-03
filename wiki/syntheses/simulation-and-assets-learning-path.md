@@ -3,11 +3,10 @@ title: "仿真与资产：从模型到可信观测"
 type: synthesis
 tags: [robotics, simulation, learn]
 sources: ["[[mujoco-overview]]", "[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[contact-models-in-robotics-a-comparative-analysis]]", "[[nvidia-ovrtx]]", "[[mujoco-computation-collision-detection]]", "[[modern-robotics-homogeneous-transformations]]", "[[modern-robotics-lagrangian-dynamics]]", "[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[isaac-sim-policy-deployment]]"]
-modified: 2026-10-02
-study_order: 1
-study_topic: syntheses/simulation-and-assets-learning-path
+modified: 2026-10-04
 nav_title: "仿真与资产"
 description: "理解三维资产、机器人状态、碰撞与接触如何组成仿真，再追踪它们对传感器、训练和现实迁移的影响。"
+topics: ["topics/physics-simulation", "topics/assets-and-world-generation", "topics/evaluation-and-transfer", "topics/planning-and-control", "topics/contact-modeling", "topics/collision-geometry", "topics/simulation-ready-worlds", "topics/simulation-transfer", "topics/wheeled-robot-modeling", "topics/asset-representation"]
 ---
 
 # 仿真与资产：从模型到可信观测
@@ -54,6 +53,12 @@ flowchart LR
 | 仿真成功，硬件失败 | [[SimulationRealityGap|差距诊断]] | [[DomainRandomization|随机化]]、[[SystemIdentificationForSimulation|辨识]] |
 | 希望通过梯度优化动作 | [[DifferentiablePhysics|可微物理]] | [[DifferentiableCollisionDetection|可微碰撞]] |
 
+## 把“可仿真”拆成验收条件
+
+[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 的资产接受、局部抓取、可供性与任务世界检查使用不同对象和判据，不能合并成一个物理正确率。[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] 描述回合执行、管理器状态恢复与成功筛选记录；这些机制不等于已经证明跨版本逐位重放、异步吞吐提升或真实部署可靠性，其配套资产统计也不是独立复核。
+
+迁移证据同样分层：[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] 的定量跟踪与操作测试主要在仿真，[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]] 当前归档项目页提供定性案例，[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 则提供限定物体和任务的真机试验。读者应分别记录接口实现、仿真实验、硬件演示和硬件统计。
+
 ## 用一个物体完成复习
 
 教学练习：选一个带把手的抽屉，画出坐标、视觉网格、碰撞体、关节、执行器、相机、动作接口和成功判定之间的关系。解释碰撞体变粗、驱动刚度变化、相机移动和策略降频分别影响哪一层。
@@ -62,6 +67,10 @@ flowchart LR
 
 ## 证据与复习入口
 
-本轮补充了坐标、能量动力学、数值时序、域随机化、系统辨识及部署契约。MuJoCo 3.8 与 Isaac Sim 6.1 的接口按版本记录，旧快照和旧版笔记仍可追溯。两条研究线怎样连接，见 [[world-models-and-simulation-research|研究地图]]；问题与后续资料统一见 [[research-questions|研究问题]]。
+本轮补充了坐标、能量动力学、数值时序、域随机化、系统辨识及部署契约。MuJoCo 3.8 与 Isaac Sim 6.1 的接口按版本记录，旧快照和旧版笔记仍可追溯。两条研究线怎样连接，见 [[world-models-and-simulation-research|研究地图]]。研究问题分别进入 [[topics/contact-modeling|接触建模]]、[[topics/collision-geometry|碰撞几何]]、[[topics/simulation-ready-worlds|可执行生成世界]]、[[topics/simulation-transfer|仿真迁移]]、[[topics/asset-representation|资产表示]] 与 [[topics/wheeled-robot-modeling|轮式机器人建模]]；[[research-questions|研究问题索引]]只汇总入口。
 
 轮式机器人见 [[wheeled-robot-modeling-learning-map|轮式机器人地图]]；旧资产见 [[IsaacSimLegacyAssetStructure|旧版资产结构]]；生成世界见 [[SimulationReady3DWorldGeneration|仿真世界生成]]。
+
+## 研究归属
+
+[[topics/physics-simulation|物理仿真]] · [[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/planning-and-control|规划与控制]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]] · [[topics/simulation-ready-worlds|生成世界何时成为可执行环境]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。

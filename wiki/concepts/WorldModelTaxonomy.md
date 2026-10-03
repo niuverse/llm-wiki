@@ -3,13 +3,13 @@ title: "世界模型分类体系"
 type: concept
 tags: [embodied-ai, world-models]
 sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[planet-learning-latent-dynamics]]", "[[dreamerv3-mastering-diverse-control]]", "[[td-mpc2-scalable-robust-world-models]]", "[[dino-wm-pretrained-visual-features]]", "[[v-jepa-2-understanding-prediction-planning]]"]
-modified: 2026-10-02
-study_topic: syntheses/world-models-learning-path
+modified: 2026-10-04
+topics: ["topics/world-models-and-representations", "topics/evaluation-and-transfer", "topics/world-model-evaluation"]
 ---
 
 # 世界模型分类体系
 
-[[a-comprehensive-survey-on-world-models-for-embodied-ai|世界模型综述]] 用功能、时间建模和空间表示三个轴组织方法。[[awesome-world-models|配套文献清单]] 是对应的资料入口。这个坐标系帮助比较机制，不是模型排行榜。
+[[a-comprehensive-survey-on-world-models-for-embodied-ai|世界模型综述]] 用功能、时间建模和空间表示三个轴组织方法。[[awesome-world-models|配套文献清单]] 是对应的资料入口。这个坐标系帮助比较机制，不是模型排行榜；其中“全局差异预测”是该综述的组织术语，不应假定所有论文都采用同一定义。
 
 ## 数学结构
 
@@ -46,9 +46,15 @@ flowchart TD
 
 ## 直觉
 
-顺序模型像一步步推进的仿真器：下一步使用上一步预测，因此易积累误差，也方便描述交互。联合预测整段未来可以加强时间整体一致性，但闭环接入新观测或修改动作的方式仍需看具体架构。不能仅凭“并行预测”推断控制延迟更低。[[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]
+顺序模型像一步步推进的仿真器：下一步使用上一步预测，因此易积累误差，也方便描述交互。联合预测整段未来允许跨时刻共享计算和约束，但是否改善时间一致性取决于具体模型与训练。训练时联合预测、执行时滚动递推可以同时存在，闭环接入新观测或修改动作的方式仍需单独记录。不能仅凭“并行预测”推断控制延迟更低。[[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]
 
-空间表示各保留不同信息：全局向量紧凑；标记序列适配 Transformer 的多模态建模；空间网格借助鸟瞰图（BEV）、体素或特征图保留局部结构；NeRF、3DGS 等分解式渲染表示强调几何与视角一致性。它们的计算与动态场景适用性不同。[[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]
+空间表示各保留不同信息：全局向量紧凑；标记序列适配 Transformer 的多模态建模；空间网格借助鸟瞰图（BEV）、体素或特征图保留局部结构；NeRF、3DGS 等分解式渲染表示强调几何与视角一致性。特征令牌可以是连续向量，不等于离散码本；空间特征网格也不自动具备度量几何或物理状态。它们的计算与动态场景适用性不同。[[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]
+
+## 分类以后还缺哪些信息
+
+三个轴描述模型的用途与组织，却没有唯一决定训练或执行。例如“序列预测＋空间网格”既可能预测 RGB 编码，也可能预测占据；既可能以动作作条件，也可能只延续视频。还需另列一张接口记录：输入包含哪些实际可用信息、预测标签是什么、哪些参数被学习、执行时是否搜索动作。监督数据中的真实未来不能误写成部署输入。
+
+这是基于分类框架的使用方法。若两个方法轴标签相同，但一个在执行时搜索候选动作、另一个只在训练时使用未来损失，它们的计算成本和证据需求仍然不同；机制分别见 [[ModelPredictiveControl|模型预测控制]] 与 [[LatentDynamicsActionModels|潜在动力学动作模型]]。
 
 ## 失效情形
 
@@ -62,16 +68,8 @@ flowchart TD
 
 先定位三个轴，再记录数据、输入模态、动作耦合、预测时域、闭环验证与延迟。在同一任务和协议下比较，才能检验表示与决策需求是否匹配。继续读 [[WorldModelsForEmbodiedAI|具身智能世界模型]]、[[WorldModelEvaluation|世界模型评估]]。
 
-### 用具体算法检查分类是否有用
+算法的状态估计、训练目标和决策接口应分开记录；进一步读 [[LatentStateSpaceModels|状态估计]]、[[ModelPredictiveControl|执行时搜索]]、[[ImaginedPolicyLearning|训练时想象]] 与 [[VisualGoalPlanning|视觉目标接口]]。具体方法比较见 [[topics/world-model-decision|世界模型决策专题]]，避免把综述标签当成原论文机制的替代品。
 
-下表是依据原论文机制增加的阅读坐标，**不是更改综述原始分类或给出性能排名**。同为潜在转移模型，决策接口仍可能不同。
+## 研究归属
 
-| 方法 | 表示与训练信号 | 未来进入决策的位置 | 换任务的条件 |
-| --- | --- | --- | --- |
-| [[planet-learning-latent-dynamics|PlaNet]] | RSSM、图像重建、奖励 | 每步在线 CEM 搜索 | 需相应环境交互与奖励学习 |
-| [[dreamerv3-mastering-diverse-control|DreamerV3]] | RSSM、重建、奖励与继续标记 | 训练演员和价值评估器；执行无搜索 | 固定算法配置可以复用，权重仍按任务学习 |
-| [[td-mpc2-scalable-robust-world-models|TD-MPC2]] | 无解码器的任务价值与潜在转移 | 短 MPC、终端 Q 与策略先验 | 奖励与任务嵌入，多任务动作维度显式对齐 |
-| [[dino-wm-pretrained-visual-features|DINO-WM]] | 冻结图像块特征、离线动作转移 | 以目标特征距离搜索动作 | 可换目标；仍需动作数据覆盖对应环境 |
-| [[v-jepa-2-understanding-prediction-planning|V-JEPA 2-AC]] | 视频预训练表征＋机器人动作后训练 | 图像目标的潜在 MPC | 有限真机形态与相机设置下测试迁移 |
-
-读法分成 [[LatentStateSpaceModels|状态估计]]、[[ModelPredictiveControl|执行时搜索]]、[[ImaginedPolicyLearning|训练时想象]] 与 [[VisualGoalPlanning|视觉目标接口]]。只有明确这些条件，才能说两个模型是否在解决同一个问题。
+[[topics/world-models-and-representations|世界模型与表征]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/world-model-evaluation|如何验证世界模型的动作后果]]。

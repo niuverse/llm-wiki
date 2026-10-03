@@ -1,71 +1,146 @@
 ---
-title: "Contact Models in Robotics: a Comparative Analysis"
+title: "接触模型比较：物理近似与数值求解怎样改变机器人运动"
 type: source
 tags: [robotics, simulation, contact-dynamics, source-backed]
 sources: []
-modified: 2026-09-25
+modified: 2026-10-04
 source_file: raw/contact-models-in-robotics-a-comparative-analysis.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2304.06372
 extracted_text: graph/extracts/contact-models-in-robotics-a-comparative-analysis.md
 source_date: 2024-07-21
-study_topic: syntheses/simulation-and-assets-learning-path
+source_type: paper
+paper_title: "Contact Models in Robotics: a Comparative Analysis"
+year: 2024
+venue: "arXiv（归档稿未标注会议或期刊）"
+reviewed: 2026-10-04
+topics: ["topics/physics-simulation", "topics/contact-modeling"]
 ---
 
-## 摘要
+# 接触模型比较：物理近似与数值求解怎样改变机器人运动
 
-Quentin Le Lidec、Wilson Jallet、Louis Montaut、Ivan Laptev、Cordelia Schmid 和 Justin Carpentier 对机器人仿真中的刚性接触模型做了综述和基准。论文把 [[ContactModelsInRobotics|接触模型 in 机器人学]] 视为同时影响物理保真度与数值失败的核心因素：较物理化的参考模型由 Signorini 条件、Coulomb 摩擦和最大耗散 principle 组成，并导向一个困难的 [[ContactComplementarity|接触互补]] 问题。
+## 一屏概览
 
-该来源比较了常见 relaxations 与求解器，包括 LCP、CCP、RaiSim-like 逐接触点方法、NCP 求解器、PGS、ADMM 和交错投影。核心结论是：求解器/模型选择不是中性的实现细节。简单场景中这些选择可能看起来等价；但在 sliding、underdetermined、ill-条件化的、bumpy 或 slippery 接触 scenarios 中，它们会导致 unphysical 力、distorted 能量耗散、失败的收敛，以及下游控制器差异。这直接把接触建模与 MPC、RL、可微的仿真中的 [[SimulationRealityGap|仿真—现实差距]] 联系起来。
+**研究问题。** 仿真器给出不同接触行为，究竟来自接触定律的简化，还是求解器没有解准？怎样在固定其他部件时分别评价？
 
-来源网址: https://arxiv.org/abs/2304.06372
+**核心贡献。** 从单边接触、Coulomb 摩擦和最大耗散原理出发，对照 LCP、CCP、RaiSim 类模型和完整非线性互补问题（NCP）；用统一 C++ 框架 ContactBench 重实现求解器，分别检查物理残差、步长一致性、耗时和四足 MPC 行为。[原文第 II–IV 节](https://arxiv.org/abs/2304.06372)
 
-## 核心主张
+**核心结论。** 模型可因松弛而稳定收敛到不同物理规律，较完整模型也可因数值迭代失败而给出错误轨迹。平坦高摩擦场景可能掩盖差异，崎岖低摩擦场景会放大差异。没有一个被测方案同时在准确性、鲁棒性与效率上全面占优。
 
-- 带摩擦的刚性接触由 Signorini 条件、Coulomb's 定律和最大耗散 principle 共同约束；它们定义的是 nonlinear 互补问题，而不是简单的平滑动力学模型。
-- LCP approximations 会把摩擦锥体近似为多面体的锥体；这降低求解难度，但引入方向-依赖的摩擦偏差。
-- CCP-风格 relaxations 比 LCP 更好地保留摩擦锥体与最大耗散，但会松弛 Signorini 互补，并可能允许法向力与分离速度同时存在。
-- [[contact-models-in-robotics-a-comparative-analysis|RaiSim]]-风格接触处理尝试在 sliding 接触中恢复 Signorini 行为，但依赖接触状态启发式规则，并放松最大耗散 principle。
-- Per-接触的 PGS-风格求解器很快且常见，但论文显示它们可能引入内部力，在 ill-条件化的接触 problems 中表现较差，并在更困难的接触丰富移动条件下失败的到 converge。
-- ADMM 和交错投影这类全局/近端 [[ContactSolvers|接触求解器]] 通常更能处理耦合与 underdetermination，但每次迭代成本更高；warm-starting 可以缩小运行时差距。
-- Quadruped MPC 实验显示，flat、高摩擦地形可能掩盖求解器 differences；bumpy 与 slippery 地形则会让 RaiSim/CCP 行为与 NCP 行为明显分化。
-- 论文把 [[DifferentiablePhysics|可微物理]] 标记为开放风险：人为引入的柔顺性或求解器产物，可能改变轨迹优化与系统辨识使用的梯度。
+**证据范围与版本。** 完整复核 arXiv:2304.06372v3，2024-07-21，17 页。实验比较的是固定动力学／碰撞检测下的算法重实现；其中 RaiSim 非原版闭源引擎，Drake 重实现用 Armijo 回溯而非原算法的线搜索。结果不能直接作为当前完整仿真器的排行榜。
 
-## 关键引文
+## 物理结构：接触冲量怎样改变速度
 
-- "Simulation is a fundamental tool in robotics."
-- "there is no fully satisfactory approach at the moment"
-- "these choices may induce unphysical artifacts"
+### 从自由运动到接触空间
 
-### ContactBench
+在一个时间步中，令 $q$ 为广义位置，$v_f$ 为没有接触冲量时的下一步自由速度，$M$ 为惯性矩阵，$J$ 为接触雅可比，$\lambda$ 为接触冲量，则：
 
-ContactBench 是 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]] 中描述的统一的 C++ 基准框架。论文用它在尽量固定其他仿真器组件的条件下比较接触模型与求解器。
+$$
+Mv^+=Mv_f+J^\top\lambda,
+\qquad c=Jv^+=G\lambda+g,
+\qquad G=JM^{-1}J^\top,\quad g=Jv_f.
+$$
 
-根据该来源，ContactBench 使用 Pinocchio 处理刚性机体动力学，使用 HPP-FCL 处理碰撞检测。这让作者可以把重点放在接触-分辨率层：LCP、CCP、RaiSim-like 接触处理、NCP、PGS、ADMM 和交错投影。
+$v^+$ 为接触修正后的速度，$c$ 为接触点相对速度，$G$ 是 Delassus 矩阵，体现一个接触冲量如何影响所有接触点。非对角块代表接触之间的动力学耦合；冗余接触可使问题欠定。[第 II 节，式（1）–（9）]
 
-为什么重要：仿真器比较经常被不同的碰撞检测、模型格式、集成细节和动力学实现混杂。ContactBench 的目标是 isolate 影响物理正确性与 computational 成本的求解器/模型行为。
+以下为已经接触、无反弹和稳定化偏置时的简化形式。一般实现还需参考速度 $c^\star$、恢复系数和穿透稳定化；论文比较中将这些影响与接触模型区分。
 
-### RaiSim
+### 三条物理条件缺一不可
 
-RaiSim 是 [[contact-models-in-robotics-a-comparative-analysis|Contact Models in Robotics: a Comparative Analysis]] 中讨论的机器人学仿真器，尤其因为它在学得的 quadruped 移动策略到硬件迁移中的作用而重要。
+对每个接触点，$N$ 表示法向，$T$ 表示二维切向，$\mu$ 是摩擦系数：
 
-论文把 RaiSim 的接触模型看作对 CCP formulations 一个弱点的修正：它通过 enforcing Signorini 条件来处理 sliding 接触。取舍是该方法依赖接触状态启发式规则，并松弛最大耗散 principle。在论文基准中，这会产生能量-耗散与移动 differences，尤其是在 bumpy 或 slippery 地形上。
+$$
+0\le\lambda_N\perp c_N\ge0,
+\qquad\|\lambda_T\|_2\le\mu\lambda_N.
+$$
 
-本页只记录该论文对 RaiSim 的处理方式；在提出 up-到-date 主张之前，应对照 RaiSim 文档或来源材质检查当前实现细节。
+第一式是 Signorini 条件：接触只推不拉，分离速度与法向冲量不能同时为正；第二式是圆形 Coulomb 摩擦锥。仅满足摩擦锥仍没有确定摩擦方向，因此还需最大耗散原理：
 
-## 关联
+$$
+\lambda_T\in\arg\min_{\|\gamma_T\|_2\le\mu\lambda_N}\gamma_T^\top c_T.
+$$
 
-- [[ContactModelsInRobotics|机器人学中的接触模型]] - central 域概念：仿真器的接触定律是模型的一部分，不只是实现；该页包含接触流程图。
-- [[ContactComplementarity|接触互补]] - 论文比较的精确与松弛的数学 formulations；该页补充 Signorini、Coulomb 锥体、最大耗散与残差直觉。
-- [[ContactSolvers|接触求解器]] - 按物理准确率、鲁棒性和速度评估的数值 algorithms；该页补充求解器分类体系与 PGS/ADMM/交错投影的求解直觉。
-- [[SimulationRealityGap|仿真—现实差距]] - 接触 approximations 会扩大 MPC 与 RL 场景中的迁移错误；该页补充接触产物到硬件迁移不匹配的因果流程。
-- [[DifferentiablePhysics|可微物理]] - 接触产物可能污染梯度；该页补充 chain-rule 风格的梯度污染解释。
-- [[contact-models-in-robotics-a-comparative-analysis|ContactBench]] - 论文中的统一的 C++ 基准实现。
-- [[MuJoCo|MuJoCo]] 与 [[contact-models-in-robotics-a-comparative-analysis|RaiSim]] - 作为不同接触模型取舍示例的重要仿真器实体。
+滑动且 $c_T\ne0$ 时，得到 $\lambda_T=-\mu\lambda_Nc_T/\|c_T\|_2$；静止时力位于摩擦圆盘中，由整体动力学决定。第 II 节式（10）–（15）通过 de Saxcé 修正 $\Gamma(c,\mu)=(0,0,\mu\|c_T\|_2)$，把这三条写成锥上的 NCP：
 
-## 开放问题
+$$
+K_\mu\ni\lambda\perp c+\Gamma(c,\mu)\in K_\mu^\star.
+$$
 
-- 这些发现如何映射到当前 Isaac Sim/PhysX、Newton、MuJoCo Warp 和 GPU-并行训练流程？
-- 对特定机器人任务而言，怎样的接触残差阈值才算 "良好的 enough"：MPC、RL 策略训练、硬件安全检查，还是可微的优化？
-- 现代可微的仿真器中，接触产物造成的实用的梯度错误有多大？
-- 论文中的 ContactBench 实现是否仍被维护，并且足够广泛到可以作为新仿真器的 regression 基准？
+$K_\mu$ 是摩擦锥，$K_\mu^\star$ 为其对偶锥。完整 NCP 不等于一个普通凸二次规划；非光滑、非凸与解不唯一是其求解困难来源。这里的物理参照仍建立在刚体、点接触和干摩擦等假设上，不是完整材料接触真值。
+
+## 各模型到底松弛了什么
+
+| 模型 | 主要改变 | 论文展示的代价 |
+| --- | --- | --- |
+| LCP | 将圆形摩擦锥离散为多面体锥，典型为四面摩擦棱锥 | 摩擦方向失去旋转对称性，向棱锥角点偏置；滑块可发生横向漂移 |
+| CCP | 去掉 NCP 的 de Saxcé 修正，使问题可写为凸优化 | 保留圆锥与最大耗散，但滑动时松弛法向互补；可能允许分离速度与法向力同时存在 |
+| RaiSim 类模型 | 对滑动接触额外施加零法向速度，利用接触模式启发式与二分求解 | 恢复该法向条件，却不完全满足最大耗散；模式判断与逐点迭代也可能失败 |
+| NCP | 保留三条条件 | 问题更难，选用完整模型本身不保证有限迭代能解准 |
+
+以上是原文表 II、III 和第 III 节对所讨论算法的分类，不应直接给每个软件品牌贴上永久不变的标签。
+
+CCP 的关键区别可从公式看出：若 $\lambda\perp c$ 且滑动摩擦满足最大耗散，便有：
+
+$$
+\lambda_N\bigl(c_N-\mu\|c_T\|_2\bigr)=0.
+$$
+
+只要 $\lambda_N>0$，就可能出现 $c_N=\mu\|c_T\|_2>0$，不同于刚性 Signorini 的 $c_N=0$。第 III-B 节给出对应间距量级 $\Delta t\,\mu\|c_T\|_2$，其中 $\Delta t$ 为步长；因此减小步长或滑动速度可减轻该误差。不是所有接触都会“凭空弹跳”，触发条件是这种松弛下的滑动接触。
+
+## 数值求解：模型相同也可能行为不同
+
+**逐点 PGS。** 投影 Gauss–Seidel 依次更新一个接触的法向／切向冲量并投影到约束集合。单轮便宜，但每次把其他接触的当前值视为给定；强耦合或病态 $G$ 会让误差传播缓慢，有限预算下可能停在较大残差。欠定问题中还可能选出含相互抵消内部力的解。[第 III-A、III-D 节，算法 1、2、6]
+
+**全局凸求解。** CCP 可写为：
+
+$$
+\min_{\lambda\in K_\mu}\frac12\lambda^\top G\lambda+g^\top\lambda.
+$$
+
+ADMM 通过全局线性求解、锥投影和对偶更新处理接触耦合；近端参数与热启动改善实际效率。带柔顺性 $R$ 的原始速度形式可用 Newton 法；加入 $R$ 相当于把 $G$ 替换为 $G+R$，既改变条件数，也改变模型。**物理材料柔顺性与为数值便利加入的正则化需要分别解释。** 原文对 MuJoCo／Drake 的评论来自其讨论版本与建模方式，并非当前软件每一配置的完整描述。[第 III-B、III-E 节]
+
+**交错投影。** 把法向与切向子问题交替求解，外层求不动点；能利用稳健的内层优化器，但仍无一般收敛保证，成本通常较高。作者观察到近端／全局方法较少引入人为内部力，同时明确指出“为何选到这种解”尚缺完整理论证明，不能将此经验性质升级为定理。[第 III-D 节与第 IV-A 节]
+
+## 把比较读成一个受控实验
+
+论文的重要设计是固定 Pinocchio 动力学与 HPP-FCL 碰撞输入，再改变接触表述和求解策略。这样图 3–16 的差异更容易归因于接触模型、数值算法与任务条件，而不是不同引擎同时改变碰撞形状、积分器与接触参数。[第 IV 节，ContactBench 实验设置]
+
+下图按上述机制重画，用于说明信息流：
+
+```mermaid
+flowchart LR
+  A[相同状态、接触几何与动力学] --> B[选择 NCP、LCP 或 CCP 表述]
+  B --> C[选择局部、近端或其他求解策略]
+  C --> D[控制步长、容差、预算与热启动]
+  D --> E[参考物理残差、内部力、运动与耗时]
+```
+
+**教学例：为什么收紧容差修不好模型松弛。** 对 CCP 的滑动支撑，若 $\mu=0.4$、切向速度为 $1\,\mathrm{m/s}$，其松弛条件允许 $c_n=0.4\,\mathrm{m/s}$；步长 $1\,\mathrm{ms}$ 对应这一时间步 $0.4\,\mathrm{mm}$ 的法向位移尺度。数字只是把第 III-B 节式（16）–（19）后的 $\Delta t\mu\|c_T\|$ 关系具体化，不是新增测量。把同一个 CCP 解求到更小残差，仍可能保留这种分离伴随支撑的关系，因为这来自所求方程本身。相反，固定参考模型后因迭代不足留下的误差，才属于求解收敛问题。
+
+## 实验如何区分误差来源
+
+ContactBench 固定 Pinocchio 刚体动力学和 HPP-FCL 碰撞检测。默认步长 1 毫秒、绝对精度 $10^{-6}$、最多 $10^4$ 轮；时间性能比较还可能按停滞条件提前结束。论文在实现中将冲量换成等效力以减少残差对步长的直接缩放依赖。主要物理指标是摩擦锥可行性、对偶可行性和互补残差，取各接触的最大值形成绝对残差。[第 II 节、第 IV 节]
+
+| 位置 | 控制实验 | 主要证据 |
+| --- | --- | --- |
+| 图 9 | 给平面上方块初始切向速度 | LCP 棱锥摩擦带来横向偏移，NCP 更接近解析直线行为 |
+| 图 10–11 | 方块滑动／被逐渐增加的外力拖动 | CCP 的法向松弛改变高度与能量耗散；RaiSim 类模型减小部分偏差，但不等同完整最大耗散 |
+| 图 12 | 从粘着到滑动的四点接触方块 | 多组接触力可对应相同轨迹；PGS 类方法出现相互抵消的内部力，ADMM 在该实验较少出现 |
+| 图 13 | $10^3$ 千克方块压在 $10^{-3}$ 千克方块上，并扫描质量比 | 强耦合／病态使逐点方法在迭代预算内难以满足残差；全局方法更稳健 |
+| 图 14–15 | 扫描柔顺性与步长；与自身小步长轨迹比较 | 柔顺性改善数值条件也改变接触；CCP 在所示滑动例中对步长更敏感 |
+| 图 16–17 | Solo、Talos、Allegro 手动态接触；冷启动／热启动 | PGS 较快到达中等精度但可能停滞；全局方法单轮更贵，热启动明显缩小耗时差距 |
+| 图 18–19 | Solo-12 MPC：平坦 $\mu=0.9$；崎岖粗糙度 0.1 米、$\mu=0.3$ | 前者主要粘着，控制速度接近；后者滑动与求解困难使高层速度明显分化，NCP/PGS 也偶有未收敛 |
+
+图 17 的停止判据对应各自模型，且可能提前停止，所以该图只展示该协议的计算成本，**不能独自证明谁以相同物理精度更快**。MPC 场景也没有与真实硬件轨迹逐一对齐；它支持仿真选择会改变控制行为，不直接量化真实迁移成功率。
+
+## 局限与我们的解释
+
+**作者的范围。** 研究集中在时间步进、刚体点接触与摩擦模型；积分、碰撞检测及许多引擎级优化被固定或简化。RaiSim 和 Drake 的算法重实现与原产品不完全等价。可微仿真中内部力如何系统性污染导数，主要作为风险与后续研究提出，本文未做完整梯度误差基准。
+
+**我们的解释。** 应先问“想逼近哪种物理模型”，再问“在预算内解到什么精度”。提高迭代数不能消除模型松弛本身的差异，换成 NCP 也不能代替收敛检查。精度、速度与稳定性之外，还需要任务对误差的容忍程度：平稳站立与滑动操作对同一种松弛的敏感性不同。
+
+共享机制分别见 [[ContactModelsInRobotics|机器人接触模型]]、[[ContactComplementarity|接触互补]]、[[ContactSolvers|接触求解器]]；与 [[SimulationRealityGap|仿真—现实差距]]、[[DifferentiablePhysics|可微物理]] 关联时须保留上述实验边界。[[MuJoCo|MuJoCo]] 是相关引擎入口。ContactBench 与文中 RaiSim 类算法说明保留在本论文页，避免把该文重实现与产品状态混为一谈；作者代码入口为 [ContactBench](https://github.com/Simple-Robotics/contactbench)。
+
+## 研究归属
+
+[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]]。

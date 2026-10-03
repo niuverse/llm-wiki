@@ -4,7 +4,7 @@ type: concept
 tags: [robotics, simulation]
 sources: ["[[mujoco-overview]]", "[[omniverse-omni-physics-articulations]]", "[[nvidia-ovrtx]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-policy-deployment]]"]
 modified: 2026-10-02
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ---
 
 # 机器人仿真循环
@@ -71,3 +71,7 @@ flowchart LR
 ## 自测
 
 同一条位置目标命令为什么可能产生不同力矩？为什么一张 RGB 图像通常不足以完整描述机器人状态？前者需要考虑当前位置、速度与执行器定义，后者需要考虑观测遗漏的信息。用上表逐项说明，就抓住了本页的主要区别。
+
+## 研究归属
+
+[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。

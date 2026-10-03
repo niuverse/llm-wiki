@@ -9,7 +9,8 @@ source_kind: html
 source_url: https://docs.nvidia.com/learn-openusd/latest/creating-composition-arcs/prim-composition.html
 extracted_text: graph/extracts/learn-openusd-prim-composition.md
 source_date: unknown
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
+source_type: tutorial
 ---
 
 # What Is Prim Composition? - Learn OpenUSD
@@ -39,3 +40,7 @@ NVIDIA Learn OpenUSD 将层内编写的图元／属性规范连接到最终组�
 ## 开放问题
 
 这里只给出图元组合入口。完整组合弧、LIVERPS 强度顺序、列表编辑与属性求值仍需对应教程与 API 参考。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。

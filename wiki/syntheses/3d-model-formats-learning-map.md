@@ -4,7 +4,7 @@ type: synthesis
 tags: [learn]
 sources: ["[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[openusd-glossary]]", "[[learn-openusd-file-formats]]", "[[learn-openusd-stage]]", "[[learn-openusd-prim-composition]]", "[[gltf-basic-structure]]", "[[mujoco-overview]]"]
 modified: 2026-09-30
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 ---
 
 # 三维模型格式学习地图
@@ -71,4 +71,8 @@ flowchart LR
 
 优先补 Khronos glTF 2.0 规范与验证器，核对 GLB、材质和动画；再补 MuJoCo XML、OpenUSD Physics、PhysX 驱动参考。OBJ／STL／PLY 可找原始格式说明，FBX 找 Autodesk SDK 文档，CAD 找 Open Cascade 和工程标准，URDF／SDF 找各自官方文档。以上是候选资料类型，尚未收录的内容不能据此升级为来源结论。
 
-完整资产学习顺序见 [[simulation-and-assets-learning-path|仿真与资产：从模型到可信观测]]；跨引擎语义问题见 [[research-questions|研究问题]]。
+完整资产学习顺序见 [[simulation-and-assets-learning-path|仿真与资产：从模型到可信观测]]；跨引擎语义与后续补证见 [[asset-representation#未解问题与优先补证|资产表示专题]]。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。

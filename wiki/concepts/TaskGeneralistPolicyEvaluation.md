@@ -3,92 +3,62 @@ title: "通用任务策略评估"
 type: concept
 tags: [robotics, evaluation, vla]
 sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
-modified: 2026-07-19
-study_topic: syntheses/robot-learning-and-evaluation-learning-path
+modified: 2026-10-04
+topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/policy-evaluation"]
 ---
 
-# 通用任务策略评估
+# 任务通用型策略评测
 
-任务通用策略评估（任务泛化策略评估）关注的不是一个策略能否在单个脚本化操作任务上成功，而是它能否在没有专门共同训练的任务、语言变体、物体、场景和扰动上保持可解释的性能。[[RoboLab|RoboLab]] 把这个问题写成对现成策略的诊断基准：任务库定义目标与判定条件，环境注册组合机器人、策略和传感器，评估脚本记录成功、子任务得分、轨迹指标和错误物体失败。[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 则把同一问题扩展到训练数据与学习阶段：它用原子、已见组合和未见组合任务，分别测量短时域技能、见过的任务序列和零样本任务组合。
+任务通用型策略评测回答：一个策略在明确的任务、场景、物体和指令分布下能完成什么，以及失败对哪些变化敏感。[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]] 侧重外部预训练策略的统一测试与扰动诊断；[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 同时提供数据、适配与评测协议。二者的“成功率”不能脱离训练条件直接排名。
 
-## 数学结构
+## 先确定泛化协议
 
-一个任务可以写成 $T_i=(S_i, O_i, L_i, G_i, H_i)$：$S_i$ 是场景（USD 场景与初始布局），$O_i$ 是物体/接触物体，$L_i=\{\ell_i^{vague},\ell_i^{default},\ell_i^{specific}\}$ 是指令变体，$G_i=\{g_{i1},\dots,g_{iK}\}$ 是成功/子任务判定条件，$H_i$ 是回合时域长度。策略 $\pi_\phi$ 接收观测历史 $o_{\le t}$ 与指令 $\ell$，输出动作块 $a_{t:t+h}$：
+| 协议 | 测试前允许什么 | 回答的问题 |
+| --- | --- | --- |
+| 零样本任务测试 | 使用既有检查点，不用目标任务示范适配 | 既有能力能否迁移到这个任务分布？ |
+| 目标数据适配 | 明确数量的目标任务示范和训练预算 | 给定数据与预算后能学到什么？ |
+| 场景泛化 | 固定任务语义，改变布局、外观、对象或初始状态 | 能力对哪些环境变化稳定？ |
+| 任务组合泛化 | 控制原子技能和组合任务的训练覆盖 | 已学技能能否迁移到新的组合？ |
+
+这些是教学上的比较维度，并不自动等于每篇论文采用的划分。RoboLab 使用 DROID 检查点、不在该基准上重新训练；RoboCasa365 的“未见组合任务”指未进入仿真预训练集，目标微调阶段仍可见其示范。因此后者不能写成完全零样本组合泛化。[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab §IV-A]]、[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365 §4、附录 H]]
+
+## 成功率依赖任务判定和聚合方式
+
+设任务 $i$ 的第 $e$ 条轨迹为 $\tau_{i,e}$，任务判定器为 $G_i$。教学表达为：
 
 $$
-a_{t:t+h} \sim \pi_\phi(a \mid o_{\le t}, \ell, c),
+\hat p_i=\frac{1}{n_i}\sum_{e=1}^{n_i}\mathbf1[G_i(\tau_{i,e})],\qquad
+\hat p_{\mathrm{macro}}=\frac1M\sum_{i=1}^M\hat p_i.
 $$
 
-其中 $c$ 是可选上下文，例如策略后端、机器人动作模式或元数据。对第 $e$ 个回合，成功 indicator $y_{i,e}$ 可以写成：
+$n_i$ 是任务试验数，$M$ 是任务数。$G_i$ 可以包含终态、多个子目标和过程顺序，不能一律化约为最终画面上的所有谓词同时成立。任务等权的宏平均，与把全部回合合并的微平均，只有在任务试验数一致等条件下才相等。自适应采样后尤其要标明权重。见 [[SimulationBenchmarkReportingPipeline|基准报告流程]]。
 
-$$
-y_{i,e} = \mathbb{1}\left[\bigwedge_{g \in G_i} g(x_{0:H_i}) = \text{true}\right],
-$$
+成功率之外，RoboLab 记录子任务、错误接触、路径长度与轨迹平滑性。短而平滑的轨迹可能根本没有行动；只看终态成功也可能忽略错误对象接触。应在同一任务定义下联合解释这些指标。[RoboLab §III-B]
 
-其中 $x_{0:H_i}$ 是回合轨迹。若任务有子任务，RoboLab-风格得分可以抽象为：
+### 两个任务为何能给出两个“总体成功率”
 
-$$
-s_{i,e} = \frac{\sum_{k=1}^{K} w_k z_{i,e,k}}{\sum_{k=1}^{K} w_k},
-$$
+**教学例子：** 任务 A 成功10/10，任务 B 成功10/100。任务等权宏平均为 $(100\%+10\%)/2=55\%$；回合合并得到 $20/110\approx18.2\%$。两者计算都可以正确，但前者回答“随机选一个任务的表现”，后者回答“按实际试验频次选一个回合的表现”。增加 B 的试验数能缩小 B 的不确定性，却不应悄悄改变任务等权基准所回答的问题。
 
-其中 $z_{i,e,k}\in[0,1]$ 是第 $k$ 个子任务/条件组的完成度进度，$w_k$ 是子任务权重。总体成功估计值是 $\hat{p}_i=\frac{1}{n_i}\sum_e y_{i,e}$；语言敏感性可以写成 $\Delta_i=\hat{p}_i(\ell^{specific})-\hat{p}_i(\ell^{vague})$。
+判定也需要拆开看。[[nvlabs-robolab|RoboLab 香蕉入碗实现]] 以几何、接触与松爪共同定义成功，子任务状态另记录抓取和放置过程。同样是最终在碗里，“夹爪仍持住”与“已经放下”可得到不同结果。测到的是明确判定器下的能力，而不是读者凭画面想象的另一项任务。
 
-## 直觉
+## 两种基准提供的实际证据
 
-这个形式化表述的重点是把“策略能做什么”拆成多个可诊断轴。任务判定条件决定什么算成功，指令变体决定语言歧义有多大，场景/物体分布决定是否真的 OOD，扰动参数决定鲁棒性的测试范围。一个高分但只在默认语言、已见物体、固定相机下成功的策略，与一个在模糊的/特定的变体、视觉相似物体、相机/光照扰动下稳定的策略，代表的能力不同。
+| 来源 | 受控设置与结果 | 不能推出什么 |
+| --- | --- | --- |
+| RoboLab 表 I、VI | 每任务 10 次，表列 π0.5 23.3%、π0-FAST 15.7% 等；正文另写 31.9% | 不应把正文与表格揉成单一确定排行榜，也不能把 10 次视为精确概率 |
+| RoboLab 指令对照表 IV | π0.5 模糊／默认／具体指令 16.8／23.3／25.8% | 更具体指令并非对所有策略单调有效 |
+| RoboLab 现实对照表 V、VIII | 作者称六任务对照，但一项仿真值缺失；策略间差距不一致 | 不能声称仿真分数能准确预测任意策略的现实成功率 |
+| RoboCasa365 表1 | 多任务训练平均值 GR00T N1.5 20.0%、π0.5 16.9% | 模型骨干冻结、步数和批量不同，非等算力架构比较 |
+| RoboCasa365 附录 H.3 | 两阶段 51.1%、联合训练 22.5%，分别 140k 与 120k 步 | 不能隔离“训练顺序”本身的因果收益 |
 
-[[robotics-simulation-infrastructure|机器人学仿真基础设施]] 补充了一个基准工程视角：评估是否可扩展，不只取决于任务列表，也取决于任务/API 层、资产管理、渲染吞吐量/保真度、可视化工具诊断信息和 ML 集成。也就是说，基准的 scientific 价值依赖基础设施能否稳定生成场景、并行轨迹采样、暴露失败状态、记录奖励/轨迹/策略行为，并把这些数据连接到评估指标。
+完整数字及原文内部不一致见两篇来源页。RoboLab 的任务难度数 65+38+18=121，与总数 120 不符；能力轴计数也在不同位置变化。因此概念层保留关系／视觉／程序性三类解释，不把有冲突的计数当作稳定分类事实。
 
-[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 给这个概念增加了数据生成 / 跟踪视角：对人形机器人移动操作，不仅要问策略是否在一个任务上重放参考基准，还要问生成的 4D HOI 数据池能否训练任务一般性跟踪器。它把评估分成生成的 HOI 质量、物理可执行性、任务一般性跟踪指标（SR、ObjPos、MPJPE-L）和真实视觉部署成功，避免只用 perceptual 视频得分或单条轨迹跟踪证明机器人实用价值。
+## 结论需要多窄
 
-```mermaid
-flowchart TD
-  A["任务库"] --> B["指令变体"]
-  A --> C["场景与物体分布"]
-  A --> D["成功/子任务判定条件"]
-  B --> E["策略轨迹采样"]
-  C --> E
-  D --> F["得分与成功"]
-  E --> F
-  E --> G["Wrong-物体与 trajectory 诊断信息"]
-```
+扰动测试只覆盖所采样的参数、范围和任务。[[SimulationSensitivityAnalysis|仿真敏感性分析]] 能定位关联，但单个任务上的光照鲁棒不代表全部任务鲁棒。比较模型应同时提供任务／场景划分、动作观测接口、训练数据与预算、成功判定器、试验数和不确定性。
 
-## RoboCasa365 的训练—评测分层
+**我们的解释：** 有价值的评测不是给“通用性”贴一个总分，而是让读者知道总分由哪些技能、适配条件和环境变化组成。训练目标与数据调度分别见 [[RobotLearningObjectives|学习目标]]、[[RobotLearningDataComposition|数据构成]]；跨仿真与现实的外推见 [[SimulationRealityGap|现实差距]]。
 
-[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 的 50 个目标任务分成 18 个原子任务、16 个已见组合任务和 16 个未见组合任务。这个分层比单一平均成功率更有解释力：GR00T N1.5 在 300 任务多任务训练后分别得到 43.0%、9.6% 和 4.4%，说明短时域原子技能、长时域执行和任务组合泛化是不同瓶颈。后续使用全量目标数据做两阶段训练后，三组结果升至 68.5%、40.6% 和 42.1%，也说明“预训练阶段是否见过完整任务”与“目标阶段是否提供示范”必须在报告中分开。
+## 研究归属
 
-该基准的主要指标仍是二元终态成功：每任务运行 30 个回合，在任务相关时域内满足成功条件即记为成功。论文给出逐任务失败描述，但没有像 RoboLab 那样统一报告子任务完成度、错误物体事件、回合置信区间和轨迹质量。因此 RoboCasa365 更适合研究任务/场景/数据构成与训练阶段，RoboLab 更适合研究现成策略的失败类型和环境敏感性；两类基准不能只按任务数量或汇总成功率互相替代。
-
-## RoboLab 2026-06 代码仓库更新
-
-[[nvlabs-robolab|RoboLab 代码仓库]] 的 2026-06 更新让任务通用评估更像完整报告系统，而不只是轨迹采样脚本。Per-策略 runners now live under `policies/<backend>/run.py`，共同调用 `robolab.eval.runner.run_evaluation`；`--num-episodes-adaptive` 使用 Beta 后验可信区间 width 决定是否继续采样；`analysis/read_results.py` 和看板都显示 95% 成功比率区间。这意味着评估规程的物体不再只是 $(T_i, \pi)$ 的 mean 成功，而是 $(T_i, \pi, n, CI, score, events, videos, metadata)$ 的证据 bundle。
-
-这也改变了基准比较的失败表面：如果两个策略的点成功率接近，但一个置信区间更宽、错误物体事件更多，或只在模糊/默认指令中失败，结论就会不同。RoboLab 看板把任务元数据、场景预览、回合视频、事件和时间序列放进本地界面，是 [[SimulationBenchmarkReportingPipeline|仿真基准报告流程]] 的实现案例；智能体式场景/任务技能则说明任务库扩展也被纳入基础设施，但生成任务仍需通过验证并重新生成元数据，才能成为公平的评估单位。
-
-## 失效情形
-
-- Domain 重叠 / 基准饱和：如果评估任务与训练数据太接近，成功率可能高估真实泛化。
-- 语言歧义：相同的场景/相同的目标的模糊的 wording 会显著降低策略成功，说明语言语义落地仍是瓶颈。
-- 错误物体抓取：来源中报告的典型错误包括视觉相似（lime/lemon）、几何偏差（盒体/can）、语义混淆（measuring spoon/杯子）和邻近度偏差。
-- Sim-代理不匹配：RoboLab 的 six-任务真实/仿真验证对 π0.5 和 π0-快速呈现相近趋势，但 π0 是明显 outlier；因此仿真得分需要按策略/任务族验证。
-- 判定条件不匹配：判定条件基于成功检查清晰且可自动化，但可能低估恢复行为、partial satisfaction、人类 preference 或工具使用中的 subtle 语义。
-- 指标掩盖：子任务得分能显示 partial 进度，但也可能掩盖最终任务失败；成功率又可能忽略轨迹质量和 safety margins。
-- 长时域归因丢失：组合任务只报告终态成败时，导航、目标识别、抓取、接触精度、动作排序和恢复能力会被合并，无法确定首次失败阶段。
-- 未见任务定义过弱：任务定义未见不等于技能、物体、语言片段或场景先验未见；零样本组合成绩需要同时报告组成部分的训练重叠。
-- 训练预算混杂：跨模型比较若使用不同批量大小、训练步数、冻结策略和计算量，得分同时测量模型与训练规程，而不只是架构能力。
-- 任务族掩盖：GRAIL-风格 pooled 跟踪器会在相关的运动族内 amortize 学习；如果评估汇总不按物体几何、接触模式、地形类型或运动族分层，可能掩盖族外失败。
-- 覆盖范围差距：刚体桌面任务不覆盖可变形物体、绳索与袋子、精确力控制、柔顺交互和复杂摩擦动力学。
-
-## 实践含义
-
-- 对 VLA 模型报告，应同时给出成功、子任务得分、指令类型 breakdown、属性 breakdown 和错误物体失败，而不是只给汇总成功。
-- 对多任务与基础模型评测，应至少分开原子任务、已见组合任务和未见组合任务，并按阶段数报告成功；目标任务是否在预训练中出现必须显式记录。
-- 对数据消融，应把任务覆盖、场景覆盖、示范来源、轨迹质量、采样权重和训练阶段接到 [[RobotLearningDataComposition|机器人学习数据构成]]，避免把“更多数据”当作单一变量。
-- 对基准设计，任务生成应持续加入低重叠物体/任务和受控扰动，避免模型在固定基准上过拟合。
-- 对 [[SimulationRealityGap|仿真到现实迁移]]，仿真基准更适合作为诊断工具：它可以定位敏感性和失败类型，但不能单独证明真实部署可靠。
-- 对 [[CompositionalGeneralizationInRobotics|组合式泛化]]，短时域任务成功仍需要区分视觉 recognition、关系推理推理、过程推理可供性和动作执行的贡献。
-- 对 [[RoboticsSimulationInfrastructure|仿真基础设施]]，策略基准的可维护性要检查场景制作 API、资产序列化、并行评估、可视化工具诊断工具和 ML 循环资源预算。
-
-[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] 补充了人形机器人 RL 的评估视角：对部署型人形机器人策略，评估还需要确定性场景测试和逐关节运动质量诊断信息。RoboLab-风格评估更关注任务库、语言变体、物体分布和错误物体行为；AGILE-风格评估更关注速度/高度扫描、RMS 加速度、加加速度、关节限制违反、高频能量和跨仿真器验证描述文件一致性。两者共同指向同一个原则：只看汇总成功/奖励会掩盖实际部署风险。
-
-GRAIL 进一步提示：当训练数据来自生成的轨迹，评估还应把数据来源本身纳入报告。生成的 HOI 的接触距离、穿透、平滑性、跟踪可执行性、策略层级物体错误和现实世界试验成功属于不同层级；某一层成功不能替代下一层验证。
+[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。

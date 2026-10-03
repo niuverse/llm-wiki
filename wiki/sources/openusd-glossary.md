@@ -9,7 +9,8 @@ source_kind: html
 source_url: https://openusd.org/release/glossary.html
 extracted_text: graph/extracts/openusd-glossary.md
 source_date: unknown
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
+source_type: documentation
 ---
 
 # USD Terms and Concepts
@@ -40,3 +41,7 @@ OpenUSD 官方术语页，用于查证层、场景、图元、属性、关系、
 ## 开放问题
 
 LIVERPS、列表编辑、变体选择和命名空间编辑各需要具体教程与算例。术语页支持定义，不独立证明某个机器人资产组织方案最佳。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。

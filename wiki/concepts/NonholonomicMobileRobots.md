@@ -3,79 +3,60 @@ title: "非完整约束移动机器人"
 type: concept
 tags: [robotics, wheeled-robots, nonholonomic-systems]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]"]
-modified: 2026-07-13
-study_topic: syntheses/simulation-and-assets-learning-path
+modified: 2026-10-04
+topics: ["topics/planning-and-control", "topics/wheeled-robot-modeling"]
 ---
 
 # 非完整约束移动机器人
 
-非完整约束移动机器人不能直接执行某些瞬时速度，例如类汽车机器人不能直接侧移；但这些速度约束不能积分成配置约束，所以机器人仍可能通过组合机动到达任意平面位姿。[[modern-robotics-chapter-13-wheeled-mobile-robots|《现代机器人学》第 13 章]] 用规范模型、Pfaffian 约束和李括号解释这一点；[[structural-properties-and-classification-of-wheeled-mobile-robots|Campion 等人]] 用 $\delta_m,\delta_s$ 对机动性受限的 WMR 做结构化分类。
+非完整约束限制某些瞬时速度，却不能等价写成只含配置的位置约束。例如车不能立即侧移，仍可能通过前进、倒退与转弯完成侧方停车。可达性还取决于允许的控制集合，不能只看状态方程。[[modern-robotics-chapter-13-wheeled-mobile-robots|《现代机器人学》§13.3]]
 
-## 数学结构
+## 速度受限为何仍能改变横向位置
 
-典型非完整约束底盘配置为：
-
-$$
-q=(\phi,x,y)
-$$
-
-规范 simplified 模型写成：
+设平面位姿 $q=(\phi,x,y)$，输入为纵向速度 $v$ 与偏航角速度 $\omega$。简化模型为
 
 $$
-\dot q =
-\begin{bmatrix}
-0 & 1\\
-\cos\phi & 0\\
-\sin\phi & 0
-\end{bmatrix}
-\begin{bmatrix}
-v\\
-\omega
-\end{bmatrix}
+\dot q=g_1(q)v+g_2(q)\omega,
+\quad g_1=(0,\cos\phi,\sin\phi)^\top,
+\quad g_2=(1,0,0)^\top.
 $$
 
-其中 $v$ 是正向速度，$\omega$ 是偏航角比率。该模型隐含一个横向 Pfaffian 约束：
+横向无滑移约束是
 
 $$
-A(q)\dot q =
-\begin{bmatrix}
-0 & \sin\phi & -\cos\phi
-\end{bmatrix}
-\dot q
-=
-\dot x\sin\phi-\dot y\cos\phi=0
+\dot x\sin\phi-\dot y\cos\phi=0.
 $$
 
-这个约束禁止刚体横向速度，但不禁止配置层级横向 displacement。李括号说明了原因。若
+采用 $[g_1,g_2]=Dg_2\,g_1-Dg_1\,g_2$ 的约定，有
 
 $$
-g_1(q)=(0,\cos\phi,\sin\phi)^T,\qquad g_2(q)=(1,0,0)^T
+[g_1,g_2]=(0,\sin\phi,-\cos\phi)^\top.
 $$
 
-则
+这个方向是底盘横向。短时间交替执行两个非交换运动及其逆运动，会产生沿括号方向的二阶净位移；它不是可以立刻输入的第三个速度通道。原始两个向量与括号张成三维切空间，解释了允许双向输入且无障碍时的局部可达性。[[modern-robotics-chapter-13-wheeled-mobile-robots|§13.3 的规范模型与 Lie 括号]]
+
+### 把 Lie 括号还原成四段动作
+
+**教学构造。** 初始朝向为零，先向前走距离 $\ell$，再原地左转 $\alpha$，沿新方向后退同样距离 $\ell$，最后右转回原朝向。差速底盘在允许倒车和原地转向时能够执行这四段，最终位移为
 
 $$
-[g_1,g_2](q)=(0,\sin\phi,-\cos\phi)^T
+\Delta x=\ell(1-\cos\alpha),\qquad \Delta y=-\ell\sin\alpha,\qquad\Delta\phi=0.
 $$
 
-这个 bracket 方向是横向运动。实际执行时，它来自正向/backward 与旋转 motions 的交替组合，位移量是二阶小量。
+若 $\ell=v\varepsilon$、$\alpha=\omega\varepsilon$，小量展开给出 $\Delta y\approx-v\omega\varepsilon^2$，而 $\Delta x=O(\varepsilon^3)$：横向位移是两个控制相互作用的二阶效果。取 $\ell=0.1$ m、$\alpha=0.1$ rad，净位移约为 $(0.00050,-0.00998)$ m。执行过程中每一段都满足横向无滑移，故并未引入一个“侧移速度输入”。此构造用于解释 [[modern-robotics-chapter-13-wheeled-mobile-robots|§13.3.2 的非交换运动]]，不适用于不能原地旋转的汽车控制集合。
 
-## 直觉
+## 方程相似，控制限制可以不同
 
-非完整约束是速度层级限制，不是位置层级的“墙”。车辆不能瞬间横移，但可以通过前后移动与转向完成侧方停车。代价是速度方向受限、局部机动需要时间，并且某些稳定化与控制问题比全向基座更难。
+差速底盘允许通过左右轮反转原地旋转；汽车式底盘有转向几何和最小转弯半径，不能把 $v,\omega$ 当作任意独立输入。只许前进又会进一步改变小时间可控性。若显式保留转向角状态，它还须满足自己的角速度约束。[[modern-robotics-chapter-13-wheeled-mobile-robots|§13.3]]、[[structural-properties-and-classification-of-wheeled-mobile-robots|轮式分类论文 §IV]]
 
-Modern 机器人学的关键对比是：unicycle、diff-驱动和类汽车机器人可以共享同一个规范模型，但控制设置 $U$ 不同。Diff-驱动可以原地旋转；类汽车机器人受最小转弯半径限制；只能前进的 car 没有倒车方向，因此小时间可控性比有倒车档的 car 更弱。
+**可控也不等于容易稳定。** 在论文理想模型条件下，有限机动性底盘的位姿可控，但静止点线性化不完全可控；连续、静态、时不变状态反馈不能将它渐近稳定到孤立静止目标。时变反馈等不同控制类别不受这个特定不可能性结论直接排除。不能简写成“非完整机器人无法稳定”。[[structural-properties-and-classification-of-wheeled-mobile-robots|性质 2–5]]
 
-## 失效情形
+## 状态选取也改变完整性判断
 
-- 控制器不匹配：用全向单积分器控制器直接控制完整底盘位姿会违反非完整约束。
-- 稳定化 trap：规范非完整约束机器人不能被连续时间-invariant 状态 feedback 稳定到原点；需要轨迹跟踪、随时间变化的 feedback 或混合/discontinuous 策略。
-- 规划 simplification 错误：把类汽车机器人当作完整约束 disc 会生成不可执行路径，尤其在窄通道或障碍物附近。
-- 滑移隐藏的 in 模型：skid-steer、履带式车辆和高加速度 diff-驱动会依赖或产生横向滑移，不属于纯无滑移非完整约束模型。
-- 里程计 optimism：车轮编码器集成假设滚动不含 slipping；转向、打滑和脚轮 transient 会破坏该假设。
+在 [[WheeledMobileRobotClassification|五类底盘]] 中，$\delta_m<3$ 表示底盘即时速度受限。但不能反过来说 $\delta_m=3$ 时整台机器人没有非完整性：若状态包含轮子的累计自转角，全向底盘的完整配置仍可能有非完整滚动约束。底盘位姿和完整配置必须分别讨论。[[structural-properties-and-classification-of-wheeled-mobile-robots|§V，性质 6]]
 
-## 实践含义
+**实践含义。** 规划与跟踪应满足实际允许速度、转向限位和是否可倒车；无滑移模型没有证明障碍物环境下任意目标可达。滑移转向与履带依赖不同接触假设，不能用侧向约束简单覆盖。车轮估计误差见 [[MobileRobotOdometry|里程计]]，动力学偏差见 [[SimulationRealityGap|仿真—现实差距]]。
 
-路径规划应使用满足车辆约束的基元，例如 Dubins、Reeds-Shepp、lattice 或 kinodynamic 规划。轨迹跟踪可以在可行参考基准轨迹周围做 feedback，而不是要求机器人直接执行任意位姿错误 vector。
+## 研究归属
 
-与 [[WheeledMobileRobotClassification|轮式移动机器人分类]] 连接时，非完整约束机器人覆盖 Campion 分类体系中 $\delta_m<3$ 的 limited-机动性类型。与 [[SimulationRealityGap|仿真—现实差距]] 连接时，关键是区分“真实非完整约束无滑移约束”和“仿真/硬件中的滑移近似”。
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。
