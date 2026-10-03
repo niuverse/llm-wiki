@@ -4,7 +4,7 @@ type: concept
 tags: [robotics, kinematics, simulation]
 sources: ["[[modern-robotics-homogeneous-transformations]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-policy-deployment]]"]
 modified: 2026-10-02
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ---
 
 # 机器人坐标系与位姿
@@ -54,3 +54,7 @@ MuJoCo 自由关节用七个位置数值表示平移与四元数，却只有六�
 ## 实践含义
 
 比较两套引擎或部署同一策略时，应检查坐标系、单位、姿态参数顺序和关节名；这是由上述机制得到的工程检查建议。下一步读 [[RobotRigidBodyDynamics|动力学]]，追踪速度和力怎样配对；部署检查见 [[PolicyDeploymentContract|策略部署契约]]。
+
+## 研究归属
+
+[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。

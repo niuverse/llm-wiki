@@ -3,188 +3,108 @@ title: "轮式机器人建模学习地图"
 type: synthesis
 tags: [learn, robotics, wheeled-robots, simulation]
 sources: ["[[modern-robotics-chapter-13-wheeled-mobile-robots]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]", "[[contact-models-in-robotics-a-comparative-analysis]]"]
-modified: 2026-07-13
-study_topic: syntheses/simulation-and-assets-learning-path
+modified: 2026-10-04
+topics: ["topics/planning-and-control", "topics/wheeled-robot-modeling"]
 ---
 
 # 轮式机器人建模学习地图
 
-这个页面是轮式移动机器人建模的学习脚手架。当前知识库已经收录 [[modern-robotics-chapter-13-wheeled-mobile-robots|《现代机器人学》第 13 章]] 和 [[structural-properties-and-classification-of-wheeled-mobile-robots|Campion 等人的 WMR 分类论文]]，因此基础运动学、全向与非完整约束的区别、里程计、$\delta_m/\delta_s$ 分类体系，以及中心式与偏心式可转向轮已有来源支持。全向转向实现、滑移转向/履带车辆、轮胎动力学和仿真器专用控制器文档仍需补充来源；接触、求解器和仿真到现实迁移差距的判断回连到 [[ContactModelsInRobotics|机器人学中的接触模型]]、[[ContactComplementarity|接触互补]]、[[ContactSolvers|接触求解器]] 和 [[SimulationRealityGap|仿真—现实差距]]。
+这条学习路线从车轮约束走到控制分配、里程计与物理仿真。基础证据是 [[modern-robotics-chapter-13-wheeled-mobile-robots|《现代机器人学》第 13 章]] 与 [[structural-properties-and-classification-of-wheeled-mobile-robots|Campion 等人的分类论文]]；后者原作发表于 1996 年，本库实际全文是 2011 年俄文译本。跨方法判断和补证队列集中在 [[topics/wheeled-robot-modeling|轮式机器人建模专题]]，本页保留学习顺序和练习。
 
-## 主题边界
+## 先明确模型的假设
 
-本主题关注地面移动机器人中车轮地面交互如何决定底盘运动、控制分配、状态估计和仿真保真度。核心对象包括差分驱动器、Ackermann / 类汽车转向、omni 车轮、mecanum 车轮、全向转向 / 可引导的车轮、脚轮车轮、skid-steer / 履带式基座和 spherical / ball 车轮。
-
-暂时不把 legged 移动、aerial 车辆动力学、manipulator 关节动力学或轮胎 mechanics 的完整高速度车辆模型作为主线。它们会在接触动力学、滑移建模、MPC 或车辆动力学需要时作为扩展。
-
-## 前置知识图
+起点是刚性底盘、硬平水平地面和规定方向上的无滑移滚动。此时运动学回答轮速与底盘速度的几何关系；动力学另问质量、执行器与接触力能否实现运动。教材明确不把履带与滑移转向纳入这套无滑移模型；Campion 的五类结论还需要非退化轮系假设。[[modern-robotics-chapter-13-wheeled-mobile-robots|章首与 §13.1]]、[[structural-properties-and-classification-of-wheeled-mobile-robots|§II]]
 
 ```mermaid
 flowchart LR
-  A["平面刚体运动学<br/>x, y, theta"] --> D["车轮约束"]
-  B["线性代数<br/>秩, 零空间, pseudo-逆"] --> E["控制分配"]
-  C["接触/摩擦基础<br/>法向力, 切向力"] --> F["物理仿真"]
-  D --> G["差分 / Ackermann / omni / mecanum / swerve"]
-  E --> G
-  F --> H["滑移, 求解器残差, 仿真到现实迁移差距"]
-  G --> H
+  A[坐标与平面刚体速度] --> B[单轮滚动和横向约束]
+  B --> C[矩阵秩与可行速度]
+  C --> D[轮速分配和限制]
+  C --> E[非完整性与转向状态]
+  D --> F[编码器增量与里程计]
+  E --> F
+  F --> G[动力学与接触验证]
 ```
 
-学习顺序建议是：先掌握平面刚体旋量，再理解单个轮子的滚动 / 横向约束，然后把多个轮子的约束堆成矩阵，最后进入接触力、摩擦和仿真器求解器。
+图中的学习顺序让每层都有独立检查对象：先检查几何与单位，再判断哪些误差需要进入接触或动力学层。
 
-## 核心概念
+## 第一段：从一个轮子到整车约束
 
-| 概念页 | 证据层级 | 作用 |
-| --- | --- | --- |
-| 车轮形态 | 有来源支持的 | [[structural-properties-and-classification-of-wheeled-mobile-robots|Campion et al.]] 区分固定传统、中心化的可引导的、off-中心化的可引导的/脚轮和 omniwheels。 |
-| 非完整约束 | 有来源支持的 | [[modern-robotics-chapter-13-wheeled-mobile-robots|《现代机器人学》]] 用 $A(q)\dot q=0$ 和李括号解释机器人不能直接侧移，却可以通过组合运动实现横向位移。 |
-| 完整约束 / 全向基座 | 有来源支持的 | [[modern-robotics-chapter-13-wheeled-mobile-robots|Modern 机器人学]] 用 $u=H(0)V_b$ 与秩-3 条件建模 omni / mecanum；Campion 对应类型 $(3,0)$。 |
-| 控制分配 | 有来源支持的 / 实现差距 | 章节 13 支持 $H(0)$、$H^\dagger$ 和车轮速度限制；全向转向模块饱和策略仍需实现文档。 |
-| 接触模型 | 有来源支持的 | 车轮地面力由接触定律、摩擦模型和求解器近似决定；见 [[ContactModelsInRobotics|机器人学中的接触模型]]。 |
-| 求解器残差 | 有来源支持的 | 仿真中的车轮滑移、支持力和摩擦行为可能受 [[ContactSolvers|接触求解器]] 残差影响。 |
-
-## 车轮分类
-
-| 车轮 / 基座类型 | 建模视角 | 优势 | 劣势 |
-| --- | --- | --- | --- |
-| 差分驱动器 | 左右轮速差控制正向速度和偏航角比率。 | 结构简单、低成本、控制和里程计成熟。 | 不能侧移；转向依赖左右轮同步和地面摩擦。 |
-| Ackermann / 类汽车 | 前轮转向，通常后轮驱动或四轮驱动；满足近似 pure 滚动。 | 高速稳定、轮胎磨损小、适合道路车辆。 | 转弯半径有限，低速横向机动性差。 |
-| Omni 车轮 | 轮周小滚子释放侧向约束，使轮子可在非驱动方向被动滚动。 | 可构成简单完整约束基座，低速机动性强。 | 接触 patch 离散，牵引力、效率、越障能力通常较弱。 |
-| Mecanum 车轮 | 斜滚子把每个轮速投影到前后、横向和偏航角。 | 四轮即可全向，机械布局紧凑。 | 对摩擦、载荷分布、地面平整度和滚子建模敏感。 |
-| 全向转向 / 可引导的模块 | 每个轮模块有转向 DOF 和驱动 DOF。 | 全向且牵引力强，高性能移动平台常用。 | 机构复杂，需要处理转向动力学、角度 wrap 和模块同步。 |
-| 脚轮 / 被动车轮 | 被动支撑，方向随运动自对准。 | 简化支撑结构，常用于轻载底盘。 | 会引入 transient 对齐、shimmy 和里程计误差。 |
-| Skid-steer / 履带式基座 | 左右侧速度差转向，转向时依赖横向滑移。 | 越野和高牵引场景强。 | 纯无滑移运动学不够，需要显式处理滑移和地面参数。 |
-| Spherical / ball 车轮 | 通过球面接触实现紧凑全向运动。 | 理论机动性高，结构占用小。 | 机械、驱动、感知和接触仿真都更难。 |
-
-## 数学结构
-
-把底盘看作平面刚体，机体帧中的底盘旋量写成：
+先读 [[WheeledRobotKinematics|轮式机器人运动学]]，统一 $V_b=(\omega,v_x,v_y)^\top$ 的顺序。$\omega$ 为偏航角速度，$v_x,v_y$ 为底盘局部线速度。固定轮心在底盘中的位置为 $(x_i,y_i)$，其随底盘的平移速度是
 
 $$
-\xi = \begin{bmatrix} v_x \\ v_y \\ \omega \end{bmatrix}
+v_i=\begin{bmatrix}v_x-\omega y_i\\v_y+\omega x_i\end{bmatrix}.
 $$
 
-其中 $v_x$ 是前向速度，$v_y$ 是侧向速度，$\omega$ 是偏航角比率。第 $i$ 个轮子相对底盘中心的位置是 $r_i=(x_i,y_i)$，接触点的平面速度为：
+这不是包含轮子自转后的接触材料点总速度。对固定或中心式转向传统轮，滚动方向 $t_i$、横向方向 $n_i$、半径 $r_i$ 与自转角速度 $\dot\theta_i$ 满足
 
 $$
-v_i =
-\begin{bmatrix}
-v_x - \omega y_i \\
-v_y + \omega x_i
-\end{bmatrix}
+t_i^\top v_i=r_i\dot\theta_i,\qquad n_i^\top v_i=0.
 $$
 
-若普通轮或舵轮的滚动方向为 $t_i=[\cos\alpha_i,\sin\alpha_i]^T$，横向方向为 $n_i=[-\sin\alpha_i,\cos\alpha_i]^T$，轮半径为 $r$，则理想滚动运动学可以写成：
+偏置脚轮还包含转向运动对轮心速度的贡献；全向轮则使用滚子允许方向对应的投影。具体推导分别见 [[SteerableWheels|可转向轮]] 和 [[OmnidirectionalWheels|全向轮]]。
+
+**先算一遍，再变化条件。** 沿 [[WheeledRobotKinematics#手算差速轮系：把坐标变成可检查的式子|差速轮系数值例子]]核算左右轮 3、7 rad/s，再将偏航角速度变为零或变号。随后分别输入纯前进、纯侧移、纯旋转，逐轮检查横向约束。发现约束不成立时，先判定指令不可行；伪逆不能把不可行运动变成无滑移运动。
+
+## 第二段：区分即时机动、转向与长期可达
+
+读 [[WheeledMobileRobotClassification|轮式移动机器人分类]]。固定轮和中心转向轮的侧向约束叠成 $C_1^*$，中心转向部分为 $C_{1c}$，则
 
 $$
-\dot\phi_i = \frac{1}{r}t_i^T v_i
+\delta_m=3-\operatorname{rank}C_1^*,\qquad
+\delta_s=\operatorname{rank}C_{1c},\qquad
+\delta_M=\delta_m+\delta_s.
 $$
 
-$$
-n_i^T v_i = 0
-$$
+$\delta_m$ 是当前轮角下的即时速度自由度，$\delta_s$ 是满足轮系兼容性的独立中心转向自由度。它们都不等于驱动或转向电机数量。五类 $(3,0),(2,0),(2,1),(1,1),(1,2)$ 的条件、示例与电机满秩要求留在概念和 [[structural-properties-and-classification-of-wheeled-mobile-robots|论文页]]。
 
-第一个式子把接触点沿轮子滚动方向的速度转换成车轮 spin 比率 $\dot\phi_i$；第二个式子是横向无滑移约束，表示普通轮不能沿侧向滑动。差分驱动器、Ackermann 和固定车轮移动式基座都可以看作这些约束的不同组合。
+再读 [[NonholonomicMobileRobots|非完整约束移动机器人]]：不能瞬间侧移仍可能通过多段机动到达侧向位置；能否倒车、转向限位和障碍物会改变可达条件。$(1,2)$ 即使操纵度为 3，也需要时间调整轮角。另一方面，$(3,0)$ 的底盘即时全向，不表示包含车轮自转角的完整配置没有非完整约束。
 
-对 omni / mecanum / 全向转向这类全向结构，常用统一矩阵形式：
+**学习练习。** 先做 [[WheeledMobileRobotClassification#为什么数轮子不如算独立约束|从共轴两轮到三轮车的秩计算]]，再用 [[NonholonomicMobileRobots#把 Lie 括号还原成四段动作|四段机动]]理解长期可达性。对差速、汽车式和两中心转向轮构型，分别写“固定当前轮角的速度空间”和“允许调整轮角后的路径”；明确哪些控制动作确实允许。
 
-$$
-\dot\phi = \frac{1}{r}A\xi
-$$
+## 第三段：轮速分配与反向估计
 
-其中 $A$ 的每一行来自一个车轮/模块的位置、安装角、滚轮角度或转向角度。若 $A$ 的秩为 3，底盘在平面内可以控制 $v_x$、$v_y$ 和 $\omega$；若秩不足，则存在无法直接实现的速度方向。用 pseudo-逆做逆运动学时：
+对固定几何的全向轮系，驱动角速度向量 $u$ 与底盘速度满足
 
 $$
-\xi = rA^+\dot\phi
+u=H V_b,
 $$
 
-这条式子的实践含义是：不要把 mecanum 或 omni 的公式当成孤立模板背诵，而要检查几何矩阵的秩、条件数值、车轮速度限制和饱和策略。
+$H$ 包含轮位置、半径、驱动与滚子方向。满秩 $\operatorname{rank}H=3$ 表示三个底盘速度方向可控。给定 $V_b$，轮速命令由矩阵乘法直接得到；从测得轮速反推底盘速度才使用 $\hat V_b=H^\dagger u$。对于冗余轮系，任意轮速向量可能不相容，伪逆只给拟合结果。[[modern-robotics-chapter-13-wheeled-mobile-robots|§13.2.1、§13.4]]
 
-## 转向轮直觉
+轮速上限 $|h_iV_b|\le u_{i,\max}$ 给出可行旋量域，$h_i$ 为第 $i$ 行。**练习建议：** 比较统一缩放一致轮速与逐轮独立截断后的残差，检查后者是否仍属于 $H$ 的列空间。
 
-全向转向模块的逆解可以从每个模块接触点的期望速度出发。对第 $i$ 个模块：
+中心式转向模块不能直接视作同一个固定 $H$ 的全向底盘。理想轮心速度可以用于选择目标滚动方向，但当前轮角、转向速率和共同瞬时转动中心仍须满足约束。现代模块实现的角度选支、零位与饱和细节见 [[SteerableWheels|可转向轮中的实现检查]]；本库当前没有足够专用来源给出所有模块的通用性能排序。
 
-$$
-u_i =
-\begin{bmatrix}
-v_x - \omega y_i \\
-v_y + \omega x_i
-\end{bmatrix}
-$$
+## 第四段：编码器增量怎样变成位姿
 
-理想转向角度和车轮速度为：
+读 [[MobileRobotOdometry|移动机器人里程计]]。采样间隔为 $\Delta t$，轮角增量为 $\Delta\theta$，在区间速度近似恒定时，
 
 $$
-\delta_i = \operatorname{atan2}(u_{iy},u_{ix})
+\bar V_b=H^\dagger\frac{\Delta\theta}{\Delta t},\qquad
+\chi=\bar V_b\Delta t=H^\dagger\Delta\theta.
 $$
 
-$$
-\dot\phi_i = \frac{\|u_i\|}{r}
-$$
+$\bar V_b$ 是速度，$\chi$ 是积分旋量；两者单位不同。转弯时积分旋量的线性部分也不等于实际局部平移，应经平面刚体指数映射，再用旧朝向转入世界坐标。教材归一化时间为 1 的写法不能脱离说明直接复制到真实采样循环。[[modern-robotics-chapter-13-wheeled-mobile-robots|§13.4]]
 
-工程实现里还要加入转向比率限制、角度 wrap、驱动器 reversal、模块 zero 标定、低速度奇异位形处理和车轮速度 desaturation。也就是说，全向转向的数学逆解很短，但可靠控制主要难在执行器限制、状态估计和模块同步。
+**学习练习。** 复算 [[MobileRobotOdometry#带单位算一个圆弧，检查时间是否多乘了一次|0.1 s 内左右轮转过 1、2 rad 的例子]]，再把采样间隔改为 0.2 s：速度应减半，位移不变。分别验证直线、圆弧与小转角极限，确认没有多乘一次时间，也没有用新朝向替代旧朝向做坐标变换。
 
-## 从运动学到动力学
+## 第五段：何时需要动力学与接触
 
-运动学只描述车轮速度与底盘速度的理想关系。物理仿真和真实机器人还要决定接触力：
+理想运动学没有检查法向支持、摩擦或可用力矩。接触定律、摩擦约束与数值求解相互影响，应该分别查看 [[ContactModelsInRobotics|机器人学中的接触模型]]、[[ContactComplementarity|接触互补]]、[[ContactSolvers|接触求解器]] 与 [[SimulationRealityGap|仿真—现实差距]]，不能把“仿真中能侧移”当作模型正确的充分条件。
 
-$$
-M(q)\dot v + h(q,v) = S^T\tau + J_c(q)^T\lambda
-$$
+**以下是分层验证建议，不是已验证的统一仿真方案：** 先以几何模型检查可行命令和单位，再加入关节、惯量与执行器限制，最后按目标任务检查接触力、滑移和里程计偏差。是否需要显式滚子、轮胎变形或某种摩擦近似，要依据相应来源和真实测量决定；不预先断言哪种轮型牵引更强、效率更高或高速更稳定。
 
-其中 $M(q)$ 是质量矩阵，$h(q,v)$ 包含重力、Coriolis 和其他偏差条款，$S^T\tau$ 是执行器力矩，$J_c(q)$ 是接触雅可比矩阵，$\lambda$ 是接触力或冲量。轮式机器人中，$\lambda$ 会受法向负载、摩擦 coefficient、滑移速度、地面几何、车轮柔顺性和求解器残差影响。
+## 复习时应能回答
 
-这部分与当前知识库的有来源支持的接触页面直接相连：[[ContactComplementarity|接触互补]] 解释 non-穿透与摩擦边界的数学约束，[[ContactSolvers|接触求解器]] 解释仿真器如何近似求解接触冲量，[[SimulationRealityGap|仿真—现实差距]] 解释这些近似如何进入 MPC、RL 和硬件迁移。
+- 为什么轮心平移速度与接触材料点速度不同？
+- 为什么轮数多于三时，给定底盘速度仍能直接算轮速，但任意轮速可能不对应无滑移运动？
+- 为什么操纵度为 3 不一定能瞬时侧移，全向底盘的完整配置又仍可能非完整？
+- 为什么 $H^\dagger\Delta\theta$ 不是带真实时间单位的速度？
+- 轨迹不匹配来自几何标定、执行器跟踪、积分假设还是接触滑移，应怎样分别检查？
 
-## 仿真路径
+后续研究问题与优先补证统一维护在 [[topics/wheeled-robot-modeling#未解问题与优先补证|专题的未解问题与优先补证]]；本学习页不另设资料队列。
 
-第一阶段建议写运动学仿真器：给定目标 $\xi$ 计算车轮命令，再用车轮命令反算里程计。验证直线、原地旋转、圆弧、侧移、组合运动和速度饱和。
+## 研究归属
 
-第二阶段进入控制器层级物理：在仿真器中使用真实关节、质量、惯量、车轮 radius 和执行器限制，但对 omni / mecanum 可以先用完整约束控制器或 anisotropic 摩擦近似，避免一开始就显式建每个小滚子。
-
-第三阶段才做高保真度接触：显式建滚轮几何、车轮柔顺性、摩擦 anisotropy、滑移和接触求解器场景。这个阶段的目标不是“画得像”，而是验证接触力、滑移比率、里程计漂移和仿真到现实迁移敏感性是否符合任务需求。
-
-## 失效情形
-
-- 运动学 overconfidence：公式层面可全向，不代表真实平台在低摩擦、载荷偏置或速度饱和下仍能全向。
-- 秩 / 条件化问题：车轮几何秩为 3 只是可控性门槛；条件数值差会放大编码器误差和命令误差。
-- 车轮速度饱和：pseudo-逆输出的车轮速度可能超过硬件限制，需要统一缩放或重新优化分配。
-- 横向滑移不匹配：差分、Ackermann 和 skid-steer 在转向时很容易违反理想无滑移假设。
-- 滚轮接触产物：omni / mecanum 的小滚子接触会产生离散接触、振动和力矩 ripple；仿真中常被简化。
-- 求解器-依赖的行为：不同 [[ContactSolvers|接触求解器]] 可能给出不同摩擦冲量、支持力和 sliding 行为。
-- 里程计漂移：轮速积分假设滚动不含 slipping，实际滑移、脚轮 transient 和地面柔顺性会让位姿估计值漂移。
-
-## 实践连接
-
-- 对 MPC：先决定使用运动学模型还是动力学/接触感知模型；复杂地面、急加速和高载荷时，接触不匹配可能主导误差。
-- 对 RL：如果用物理仿真器训练车轮策略，需要域随机化摩擦、质量、延迟、motor 强度和地面柔顺性，同时审计 [[SimulationRealityGap|仿真—现实差距]]。
-- 对系统辨识：优先估计车轮半径、轮距、转向零位、电机死区、摩擦与滑移参数以及延迟。
-- 对仿真到现实迁移：先用简单轨迹校准运动学层，再用激烈机动暴露滑移和接触求解器不匹配。
-- 对机器人设计：mecanum/omni 提供机动性，全向转向提供更强牵引和效率，Ackermann 提供高速稳定；选择应由任务空间、地面、载荷、速度和维护成本决定。
-
-## 误解图谱
-
-| Misconception | 校正 |
-| --- | --- |
-| 全向轮就是没有约束。 | 全向结构是通过滚轮或转向 DOF 释放某些约束，并通过多个轮子的速度投影合成底盘旋量。 |
-| Mecanum 公式适用于所有安装方式。 | 公式依赖车轮顺序、滚轮角度、坐标系和符号约定；应从几何矩阵 $A$ 推导。 |
-| 仿真里能侧移就说明模型正确。 | 还需要检查力、滑移、载荷分布、求解器残差和现实平台的轨迹跟踪。 |
-| Skid-steer 可以用差分驱动器无滑移模型精确描述。 | Skid-steer 转向本质依赖横向滑移，纯无滑移模型只能作为低保真近似。 |
-| 全向转向只是 mecanum 的高级版本。 | 全向转向用主动转向改变车轮方向，牵引和效率更好，但控制和机构复杂度更高。 |
-
-## 证据边界
-
-当前页面中关于基础轮式运动学、全向轮/麦克纳姆轮秩条件、非完整约束规范模型、里程计和 Campion $\delta_m/\delta_s$ 分类体系的判断，由 [[modern-robotics-chapter-13-wheeled-mobile-robots|Modern Robotics 轮式机器人章节]] 与 [[structural-properties-and-classification-of-wheeled-mobile-robots|轮式机器人结构与分类论文]] 支持。关于接触定律、求解器残差和仿真到现实迁移差距的判断，由 [[ContactModelsInRobotics|机器人学中的接触模型]]、[[ContactComplementarity|接触互补]]、[[ContactSolvers|接触求解器]]、[[SimulationRealityGap|仿真—现实差距]] 支持。全向转向专用控制器、滑移转向/履带车辆、可变形轮胎动力学和仿真器专用 API 仍属于待收录缺口。
-
-## 来源获取计划
-
-| 优先级 | 候选来源 | Kind | 用途 | 建议 |
-| --- | --- | --- | --- | --- |
-| 已完成 | Modern 机器人学章节 13: 轮式移动式机器人 | 教材 / 讲义 | 已建立 [[WheeledRobotKinematics|轮式机器人运动学]]、[[OmnidirectionalWheels|全向轮]]、[[NonholonomicMobileRobots|非完整约束移动机器人]]、[[MobileRobotOdometry|移动机器人里程计]] 的基础。 | 已收录 |
-| 已完成 | Campion, Bastin, D'Andrea-Novel, "Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots" | 奠基论文 | 已建立 [[WheeledMobileRobotClassification|轮式移动机器人分类]] 与 [[SteerableWheels|可转向轮]] 的分类体系基础。 | 已收录 |
-| 1 | ROS 2 控制移动式基座控制器文档 | 实现文档 | 对接差分驱动器、Ackermann、mecanum 等控制器接口、里程计和命令语义。 | 收录 selected 页面 |
-| 2 | Isaac Sim 移动式机器人控制器文档 | 实现文档 | 理解 Isaac Sim 中差分、完整约束/mecanum 和轮式机器人控制器工作流。 | 收录 selected 页面 |
-| 3 | MuJoCo 接触 / 摩擦文档 | 仿真器文档 | 理解车轮仿真中摩擦锥体、接触 dimension、滚动/sliding 摩擦和求解器参数。 | 收录 selected 页面 |
-| 4 | 车辆动力学或轮胎建模笔记 | 数学 | 扩展到滑移角度、Pacejka 轮胎模型、高速度转向和动力学 bicycle 模型。 | 背景 first |
-
-后续收录顺序建议是：先补 ROS 2 控制 / Isaac Sim 移动式机器人控制器，把实现语义接上；再补 MuJoCo 接触/摩擦文档与车辆动力学/轮胎建模来源，把车轮地面接触仿真和 skid/轮胎 regimes 补齐。
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。

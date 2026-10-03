@@ -12,7 +12,8 @@ source_date: unknown
 source_version: official-lesson-transcript
 acquired: 2026-10-02
 snapshot_sha256: 2c249299585a645ed5287effcff2d0ab896286dcb86ed49b838b8df4d87a9f53
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
+source_type: tutorial
 ---
 
 ## 摘要
@@ -41,3 +42,7 @@ Kevin Lynch 与 Frank Park 的官方课程用齐次变换统一刚体位姿、�
 ## 归档记录
 
 规范网址、版本与获取日期见页首；本次原始文件的 SHA-256 为 `2c249299585a645ed5287effcff2d0ab896286dcb86ed49b838b8df4d87a9f53`，归档登记在 `graph/acquisitions.jsonl`。
+
+## 研究归属
+
+[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。

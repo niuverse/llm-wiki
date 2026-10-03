@@ -12,7 +12,8 @@ source_date: unknown
 source_version: mujoco-3.8.0-documentation
 acquired: 2026-10-02
 snapshot_sha256: d67c4888c7756d8e82e027faf4976216639272eb5b2322a3b5f2ca3897947b93
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/physics-simulation", "topics/evaluation-and-transfer", "topics/contact-modeling", "topics/collision-geometry", "topics/simulation-transfer"]
+source_type: documentation
 ---
 
 ## 摘要
@@ -46,3 +47,7 @@ MuJoCo 官方计算章从 $M\dot v+c=\tau+J^Tf$ 连接执行器、连续动力�
 ## 归档记录
 
 规范网址、版本与获取日期见页首；本次原始文件的 SHA-256 为 `d67c4888c7756d8e82e027faf4976216639272eb5b2322a3b5f2ca3897947b93`，归档登记在 `graph/acquisitions.jsonl`。
+
+## 研究归属
+
+[[topics/physics-simulation|物理仿真]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。

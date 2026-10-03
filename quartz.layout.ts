@@ -1,12 +1,7 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
-import StudyNavigation from "./quartz/components/StudyNavigation"
 import KnowledgeMeta from "./quartz/components/KnowledgeMeta"
-import KnowledgeBreadcrumbs from "./quartz/components/KnowledgeBreadcrumbs"
 import KnowledgeRelations from "./quartz/components/KnowledgeRelations"
-import { QuartzComponentProps } from "./quartz/components/types"
-
-const isArticle = (page: QuartzComponentProps) => page.fileData.slug !== "index"
 
 const navigation = [
   Component.PageTitle(),
@@ -18,53 +13,60 @@ const navigation = [
       { Component: Component.ReaderMode() },
     ],
   }),
-  StudyNavigation(),
+  Component.Explorer({
+    title: "笔记目录",
+    folderClickBehavior: "link",
+    folderDefaultState: "collapsed",
+    filterFn: (node) => !["tags", "domains"].includes(node.slugSegment),
+    mapFn: (node) => {
+      const names: Record<string, string> = {
+        topics: "主题地图",
+        sources: "论文与资料",
+        concepts: "共享概念",
+        syntheses: "学习与综合",
+        entities: "项目与工具",
+      }
+      if (node.isFolder && names[node.slugSegment]) node.displayName = names[node.slugSegment]
+    },
+  }),
 ]
 
-// components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [
-    Component.ConditionalRender({ component: KnowledgeRelations(), condition: isArticle }),
-    Component.ConditionalRender({
-      component: Component.RecentNotes({
-        title: "最近审阅",
-        limit: 4,
-        showTags: false,
-        filter: (f) => f.frontmatter?.type === "concept" && Boolean(f.frontmatter?.modified),
-      }),
-      condition: (page) => page.fileData.slug === "index",
-    }),
-  ],
-  footer: Component.Footer({
-    links: {
-      GitHub: "https://github.com/niuverse/llm-wiki",
-    },
-  }),
+  afterBody: [KnowledgeRelations()],
+  footer: Component.Footer({ links: { GitHub: "https://github.com/niuverse/llm-wiki" } }),
 }
 
-// components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
     Component.ConditionalRender({
-      component: KnowledgeBreadcrumbs(),
-      condition: (page) => page.fileData.slug !== "index",
+      component: Component.Breadcrumbs(),
+      condition: (p) => p.fileData.slug !== "index",
     }),
-    Component.ConditionalRender({ component: Component.ArticleTitle(), condition: isArticle }),
-    Component.ConditionalRender({ component: Component.ContentMeta(), condition: isArticle }),
+    Component.ArticleTitle(),
+    Component.ConditionalRender({
+      component: Component.ContentMeta(),
+      condition: (p) => !["navigation", "redirect"].includes(String(p.fileData.frontmatter?.type)),
+    }),
     KnowledgeMeta(),
   ],
   left: navigation,
   right: [
-    Component.ConditionalRender({ component: Component.TableOfContents(), condition: isArticle }),
-    Component.ConditionalRender({ component: Component.Backlinks(), condition: isArticle }),
+    Component.ConditionalRender({
+      component: Component.Graph({
+        localGraph: { showTags: false },
+        globalGraph: { showTags: false },
+      }),
+      condition: (p) =>
+        !["navigation", "redirect", "domain"].includes(String(p.fileData.frontmatter?.type)),
+    }),
+    Component.DesktopOnly(Component.TableOfContents()),
   ],
 }
 
-// components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
-  beforeBody: [KnowledgeBreadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
+  beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle()],
   left: navigation,
   right: [],
 }

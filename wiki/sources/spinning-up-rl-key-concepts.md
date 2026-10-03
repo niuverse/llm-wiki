@@ -9,7 +9,8 @@ source_kind: html
 source_url: https://spinningup.openai.com/en/latest/spinningup/rl_intro.html
 extracted_text: graph/extracts/spinning-up-rl-key-concepts.md
 source_date: unknown
-study_topic: syntheses/robot-learning-and-evaluation-learning-path
+topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/world-model-decision", "topics/policy-evaluation"]
+source_type: tutorial
 ---
 
 ## 摘要
@@ -37,3 +38,7 @@ OpenAI 的基础教程定义状态、观测、动作、策略、轨迹、回报�
 ## 开放问题
 
 该页不覆盖部分可观测控制的完整推导、约束 RL 或奖励设计理论；这些主题需要单独收录。
+
+## 研究归属
+
+[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-model-decision|世界模型如何用于决策]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。

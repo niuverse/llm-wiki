@@ -4,7 +4,7 @@ type: concept
 tags: [openusd, usda, syntax, scene-description, composition]
 sources: ["[[learn-openusd-stage]]", "[[learn-openusd-file-formats]]", "[[learn-openusd-prim-composition]]", "[[openusd-glossary]]", "[[openusd-introduction]]"]
 modified: 2026-09-30
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 ---
 
 # USDA 文件语法
@@ -91,3 +91,7 @@ USDA 适合小接口层、审查和差异比较；大量网格、拓扑与密集
 练习：先用 `Usd.Stage.CreateNew()` 创建空层，再 `DefinePrim("/World", "Xform")`；逐步加属性、关系、子层与引用，每步用 `ExportToString()` 或 `usdcat` 对照文本。这是依照教程整理的学习安排。
 
 阅读顺序：[[learn-openusd-stage|场景入门]] → [[learn-openusd-prim-composition|图元组合]] → [[openusd-glossary|术语与求值]] → [[IsaacSimAssetStructure|机器人资产分层]]。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。

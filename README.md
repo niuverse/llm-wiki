@@ -1,6 +1,6 @@
 # Niuverse LLM Wiki
 
-这是一个面向 Obsidian、Codex 和 Quartz 的个人知识库。网站按仿真与资产、机器人学习与评测、世界模型、智能体工具四个主题组织阅读；学习路径、正文和证据都保存在 `wiki/`。
+这是一个面向 Obsidian、Codex 和 Quartz 的个人研究知识库。以机器人与具身智能为主干，用交叉主题地图连接论文、共享概念、项目与学习笔记；正文统一保存在 `wiki/`。
 
 - `raw/`：不可变原始资料。
 - `wiki/`：知识层，也是 Obsidian 笔记库和 Quartz 内容目录。
@@ -28,11 +28,11 @@ refresh 机器人仿真
 
 这两个入口由 Codex 执行 [.agents/skills/wiki-research/SKILL.md](.agents/skills/wiki-research/SKILL.md)，不是终端命令。一次请求会按主题搜索可靠资料、保存原始证据、完整阅读、更新概念与学习路径、补充双向链接，并运行检查；不需要逐篇选资料。
 
-`research` 优先补齐主题机制，`refresh` 比较已有来源与新版本，复用相同内容并保留旧快照。每轮更新覆盖记录、目录与日志；未知问题集中在研究问题页，不把候选资料当成已验证知识。首次世界模型与仿真研究的覆盖记录见 [研究地图](wiki/syntheses/world-models-and-simulation-research.md)。
+`research` 优先补齐主题机制，`refresh` 比较已有来源与新版本，复用相同内容并保留旧快照。每轮更新覆盖记录、目录与日志；未知问题维护在各研究专题，研究问题索引自动汇总入口，不把候选资料当成已验证知识。首次世界模型与仿真研究的覆盖记录见 [研究地图](wiki/syntheses/world-models-and-simulation-research.md)。
 
 研究按需运行，公开发布由你触发。没有额外后台服务、定时调度或 API 密钥要求；联网搜索和知识整合使用当前 Codex 会话能力。
 
-## Local Preview
+## 本地预览
 
 首次使用先安装依赖：
 
@@ -55,15 +55,31 @@ npm run wiki:preview -- --port 8081 --wsPort 8082
 
 浏览器访问 `http://<本机内网 IP>:8081/`，HTTP 页面与自动刷新分别使用 8081、8082。预览命令会持续监听 Markdown 修改；关闭命令后预览停止。更改 TypeScript 布局或组件后，若增量构建仍显示旧布局，重新启动预览。
 
-主题入口由学习路径页的 `study_order`、`nav_title` 和 `description` 生成；页面的 `study_topic` 关联所属路径。新增知识页时同步登记目录与日志，正文使用中文显示别名保持链接可读，文件名无需改动。
+## 研究结构
 
-## 学习交互
+- `wiki/topics/`：交叉主题地图与具体研究专题，没有强制的单一父领域。
+- `wiki/sources/`：论文、项目、官方文档与教材。论文用 `source_type: paper` 标记，其他资料保留各自证据性质。
+- `wiki/concepts/`：跨论文复用的基础机制；论文引用这些解释，并在本页讲清自己的应用方式、假设和改进。
+- `wiki/syntheses/`：基础学习路径与综合笔记。
+- `wiki/entities/`：多个来源共享的项目与工具入口。
+- `wiki/domains/`：旧领域地址的迁移入口，仅用于兼容历史链接。
 
-首页可按主题、页面类型、关键词和阅读记录筛选，在页面列表与关系图之间切换。关系图的箭头指向被引用页；文章下方可展开局部图及入链／出链表，沿原有双向链接继续阅读。
+首页以世界模型与表征、机器人策略学习、规划与控制、物理仿真、三维资产与场景生成、评测与现实迁移六个地图为入口；工具笔记单列。它们互相交叉，具体专题不必选唯一归属。主题的 `entry: research | tools` 和 `nav_order` 只决定首页导航位置；知识页的 `topics` 表示多个研究关联，正文 WikiLinks 同时服务 Obsidian 和 Quartz。
 
-“已读”由你主动标记，收藏和阅读记录保存在当前浏览器；不会因滚动到底自动认定学会，也不会同步到其他设备。课程视频与方法演示放在相关知识页，正文保留来源和观看目的。
+论文解析侧重研究问题、特有设计、信息流、必要推导与证据；共享原理只维护一处。项目解析沿实际执行过程解释模块和接口，分别标注文档说明、固定版本静态代码核查及运行验证。维护规范见 [.agents/skills/wiki-research/references/deep-reading.md](.agents/skills/wiki-research/references/deep-reading.md)。
 
-## Build
+网站恢复 Quartz 原生目录、搜索、图谱和反向链接组件；首页直接渲染 Markdown，不使用独立仪表盘。知识页正文下提供“本页引用／反向链接”两列，图谱和关系表排除纯目录及旧地址入口，避免把目录收录当成研究关联。论文库保留专题、年份和关键词筛选；已读与收藏沿用当前浏览器的记录，不跨设备同步。
+
+以下命令生成简洁首页、完整目录、论文库、其他资料和研究问题索引；不要手改生成页：
+
+```bash
+uv run python tools/build_catalog.py
+uv run python tools/build_catalog.py --check
+```
+
+生成器只组织显式元数据，不生成研究结论。`index.md` 提供简洁入口，`catalog.md` 收录所有页面；健康检查同时验证两者覆盖。
+
+## 构建
 
 生成静态站点：
 
@@ -73,7 +89,7 @@ npm run wiki:build
 
 输出目录是 `public/`，已加入 `.gitignore`。
 
-## Maintenance Tools
+## 维护工具
 
 结构检查：
 
@@ -81,33 +97,33 @@ npm run wiki:build
 npm run wiki:health
 ```
 
-从 source 生成 reading cache：
+从原始资料生成阅读缓存：
 
 ```bash
 npm run wiki:extract -- raw/pi07.pdf
 ```
 
-需要启用 MarkItDown plugins/OCR 或 image descriptions 时：
+需要启用 MarkItDown 插件、文字识别或图像描述时：
 
 ```bash
 npm run wiki:extract -- --use-plugins raw/example.png
 npm run wiki:extract -- --llm-model gpt-4o raw/example.png
 ```
 
-生成显式 WikiLink graph 和 report：
+生成显式 WikiLink 关系图与报告：
 
 ```bash
 npm run wiki:graph
 ```
 
-这些 tools 不做 wiki synthesis；它们只负责确定性检查、MarkItDown source conversion 和 graph artifacts。
+这些工具只负责确定性检查、资料提取和关系图生成，不自动撰写知识综合。
 
-## Deploy
+## 发布
 
-GitHub Pages 使用 `.github/workflows/deploy.yml`。推送到 `main` 后，workflow 会运行：
+GitHub Pages 使用 `.github/workflows/deploy.yml`。推送到 `main` 后，发布流程会运行：
 
 ```bash
 npm run wiki:build
 ```
 
-然后把 `public/` 发布到 GitHub Pages。仓库设置里需要把 Pages source 设为 `GitHub Actions`。
+然后把 `public/` 发布到 GitHub Pages。仓库设置里需要把 Pages 的发布来源设为 `GitHub Actions`。

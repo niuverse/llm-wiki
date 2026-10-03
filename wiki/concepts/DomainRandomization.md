@@ -3,13 +3,13 @@ title: "域随机化：学习一组环境中的行为"
 type: concept
 tags: [robotics, simulation, sim-to-real, reinforcement-learning]
 sources: ["[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]"]
-modified: 2026-10-02
-study_topic: syntheses/simulation-and-assets-learning-path
+modified: 2026-10-04
+topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ---
 
 # 域随机化：学习一组环境中的行为
 
-域随机化将真实与仿真的未知差异表达为训练环境的变化，让模型在一组条件中学习。它可以作用于图像外观，也可以作用于动力学、控制时序或观测噪声；这些变化不应混成一个“随机化强度”。
+域随机化将真实与仿真的未知差异表达为训练环境的变化，让模型在一组条件中学习。[[tobin-domain-randomization|Tobin 的视觉定位实验]] 与 [[peng-dynamics-randomization|Peng 的推动控制实验]] 提供的是不同层面的证据。它可以作用于图像外观，也可以作用于动力学、控制时序或观测噪声；这些变化不应混成一个“随机化强度”。
 
 ## 数学结构
 
@@ -34,6 +34,22 @@ $$
 
 循环策略可以利用历史 $h_t=(o_{0:t},a_{0:t-1})$ 更新记忆 $z_t$，再输出 $a_t=\pi_\theta(o_t,z_t)$。Peng 的 LSTM 结果支持其在特定任务中适应不同动力学；不证明 $z_t$ 唯一恢复了真实物理参数。
 
+### 平均目标怎样分配学习注意力
+
+把上式写成离散的两个域，就有 $J(\theta)=pJ_1(\theta)+(1-p)J_2(\theta)$，梯度也是 $p\nabla J_1+(1-p)\nabla J_2$。因此采样概率既决定看见某种情况的频率，也决定它对优化方向的相对影响。**教学例子：** 若一种少见接触只占 1%，它虽然在分布支持范围内，其失败也可能被另外 99% 的收益掩盖；“包含真实参数”与“充分学会真实任务”并不是同一条件。
+
+扩大范围还可能要求相互冲突的动作。只读当前观测的策略只能折中；历史若能区分当前处于哪个域，便可能选择不同动作。这个解释连接了 [[peng-dynamics-randomization|Peng 的循环适应]] 与 [[simopt-adaptive-randomization|SimOpt 的分布校准]]：前者改善条件化行为，后者改变哪些条件值得采样。它不是新增实测结果，也不声称二者可解决所有不可观测冲突。
+
+## 实验告诉我们什么
+
+| 对照 | 支持的机制 | 不能泛化的部分 |
+| --- | --- | --- |
+| [[tobin-domain-randomization|Tobin，表 II]]：去掉训练干扰物后，杂乱场景定位误差从 1.8 cm 增至 7.2 cm | 选择与任务相关的变化维度，比只增加像素噪声更重要 | 已知几何目标、固定桌面；不是未知物体操作保证 |
+| [[peng-dynamics-randomization|Peng，表 III]]：固定动作时长后，真实成功率从约 89% 降至约 29% | 动作执行时序是动力学迁移的一部分 | 单一圆盘推动任务，各项真实次数不同；不是通用延迟容忍阈值 |
+| [[simopt-adaptive-randomization|SimOpt，第 IV-C 节]]：过宽的抽屉位置分布导致策略只接近把手 | 可行性与优化难度会限制随机化范围 | 不证明所有任务扩大分布都会退化 |
+
+这些对照中的数值和不确定性应到论文页连同测试条件一起读。循环记忆、随机化维度和参数分布更新分别回答“如何适应”“变化什么”和“怎样选分布”，不能用一个成功率替代三种机制的比较。
+
 ## 直觉
 
 随机化不要求每张图像都逼真，而要求模型不能依赖训练中的偶然特征。动力学随机化也不要求一个标称模型完美，但需要选对影响行为的变化维度。[[SystemIdentificationForSimulation|系统辨识]] 用真实数据缩小或调整这些变化，两者可以协同。
@@ -47,4 +63,8 @@ $$
 
 ## 实践含义
 
-每次训练都应保存参数、分布、采样时刻及相关性，检查哪些来自测量、哪些来自假设。对已知关节顺序与动作缩放错误，先修 [[PolicyDeploymentContract|接口契约]]；对未知物理偏差，再设计随机化或 [[SystemIdentificationForSimulation|辨识]]。不要通过盲目扩大分布掩盖确定性配置错误。
+以下是基于上述实验的设计建议，不是已经比较验证的统一最优流程。每次训练都应保存参数、分布、采样时刻及相关性，检查哪些来自测量、哪些来自假设。对已知关节顺序与动作缩放错误，先修 [[PolicyDeploymentContract|接口契约]]；对未知物理偏差，再设计随机化或 [[SystemIdentificationForSimulation|辨识]]。不要通过盲目扩大分布掩盖确定性配置错误。
+
+## 研究归属
+
+[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。

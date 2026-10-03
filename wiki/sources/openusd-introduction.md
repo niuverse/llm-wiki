@@ -9,7 +9,8 @@ source_kind: html
 source_url: https://openusd.org/release/intro.html
 extracted_text: graph/extracts/openusd-introduction.md
 source_date: unknown
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
+source_type: documentation
 ---
 
 # Introduction to USD
@@ -61,3 +62,7 @@ Pixar 动画 Studios 是 [[openusd-introduction|Introduction 到 USD]] 的版权
 - 本来源给出 compact introduction，但很多术语仍链接到 glossary；后续应收录 `glossary.html` 来补齐 `Stage`、`Prim`、`LayerStack`、LIVRPS strength 顺序、价值分辨率、载荷 loading 等精确定义。
 - 机器人学 / 仿真方向还需要收录 OpenUSD 物理结构规范、刚性机体物理 proposal、Isaac Sim 机器人结构规范 / 资产验证文档，才能把一般性 USD 组合与仿真器语义更严密地连接起来。
 - 来源说明 USD 不是骨骼绑定系统，但提到 OpenExec computation 引擎；如果学习目标涉及过程推理 computation、约束求解或动画骨骼绑定，需要单独收录 `intro_to_openexec.html`。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。

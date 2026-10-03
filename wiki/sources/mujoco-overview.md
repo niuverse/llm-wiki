@@ -9,7 +9,8 @@ source_kind: html
 source_url: https://mujoco.readthedocs.io/en/stable/overview.html
 extracted_text: graph/extracts/mujoco-overview.md
 source_date: unknown
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/physics-simulation", "topics/evaluation-and-transfer", "topics/contact-modeling", "topics/simulation-transfer"]
+source_type: documentation
 ---
 
 ## 摘要
@@ -38,3 +39,7 @@ MuJoCo 官方总览把模型编译、运行状态、广义坐标、执行器、�
 ## 开放问题
 
 总览不替代计算章节、执行器参数参考或模型验证实验。当前后续重点是精确时间步语义、参数标定与引擎间动力学差异。
+
+## 研究归属
+
+[[topics/physics-simulation|物理仿真]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。

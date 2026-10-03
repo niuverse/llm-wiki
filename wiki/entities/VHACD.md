@@ -3,16 +3,23 @@ title: "V-HACD"
 type: entity
 tags: [collision-detection, convex-decomposition, simulation-assets]
 sources: ["[[v-hacd-repository]]", "[[coacd-approximate-convex-decomposition]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]"]
-modified: 2026-07-13
-study_topic: syntheses/simulation-and-assets-learning-path
+modified: 2026-10-04
+topics: ["topics/physics-simulation", "topics/collision-geometry"]
 ---
 
 # V-HACD
 
-V-HACD 是 Voxelized Hierarchical 近似凸分解的代码仓库 / 方法族，用于把凹形 3D 表面分解成 near-凸部件。[[v-hacd-repository|V-HACD README]] 强调精确凸分解是 NP 困难且不实用的，因此 ACD 用凹度阈值放松精确 convexity。
+连接 V-HACD 仓库与将其作为对照的凸分解论文。不同论文使用的版本、分解参数、合并步骤和硬件条件可能不同，比较时以各来源的具体协议为准。归档状态仅按已收录仓库快照描述。
 
-当前知识库把 V-HACD 主要视为 historical 基线和旧版工具。README 已标记项目已弃用的 / 已归档的，并建议新开发使用 [[CoACD|CoACD]]。后续来源中，[[coacd-approximate-convex-decomposition|CoACD 论文]]、[[convex-primitive-decomposition-for-collision-detection|凸基元分解]] 和 [[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]] 都把 V-HACD 作为对比对象或历史背景。
+## 来源入口
 
-V-HACD 的实践提醒仍然有价值：单个 ellipsoid、胶囊体或凸包对凹形物体可能产生 false 碰撞；但过高凸包数量或精度场景也会变慢并增加运行时复杂度。
+- [[v-hacd-repository|V-HACD Repository]]
+- [[coacd-approximate-convex-decomposition|CoACD：保留碰撞相关凹陷的凸分解]]
+- [[convex-primitive-decomposition-for-collision-detection|凸基元分解：按碰撞成本拟合可编辑的几何]]
+- [[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD：用可见性快速评价凸分解切面]]
 
-相关页面：[[ApproximateConvexDecomposition|近似凸分解]]、[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[CoACD|CoACD]]、[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]。
+方法机制与研究比较请沿下列专题继续阅读；此页只保留跨来源共有的项目入口，避免同一结论重复维护。
+
+## 研究归属
+
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。

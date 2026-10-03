@@ -3,105 +3,88 @@ title: "机器人仿真的碰撞几何"
 type: concept
 tags: [robotics, simulation, collision-detection, contact-dynamics, simulation-assets]
 sources: ["[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[v-hacd-repository]]", "[[coacd-approximate-convex-decomposition]]", "[[coacd-repository]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
-modified: 2026-07-13
-study_topic: syntheses/simulation-and-assets-learning-path
+modified: 2026-10-04
+topics: ["topics/physics-simulation", "topics/collision-geometry"]
 ---
 
 # 机器人仿真的碰撞几何
 
-碰撞几何是仿真器用来生成接触候选、接触点、法向量、分离距离 / 穿透深度和接触约束的替代几何；它不等于视觉网格。对机器人学来说，这个替代不是小的资产细节：它会进入 [[ContactModelsInRobotics|接触模型]] 与 [[ContactSolvers|接触求解器]]，改变支撑、滑移、抓取闭合、插入间隙、接触数量和策略轨迹采样分布。
+碰撞几何是仿真器用于判定接近／相交、生成接触点与法向的几何表示，未必等同于视觉网格。它决定接触求解器的输入；表示中的把手孔若已经被填满，再精确的力求解也无法恢复该空隙。这个因果关系由 [[coacd-approximate-convex-decomposition|CoACD 的几何与任务实验]] 和 [[contact-models-in-robotics-a-comparative-analysis|接触模型比较]] 共同支持。
 
-## 数学结构
+## 从几何到运动的机制
 
-把视觉网格记作 $M_{vis}$，碰撞体设置记作：
-
-$$
-C = \{g_i(\theta_i)\}_{i=1}^{N}
-$$
-
-其中 $g_i$ 是球体、胶囊体、圆柱体、盒体、凸包、SDF 或网格派生的组件，$\theta_i$ 包含尺寸、位姿、半径、高度、凸包顶点、SDF 分辨率等参数。给定机器人/物体配置 $q$，窄相碰撞查询可以抽象为：
+令碰撞表示为 $C=\{g_i(\theta_i)\}_{i=1}^N$，其中 $g_i$ 是基元、凸包或其他表示，$\theta_i$ 是尺寸、位姿、顶点或采样参数。给定物体配置 $q$，几何查询产生一组接触信息：
 
 $$
-Q(g_a(q), g_b(q)) \rightarrow (d, p, n, m)
+Q(C,q)\longrightarrow\{(d_k,p_k,n_k)\}_{k=1}^{m}.
 $$
 
-这里 $d$ 是分离 / 穿透指标，$p$ 是接触点，$n$ 是接触法向，$m$ 是接触流形或接触点数量。后续求解器实际看到的是 $Q$ 的输出，而不是原始视觉网格：
+$d_k$ 为距离或相交指标，$p_k$ 为接触点，$n_k$ 为法向，$m$ 为生成的接触数量。这是抽象接口，不要求每种算法都返回相同距离或同一套接触点；例如 [[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]] 的尺度指标并非欧氏距离。
+
+令 $x$ 为系统状态，$u$ 为控制，$\eta$ 包含摩擦、柔顺性、求解预算等设置；接触求解和状态推进可概括为：
 
 $$
-\lambda = S(x, u, Q(C(q)), \text{contact law}, \text{solver parameters})
+\lambda=S\bigl(x,u,Q(C,q);\eta\bigr),
+\qquad x^+=F(x,u,\lambda).
 $$
 
-其中 $\lambda$ 是法向 / 切向接触力或冲量。由此，碰撞体近似错误不是只影响渲染，而是会改变动力学转移：
-
-$$
-x_{t+1}^{sim}=F(x_t,u_t,\lambda)
-$$
-
-从误差角度看，$C$ 和真实可碰撞体 $M$ 之间至少有三类不匹配：
-
-| 误差类型 | 几何含义 | 动力学后果 |
-| --- | --- | --- |
-| 假阳性占用的空间 | $C \setminus M$，碰撞体填满了真实空洞或凹槽 | 抓手不能进入把手 / 槽，策略学到错误避障或滑脱行为 |
-| 假阴性 missing 空间 | $M \setminus C$，碰撞体漏掉真实凸起或边缘 | 穿透、late 接触、过小支撑多边形 |
-| 接触流形误差 | $p,n,m$ 与真实接触面不同 | 摩擦方向、力矩臂、堆叠稳定性和求解器残差改变 |
+$\lambda$ 是力或冲量，量纲由具体时间离散定义。几何改变 $p_k$ 和 $n_k$，会改变接触雅可比、力矩臂和约束集合，最终改变运动。上述式子是教学抽象；具体实现见 [[mujoco-computation-collision-detection|MuJoCo 3.8 计算文档]] 与 [[ContactSolvers|接触求解器]]。
 
 ```mermaid
 flowchart LR
-  A["视觉资产<br/>网格 / CAD / 扫描"] --> B["碰撞体制作<br/>基元 / 凸包 / ACD / SDF"]
-  B --> C["宽相候选项<br/>AABB / 包围球体 / 过滤器"]
-  C --> D["窄相查询<br/>距离, 点, 法向量"]
-  D --> E["接触约束<br/>Jacobian + 接触定律"]
-  E --> F["求解器输出<br/>力 / 冲量"]
-  F --> G["策略 / MPC 轨迹采样<br/>支撑, 滑移, 抓取, 插入"]
-  B -.-> H["资产层现实差距<br/>视觉碰撞体不匹配"]
-  H -.-> G
+  A[视觉网格与任务尺寸] --> B[碰撞体制作及预处理]
+  B --> C[宽阶段筛选配对]
+  C --> D[窄阶段生成距离、接触点与法向]
+  D --> E[接触模型与耦合求解]
+  E --> F[状态推进与任务行为]
 ```
 
-这张图把碰撞几何放在接触流程的最上游。[[mujoco-computation-collision-detection|MuJoCo 文档]] 明确说有效接触点存在 `mjData.contact` 中并用于约束结构；[[isaac-sim-core-api-collision-approximation|Isaac Sim Core API docs]] 列出的碰撞近似模式会改变接触力数据中的点、法向量和分离距离。
+宽阶段粗筛与窄阶段精查属于碰撞检测，接触力和摩擦计算属于后续模型。两层问题应分开诊断。[[mujoco-computation-collision-detection|MuJoCo 文档]]、[[contact-models-in-robotics-a-comparative-analysis|接触模型比较]]
 
-## 直觉
+### 一个接触点偏移为何会改变转动
 
-基元碰撞体的直觉是用少量参数换速度和稳定性。球体最稳定、姿态-free，适合 ball-like 部件、padding、粗略 safety 外包络。胶囊体对机器人链接、limbs、cables 和 rounded rods 很自然，因为 swept 球体 segment 没有 sharp 边，接触法向量更平滑。圆柱体适合车轮、rollers、pins、bottles，但端盖边缘和滚动接触是否准确取决于引擎实现。盒体 / cube 对平面 supports、tables、blocks 很便宜，但边接触可能需要 multiple 接触点才稳定。
+以下是上述接触雅可比机制的教学例。刚体质心为 $c$、接触点为 $p$、接触力为 $f$，该力对质心的力矩是 $\tau=(p-c)\times f$。若几何近似只把接触点移动 $\delta p$，暂时固定力方向和大小，则：
 
-凸包的直觉是“用一个凸包包住所有点”。它保留外部外包络，但会填满凹陷结构。对抓取把手、抽屉槽、孔、叉状 gaps、工具 notches，这个 false 正占用的空间可能直接改变任务。[[coacd-approximate-convex-decomposition|CoACD 论文]] 的抽屉示例就显示 V-HACD-风格碰撞体填满把手会导致机械臂滑脱把手，而碰撞感知分解提高了报告的抽屉-opening 成功。
+$$
+\delta\tau=\delta p\times f.
+$$
 
-近似凸分解的直觉是把单一凸包拆成一组凸包，试图在运行时成本和非凸保真度之间折中。[[v-hacd-repository|V-HACD]] 是历史上常用的 voxelized ACD 基线；[[CoACD|CoACD]] 用碰撞感知凹陷结构和树搜索关注碰撞条件；[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]] 用可见性指标和 GPU 加速度减少姿态敏感性与运行时；[[convex-primitive-decomposition-for-collision-detection|凸基元分解]] 则进一步把凸包替换为引擎优化后的基元。
-
-SDF / 三角形网格碰撞体的直觉是用更多几何保真度换更高计算成本和更复杂的求解器行为。[[isaac-sim-core-api-collision-approximation|Isaac Sim 文档]] 把 SDF 和凸分解列为能更好捕捉细节的选项，同时明确警告 computational 成本。
+例如向上的 $10\,\mathrm N$ 支撑力，其作用点沿水平方向偏移 $1\,\mathrm{cm}$，就可产生 $0.1\,\mathrm{N\,m}$ 的额外力矩。这个数值例说明“轮廓看起来接近”仍可能影响平衡和抓握；真实求解还会随点位改变重新分配力，不能把这个固定力例子当成完整仿真预测。接触位置进入动力学的具体结构见 [[contact-models-in-robotics-a-comparative-analysis|接触空间方程]]。
 
 ## 表示方式的取舍
 
-| Collider 类型 | 适合场景 | 优点 | 主要风险 |
-| --- | --- | --- | --- |
-| 球体 | balls、padding、粗略外包络、低成本的邻近度 | 最便宜，接触法向平滑，无姿态状态 | 对 elongated / 平坦 / 凹形形状误差大 |
-| 胶囊体 | 机器人链接、limbs、rounded rods、移动式机器人 bumpers | 比圆柱体更平滑，适合 swept-volume safety 模型 | 会过度填充链接 brackets、sharp ends、孔 |
-| 圆柱体 | 车轮、rollers、pins、cans | 参数少，表达圆柱物体直观 | rim / cap 边接触、滚动摩擦和姿态依赖需验证 |
-| 盒体 / 包围 cube | tables、blocks、固定设施、粗略静态障碍物 | 宽相/窄相通常便宜，易编辑 | 对斜面、曲面、凹槽误差大；边接触可能 under-采样的 |
-| 单一凸包 | arbitrary 凸-ish 网格 | 自动、简单，避免三角形 soup | 填满凹陷结构；把手/孔/槽失真 |
-| 凸分解 | 非凸物体、把手、工具形状 | 保留部分凹陷结构，仍使用凸查询 | 凸包数量过高会拖慢宽相/窄相，并增加接触数量 |
-| 基元分解 | game / 大规模资产流程，可编辑碰撞体 | 使用引擎优化后的基元，复杂度低，可手工调 | 对高频有机几何或接触关键细节可能过粗 |
-| SDF / detailed 网格 | 细节关键静态或 quasi-静态碰撞 | 保真度高，能表达复杂形状 | 内存 / 计算成本高，引擎特定的，可能不适合大规模 RL 吞吐量 |
+| 表示 | 机制与用途 | 必须检查的边界 |
+| --- | --- | --- |
+| 球体、胶囊体、盒体等参数基元 | 用少量尺寸与位姿参数描述形状，易编辑；部分引擎有专用查询 | 是否包住真实接触区域、是否过度填充孔槽；专用支持依赖引擎 |
+| 单一凸包 | 保留包围输入的凸外壳，便于凸碰撞查询 | 必然填充凹陷；把手或壶嘴可能失去功能 |
+| 近似凸分解 | 用多个凸包保留非凸结构 | 凹度、组件数、后处理相交与输入修复各自影响结果 |
+| 凸基元分解 | 自动拟合一组可编辑参数形状 | 有机曲面可能需要很多基元；部分基元实际仍需转成凸包 |
+| 三角网格、SDF 等 | 保留更复杂形状或距离场信息 | 哪些动态物体可用、采样分辨率与成本取决于具体引擎 |
 
-[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 给出生成的资产的具体的流程证据：网格修复后使用 CoACD 生成碰撞几何，再进入 URDF/MJCF/USD 导出和仿真器验证。其完整资产流程报告 98.6% 碰撞成功、2.6±0.4 分钟平均处理时间；关闭网格 fix 后的人工处理时间为 21.3±22.8 分钟，资产尺寸为 51.63 MB。这里的证据支持“碰撞预处理是仿真可用性的关键关口”，但不能直接推出 CoACD 在所有引擎/任务中最优，因为结果绑定于该系统的资产分布、修复流程和成功 definition。
+前四项的实证与算法机制见 [[coacd-approximate-convex-decomposition|CoACD]]、[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]、[[convex-primitive-decomposition-for-collision-detection|凸基元分解]]；网格、SDF 和其他模式的具体入口见 [[isaac-sim-core-api-collision-approximation|Isaac Sim 5.1 API 来源]]。**不将“球体最稳定”“SDF 一定最准确”“基元总比凸包快”作为普遍结论。** 几何近似、引擎实现与任务接触方式需要共同确定这些判断。
 
-## 失效情形
+## 三类误差
 
-- 视觉碰撞体不匹配：视觉上能插入的槽 / 把手，在碰撞体中被凸包或胶囊体填满；策略学到的抓取 / 插入行为会错。
-- Over-conservative safety 外包络：基元 padding 提高鲁棒性，但如果不区分训练碰撞体与 safety 裕量，会把可行动作误判为碰撞。
-- Under-conservative 碰撞体：为了速度删掉小凸起、尖角或薄结构，可能产生 late 接触、穿透或 unrealistic 稳定性。
-- Over-分解：太多凸包 / 基元会增加宽相 pairs、窄相查询和求解器约束，造成训练吞吐下降或接触抖动。
-- 接触流形 under-采样：单点凸碰撞对面接触、盒体堆叠、平坦 foot 支撑可能不足；MuJoCo 的 `multiccd` 正是为这类问题提供可选补救方法。
-- 引擎专用语义：同一个碰撞体设置在 MuJoCo、PhysX、Bullet、Drake 中可能有不同接触偏移、裕量、流形生成、摩擦 combination 和求解器行为。
-- 优化 surrogate mismatch：[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]] / [[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]] 这类可微碰撞指标对轨迹优化很有用，但 $\alpha$ 或 $\phi$ 不是完整摩擦接触动力学。
+将真实可碰撞实体记为 $M$，将碰撞集合的并集记为 $\widehat M$。以下分类是本页依据几何与接触机制作出的综合解释：
 
-## 实践含义
+| 误差 | 含义 | 可能影响 |
+| --- | --- | --- |
+| 多占空间 $\widehat M\setminus M$ | 孔槽被填满，轮廓过度膨胀 | 抓手无法进入、路径被误判为不可行 |
+| 漏占空间 $M\setminus\widehat M$ | 凸起、薄面或边缘未表示 | 接触过晚、穿透或支撑范围错误 |
+| 接触点与法向误差 | 位置、方向或点数偏离所需接触近似 | 力矩、摩擦响应和约束求解发生变化 |
 
-对机器人仿真，碰撞体设计应从任务交互表面反推，而不是只从视觉网格自动生成。机器人链接默认可从胶囊体 / 圆柱体 / 盒体开始；复杂末端执行器、夹爪 fingers、物体把手、抽屉 pulls、孔、槽、足部和车轮需要单独检查接触关键凹陷结构、边接触和流形质量。
+对开放曲面，实体内外未必有唯一意义，不能直接套用上面的体积集合比较；应先明确其碰撞厚度或封闭解释。[[convex-primitive-decomposition-for-collision-detection|凸基元分解]] 的“覆盖输入表面”也不同于精确恢复输入实体内部。
 
-资产流程上，优先把碰撞体表示作为可审计的资产层。[[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] 已经把碰撞体表示放在 `instances.usda` 这类共享资产组合角色中；这意味着共享碰撞体几何不应被混进 `mujoco.usda` 或 `physx.usda` 这类运行时特定的调优层，除非该碰撞语义只属于某个后端。
+最直接的任务证据来自 [[coacd-approximate-convex-decomposition|CoACD 抽屉实验]]：碰撞体保留把手孔后，更多抽屉能在规定训练尝试内获得成功策略。这个结论限定于该 SAPIEN 协议，不是跨引擎或真实机器人保证。[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]] 主要评估离线分解时间与几何；不能把其速度数字称为仿真运行速度。[[convex-primitive-decomposition-for-collision-detection|凸基元分解]] 则提供目标引擎中的落球性能，三个证据层次不可互换。
 
-评估时不要只看视觉叠加显示。更有用的检查包括：接触点位置、接触法向量、接触数量、穿透 / 分离分布、抓取滑移比率、抽屉把手闭合、foot 支撑多边形、求解器残差、策略成功敏感性到碰撞体模式。对仿真到现实迁移，应该把碰撞体近似和质量/摩擦/延迟/相机对齐一样纳入 [[SimulationRealityGap|现实差距]] audit。
+## 实践：从任务接触反推验收
 
-未来趋势可以概括为三条：更具碰撞感知能力的分解（CoACD / VisACD）、更面向运行时的基元拟合（凸基元分解），以及更适合优化的可微基元碰撞（DCOL / DiffPills）。它们不是互相替代关系，而是服务不同约束：离线资产保真度、运行时吞吐量、人类可编辑性、梯度可用性和任务特定的接触正确性。
+**以下是综合建议。** 先标出把手、孔、插槽、夹持面、足底或滚动表面等关键区域，再确定近似预算。视觉叠加只检查外形，还应查看实际接触点、法向、间隙、滑动、支撑和任务行为。更多部件可能增加候选与约束，也可能因基元更便宜而降低总耗时；应测目标引擎的完整步骤，不能只数凸包。
 
-相关页面：[[ApproximateConvexDecomposition|近似凸分解]]、[[DifferentiableCollisionDetection|可微碰撞检测]]、[[ContactModelsInRobotics|机器人学中的接触模型]]、[[ContactSolvers|接触求解器]]、[[SimulationRealityGap|仿真—现实差距]]、[[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]]、[[MuJoCo|MuJoCo]]、[[IsaacSim|Isaac Sim]]。
+碰撞偏移和静止偏移同样会改变接触何时被生成，几何相同不保证接触参数相同。该语义的固定版本依据见 [[isaac-sim-core-api-collision-approximation|Isaac Sim API 来源]]；MuJoCo 网格凸包化与多接触点生成条件见 [[mujoco-computation-collision-detection|MuJoCo 3.8 来源]]。
+
+保留原网格、预处理结果、生成参数和碰撞体产物，并记录引擎版本。[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 提供完整资产制作流程的实例，其系统成功率不应拆成单个分解算法的效果。资产层的组织另见 [[IsaacSimAssetStructure|Isaac Sim 资产结构]]；优化使用的指标另见 [[DifferentiableCollisionDetection|可微碰撞检测]]；相关机制见 [[ApproximateConvexDecomposition|近似凸分解]]、[[ContactModelsInRobotics|接触模型]] 和 [[SimulationRealityGap|仿真—现实差距]]。
+
+## 研究归属
+
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。

@@ -3,83 +3,74 @@ title: "近似凸分解"
 type: concept
 tags: [collision-detection, convex-decomposition, simulation-assets, robotics]
 sources: ["[[v-hacd-repository]]", "[[coacd-approximate-convex-decomposition]]", "[[coacd-repository]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]"]
-modified: 2026-07-13
-study_topic: syntheses/simulation-and-assets-learning-path
+modified: 2026-10-04
+topics: ["topics/physics-simulation", "topics/collision-geometry"]
 ---
 
 # 近似凸分解
 
-近似凸分解（ACD）把非凸网格分解成一组近似凸的组件，并通常用每个组件的凸包作为碰撞体。它是 [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]] 中最常见的中间层：比单一凸包更能保留凹陷结构，比原始三角形网格 / SDF 更适合很多运行时碰撞流程。
+近似凸分解（Approximate Convex Decomposition，ACD）将非凸形状拆成一组近似凸的部件，再以各部件凸包作为碰撞体。它试图在保留任务相关空隙与降低几何处理成本之间取得平衡；**凸包数量、近似误差和实际仿真成本是不同的量**。[[coacd-approximate-convex-decomposition|CoACD]]、[[convex-primitive-decomposition-for-collision-detection|凸基元分解]]
 
-## 数学结构
+## 目标与误差
 
-给定目标形状 $S$，ACD 寻找一组组件 $\{S_i\}_{i=1}^{K}$，使它们的凸包近似覆盖原形状：
-
-$$
-S \approx \bigcup_{i=1}^{K} \operatorname{CH}(S_i)
-$$
-
-其中 $\operatorname{CH}(S_i)$ 是组件 $S_i$ 的凸包。典型目标可以写成：
+给定实体形状 $S$，寻找部件 $S_1,\ldots,S_K$，使 $S=\bigcup_iS_i$，最终用 $\widehat S=\bigcup_i\operatorname{CH}(S_i)$ 近似它。$\operatorname{CH}$ 为凸包，$K$ 为部件数。一类典型目标为：
 
 $$
-\min_{\{S_i\}} \quad K + \beta \cdot \operatorname{Cost}(\{\operatorname{CH}(S_i)\})
+\min K,\qquad C(S_i)\le\epsilon\quad\text{对所有 }i.
 $$
 
-subject 到：
+$C$ 衡量部件与其凸包的差异，$\epsilon$ 是允许误差。这个形式概括了 [[coacd-approximate-convex-decomposition|CoACD 第 3 节]]；具体算法未必保证找到全局最少部件，也有算法直接给定目标数量。精确凸分解追求最少部件时是困难的组合优化问题，近似分解用误差预算换取可用规模。
+
+**误差指标决定哪些空间被保留。** 只看体积差，可能认为封住细槽的代价很小；只看外表面距离，又可能忽视空腔被填实。CoACD 结合边界与内部的 Hausdorff 距离，实际用体积差的立方根近似内部项；其阈值具有长度尺度含义，但有限采样、经验系数和预处理使它不能直接当作任务空间的严格安全间隙证明。公式和保证条件见 [[coacd-approximate-convex-decomposition|CoACD 的指标与近似]]。
+
+### 用集合距离理解“平均很准但孔被封住”
+
+令 $A,B$ 为两组几何点，双向 Hausdorff 距离为：
 
 $$
-\kappa(S_i, \operatorname{CH}(S_i)) \le \epsilon
+H(A,B)=\max\left\{\sup_{a\in A}\inf_{b\in B}\|a-b\|_2,\ \sup_{b\in B}\inf_{a\in A}\|a-b\|_2\right\}.
 $$
 
-这里 $K$ 是组件数量，$\kappa$ 是凹陷结构 / 近似错误指标，$\epsilon$ 是允许的凹陷结构阈值，$\beta$ 表示运行时复杂度或内存成本的权重。[[v-hacd-repository|V-HACD README]] 与 [[coacd-approximate-convex-decomposition|CoACD 论文]] 都强调精确凸分解是 NP 困难；ACD 的本质是用可控误差换实用的分解。
+先为每个点找另一个集合中的最近点，再挑最差的那个，因而关注最大偏差，而非平均偏差。取边界集合会衡量表面偏差，取实体内部点会衡量凸包新增空间离原实体有多远。两者对象不同：空心壳的内表面可能很靠近凸包外表面，但凸包中心仍离壳很远；内部项因此补足只看边界的缺口。定义与空壳机制见 [[coacd-approximate-convex-decomposition|CoACD 第 4 节]]。
 
-CoACD 的关键变化是把 $\kappa$ 设计成碰撞感知凹陷结构：不仅看形状边界与凸包的距离，也检查 interior 中会改变碰撞条件的误差。直觉上，它关心的不是“视觉上是否相似”，而是“这个凸包是否把本该可进入的碰撞空间填掉”。VisACD 则用可见性关系定义切分价值；凸基元分解把输出空间从 generic 凸包换成基元族：
+有限样本把上式上确界替换成样本最大值，遗漏的狭槽不会自动进入评价。因此“采用最坏点指标”和“已找到连续形状上的真正最坏点”不是同一件事。跨方法比较还须分清：[[v-hacd-repository|V-HACD 固定版本]] 的局部百分比体积误差无量纲，[[coacd-repository|CoACD 默认接口]] 的阈值在归一化坐标中具有长度尺度；相同数字不表示相同质量预算。
 
-$$
-C = \{p_j(\theta_j, t_j)\}_{j=1}^{K}, \quad t_j \in \{\text{sphere}, \text{capsule}, \text{cylinder}, \text{box}, \ldots\}
-$$
+## 三种构造路线
 
-其中 $t_j$ 是基元类型，$\theta_j$ 是尺寸 / 位姿 / 半径等参数。这个变体把 ACD 的目标从“少量凸包”转为“少量低成本的, 可编辑, 引擎优化后的基元”。
+| 路线 | 核心操作 | 主要条件与取舍 |
+| --- | --- | --- |
+| 碰撞感知平面切割 | 将实体网格切开，以多步搜索选择切面 | CoACD 需要实体流形输入或预处理；前瞻可减少短视切割，仍有搜索预算与方向限制 |
+| 可见性平面切割 | 用被截断的外部可见性边总长度快速评价平面，GPU 并行筛选 | VisACD 不必为每个候选真的切网格；评分依赖顶点密度，贪心算法仍可能次优 |
+| 参数基元合并 | 从面开始，按方向与新增包覆体积向上合并为盒体、胶囊体等 | 凸基元分解可处理开放表面，输出允许重叠；拟合质量与引擎原生支持共同决定成本 |
+
+依据分别为 [[coacd-approximate-convex-decomposition|CoACD]]、[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]、[[convex-primitive-decomposition-for-collision-detection|凸基元分解]]。最后一种是相关的碰撞体近似路线，不宜把“覆盖网格表面”和“内部不交的实体分割”当作相同保证。传统 [[v-hacd-repository|V-HACD]] 的体素分解作为历史参照，具体版本和参数应单独记录。
 
 ```mermaid
 flowchart LR
-  A["非凸视觉网格"] --> B["单一凸包<br/>快速但会填充凹度"]
-  A --> C["V-HACD<br/>体素化的 ACD 基线"]
-  A --> D["CoACD<br/>碰撞感知的凹度 + MCTS"]
-  A --> E["VisACD<br/>可见性指标 + GPU 切分"]
-  A --> F["凸基元分解<br/>盒体 / 胶囊体 / 球体 / 圆柱体"]
-  B --> G["碰撞体集合"]
-  C --> G
-  D --> G
-  E --> G
-  F --> G
-  G --> H["窄相 + 接触求解器"]
+  A[原始网格与任务关键空隙] --> B[输入修复与尺度约定]
+  B --> C[误差指标与预算]
+  C --> D[切分或基元合并]
+  D --> E[凸包或参数基元集合]
+  E --> F[目标引擎的接触与任务验证]
+  F --> G[质量、数量与耗时共同评估]
 ```
 
-## 直觉
+图中预处理属于结果的一部分：孔洞若在重网格化时消失，后续分解无法恢复原始功能。平面切割可以保持切分块内部不交，但合并后重新取凸包可能破坏这一性质。[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]] 因此在其比较中关闭 CoACD 合并，不能将它的基线结果与默认启用合并的 CoACD 数字直接对照。
 
-ACD 的直觉是避免两个极端。单个凸包很快，但会把杯子把手、抽屉槽、叉状差距、工具缺口这类任务相关的凹陷结构填满。原始三角形网格或 SDF 可以更接近视觉形状，但在大量引擎 / 实时机器人学工作负载中更贵、更引擎特定的。ACD 试图把“哪里需要细、哪里可以粗”编码进分解。
+## 为什么不能只数凸包
 
-[[CoACD|CoACD]] 的贡献在于把 “碰撞条件” 作为指标的中心。它不是只追求表面重建，而是避免碰撞体改变物体功能。抽屉把手示例说明这不是审美细节：碰撞凸包填满把手孔会改变夹爪 / 机械臂是否能形成形状闭合。
+一个凸包可能含很多面和顶点，参数基元只有少量尺寸与位姿参数。碰撞检测还会先排除大量不可能相撞的配对；因此总成本既取决于组件数，也取决于实际候选数、窄阶段算法、生成的接触点及后续求解。[[convex-primitive-decomposition-for-collision-detection|凸基元分解]] 的实验支持“更多廉价基元可能比更少复杂凸包快”，但仅限其 Rapier 落球协议，不能作为所有引擎的成本定律。
 
-[[convex-primitive-decomposition-for-collision-detection|凸基元分解]] 提醒另一条工程轴：即使凸包分解准确，基元碰撞体也可能更快、更可编辑、更符合引擎优化路径。对机器人链接、车轮、固定设施和粗略障碍物，基元分解可能比大量凸包更实用的。
+[[coacd-approximate-convex-decomposition|CoACD 抽屉实验]] 支持另一条链：保留把手孔 → 更容易形成稳定抓握 → 更多抽屉能训练出成功策略。论文报告的 49% 与 80% 是多次训练尝试后的成功抽屉比例，不是常规单次执行成功率。几何误差、存储量和耗时都不能替代任务验收。
 
-## 失效情形
+## 失败情形与实践解释
 
-- 填满的凹陷结构：单一凸包或粗劣的分解把孔、把手、槽填满，制造 false 正占用的空间。
-- 过多的凸包数量：阈值过低或最大凸包数量过高会增加窄相查询和求解器约束，导致训练吞吐量下降或接触抖动。
-- 体素化 / 预处理产物：V-HACD-风格体素化可能在细薄特征、小孔或已经-凸形状上产生不必要误差。
-- 相交的凸包：某些合并或后处理-处理可能生成互相交叠的凸包，改变碰撞行为；VisACD 论文在其设置中因此关闭 CoACD 合并做对比。
-- 拓扑敏感性：VisACD 和凸基元分解都指出拓扑 / 重新网格化 / 网格姿态或退化会影响结果。
-- 基元过拟合 / 欠拟合：基元分解对规则机械形状很强，但高频有机曲率或任务关键精细接触 patch 可能需要凸包、SDF 或手工碰撞体。
-- 指标不匹配：Hausdorff / Chamfer / 字节复杂度 / 运行时都不是直接的任务成功指标；操作可能更关心把手间隙、接触法向和摩擦锥。
+- **关键空隙被封住。** 低平均几何误差仍可能改变抓取或插入可行性；应单独检查把手、孔和槽。[[coacd-approximate-convex-decomposition|CoACD]]
+- **预处理、拓扑与方向影响结果。** 水密化、顶点采样、内部面和退化法向都可能改变分解。[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]、[[convex-primitive-decomposition-for-collision-detection|凸基元分解]]
+- **预算与引擎不匹配。** 阈值很小可保留更多细节，却可能生成更多几何或接触查询；某种基元若必须转成凸包，其专用加速收益也可能消失。[[coacd-approximate-convex-decomposition|CoACD 参数消融]]、[[convex-primitive-decomposition-for-collision-detection|基元成本消融]]
 
-## 实践含义
+**我们的综合建议。** 保存原始网格、修复后网格、参数、输出碰撞体与目标引擎版本；按任务空隙、几何偏差、接触行为、总耗时分开验收。混用基元与凸包是可测试的工程选择，现有来源尚未证明统一混合方案最优。当前实现接口见 [[coacd-repository|CoACD 仓库来源]]；完整上下游见 [[CollisionGeometryForRobotSimulation|碰撞几何]]、[[ContactSolvers|接触求解器]]。
 
-使用 ACD 时，先定义任务关键接触表面：把手、孔、槽、足部、车轮、工具尖端、夹爪接触垫、支撑面。然后选择分解预算，而不是盲目追求视觉拟合。[[CoACD|CoACD]] 的 `threshold`、`max-convex-hull`、`max-ch-vertex` 和 MCTS 参数需要和仿真器吞吐量、接触稳定性、物体类别一起调。
+## 研究归属
 
-如果目标是大规模 RL 资产流程，未来趋势更可能是混合：CoACD / VisACD 负责保留碰撞相关的凹陷结构，基元分解负责把可用球体/胶囊体/盒体/圆柱体表达的部件压到更低运行时成本，SDF 或网格碰撞体只留给少数细节关键静态几何。这个判断是综合整理：不同来源分别支持碰撞感知 ACD、GPU ACD、基元拟合和 SDF/convexDecomposition 模式，但还没有一个来源证明统一混合流程最优。
-
-对评估，建议保存分解场景和生成的碰撞体产物。否则同一个物体网格在不同预处理阈值下可能对应完全不同的接触世界，基准结果不可复现。
-
-相关页面：[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[CoACD|CoACD]]、[[VHACD|V-HACD]]、[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]、[[MuJoCo|MuJoCo]]、[[IsaacSim|Isaac Sim]]、[[SimulationRealityGap|仿真—现实差距]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。

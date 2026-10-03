@@ -4,7 +4,7 @@ type: synthesis
 tags: [source-plan]
 sources: []
 modified: 2026-08-18
-study_topic: syntheses/agent-tools-learning-path
+topics: ["topics/agent-execution"]
 ---
 
 # DeepSeek Harness 来源获取计划
@@ -145,3 +145,7 @@ compaction 是可选 seam：`agent/pre-step` 压力触发（`pressure`）或 `ag
 | 4 | `dsh-handbook` 等社区手册 | 二手资料 | 仅背景参考，不建议作为 canonical 来源 | 不 ingest |
 
 后续收录顺序建议：先 ingest repo（README + 架构/子系统/用户指南 selected 文档），再 ingest Cordis 论文 PDF；论文的数学结构（扭曲复合、$\partial\Gamma$、coeffect 激活）适合放进 concept page 的 `## 数学结构` 部分。
+
+## 研究归属
+
+[[topics/agent-execution|智能体会话与工具执行怎样分工]]。

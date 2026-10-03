@@ -9,7 +9,8 @@ source_kind: html
 source_url: https://docs.omniverse.nvidia.com/kit/docs/omni_physics/latest/dev_guide/rigid_bodies_articulations/articulations.html
 extracted_text: graph/extracts/omniverse-omni-physics-articulations.md
 source_date: 2026-05-01
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/physics-simulation", "topics/contact-modeling"]
+source_type: documentation
 ---
 
 # Articulations - Omni Physics
@@ -65,3 +66,7 @@ PhysX 是 [[NVIDIA|NVIDIA]] 的物理运行时 / SDK 族。本知识库当前对
 - 本页链接到关节系统与机器人仿真稳定性指南、驱动器性能 Envelope PDF、PhysX SDK mimic-关节文档与关节支撑表格；这些是后续值得收录的来源，用来补充求解器稳定性、motor 数据手册 envelope 和不支持的关节分类体系。
 - 来源说明驱动器类似 PD 控制器，但没有完整展开 PhysX 关节系统驱动器的离散化、加速度驱动、求解器迭代默认值或时间步交互；这些仍需 PhysX SDK / Isaac Sim 关节调优文档验证。
 - 来源覆盖 Omni 物理当前文档，而 Isaac Sim 导入器 / 资产流程可能还会把这些 APIs 包装进 `physx.usda`、机器人结构规范或张量 API 工作流；实际项目仍需检查导入器输出和版本特定的结构规范。
+
+## 研究归属
+
+[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]]。

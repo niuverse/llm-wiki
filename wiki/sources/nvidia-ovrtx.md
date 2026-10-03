@@ -3,76 +3,63 @@ title: "NVIDIA ovrtx"
 type: source
 tags: [github, nvidia, sensor-simulation, openusd, source-backed]
 sources: []
-modified: 2026-09-25
+modified: 2026-10-04
 source_file: raw/ovrtx-source.tar.gz
 source_kind: repo
 source_url: https://github.com/NVIDIA-Omniverse/ovrtx/tree/main
 source_metadata: raw/ovrtx-main-commit.json
 source_readme: raw/ovrtx-readme.md
 source_date: 2026-05-19
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
+source_type: repository
 ---
 
-## 摘要
+# NVIDIA ovrtx：把传感器渲染接成张量接口
 
-[[NVIDIA|NVIDIA]] 的 `NVIDIA-Omniverse/ovrtx` 代码仓库是 [[nvidia-ovrtx|ovrtx]] 的官方来源代码仓库。README 把 ovrtx 定位为轻量的 C 与 Python SDK 用于 Omniverse RTX，用来把 RTX 传感器仿真和可视化集成到应用里；目标场景包括机器人学学习、合成数据生成、industrial/设计流程。本次收录使用本地 clone `/home/galbot/Projects/ovrtx` 的履带式 `HEAD` archive，提交为 `29d11037fbcaed0f0f53e7f32d17bd0486fd453b`，作者 date 为 2026-05-19，版本文件与 Python 软件包都指向 `0.3.0`。本地 clone 里有一个未跟踪的 `examples/python/minimal/uv.lock`，没有进入 `raw/ovrtx-source.tar.gz`。
+ovrtx 是供外部应用调用 Omniverse RTX 的 C／Python SDK。应用提供 OpenUSD 场景与传感器配置，SDK 推进指定渲染产品，返回图像或点云等张量。它解决的是“场景如何进入渲染器、输出如何进入学习系统”的接口，不是完整机器人任务或物理控制框架。
 
-这个来源的核心价值是把 RTX 传感器仿真的工程契约写清楚：应用创建渲染器，把 [[OpenUSD|OpenUSD]] 内容加载到运行时阶段，通过 `RenderProduct` 路径步骤传感器仿真，再把 `RenderVar` 输出映射成 DLPack 张量。它不是只讲视觉渲染质量，而是把相机、lidar、radar、语义分割、非视觉材质标签、阶段属性、异步操作、GPU/CPU 映射和 C/Python 生命周期 rules 放进一个可编程流程。这个机制被整理到 [[RTXSensorSimulationPipeline|RTX 传感器仿真流程]]。
+本页固定于 `raw/ovrtx-source.tar.gz` 内提交 `29d11037fbcaed0f0f53e7f32d17bd0486fd453b`，2026-05-19、`0.3.0` 预发布版。本轮完整读相关文档与最小／激光雷达示例，并静态核查 Python 包装中的步进、映射、DLPack 同步和释放路径；未运行 GPU 示例、未审计二进制渲染器内部。[归档 README](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/README.md)
 
-来源网址: https://github.com/NVIDIA-Omniverse/ovrtx/tree/main
+## 一个请求包含三种对象
 
-## 核心主张
+| 对象 | 输入职责 | 容易混淆的地方 |
+| --- | --- | --- |
+| 传感器图元 | 相机内参、激光雷达或雷达模型 | 它不是直接传给 `step` 的路径 |
+| `RenderProduct` | 通过 `camera` 关系选传感器，以 `orderedVars` 选输出，还配置分辨率／模式等 | `camera` 关系也能指向雷达类传感器 |
+| `RenderVar` | `sourceName` 标识输出语义；点云还列请求通道 | 图像是单张量，点云是多个具名张量与参数 |
 
-- ovrtx 是 Omniverse RTX 的 C/Python SDK；README 声明它支持相机、lidar、radar 等物理上 accurate 传感器仿真，并服务于物理 AI、机器人学学习、合成数据生成与设计/industrial 流程。
-- 代码仓库快照是 pre-发布 `0.3.0`。README 要求 Python 3.10-3.13；C/C++ 示例使用 CMake；二进制发布版本支持 Windows x86_64、Linux x86_64 和 Linux aarch64，并需要兼容的 NVIDIA RTX-可用的 GPU 和驱动程序。
-- 典型 application 流程是 create 渲染器、负载 USD、步骤 one 或 more RenderProducts、映射图渲染变量或 read 属性、释放映射/结果/bindings/渲染器。关键边界是 `step` 接收 `RenderProduct` 路径，不接收传感器路径。
-- 运行时阶段通常包含传感器图元、`RenderProduct` 图元和 `RenderVar` 图元。`RenderProduct` 通过 `rel camera` 选择相机/lidar/radar 等传感器，通过 `rel orderedVars` 选择输出变量，并承载分辨率、渲染模式、渲染场景、设备 pinning 等逐产品 controls。
-- `RenderVar` 的 `sourceName` 绑定渲染器输出。相机输出可以是 `LdrColor`、`HdrColor`、`NormalSD`、`DepthSD`、`SemanticSegmentation` 等单张量输出；lidar/radar 的 `PointCloud` 是多张量输出，通道由 `RenderVar.channels` 选择。
-- 输出容器是自描述的具名的结构：渲染 var 输出有 `name`、`type`、`doc`、`version`、`status`、GPU 同步提示、具名的张量和 CPU 参数。批量数据使用 DLPack，所以 NumPy、PyTorch、Warp、JAX、CuPy 或 CUDA 代码可以零拷贝消费。
-- Lidar 和 radar 的变量-sized 点云张量要用 `Counts` 限定有效条目，用 `Flags[i] & 0x40` 判断 valid bit。`Counts` 与 `Flags` 会被传感器模型 auto-enable；其他载荷通道只有被请求时才出现。
-- 相机渲染模式是每个 RenderProduct 取舍：`Real-Time Path-Tracing` 作为默认高保真路径，`PathTracing` 用于 progressive/参考质量渲染，`Minimal` 用于高吞吐量的 RL、分割掩码或调试流程。
-- ovrtx 支持三类 USD 组合模式：open 文件/URL/行内 USDA 作为根部层，用行内根部层子层现有场景并添加传感器/RenderProducts/标签，或在已打开根部阶段下添加可移除引用的内容。
-- 阶段查询、属性 read/write、属性 bindings 和属性映射让应用以 DLPack 张量方式读写运行时阶段；hot 路径可以通过持久 bindings 或映射避免重复构造 descriptors。
-- 异步模型是按流排序的。Python 提供便捷的阻塞式方法和 `*_async`；C 入队函数返回操作编号，必须等待/获取/发布。GPU 映射带同步提示，C 映射/结果需要显式取消映射/释放。
-- 0.3.0 changelog 增加了 lidar/radar 传感器支撑、多张量 RenderVar 输出、阶段查询、阶段属性 reads、expanded 属性 write/映射 APIs、视口 picking/选择 outlines、结构规范路径 registration 和一组智能体技能/文档。
+例如激光雷达示例的 `/World/Render/Products/LidarProduct` 连接传感器和 `PointCloud` 输出，通道选择坐标、强度、计数和时间偏移。相同场景可以创建多个产品，以不同模式或分辨率读取。[application_flow.rst](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/docs/core/application_flow.rst)、[lidar_example.usda L54–85](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/examples/python/sensors/lidar/lidar_example.usda#L54-L85)
 
-## 关键引文
+共享的 [[OpenUSDSceneComposition|场景组合]] 解释引用与子层；本页的具体输出机制集中于 [[RTXSensorSimulationPipeline|RTX 传感器流程]]。
 
-- "pre-release software"
-- "step takes RenderProduct paths"
-- "RenderProduct" / "RenderVar"
-- "Counts and Flags are auto-enabled"
-- "First-call wins."
+## 从加载到一张图像
 
-### Ovrtx
+官方最小 Python 示例创建 `Renderer`，`open_usd` 加载场景，再对 `/Render/Camera` 调用 `step(delta_time=1/60)`。返回值按产品路径组织；每个产品包含帧，帧包含渲染变量。示例把 `LdrColor` 映射到 CPU，再由 `np.from_dlpack` 创建 NumPy 视图用于显示或保存。这里的1/60是渲染请求时间增量，不能从这个独立示例推断任何机器人的物理积分周期。[minimal/main.py L26–64](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/examples/python/minimal/main.py#L26-L64)
 
-ovrtx 是 [[NVIDIA|NVIDIA]] 发布的轻量的 C/Python SDK，用来把 Omniverse RTX 的 RTX 传感器仿真和可视化集成到外部应用。[[nvidia-ovrtx|NVIDIA ovrtx]] 来源快照显示当前收录的履带式版本是 `0.3.0`，仍标注为 pre-发布 software；它面向相机、lidar、radar 和其他传感器 outputs，使用 [[OpenUSD|OpenUSD]] 场景描述，并把渲染的 outputs 暴露成 DLPack-兼容的张量。
+静态代码把同步形式展开为：`step_async(...).wait().fetch()`。第一阶段将产品集合与时间增量传入 C 绑定，第二阶段等待操作，第三阶段取得输出句柄并构造 Python 产品／帧／变量对象。API 入队成功和输出可读取是不同状态；映射时还检查变量本身是否完成。[renderer.py L799–864](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/python/ovrtx/_src/renderer.py#L799-L864)、[L1640–1720](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/python/ovrtx/_src/renderer.py#L1640-L1720)
 
-工程上，ovrtx 的核心对象不是“打开一个图片渲染器”，而是一条运行时阶段流程：应用创建 `Renderer`，加载根部 USD 或行内 USDA 组合，把传感器图元、`RenderProduct`、`RenderVar` 放进阶段，调用 `step` 生成 outputs，然后按 CPU/CUDA 映射、生命周期和同步契约消费结果。C API 强调显式等待/获取/发布；Python API 包一层阻塞式的/异步便捷方法。更系统的机制整理见 [[RTXSensorSimulationPipeline|RTX 传感器仿真流程]]。
+## 零拷贝之后，还有同步和所有权
 
-API 边界上，当前来源快照支持场景组合 / mutation，但不应被理解成完整物理场景 builder。ovrtx 可以 open 根部 USD、用行内 USDA 子层原始场景、add/remove USD 参考资料、clone 已加载 subtree、查询图元，并通过属性写入 / 映射改变换、材质绑定、semantic labels、RenderProduct 场景等；但当前来源表面没有高层 `create_rigid_body`、`create_articulation`、`create_deformable` 这类物理物体制作辅助函数。更稳妥的工作流是：由 Isaac Sim / Isaac Lab / ovPhysX / USD 制作工具创建物理丰富资产，再由 ovrtx compose 进运行时阶段做 RTX 传感器仿真。这个使用边界见 [[ovrtx-api-boundary|ovrtx API 边界]]。
+DLPack 传递指针、形状、类型与设备，使消费库可建立共享视图。“零拷贝”限定于这一步；将 GPU 渲染结果映射到 CPU 仍涉及回读，SDK 内部渲染与线性内存转换也不由 DLPack 保证无复制。要保持 GPU 数据路径，应映射到 CUDA 并正确安排消费流。[sensor_outputs.rst](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/docs/sensors/sensor_outputs.rst)
 
-当前有来源支持的边界：本页只记录代码仓库 README、文档、headers 和 changelog 中明示的 API/生命周期信息。`physically accurate` 的传感器模型细节、RTX 渲染器内部架构、真实传感器验证和跨仿真器集成还需要额外官方文档或基准来源。
+本版本 `MappedRenderVar.__dlpack__` 和具名张量的同名方法显式忽略消费者传入的 `stream`。因此只写“PyTorch 接收了 DLPack”不足以证明跨流读取安全。可选做法是映射时指定真实消费流 `sync_stream`，随后在同一流排入计算；或映射后 `wait_on(stream)`；或调用 `wait()` 在 CPU 侧等待完成。[types.py L324–347、L382–400](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/python/ovrtx/_src/types.py#L324-L400)、[L541–567、L623–650](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/python/ovrtx/_src/types.py#L623-L650)
 
-## 关联
+**教学例子：** 渲染流 A 尚在写图像，学习流 B 已拿到其地址。地址正确不代表像素已经写完；必须先让 B 等待 A 的完成事件，再执行归一化与网络推理。消费完成后释放时也要传正确事件或流，避免底层缓冲被过早回收。
 
-- [[nvidia-ovrtx|NVIDIA ovrtx 文档]] - 官方代码仓库来源页。
-- [[RTXSensorSimulationPipeline|RTX 传感器仿真流程]] - ovrtx 中 `RenderProduct` / `RenderVar` / DLPack output 的机制页。
-- [[OpenUSD|OpenUSD]] - ovrtx 场景配置和运行时组合的基底。
-- [[NVIDIA|NVIDIA]] - publisher。
-- [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] - ovrtx 作为传感器渲染 / GPU output 基础设施的官方情形。
-- [[ovrtx-api-boundary|ovrtx API 边界]] - 提炼 ovrtx 的场景组合、物理制作和随机化 ownership 边界。
+Python 和 C 的释放语义需要分开：C 取消映射后原始指针无效；Python 的 `unmap()` 先禁止创建新视图，已经生成的 DLPack 视图通过引用保活缓冲，最终释放延后至最后消费者消失。`with` 退出等价于不带同步参数的 `unmap()`，第一次调用记录的同步提示优先，之后调用不覆盖。因此需要 CUDA 释放同步时，应在退出前明确提交提示；渲染器销毁仍是更外层生命周期限制。[types.py L652–731](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/python/ovrtx/_src/types.py#L652-L731)
 
-- [[nvidia-ovrtx|Ovrtx]] - SDK 实体，记录版本、范围、许可证和 API 表面。
-- [[RTXSensorSimulationPipeline|RTX 传感器仿真流程]] - 从本代码仓库提炼出的机制层级概念页。
-- [[OpenUSDSceneComposition|OpenUSD 场景组合]] - ovrtx 用行内子层、参考资料、关系和运行时阶段说明 OpenUSD 组合如何进入传感器仿真。
-- [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] - ovrtx 把渲染器生命周期、传感器输出、GPU 内存/映射、异步状态与示例变成仿真基础设施的官方实现情形。
-- [[OpenUSD|OpenUSD]] - ovrtx 的场景/传感器/RenderProduct 配置建立在 USD 结构规范、图元路径、关系和组合上。
-- [[SimulationRealityGap|仿真—现实差距]] - 来源支持传感器仿真流程，但没有证明传感器输出与真实硬件分布自动一致。
+## 点云为何不能照图像读取
 
-## 开放问题
+点云 `Coordinates` 的非平铺布局为 $[3,N_{\max}]$，形状给出容量；`Counts` 提供本帧条目范围；每条记录还要以 `Flags & 0x40` 检查有效位。坐标编码和参考坐标系由 CPU 参数描述，不能仅看到三行数据就假定是世界系 XYZ。`Intensity` 是激光雷达强度，雷达可提供 `RCS` 与有符号径向速度，它们有不同含义。[pointclouds.rst](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/docs/sensors/pointclouds.rst)、[lidar.rst L110–133](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/docs/sensors/lidar.rst#L110-L133)
 
-- ovrtx 与 Isaac Sim、Isaac Lab、Omniverse Kit、ovPhysX 的边界需要更多官方架构文档：这个代码仓库说明了 SDK 契约，但没有完整解释底层 Omniverse RTX 运行时组合。
-- README 提到可扩展的性能和物理上 accurate 传感器仿真，但缺少独立基准或传感器模型验证来源；性能与仿真到现实迁移准确率应通过后续来源单独收录。
-- Lidar/radar 材质行为、非视觉材质 database 和语义标签的真实硬件校准逻辑还需要更低层来源支持。
-- 0.3.0 是 pre-发布；API、局限和 packaging 行为值得在后续发布后 re-收录。
+官方激光雷达示例启用运动 BVH、加载场景、预热3步，再读取一帧。其读取函数按 `Counts` 截取后复制 CPU 数组以便后续使用，但没有额外筛选 `Flags`；文档则明确说明启用 `includeInvalidPoints=true` 时，范围内仍可能有无效／未命中条目；该选项为 false 时，传感器先丢弃无效返回。因此要把“示例如何写”和“通用消费者应遵守的有效性约定”分别理解，不能把示例截断当作完整过滤器。3步是这个示例的设置，不是所有传感器的预热保证。[lidar/main.py L72–88、L124–154](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/examples/python/sensors/lidar/main.py#L72-L88)
+
+## 接入机器人系统时的分工
+
+上层系统负责选择随机化分布、推进机器人动力学、把最新位姿同步到渲染场景，并决定何时取观测；ovrtx 负责其 SDK 内的场景、渲染产品与输出生命周期。它提供场景组合和属性接口，但本轮没有读到创建刚体／关节系统的同级高层任务框架；范围另见 [[ovrtx-api-boundary|API 边界]]。对机器人来说，最重要的是每个观测对应哪个物理时刻、哪个相机和哪个输出版本。
+
+README 宣称物理准确传感器和高吞吐。本页检查的是公开接口、Python 包装和示例，未复核底层传感器模型、真实硬件标定或性能基准；不会把这些宣传表述转换为已经测量的误差上界。跨模块成本和时序见 [[RoboticsSimulationInfrastructure|仿真基础设施]]，现实分布验证见 [[SimulationRealityGap|现实差距]]。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。

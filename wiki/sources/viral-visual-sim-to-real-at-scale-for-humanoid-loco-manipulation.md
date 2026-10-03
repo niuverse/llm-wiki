@@ -3,68 +3,60 @@ title: "VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation"
 type: source
 tags: [robotics, sim-to-real, humanoid, source-backed]
 sources: []
-modified: 2026-09-25
+modified: 2026-10-04
 source_file: raw/viral-humanoid-project-page.html
 source_kind: html
 source_url: https://viral-humanoid.github.io/
 extracted_text: graph/extracts/viral-humanoid-project-page.md
 source_date: unknown
-study_topic: syntheses/robot-learning-and-evaluation-learning-path
+source_type: project
+topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ---
 
-## 摘要
+# VIRAL：视觉仿真到现实迁移的项目证据
 
-VIRAL 项目主页展示了一个面向人形机器人移动操作的 [[VisualSimToReal|视觉仿真到现实迁移]] 框架：系统在仿真中训练，然后零样本部署到 Unitree G1 人形机器人，在真实环境中完成连续 walking、placing、抓取、turning 和物体 transport。页面把核心方法概括为三步：特权 RL 教师策略先用完整状态信息学长时域行为；基于视觉的学生策略再通过大规模仿真、tiled 渲染、在线 DAgger 与行为克隆模仿教师策略；最后通过视觉域随机化与灵巧手部 / 相机的真实到-sim 对齐缩小仿真到现实迁移差距。
+## 一屏概览
 
-这个来源对知识库的价值不在于提出新算法名称，而在于给出一个全栈 recipe：delta 动作空间、参考状态 initialization（RSI）、教师—学生 distillation、计算扩展、视觉随机化、手指 SysID 和 FOV 对齐被组合成同一个 deployed 人形机器人系统。页面还保留了大量现实世界视频、泛化因素、失败案例与从 2025-05 到 2025-11 的工程 timeline，适合作为 [[SimulationRealityGap|仿真—现实差距]] 的视觉策略案例。
+VIRAL 展示从仿真训练到 Unitree G1 视觉移动操作的教师—学生系统。核心组合是特权强化学习教师、视觉学生蒸馏、视觉随机化，以及手部与相机的真实到仿真对齐。**本页仅依据已归档项目主页；54 个连续循环是页面报告的演示上限，不是成功率。** 完整论文、实现和视频本体尚未纳入本次全文核验。
 
-来源网址: https://viral-humanoid.github.io/
+## 方法如何连接
 
-相关的链接在 the 页面: arXiv `2511.15200`, 项目 PDF, 与 `https://github.com/NVlabs/GR00T-VisualSim2Real`.
+项目页的 Method 分三步。教师先读取完整仿真状态，通过增量动作空间和参考状态初始化学习长时域行为；视觉学生通过在线 DAgger 与行为克隆模仿教师，并用大规模分块渲染提供图像；最后将视觉随机化与灵巧手、相机参数对齐结合，部署到硬件。页面的 Key Sim2Real Elements 特别列出手指系统辨识和视场角对齐。
 
-## 核心主张
+**我们的解释：**教师解决“在充分状态信息下如何完成任务”，学生解决“仅凭部署可用观测如何重现教师行为”；随机外观和校准物理／相机参数作用于不同误差来源。这个分解有助于诊断，但项目页没有足够数值消融支持给各环节分配确定贡献比例。通用机制见 [[VisualSimToReal|视觉仿真到现实迁移]]。
 
-- VIRAL 的任务是自主人形机器人移动操作：机器人需要在两个表格之间移动、放置物体、抓取新物体并转身继续循环。
-- 教师策略侧使用特权 RL 教师策略，观察完整状态，并通过 delta 动作空间和 RSI 学长时域移动操作。
-- 学生策略侧是基于视觉的策略，从 RGB 和真实-可用本体感知模仿教师策略；训练混合在线 DAgger 与行为克隆，并依赖大规模 tiled 渲染。
-- 计算规模是系统主张的一部分：页面声称教师策略/学生策略训练需要扩展到 tens 的 GPUs，低算力 regimes often fail。
-- 仿真到现实迁移不是只靠域随机化。页面把光照、材质、相机参数、图像质量、传感器 delays 等视觉随机化与灵巧手部 SysID、相机/FOV 对齐组合起来。
-- 现实世界部署主张是 Unitree G1 上连续移动操作到 54 cycles，并在 diverse 空间 / 外观 variations 下不做现实世界微调。
-- 泛化视频覆盖托盘的横纵位置、圆柱体位置、机器人起始位置、桌面高度、光照、桌布颜色、桌子类型与物体类别；物体示例包括瓶子、罐子、杯子、保龄球瓶、按压泵瓶和喷雾罐等。
-- 页面明确展示失败案例：unreliable 部署、手部 stuck、accidental drop 和失败的分布外物体泛化。
-- 视觉仿真到现实迁移 journey timeline 显示系统并非一次成型：从 2025-05-30 的 RGB reaching 到 2025-11-10 的 54-周期移动操作，中间经历抓取失败、手指基元 SysID、pre-抓取、walking-到-表格迁移和多轮调优。
+### 怎样理解三段之间的接口
 
-## 关键引文
+| 阶段 | 可读输入与产生的结果 | 下一阶段依赖什么 |
+|---|---|---|
+| 特权教师训练 | 完整仿真状态 → 任务动作 | 教师在访问状态中提供有效监督；增量动作和参考状态初始化用于降低学习难度 |
+| 视觉学生训练 | 渲染图像等部署观测 → 模仿教师行为 | 在线 DAgger 在学生访问到的状态查询教师，行为克隆吸收监督；图像需要批量生成 |
+| 真实闭环执行 | 真实相机和机器人观测 → 动作 → 新观测 | 手指动力学、相机视野和时延等条件与训练输入输出相容 |
 
-- "tens of GPUs"
-- "up to 54 cycles"
-- "without any real-world fine-tuning"
+表格重组项目页 Method 与 Key Sim2Real Elements 的文字，不补写页面没有给出的精确观测张量、损失函数或控制频率。**直觉例子（我们的解释）：** 学生略微推歪一个物体后，后续画面可能偏离教师示范；只重放成功示范不能保证见过这个状态，在线查询教师则能为学生自己的偏离提供纠正动作。它仍要求教师会处理该状态，且视觉中有足够信息判断怎样纠正。共享的监督目标与可观测性限制见 [[VisualSimToReal|视觉迁移机制]]。
 
-### VIRAL
+## 页面实际提供的证据
 
-VIRAL 是项目主页中提出的视觉仿真到现实迁移框架，全称是 "视觉仿真到现实迁移在规模用于人形机器人移动操作"。它的目标是在仿真中训练人形机器人移动操作策略，并零样本部署到真实 Unitree G1 人形机器人上执行连续 walking、placing、抓取、turning 和物体 transport。
+| 位置 | 页面主张或材料 | 当前可支持的范围 |
+| --- | --- | --- |
+| Abstract、Compute Scaling | 教师／学生训练扩展到数十张 GPU，最多 64 张；低计算量设置常失败 | 这是项目作者的报告；本次未从链接图片或完整论文核验各配置的曲线数值 |
+| Autonomous Loco-Manipulation、Journey 的 2025-11-10 条目 | 连续完成最多 54 个移动操作循环 | 展示长序列可执行；缺乏总尝试数，不能推出长期部署失败率 |
+| Generalization 1–10 | 托盘、物体、机器人初位、桌高、光照、桌布与物体类别变化的视频入口 | 页面提供定性案例；不是覆盖任意物体／空间的统一统计结论 |
+| Failure Cases | 部署不可靠、手被卡住、意外掉落和分布外物体失败 | 作者公开列出了失败类型；本次只核验文字及链接，未逐条观看视频 |
+| Abstract、Method | 不进行现实世界策略微调 | 不等于没有真实到仿真的手部辨识与相机对齐 |
 
-系统结构是教师—学生：特权 RL 教师策略用完整状态信息学任务；基于视觉的学生策略再从 RGB 与本体感知模仿教师策略，并通过在线 DAgger、行为克隆、大规模 tiled 渲染、视觉域随机化、手指 SysID 和 FOV 对齐转到真实硬件。
+## 局限与使用方式
 
-## 关联
+主页同时链接不同文件名的论文 PDF，不能仅凭网页导航判断每个演示对应哪个论文版本。当前保留项目主页快照的身份，不将它自动归入论文库。奖励、网络结构、精确训练配置、计算量曲线与独立复现仍需完整论文或实现证据。
 
-- [[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL 项目主页]] - 项目页面来源。
-- [[VisualSimToReal|视觉仿真到现实迁移]] - VIRAL 所代表的机制：从特权仿真教师策略到真实-deployable 视觉学生策略。
-- [[SimulationRealityGap|仿真—现实差距]] - VIRAL 把差距拆成视觉随机化、相机对齐、手部动力学 SysID 和真实部署失败情形。
-- [[NVIDIA|NVIDIA]] - 页面链接到 the NVlabs `GR00T-VisualSim2Real` code 代码仓库。
+**我们的评价：**VIRAL 适合作为“视觉策略迁移需要同时处理观测、控制和物理接口”的案例；其页面主张与演示不应替代系统成功率或普遍泛化能力的证明。与 [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 的比较归入 [[simulation-transfer|仿真策略怎样可靠迁移到现实]]。
 
-- [[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]] - 本来源的框架 / 项目实体页面。
-- [[VisualSimToReal|视觉仿真到现实迁移]] - 本来源最核心的机制层级概念：从特权仿真教师策略到视觉学生策略，再到真实硬件迁移。
-- [[SimulationRealityGap|仿真—现实差距]] - VIRAL 的迁移 recipe 把差距拆成视觉外观随机化、传感器/相机不匹配、灵巧手部动力学不匹配和计算/训练分布问题。
-- [[NVIDIA|NVIDIA]] - 页面链接到 NVlabs `GR00T-VisualSim2Real` 代码仓库；作者与项目生态也和 NVIDIA 机器人学技术栈相关。
+## 来源与关联
 
-## 证据边界
+依据原始项目 HTML 的 Abstract、Method、Generalization、Journey、Failure Cases 与 BibTeX，2026-10-04 完整复核文字缓存；图片、外链 PDF、代码和视频未作为本次已核验证据。[项目主页](https://viral-humanoid.github.io/)；项目页链接的[论文入口](https://arxiv.org/abs/2511.15200)和[官方代码](https://github.com/NVlabs/GR00T-VisualSim2Real)作为后续阅读入口。
 
-当前知识库对 VIRAL 的覆盖范围来自项目主页。页面包含视频、abstract、方法 outline、泛化示例、失败情形、论文/arXiv/代码链接和 BibTeX，但没有把完整奖励函数、架构细节、消融 tables 或代码层级实现收录进来。后续如果收录 arXiv 论文或 NVlabs 代码仓库，应回到本页补充可复现性与实现边界。
+[[VisualSimToReal|视觉迁移机制]]、[[SimulationRealityGap|仿真—现实差距]]、[[NVIDIA|NVIDIA]]。
 
-## 开放问题
+## 研究归属
 
-- 当前收录只覆盖项目主页；arXiv 论文和代码仓库尚未收录。精确奖励定义、网络架构、消融数据和实现细节需要后续来源。
-- 54-周期部署与泛化视频是来源特有的证据；还需要独立 replication 或第三方基准才能判断是否可跨机器人、任务和 lab generalize。
-- VIRAL 的迁移成功到底由哪部分贡献最大：视觉随机化、真实到-sim 对齐、WBC 命令接口、RSI、delta 动作空间、计算规模，还是它们之间的耦合？
-- 失败视频指向 OOD 物体泛化、手部 stuck 和 accidental drop；后续应该追踪这些失败是否来自感知 aliasing、抓取 mechanics、接触动力学、策略 recovery，还是底层手部控制。
+[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。

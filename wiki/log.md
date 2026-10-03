@@ -432,3 +432,331 @@ AGENTS.md 从 333 行精简至 72 行，将重复操作收敛为入口表，保�
 ## [2026-10-02] maintenance | 首页审阅日期排序修正
 
 保留 Quartz 已有 `getDate` 派生的索引日期，移除输出 JSON 时删除日期的旧逻辑；没有新增日期字段或平行状态。146 页索引均含日期，首页列表按最新审阅排序，与浏览器逐项核对一致；关键词搜索与手机无溢出检查通过，页面错误为 0。生产构建与全库类型／格式检查再次通过，内网预览已加载修正后的索引。
+
+## [2026-10-04] review | A Comprehensive Survey on World Models for Embodied AI
+
+复核既有原始资料 `raw/a-comprehensive-survey-on-world-models-for-embodied-ai.html`，重写 [[a-comprehensive-survey-on-world-models-for-embodied-ai|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/action.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning
+
+复核既有原始资料 `raw/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.pdf`，重写 [[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/transfer.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | CoACD：保留碰撞相关凹陷的凸分解
+
+复核既有原始资料 `raw/coacd-approximate-convex-decomposition.pdf`，重写 [[coacd-approximate-convex-decomposition|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/geometry.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | 接触模型比较：物理近似与数值求解怎样改变机器人运动
+
+复核既有原始资料 `raw/contact-models-in-robotics-a-comparative-analysis.pdf`，重写 [[contact-models-in-robotics-a-comparative-analysis|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/geometry.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | 凸基元分解：按碰撞成本拟合可编辑的几何
+
+复核既有原始资料 `raw/convex-primitive-decomposition-for-collision-detection.pdf`，重写 [[convex-primitive-decomposition-for-collision-detection|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/geometry.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | DCOL：以最小均匀缩放构造可微碰撞约束
+
+复核既有原始资料 `raw/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives.pdf`，重写 [[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/geometry.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | DiffPills：把胶囊体与带厚度多边形的碰撞写成二次规划
+
+复核既有原始资料 `raw/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons.pdf`，重写 [[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/geometry.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | DINO-WM：用预训练视觉特征进行目标规划
+
+复核既有原始资料 `raw/dino-wm-pretrained-visual-features.pdf`，重写 [[dino-wm-pretrained-visual-features|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/decision.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | Disentangled Robot Learning via Separate Forward and Inverse Dynamics Pretraining
+
+复核既有原始资料 `raw/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining.pdf`，重写 [[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/action.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | DreamerV3：在想象中学习控制策略
+
+复核既有原始资料 `raw/dreamerv3-nature-2025.html`，重写 [[dreamerv3-mastering-diverse-control|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/decision.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | EmbodiedGen: Towards a Generative 3D World Engine for Embodied Intelligence
+
+复核既有原始资料 `raw/embodiedgen.pdf`，重写 [[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/worlds.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | EmbodiedGen V2: An Agentic, Simulation-Ready 3D World Engine for Embodied AI
+
+复核既有原始资料 `raw/embodiedgen-v2.pdf`，重写 [[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/worlds.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors
+
+复核既有原始资料 `raw/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.pdf`，重写 [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/transfer.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion
+
+复核既有原始资料 `raw/lda-1b-scaling-latent-dynamics-action-model.pdf`，重写 [[lda-1b-scaling-latent-dynamics-action-model|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/action.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | MagicSim: A Unified Infrastructure for Executable Embodied Interaction
+
+复核既有原始资料 `raw/magicsim-a-unified-infrastructure-for-executable-embodied-interaction.pdf`，重写 [[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/worlds.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | MuJoCoUni: Persistent Batched Runtime Primitives for MuJoCo
+
+复核既有原始资料 `raw/mujocouni-persistent-batched-runtime-primitives-for-mujoco.pdf`，重写 [[mujocouni-persistent-batched-runtime-primitives-for-mujoco|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/systems.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | Sim-to-Real Transfer of Robotic Control with Dynamics Randomization
+
+复核既有原始资料 `raw/peng-2018-dynamics-randomization.pdf`，重写 [[peng-dynamics-randomization|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/transfer.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities
+
+复核既有原始资料 `raw/pi07.pdf`，重写 [[pi07-steerable-generalist-robotic-foundation-model|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/action.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | PlaNet：从像素学习潜在动力学并规划
+
+复核既有原始资料 `raw/planet-learning-latent-dynamics.pdf`，重写 [[planet-learning-latent-dynamics|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/decision.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation
+
+复核既有原始资料 `raw/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation.pdf`，重写 [[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/action.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots
+
+复核既有原始资料 `raw/robocasa365.pdf`，重写 [[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/worlds.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies
+
+复核既有原始资料 `raw/robolab.pdf`，重写 [[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/worlds.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | Closing the Sim-to-Real Loop: Adapting Simulation Randomization with Real World Experience
+
+复核既有原始资料 `raw/simopt-adapting-simulation-randomization.pdf`，重写 [[simopt-adaptive-randomization|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/transfer.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots
+
+复核既有原始资料 `raw/campion-bastin-dandrea-novel-wheeled-mobile-robots-nd-2011.pdf`，重写 [[structural-properties-and-classification-of-wheeled-mobile-robots|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/systems.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | TD-MPC2：以任务价值学习潜在模型并规划
+
+复核既有原始资料 `raw/td-mpc2-scalable-robust-world-models.pdf`，重写 [[td-mpc2-scalable-robust-world-models|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/decision.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World
+
+复核既有原始资料 `raw/tobin-2017-domain-randomization.pdf`，重写 [[tobin-domain-randomization|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/transfer.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | UniLab: A Heterogeneous Architecture for Robot RL Beyond GPU-Dominant Paradigms
+
+复核既有原始资料 `raw/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms.pdf`，重写 [[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/systems.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | V-JEPA 2：视频表征怎样接到机器人规划
+
+复核既有原始资料 `raw/v-jepa-2-understanding-prediction-planning.pdf`，重写 [[v-jepa-2-understanding-prediction-planning|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/decision.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | VisACD：用可见性快速评价凸分解切面
+
+复核既有原始资料 `raw/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition.pdf`，重写 [[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/geometry.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | WorldEcho／WorldSync：世界模型是否忠实执行动作
+
+复核既有原始资料 `raw/worldecho-worldsync-action-following.pdf`，重写 [[worldecho-worldsync-action-following|论文解析]]：区分研究问题、机制与数学、实验协议、来源结论及我们的解释。保留原始快照与稳定链接，补论文元数据和多专题归属；详细纠错及阅读限制记于 `graph/review-notes/systems.md`。本次为既有来源复核，没有新增来源收录。
+
+## [2026-10-04] review | VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation
+
+完整重读归档项目页并整理 [[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL 项目解析]]，明确演示次数不等于成功率、仍涉及真实接口标定；论文、视频及图片未列为本轮完整阅读证据。保留项目资料分类，不混入论文库。
+
+## [2026-10-04] restructure | 研究领域、问题专题与论文证据
+
+建立 4 个研究领域和 12 个问题专题，论文多对多关联专题；论文、其他资料、共享概念、学习路径与实体入口分别承担职责。问题由专题维护，研究问题页仅生成入口。重写关联概念与综合，收紧实验外推与来源等级；3 个论文专属概念并入来源页，旧路径保留可读跳转。12 个实体收敛为共享来源入口。评测综述撤回未收录资料的数字及错误 LoRA 判断，保留有据比较与明确标注的协议建议。仅导航、标签及格式调整不刷新知识审阅日期。
+
+首页简化为领域、重点专题和单份最近更新；论文库支持多专题、年份和关键词筛选，保留浏览器阅读记录。目录由 `tools/build_catalog.py` 从页面元数据生成；健康检查增加主题归属与论文必填字段校验。同步维护规则与研究技能，避免旧流程重新制造平行目录。原始资料未改写，本地修改未推送或发布。
+
+## [2026-10-04] maintenance | 研究架构与论文复核验收
+
+30 篇论文全部有逐篇审阅记录，另重读 VIRAL 归档项目页；覆盖与限制记于 `graph/review-notes/README.md`，状态与原始校验和记于 `graph/review-2026-10-04.json`。98 个原始文件字节未变，旧页面路径和旧日志前缀保留。Dreamer 独立附件、轮式英文原版及实验复现不属于已完成范围，文档编辑整理也不冒称全文重审。
+
+健康检查扫描 165 页全部通过，目录生成检查、类型与变更前端格式检查通过，20 项 Python 测试和 3 项筛选脚本测试通过。生产构建的 225 个 HTML 未发现缺失本地引用、失效锚点或 KaTeX 错误；论文库生成 30 条记录。修复主题目录同名路由冲突，显式关系图已重建。本地预览 8081／8082 已启动，论文页 HTTP 200。浏览器工具初始化被环境拒绝导入 `node:process`，因此真实浏览器视觉与交互验收仍未完成；不将脚本或静态检查替代该验证。本轮没有推送或发布。
+
+## [2026-10-04] review | A Comprehensive Survey on World Models for Embodied AI
+
+[[a-comprehensive-survey-on-world-models-for-embodied-ai|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] ingest | AgentsDock Releases
+
+[[agentsdock-releases|本页]]：补充官方固定版本原始证据并归档，静态核查实际调用流程；完整文件与定向片段的阅读范围分别登记。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] ingest | AgentsServer
+
+[[agentsserver|本页]]：补充官方固定版本原始证据并归档，静态核查实际调用流程；完整文件与定向片段的阅读范围分别登记。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning
+
+[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | AwesomeWorldModels：世界模型文献索引
+
+[[awesome-world-models|本页]]：复核既有归档资料，重写项目定位、机制与证据边界；未运行第三方代码或外链实验。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | CoACD：保留碰撞相关凹陷的凸分解
+
+[[coacd-approximate-convex-decomposition|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] ingest | CoACD 项目：接口、尺度与分解代码
+
+[[coacd-repository|本页]]：补充官方固定版本原始证据并归档，静态核查实际调用流程；完整文件与定向片段的阅读范围分别登记。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | 接触模型比较：物理近似与数值求解怎样改变机器人运动
+
+[[contact-models-in-robotics-a-comparative-analysis|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | 凸基元分解：按碰撞成本拟合可编辑的几何
+
+[[convex-primitive-decomposition-for-collision-detection|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | DCOL：以最小均匀缩放构造可微碰撞约束
+
+[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | DiffPills：把胶囊体与带厚度多边形的碰撞写成二次规划
+
+[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | DINO-WM：用预训练视觉特征进行目标规划
+
+[[dino-wm-pretrained-visual-features|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | Disentangled Robot Learning via Separate Forward and Inverse Dynamics Pretraining
+
+[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | DreamerV3：在想象中学习控制策略
+
+[[dreamerv3-mastering-diverse-control|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | EmbodiedGen: Towards a Generative 3D World Engine for Embodied Intelligence
+
+[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | EmbodiedGen V2: An Agentic, Simulation-Ready 3D World Engine for Embodied AI
+
+[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors
+
+[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] ingest | Isaac Lab Repository
+
+[[isaac-lab-repository|本页]]：补充官方固定版本原始证据并归档，静态核查实际调用流程；完整文件与定向片段的阅读范围分别登记。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion
+
+[[lda-1b-scaling-latent-dynamics-action-model|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | MagicSim: A Unified Infrastructure for Executable Embodied Interaction
+
+[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] ingest | ManiSkill Repository
+
+[[maniskill-repository|本页]]：补充官方固定版本原始证据并归档，静态核查实际调用流程；完整文件与定向片段的阅读范围分别登记。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] ingest | mjlab Repository
+
+[[mjlab-repository|本页]]：补充官方固定版本原始证据并归档，静态核查实际调用流程；完整文件与定向片段的阅读范围分别登记。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] ingest | MuJoCo Playground Repository
+
+[[mujoco-playground-repository|本页]]：补充官方固定版本原始证据并归档，静态核查实际调用流程；完整文件与定向片段的阅读范围分别登记。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | MuJoCoUni: Persistent Batched Runtime Primitives for MuJoCo
+
+[[mujocouni-persistent-batched-runtime-primitives-for-mujoco|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | NVIDIA ovrtx
+
+[[nvidia-ovrtx|本页]]：复核既有归档资料，重写项目定位、机制与证据边界；未运行第三方代码或外链实验。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | NVlabs/RoboLab
+
+[[nvlabs-robolab|本页]]：复核既有归档资料，重写项目定位、机制与证据边界；未运行第三方代码或外链实验。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | Sim-to-Real Transfer of Robotic Control with Dynamics Randomization
+
+[[peng-dynamics-randomization|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities
+
+[[pi07-steerable-generalist-robotic-foundation-model|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | PlaNet：从像素学习潜在动力学并规划
+
+[[planet-learning-latent-dynamics|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation
+
+[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots
+
+[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies
+
+[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | Robotics Simulation Infrastructure
+
+[[robotics-simulation-infrastructure|本页]]：复核既有归档资料，重写项目定位、机制与证据边界；未运行第三方代码或外链实验。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | Closing the Sim-to-Real Loop: Adapting Simulation Randomization with Real World Experience
+
+[[simopt-adaptive-randomization|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots
+
+[[structural-properties-and-classification-of-wheeled-mobile-robots|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | TD-MPC2：以任务价值学习潜在模型并规划
+
+[[td-mpc2-scalable-robust-world-models|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World
+
+[[tobin-domain-randomization|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | UniLab: A Heterogeneous Architecture for Robot RL Beyond GPU-Dominant Paradigms
+
+[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] ingest | UniLab Repository
+
+[[unilab-repository|本页]]：补充官方固定版本原始证据并归档，静态核查实际调用流程；完整文件与定向片段的阅读范围分别登记。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] ingest | V-HACD 项目：体素分解、参数与调用契约
+
+[[v-hacd-repository|本页]]：补充官方固定版本原始证据并归档，静态核查实际调用流程；完整文件与定向片段的阅读范围分别登记。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | V-JEPA 2：视频表征怎样接到机器人规划
+
+[[v-jepa-2-understanding-prediction-planning|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation
+
+[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|本页]]：复核既有归档资料，重写项目定位、机制与证据边界；未运行第三方代码或外链实验。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | VisACD：用可见性快速评价凸分解切面
+
+[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] review | WorldEcho／WorldSync：世界模型是否忠实执行动作
+
+[[worldecho-worldsync-action-following|本页]]：在首轮全文核验基础上定向回读机制，补充输入输出、必要推导、训练与推理差别、明确标注的教学例子；不将本轮记作第二次全文阅读。逐页核查范围见 `graph/review-notes/second-pass/`；共享基础通过双向链接复用，保留首轮数值纠错与版本限制。
+
+## [2026-10-04] restructure | 交叉主题地图与原生 Quartz 阅读
+
+以六张可交叉主题地图替代四领域的强制父子分类；既有十二专题作为具体问题笔记继续保留，工具笔记单列。旧领域地址保留可读跳转，论文和概念以多对多主题元数据与正文链接导航。首页回归普通 Markdown，完整目录独立生成；恢复原生 Quartz 目录树、搜索、局部图与反向链接，补本页引用列表，关系图排除目录及跳转入口。保留论文筛选和浏览器阅读记录，移除旧定制仪表盘及图脚本。
+
+新增 [[CrossEntropyMethod|交叉熵方法]] 和 [[FlowMatching|流匹配]]，共享机制不在每篇论文重复；其余既有概念随论文和项目复核补充直觉、假设与教学例子。研究规则与技能同步本次设计，并记录参考的开源读论文技能和未采用部分。只变动导航元数据的页面不刷新审阅日期，原始证据只追加，不修改或删除旧文件。本轮不推送或公开发布。
+
+## [2026-10-04] ingest | MotrixSim Documentation
+
+[[motrixsim-documentation|本页]]：补充归档 MotrixSim v0.2.0 四份官方文档并全文阅读，整理模型、状态、驱动器和仿真步的接口；闭源实现未核查，未运行仿真或性能测试。逐文件范围见 `graph/review-notes/second-pass/systems.md`。
+
+## [2026-10-04] maintenance | 第二轮研究地图与阅读深化验收
+
+30 篇论文在首轮全文核验后完成定向机制补强；12 个仓库来源、1 个项目来源及 2 份文档／文章分别记录实际阅读范围。共处理 45 个来源、42 个概念和 2 个学习综合页，新建 CEM 与流匹配共享概念。范围与保留缺口见 `graph/review-notes/second-pass/README.md`。
+
+98 个旧原始文件校验和不变，新增 59 份官方原始快照，旧 Wiki 路径保留。173 页健康检查、目录同步、类型、21 项 Python 测试及 3 项论文筛选测试通过。233 个构建 HTML 未发现失效本地引用、锚点和 KaTeX 错误，双向列表已静态检查；知识图排除目录和跳转后为 161 节点、1247 边，无失效目标或孤页。修复两项目公式中的下划线转义。本地预览 8081／8082 运行，页面 HTTP 200；浏览器初始化限制仍阻止实际视觉与交互验收。本轮没有推送或发布。

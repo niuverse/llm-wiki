@@ -93,12 +93,18 @@ def check_empty_files(root: Path, pages: list[Path]) -> list[dict[str, Any]]:
 
 
 def parse_index_links(index_text: str) -> set[str]:
-    return set(re.findall(r"\]\(([^)]+\.md)\)", index_text))
+    links = set(re.findall(r"\]\(([^)]+\.md)\)", index_text))
+    for raw in re.findall(r"\[\[([^\]]+)\]\]", index_text):
+        target = raw.split("|", 1)[0].split("#", 1)[0].strip()
+        if target:
+            links.add(target if target.endswith(".md") else target + ".md")
+    return links
 
 
 def check_index_sync(root: Path, pages: list[Path]) -> dict[str, list[str]]:
     wiki_dir = root / "wiki"
     index_links = parse_index_links(read_text(wiki_dir / "index.md"))
+    index_links |= parse_index_links(read_text(wiki_dir / "catalog.md"))
     index_paths = {(wiki_dir / link).resolve() for link in index_links}
     disk_paths = {page.resolve() for page in pages if page.name != "overview.md"}
     optional_index_paths = {
@@ -223,11 +229,15 @@ def check_language_artifacts(root: Path, pages: list[Path]) -> list[dict[str, st
 # a source-backed conclusion.
 
 EVIDENCE_STATE_TAGS = ("unsourced", "source-plan", "learn", "distill")
-EVIDENCE_STATE_TYPES = ("concept", "entity", "synthesis")
+EVIDENCE_STATE_TYPES = ("concept", "entity", "synthesis", "domain", "topic")
 
 
 def frontmatter_list(text: str, key: str) -> list[str]:
-    match = re.search(rf"^{key}:\s*\[(.*?)\]", text, flags=re.MULTILINE | re.DOTALL)
+    # Lists are one-line frontmatter fields; WikiLinks contain their own brackets.
+    frontmatter = re.match(r"^---\n(.*?)\n---", text, flags=re.DOTALL)
+    if not frontmatter:
+        return []
+    match = re.search(rf"^{re.escape(key)}:[ \t]*\[(.*)\][ \t]*$", frontmatter.group(1), flags=re.MULTILINE)
     if not match:
         return []
     return [item.strip().strip("\"'") for item in match.group(1).split(",") if item.strip()]
@@ -253,6 +263,43 @@ def check_evidence_state(root: Path, pages: list[Path]) -> list[dict[str, str]]:
     return findings
 
 
+def check_research_structure(root: Path, pages: list[Path]) -> list[dict[str, str]]:
+    """Validate explicit research memberships, never infer them from directories/tags."""
+    by_slug = {p.relative_to(root / "wiki").with_suffix("").as_posix(): parse_frontmatter(read_text(p)) for p in pages}
+    findings = []
+    def report(page: Path, issue: str):
+        findings.append({"page": page.relative_to(root).as_posix(), "issue": issue})
+    for page in pages:
+        text = read_text(page)
+        fm = parse_frontmatter(text)
+        topics = frontmatter_list(text, "topics")
+        if "study_topic" in fm or "study_order" in fm:
+            report(page, "legacy study navigation metadata; use domain/topics")
+        if len(topics) != len(set(topics)):
+            report(page, "duplicate topic memberships")
+        for topic in topics:
+            if by_slug.get(topic, {}).get("type") != "topic":
+                report(page, f"topic membership is missing or not a topic: {topic}")
+        if fm.get("type") == "topic":
+            if "domain" in fm:
+                report(page, "research maps have no mandatory parent; use explicit cross-links")
+            if fm.get("entry") and fm["entry"] not in {"research", "tools"}:
+                report(page, "entry must be research or tools")
+        if fm.get("type") == "redirect":
+            target = fm.get("redirect_to", "")
+            if target not in by_slug or by_slug[target].get("type") == "redirect":
+                report(page, "merged page must point directly to an existing content page")
+        if fm.get("source_type") == "paper":
+            if fm.get("type") != "source":
+                report(page, "paper must remain a source with archived evidence")
+            for field in ("paper_title", "year", "venue", "reviewed", "source_file", "source_url"):
+                if not fm.get(field):
+                    report(page, f"paper metadata missing: {field}")
+            if not topics:
+                report(page, "paper has no explicit research topic")
+    return findings
+
+
 def run(root: Path) -> dict[str, Any]:
     pages = all_wiki_pages(root)
     return {
@@ -265,6 +312,7 @@ def run(root: Path) -> dict[str, Any]:
         "source_files": check_source_files(root),
         "language_artifacts": check_language_artifacts(root, pages),
         "evidence_state": check_evidence_state(root, pages),
+        "research_structure": check_research_structure(root, pages),
     }
 
 
@@ -282,6 +330,7 @@ def format_report(results: dict[str, Any]) -> str:
         ("Missing Source Artifacts", results["source_files"]["missing"]),
         ("Language Artifacts", results["language_artifacts"]),
         ("Evidence State", results["evidence_state"]),
+        ("Research Structure", results["research_structure"]),
     ]
     for title, items in sections:
         lines.extend([f"## {title} ({len(items)})", ""])
@@ -316,6 +365,7 @@ def has_failures(results: dict[str, Any]) -> bool:
         or results["source_files"]["missing"]
         or results["language_artifacts"]
         or results["evidence_state"]
+        or results["research_structure"]
     )
 
 

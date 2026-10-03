@@ -3,91 +3,135 @@ title: "AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning"
 type: source
 tags: [robotics, sim-to-real, reinforcement-learning, evaluation, source-backed]
 sources: []
-modified: 2026-09-25
+modified: 2026-10-04
 source_file: raw/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.pdf
 source_kind: pdf
 source_url: https://arxiv.org/abs/2603.20147
 extracted_text: graph/extracts/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.md
 source_date: 2026-03-20
 code_url: https://github.com/nvidia-isaac/WBC-AGILE
-study_topic: syntheses/robot-learning-and-evaluation-learning-path
+source_type: paper
+paper_title: "AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning"
+year: 2026
+venue: "arXiv 预印本"
+reviewed: 2026-10-04
+topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ---
 
-## 摘要
+## 一屏概览
 
-Huihua Zhao、Rafael Cathomen、Lionel Gulich、Wei Liu、Efe Arda Ongan、Michael Lin、Shalin Jain、Soha Pouya 和 Yan Chang 提出 [[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]]，一个基于 Isaac Lab 与 RSL-RL 的端到端人形机器人 RL 工作流，用来把环境验证、可复现的训练、统一的评估和描述文件驱动的部署接成同一个 development 生命周期。论文的核心判断是：许多人形机器人 RL 部署失败并不主要来自仿真吞吐量或单个 RL 算法不够新，而来自工作流差距与迁移差距，例如关节轴错误、奖励 term 错误、评估只看随机轨迹采样、策略导出时关节顺序/历史/动作扩展不一致。
+**研究问题：** 人形机器人策略在仿真中训练成功后，为什么验证、导出和硬件迁移仍然脆弱？Zhao 等把常见问题归为开发流程断裂与训练—部署接口不一致，提出 AGILE，把训练前检查、可复现训练、统一评估和部署描述文件接成闭环。
 
-AGILE 不是一个单一策略模型，而是一套 [[HumanoidRLWorkflow|人形机器人强化学习工作流]]：训练前用 GUI 验证关节、接触和奖励；训练时记录 git 快照、YAML 配置、W&B/Docker runs，并集成 L2C2、在线奖励归一化、价值-bootstrapped terminations、虚拟的 harness、symmetry 扩充等稳定化模块；评估时同时跑确定性场景测试和随机轨迹采样，并报告 RMS 加速度、加加速度、关节限制 violations 等部署关键指标；部署时导出 TorchScript 策略与 YAML I/O 描述文件，让 MuJoCo 跨仿真器验证和硬件推理复用同一 I/O 契约。
+**主要贡献：** 在 Isaac Lab 与 RSL-RL 之上组织一套工程框架，同时实现可独立开关的平滑正则、奖励归一化、终止处理、虚拟悬挂等训练模块。论文的中心贡献是流程与接口的统一，不是一个新的通用强化学习算法。
 
-来源网址: https://arxiv.org/abs/2603.20147
+**结论范围：** 案例覆盖 Unitree G1、Booster T1 的五类技能。运动跟踪的定量指标来自 MuJoCo，真实迁移主要是定性演示；GR00T N1.5 微调后的 90% 成功率来自 100 次闭环仿真测试。依据为 [原论文](https://arxiv.org/abs/2603.20147) 第 3–5 节、表 2–3 与图 4–8；本页完整复核归档 v1 的 18 页及附录，不把代码链接视为已独立审计的证据。
 
-代码: https://github.com/nvidia-isaac/WBC-AGILE
+## 方法：让训练结果沿同一套接口进入评估与部署
 
-## 核心主张
-
-- AGILE 把人形机器人 RL 的问题从“写一个训练脚本”重构为生命周期工程：Prepare、Train、Evaluate、Deploy 四个阶段必须共享配置、指标和部署契约。
-- Prepare 阶段提供关节位置 GUI、物体操作 GUI 和奖励可视化工具，用于在训练前发现机器人模型与 MDP 配置错误，例如反向的关节轴、碰撞几何问题、奖励 term 不按预期激活。
-- 训练阶段强调可复现性：每次 run 记录 git 提交、分支、uncommitted diffs 和 YAML 配置 dumps；scaled-dict 参数把 leg PD 增益等结构化的参数组缩成一个规模扫描，保持相对结构。
-- 算法层面的 toolbox 不是提出全新 RL 目标，而是把常用仿真到现实迁移稳定化 techniques 变成可开关模块：L2C2 regularization、在线奖励归一化、价值-bootstrapped terminations、虚拟的 harness、上限机体速度 profiles、symmetry 扩充、自适应命令采样、状态 caching 和教师—学生 distillation。
-- L2C2 用连续的观测的 interpolation 约束策略/价值的局部 Lipschitz continuity，目标是减少观测 perturbation 下的动作 jump；消融中它降低 RMS 加速度、RMS 加加速度、位置限制 violations 和高频能量比率。
-- 在线奖励归一化用 running 奖励 standard deviation、discounted-return variance 因素和 return-规模校正让奖励幅值/curriculum 规模 changes 对训练更不敏感；stand-up 任务特别依赖它处理精细-grained postural 奖励与 sparse standing bonus 的尺度差异。
-- 价值-bootstrapped terminations 用 $\gamma V(x_T)$ 让终止价值中性，再用固定偏移 $\sigma$ 区分 bad/良好的/中性终止；来源报告在 Booster T1 stand-up 上比 manually tuned 终止惩罚项有更高 timeout 比率和更低随机种子 variance。
-- 虚拟的 harness 对根部机体施加衰减的 PD 力/力矩，使早期训练不会在策略学到站立/行走前立即 collapse；来源报告在 Unitree G1 height-受控的移动上加速摆脱 negative-奖励 phase 并提高最终奖励。
-- 评估阶段把随机轨迹采样和确定性场景驱动的测试结合起来。确定性速度扫描、height 渐变测试等 scripted 命令给低-variance 回归测试；randomized 轨迹采样检验命令分布鲁棒性。
-- 评估指标面向硬件风险，而不只看奖励或跟踪平均：来源特别强调 RMS 关节加速度、RMS 加加速度、关节限制 violations 和高频能量比率。论文报告一致的关节限制 violations 会可靠地阻止跨仿真器验证迁移，因此可以作为微调 feedback。
-- 部署阶段通过 TorchScript 策略 + YAML I/O descriptors 记录关节名称、观测顺序、历史缓冲区和动作扩展，减少策略导出到 MuJoCo 或硬件时的静默错误。
-- 情形研究覆盖五类人形机器人技能：Unitree G1 / Booster T1 速度跟踪、Unitree G1 height-受控的移动、Unitree G1 / Booster T1 stand-up、Unitree G1 运动模仿，以及 Unitree G1 pick-与-place 移动操作/VLA 微调。
-- Height-受控的移动情形研究使用分离机体控制：较低-机体 RL 策略只控制 leg 关节，同时训练中用 trapezoidal 速度分析随机化 waist/上限机体关节，从而给部署时的 IK 或 VLA 上限机体控制器预留自由度。
-- 移动操作情形研究冻结较低-机体移动策略，训练一个 right-机械臂/waist RL 专家用特权仿真状态生成 100 条 successful 轨迹，再微调 GR00T N1.5 VLA；来源报告闭环仿真中 100 个随机初始状态测试情形达到 90% 成功。
-- 仿真到现实迁移证据主要是硬件示范数据与 MuJoCo 定量跟踪指标：论文说明没有外部运动-捕捉系统，因此现实世界迁移主要是定性验证，定量指标来自 MuJoCo 流程。
-- 来源支持的失效情形包括执行器建模差距、接触动力学差距、过度 aggressive 策略、高频振荡、关节限制 violations、描述文件/I/O 不匹配，以及只用随机轨迹采样时看不见的硬件关键行为。
-- 局限：验证平台只有 Unitree G1 和 Booster T1；框架依赖 Isaac Lab upstream APIs；任务主要是 proprioceptive，感知驱动的操作和 running/stair climbing 等更动态行为尚未覆盖。
-
-## 关键引文
-
-- "workflow gap"
-- "descriptor-driven deployment"
-- "fix the simulation to match reality"
-
-### AGILE
-
-AGILE（A Generic Isaac-Lab 基于引擎）是一个开源人形机器人 RL 工作流层，构建在 Isaac Lab 与 RSL-RL 之上，用来把机器人/任务配置、训练稳定化、评估指标和部署导出统一到同一个生命周期。它对应的来源是 [[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning]]，代码发布在 https://github.com/nvidia-isaac/WBC-AGILE。
+AGILE（A Generic Isaac-Lab based Engine）用配置定义场景、观测、动作、奖励、终止和课程。每个任务集中描述自身配置，训练外侧的工具读取同一体系。（第 3.1 节）
 
 ```mermaid
 flowchart LR
-  A["Prepare<br/>关节/物体/奖励 GUI"] --> B["训练<br/>可复现的 runs + 稳定化"]
-  B --> C["Evaluate<br/>场景测试 + 随机轨迹采样"]
-  C --> D["Deploy<br/>TorchScript + YAML descriptors"]
-  D --> E["Sim2Sim / Sim2Real<br/>共享推理契约"]
+  A["模型与任务配置"] --> B["交互检查<br/>关节、接触、奖励"]
+  B --> C["训练与实验记录"]
+  C --> D["确定场景与随机指令评估"]
+  D --> E["策略与输入输出描述文件"]
+  E --> F["MuJoCo 验证与硬件推理"]
+  D --> C
 ```
 
-AGILE 的重要性不在于替代 PPO、Isaac Lab 或 MuJoCo，而在于把容易出错的边界条件变成显式契约。关节轴、奖励 term、物体接触、观测顺序、历史缓冲区和动作规模扩展都是人形机器人 RL 中常见的静默失败来源；AGILE 用 pre-训练 GUIs、git/配置快照、确定性评估和描述文件驱动的导出来减少这些错误进入硬件试验。
+| 环节 | 具体机制 | 要减少的错误 |
+|---|---|---|
+| 训练前检查，第 3.2 节 | 逐关节滑块、对称显示、物体六维操控、接触读数、奖励分项可视化 | 关节轴符号错误、碰撞配置不当、奖励未按预期激活 |
+| 训练记录，第 3.3.1 节 | 记录提交、分支、未提交差异与 YAML 配置，结合 Docker 和 W&B；用一个比例共同缩放结构化参数组 | 配置丢失、参数扫描破坏相对结构、实验难以追溯 |
+| 统一评估，第 3.4 节 | 确定性速度扫描和高度渐变，加随机指令采样；记录逐关节加速度、加加速度和越限 | 平均奖励掩盖高频动作和受控场景下的失败 |
+| 描述文件驱动部署，第 3.5 节 | TorchScript 策略配 YAML，记录关节名、观测顺序、历史缓冲与动作缩放；MuJoCo 和硬件复用推理逻辑 | 关节顺序、历史拼接和动作尺度在导出时错配 |
 
-#### 组成
+作者把这些工具视为提高可复现性的基础，但没有给出跨硬件、驱动与随机种子的逐位复现实验证明。保留配置与软件环境，支持的是可追溯和可重建，不能直接等同于任何条件下结果完全一致。
 
-- Prepare：关节位置 GUI、物体操作 GUI、奖励可视化工具，用于训练前检查机器人模型与 MDP。
-- 训练：基于 RSL-RL 的训练循环、点云或局部运行、W&B 日志记录、Docker 编排、缩放参数字典扫描和可开关的稳定化模块。
-- Evaluate：Isaac Lab 与 MuJoCo 中共享确定性场景测试、随机轨迹采样、RMS 加速度、加加速度、关节限制 violations 和 HTML 报告。
-- Deploy：TorchScript 策略与 YAML I/O 描述文件记录关节名称、观测顺序、历史缓冲区、动作规模扩展，并支撑 Python/C++ 推理。
+## 训练机制：平滑、尺度与早期探索分别处理
 
-#### 证据边界
+### 局部平滑正则 L2C2
 
-来源支持 AGILE 在 Unitree G1 与 Booster T1 上覆盖移动、height 控制、stand-up、运动模仿和移动操作/VLA 仿真情形。更广泛的硬件族、感知驱动的操作、running/stair climbing 和定量现实世界跟踪指标仍是开放问题。
+设 $x_t,x_{t+1}$ 为相邻观测，$x_t^p$ 是价值网络使用的特权观测，$\pi$ 为策略，$V$ 为价值估计。用 $\alpha\sim\mathcal U(0,1)$ 在相邻输入间插值，得到 $\tilde x=x_t+\alpha(x_{t+1}-x_t)$，然后惩罚输出变化：
 
-## 关联
+$$
+\mathcal L=\lambda_\pi\|\pi(\tilde x)-\pi(x_t)\|_2^2+\lambda_V\|V(\tilde x^p)-V(x_t^p)\|_2^2.
+$$
 
-- [[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] - 本来源的工作流/实体页面。
-- [[HumanoidRLWorkflow|人形机器人强化学习工作流]] - 机制页：把验证、训练、评估、描述文件导出和仿真到现实迁移部署写成生命周期。
-- [[SimulationRealityGap|仿真—现实差距]] - AGILE 把现实差距具体化为执行器建模、接触动力学、aggressive 策略和导出契约不匹配。
-- [[TaskGeneralistPolicyEvaluation|通用任务策略评估]] - AGILE 的确定性场景测试与运动质量诊断信息是策略评估的 complementary 视角。
-- [[VisionLanguageActionModels|视觉—语言—动作模型]] - AGILE 的移动操作情形用 RL 专家示范数据微调 GR00T N1.5 VLA。
-- [[NVIDIA|NVIDIA]] - 来源代码发布在 `nvidia-isaac/WBC-AGILE`，并构建在 Isaac Lab 技术栈上。
-- [[MuJoCo|MuJoCo]] - AGILE 用 MuJoCo 做描述文件驱动的跨仿真器验证。
+$\lambda_\pi,\lambda_V$ 是两个正则权重。与直接惩罚动作大小、变化率和二阶差分不同，这项约束针对“观测轻微变化时输出是否突变”。作者借此抑制真实执行器难以跟踪的高频动作；它是训练中的局部约束，不能解释成全局稳定性或硬件安全的数学保证。（第 3.3.2 节、式 1）
 
-## 开放问题
+**为什么它会抑制抖动？** 以下是对式 1 的局部教学推导。令 $\delta=\alpha(x_{t+1}-x_t)$，若策略在附近可微，一阶展开给出 $\pi(x_t+\delta)-\pi(x_t)\approx J_\pi(x_t)\delta$，其中 $J_\pi$ 是动作对观测的雅可比矩阵。因此该项近似惩罚 $\|J_\pi\delta\|^2$：沿实际访问轨迹附近的观测变化，动作不应被过度放大。它只约束采到的局部方向；与“相邻两次动作接近”相比，这里直接训练输入扰动到输出扰动的映射。部署时不再计算这项损失，只执行训练好的策略。
 
-- AGILE 的定量硬件验证仍有限。没有运动-捕捉指标时，硬件 demo 能证明稳定的执行，但不能精确量化跟踪错误、能量、接触力或失败 probability。
-- 移动操作/VLA 结果主要是闭环仿真的 90% 成功；它是否能稳定转到真实人形机器人操作，还需要后续来源或硬件基准。
-- 描述文件驱动的导出可以减少关节顺序、历史缓冲区和动作扩展错误，但不能自动解决执行器动力学、延迟、传感器噪声和接触建模不匹配。
-- AGILE 目前强依赖 Isaac Lab 管理器架构；如果上游 API 或仿真器假设变化，工作流的 portability 和 long-term 可复现性需要持续验证。
-- 这些稳定化模块被来源逐项 ablate，但仍是任务-依赖的 toolbox；来源自身也强调没有单一 technique 能 universally 工作 across all 任务与机器人。
+### 在线奖励归一化与价值自举终止
+
+奖励幅值会随着课程或任务切换变化。原文式 2 将奖励 $r_t$ 缩放为
+
+$$
+\hat r_t=\frac{r_t}{\sigma_r\varphi_\gamma c+\epsilon},\qquad \varphi_\gamma=\frac{1}{\sqrt{1-\gamma^2}}.
+$$
+
+$\sigma_r$ 是环境批次奖励的指数移动标准差，$\gamma$ 是折扣因子，$\epsilon=0.01$ 防止除零，$c$ 是回报尺度修正。它按 $c\leftarrow\beta c+(1-\beta)\sigma_Gc$ 更新，$\sigma_G$ 为 GAE 回报标准差，$\beta$ 为平滑系数。用途是减少奖励整体缩放对训练的影响，不是自动修正奖励设计中的目标错误。（第 3.3.2 节、式 2；最后一句为我们的解释）
+
+在终止时把价值直接归零，可能使累积负奖励的策略偏好提前失败。AGILE 用原文式 3 修改终止奖励：
+
+$$
+\hat r_T\leftarrow\hat r_T+\gamma V(x_T)+b,\qquad
+b=\begin{cases}-\sigma,&\text{不良终止，如跌倒},\\+\sigma,&\text{良好终止，如到达目标},\\0,&\text{中性终止，如超时}.\end{cases}
+$$
+
+$x_T$ 是终止状态，$\sigma>0$ 为固定偏移，论文各任务取 5。自举项补回继续执行的估计价值，再由偏移规定终止的好坏。附录 A.1 同时提醒：如果终止状态的价值估计不准，误差会反馈到训练目标；出现价值损失上升时需调整偏移或奖励。因而不宜只引用正文“无需逐任务调惩罚”的优点而省略这一条件。
+
+**尺度项从哪里来？** 用简化假设理解 $\varphi_\gamma$：若每步奖励具有相同方差 $\sigma_r^2$、跨时间不相关，则折扣回报 $G=\sum_{k\ge0}\gamma^kr_k$ 的方差为 $\operatorname{Var}(G)=\sigma_r^2\sum_k\gamma^{2k}=\sigma_r^2/(1-\gamma^2)$。所以回报标准差约为 $\sigma_r\varphi_\gamma$。真实奖励通常相关，原文再用观测到的回报尺度 $c$ 修正；这段推导解释缩放因子的来源，不是声称实际奖励满足独立假设。
+
+**终止处理的数值例子（教学构造）：** 设当前估计继续执行的价值为 −20，$\gamma=0.99$。只给失败 −5 且把后续价值归零，可能比继续承受约 −19.8 的回报更“划算”。AGILE 将失败偏移加在继续价值上，此处对应 −19.8−5=−24.8，使失败相对于估计中的继续执行更差。例子省略两者共有的当前步奖励；若 $V$ 估错，比较也会错，这正是附录所指出的反馈风险。
+
+### 虚拟悬挂、上身扰动与教师—学生
+
+虚拟悬挂在早期给根部施加姿态力矩与竖直支撑力：$\tau_h=K_pe_q-K_d\omega$、$f_h=K_p(h^*-h)-K_d\dot h$。其中 $e_q$ 为直立姿态误差，$\omega$ 为角速度，$h^*,h$ 为目标与当前根部高度，$K_p,K_d$ 为相应通道增益。课程系数 $s\in[0,1]$ 逐渐缩小增益和力限，使机器人先能探索有用动作，再脱离辅助。（第 3.3.2 节）
+
+高度控制任务只让强化学习策略控制腿，训练时腰和上身跟随随机目标，但用有加减速限制的梯形速度曲线连接目标，避免瞬间跳变。部署时上身自由度交给独立 IK 或 VLA 控制器。若训练教师使用地形扫描、真实速度或接触等特权信息，再蒸馏为只使用硬件可得观测的 LSTM 或历史 MLP 学生。（第 3.3.2、4.2 节、图 3）
+
+此外还有观测—动作镜像增强、低速平衡指令采样、缓存跌倒初态等模块；它们都是可选工具，原文没有主张所有任务都必须全部启用。
+
+## 实验与消融：结果在哪个环境成立
+
+### 运动质量与训练稳定性
+
+| 试验与定位 | 设置与结果 | 证据含义 |
+|---|---|---|
+| 奖励归一化，图 7(a) | G1 速度跟踪，奖励整体放大 100 倍后，归一化恢复接近原尺度的表现 | 支持对整体奖励幅值的稳定化，不证明任意奖励组合都可迁移 |
+| L2C2，第 5.1.2 节、图 6 | 舞蹈任务，MuJoCo 中 15 次确定性评估，每次 8 秒；四项指标随噪声测试得到改善 | 加速度、加加速度、越限与 10 Hz 以上能量占比下降；不用 L2C2 的策略也能硬件执行，但有可听高频振荡 |
+| 自举终止，图 7(b) | T1 起身，5 个随机种子；超时结束比例提高，种子差异缩小 | 超时是较少不良终止的代理指标，不等同于另一次真实起身成功率测试 |
+| 虚拟悬挂，图 7(c) | G1 速度＋高度控制，5 个种子，前 2,000 轮撤除辅助 | 更快离开负奖励阶段，最终奖励更高 |
+| 对称增强，图 7(d) | T1 速度跟踪，5 个种子 | 奖励改善较小；作者强调行为对称性未由奖励曲线充分刻画 |
+
+图 7 的阴影通常为一倍标准差，但终止实验是最小—最大范围，不能统一当作同一种误差条。
+
+### 确定性评估与随机评估
+
+表 3 是 **MuJoCo 中的跨仿真器评估**。特权教师在 50 秒确定性扫描下，前向、侧向、偏航与高度跟踪误差分别为 0.070 m/s、0.083 m/s、0.074 rad/s、0.035 m。随机指令每两秒重采样，10 次运行：前向误差在 50 秒时为 $0.142\pm0.019$ m/s，500 秒时为 $0.136\pm0.003$ m/s。延长采样减少方差，但两种测试的指令分布不同，因此不能把确定性误差较小解释为策略变好了。（第 4.2 节、表 3；最后一句为我们的解释）
+
+同表在相同确定性扫描下比较学生：LSTM 与历史 MLP 前向误差分别为 0.116、0.097 m/s，高度均为 0.037 m。这说明统一评估可比较策略结构，也显示蒸馏后并非所有指标都保持教师水平。
+
+### 移动操作与硬件覆盖
+
+第 4.5 节冻结下身移动策略，让右臂和腰部的强化学习专家用特权状态学习抓放，再生成 **100 条成功示范** 微调 GR00T N1.5。视觉—语言策略替换专家输入后，在 **100 个随机初始机器人状态的闭环仿真测试中成功 90%**，不能记为真实机器人 VLA 成功率。（图 5）
+
+表 2 给出的单张 L40 训练时间约为：移动与高度控制 10 小时、G1／T1 起身 25／15 小时、运动模仿 6 小时、抓放 10 小时。第 5.2 节概括为五类任务实现硬件迁移，但图 8 直接呈现的是速度、高度、起身和舞蹈；抓放／VLA 的定量证据仍是上述仿真测试。没有外部动作捕捉系统，不能从演示反推出真实跟踪误差、失败概率或能耗。
+
+## 局限与我们的解释
+
+**作者明确的局限：** 平台只有 G1 与 T1，依赖 Isaac Lab 上游接口；任务主要依靠本体感知，感知操作与跑步、爬楼等更动态能力尚未形成同等覆盖。执行器、接触建模与激进动作仍是开发中的主要迁移问题；附录明确说没有一种训练技巧能普遍改善所有任务。（第 5.2–5.3 节、附录 A.1）
+
+**我们的解释：** AGILE 最可复用的价值是把失败定位拆开：模型是否正确、奖励是否合理、策略动作是否可跟踪、导出的输入输出是否一致。描述文件只能解决接口一致性，不能使错误动力学变正确；确定性回归测试提高可比较性，也不能代替真实随机环境的鲁棒性评估。这个工程判断受到上述机制与案例支持，但论文没有用控制实验量化“采用整套框架”比其他框架总体节省多少部署成本。
+
+## 关联与材料
+
+专属机制已集中在本页；[[HumanoidRLWorkflow|人形机器人强化学习流程]] 的旧入口可用于回访。跨论文基础见 [[SimulationRealityGap|仿真—现实差距]]、[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[VisionLanguageActionModels|视觉—语言—动作模型]]。[[MuJoCo|MuJoCo]] 是本文的跨仿真器验证环境，[[NVIDIA|NVIDIA]] 是项目所属机构。
+
+[代码仓库](https://github.com/nvidia-isaac/WBC-AGILE) 是论文给出的复现入口；本次没有检查当前仓库实现、硬件驱动或发布状态，相关结论仅以归档论文为证据。
+
+## 研究归属
+
+[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。

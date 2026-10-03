@@ -3,8 +3,8 @@ title: "视觉—语言—动作模型"
 type: concept
 tags: [robotics, vla, imitation-learning, inverse-dynamics]
 sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]"]
-modified: 2026-09-30
-study_topic: syntheses/robot-learning-and-evaluation-learning-path
+modified: 2026-10-04
+topics: ["topics/robot-policy-learning", "topics/world-models-and-representations", "topics/future-conditioned-action"]
 ---
 
 # 视觉—语言—动作模型
@@ -38,18 +38,17 @@ flowchart LR
   G --> A
 ```
 
-图描述信息与控制循环。主干网络输出的表示和实际驱动量之间仍有控制器、动作缩放与坐标变换，不能省略这些部署语义。[[HumanoidRLWorkflow|人形机器人强化学习工作流]]
+图描述信息与控制循环。主干网络输出的表示和实际驱动量之间仍有控制器、动作缩放与坐标变换，不能省略这些部署语义。[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|人形机器人强化学习工作流]]
 
-## 四条训练路线怎样区分
+**两个时钟的教学例子。** 若控制器为 50 Hz，执行 15 步动作对应 0.3 秒物理时间；这段命令可以由几次 [[FlowMatching|生成空间更新]] 一起产生。生成时的五次更新不是五个机器人控制步。推理花费时间时，机器人可能仍在执行上一块的前缀；新块如何接续、哪些已执行命令不能再修改，是实时动作分块要处理的问题。π0.7 给出了 50 步预测、15／25 步执行和延迟训练的具体实现，但不同模型不能直接照搬其数值。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 §VI–VIII]]
 
-| 方法 | 未来与动作的关系 | 数据与监督重点 |
-| --- | --- | --- |
-| π0.7 | 上下文及视觉子目标引导动作专家 | 多种行为通过质量、速度、控制模式等条件区分 |
-| LDA-1B | 共享模型学习策略、正向／逆动力学与视觉预测 | 按质量和动作标签路由损失 |
-| Seer | 同一 Transformer 的未来图像标记支撑动作标记 | 依赖动作标注机器人轨迹，联合训练 |
-| DeFI | 正向与逆动力学分开预训练，适配器输出控制 | 视频学习潜在动作，再用机器人动作数据落地 |
+**输出还需要控制语义。** 一个七维向量可能表示末端位置／旋转增量与夹爪，也可能使用完全不同的关节接口。模型输出的形状相同，不代表单位、基准坐标系和时间步长相同；跨机器人数据对齐必须说明这些约定。LDA-1B 用统一手部中心坐标表达动作，π0.7 显式保留关节／末端控制模式条件。[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B §III-C、IV]]、[[pi07-steerable-generalist-robotic-foundation-model|π0.7 §V-D]]
 
-表格用于机制对比，不能跨不同任务与预算直接排名。各行证据分别见 [[pi07-steerable-generalist-robotic-foundation-model|π0.7 论文]]、[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B 论文]]、[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer 论文]]、[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI 论文]]。完整机制见 [[RobotContextConditioning|机器人上下文条件化]]、[[LatentDynamicsActionModels|潜在动力学动作模型]]、[[InverseDynamicsModels|逆动力学模型]]。
+## 训练目标与执行接口分开看
+
+同一个动作输出接口可以来自不同训练信号：示范模仿、未来状态预测、逆动力学或质量条件化。它们不会自动把策略变成在线规划器；是否搜索候选动作，要检查执行时的计算图。具体机制见 [[InverseDynamicsModels|逆动力学模型]]、[[LatentDynamicsActionModels|潜在动力学动作模型]] 和 [[RobotContextConditioning|上下文条件化]]，跨方法对比集中在 [[topics/future-conditioned-action|未来条件动作学习专题]]。
+
+π0.7 的视觉子目标生成器与 VLA 是两个模型：约 5B 参数的 VLA 负责动作，14B 的 BAGEL 派生模型负责生成子目标。动作模型单次推断时间不能代表含子目标生成、传输与控制执行的完整系统延迟。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 §III、附录 C–D]]
 
 ## 失效情形
 
@@ -61,3 +60,7 @@ flowchart LR
 ## 实践含义
 
 部署前记录动作单位、参考坐标系、历史窗口、观测时间戳、推断延迟和实际执行的块长度；评测时把训练目标与闭环指标分开。这是基于来源机制整理的工程检查建议，不是统一算法配方。先用 [[robot-learning-and-evaluation-learning-path|学习与评测路径]] 把目标、数据与评测串起来。
+
+## 研究归属
+
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|世界模型与表征]] · [[topics/future-conditioned-action|未来预测怎样帮助动作学习]]。

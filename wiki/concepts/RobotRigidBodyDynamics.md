@@ -4,7 +4,7 @@ type: concept
 tags: [robotics, simulation, contact-dynamics]
 sources: ["[[modern-robotics-lagrangian-dynamics]]", "[[mujoco-computation-collision-detection]]"]
 modified: 2026-10-02
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ---
 
 # 机器人刚体动力学
@@ -79,3 +79,7 @@ flowchart LR
 ## 实践含义
 
 RL 通过动力学获得训练轨迹；控制器用动力学预测输入后果；系统辨识调整影响这些轨迹的参数。接到计算机上需要 [[SimulationTimeStepping|积分与控制频率]]，接到硬件上需要 [[SystemIdentificationForSimulation|系统辨识]] 与 [[SimulationRealityGap|现实差距诊断]]。本页建立基础结构，完整递归算法与浮动基座推导还需继续收录。
+
+## 研究归属
+
+[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。

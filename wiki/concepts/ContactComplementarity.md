@@ -3,8 +3,8 @@ title: "接触互补"
 type: concept
 tags: [robotics, simulation, contact-dynamics]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]"]
-modified: 2026-09-30
-study_topic: syntheses/simulation-and-assets-learning-path
+modified: 2026-10-04
+topics: ["topics/physics-simulation", "topics/contact-modeling"]
 ---
 
 # 接触互补
@@ -37,6 +37,18 @@ $$
 
 最大耗散要求在这个可行集合内选择最抵抗滑动的切向力。它与法向互补共同决定力；只有摩擦幅值上界，还不能说明滑动时力的方向。冲量形式有相应的摩擦锥约束。以上定律与模型近似的区分来自 [[contact-models-in-robotics-a-comparative-analysis|接触模型比较论文]]。
 
+### 最大耗散怎样确定摩擦方向
+
+固定法向力 $\lambda_n$，令切向速度为 $v_t\ne0$。摩擦的瞬时功率为 $\lambda_t^\top v_t$，最大耗散就是在摩擦圆盘内使它最小：
+
+$$
+\min_{\|\lambda_t\|\le\mu\lambda_n}\lambda_t^\top v_t
+\quad\Longrightarrow\quad
+\lambda_t=-\mu\lambda_n\frac{v_t}{\|v_t\|}.
+$$
+
+由 Cauchy–Schwarz 不等式，目标至少为 $-\|\lambda_t\|\|v_t\|\ge-\mu\lambda_n\|v_t\|$；沿速度反方向取满摩擦幅值恰好达到该下界。于是滑动时摩擦在圆盘边界、方向反向；静止时 $v_t=0$，所有可行切向力的瞬时功率都为零，具体支撑力需由整体动力学决定。这是 [[contact-models-in-robotics-a-comparative-analysis|最大耗散原理]] 的基础推导，不意味着每个接触可脱离其他接触独立求力。
+
 ## 直觉
 
 用桌面上的盒子理解乘积为零：盒子悬空时，$g_n>0$，所以桌面接触力必须为零；盒子贴着桌面时，$g_n=0$，法向力可以为正，也可以恰好为零。互补条件没有单独决定支撑力大小，大小还由质量、外力、运动和其他接触共同决定。这个盒子例子是教学解释，不是来源中的实验。
@@ -47,7 +59,7 @@ $$
 | --- | --- | --- |
 | NCP：非线性互补问题 | 保留上述刚性参考定律 | 非光滑、非凸，求解困难 |
 | LCP：线性互补问题 | 用多面体近似摩擦锥 | 摩擦方向离散化，可能出现方向偏差 |
-| CCP：凸锥问题 | 较好保留摩擦锥与耗散结构 | 松弛 Signorini 条件，滑动时可能出现法向力与分离速度并存 |
+| CCP：锥互补问题 | 较好保留摩擦锥与耗散结构 | 松弛 Signorini 条件，滑动时可能出现法向力与分离速度并存 |
 | RaiSim 风格 | 在滑动接触中尝试恢复 Signorini 行为 | 使用接触状态启发式规则，放松最大耗散 |
 
 这是比较论文中的模型关系，不是所有版本仿真器的永久分类。实现和设置变化时应重新核对来源。见 [[ContactModelsInRobotics|接触模型]]。
@@ -56,8 +68,20 @@ $$
 
 比较论文指出，滑动、冗余支撑和病态接触系统会放大模型近似与数值误差：多面体摩擦锥产生方向偏差；互补松弛可能产生非物理支撑；局部迭代未充分收敛时，接触力分配可能含内部力。[[contact-models-in-robotics-a-comparative-analysis|接触模型比较论文]]
 
-残差需要分开看：可行性残差检查不穿透、非负法向力与摩擦边界；互补残差检查分离与支撑是否同时存在；耗散残差检查摩擦方向。仅看 $g_n\lambda_n$ 不足以判断整个接触系统正确，量纲与归一化也会影响不同算例间的比较。
+残差需要对应具体数学表述。令 $p=(\boldsymbol p_t,p_n)$ 为接触冲量，$c=(\boldsymbol c_t,c_n)$ 为接触相对速度，并定义 $\Gamma(c,\mu)=(0,0,\mu\|\boldsymbol c_t\|_2)$。忽略恢复与稳定化偏置时，完整摩擦接触可写为：
+
+$$
+K_\mu\ni p\perp c+\Gamma(c,\mu)\in K_\mu^\star.
+$$
+
+$K_\mu$ 为 Coulomb 摩擦锥，$K_\mu^\star$ 为对偶锥。[[contact-models-in-robotics-a-comparative-analysis|比较论文第 II 节]] 据此检查 $p$ 到摩擦锥的距离、$c+\Gamma$ 到对偶锥的距离，以及 $|p^\top(c+\Gamma)|$ 的互补残差。它们共同反映参考模型，不能只以 $g_n\lambda_n$ 评价整个摩擦系统。实际实现还将冲量换为等效力，以减少残差对步长的直接缩放依赖；不同量纲和归一化必须明确。
+
+CCP 去掉 $\Gamma$ 后的残差可能已经很小，而对完整 NCP 的残差仍较大。滑动且 $p_n>0$ 时，其简化条件可导出 $c_n=\mu\|\boldsymbol c_t\|_2$，允许法向分离速度与支撑冲量并存。这解释了模型松弛为何不会仅靠提高求解迭代数消失；它不是所有接触状态都会出现的现象。
 
 ## 实践含义
 
 对 MPC、RL 和力感知任务，先明确允许哪种近似，再比较求解器。对可微优化，还要检查梯度是否来自松弛模型，而不是把光滑性直接当作物理真实性。继续读 [[ContactSolvers|接触求解器]]、[[DifferentiablePhysics|可微物理]] 和 [[SimulationRealityGap|仿真—现实差距]]。
+
+## 研究归属
+
+[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]]。

@@ -12,7 +12,8 @@ source_date: unknown
 source_version: official-lesson-transcript
 acquired: 2026-10-02
 snapshot_sha256: 1e2daa2da44bd5323acb621267ae2be9e9d9dfbc0c4c8e1c2fa8c553171c9596
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
+source_type: tutorial
 ---
 
 ## 摘要
@@ -42,3 +43,7 @@ study_topic: syntheses/simulation-and-assets-learning-path
 ## 归档记录
 
 规范网址、版本与获取日期见页首；本次原始文件的 SHA-256 为 `1e2daa2da44bd5323acb621267ae2be9e9d9dfbc0c4c8e1c2fa8c553171c9596`，归档登记在 `graph/acquisitions.jsonl`。
+
+## 研究归属
+
+[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。

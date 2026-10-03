@@ -3,49 +3,159 @@ title: "Structural Properties and Classification of Kinematic and Dynamic Models
 type: source
 tags: [robotics, wheeled-robots, mobile-robots, nonholonomic-systems, source-backed]
 sources: []
-modified: 2026-07-13
+modified: 2026-10-04
 source_file: raw/campion-bastin-dandrea-novel-wheeled-mobile-robots-nd-2011.pdf
 source_kind: pdf
 source_url: https://nd.ics.org.ru/nd1104002/
 extracted_text: graph/extracts/campion-bastin-dandrea-novel-wheeled-mobile-robots-nd-2011.md
 source_date: unknown
-study_topic: syntheses/simulation-and-assets-learning-path
+source_type: paper
+paper_title: "Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots"
+year: 1996
+venue: "IEEE Transactions on Robotics and Automation"
+reviewed: 2026-10-04
+topics: ["topics/planning-and-control", "topics/wheeled-robot-modeling"]
 ---
 
-## 摘要
+## 一屏概览
 
-Guy Campion、Georges Bastin 和 Brigitte D'Andrea-Novel 的经典 WMR 分类论文最初发表于 1996 年的 *IEEE Transactions on Robotics and Automation*；当前收录的规范完整文本是 2011 年 *Russian Journal of Nonlinear 动力学* 的俄文翻译/复刊版本，页面标注 CC BY-ND。论文系统分析轮式移动机器人（WMR）的运动学与动力学模型，并提出用机动度 $\delta_m$ 与可转向度 $\delta_s$ 把非退化 WMR 分成五类。
+**问题。** 差速、汽车式和全向底盘的外观不同，但真正决定可运动方向、转向能力和控制模型的是车轮施加的速度约束。如何从任意车轮组合得到统一的分类与模型？
 
-这篇来源是 [[WheeledMobileRobotClassification|轮式移动式机器人结构性的 classification]] 的核心依据。它比入门教材更一般：不只讨论 diff-驱动器、类汽车或 mecanum，而是从固定传统车轮、中心化的 steerable 传统车轮、off-中心化的 steerable/脚轮车轮和 omniwheels 的约束出发，建立矩阵形式的机动性 restrictions，再推导位姿运动学、配置运动学、配置动力学和位姿动力学四类模型。
+**贡献。** Guy Campion、Georges Bastin、Brigitte D’Andrea-Novel 用机动度 $\delta_m$ 和可转向度 $\delta_s$ 将满足非退化条件的轮式移动机器人分成五类；进一步区分底盘位姿与完整配置、运动学与动力学，分析可控性、稳定化和电机配置。
 
-来源网址: https://nd.ics.org.ru/nd1104002/
+**版本与结论范围。** 原论文发表于 **1996 年** *IEEE Transactions on Robotics and Automation* 12(1):47–62。本库完整阅读的是 [2011 年俄文译本](https://nd.ics.org.ru/nd1104002/)，*Нелинейная динамика* 7(4):733–769；原始出版信息由译本首页与末页明确给出。本文是约束与控制理论分析，**没有机器人性能基准或实验消融**。下文页码和式号均指 2011 译本，不冒充已核读 1996 英文原版。
 
-## 核心主张
+## 假设与车轮约束
 
-- WMR 是带 nonintegrable 运动学约束的机械系统，因此 manipulator-风格规划/控制 algorithms 不能直接套用。
-- 一般性 WMR 可以有任意数量、类型和 motorization 的车轮；重要的是车轮约束如何限制底盘机动性，而不是只按外观命名。
-- 传统固定车轮与中心化的 steerable 车轮的横向无滑移约束共同形成矩阵 $C_1^*(\beta_c)$；其零空间维度定义度的机动性：$\delta_m=\dim N[C_1^*(\beta_c)]=3-\operatorname{rank}C_1^*(\beta_c)$。
-- 可独立定向的中心式可转向轮的有效数量定义可转向度：$\delta_s=\operatorname{rank}C_{1c}(\beta_c)$。
-- 在非退化的假设下，WMR 只剩五种实用的类型：$(3,0)$、$(2,0)$、$(2,1)$、$(1,1)$ 和 $(1,2)$。
-- 操纵度 $\delta_M=\delta_m+\delta_s$ 描述直接机动性与可通过转向自由度调节的机动性之和；相同的 $\delta_M$ 不代表相同的机器人行为，因为 $\delta_m$ 与 $\delta_s$ 的分配可能不同。
-- 来源区分四种模型：位姿运动学模型描述整体位姿运动；配置运动学模型描述全部配置变量；配置动力学模型纳入执行器 torques；位姿动力学模型与配置动力学模型 feedback-等价的。
-- 位姿模型是通用的、不可约的和可控的；配置模型更依赖具体机器人结构，可可约的，且不一定可控的。
+论文假定刚性底盘、不可变形车轮、固定水平地面、垂直车轮平面和单点接触；传统轮纯滚动且无侧滑。记底盘位姿 $\xi=(x,y,\theta)^\top$，其中 $x,y$ 是选定底盘点的世界坐标，$\theta$ 是朝向。矩阵 $R(\theta)$ 把世界位姿速度转到底盘坐标，因此 $v_b=R(\theta)\dot\xi$ 是底盘局部速度。（§II.A–B，页 734–737，式 1–9）
 
-## 关键引文
+| 车轮 | 约束的关键区别 | 对底盘瞬时自由度的影响 |
+| --- | --- | --- |
+| 固定传统轮 | 轮平面固定，禁止横向滑动 | 提供只含底盘速度的约束 |
+| 中心式可转向传统轮 | 转向轴经过轮心，轮平面可变 | 当前角度仍约束底盘速度，转向改变允许运动方向 |
+| 偏置脚轮 | 转向轴与轮心有非零偏置 $d$ | 横向约束还含 $d\dot\beta$，可通过脚轮转动满足 |
+| 全向轮 | 只限制一个固定方向的接触速度 | 在论文非退化滚子角假设下，滚动变量可适应底盘运动 |
 
-- "classified into five types"
-- "degree of mobility and degree of steerability"
+例如传统固定轮的侧向约束是
 
-## 关联
+$$
+[\cos(\alpha+\beta),\ \sin(\alpha+\beta),\ l\sin\beta]v_b=0.
+$$
 
-- [[WheeledMobileRobotClassification|轮式移动机器人分类]] - $\delta_m$、$\delta_s$、$\delta_M$ 与五类 WMR 的主概念页。
-- [[WheeledRobotKinematics|轮式机器人运动学]] - 车轮层级约束与广义的 WMR 运动学。
-- [[SteerableWheels|可转向轮]] - 中心化的 steerable 车轮、off-中心化的 steerable/脚轮车轮和转向 DOFs 的数学角色。
-- [[OmnidirectionalWheels|全向轮]] - 类型 $(3,0)$ 的 omni-移动式机器人与全向轮示例。
-- [[NonholonomicMobileRobots|非完整约束移动机器人]] - limited-机动性类型与非完整约束可控性的连接。
+$l,\alpha$ 描述轮心相对底盘参考点的极坐标，$\beta$ 描述轮平面的方向。中心式转向轮使用同一个式子，但 $\beta$ 随时间变化；偏置脚轮的第三项变成 $d+l\sin\beta$，并加上 $d\dot\beta$。**会转向的脚轮与中心式可转向轮不能只因名字相近就计入同一类。**（式 4、6、8）
 
-## 开放问题
+## 从矩阵秩得到五类底盘
 
-- 原始 IEEE 1996 PDF 与 2011 俄文翻译/复刊版之间是否有排版、页码或术语差异，需要后续补充 IEEE DOI 元数据页面。
-- 这套分类体系如何映射到现代 `swerve drive`、industrial AMR 转向模块、skid-steer 和履带式机器人？
-- 论文的动力学模型部分如何与现代仿真器关节/执行器/接触 parameterization 对齐，例如 MuJoCo、Isaac Sim/PhysX 和 Gazebo/ROS 2 控制？
+把固定轮与中心式转向轮的侧向约束叠起来：
+
+$$
+C_1^*(\beta_c)v_b=0,\qquad
+C_1^*(\beta_c)=\begin{bmatrix}C_{1f}\\C_{1c}(\beta_c)\end{bmatrix}.
+$$
+
+$\beta_c$ 为中心式转向轮角度，$C_{1f}$ 为固定轮约束，$C_{1c}$ 为转向轮约束。允许底盘速度位于这个矩阵的零空间，于是
+
+$$
+\delta_m=3-\operatorname{rank}C_1^*(\beta_c),\qquad
+\delta_s=\operatorname{rank}C_{1c}(\beta_c),\qquad
+\delta_M=\delta_m+\delta_s.
+$$
+
+$\delta_m$ 表示固定当前转向角时能立即采用的独立速度方向；$\delta_s$ 表示保持轮系兼容时可独立调节的中心转向角数；$\delta_M$ 是操纵度。$\delta_s$ 不是所有转向电机的数量：多余轮子的角度必须协调，才能维持共同的瞬时转动中心。（§II.C，页 739–742；§IV.B，页 750–751）
+
+五类结论依赖假设 2：$\operatorname{rank}C_{1f}\le1$，且固定轮与中心转向轮的约束秩可加，总秩不超过 2。多个固定轮必须共轴；总秩为 3 的锁死配置，以及只绕固定中心转圈的退化设计不在五类中。
+
+| $(\delta_m,\delta_s)$ | 典型结构与含义 | 译本示例 |
+| --- | --- | --- |
+| $(3,0)$ | 三方向速度即时可选；由全向轮或适当驱动的偏置脚轮组成 | 图 6–7 |
+| $(2,0)$ | 固定轮共轴，无独立中心转向；可控制纵向运动与转动 | 两固定轮加脚轮，图 8 |
+| $(2,1)$ | 无固定轮，一个独立中心转向方向；当前仍有两个速度自由度 | 一中心转向轮加两脚轮，图 9 |
+| $(1,1)$ | 固定轮轴加中心转向轮；当前沿一维速度方向运动 | 三轮车／汽车式，图 10 |
+| $(1,2)$ | 两个独立中心转向角决定当前一维运动方向 | 两中心转向轮加脚轮，图 11 |
+
+这不是全世界所有轮式机构的穷尽分类，而是上述理想接触与非退化假设下的结构分类。$\delta_M=3$ 的 $(1,2)$ 也不能瞬间实现任意底盘速度：先调整轮角需要时间。（§II.C–IV.B）
+
+## 四种模型回答四类问题
+
+### 位姿运动学：哪些路径能走到
+
+令 $\Sigma(\beta_c)$ 的列构成 $C_1^*$ 零空间基，$\eta\in\mathbb R^{\delta_m}$ 为允许速度的系数，$\zeta\in\mathbb R^{\delta_s}$ 为独立转向角速度，则
+
+$$
+\dot\xi=R(\theta)^\top\Sigma(\beta_c)\eta,\qquad
+\dot\beta_c=\zeta.
+$$
+
+将独立状态写成 $z=(\xi,\beta_c)$、速度输入写成 $u=(\eta,\zeta)$，可简写为 $\dot z=B(z)u$。五类机器人通过选择底盘坐标系可以得到统一结构，状态维数为 $3+\delta_s$，即时输入维数为 $\delta_m+\delta_s$。（§IV.A，式 23–27，表 1）
+
+对有限机动性底盘，输入方向少于状态维数，但依次执行不同运动产生的 Lie 括号方向可补齐可达方向。论文由此证明理想位姿模型可控、不可进一步约简；这并不意味着平衡点线性化可控。静止点线性化的可控秩只有 $\delta_m+\delta_s$。（§IV.C–D，性质 1–3）
+
+**控制上的后果。** $(3,0)$ 可以用常规平滑静态反馈线性化；其余四类不能靠连续、静态、时不变状态反馈渐近稳定到一个孤立静止位姿。论文讨论时变反馈，以及非零速度条件下的动态反馈线性化。这里的“不可能”针对特定反馈类别，不是说非完整机器人不能停车或规划。（性质 4–5，页 754–755）
+
+### 配置运动学：车轮内部怎样一起运动
+
+完整配置 $q=(\xi,\beta_c,\beta_{oc},\varphi)$ 还包含脚轮转向角 $\beta_{oc}$ 和各轮自转角 $\varphi$。滚动与脚轮约束给出
+
+$$
+\dot\beta_{oc}=D(\beta_{oc})\Sigma(\beta_c)\eta,\qquad
+\dot\varphi=E(\beta_c,\beta_{oc})\Sigma(\beta_c)\eta,
+$$
+
+其中 $D=-C_{2oc}^{-1}C_{1oc}$、$E=-J_2^{-1}J_1$ 来自侧向与滚动约束矩阵。合并得到 $\dot q=S(q)u$。它依赖具体车轮几何，并可能存在含轮角的守恒关系，使完整配置不是任意可达。**底盘位姿可控不等于轮子每个累计转角可独立指定。**（§V，式 29–38，页 755–758）
+
+三全向轮实例的底盘有三个即时自由度，但包含轮子自转后的完整配置仍有非完整约束。因此“全向”与“完整配置完全没有非完整性”也不能等同。（§V，性质 6 与示例 1）
+
+### 动力学：电机是否真能提供这些速度
+
+论文从受约束的拉格朗日方程投影掉约束力，得到
+
+$$
+\dot q=S(q)u,\qquad H(\beta)\dot u+f(\beta,u)=F(\beta)\tau_0.
+$$
+
+$\beta$ 汇集转向角，$H$ 是约化惯性矩阵，$f$ 是速度相关项，$F$ 是电机力矩映射，$\tau_0$ 是实际安装电机的力矩。运动学中自由指定 $u$ 的前提，是电机配置在考虑的配置域内让 $F$ 保持满行秩。（§VI，式 39–53，假设 3）
+
+**我们的代数整理。** 若 $F F^\dagger=I$，令 $\tau_0=F^\dagger(Hv+f)$，可得到 $\dot u=v$；$v$ 为期望广义加速度。再保留位姿状态得到 $\dot z=B(z)u,\ \dot u=v$。这是从式 53 推导的写法：译本第 766 页式 56 实际印为 $F^\dagger(Hu-f)$，并称其为左逆，与前后方程及维数不一致，**不应原样抄入控制实现**。本次已查看原 PDF 页面，但尚未对照 1996 原版确定错误来源。
+
+该反馈仍需要完整配置参与力矩计算，忽略轮角只是在约化后的位姿方程层面成立，不代表真实控制器不再需要它们。（页 765–767，性质 7–8）
+
+### 约束力为什么能从约化动力学中消失
+
+**对 §VI.A 式 39–50 的统一记号重构。** 设完整配置的速度约束为 $A(q)\dot q=0$，$S(q)$ 的列张成允许速度空间，因此 $A S=0$。把受约束动力学写成
+
+$$
+M(q)\ddot q+c(q,\dot q)=B_\tau(q)\tau_0+A(q)^\top\lambda,
+$$
+
+其中 $M$ 是质量矩阵，$c$ 汇集速度相关项，$B_\tau$ 把已安装电机的力矩映射到配置坐标，$\lambda$ 是理想接触约束反力。由 $\dot q=S u$ 得 $\ddot q=S\dot u+\dot S u$。左乘 $S^\top$ 后，$S^\top A^\top=(AS)^\top=0$，于是
+
+$$
+\underbrace{S^\top M S}_{H}\dot u+
+\underbrace{S^\top(M\dot S u+c)}_{f}
+=\underbrace{S^\top B_\tau}_{F}\tau_0.
+$$
+
+这说明原文投影消元为何成立：理想约束反力在允许运动方向上不做功。轮子的惯量并没有被“忽略”，而是通过 $S^\top M S$ 进入约化惯性。推导仍以理想接触为前提；消掉乘子不等于已经检查真实摩擦锥能提供所需反力。
+
+**由此得到的电机检查。** $F$ 的列表示各电机能够产生的约化广义力方向。电机数量充足但列相关时，仍不能独立实现每个加速度输入；不同轮角还可能改变这个秩。论文的电机配置实例因而检查整个考虑配置域，而非只在一个直行姿态数电机。共享几何例子放在 [[WheeledMobileRobotClassification#为什么数轮子不如算独立约束|约束秩计算]]，这里保留论文新增的动力学条件。
+
+## 论证依据与边界
+
+| 主张 | 依据 | 不能扩展成什么 |
+| --- | --- | --- |
+| 五类非退化底盘 | §II 的秩条件、§III 六个构型实例 | 允许滑移、轮胎变形、履带或任意奇异轮角时仍只有五类 |
+| 位姿可控、静态稳定化受限 | §IV 的分布秩与性质 1–5 | 有障碍、单向驱动、转向限位或有限力矩下任意位姿都能到达 |
+| 位姿全向仍可有配置非完整性 | §V 的完整配置分析 | 仅用底盘自由度判断每个轮角的可达性 |
+| 电机数与安装位置重要 | §VI 的满秩准则和实例 | 最少电机数总等于 $\delta_M$ |
+
+例如三个偏置脚轮组成的 $(3,0)$ 实例，为在全部考虑轮角下保持驱动映射满秩需要至少四台电机，而三全向轮实例为三台；$(1,2)$ 示例需要四台。它们是所分析几何与全配置满秩要求下的结果，不是只由类别标签决定的普遍硬件采购表。（§VI.B，页 761–765）
+
+## 我们的评价与关联
+
+这篇论文适合用作“从车轮接触假设到控制能力”的数学骨架。用于现代底盘时，应先写出实际接触约束、检验秩与驱动映射，再命名类别；滑移转向和履带不能只按外形硬套。奇异配置、饱和、接触力和摩擦是否允许所需运动，需要额外模型与验证。
+
+共享机制见 [[WheeledMobileRobotClassification|轮式移动机器人分类]]、[[WheeledRobotKinematics|轮式机器人运动学]]、[[SteerableWheels|可转向轮]]、[[OmnidirectionalWheels|全向轮]] 与 [[NonholonomicMobileRobots|非完整约束移动机器人]]。这些页应保留跨构型机制，不重复本论文整套示例。
+
+## 研究归属
+
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。

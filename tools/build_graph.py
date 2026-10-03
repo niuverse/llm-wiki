@@ -9,7 +9,12 @@ from typing import Any
 
 
 EXCLUDE = {"index.md", "log.md", "health-report.md", "lint-report.md"}
+NAVIGATION_TYPES = {"navigation", "redirect", "domain"}
 TYPE_COLORS = {
+    "domain": "#607D8B",
+    "topic": "#00897B",
+    "navigation": "#78909C",
+    "redirect": "#9E9E9E",
     "source": "#4CAF50",
     "entity": "#2196F3",
     "concept": "#FF9800",
@@ -36,7 +41,8 @@ def parse_frontmatter(text: str) -> dict[str, str]:
 
 
 def pages(root: Path) -> list[Path]:
-    return sorted(p for p in (root / "wiki").rglob("*.md") if p.name not in EXCLUDE)
+    return sorted(p for p in (root / "wiki").rglob("*.md")
+                  if p.name not in EXCLUDE and parse_frontmatter(read_text(p)).get("type") not in NAVIGATION_TYPES)
 
 
 def node_id(root: Path, page: Path) -> str:
@@ -71,11 +77,17 @@ def build_edges(root: Path, wiki_pages: list[Path]) -> tuple[list[dict[str, Any]
     edges: list[dict[str, Any]] = []
     missing: list[dict[str, str]] = []
     seen_pairs: set[tuple[str, str]] = set()
+    excluded = set()
+    for page in (root / "wiki").rglob("*.md"):
+        if page.name in EXCLUDE or parse_frontmatter(read_text(page)).get("type") in NAVIGATION_TYPES:
+            excluded.update((page.stem.lower(), node_id(root, page).lower()))
 
     for page in wiki_pages:
         src = node_id(root, page)
         for raw in re.findall(r"\[\[([^\]]+)\]\]", read_text(page)):
             target_name = link_target(raw)
+            if target_name.lower() in excluded:
+                continue
             target = path_map.get(target_name.lower()) or stem_map.get(Path(target_name).stem.lower())
             if not target:
                 missing.append({"from": src, "target": target_name})

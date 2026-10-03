@@ -9,7 +9,8 @@ source_kind: html
 source_url: https://docs.isaacsim.omniverse.nvidia.com/4.5.0/robot_setup/asset_structure.html
 extracted_text: graph/extracts/isaac-sim-45-asset-structure.md
 source_date: 2025-09-25
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
+source_type: documentation
 ---
 
 # Asset Structure - Isaac Sim 4.5 Documentation
@@ -51,3 +52,7 @@ study_topic: syntheses/simulation-and-assets-learning-path
 - 当前没有官方证据支持把这套 Isaac Sim 4.5 布局称为 `Asset Structure 2.0`；除非后续找到明确来源，否则应称为 `legacy`、`pre-3.0` 或 `Isaac Sim 4.5 Asset Structure`。
 - 来源说明导入器默认 follow this 结构，但没有给出完整导入器输出验证 checklist；后续如果需要迁移旧资产到 3.0，应补充资产 Transformer / 导入器 rules 来源。
 - 这页没有把 `asset_physics.usd` 继续拆成中性物理、MuJoCo-特定的调优和 PhysX-特定的调优；多运行时分离需要以 [[isaac-sim-asset-structure|Isaac Sim 6.0 Asset Structure]] 为证据。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。

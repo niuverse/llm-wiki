@@ -9,7 +9,8 @@ source_kind: pdf
 source_url: https://hades.mech.northwestern.edu/images/2/2e/MR-largefont-v2.pdf
 extracted_text: graph/extracts/modern-robotics-chapter-13-wheeled-mobile-robots.md
 source_date: 2019-12-01
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/planning-and-control", "topics/wheeled-robot-modeling"]
+source_type: book
 ---
 
 ## 摘要
@@ -51,3 +52,7 @@ Kevin M. Lynch 和 Frank C. Park 的 *Modern 机器人学* 章节 13 是轮式�
 - 章节 13 排除了 skid-steer、履带式车辆和可变形轮胎动力学；这些应通过车辆动力学、terrains 和接触丰富仿真来源单独收录。
 - 对 mecanum / omni 的物理仿真，何时可以用控制器层级完整约束模型，何时必须显式建滚轮接触？
 - Swerve / steerable 车轮在工业 AMR 与竞赛机器人中的转向动力学、模块同步和饱和策略需要后续实现文档支持。
+
+## 研究归属
+
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。

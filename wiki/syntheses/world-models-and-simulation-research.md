@@ -3,15 +3,14 @@ title: "世界模型与机器人仿真：研究覆盖地图"
 type: synthesis
 tags: [robotics, simulation, world-models, evaluation]
 sources: ["[[planet-learning-latent-dynamics]]", "[[dreamerv3-mastering-diverse-control]]", "[[td-mpc2-scalable-robust-world-models]]", "[[dino-wm-pretrained-visual-features]]", "[[v-jepa-2-understanding-prediction-planning]]", "[[worldecho-worldsync-action-following]]", "[[modern-robotics-homogeneous-transformations]]", "[[modern-robotics-lagrangian-dynamics]]", "[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[isaac-sim-policy-deployment]]", "[[mujoco-computation-collision-detection]]"]
-modified: 2026-10-02
-study_topic: syntheses/world-models-learning-path
+modified: 2026-10-04
 ---
 
 # 世界模型与机器人仿真：研究覆盖地图
 
-本轮以机器人与具身智能为边界，将“预测怎样用于决策”和“仿真怎样生成可信训练与评测”连成可复习的知识链。全文收录经典原始论文、官方课程和固定版本文档，同时补充近期方法与评估；这是一轮有边界的覆盖扩展，不声称囊括整个领域。
+2026-10-02 的研究以机器人与具身智能为边界，将“预测怎样用于决策”和“仿真怎样生成可信训练与评测”连成可复习的知识链。全文收录经典原始论文、官方课程和固定版本文档，同时补充近期方法与评估；这是一轮有边界的覆盖扩展，不声称囊括整个领域。
 
-学习顺序由 [[world-models-learning-path|世界模型路径]] 和 [[simulation-and-assets-learning-path|仿真路径]] 负责。本页记录研究范围、机制覆盖与证据变化；问题和待收录资料统一放在 [[research-questions|研究问题]]。
+学习顺序由 [[world-models-learning-path|世界模型路径]] 和 [[simulation-and-assets-learning-path|仿真路径]] 负责。本页记录研究范围、机制覆盖与证据变化；研究问题和待补证需求由 [[topics/world-model-decision|世界模型与决策]]、[[topics/world-model-evaluation|世界模型评估]]、[[topics/policy-evaluation|数据与泛化评测]]、[[topics/simulation-ready-worlds|可执行生成世界]] 和 [[topics/simulation-transfer|仿真迁移]] 等专题维护，[[research-questions|研究问题索引]]只汇总入口。
 
 ## 机制覆盖
 
@@ -42,7 +41,7 @@ flowchart LR
 
 图是跨来源综合形成的研究组织方式，不是某篇论文已经验证的统一架构。学习模型与物理引擎都能生成轨迹，但状态表示、动力学假设、接触处理、任务接口与误差来源不同。接通接口仍需核对动作、时间与观测的语义；视频相似或仿真分数高不能代替真实执行验证。
 
-## 本轮改变了哪些判断
+## 2026-10-02 的研究判断记录
 
 **在线搜索与想象训练应分开理解。** PlaNet、TD-MPC2 执行时规划；Dreamer 在训练中利用预测轨迹，执行时直接从策略采样。模型是否可微、训练是否展开模型与执行时是否搜索是不同问题。[[ModelPredictiveControl|MPC]]、[[ImaginedPolicyLearning|想象策略]]
 
@@ -52,8 +51,22 @@ flowchart LR
 
 **部署完整性包含时序与数据语义。** 加载模型之后，仍需复现训练时的输入顺序、缩放、历史、执行器和策略频率。新 Isaac Sim 指南由 `RobotPolicyRunner` 负责降频，调用方重复降频会改变周期；此接口结论限定于所收录版本。[[isaac-sim-policy-deployment|Isaac Sim 6.1 部署指南]]
 
+## 2026-10-04 全文复核与更正
+
+本次重新核验归档论文并修订来源页与概念页；这是对既有判断的复核，不把本次新增检查追记为首次研究时已经完成。这里列影响跨论文比较的修订，原文章节、表格与版本差异见链接来源页。
+
+| 需要修订的概括 | 复核后的解释与证据入口 |
+| --- | --- |
+| 可微世界模型意味着策略沿动力学直接反传 | Nature Dreamer 使用 REINFORCE 更新策略；想象轨迹用于策略与价值学习，但梯度路径应逐式判断。跨领域结果来自分别训练的任务实例。[[dreamerv3-mastering-diverse-control|Dreamer]] |
+| 视觉目标规划等于无监督、自主分解任务 | DINO-WM 有动作标注，PushT 包含带噪专家数据；V-JEPA 2-AC 有动作数据、目标图像、相机选择和固定步数子目标协议。无需任务奖励不等于无目标代价。[[dino-wm-pretrained-visual-features|DINO-WM]]、[[v-jepa-2-understanding-prediction-planning|V-JEPA 2]] |
+| 两阶段训练单独解释全部提升 | RoboCasa365 的两阶段为8万步预训练加6万步微调，联合训练为12万步；任务覆盖消融也改变样本量。已有结果比较完整方案，尚未隔离顺序与预算。[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] |
+| 执行与资产系统已独立证明整条链有效 | MagicSim 没有本报告统一协议下的成功率、异步吞吐或真机成绩；其配套资产统计与 EmbodiedGen V2 的下游迁移成绩是转述，不能重复计为独立验证。[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]]、[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] |
+| 一个总分可以替代预算和外部有效性检查 | WorldSync 主表更新预算不同；UniLab 的实用比较含算法与配置差异；RoboLab 真机对应随策略而变。论文结果需保留原协议，不据此形成通用排名。[[worldecho-worldsync-action-following|WorldEcho／WorldSync]]、[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]]、[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]] |
+
+Dreamer 此次依据已归档 Nature 正文、方法和扩展图说明；独立的扩展数据表页面及补充 PDF 不在该 HTML 中，未冒充完整读取。VIRAL 的现有证据仍是项目页，不因本轮统一整理而升级为已精读论文。各来源页记录本次实际阅读范围，未复跑实验或作独立硬件复现。[[dreamerv3-mastering-diverse-control|Dreamer 阅读范围]]、[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL 证据身份]]
+
 ## 资料与刷新记录
 
-首次研究日期为 2026-10-02。原始资料在 `raw/`，MarkItDown 阅读缓存在 `graph/extracts/`；提取的公式、表格与双栏错序通过原文交叉核对。来源页记录规范 URL、版本、日期及实验条件，`graph/acquisitions.jsonl` 记录获取时间和 SHA-256，收录与刷新操作保留在日志。
+首次研究日期为 2026-10-02，本次复核日期为 2026-10-04。首次研究记录的原始资料在 `raw/`，MarkItDown 阅读缓存在 `graph/extracts/`；提取的公式、表格与双栏错序通过原文交叉核对。来源页记录规范 URL、版本、日期及实验条件，`graph/acquisitions.jsonl` 记录获取时间和 SHA-256，收录与刷新操作保留在日志。
 
 MuJoCo 沿用 [[mujoco-computation-collision-detection|原计算文档来源页]]，接入 3.8 固定版本，并保留原碰撞文档快照。后续 `refresh 世界模型与机器人仿真` 沿用本覆盖记录：复用相同原文，保留新旧版本，只有实质审阅和判断变化才更新知识日期。

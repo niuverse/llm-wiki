@@ -12,7 +12,8 @@ source_date: unknown
 repo_readme: raw/mujoco-warp-readme.md
 repo_commit_snapshot: raw/mujoco-warp-main-commit.json
 repo_commit_sha: fb56eb0820aa22252a9ec869408484ac86d2b869
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/robot-learning-systems"]
+source_type: documentation
 ---
 
 ## 摘要
@@ -58,3 +59,7 @@ MJWarp 的定位是高吞吐量采样 / RL，而不是低延迟单一步骤控�
 - 文档是 `latest` 快照；要复现实验需要 pinned 版本 / 发布 tag。
 - 特征一致性和性能 caveats 会快速变化，应后续按版本重查。
 - 当前来源支持运行时边界，不支持把 MJWarp 数值行为与 CPU MuJoCo 完全等价。
+
+## 研究归属
+
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。

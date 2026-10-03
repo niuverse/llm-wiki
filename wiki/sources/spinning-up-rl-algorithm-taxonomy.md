@@ -9,7 +9,8 @@ source_kind: html
 source_url: https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html
 extracted_text: graph/extracts/spinning-up-rl-algorithm-taxonomy.md
 source_date: unknown
-study_topic: syntheses/robot-learning-and-evaluation-learning-path
+topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/robot-policy-learning", "topics/physics-simulation", "topics/world-model-decision", "topics/robot-learning-systems"]
+source_type: tutorial
 ---
 
 ## 摘要
@@ -37,3 +38,7 @@ study_topic: syntheses/robot-learning-and-evaluation-learning-path
 ## 开放问题
 
 本页没有给出 PPO、SAC 或 MPC 的完整实现，也不能支持当前算法性能排名；后续应直接收录对应论文和实现文档。
+
+## 研究归属
+
+[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/world-model-decision|世界模型如何用于决策]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。

@@ -3,89 +3,59 @@ title: "轮式移动机器人分类"
 type: concept
 tags: [robotics, wheeled-robots, nonholonomic-systems]
 sources: ["[[structural-properties-and-classification-of-wheeled-mobile-robots]]", "[[modern-robotics-chapter-13-wheeled-mobile-robots]]"]
-modified: 2026-07-13
-study_topic: syntheses/simulation-and-assets-learning-path
+modified: 2026-10-04
+topics: ["topics/planning-and-control", "topics/wheeled-robot-modeling"]
 ---
 
 # 轮式移动机器人分类
 
-[[structural-properties-and-classification-of-wheeled-mobile-robots|Campion 等人]]提出的轮式移动机器人分类，不按外观命名，而按车轮约束对底盘机动性的限制分类。核心指标是机动度 $\delta_m$、可转向度 $\delta_s$ 和操纵度 $\delta_M=\delta_m+\delta_s$。
+分类应回答两个问题：**当前轮角下，底盘能立即沿几个独立方向运动；调整轮角后，又能改变哪些方向？** Campion 等人的机动度与可转向度把这两件事分开。分类适用于刚性底盘、平面运动、理想车轮和规定的无滑移约束。[[structural-properties-and-classification-of-wheeled-mobile-robots|轮式机器人结构分类论文]]
 
-## 数学结构
+## 用约束矩阵计算
 
-Campion et al. 把传统固定车轮与中心化的 steerable 车轮的横向无滑移约束写成矩阵 $C_1^*(\beta_c)$。其中 $\beta_c$ 是中心化的 steerable 车轮的转向角度。底盘速度必须满足：
-
-$$
-R(\theta)\dot \xi \in N[C_1^*(\beta_c)]
-$$
-
-其中 $\xi=(x,y,\theta)^T$ 是位姿坐标，$R(\theta)$ 是刚体/世界帧的旋转映射图，$N[\cdot]$ 表示零空间。
-
-度的机动性定义为：
+设 $\xi=(x,y,\theta)^\top$ 为世界坐标中的底盘位姿，$R(\theta)$ 把其速度转到底盘坐标；$C_{1f}$ 和 $C_{1c}(\beta_c)$ 分别叠加固定轮、中心式转向轮的侧向约束，$\beta_c$ 为转向角。允许速度满足
 
 $$
-\delta_m=\dim N[C_1^*(\beta_c)]=3-\operatorname{rank}C_1^*(\beta_c)
+C_1^*(\beta_c)R(\theta)\dot\xi=0,\qquad
+C_1^*=\begin{bmatrix}C_{1f}\\C_{1c}\end{bmatrix}.
 $$
 
-可转向度定义为：
+机动度、可转向度与操纵度为
 
 $$
-\delta_s=\operatorname{rank}C_{1c}(\beta_c)
+\delta_m=3-\operatorname{rank}C_1^*,\qquad
+\delta_s=\operatorname{rank}C_{1c},\qquad
+\delta_M=\delta_m+\delta_s.
 $$
 
-操纵度定义为：
+$\delta_m$ 是不调整中心转向角时的即时速度自由度；$\delta_s$ 是保持轮系兼容时的独立中心转向自由度，不是转向电机数量。偏置脚轮可通过自身角速度满足侧向约束，不能直接作为中心转向轮计入 $C_{1c}$。[[structural-properties-and-classification-of-wheeled-mobile-robots|原文 §II.C、§IV.B]]
 
-$$
-\delta_M=\delta_m+\delta_s
-$$
+### 为什么数轮子不如算独立约束
 
-直觉上，$\delta_m$ 是不重新定向 steerable 车轮时底盘能直接控制的机动性；$\delta_s$ 是通过独立转向 DOFs 改变约束几何的能力。
+**教学计算。** 用 $v_b=(v_x,v_y,\omega)^\top$ 排列速度。共轴的两固定轮都沿前方滚动，轮心位于 $(0,\pm d)$；两行侧向约束均为 $[0,1,0]$，故矩阵秩为 1，$\delta_m=2$，没有中心转向则 $\delta_s=0$。同一轴上再加一个同向轮，只增加重复方程，不降低机动度。
 
-## 五种类型
+若在 $(L,0)$ 加一个转向轮，滚动方向与 $x$ 轴夹角为 $\beta$，其侧向行是 $[-\sin\beta,\cos\beta,L\cos\beta]$。在非退化配置中它与后轴约束独立，秩升为 2，$\delta_m=1$、$\delta_s=1$，成为汽车／三轮车式。其允许速度满足 $v_y=0$ 和 $-v_x\sin\beta+L\omega\cos\beta=0$；当 $\cos\beta\ne0$ 时得到熟悉的 $\omega=v_x\tan\beta/L$。这是从 [[structural-properties-and-classification-of-wheeled-mobile-robots|论文的约束分类]]用直角坐标重构的例子；这里的 $\beta$ 采用滚动方向角，不沿用论文极坐标轮角的原点。
 
-| 类型 | Meaning | Typical 结构 | 建模直觉 |
-| --- | --- | --- | --- |
-| $(3,0)$ | 完全移动式，不需要转向自由度 | 全向轮、麦克纳姆轮或某些偏置轮布局 | 直接控制平面上的 $x,y,\theta$ 运动。 |
-| $(2,0)$ | two 直接机动性 DOFs, no 中心化的转向 | diff-驱动-like 固定传统车轮在同一车轴 | 可前进/转向，但不能直接侧移。 |
-| $(2,1)$ | two 直接机动性 DOFs plus one 转向 DOF | no 固定传统车轮, 在 least one 中心化的 steerable 车轮 | 转向角度改变可用速度分布。 |
-| $(1,1)$ | one 直接机动性 DOF plus one 转向 DOF | 类汽车 / tricycle-like 布局带有固定 axle 与 one 中心化的 steerable 车轮 | 典型类汽车非完整约束行为。 |
-| $(1,2)$ | 一个直接机动自由度，加两个转向自由度 | 两个中心式可转向轮，没有固定轮 | 操纵能力强于 $(1,1)$，但仍不能瞬时全向移动。 |
+## 五类及其适用条件
 
-Campion 的关键点是：同样的 $\delta_M$ 不代表同样的行为。例如 $(3,0)$、$(2,1)$ 和 $(1,2)$ 都可以有 $\delta_M=3$，但 $(3,0)$ 的三个机动性方向直接可用；后两者必须通过转向状态改变可用方向。
+| 类型 | 即时运动与转向的关系 | 典型结构 |
+| --- | --- | --- |
+| $(3,0)$ | 三个平面速度方向直接可用 | 合理布局的全向轮，或适当驱动的偏置脚轮 |
+| $(2,0)$ | 两个即时速度方向，无中心转向 | 共轴固定驱动轮与支撑脚轮 |
+| $(2,1)$ | 两个即时方向随一个转向角改变 | 一个中心转向轮与偏置脚轮 |
+| $(1,1)$ | 一个即时方向，通过一个角度改变 | 汽车式或三轮车式 |
+| $(1,2)$ | 一个即时方向，通过两个独立轮角改变 | 无固定轮，至少两个中心转向轮 |
 
-## 模型层次
+该表只在非退化条件下穷尽：$\operatorname{rank}C_{1f}\le1$，固定轮与中心转向轮的约束秩可加，总秩不超过 2。多个固定轮应共轴；轮系锁死、只能围绕固定中心转动等退化结构被排除。额外中心转向轮必须协调轮角，使共同瞬时转动中心存在；平移可理解为转动中心在无穷远。[[structural-properties-and-classification-of-wheeled-mobile-robots|原文 §II.C–III]]
 
-```mermaid
-flowchart TD
-  A["车轮约束<br/>固定 / 中心化的 steerable / off-中心化的 / omni"] --> B["机动性矩阵 C*"]
-  B --> C["delta_m 与 delta_s"]
-  C --> D["位姿运动学模型"]
-  C --> E["配置运动学模型"]
-  C --> F["配置动力学模型"]
-  F --> G["位姿动力学模型"]
-```
+$(3,0)$、$(2,1)$、$(1,2)$ 都有 $\delta_M=3$，却不能视作相同能力：后两类要花时间调整轮角。另一方面，理论机动度也不保证实际电机足以驱动全部方向，还须检验力矩映射在考虑的配置域内保持满秩。[[structural-properties-and-classification-of-wheeled-mobile-robots|原文 §IV.B、§VI.B]]
 
-来源区分四种模型：
+## 分类之后还需要选模型
 
-- 位姿运动学模型：描述整体底盘位姿的运动，足够用于位置层级运动分析。
-- 构型运动学模型：描述所有配置变量，包括车轮 rotations 和转向/脚轮角度。
-- 构型动力学模型：加入机器人动力学与执行器 torques。
-- 位姿动力学模型：与配置动力学模型 feedback-等价的，但更适合位姿层级控制分析。
+底盘位姿运动学用于路径与可达性；完整配置运动学还记录车轮转角；动力学再加入质量、惯性和力矩。底盘位姿可控不意味着每个轮子的累计转角都能独立指定，全向底盘的完整配置仍可能有非完整约束。[[structural-properties-and-classification-of-wheeled-mobile-robots|原文 §IV–VI]]
 
-## 直觉
+工程使用时先检验接触假设与矩阵秩，再判断现代转向模块属于哪类；滑移转向、履带和轮胎变形不能只按外形映射。几何推导见 [[WheeledRobotKinematics|轮式机器人运动学]]；区别见 [[SteerableWheels|可转向轮]]、[[OmnidirectionalWheels|全向轮]] 和 [[NonholonomicMobileRobots|非完整约束移动机器人]]。[[modern-robotics-chapter-13-wheeled-mobile-robots|《现代机器人学》第 13 章]] 提供较简明的底盘模型入口。
 
-这套分类体系适合设计早期使用。先问：普通固定车轮的横向约束把底盘速度空间压缩到几维？再问：有多少转向角度可以独立改变这些约束？这比“是不是四个轮子”“是不是看起来像车”更稳定。
+## 研究归属
 
-对实际工程，$\delta_m$ 越高，瞬时机动越直接；$\delta_s$ 越高，机器人越能通过预先转向增加操纵能力，但也会引入转向动力学、模块同步和低速奇异性。
-
-## 失效情形
-
-- 命名歧义：同样叫全向，可能来自 omni/mecanum rollers，也可能来自多个 steerable 模块；它们的接触和执行器限制不同。
-- Degenerate 车轮布局：固定车轮轴若不满足非退化的假设，可能把机器人限制到固定 instant center 的旋转或完全不可动。
-- 转向 coordination 负担：当 steerable 车轮多于 $\delta_s$，额外车轮的转向 must be coordinated，否则约束互相冲突。
-- 运动学/动力学不匹配：运动学 controls 是速度-like 变量；动力学 controls 是 torques 或加速度，不能混用。
-- Modern 映射差距：skid-steer、履带式 platforms、swerve 模块和可变形轮胎车辆需要额外来源来映射到这套分类体系。
-
-## 实践含义
-
-对 [[WheeledRobotKinematics|轮式机器人运动学]]，这套分类给出几何矩阵的秩/零空间解释。对 [[SteerableWheels|可转向轮]]，它说明转向 DOFs 不等于 instant 平移 DOFs。对 [[NonholonomicMobileRobots|非完整约束移动机器人]]，它把类汽车、diff-驱动-like 和 steerable-车轮机器人放进统一机动性/steerability 坐标系。
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。

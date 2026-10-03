@@ -20,7 +20,8 @@ export type ContentDetails = {
   date?: Date
   description?: string
   type?: string
-  studyTopic?: string
+  topics?: string[]
+  sourceType?: string
   evidence?: string
 }
 
@@ -119,7 +120,10 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
             date: date,
             description: file.data.description ?? "",
             type: String(file.data.frontmatter?.type ?? ""),
-            studyTopic: String(file.data.frontmatter?.study_topic ?? ""),
+            topics: Array.isArray(file.data.frontmatter?.topics)
+              ? (file.data.frontmatter.topics as string[])
+              : [],
+            sourceType: String(file.data.frontmatter?.source_type ?? ""),
             evidence:
               file.data.frontmatter?.type === "source"
                 ? "原始来源已归档"

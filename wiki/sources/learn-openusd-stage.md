@@ -9,7 +9,8 @@ source_kind: html
 source_url: https://docs.nvidia.com/learn-openusd/latest/stage-setting/stage.html
 extracted_text: graph/extracts/learn-openusd-stage.md
 source_date: unknown
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
+source_type: tutorial
 ---
 
 # Stage - Learn OpenUSD
@@ -39,3 +40,7 @@ NVIDIA Learn OpenUSD 的场景入门教程。`Stage` 呈现由根文件及引用
 ## 开放问题
 
 教程不是完整 USDA 语法规范。Python API 细节应补 `UsdStage` API 参考；术语合读 [[openusd-glossary|OpenUSD 术语与概念]]、[[learn-openusd-file-formats|OpenUSD 文件格式教程]] 和 [[learn-openusd-prim-composition|OpenUSD 图元组合教程]]。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。

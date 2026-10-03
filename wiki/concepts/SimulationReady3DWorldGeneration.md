@@ -3,77 +3,47 @@ title: "可用于仿真的三维世界生成"
 type: concept
 tags: [robotics, embodied-ai, simulation, 3d-generation]
 sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[robotics-simulation-infrastructure]]", "[[mujoco-computation-collision-detection]]", "[[coacd-approximate-convex-decomposition]]"]
-modified: 2026-07-13
-study_topic: syntheses/simulation-and-assets-learning-path
+modified: 2026-10-04
+topics: ["topics/assets-and-world-generation", "topics/simulation-ready-worlds"]
 ---
 
 # 可用于仿真的三维世界生成
 
-仿真就绪的 3D 世界生成，不是让输出“看起来像 3D”，而是把自然语言、图像或任务意图编译成具身智能体可以在物理仿真器中直接执行、交互、编辑和复用的世界产物。[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen V1]] 建立资产层级的“生成—检查—修复—打包”流程；[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|V2]] 把契约扩展到场景语义、可供性、基于约束的放置、持久编辑和策略循环。
+可用于仿真的生成系统需要交付能加载、能接触、能执行任务的资产与环境。视觉外观只是其中一层。[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen V1]] 主要组织资产生成、检查、纹理和物理打包；[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|V2]] 再加入部件交互语义、任务布局和有状态编辑。它们生成可执行的显式环境，与预测未来观测的 [[WorldModelsForEmbodiedAI|学得世界模型]] 有不同的输出契约。
 
-## 数学结构
+## 从图像到可执行资产
 
-一个物体层级的可用于仿真的资产可以写成：
+V1 把图像生成的网格或三维高斯表示接到几何检查、纹理处理与 URDF 打包。语言视觉模型提供尺度、质量与摩擦估计，作用是填补缺失参数；这些估计未经逐资产测量，不能视为真实动力学标定。多视角纹理一致性解决外观问题，也不能证明碰撞体或惯量正确。[V1 §3.1、§3.4–3.5] [[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|原文复核]]
 
-$$
-A_i=(M_i^{vis},M_i^{col},T_i,s_i,m_i,\mu_i,\phi_i,F_i),
-$$
+V2 显式分开视觉网格、碰撞网格、物理参数和交互可供性。几何修复使渲染与碰撞处理更可用；CoACD 将非凸物体近似为多个凸体；部件分割与功能合并提供交互区域；抓取候选最后还需通过仿真动作测试。各模块各自减少一种错误，不能合并为一个泛化的“物理正确率”。[V2 §2.2–2.3] [[CollisionGeometryForRobotSimulation|碰撞几何]]
 
-其中 $M_i^{vis}$ 是视觉网格，$M_i^{col}$ 是碰撞几何，$T_i$ 是纹理/材质，$s_i$ 是公制尺度，$m_i$ 是质量，$\mu_i$ 是摩擦元数据，$\phi_i$ 是部件/可供性标注，$F_i$ 是 URDF、MJCF、USD 等标准化接口。
+**我们的组织抽象：** 可将资产记为 $A=(V,C,P,F)$，分别表示视觉、碰撞、物理参数与功能语义。世界还需要 $W=(\{A_i\},G,X,T)$：$G$ 为对象关系，$X$ 为位姿，$T$ 为任务条件。这只是方便检查交付物的记号，不是论文训练目标或新的优化算法。
 
-Scene-层级世界可以写成：
+## 用带把手的杯子检查四种表示
 
-$$
-W=(G,\mathcal{A},P,C,H),
-$$
+**教学例子：** 杯子的视觉网格可以清楚显示把手洞，但如果碰撞表示用一个大凸包包住整个杯子，手指仍无法穿过洞。此时改纹理没有帮助，需要修改碰撞近似；[[CollisionGeometryForRobotSimulation|碰撞几何]] 解释这种几何误差。反过来，即使手指能进入把手，错误尺度会让夹爪张不开，错误质量／摩擦又可能让抬升测试失败。最后，“把手适合抓取”的语义标签只提供目标区域，仍需构造姿态、解机器人运动学并执行验证。
 
-其中 $G$ 是类型化的场景图，$\mathcal{A}=\{A_i\}$ 是资产，$P=\{p_i\}$ 是六自由度位姿，$C$ 是支撑、包含、碰撞、可达性、导航等约束，$H$ 是编辑与验证历史。生成过程是受约束的综合：
+这个例子把 $V,C,P,F$ 的作用分开：看得见、碰得到、力学行为合理、能选出功能部位。它依据 [[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|V2资产流程]] 与碰撞概念作教学重构，不是论文新增的一组杯子实验。调试时应找到失败发生的表示层，再修改该层输入。
 
-$$
-\hat W=\arg\max_W P_\theta(W\mid u)\quad\text{s.t.}\quad V_{geom}(W)V_{phys}(W)V_{task}(W)V_{iface}(W)=1,
-$$
+## 四层验证互不替代
 
-$u$ 是文本/图像/任务意图；$V_{geom}$ 检查几何/碰撞体，$V_{phys}$ 检查沉降/接触，$V_{task}$ 检查关系、可达性与语义，$V_{iface}$ 检查仿真器 packaging。概率模型生成候选，确定性工具与仿真器验证决定是否提交。
+| 层级 | 需要检查 | 已有证据及边界 |
+| --- | --- | --- |
+| 格式与结构 | 文件可加载、关节／引用有效、尺度与坐标一致 | URDF、MJCF、USD 导出支持接口复用；不证明不同引擎轨迹一致 |
+| 几何与接触 | 碰撞近似、穿透、支撑、沉降与稳定性 | V2 资产消融有脚本抓取测试；不覆盖任意接触任务 |
+| 交互可行性 | 功能部件可识别，至少有可执行的抓取候选 | V2 独立 200 物体评估总通过率 50%；不是所有部件或所有抓取均成功 |
+| 任务与策略 | 初态未完成目标、物体可达、动作能完成目标、策略能泛化 | 场景人工验收与下游策略成功率评估的对象不同，不能相互替代 |
 
-```mermaid
-flowchart LR
-  U[Intent] --> C[候选图像 / 网格 / 图结构]
-  C --> Q[语义与几何 QA]
-  Q -->|fail| C
-  Q --> R[网格修复与碰撞代理物]
-  R --> M[指标与 physical 元数据]
-  M --> P[Constraint-基于放置]
-  P --> S[物理沉降 / 执行测试]
-  S -->|fail| C
-  S --> E[URDF / MJCF / USD]
-  E --> L[策略训练与评估]
-```
+这些层级概括了 V1/V2 的工程检查，跨层解释是知识库整理。实验规模、消融和阈值见两篇来源页；不能把合成的四层框架误称为作者统一基准。[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|V2 §2–3]]
 
-## 直觉
+V2 的“Collision Success 98.6%”来自另一组 200 资产、每个资产四个偏航角的 Franka 脚本抓取抬升；名称比测量范围宽。可供性流程的阶段通过率为 69.5%、99.3%、72.5%，连乘约 50%；其判定含不适合抓取的大物体豁免，不能解释为任意新物体都有一半概率被真实机器人成功操作。[V2 表2–3]
 
-Generative 3D 模型通常优化外观分布；机器人仿真器消费的却是几何、接触、惯量、帧、约束和任务语义。两者之间需要一个 compiler-like 层。它既不是让 LLM 直接负责所有数值细节，也不是在生成结束后追加一次格式转换，而是在多个阶段插入契约检查：输入语义检查、网格 integrity、视觉/碰撞分离、物理元数据恢复、空间求解器、重力沉降、抓取执行与导出验证。
+## 场景生成与编辑
 
-V1 的经验是：模块化流程能把图形资产推向仿真器可用状态，但自动质量检查和全景背景仍会限制整体世界质量。V2 的经验是：可执行环境需要双层表示——物体状态必须携带物理与交互语义，场景状态必须携带类型化关系、位姿、历史与后端接口。只有这种表示才能支持保留状态的局部编辑，而不是每轮提示都重建整张场景。
+V2 以类型化场景树约束对象角色，通过广度优先放置处理支撑、重叠和可达性，再以物理沉降检查布局。交互式编辑对现有世界计算有界修改，验证成功才提交；失败保留原状态。这把生成模型的语义建议与确定性几何／状态维护分开。具体机制见 [[AgenticSceneTaskGeneration|智能体式场景与任务生成]]。
 
-## 失效情形
+主要残余问题包括初态已经满足目标、尺寸不相容、桌边物体不稳定，以及物理参数只具类别合理性。多引擎转换尚不能替代 [[SimulationRealityGap|仿真与现实差距]] 验证；V2 转述的策略学习改进来自配套研究，不能单独归因于世界生成器。阅读顺序见 [[embodiedgen-v1-v2-learning-map|EmbodiedGen 学习地图]]。
 
-- 视觉到物理类别错误：网格看起来完整，但 non-流形、open 表面、细薄 shell 或 wrong 规模使碰撞体/惯量不可靠。
-- 视觉/碰撞 conflation：直接把高分辨率非凸视觉网格当碰撞体，增加接触不稳定、运行时成本或任务关键 false 接触。见 [[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]。
-- VLM 物理属性 overconfidence：类别先验能给看似合理规模/质量/摩擦，却不能替代测量、系统辨识或不确定性感知随机化。
-- 语义 QA circularity：VLM 生成或解释属性，再由相似 VLM checker 验证，可能共享盲点；manual 跨验证与执行测试仍重要。
-- 可供性 cascade attrition：部件分割、语义标注、抓取生成任一阶段失败都会降低端到端 yield；V2 的完整可供性 pass 比率只有 50%。
-- Relation 约束不足：无碰撞的放置仍可能违反任务初始状态语义，例如目标已经位于目标 receptacle 内。
-- 规模/可达性不匹配：物体单独合理，但相对机器人本体太大、太远或朝向错误。
-- 跨仿真器语义漂移：URDF/MJCF/USD 转换能统一资产交付，不会统一引擎特定的接触定律、求解器、关节默认值或材质语义。
-- 生成成本瓶颈：完全在线世界生成的背景/资产综合整理很慢；离线 libraries 提高吞吐量，但降低 open-ended novelty。
-- 闭环循环 attribution 歧义：策略增益同时受生成的场景 diversity、RL 算法、域随机化、预训练与评估分布影响，不能把全部 improvement 归因于生成器。
+## 研究归属
 
-## 实践含义
-
-- 资产基准至少分开记录视觉验收、网格有效性、碰撞体尺寸/接触成功、物理元数据错误与 loadability。
-- 世界基准至少记录任务 relation 正确性、稳定性、可达性、导航可行性、manual-fix 比率和生成延迟。
-- 跨仿真器主张应加入同一场景的沉降位姿、接触数量、抓取结果、轨迹 divergence 与策略成功比较。
-- 有状态的编辑应使用类型化的实例 identifiers、受限增量、no-mutation-在失败、编辑日志与 rollback/versioning，而不只保存 dialogue 文本。
-- 策略证据要把 “场景可以加载” 与 “场景能训练出 transferable 策略” 分开；后者需要 [[SimulationRealityGap|仿真—现实差距]]、域随机化与真实机器人验证。
-
-相关页面：[[EmbodiedGen|EmbodiedGen]]、[[AgenticSceneTaskGeneration|智能体式场景与任务生成]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[ApproximateConvexDecomposition|近似凸分解]]、[[OpenUSDSceneComposition|OpenUSD 场景组合]]、[[SimulationRealityGap|仿真—现实差距]]。
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/simulation-ready-worlds|生成世界何时成为可执行环境]]。

@@ -9,7 +9,8 @@ source_kind: html
 source_url: https://docs.isaacsim.omniverse.nvidia.com/6.0.0/robot_setup/asset_structure.html
 extracted_text: graph/extracts/isaac-sim-6-asset-structure.md
 source_date: 2026-03-18
-study_topic: syntheses/simulation-and-assets-learning-path
+topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
+source_type: documentation
 ---
 
 # Asset Structure - Isaac Sim Documentation
@@ -53,3 +54,7 @@ study_topic: syntheses/simulation-and-assets-learning-path
 - 来源在不同段落中同时使用 `physics.usd` 与 `physics.usda`，以及 `asset.usd` 与 `interface.usda` 两种最终入口 naming；学习时应先抓住层角色，再在具体 Isaac Sim 构建 / 导入器输出中确认实际文件名称。
 - 页面属于 Isaac Sim 6.0 早期开发者发布文档；GA 发布后需要复查文档、导入器输出和资产 Transformer 行为是否发生变化。
 - 本来源给出结构和工作流，但没有提供完整验证 checklist；后续可收录机器人结构规范、资产 Transformer Rules 参考、资产验证和 Instanceable 资产文档来补齐。
+
+## 研究归属
+
+[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
