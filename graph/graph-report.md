@@ -1,7 +1,7 @@
 # Graph Report
 
-- Nodes: 161
-- Edges: 1247
+- Nodes: 166
+- Edges: 1274
 - Orphans: 0
 - Missing referenced pages: 0
 
@@ -13,10 +13,10 @@ No orphan nodes.
 
 - `overview`: 70
 - `concepts/SimulationRealityGap`: 62
-- `topics/evaluation-and-transfer`: 55
+- `topics/evaluation-and-transfer`: 58
 - `syntheses/simulation-and-assets-learning-path`: 53
 - `topics/physics-simulation`: 52
-- `topics/robot-policy-learning`: 47
+- `topics/robot-policy-learning`: 52
 - `topics/assets-and-world-generation`: 42
 - `concepts/RoboticsSimulationInfrastructure`: 37
 - `syntheses/world-models-and-simulation-research`: 37

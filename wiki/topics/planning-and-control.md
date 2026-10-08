@@ -2,8 +2,8 @@
 title: "规划与控制"
 type: "topic"
 tags: ["robotics", "source-backed"]
-sources: ["[[planet-learning-latent-dynamics]]", "[[td-mpc2-scalable-robust-world-models]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]", "[[modern-robotics-chapter-13-wheeled-mobile-robots]]"]
-modified: "2026-10-04"
+sources: ["[[planet-learning-latent-dynamics]]", "[[td-mpc2-scalable-robust-world-models]]", "[[structural-properties-and-classification-of-wheeled-mobile-robots]]", "[[modern-robotics-chapter-13-wheeled-mobile-robots]]", "[[kpi-promptable-kernel-physical-interaction]]"]
+modified: 2026-10-08
 entry: "research"
 nav_order: 3
 description: "规划与控制把目标、预测和约束变成可执行动作。学习模型和解析模型都可以参与其中；关键是状态怎样估计、动作怎样优化、反馈何时更新。"
@@ -19,6 +19,10 @@ description: "规划与控制把目标、预测和约束变成可执行动作。
 - **目标与价值。** [[VisualGoalPlanning|视觉目标规划]] 使用目标表征距离；[[td-mpc2-scalable-robust-world-models|TD-MPC2]] 使用奖励和终端价值。它们都要明确目标、可用信息和动作预算。
 - **身体约束。** [[RobotCoordinateFrames|坐标系与位姿]]、[[RobotRigidBodyDynamics|刚体动力学]] 连接运动表示与力；[[topics/wheeled-robot-modeling|轮式机器人建模]] 从轮子约束推导可行速度，而不按电机数量猜测自由度。
 - **从输出到执行。** [[PolicyDeploymentContract|策略部署约定]]、[[SimulationTimeStepping|步长与控制频率]] 解释动作坐标、控制器和时间尺度。更底层的数值假设见 [[topics/physics-simulation|物理仿真]]。
+
+## 轨迹之外的交互约定
+
+[[kpi-promptable-kernel-physical-interaction|KPI]] 将每个方向的跟踪、顺应与力范围要求传给高速适配层，调整增益、参考推进和前馈。它给出了高层任务意图进入接触控制的具体接口；当估计力不准或允许的调节通道不足时，局部约束可能不可达。因此应分别检查意图、状态估计和实际控制权限，不能把提示中的力范围当成已实现的安全保证。
 
 ## 当前理解
 
