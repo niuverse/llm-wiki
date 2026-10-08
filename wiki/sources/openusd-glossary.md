@@ -11,6 +11,7 @@ extracted_text: graph/extracts/openusd-glossary.md
 source_date: unknown
 topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 source_type: documentation
+nav_title: "OpenUSD · Glossary"
 ---
 
 # USD Terms and Concepts
@@ -36,7 +37,7 @@ OpenUSD 官方术语页，用于查证层、场景、图元、属性、关系、
 
 ## 关联
 
-[[USDAFileSyntax|USDA 文件语法]] 将定义落到语法；[[OpenUSDSceneComposition|OpenUSD 场景组合]] 解释组合与求值；[[OpenUSD|OpenUSD]] 是跨来源入口。
+[[USDAFileSyntax|USDA 文件语法]] 将定义落到语法；[[OpenUSDSceneComposition|OpenUSD Composition]] 解释组合与求值；[[sources/openusd-introduction|OpenUSD]] 是跨来源入口。
 
 ## 开放问题
 
@@ -44,4 +45,4 @@ LIVERPS、列表编辑、变体选择和命名空间编辑各需要具体教程�
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。

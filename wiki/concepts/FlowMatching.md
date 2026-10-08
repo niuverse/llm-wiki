@@ -1,5 +1,5 @@
 ---
-title: "流匹配：从噪声生成动作与未来表示"
+title: "Flow Matching"
 type: concept
 tags: [robotics, world-models, vla]
 sources: ["[[lda-1b-scaling-latent-dynamics-action-model]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[rho-efficiently-adaptable-vla-models]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-08
 topics: ["topics/robot-policy-learning", "topics/world-models-and-representations", "topics/future-conditioned-action"]
 ---
 
-# 流匹配：从噪声生成动作与未来表示
+# Flow Matching
 
 流匹配学习一个随时间和条件变化的向量场，使随机噪声经过连续变换变成数据样本。这里关注机器人中的两种用法：[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 生成动作或未来视觉特征，[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 用连续动作专家生成动作块。向量场的“速度”是生成空间里的变化率，**不一定是机器人的物理速度**。
 
@@ -59,7 +59,7 @@ $$
 
 动作块内部的物理时间索引与生成时间 $\tau$ 是两回事。π0.7 用 5 次去噪更新生成 50 个控制时刻的动作，随后只执行 15 或 25 步再更新；5 不是动作长度，50 也不是模型求解步数。LDA-1B 的视觉和动作还使用不同采样频率。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 §VI–VIII]]、[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B §III]]
 
-流匹配损失小并不保证积分误差小、动作约束满足或闭环成功。动作尺度影响平方损失权重，较少求解步数会改变近似误差，观测条件之外的隐藏接触状态仍可能不可辨识。前三项是该数学结构导出的检查点，不是这里两篇论文均单独验证过的失败实验。落到控制时还要检查动作坐标、缩放、延迟和执行块长，见 [[VisionLanguageActionModels|视觉—语言—动作模型]]。
+流匹配损失小并不保证积分误差小、动作约束满足或闭环成功。动作尺度影响平方损失权重，较少求解步数会改变近似误差，观测条件之外的隐藏接触状态仍可能不可辨识。前三项是该数学结构导出的检查点，不是这里两篇论文均单独验证过的失败实验。落到控制时还要检查动作坐标、缩放、延迟和执行块长，见 [[VisionLanguageActionModels|Vision-Language-Action (VLA)]]。
 
 ## 固定向量场，学习从哪里出发
 
@@ -67,4 +67,4 @@ $$
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|世界模型与表征]] · [[topics/future-conditioned-action|未来预测怎样帮助动作学习]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|World Models]] · [[topics/future-conditioned-action|未来预测与动作学习]]。

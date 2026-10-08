@@ -40,4 +40,4 @@ flowchart TD
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/asset-representation|资产格式怎样保留仿真语义]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/asset-representation|3D 资产格式]] · [[topics/simulation-transfer|Sim-to-Real]]。

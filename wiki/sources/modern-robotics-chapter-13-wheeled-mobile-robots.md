@@ -11,6 +11,7 @@ extracted_text: graph/extracts/modern-robotics-chapter-13-wheeled-mobile-robots.
 source_date: 2019-12-01
 topics: ["topics/planning-and-control", "topics/wheeled-robot-modeling"]
 source_type: book
+nav_title: "Modern Robotics · 轮式机器人"
 ---
 
 ## 摘要
@@ -69,7 +70,7 @@ Kevin M. Lynch 和 Frank C. Park 的 *Modern 机器人学* 章节 13 是轮式�
 - [[NonholonomicMobileRobots|非完整约束移动机器人]] - unicycle、diff-驱动器、类汽车机器人的规范的模型、Pfaffian 约束和李括号可控性。
 - [[MobileRobotOdometry|移动机器人里程计]] - 章节 13.4 的车轮增量集成和里程计失败边界。
 - [[SteerableWheels|可转向轮]] - 章节 exercises 与类汽车建模涉及 steerable 传统车轮；更系统分类体系来自 Campion et al.。
-- [[SimulationRealityGap|仿真—现实差距]] - 章节 13 的无滑移运动学假设在真实仿真与硬件里会被滑移、接触求解器和传感器 fusion 打破。
+- [[SimulationRealityGap|Sim-to-Real Gap]] - 章节 13 的无滑移运动学假设在真实仿真与硬件里会被滑移、接触求解器和传感器 fusion 打破。
 
 ## 开放问题
 
@@ -79,4 +80,4 @@ Kevin M. Lynch 和 Frank C. Park 的 *Modern 机器人学* 章节 13 是轮式�
 
 ## 研究归属
 
-[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人]]。

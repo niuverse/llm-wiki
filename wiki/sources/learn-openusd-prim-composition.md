@@ -11,6 +11,7 @@ extracted_text: graph/extracts/learn-openusd-prim-composition.md
 source_date: unknown
 topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 source_type: tutorial
+nav_title: "OpenUSD · Prim Composition"
 ---
 
 # What Is Prim Composition? - Learn OpenUSD
@@ -55,7 +56,7 @@ NVIDIA Learn OpenUSD 将层内编写的图元／属性规范连接到最终组�
 
 ## 关联
 
-[[USDAFileSyntax|USDA 文件语法]] 展示规范的文本语法；[[OpenUSDSceneComposition|OpenUSD 场景组合]] 解释组合；[[openusd-glossary|OpenUSD 术语与概念]] 提供精确术语。
+[[USDAFileSyntax|USDA 文件语法]] 展示规范的文本语法；[[OpenUSDSceneComposition|OpenUSD Composition]] 解释组合；[[openusd-glossary|OpenUSD 术语与概念]] 提供精确术语。
 
 ## 开放问题
 
@@ -63,4 +64,4 @@ NVIDIA Learn OpenUSD 将层内编写的图元／属性规范连接到最终组�
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。

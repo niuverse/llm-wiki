@@ -1,5 +1,5 @@
 ---
-title: "训练系统怎样提高有效学习效率"
+title: "RL 训练系统"
 type: "topic"
 tags: ["robotics", "source-backed"]
 sources: ["[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[unilab-repository]]", "[[mujoco-warp-mjwarp-documentation]]", "[[mujoco-playground-repository]]", "[[mjlab-repository]]", "[[isaac-lab-repository]]", "[[maniskill-repository]]", "[[motrixsim-documentation]]"]
@@ -7,7 +7,7 @@ modified: "2026-10-04"
 description: "比较采集、物理、渲染、传输与学习器的整体组织。"
 ---
 
-# 训练系统怎样提高有效学习效率
+# RL 训练系统
 
 比较采集、物理、渲染、传输与学习器的整体组织。
 
@@ -31,10 +31,10 @@ description: "比较采集、物理、渲染、传输与学习器的整体组织
 
 ## 机制基础
 
-[[HeterogeneousRobotRLTraining|异构机器人强化学习训练]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]。
+[[HeterogeneousRobotRLTraining|异构 RL 训练]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]。
 
 ## 未解问题与优先补证
 
 视觉负载、多 GPU 和大规模环境数何时改变 CPU／GPU 的取舍？应同时报告采样吞吐量、策略更新延迟、训练质量和硬件预算，不能仅比较物理步进速度。
 
-这些是研究问题与验证要求，尚未作为已有结论。沿 [[topics/robot-policy-learning|策略学习]] 与 [[topics/evaluation-and-transfer|评测与迁移]] 查看相关研究；基础学习可沿 [[robot-learning-and-evaluation-learning-path|学习路径]] 进行。
+这些是研究问题与验证要求，尚未作为已有结论。沿 [[topics/robot-policy-learning|策略学习]] 与 [[topics/evaluation-and-transfer|评测与迁移]] 查看相关研究。

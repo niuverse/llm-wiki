@@ -55,8 +55,8 @@ $$
 
 在 [[WheeledMobileRobotClassification|五类底盘]] 中，$\delta_m<3$ 表示底盘即时速度受限。但不能反过来说 $\delta_m=3$ 时整台机器人没有非完整性：若状态包含轮子的累计自转角，全向底盘的完整配置仍可能有非完整滚动约束。底盘位姿和完整配置必须分别讨论。[[structural-properties-and-classification-of-wheeled-mobile-robots|§V，性质 6]]
 
-**实践含义。** 规划与跟踪应满足实际允许速度、转向限位和是否可倒车；无滑移模型没有证明障碍物环境下任意目标可达。滑移转向与履带依赖不同接触假设，不能用侧向约束简单覆盖。车轮估计误差见 [[MobileRobotOdometry|里程计]]，动力学偏差见 [[SimulationRealityGap|仿真—现实差距]]。
+**实践含义。** 规划与跟踪应满足实际允许速度、转向限位和是否可倒车；无滑移模型没有证明障碍物环境下任意目标可达。滑移转向与履带依赖不同接触假设，不能用侧向约束简单覆盖。车轮估计误差见 [[MobileRobotOdometry|里程计]]，动力学偏差见 [[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 研究归属
 
-[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人]]。

@@ -11,6 +11,7 @@ extracted_text: graph/extracts/spinning-up-rl-algorithm-taxonomy.md
 source_date: unknown
 topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/robot-policy-learning", "topics/physics-simulation", "topics/world-model-decision", "topics/robot-learning-systems"]
 source_type: tutorial
+nav_title: "Spinning Up · RL 算法"
 ---
 
 ## 摘要
@@ -37,7 +38,7 @@ source_type: tutorial
 
 ## 关联
 
-比较入口为 [[RobotLearningObjectives|机器人学习目标]]。MDP 符号见 [[MarkovDecisionProcesses|MDP 与强化学习基础]]；潜在预测模型见 [[LatentStateSpaceModels|潜在状态空间模型：估计与预测]] 与 [[WorldModelsForEmbodiedAI|具身智能世界模型]]。
+比较入口为 [[RobotLearningObjectives|机器人学习目标]]。MDP 符号见 [[MarkovDecisionProcesses|Markov Decision Process (MDP)]]；潜在预测模型见 [[LatentStateSpaceModels|Latent State-Space Models]] 与 [[WorldModelsForEmbodiedAI|World Models]]。
 
 ## 开放问题
 
@@ -45,4 +46,4 @@ source_type: tutorial
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/world-model-decision|世界模型如何用于决策]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/planning-and-control|规划与控制]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/world-model-decision|World Models 与决策]] · [[topics/robot-learning-systems|RL 训练系统]]。

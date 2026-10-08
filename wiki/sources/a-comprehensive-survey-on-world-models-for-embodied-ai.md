@@ -15,6 +15,7 @@ year: 2025
 venue: "arXiv 预印本"
 reviewed: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/evaluation-and-transfer", "topics/world-model-evaluation"]
+nav_title: "World Models · 综述"
 ---
 
 # 具身世界模型综述：分类、评估与比较边界
@@ -81,7 +82,7 @@ $$
 | 状态／几何 | mIoU、mAP、ADE／FDE、Chamfer 距离 | 衡量占据、检测、轨迹或几何误差；要核对坐标、时域、类别和监督 |
 | 任务／控制 | 成功率、累计奖励、样本效率、碰撞率 | 衡量指定协议中的任务效用；要核对闭环、重试、计时和成功定义 |
 
-表中的解释依据 §4.2。FID 比较 Inception 特征分布，FVD 使用视频特征；即便分数好，也不能单独证明接触、质量或摩擦推演正确。成功率也必须回到各论文协议，不能把连续任务长度、进度分数和完成事件比例合并。详见 [[WorldModelEvaluation|世界模型评估]]。
+表中的解释依据 §4.2。FID 比较 Inception 特征分布，FVD 使用视频特征；即便分数好，也不能单独证明接触、质量或摩擦推演正确。成功率也必须回到各论文协议，不能把连续任务长度、进度分数和完成事件比例合并。详见 [[WorldModelEvaluation|World Model 评测]]。
 
 ## 原文比较表的可比性审查
 
@@ -103,8 +104,8 @@ $$
 
 **本页证据边界。** 本次完整复核这份综述，没有顺带完整核验其每一篇参考文献。表 I 的分类、表 III 的资源统计和表 IV–VIII 的结果都应理解为综述转述；需要用某一方法支撑具体技术判断时，应回到对应来源页。
 
-**我们的解释。** 这篇论文最适合用来检查阅读是否遗漏“控制接口、表示、时间结构、评价条件”四类问题。它不足以给出一条从视觉生成规模直接推到机器人可靠性的证据链。仿真迁移和物理一致性的进一步机制分别见 [[SimulationRealityGap|仿真现实差距]]、[[DifferentiablePhysics|可微物理]]；文献线索见 [[awesome-world-models|世界模型资料索引]]，该索引本身不能代替原文证据。
+**我们的解释。** 这篇论文最适合用来检查阅读是否遗漏“控制接口、表示、时间结构、评价条件”四类问题。它不足以给出一条从视觉生成规模直接推到机器人可靠性的证据链。仿真迁移和物理一致性的进一步机制分别见 [[SimulationRealityGap|仿真现实差距]]、[[DifferentiablePhysics|Differentiable Physics]]；文献线索见 [[awesome-world-models|世界模型资料索引]]，该索引本身不能代替原文证据。
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/world-model-evaluation|如何验证世界模型的动作后果]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/world-model-evaluation|World Model 评测]]。

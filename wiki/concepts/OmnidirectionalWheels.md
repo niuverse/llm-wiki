@@ -59,8 +59,8 @@ $$
 
 Campion 的 $(3,0)$ 表示**底盘位姿层面**的即时全向；把轮子自转角也加入状态后，完整配置仍可有非完整约束。也有由适当驱动的偏置脚轮实现的 $(3,0)$，所以“全向底盘”不是某一种轮子名称的同义词。[[structural-properties-and-classification-of-wheeled-mobile-robots|§III、§V]]
 
-轮角增量应先转换成积分旋量，再更新位姿，不能把未除采样时间的增量直接叫速度；计算见 [[MobileRobotOdometry|移动机器人里程计]]。真实接触与理想关系的差异见 [[SimulationRealityGap|仿真—现实差距]]、[[ContactSolvers|接触求解器]]。
+轮角增量应先转换成积分旋量，再更新位姿，不能把未除采样时间的增量直接叫速度；计算见 [[MobileRobotOdometry|移动机器人里程计]]。真实接触与理想关系的差异见 [[SimulationRealityGap|Sim-to-Real Gap]]、[[ContactSolvers|Contact Solvers]]。
 
 ## 研究归属
 
-[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人]]。

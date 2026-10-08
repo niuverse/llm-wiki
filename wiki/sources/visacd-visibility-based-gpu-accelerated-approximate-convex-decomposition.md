@@ -15,6 +15,7 @@ year: 2026
 venue: "Eurographics 2026 Short Papers"
 reviewed: 2026-10-04
 topics: ["topics/physics-simulation", "topics/collision-geometry"]
+nav_title: "VisACD"
 ---
 
 # VisACD：用可见性快速评价凸分解切面
@@ -116,8 +117,8 @@ Thul 等方法的结果沿用 CoACD 论文，并非本次同机重跑。作者�
 
 **我们的解释。** 这项工作说明“便宜的候选评分”可能比单纯提高搜索复杂度更关键。它改变的是离线碰撞体制作成本与分解形状，尚未证明实际机器人接触或训练质量优于其他分解方式。
 
-相关基础：[[ApproximateConvexDecomposition|近似凸分解]]、[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]；对照 [[CoACD|CoACD]] 与 [[VHACD|V-HACD]]。作者项目入口为 [VisACD 项目页](https://3dlg-hcvc.github.io/visacd)，本轮结论仅以归档论文为依据。
+相关基础：[[ApproximateConvexDecomposition|Approximate Convex Decomposition]]、[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]；对照 [[sources/coacd-repository|CoACD]] 与 [[sources/v-hacd-repository|V-HACD]]。作者项目入口为 [VisACD 项目页](https://3dlg-hcvc.github.io/visacd)，本轮结论仅以归档论文为依据。
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|Collision Geometry]]。

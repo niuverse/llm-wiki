@@ -19,6 +19,7 @@ year: 2026
 venue: "arXiv 技术报告"
 reviewed: 2026-10-04
 topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/robot-learning-systems"]
+nav_title: "MuJoCoUni"
 ---
 
 ## 一屏概览
@@ -104,7 +105,7 @@ topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/ro
 
 **作者明确的限制。** 每环境模型副本增加内存；几何随机化需要兼容的预编译模型；重置修改限于已注册字段。任务逻辑、奖励、控制器、数据管理、日志和分布式调度由上层承担。（§5、§6.1）
 
-**我们的解释。** MuJoCoUni 的可复用思路是让接口输出与消费者需求相符，并把资源所有权和重置时序变得明确。它在 [[HeterogeneousRobotRLTraining|异构机器人强化学习训练]] 中提供 CPU 侧基元，但没有单独验证完整异构训练架构；端到端证据应读 [[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]]。保留 [[MuJoCo|MuJoCo]] 语义不等于消除 [[SimulationRealityGap|仿真—现实差距]]。
+**我们的解释。** MuJoCoUni 的可复用思路是让接口输出与消费者需求相符，并把资源所有权和重置时序变得明确。它在 [[HeterogeneousRobotRLTraining|异构 RL 训练]] 中提供 CPU 侧基元，但没有单独验证完整异构训练架构；端到端证据应读 [[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]]。保留 [[sources/mujoco-overview|MuJoCo]] 语义不等于消除 [[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 资料与关联
 
@@ -112,4 +113,4 @@ topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/ro
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|RL 训练系统]]。

@@ -20,7 +20,7 @@ $$
 \|\boldsymbol\lambda_t\|_2\le\mu\lambda_n.
 $$
 
-$\lambda_n$ 与 $\boldsymbol\lambda_t$ 分别为法向力和切向力。最大耗散在摩擦可行集合中约束滑动时的力方向；实际时间步进常改用冲量与速度条件。定义、量纲与例子见 [[ContactComplementarity|接触互补]]，接触耦合见 [[ContactSolvers|接触求解器]]。
+$\lambda_n$ 与 $\boldsymbol\lambda_t$ 分别为法向力和切向力。最大耗散在摩擦可行集合中约束滑动时的力方向；实际时间步进常改用冲量与速度条件。定义、量纲与例子见 [[ContactComplementarity|Contact Complementarity]]，接触耦合见 [[ContactSolvers|Contact Solvers]]。
 
 ## 接触处理流程
 
@@ -64,8 +64,8 @@ flowchart LR
 
 ## 实践含义
 
-对 MPC、RL 和仿真迁移，比较对象应包含几何、接触模型、算法、步长与预算，而不只是引擎名称。记录物理残差、任务表现和耗时，有助于辨别“算法未收敛”与“算法很好地求出了一个不同模型的解”。后续读 [[SimulationRealityGap|仿真—现实差距]]、[[DifferentiablePhysics|可微物理]]。
+对 MPC、RL 和仿真迁移，比较对象应包含几何、接触模型、算法、步长与预算，而不只是引擎名称。记录物理残差、任务表现和耗时，有助于辨别“算法未收敛”与“算法很好地求出了一个不同模型的解”。后续读 [[SimulationRealityGap|Sim-to-Real Gap]]、[[DifferentiablePhysics|Differentiable Physics]]。
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触建模]]。

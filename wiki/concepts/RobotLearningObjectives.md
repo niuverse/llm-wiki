@@ -1,5 +1,5 @@
 ---
-title: "机器人学习目标：示范、回报与动力学"
+title: "机器人学习目标"
 type: concept
 tags: [robotics, imitation-learning, reinforcement-learning]
 sources: ["[[spinning-up-rl-key-concepts]]", "[[spinning-up-rl-algorithm-taxonomy]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[lda-1b-scaling-latent-dynamics-action-model]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/policy-evaluation"]
 ---
 
-# 机器人学习目标：示范、回报与动力学
+# 机器人学习目标
 
 机器人学习至少有三种不同问题：**学专家怎样行动、学怎样获得回报、学动作怎样改变世界**。它们分别对应示范动作目标、RL 回报目标和动力学预测目标，可以在同一系统中组合，但衡量的对象不同。[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]、[[spinning-up-rl-key-concepts|强化学习基础概念]]、[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]]
 
@@ -19,7 +19,7 @@ $$
 \mathcal L_{\mathrm{BC}}(\theta)=\mathbb E_{(h_t,a_t)\sim D}[-\log\pi_\theta(a_t\mid h_t)].
 $$
 
-行为克隆（BC）让数据中的动作在对应输入下更可能出现。它的评价对象是示范分布上的动作拟合；闭环时策略会改变后续输入。数据的采样权重与训练阶段会影响实际拟合重点。[[RobotLearningDataComposition|机器人学习数据构成]]
+行为克隆（BC）让数据中的动作在对应输入下更可能出现。它的评价对象是示范分布上的动作拟合；闭环时策略会改变后续输入。数据的采样权重与训练阶段会影响实际拟合重点。[[RobotLearningDataComposition|训练数据构成]]
 
 RL 的目标改为策略自身产生的轨迹上的期望回报：
 
@@ -27,7 +27,7 @@ $$
 \max_\theta J(\theta)=\mathbb E_{\tau\sim\pi_\theta}\left[\sum_{t=0}^{H-1}\gamma^t r_t\right].
 $$
 
-$H$ 为时域，$\gamma$ 为折扣，$r_t$ 为奖励。轨迹分布随策略变化，直接照搬固定数据上的监督学习直觉并不充分。[[MarkovDecisionProcesses|MDP 与强化学习基础]]
+$H$ 为时域，$\gamma$ 为折扣，$r_t$ 为奖励。轨迹分布随策略变化，直接照搬固定数据上的监督学习直觉并不充分。[[MarkovDecisionProcesses|Markov Decision Process (MDP)]]
 
 动力学目标则学习状态或潜在状态的转移。令 $z_t$ 为状态表示，$p_\psi$ 为参数 $\psi$ 的转移模型：
 
@@ -35,7 +35,7 @@ $$
 \mathcal L_{\mathrm{dyn}}(\psi)=\mathbb E_D[-\log p_\psi(z_{t+1}\mid z_t,a_t)].
 $$
 
-预测模型可以用于规划、产生训练经验或学习表示；“学了动力学”不等于“已经学出可执行策略”。[[spinning-up-rl-algorithm-taxonomy|强化学习算法分类]]、[[LatentDynamicsActionModels|潜在动力学动作模型]]
+预测模型可以用于规划、产生训练经验或学习表示；“学了动力学”不等于“已经学出可执行策略”。[[spinning-up-rl-algorithm-taxonomy|强化学习算法分类]]、[[sources/lda-1b-scaling-latent-dynamics-action-model|LDA-1B]]
 
 ### 同一个失败回合，三个目标各看什么
 
@@ -69,14 +69,14 @@ flowchart LR
 ## 失效情形
 
 - **损失与能力混淆**：示范拟合改善需要闭环验证；RoboCasa365 的组合任务结果显示短任务与长任务能力不能用同一得分概括。
-- **数据越多越好**：RoboCasa365 的 Human300+MG60 混合配置低于 Human300，但质量、采样权重与分布未分别控制，不能单独归因为“合成数据质量差”。[[RobotLearningDataComposition|机器人学习数据构成]]
+- **数据越多越好**：RoboCasa365 的 Human300+MG60 混合配置低于 Human300，但质量、采样权重与分布未分别控制，不能单独归因为“合成数据质量差”。[[RobotLearningDataComposition|训练数据构成]]
 - **模型内优化投机**：学得的预测偏差可能被规划或策略利用。[[spinning-up-rl-algorithm-taxonomy|强化学习算法分类]]
-- **预测表示缺信息**：固定视觉潜在可能遗漏控制需要的变量。[[LatentDynamicsActionModels|潜在动力学动作模型]]
+- **预测表示缺信息**：固定视觉潜在可能遗漏控制需要的变量。[[sources/lda-1b-scaling-latent-dynamics-action-model|LDA-1B]]
 
 ## 实践含义
 
-实验记录应同时写明学习目标、采样分布、训练阶段和闭环指标。RoboCasa365 的“先仿真预训练、再目标微调”改变训练阶段与分布，不因此变成强化学习；其两阶段与联合训练对照还同时改变总步数，不能把整个性能差距归因于训练顺序。若多目标共训，还应记录哪些数据被分配给哪些目标。阅读策略机制可接 [[VisionLanguageActionModels|视觉—语言—动作模型]]，阅读数据调度可接 [[RobotLearningDataComposition|机器人学习数据构成]]，阅读模型用途可接 [[world-models-learning-path|世界模型路径]]。
+实验记录应同时写明学习目标、采样分布、训练阶段和闭环指标。RoboCasa365 的“先仿真预训练、再目标微调”改变训练阶段与分布，不因此变成强化学习；其两阶段与联合训练对照还同时改变总步数，不能把整个性能差距归因于训练顺序。若多目标共训，还应记录哪些数据被分配给哪些目标。阅读策略机制可接 [[VisionLanguageActionModels|Vision-Language-Action (VLA)]]，阅读数据调度可接 [[RobotLearningDataComposition|训练数据构成]]，阅读模型用途可接 [[topics/world-models-and-representations|世界模型路径]]。
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|策略评测]]。

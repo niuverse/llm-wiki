@@ -18,6 +18,7 @@ year: 2017
 venue: "arXiv 预印本"
 reviewed: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
+nav_title: "Domain Randomization · Tobin"
 ---
 
 ## 一屏概览
@@ -100,10 +101,10 @@ $$
 
 ## 关联与归档
 
-机制见 [[DomainRandomization|域随机化]]、[[VisualSimToReal|视觉仿真到现实迁移]]；与 [[peng-dynamics-randomization|动力学随机化]] 对照，可区分图像变化和状态转移变化。两者都只覆盖 [[SimulationRealityGap|仿真—现实差距]] 的一部分。
+机制见 [[DomainRandomization|域随机化]]、[[VisualSimToReal|Visual Sim-to-Real]]；与 [[peng-dynamics-randomization|动力学随机化]] 对照，可区分图像变化和状态转移变化。两者都只覆盖 [[SimulationRealityGap|Sim-to-Real Gap]] 的一部分。
 
 原始证据、版本和获取日期见页首。归档 SHA-256 为 `3fc98c5f4cea050686d45858e647e1b704492121fdae80f8fcd5d560c107f11f`，登记在 `graph/acquisitions.jsonl`。本次用原 PDF 的布局保留提取全文复核，避免旧缓存的双栏错序；未把其他版本或项目网页内容并入本页。
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

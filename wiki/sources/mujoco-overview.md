@@ -11,6 +11,7 @@ extracted_text: graph/extracts/mujoco-overview.md
 source_date: unknown
 topics: ["topics/physics-simulation", "topics/evaluation-and-transfer", "topics/contact-modeling", "topics/simulation-transfer"]
 source_type: documentation
+nav_title: "MuJoCo · Overview"
 ---
 
 ## 摘要
@@ -42,7 +43,7 @@ MuJoCo 最小场景。[查看原始来源](https://mujoco.readthedocs.io/en/stab
 
 ## 关联
 
-机制解释见 [[RoboticsSimulationLoop|机器人仿真循环]]。接触表述对照见 [[ContactComplementarity|接触互补]] 与 [[ContactSolvers|求解器]]；几何与惯性分工见 [[CollisionGeometryForRobotSimulation|碰撞几何]]。
+机制解释见 [[RoboticsSimulationLoop|机器人仿真循环]]。接触表述对照见 [[ContactComplementarity|Contact Complementarity]] 与 [[ContactSolvers|求解器]]；几何与惯性分工见 [[CollisionGeometryForRobotSimulation|碰撞几何]]。
 
 ## 开放问题
 
@@ -50,4 +51,16 @@ MuJoCo 最小场景。[查看原始来源](https://mujoco.readthedocs.io/en/stab
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/contact-modeling|接触建模]] · [[topics/simulation-transfer|Sim-to-Real]]。
+
+## 相关资料
+
+- [[contact-models-in-robotics-a-comparative-analysis]]
+- [[mujoco-computation-collision-detection]]
+- [[isaac-sim-asset-structure]]
+- [[robotics-simulation-infrastructure]]
+- [[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]
+- [[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]
+- [[mujoco-warp-mjwarp-documentation]]
+- [[mjlab-repository]]
+- [[mujoco-playground-repository]]

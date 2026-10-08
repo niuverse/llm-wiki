@@ -15,6 +15,7 @@ year: 2026
 venue: "Computer Graphics Forum 45(2), Eurographics 2026"
 reviewed: 2026-10-04
 topics: ["topics/physics-simulation", "topics/collision-geometry"]
+nav_title: "Convex Primitive Decomposition"
 ---
 
 # 凸基元分解：按碰撞成本拟合可编辑的几何
@@ -169,8 +170,8 @@ $V$ 表示基元体积。优先队列每次选择代价最低的相邻合并，�
 
 **我们的解释。** 这篇论文支持把“输出形状种类 × 引擎支持 × 接触行为”一起评估。对精细机器人抓握、插入或滚动接触，落球与视觉检查不足以证明法向、间隙和任务动力学正确；这些用途仍需任务级证据。它与 [[coacd-approximate-convex-decomposition|CoACD]] 的比较应保留输入要求差异：前者可直接覆盖开放表面，后者主体假设实体流形并强调功能性凹陷。
 
-相关基础：[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[ApproximateConvexDecomposition|近似凸分解]]；对照方法入口：[[VHACD|V-HACD]]、[[CoACD|CoACD]]。
+相关基础：[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[ApproximateConvexDecomposition|Approximate Convex Decomposition]]；对照方法入口：[[sources/v-hacd-repository|V-HACD]]、[[sources/coacd-repository|CoACD]]。
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|Collision Geometry]]。

@@ -1,5 +1,5 @@
 ---
-title: "仿真系统辨识与闭环分布校准"
+title: "System Identification"
 type: concept
 tags: [robotics, simulation, sim-to-real]
 sources: ["[[simopt-adaptive-randomization]]", "[[peng-dynamics-randomization]]", "[[mujoco-computation-collision-detection]]", "[[simex-simulation-integrated-robotics-autoresearch]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-08
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ---
 
-# 仿真系统辨识与闭环分布校准
+# System Identification
 
 系统辨识根据真实输入和观测调整模型参数。机器人仿真中既可寻找一个参数估计，也可校准一组参数的分布；后者承认未知因素与参数补偿，适合与 [[DomainRandomization|域随机化]] 配合。[[simopt-adaptive-randomization|SimOpt，第 III 节]] 是本页的分布校准实例；[[peng-dynamics-randomization|Peng，第 IV-D 节]] 提供了不显式输出参数的循环适应对照。
 
@@ -32,7 +32,7 @@ $$
 
 $\tau^{ob}$ 是观测轨迹，$\varepsilon$ 是分布更新的信赖区域限制。辨识时策略固定，下一轮再训练；该迭代是对“每个候选分布都重新训练并评估硬件”的昂贵优化的近似。
 
-论文用加权 $L_1$ 与平方 $L_2$ 轨迹差异，并作高斯平滑缓解错位。其不可微仿真器通过采样与 REPS 更新参数分布，不需要对物理求导。[[DifferentiablePhysics|可微物理]] 是可能的替代途径，不能把它写成本实验已使用的方法。
+论文用加权 $L_1$ 与平方 $L_2$ 轨迹差异，并作高斯平滑缓解错位。其不可微仿真器通过采样与 REPS 更新参数分布，不需要对物理求导。[[DifferentiablePhysics|Differentiable Physics]] 是可能的替代途径，不能把它写成本实验已使用的方法。
 
 ```mermaid
 flowchart LR
@@ -90,4 +90,4 @@ $$
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

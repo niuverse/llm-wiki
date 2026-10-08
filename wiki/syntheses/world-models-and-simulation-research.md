@@ -10,7 +10,7 @@ modified: 2026-10-04
 
 2026-10-02 的研究以机器人与具身智能为边界，将“预测怎样用于决策”和“仿真怎样生成可信训练与评测”连成可复习的知识链。全文收录经典原始论文、官方课程和固定版本文档，同时补充近期方法与评估；这是一轮有边界的覆盖扩展，不声称囊括整个领域。
 
-学习顺序由 [[world-models-learning-path|世界模型路径]] 和 [[simulation-and-assets-learning-path|仿真路径]] 负责。本页记录研究范围、机制覆盖与证据变化；研究问题和待补证需求由 [[topics/world-model-decision|世界模型与决策]]、[[topics/world-model-evaluation|世界模型评估]]、[[topics/policy-evaluation|数据与泛化评测]]、[[topics/simulation-ready-worlds|可执行生成世界]] 和 [[topics/simulation-transfer|仿真迁移]] 等专题维护，[[research-questions|研究问题索引]]只汇总入口。
+当前知识维护在 [[topics/world-models-and-representations|World Models]] 和 [[topics/physics-simulation|物理仿真]]。本页记录研究范围、机制覆盖与证据变化；研究问题和待补证需求由 [[topics/world-model-decision|世界模型与决策]]、[[topics/world-model-evaluation|World Model 评测]]、[[topics/policy-evaluation|数据与泛化评测]]、[[topics/simulation-ready-worlds|可执行生成世界]] 和 [[topics/simulation-transfer|仿真迁移]] 等专题维护，[[research-questions|研究问题索引]]只汇总入口。
 
 ## 机制覆盖
 

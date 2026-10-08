@@ -11,6 +11,7 @@ extracted_text: graph/extracts/openusd-introduction.md
 source_date: unknown
 topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 source_type: documentation
+nav_title: "OpenUSD · Introduction"
 ---
 
 # Introduction to USD
@@ -52,8 +53,8 @@ Pixar 动画 Studios 是 [[openusd-introduction|Introduction 到 USD]] 的版权
 
 ## 关联
 
-- [[OpenUSD|OpenUSD]] - 本来源对 USD / OpenUSD 的机制级定义。
-- [[OpenUSDSceneComposition|OpenUSD 场景组合]] - 把 `Stage`、`Layer`、`Prim`、结构规范、组合弧和失效情形编译成学习页。
+- OpenUSD - 本来源对 USD / OpenUSD 的机制级定义。
+- [[OpenUSDSceneComposition|OpenUSD Composition]] - 把 `Stage`、`Layer`、`Prim`、结构规范、组合弧和失效情形编译成学习页。
 - [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] - 机器人学 / 仿真资产制作中，USD 组合的具体应用。
 - [[openusd-introduction|Pixar]] - 来源中的 USD 历史传承、生产上下文和版权所有者。
 
@@ -65,4 +66,13 @@ Pixar 动画 Studios 是 [[openusd-introduction|Introduction 到 USD]] 的版权
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。
+
+## 相关资料
+
+- [[isaac-sim-asset-structure]]
+- [[nvidia-ovrtx]]
+- [[learn-openusd-stage]]
+- [[learn-openusd-file-formats]]
+- [[learn-openusd-prim-composition]]
+- [[openusd-glossary]]

@@ -6,7 +6,7 @@ export default (() => {
   const Incoming = Backlinks({ hideWhenEmpty: false })
   const Relations: QuartzComponent = (props) => {
     const { fileData, allFiles } = props
-    const knowledgeTypes = ["source", "concept", "synthesis", "entity", "topic"]
+    const knowledgeTypes = ["source", "concept", "synthesis", "topic"]
     if (!knowledgeTypes.includes(String(fileData.frontmatter?.type))) return null
     const pages = allFiles.filter((p) => knowledgeTypes.includes(String(p.frontmatter?.type)))
     const outgoing = pages.filter(

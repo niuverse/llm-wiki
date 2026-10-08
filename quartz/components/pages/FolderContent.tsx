@@ -38,7 +38,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
 
     const allPagesInFolder: QuartzPluginData[] =
       folder.children
-        .map((node) => {
+        .map((node): QuartzPluginData | undefined => {
           // regular file, proceed
           if (node.data) {
             return node.data
@@ -87,7 +87,8 @@ export default ((opts?: Partial<FolderContentOptions>) => {
             }
           }
         })
-        .filter((page) => page !== undefined) ?? []
+        .filter((page) => page !== undefined)
+        .filter((page) => page.frontmatter?.type !== "redirect") ?? []
     const cssClasses: string[] = fileData.frontmatter?.cssclasses ?? []
     const classes = cssClasses.join(" ")
     const listProps = {

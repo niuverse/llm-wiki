@@ -1,9 +1,9 @@
 ---
 title: "知识库日志"
-type: synthesis
-tags: []
+type: navigation
+tags: [navigation, learn]
 sources: []
-modified: 2026-08-25
+modified: 2026-10-08
 ---
 
 # 知识库日志
@@ -11,6 +11,8 @@ modified: 2026-08-25
 本页按时间顺序记录知识库操作，只追加，不改写。
 
 格式：`## [YYYY-MM-DD] <operation> | <title>`
+
+新记录在标题下注明实际记录时间：`时间：YYYY-MM-DD HH:mm（北京时间，UTC+08:00）`，简述新增或修改了什么、为什么改，并链接相关页面。判断变化时说明原判断、新判断与依据；有可用的版本差异链接时附上。旧记录保留原样，未记录的具体时间不补造。最新记录在本页末尾，也可通过页面目录定位日期。
 
 操作类型：`ingest`、`query`、`distill`、`learn`、`source`、`health`、`lint`、`graph`、`maintenance`
 
@@ -860,3 +862,35 @@ AGENTS.md 从 333 行精简至 72 行，将重复操作收敛为入口表，保�
 ## [2026-10-08] ingest | 补充原始配图：viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation
 
 为 [[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] maintenance | 恢复日志入口与简化持续更新规则
+
+时间：2026-10-08 18:38（北京时间，UTC+08:00）
+
+在 [[index|首页]] 和 [[catalog|完整目录]] 增加 [[log|知识库日志]] 入口，解决日志难找的问题，并移除网站构建中对日志的排除，使网页端也能阅读；后续记录明确时间、改动原因与相关页面，历史记录保留原样。维护规则明确新内容优先更新已有页面，只同步直接相关知识；有依据时修正判断，不确定或冲突时明确保留。修正链接检查对日志等实际存在的维护页面的误报。
+
+## [2026-10-08] maintenance | 世界模型主题的学习与研究入口整理
+
+时间：2026-10-08 18:47（北京时间，UTC+08:00）
+
+将 [[topics/world-models-and-representations|世界模型与表征]] 的入口整理为“从基础学起”和“带着问题研究”，前移已有学习路径，并提供概念到论文实例的短路线。[[world-models-learning-path|学习路径]] 保留顺序与练习，将重复的方法对照集中到专题；[[topics/world-model-decision|决策专题]] 前置当前认识，补充明确标为研究建议的比较步骤，便于围绕问题积累。沿用已有来源和页面地址，没有新增分类或外部资料；仅导航重排的页面保留原审阅日期。
+
+## [2026-10-08] restructure | 精简分类、合并学习路径与项目索引
+
+时间：2026-10-08 19:00（北京时间，UTC+08:00）
+
+日常目录收敛为 Topics、Concepts、Sources、Notes。7 篇学习路径或学习地图的有效解释、对照与例子融入 [[topics/world-models-and-representations|World Models]]、[[topics/physics-simulation|物理仿真]]、[[topics/policy-evaluation|策略评测]]、[[topics/agent-execution|Agent Systems]]、[[topics/asset-representation|3D 资产格式]]、[[topics/wheeled-robot-modeling|轮式机器人]] 和 [[topics/simulation-ready-worlds|Simulation-ready Worlds]] 等相关主题，移除重复课程表。12 个项目实体索引合并到对应具体来源或 [[references|Sources]]；LDA-1B 专属概念解析归回 [[sources/lda-1b-scaling-latent-dynamics-action-model|论文页]]。共 20 个旧页面保留直接跳转，活跃正文更新为直接链接，旧日志不改写。
+
+Sources 统一收录论文、代码与文档，保留各自证据身份；侧栏采用简短导航名和惯用英文术语，官方论文标题与文件地址不变。旧地址从侧栏、搜索和文件夹列表隐藏，完整目录保留折叠入口。同步维护规则，后续不再新增学习路径或实体索引。原始证据不变，本轮没有新增外部事实或重新精读论文；仅显示名与链接变化的页面不刷新审阅日期。
+
+## [2026-10-08] maintenance | 首页与正文阅读体验优化
+
+时间：2026-10-08 19:14（北京时间，UTC+08:00）
+
+[[index|首页]] 改为 Niuverse Wiki，前置搜索，以六个主题入口和简短说明帮助定位内容，最近五条更新直接来自本日志。正文目录置于关系图之前，图谱默认折叠，展开后才绘制；增加配图放大、原图入口及明确的阅读模式按钮。资料内容与主题归属不变，子主题的数据结构仍处于方案讨论，未新增层级。
+
+## [2026-10-08] maintenance | 去除 Browse 重复入口
+
+时间：2026-10-08 19:19（北京时间，UTC+08:00）
+
+Browse 保留可展开的 Topics 与 Sources 文件夹，隐藏同名的 [[research-topics|主题索引]] 和 [[references|资料索引]]，避免两套入口并列。索引页仍可从 [[index|首页]] 访问，内容与旧链接不变。

@@ -16,6 +16,7 @@ year: 2026
 venue: "arXiv 预印本"
 reviewed: 2026-10-04
 topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/robot-learning-systems"]
+nav_title: "UniLab"
 ---
 
 ## 一屏概览
@@ -26,7 +27,7 @@ topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/ro
 
 原文图 1；PDF 第 1 页。[查看原始来源](https://arxiv.org/pdf/2605.30313#page=1)
 
-**贡献。** Yufei Jia 等提出 [[UniLab|UniLab]]：CPU 批量刚体仿真和采集，GPU 更新策略与价值函数，统一协调经验缓冲、传输和参数同步。它支持 PPO、APPO、FastSAC、FlashSAC；贡献是训练系统组织，不是新的优化目标。
+**贡献。** Yufei Jia 等提出 [[sources/unilab-repository|UniLab]]：CPU 批量刚体仿真和采集，GPU 更新策略与价值函数，统一协调经验缓冲、传输和参数同步。它支持 PPO、APPO、FastSAC、FlashSAC；贡献是训练系统组织，不是新的优化目标。
 
 **结论范围。** 作者报告同工作站若干任务约 3–10 倍的训练时间优势，但严格同步 PPO 的对比接近持平；较大收益伴随异步采集、经验重放及算法配置变化。应读成“存在高效的异构训练路径”，不能读成“CPU 物理普遍比 GPU 快”。证据为 [2026-06-02 的 arXiv v3](https://arxiv.org/abs/2605.30313v3)，42 页，含附录 A–C；[项目主页](https://unilabsim.github.io)不是本页实验数字的额外依据。
 
@@ -126,8 +127,8 @@ Sharpa 手内旋转基线使用固定重力方向和课程，UniLab 直接使用
 
 ## 关联
 
-[[RoboticsSimulationInfrastructure|机器人仿真基础设施]] 将训练组织放回整体系统；[[MuJoCo|MuJoCo]] 连接 CPU 与 GPU 物理路线；[[SimulationRealityGap|仿真—现实差距]] 讨论随机化和迁移的边界；[[TaskGeneralistPolicyEvaluation|通用任务策略评估]] 的语义任务能力与本文训练效率是不同指标。本次复核没有独立执行代码、计时或真机实验。
+[[RoboticsSimulationInfrastructure|机器人仿真基础设施]] 将训练组织放回整体系统；[[sources/mujoco-overview|MuJoCo]] 连接 CPU 与 GPU 物理路线；[[SimulationRealityGap|Sim-to-Real Gap]] 讨论随机化和迁移的边界；[[TaskGeneralistPolicyEvaluation|通用任务策略评估]] 的语义任务能力与本文训练效率是不同指标。本次复核没有独立执行代码、计时或真机实验。
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|RL 训练系统]]。

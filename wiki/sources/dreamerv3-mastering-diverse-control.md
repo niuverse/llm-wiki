@@ -15,6 +15,7 @@ year: 2025
 venue: "Nature"
 reviewed: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/world-model-decision"]
+nav_title: "DreamerV3"
 ---
 
 # DreamerV3：在想象中学习控制策略
@@ -159,7 +160,7 @@ Nature 版还使用分块 GRU、RMSNorm、SiLU、自适应梯度裁剪与 LaProp
 
 **Minecraft 的任务边界。** 观测除 $64\times64$ 图像外还有背包、已达到里程碑、装备、生命等信息；奖励包括 12 个物品里程碑与生命变化，动作有抽象合成操作，并加快方块破坏速度。结果支持该 MineRL 衍生协议下的从零学习，不能写成未经修改游戏、只有图像和唯一钻石奖励的学习。
 
-**版本与证据边界。** 这里完整重读了归档 Nature HTML 的正文、方法与扩展图说明。扩展数值表是独立网页，补充信息是独立 PDF，均不包含在该 HTML 正文中；本页没有冒充已经逐项复核这些独立资料。所有数值和结论以当前完整可读正文明确给出的内容为限。跨版本比较见 [[WorldModelEvaluation|世界模型评估]]。
+**版本与证据边界。** 这里完整重读了归档 Nature HTML 的正文、方法与扩展图说明。扩展数值表是独立网页，补充信息是独立 PDF，均不包含在该 HTML 正文中；本页没有冒充已经逐项复核这些独立资料。所有数值和结论以当前完整可读正文明确给出的内容为限。跨版本比较见 [[WorldModelEvaluation|World Model 评测]]。
 
 **我们的解释。** 本文最强的证据是「一个算法设计能较稳定地重新学习多种环境」，不是「一个世界模型已积累所有领域的共同知识」。想象策略能减少真实交互需求，但仍依赖真实探索数据及模型有效范围；视频看起来合理并不保证策略优化时不会利用模型误差。
 
@@ -172,4 +173,4 @@ Nature 版还使用分块 GRU、RMSNorm、SiLU、自适应梯度裁剪与 LaProp
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|世界模型如何用于决策]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|World Models 与决策]]。

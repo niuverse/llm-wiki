@@ -1,5 +1,5 @@
 ---
-title: "如何验证世界模型的动作后果"
+title: "World Model 评测"
 type: "topic"
 tags: ["world-models", "source-backed"]
 sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[worldecho-worldsync-action-following]]", "[[v-jepa-2-understanding-prediction-planning]]", "[[dino-wm-pretrained-visual-features]]"]
@@ -7,7 +7,7 @@ modified: "2026-10-04"
 description: "分开检验视觉质量、动作遵循和闭环控制收益。"
 ---
 
-# 如何验证世界模型的动作后果
+# World Model 评测
 
 分开检验视觉质量、动作遵循和闭环控制收益。
 
@@ -26,10 +26,10 @@ description: "分开检验视觉质量、动作遵循和闭环控制收益。"
 
 ## 机制基础
 
-[[WorldModelEvaluation|世界模型评估]]、[[WorldModelTaxonomy|世界模型分类体系]]、[[SimulationRealityGap|仿真—现实差距]]。
+[[WorldModelEvaluation|World Model 评测]]、[[WorldModelTaxonomy|World Model 分类]]、[[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 未解问题与优先补证
 
 怎样在非专家动作、未见初态和真实硬件上同时衡量状态误差、失败率与延迟？视觉门控是否遗漏物体运动、接触力和滑移错误？优先核验动作遵循评估的独立复现。
 
-这些是研究问题与验证要求，尚未作为已有结论。沿 [[topics/world-models-and-representations|世界模型与表征]] 查看相关研究；基础学习可沿 [[world-models-learning-path|学习路径]] 进行。
+这些是研究问题与验证要求，尚未作为已有结论。沿 [[topics/world-models-and-representations|World Models]] 查看相关研究。

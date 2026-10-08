@@ -28,7 +28,7 @@ $$
 \qquad x^+=F(x,u,\lambda).
 $$
 
-$\lambda$ 是力或冲量，量纲由具体时间离散定义。几何改变 $p_k$ 和 $n_k$，会改变接触雅可比、力矩臂和约束集合，最终改变运动。上述式子是教学抽象；具体实现见 [[mujoco-computation-collision-detection|MuJoCo 3.8 计算文档]] 与 [[ContactSolvers|接触求解器]]。
+$\lambda$ 是力或冲量，量纲由具体时间离散定义。几何改变 $p_k$ 和 $n_k$，会改变接触雅可比、力矩臂和约束集合，最终改变运动。上述式子是教学抽象；具体实现见 [[mujoco-computation-collision-detection|MuJoCo 3.8 计算文档]] 与 [[ContactSolvers|Contact Solvers]]。
 
 ```mermaid
 flowchart LR
@@ -83,8 +83,8 @@ $$
 
 碰撞偏移和静止偏移同样会改变接触何时被生成，几何相同不保证接触参数相同。该语义的固定版本依据见 [[isaac-sim-core-api-collision-approximation|Isaac Sim API 来源]]；MuJoCo 网格凸包化与多接触点生成条件见 [[mujoco-computation-collision-detection|MuJoCo 3.8 来源]]。
 
-保留原网格、预处理结果、生成参数和碰撞体产物，并记录引擎版本。[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 提供完整资产制作流程的实例，其系统成功率不应拆成单个分解算法的效果。资产层的组织另见 [[IsaacSimAssetStructure|Isaac Sim 资产结构]]；优化使用的指标另见 [[DifferentiableCollisionDetection|可微碰撞检测]]；相关机制见 [[ApproximateConvexDecomposition|近似凸分解]]、[[ContactModelsInRobotics|接触模型]] 和 [[SimulationRealityGap|仿真—现实差距]]。
+保留原网格、预处理结果、生成参数和碰撞体产物，并记录引擎版本。[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 提供完整资产制作流程的实例，其系统成功率不应拆成单个分解算法的效果。资产层的组织另见 [[IsaacSimAssetStructure|Isaac Sim 资产结构]]；优化使用的指标另见 [[DifferentiableCollisionDetection|Differentiable Collision Detection]]；相关机制见 [[ApproximateConvexDecomposition|Approximate Convex Decomposition]]、[[ContactModelsInRobotics|接触模型]] 和 [[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|Collision Geometry]]。

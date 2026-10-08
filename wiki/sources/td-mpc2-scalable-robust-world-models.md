@@ -15,6 +15,7 @@ year: 2024
 venue: "ICLR"
 reviewed: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/world-model-decision"]
+nav_title: "TD-MPC2"
 ---
 
 # TD-MPC2：以任务价值学习潜在模型并规划
@@ -151,7 +152,7 @@ $$
 
 **来源支持的局限。** 离线数据覆盖不足时，规划可能利用模型或价值外推误差；集成分歧惩罚只能在特定附加实验中改善均值。论文没有证明连续高斯动作搜索适用于离散动作；原文附录 I 提出的离散扩展是未来方向。多任务迁移仍需要新任务在线数据，且微调收益依任务变化。
 
-**我们的解释。** TD-MPC2 的关键是同时控制表示尺度、数值目标尺度和搜索接口，使一个以控制为目标的模型更容易扩大。它不是「越大越好的通用世界模拟器」：价值依赖任务奖励，规划依赖数据覆盖，单一潜在模型也不直接输出物理量。分类位置见 [[WorldModelTaxonomy|世界模型分类]]，评测条件见 [[WorldModelEvaluation|世界模型评估]]。
+**我们的解释。** TD-MPC2 的关键是同时控制表示尺度、数值目标尺度和搜索接口，使一个以控制为目标的模型更容易扩大。它不是「越大越好的通用世界模拟器」：价值依赖任务奖励，规划依赖数据覆盖，单一潜在模型也不直接输出物理量。分类位置见 [[WorldModelTaxonomy|世界模型分类]]，评测条件见 [[WorldModelEvaluation|World Model 评测]]。
 
 与 [[dino-wm-pretrained-visual-features|DINO-WM]] 比较时尤其要注意：后者去掉奖励，用离线数据训练后再进行视觉目标规划，改变了 TD-MPC2 的重要学习信号。因此该改动设置里的失败，不能推翻这里的在线强化学习结果。
 
@@ -164,4 +165,4 @@ $$
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|世界模型如何用于决策]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|World Models 与决策]]。

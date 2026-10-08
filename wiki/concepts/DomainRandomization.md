@@ -1,5 +1,5 @@
 ---
-title: "域随机化：学习一组环境中的行为"
+title: "Domain Randomization"
 type: concept
 tags: [robotics, simulation, sim-to-real, reinforcement-learning]
 sources: ["[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ---
 
-# 域随机化：学习一组环境中的行为
+# Domain Randomization
 
 域随机化将真实与仿真的未知差异表达为训练环境的变化，让模型在一组条件中学习。[[tobin-domain-randomization|Tobin 的视觉定位实验]] 与 [[peng-dynamics-randomization|Peng 的推动控制实验]] 提供的是不同层面的证据。它可以作用于图像外观，也可以作用于动力学、控制时序或观测噪声；这些变化不应混成一个“随机化强度”。
 
@@ -67,4 +67,4 @@ $$
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

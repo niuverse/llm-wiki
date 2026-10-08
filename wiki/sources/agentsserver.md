@@ -11,6 +11,7 @@ source_date: unknown
 source_metadata: raw/agentsserver-version.txt
 topics: ["topics/agent-execution"]
 source_type: repository
+nav_title: "AgentsServer"
 ---
 
 # AgentsServer：把远程会话接到本机智能体执行环境
@@ -87,8 +88,8 @@ flowchart LR
 
 没有执行安装脚本、启动第三方服务或运行后端测试；没有完整审阅认证、Team Hub、工作区文件权限和更新校验实现。旧文档中的签名／散列校验描述不能替代本轮未做的安全或发布验证。[[agentsdock-releases|发布分发仓库]] 与运行请求的服务器也承担不同职责。
 
-关联：[[AgentsDock|AgentsDock 客户端]]、[[AgentsServer|AgentsServer 共享枢纽]]、[[topics/agent-execution|智能体会话与工具执行怎样分工]]。
+关联：[[sources/agentsdock-releases|AgentsDock 客户端]]、AgentsServer 共享枢纽、[[topics/agent-execution|Agent Systems]]。
 
 ## 研究归属
 
-[[topics/agent-execution|智能体会话与工具执行怎样分工]]。
+[[topics/agent-execution|Agent Systems]]。

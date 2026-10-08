@@ -26,7 +26,7 @@ $$
 a^\star=\operatorname{ResolveValue}(a,\operatorname{PrimIndex}(P)).
 $$
 
-$P$ 为组合图元，$a$ 为属性，$a^\star$ 为最终值。`PrimIndex` 表示组合算法找到的贡献位置；并非只从眼前这个文件读一个赋值。[[openusd-glossary|OpenUSD 术语与概念]]、[[OpenUSDSceneComposition|OpenUSD 场景组合]]
+$P$ 为组合图元，$a$ 为属性，$a^\star$ 为最终值。`PrimIndex` 表示组合算法找到的贡献位置；并非只从眼前这个文件读一个赋值。[[openusd-glossary|OpenUSD 术语与概念]]、[[OpenUSDSceneComposition|OpenUSD Composition]]
 
 ## 最小读法
 
@@ -76,7 +76,7 @@ def Xform "World"
 
 ## 直觉
 
-调试时问三个问题：意见写在哪一层？它是否最强？它通过哪条组合弧进入当前图元？同一个属性在多个文件出现并不矛盾，可能是不同强度的意见。创建新场景通常先定义图元，修改已有资产则可用覆写层只编写需要改变的内容。[[OpenUSDSceneComposition|OpenUSD 场景组合]]
+调试时问三个问题：意见写在哪一层？它是否最强？它通过哪条组合弧进入当前图元？同一个属性在多个文件出现并不矛盾，可能是不同强度的意见。创建新场景通常先定义图元，修改已有资产则可用覆写层只编写需要改变的内容。[[OpenUSDSceneComposition|OpenUSD Composition]]
 
 USDA 适合小接口层、审查和差异比较；大量网格、拓扑与密集动画数值更适合 USDC。`.usd` 扩展名本身不能区分文本与二进制；`.usdz` 负责打包交付。[[learn-openusd-file-formats|OpenUSD 文件格式教程]]
 
@@ -94,4 +94,4 @@ USDA 适合小接口层、审查和差异比较；大量网格、拓扑与密集
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。

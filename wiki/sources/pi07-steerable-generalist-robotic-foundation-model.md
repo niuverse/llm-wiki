@@ -15,6 +15,7 @@ year: 2026
 venue: "Physical Intelligence 技术报告"
 reviewed: 2026-10-04
 topics: ["topics/robot-policy-learning", "topics/world-models-and-representations", "topics/evaluation-and-transfer", "topics/future-conditioned-action", "topics/policy-evaluation"]
+nav_title: "π0.7"
 ---
 
 # π0.7：用丰富上下文引导通用机器人策略
@@ -172,8 +173,8 @@ $\operatorname{sg}$ 表示停止梯度，$\mathcal L_{\rm FM}$ 为 [[FlowMatchin
 
 **我们的解释。** 这篇论文说明上下文可以帮助保留混合数据并选择执行方式；世界模型在这里是可选的视觉提示接口。与动力学规划或纯无动作视频预训练比较时，先检查目标生成器、低层策略和高层语言策略分别学了什么、用了哪些新数据，以及延迟由哪一层承担。
 
-关联：[[RobotContextConditioning|机器人上下文条件化]]、[[CompositionalGeneralizationInRobotics|机器人组合泛化]]、[[VisionLanguageActionModels|视觉—语言—动作模型]]、[[WorldModelsForEmbodiedAI|具身世界模型]]。
+关联：[[RobotContextConditioning|Context Conditioning]]、[[CompositionalGeneralizationInRobotics|机器人组合泛化]]、[[VisionLanguageActionModels|Vision-Language-Action (VLA)]]、[[WorldModelsForEmbodiedAI|具身世界模型]]。
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|世界模型与表征]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/future-conditioned-action|未来预测怎样帮助动作学习]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|World Models]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/future-conditioned-action|未来预测与动作学习]] · [[topics/policy-evaluation|策略评测]]。

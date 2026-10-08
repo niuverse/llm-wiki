@@ -17,6 +17,7 @@ year: 2026
 venue: "ICLR 2026"
 reviewed: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/policy-evaluation"]
+nav_title: "RoboCasa365"
 ---
 
 # RoboCasa365：用厨房任务研究数据构成与通用策略学习
@@ -67,7 +68,7 @@ topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topi
 
 ## 训练与评估机制
 
-底层由 robosuite 与 [[MuJoCo|MuJoCo]] 支持。控制接口以20Hz 运行，机械臂动作为三维平移、三维旋转和夹爪，再加底盘、躯干及动作模式共5维，总计12维。这里的20Hz 是文中控制/交互频率，不能据此推断 MuJoCo 内部积分步长。观测包含腕部与两个第三视角的256×256图像、本体状态和语言指令。[附录 B、F–G](https://robocasa.ai/assets/robocasa365_iclr26.pdf#page=16)
+底层由 robosuite 与 [[sources/mujoco-overview|MuJoCo]] 支持。控制接口以20Hz 运行，机械臂动作为三维平移、三维旋转和夹爪，再加底盘、躯干及动作模式共5维，总计12维。这里的20Hz 是文中控制/交互频率，不能据此推断 MuJoCo 内部积分步长。观测包含腕部与两个第三视角的256×256图像、本体状态和语言指令。[附录 B、F–G](https://robocasa.ai/assets/robocasa365_iclr26.pdf#page=16)
 
 以下记号是**我们的协议概括**：$D_p$ 为预训练示范，$D_t$ 为目标示范，$\theta$ 为策略参数。两阶段训练为：
 
@@ -117,10 +118,10 @@ $$
 
 **作者说明。** 任务集中在厨房，尚未覆盖现实感知与物理的全部复杂性。附录 I 的失败不只来自时域：包括微波炉边缘放置、灶台目标选错、抓取不稳、导航失败、紧空间容器放置，以及不同于常见抓放的翻锅倾倒。
 
-**我们的解释。** 这篇论文对 [[RobotLearningDataComposition|机器人学习数据构成]] 的支持比“数据越多越好”更具体：质量、任务范围、场景覆盖、采样权重和训练阶段共同决定收益。Human300优于加入 MG60，显示当前混合方案有问题；作者将其部分归因为合成轨迹质量不齐，但没有独立隔离质量、权重和任务不平衡的因果贡献。[[CompositionalGeneralizationInRobotics|组合泛化]] 也应与目标适应分开报告。
+**我们的解释。** 这篇论文对 [[RobotLearningDataComposition|训练数据构成]] 的支持比“数据越多越好”更具体：质量、任务范围、场景覆盖、采样权重和训练阶段共同决定收益。Human300优于加入 MG60，显示当前混合方案有问题；作者将其部分归因为合成轨迹质量不齐，但没有独立隔离质量、权重和任务不平衡的因果贡献。[[CompositionalGeneralizationInRobotics|组合泛化]] 也应与目标适应分开报告。
 
-与 [[RoboLab|RoboLab]] 的区别是评估目的：本篇主动研究仿真训练与后训练，RoboLab 论文主要把真实数据训练策略放进留出仿真域。两者解决不同问题，不能用一个总成功率排序。相关页：[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[RoboticsSimulationInfrastructure|仿真基础设施]]、[[SimulationRealityGap|仿真—现实差距]]、[[VisionLanguageActionModels|视觉—语言—动作模型]]。
+与 [[sources/nvlabs-robolab|RoboLab]] 的区别是评估目的：本篇主动研究仿真训练与后训练，RoboLab 论文主要把真实数据训练策略放进留出仿真域。两者解决不同问题，不能用一个总成功率排序。相关页：[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[RoboticsSimulationInfrastructure|仿真基础设施]]、[[SimulationRealityGap|Sim-to-Real Gap]]、[[VisionLanguageActionModels|Vision-Language-Action (VLA)]]。
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|策略评测]]。

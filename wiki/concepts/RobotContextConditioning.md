@@ -1,5 +1,5 @@
 ---
-title: "机器人上下文条件化"
+title: "Context Conditioning"
 type: concept
 tags: [robotics, vla]
 sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/robot-policy-learning", "topics/world-models-and-representations", "topics/future-conditioned-action"]
 ---
 
-# 机器人上下文条件化
+# Context Conditioning
 
 上下文条件化让同一个策略区分任务、子任务、质量、速度、错误、控制模式与期望视觉结果。[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 将这些信息纳入提示，以处理异构机器人数据中的行为歧义。
 
@@ -70,4 +70,4 @@ flowchart LR
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|世界模型与表征]] · [[topics/future-conditioned-action|未来预测怎样帮助动作学习]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|World Models]] · [[topics/future-conditioned-action|未来预测与动作学习]]。

@@ -11,6 +11,7 @@ extracted_text: graph/extracts/viral-humanoid-project-page.md
 source_date: unknown
 source_type: project
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
+nav_title: "VIRAL"
 ---
 
 # VIRAL：视觉仿真到现实迁移的项目证据
@@ -31,7 +32,7 @@ VIRAL 展示从仿真训练到 Unitree G1 视觉移动操作的教师—学生�
 
 真实与仿真视场角对齐。[查看原始来源](https://viral-humanoid.github.io/static/images/FOV_alignment.png)
 
-**我们的解释：**教师解决“在充分状态信息下如何完成任务”，学生解决“仅凭部署可用观测如何重现教师行为”；随机外观和校准物理／相机参数作用于不同误差来源。这个分解有助于诊断，但项目页没有足够数值消融支持给各环节分配确定贡献比例。通用机制见 [[VisualSimToReal|视觉仿真到现实迁移]]。
+**我们的解释：**教师解决“在充分状态信息下如何完成任务”，学生解决“仅凭部署可用观测如何重现教师行为”；随机外观和校准物理／相机参数作用于不同误差来源。这个分解有助于诊断，但项目页没有足够数值消融支持给各环节分配确定贡献比例。通用机制见 [[VisualSimToReal|Visual Sim-to-Real]]。
 
 ![视觉随机化示例](../assets/figures/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation/web-06.webp)
 
@@ -73,14 +74,14 @@ VIRAL 教师—学生系统。[查看原始来源](https://viral-humanoid.github
 
 主页同时链接不同文件名的论文 PDF，不能仅凭网页导航判断每个演示对应哪个论文版本。当前保留项目主页快照的身份，不将它自动归入论文库。奖励、网络结构、精确训练配置、计算量曲线与独立复现仍需完整论文或实现证据。
 
-**我们的评价：**VIRAL 适合作为“视觉策略迁移需要同时处理观测、控制和物理接口”的案例；其页面主张与演示不应替代系统成功率或普遍泛化能力的证明。与 [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 的比较归入 [[simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+**我们的评价：**VIRAL 适合作为“视觉策略迁移需要同时处理观测、控制和物理接口”的案例；其页面主张与演示不应替代系统成功率或普遍泛化能力的证明。与 [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 的比较归入 [[simulation-transfer|Sim-to-Real]]。
 
 ## 来源与关联
 
 依据原始项目 HTML 的 Abstract、Method、Generalization、Journey、Failure Cases 与 BibTeX，2026-10-04 完整复核文字缓存；2026-10-08 补充归档并显示项目配图；外链 PDF、代码和视频仍未作为已核验证据。[项目主页](https://viral-humanoid.github.io/)；项目页链接的[论文入口](https://arxiv.org/abs/2511.15200)和[官方代码](https://github.com/NVlabs/GR00T-VisualSim2Real)作为后续阅读入口。
 
-[[VisualSimToReal|视觉迁移机制]]、[[SimulationRealityGap|仿真—现实差距]]、[[NVIDIA|NVIDIA]]。
+[[VisualSimToReal|视觉迁移机制]]、[[SimulationRealityGap|Sim-to-Real Gap]]、NVIDIA。
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

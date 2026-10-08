@@ -19,11 +19,12 @@ code_files:
   - raw/code-isaac-source-isaaclab-tasks-isaaclab-tasks-manager-based-classic-cartpole-cartpole-env-cfg-py-2026-10-04-a75db6d3c805.py
   - raw/code-isaac-source-isaaclab-tasks-isaaclab-tasks-manager-based-classic-cartpole-init-py-2026-10-04-650bbc7bae68.py
   - raw/code-isaac-source-isaaclab-rl-isaaclab-rl-rsl-rl-vecenv-wrapper-py-2026-10-04-1d27c1a7ac75.py
+nav_title: "Isaac Lab · Code"
 ---
 
 ## 定位与阅读范围
 
-Isaac Lab 在 [[IsaacSim|Isaac Sim]] 上组织机器人任务、物理与传感器仿真，并接入强化学习训练器。本页沿固定提交的一条状态输入 Cartpole 训练路径解释配置怎样变成采样数据；README 的机器人种类、视觉任务与其他训练器能力没有因此全部得到实现核查。下面是官方源码的静态阅读，没有启动 Isaac Sim、训练策略或测量吞吐。
+Isaac Lab 在 [[sources/isaac-sim-asset-structure|Isaac Sim]] 上组织机器人任务、物理与传感器仿真，并接入强化学习训练器。本页沿固定提交的一条状态输入 Cartpole 训练路径解释配置怎样变成采样数据；README 的机器人种类、视觉任务与其他训练器能力没有因此全部得到实现核查。下面是官方源码的静态阅读，没有启动 Isaac Sim、训练策略或测量吞吐。
 
 ![官方仓库配图](../assets/figures/isaac-lab-repository/readme-overview.webp)
 
@@ -84,4 +85,4 @@ flowchart LR
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|RL 训练系统]]。

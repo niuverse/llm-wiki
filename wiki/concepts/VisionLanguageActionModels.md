@@ -1,5 +1,5 @@
 ---
-title: "视觉—语言—动作模型"
+title: "Vision-Language-Action (VLA)"
 type: concept
 tags: [robotics, vla, imitation-learning, inverse-dynamics]
 sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/robot-policy-learning", "topics/world-models-and-representations", "topics/future-conditioned-action"]
 ---
 
-# 视觉—语言—动作模型
+# Vision-Language-Action (VLA)
 
 视觉—语言—动作模型（VLA）把图像、语言上下文和机器人状态映射到动作。[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 中，视觉语言主干网络处理观测与上下文，动作专家生成连续动作块。它是策略模型；未来预测或世界模型是否参与，要看具体结构。
 
@@ -21,7 +21,7 @@ $$
 \max_\theta\;\mathbb E_D[\log\pi_\theta(A_t\mid O_t,C_t)].
 $$
 
-这是条件动作分布的教学表示。π0.7 的动作专家使用流匹配／扩散式训练，不能直接把上式当成实现中可精确计算的对数似然。动作 $a_t$ 的单位、坐标系和执行接口也由机器人控制设置决定。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 论文]]、[[RobotLearningObjectives|机器人学习目标：示范、回报与动力学]]
+这是条件动作分布的教学表示。π0.7 的动作专家使用流匹配／扩散式训练，不能直接把上式当成实现中可精确计算的对数似然。动作 $a_t$ 的单位、坐标系和执行接口也由机器人控制设置决定。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 论文]]、[[RobotLearningObjectives|机器人学习目标]]
 
 ## 直觉：动作块与闭环
 
@@ -46,21 +46,21 @@ flowchart LR
 
 ## 训练目标与执行接口分开看
 
-同一个动作输出接口可以来自不同训练信号：示范模仿、未来状态预测、逆动力学或质量条件化。它们不会自动把策略变成在线规划器；是否搜索候选动作，要检查执行时的计算图。具体机制见 [[InverseDynamicsModels|逆动力学模型]]、[[LatentDynamicsActionModels|潜在动力学动作模型]] 和 [[RobotContextConditioning|上下文条件化]]，跨方法对比集中在 [[topics/future-conditioned-action|未来条件动作学习专题]]。
+同一个动作输出接口可以来自不同训练信号：示范模仿、未来状态预测、逆动力学或质量条件化。它们不会自动把策略变成在线规划器；是否搜索候选动作，要检查执行时的计算图。具体机制见 [[InverseDynamicsModels|Inverse Dynamics]]、[[sources/lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 和 [[RobotContextConditioning|上下文条件化]]，跨方法对比集中在 [[topics/future-conditioned-action|未来条件动作学习专题]]。
 
 π0.7 的视觉子目标生成器与 VLA 是两个模型：约 5B 参数的 VLA 负责动作，14B 的 BAGEL 派生模型负责生成子目标。动作模型单次推断时间不能代表含子目标生成、传输与控制执行的完整系统延迟。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 §III、附录 C–D]]
 
 ## 失效情形
 
-- **条件不足与行为歧义**：不同质量、速度、操作者和机器人行为混合时，短任务语言未必足以选择期望行为；π0.7 用更丰富上下文处理这一问题。[[RobotContextConditioning|机器人上下文条件化]]
-- **数据监督误用**：低质量动作直接进入策略模仿，不等于这些轨迹没有动力学价值。LDA-1B 与 DeFI 展示了不同的目标分配方式。[[LatentDynamicsActionModels|潜在动力学动作模型]]、[[InverseDynamicsModels|逆动力学模型]]
-- **未来与动作表示不匹配**：DeFI 讨论联合视频／动作目标和微调漂移；Seer 的 RGB 未来监督与控制状态也需要区分。这里是来源提出的机制取舍，不说明一种路线普遍失败。[[InverseDynamicsModels|逆动力学模型]]
+- **条件不足与行为歧义**：不同质量、速度、操作者和机器人行为混合时，短任务语言未必足以选择期望行为；π0.7 用更丰富上下文处理这一问题。[[RobotContextConditioning|Context Conditioning]]
+- **数据监督误用**：低质量动作直接进入策略模仿，不等于这些轨迹没有动力学价值。LDA-1B 与 DeFI 展示了不同的目标分配方式。[[sources/lda-1b-scaling-latent-dynamics-action-model|LDA-1B]]、[[InverseDynamicsModels|Inverse Dynamics]]
+- **未来与动作表示不匹配**：DeFI 讨论联合视频／动作目标和微调漂移；Seer 的 RGB 未来监督与控制状态也需要区分。这里是来源提出的机制取舍，不说明一种路线普遍失败。[[InverseDynamicsModels|Inverse Dynamics]]
 - **推理与部署时序**：动作块和计算延迟影响新观测何时生效，离线损失不能独立验证闭环表现。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 论文]]
 
 ## 实践含义
 
-部署前记录动作单位、参考坐标系、历史窗口、观测时间戳、推断延迟和实际执行的块长度；评测时把训练目标与闭环指标分开。这是基于来源机制整理的工程检查建议，不是统一算法配方。先用 [[robot-learning-and-evaluation-learning-path|学习与评测路径]] 把目标、数据与评测串起来。
+部署前记录动作单位、参考坐标系、历史窗口、观测时间戳、推断延迟和实际执行的块长度；评测时把训练目标与闭环指标分开。这是基于来源机制整理的工程检查建议，不是统一算法配方。先用 [[topics/robot-policy-learning|学习与评测路径]] 把目标、数据与评测串起来。
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|世界模型与表征]] · [[topics/future-conditioned-action|未来预测怎样帮助动作学习]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|World Models]] · [[topics/future-conditioned-action|未来预测与动作学习]]。

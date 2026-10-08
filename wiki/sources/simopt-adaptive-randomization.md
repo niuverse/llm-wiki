@@ -18,6 +18,7 @@ year: 2019
 venue: "arXiv 预印本"
 reviewed: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
+nav_title: "SimOpt"
 ---
 
 ## 一屏概览
@@ -129,10 +130,10 @@ $\lambda$ 是归一化约束的乘子，$Z$ 为归一化常数。低代价样本
 
 ## 关联与归档
 
-[[DomainRandomization|域随机化]] 提供分布训练，[[SystemIdentificationForSimulation|系统辨识]] 提供利用真实轨迹校正模型的视角，[[SimulationRealityGap|现实差距]] 说明覆盖范围。与 [[DifferentiablePhysics|可微物理]] 的区别在于本文不穿过仿真求导；与 [[peng-dynamics-randomization|动力学随机化]] 的区别在于真实反馈会更新训练分布。
+[[DomainRandomization|域随机化]] 提供分布训练，[[SystemIdentificationForSimulation|系统辨识]] 提供利用真实轨迹校正模型的视角，[[SimulationRealityGap|现实差距]] 说明覆盖范围。与 [[DifferentiablePhysics|Differentiable Physics]] 的区别在于本文不穿过仿真求导；与 [[peng-dynamics-randomization|动力学随机化]] 的区别在于真实反馈会更新训练分布。
 
 原始证据、版本和获取日期见页首。v4 的 SHA-256 为 `5dde7ad391342c29cdcb80c3728389a59712e6798a21fc5a8f4b5d82e4baf245`，登记在 `graph/acquisitions.jsonl`；`raw/simopt-adapting-simulation-randomization-v2.pdf` 仍保持原样，不作为本页 v4 数字的依据。
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

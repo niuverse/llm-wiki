@@ -20,7 +20,7 @@ topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 | 能否随机化观测 | 属性接口允许上层改变相机、灯光、材质、实例变换或产品场景 | 来源页未记录内置域随机化模块；采样分布与重置时机仍由应用决定 |
 | 能否输出传感器数据 | 配置传感器、`RenderProduct` 与 `RenderVar`，按同步和生命周期契约读取张量 | 不自动证明物理建模或真实传感器校准正确 |
 
-执行路径、数据通道和映射注意事项集中在 [[RTXSensorSimulationPipeline|ovrtx 的 RTX 传感器仿真流程]]。
+执行路径、数据通道和映射注意事项集中在 [[RTXSensorSimulationPipeline|RTX Sensor Simulation]]。
 
 ## 讨论形成的分工建议
 
@@ -38,4 +38,4 @@ flowchart LR
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。

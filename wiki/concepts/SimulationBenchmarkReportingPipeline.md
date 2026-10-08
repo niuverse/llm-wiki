@@ -1,5 +1,5 @@
 ---
-title: "仿真基准报告流程"
+title: "仿真评测与统计"
 type: concept
 tags: [robotics, simulation, benchmark, evaluation]
 sources: ["[[nvlabs-robolab]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[robotics-simulation-infrastructure]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/policy-evaluation"]
 ---
 
-# 仿真基准报告流程
+# 仿真评测与统计
 
 基准报告把任务版本、执行记录、成功判定和统计不确定性连成可审计证据。[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab 论文]] 的固定次数实验与 [[nvlabs-robolab|归档仓库]] 后来加入的自适应采样是不同版本的协议，不能把后者描述为论文所有结果已经采用的方法。
 
@@ -51,4 +51,4 @@ $$
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|策略评测]]。

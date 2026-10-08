@@ -16,6 +16,7 @@ year: 2026
 venue: "arXiv 预印本"
 reviewed: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
+nav_title: "AGILE"
 ---
 
 ## 一屏概览
@@ -156,10 +157,10 @@ $x_T$ 是终止状态，$\sigma>0$ 为固定偏移，论文各任务取 5。自�
 
 ## 关联与材料
 
-专属机制已集中在本页；[[HumanoidRLWorkflow|人形机器人强化学习流程]] 的旧入口可用于回访。跨论文基础见 [[SimulationRealityGap|仿真—现实差距]]、[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[VisionLanguageActionModels|视觉—语言—动作模型]]。[[MuJoCo|MuJoCo]] 是本文的跨仿真器验证环境，[[NVIDIA|NVIDIA]] 是项目所属机构。
+专属机制已集中在本页；[[HumanoidRLWorkflow|人形机器人强化学习流程]] 的旧入口可用于回访。跨论文基础见 [[SimulationRealityGap|Sim-to-Real Gap]]、[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[VisionLanguageActionModels|Vision-Language-Action (VLA)]]。[[sources/mujoco-overview|MuJoCo]] 是本文的跨仿真器验证环境，NVIDIA 是项目所属机构。
 
 [代码仓库](https://github.com/nvidia-isaac/WBC-AGILE) 是论文给出的复现入口；本次没有检查当前仓库实现、硬件驱动或发布状态，相关结论仅以归档论文为证据。
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

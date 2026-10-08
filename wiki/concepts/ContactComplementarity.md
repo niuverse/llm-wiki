@@ -1,5 +1,5 @@
 ---
-title: "接触互补"
+title: "Contact Complementarity"
 type: concept
 tags: [robotics, simulation, contact-dynamics]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/physics-simulation", "topics/contact-modeling"]
 ---
 
-# 接触互补
+# Contact Complementarity
 
 接触互补描述单边接触的一条规则：物体可以相互推开，但不能靠普通接触把彼此拉住；分离时也不应继续产生支撑力。[[contact-models-in-robotics-a-comparative-analysis|接触模型比较论文]] 把 Signorini 条件、库仑摩擦和最大耗散作为刚性接触的参考定律。先读本页，再看 [[ContactSolvers|这些条件怎样被数值求解]]。
 
@@ -80,8 +80,8 @@ CCP 去掉 $\Gamma$ 后的残差可能已经很小，而对完整 NCP 的残差�
 
 ## 实践含义
 
-对 MPC、RL 和力感知任务，先明确允许哪种近似，再比较求解器。对可微优化，还要检查梯度是否来自松弛模型，而不是把光滑性直接当作物理真实性。继续读 [[ContactSolvers|接触求解器]]、[[DifferentiablePhysics|可微物理]] 和 [[SimulationRealityGap|仿真—现实差距]]。
+对 MPC、RL 和力感知任务，先明确允许哪种近似，再比较求解器。对可微优化，还要检查梯度是否来自松弛模型，而不是把光滑性直接当作物理真实性。继续读 [[ContactSolvers|Contact Solvers]]、[[DifferentiablePhysics|Differentiable Physics]] 和 [[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触建模]]。

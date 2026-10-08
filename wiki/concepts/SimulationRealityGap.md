@@ -1,5 +1,5 @@
 ---
-title: "仿真—现实差距"
+title: "Sim-to-Real Gap"
 type: concept
 tags: [robotics, simulation, sim-to-real, reinforcement-learning, world-models]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[isaac-sim-policy-deployment]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/evaluation-and-transfer", "topics/world-model-evaluation"]
 ---
 
-# 仿真—现实差距
+# Sim-to-Real Gap
 
 仿真—现实差距是模型、观测或执行接口与真实系统之间的不匹配。先确定差异出现在哪一层，再选择参数对齐、[[DomainRandomization|域随机化]] 或 [[SystemIdentificationForSimulation|系统辨识]]；“仿真成功、硬件失败”本身不能指出原因。
 
@@ -108,4 +108,4 @@ RoboCasa365 的结果支持仿真数据帮助目标任务学习，不能解释�
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/world-model-evaluation|如何验证世界模型的动作后果]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/world-model-evaluation|World Model 评测]]。

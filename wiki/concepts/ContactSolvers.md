@@ -1,5 +1,5 @@
 ---
-title: "接触求解器"
+title: "Contact Solvers"
 type: concept
 tags: [robotics, simulation]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[omniverse-omni-physics-articulations]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/physics-simulation", "topics/contact-modeling"]
 ---
 
-# 接触求解器
+# Contact Solvers
 
 接触模型规定“什么力是可接受的”，接触求解器负责“怎样算出这组力或冲量”。同一模型可能有不同算法；同一算法也可能求解不同近似。[[contact-models-in-robotics-a-comparative-analysis|比较论文]] 因而同时检查物理残差、病态问题鲁棒性、内部力和计算时间。
 
@@ -91,4 +91,4 @@ RL 看任务收益与吞吐量；MPC 和力控制还看力的一致性；可微�
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触建模]]。

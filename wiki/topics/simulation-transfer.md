@@ -1,5 +1,5 @@
 ---
-title: "仿真策略怎样可靠迁移到现实"
+title: "Sim-to-Real"
 type: "topic"
 tags: ["simulation", "source-backed"]
 sources: ["[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[isaac-sim-policy-deployment]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[dexweave-dexterous-humanoid-loco-manipulation]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-08
 description: "比较视觉与动力学随机化、分布适配和部署接口校验。"
 ---
 
-# 仿真策略怎样可靠迁移到现实
+# Sim-to-Real
 
 比较视觉与动力学随机化、分布适配和部署接口校验。
 
@@ -39,7 +39,7 @@ description: "比较视觉与动力学随机化、分布适配和部署接口校
 
 ## 机制基础
 
-[[DomainRandomization|域随机化：学习一组环境中的行为]]、[[SystemIdentificationForSimulation|仿真系统辨识与闭环分布校准]]、[[PolicyDeploymentContract|策略部署契约：同一模型如何执行同一行为]]、[[VisualSimToReal|视觉仿真到现实迁移]]、[[SimulationTimeStepping|仿真步长、积分器与控制频率]]、[[RobotCoordinateFrames|机器人坐标系与位姿]]、[[RobotRigidBodyDynamics|机器人刚体动力学]]、[[RoboticsSimulationLoop|机器人仿真循环]]。
+[[DomainRandomization|Domain Randomization]]、[[SystemIdentificationForSimulation|System Identification]]、[[PolicyDeploymentContract|策略部署接口]]、[[VisualSimToReal|Visual Sim-to-Real]]、[[SimulationTimeStepping|仿真步长、积分器与控制频率]]、[[RobotCoordinateFrames|机器人坐标系与位姿]]、[[RobotRigidBodyDynamics|机器人刚体动力学]]、[[RoboticsSimulationLoop|机器人仿真循环]]。
 
 ## 未解问题与优先补证
 
@@ -47,4 +47,4 @@ description: "比较视觉与动力学随机化、分布适配和部署接口校
 
 对仿真辅助修复，还需验证校准是否改善候选修复在真实系统中的排序，以及固定总计算预算后开放探索和种群多样性的收益。[[simex-simulation-integrated-robotics-autoresearch|SimEX 的现有实验与缺口]]给出起点，但尚未量化最低仿真保真度或单独消融对齐步骤。
 
-这些是研究问题与验证要求，尚未作为已有结论。沿 [[topics/physics-simulation|物理仿真]] 与 [[topics/assets-and-world-generation|资产与场景生成]] 查看相关研究；基础学习可沿 [[simulation-and-assets-learning-path|学习路径]] 进行。
+这些是研究问题与验证要求，尚未作为已有结论。沿 [[topics/physics-simulation|物理仿真]] 与 [[topics/assets-and-world-generation|资产与场景生成]] 查看相关研究。

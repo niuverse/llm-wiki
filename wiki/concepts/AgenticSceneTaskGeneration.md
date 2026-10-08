@@ -1,5 +1,5 @@
 ---
-title: "智能体式场景与任务生成"
+title: "Agentic Scene Generation"
 type: concept
 tags: [robotics, simulation, benchmark]
 sources: ["[[nvlabs-robolab]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[robotics-simulation-infrastructure]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/assets-and-world-generation", "topics/simulation-ready-worlds"]
 ---
 
-# 智能体式场景与任务生成
+# Agentic Scene Generation
 
 智能体式场景与任务生成把语言目标转成对象、空间关系、任务条件与可执行环境。核心困难是让这些表示互相一致：描述合理的场景可能碰撞，稳定的场景可能无法完成任务，能完成的任务也可能被错误的成功判定器计分。[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]] 与 [[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] 分别展示了谓词约束生成和类型化世界生成的路线。
 
@@ -61,4 +61,4 @@ $S_t$ 是当前世界，$\Delta_t$ 是本次编辑。该表达解释事务式提
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/simulation-ready-worlds|生成世界何时成为可执行环境]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/simulation-ready-worlds|Simulation-ready Worlds]]。

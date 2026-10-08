@@ -15,6 +15,7 @@ year: 2026
 venue: "arXiv 预印本"
 reviewed: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/evaluation-and-transfer", "topics/world-model-evaluation"]
+nav_title: "WorldEcho／WorldSync"
 ---
 
 ## 一屏概览
@@ -165,10 +166,10 @@ IE 是这组消融中轨迹改善的主要来源。单独加入 AFE 相比扩展
 
 ## 关联与归档
 
-[[WorldModelEvaluation|世界模型评估]] 保留跨论文通用指标与比较边界；[[ModelPredictiveControl|模型预测控制]] 解释为何规划会查询非专家动作；[[SimulationRealityGap|仿真—现实差距]] 区分视觉与动力学匹配。[[v-jepa-2-understanding-prediction-planning|V-JEPA 2-AC]] 做潜在空间目标规划，与本文视频仿真及策略后训练的作用不同，成功率不能直接排序。
+[[WorldModelEvaluation|World Model 评测]] 保留跨论文通用指标与比较边界；[[ModelPredictiveControl|模型预测控制]] 解释为何规划会查询非专家动作；[[SimulationRealityGap|Sim-to-Real Gap]] 区分视觉与动力学匹配。[[v-jepa-2-understanding-prediction-planning|V-JEPA 2-AC]] 做潜在空间目标规划，与本文视频仿真及策略后训练的作用不同，成功率不能直接排序。
 
 [归档 PDF 对应版本](https://arxiv.org/pdf/2608.24885v1)获取于 2026-10-02，SHA-256 为 `58e93b783ffe8d135f37fba7a72002d7a2ea7a18c9aef44bd1a50524a498ab21`。2026-10-04 重新完整阅读 PDF 布局提取文本；原 MarkItDown 缓存有双栏交错，数值以原 PDF 表 1–2 为准。本次没有核实后来正式发表状态，也没有独立复现。
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/world-model-evaluation|如何验证世界模型的动作后果]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/world-model-evaluation|World Model 评测]]。

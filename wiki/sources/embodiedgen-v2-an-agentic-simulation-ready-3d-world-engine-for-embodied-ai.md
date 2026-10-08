@@ -17,6 +17,7 @@ year: 2026
 venue: "arXiv（预印本）"
 reviewed: 2026-10-04
 topics: ["topics/assets-and-world-generation", "topics/simulation-ready-worlds"]
+nav_title: "EmbodiedGen V2"
 ---
 
 # EmbodiedGen V2：把生成资产组成可执行、可编辑的任务世界
@@ -33,7 +34,7 @@ topics: ["topics/assets-and-world-generation", "topics/simulation-ready-worlds"]
 
 **结论范围。** 200 个资产上的人工接受率为96.5%，脚本抓取抬升成功率为98.6%；另一个200资产评估的可供性端到端合格率为50.0%；150个任务世界中83.3%通过人工可用性检查。三者测量单位与判据不同，不能合成一个“物理正确率”。真机21.7%→75.0%是本篇转述的下游研究结果，未在本页当作第二份独立实验。
 
-本页依据 `raw/embodiedgen-v2.pdf`，arXiv:2607.07459v1，2026-07-08，完整阅读24页含参考文献。[[EmbodiedGen|EmbodiedGen]] 是项目枢纽；本页的能力和数据限定于这一论文快照。
+本页依据 `raw/embodiedgen-v2.pdf`，arXiv:2607.07459v1，2026-07-08，完整阅读24页含参考文献。本页的能力和数据限定于这一论文快照。
 
 ## 统一表示与方法机制
 
@@ -135,8 +136,8 @@ $$
 
 **我们的解释。** V2 最有研究价值的是将“可仿真”拆成可以分别检查的条件：可加载、几何稳定、局部交互可执行、任务约束正确、可用于学习。论文自己给出的50%可供性合格率和83.3%世界接受率，恰好说明这些条件不会由视觉质量自动推出。资产质量、生成效率和策略学习增益应分别比较。
 
-相关机制：[[SimulationReady3DWorldGeneration|可用于仿真的三维世界生成]]、[[AgenticSceneTaskGeneration|智能体式场景与任务生成]]、[[CollisionGeometryForRobotSimulation|碰撞几何]]、[[OpenUSDSceneComposition|OpenUSD 场景组合]]、[[RoboticsSimulationInfrastructure|仿真基础设施]]、[[SimulationRealityGap|仿真—现实差距]]。版本比较见 [[embodiedgen-v1-v2-learning-map|两代学习地图]]。
+相关机制：[[SimulationReady3DWorldGeneration|Simulation-ready 3D Generation]]、[[AgenticSceneTaskGeneration|Agentic Scene Generation]]、[[CollisionGeometryForRobotSimulation|碰撞几何]]、[[OpenUSDSceneComposition|OpenUSD Composition]]、[[RoboticsSimulationInfrastructure|仿真基础设施]]、[[SimulationRealityGap|Sim-to-Real Gap]]。版本比较见 [[topics/simulation-ready-worlds|两代专题]]。
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/simulation-ready-worlds|生成世界何时成为可执行环境]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/simulation-ready-worlds|Simulation-ready Worlds]]。

@@ -11,19 +11,20 @@ extracted_text: graph/extracts/isaac-sim-6-asset-structure.md
 source_date: 2026-03-18
 topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 source_type: documentation
+nav_title: "Isaac Sim · 资产结构 3.0"
 ---
 
 # Asset Structure - Isaac Sim Documentation
 
 ## 摘要
 
-这是 [[NVIDIA|NVIDIA]] Isaac Sim 6.0 文档中的机器人设置 / 资产结构页面，说明导入的机器人资产如何按 USD 组件分层组织，以便审查、reuse、仿真和多运行时调优。页面本身标注为 Isaac Sim 6.0 早期开发者发布，且说明该版本文档 incomplete；因此本页应视为 Isaac Sim 6.0 EDR / USD 资产结构 3.0 的官方设计意图，而不是 GA 发布行为的最终保证。
+这是 NVIDIA Isaac Sim 6.0 文档中的机器人设置 / 资产结构页面，说明导入的机器人资产如何按 USD 组件分层组织，以便审查、reuse、仿真和多运行时调优。页面本身标注为 Isaac Sim 6.0 早期开发者发布，且说明该版本文档 incomplete；因此本页应视为 Isaac Sim 6.0 EDR / USD 资产结构 3.0 的官方设计意图，而不是 GA 发布行为的最终保证。
 
 ![Isaac Sim 6.0 资产层与物理层组合](../assets/figures/isaac-sim-asset-structure/web-01.webp)
 
 Isaac Sim 6.0 资产层与物理层组合。[查看原始来源](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/_images/isim_6.0_full_ref_external_asset-diagram.png)
 
-核心思想是把一个机器人资产拆成来源/几何/材质/实例/物理/机器人/结构规范/控制/ROS/末端执行器等职责明确的 USD 层，再用子层、参考资料、载荷和变体组合成最终可加载资产。这个结构服务两个目标：一是让原始导入的来源可以保持不变并可重新导入；二是让 [[MuJoCo|MuJoCo]]、PhysX、USD / Newton 等运行时特定的物理调优不互相污染。
+核心思想是把一个机器人资产拆成来源/几何/材质/实例/物理/机器人/结构规范/控制/ROS/末端执行器等职责明确的 USD 层，再用子层、参考资料、载荷和变体组合成最终可加载资产。这个结构服务两个目标：一是让原始导入的来源可以保持不变并可重新导入；二是让 [[sources/mujoco-overview|MuJoCo]]、PhysX、USD / Newton 等运行时特定的物理调优不互相污染。
 
 ## 核心主张
 
@@ -60,10 +61,10 @@ Inspire Hand 资产目录示例。[查看原始来源](https://docs.isaacsim.omn
 
 - [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]] - 把本来源编译成资产结构 3.0 的学习页和实践检查表。
 - [[IsaacSimLegacyAssetStructure|Isaac Sim 旧版资产结构]] - 与 Isaac Sim 4.5 旧版 / pre-3.0 布局对照，避免把旧布局误称为 2.0。
-- [[IsaacSim|Isaac Sim]] - 本来源对 Isaac Sim 6.0 EDR 机器人资产组织的描述。
-- [[NVIDIA|NVIDIA]] - 来源 publisher 与 Isaac Sim 文档 owner。
-- [[MuJoCo|MuJoCo]] - 本来源将 MuJoCo-特定的调优隔离到 `mujoco.usda` 层。
-- [[SimulationRealityGap|仿真—现实差距]] - 多运行时资产结构能减少制作 clash，但不能单独证明物理运行时与真实机器人一致。
+- Isaac Sim - 本来源对 Isaac Sim 6.0 EDR 机器人资产组织的描述。
+- NVIDIA - 来源 publisher 与 Isaac Sim 文档 owner。
+- [[sources/mujoco-overview|MuJoCo]] - 本来源将 MuJoCo-特定的调优隔离到 `mujoco.usda` 层。
+- [[SimulationRealityGap|Sim-to-Real Gap]] - 多运行时资产结构能减少制作 clash，但不能单独证明物理运行时与真实机器人一致。
 
 ## 开放问题
 
@@ -73,4 +74,11 @@ Inspire Hand 资产目录示例。[查看原始来源](https://docs.isaacsim.omn
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。
+
+## 相关资料
+
+- [[isaac-sim-45-asset-structure]]
+- [[isaac-sim-core-api-collision-approximation]]
+- [[omniverse-omni-physics-articulations]]
+- [[isaac-lab-repository]]

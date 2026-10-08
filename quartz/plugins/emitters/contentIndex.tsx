@@ -13,6 +13,7 @@ export type ContentDetails = {
   slug: FullSlug
   filePath: FilePath
   title: string
+  navTitle?: string
   links: SimpleSlug[]
   tags: string[]
   content: string
@@ -111,6 +112,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
             slug,
             filePath: file.data.relativePath!,
             title: file.data.frontmatter?.title!,
+            navTitle: file.data.frontmatter?.nav_title as string | undefined,
             links: file.data.links ?? [],
             tags: file.data.frontmatter?.tags ?? [],
             content: file.data.text ?? "",

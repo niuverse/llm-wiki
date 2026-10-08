@@ -3,6 +3,7 @@
 from pathlib import Path
 import argparse
 import json
+import re
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from health import parse_frontmatter
@@ -10,15 +11,15 @@ from health import parse_frontmatter
 ROOT = Path(__file__).resolve().parents[1]
 WIKI = ROOT / "wiki"
 GENERATED = {
-    "index.md": "研究笔记",
+    "index.md": "Niuverse Wiki",
     "catalog.md": "完整目录",
     "papers.md": "论文库",
-    "references.md": "项目、文档与其他资料",
-    "research-topics.md": "主题地图",
+    "references.md": "Sources",
+    "research-topics.md": "Topics",
     "syntheses/research-questions.md": "研究问题索引",
 }
-GROUPS = [("topic", "主题与专题"), ("source", "论文与资料"), ("concept", "共享概念"),
-          ("synthesis", "学习与综合"), ("entity", "项目与工具"), ("redirect", "旧地址入口"),
+GROUPS = [("topic", "Topics"), ("concept", "Concepts"), ("source", "Sources"),
+          ("synthesis", "Notes"),
           ("navigation", "其他目录")]
 
 
@@ -33,14 +34,29 @@ def document(name, body, description=""):
 
 
 def link(path, meta):
-    return f'[[{path.removesuffix(".md")}|{meta.get("title", Path(path).stem)}]]'
+    return f'[[{path.removesuffix(".md")}|{meta.get("nav_title") or meta.get("title", Path(path).stem)}]]'
+
+
+def recent_updates(log_text, limit=5):
+    """Use append order and recorded times; never infer operation times from file dates."""
+    headers = list(re.finditer(r"^## \[(\d{4}-\d{2}-\d{2})\] (\w+) \| (.+)$", log_text, re.M))
+    updates = []
+    for i in range(len(headers) - 1, -1, -1):
+        header = headers[i]
+        body = log_text[header.end():headers[i + 1].start() if i + 1 < len(headers) else len(log_text)]
+        recorded = re.search(r"^时间：(\d{4}-\d{2}-\d{2} \d{2}:\d{2})", body, re.M)
+        targets = list(dict.fromkeys(re.findall(r"\[\[([^\]|]+)(?:\|[^\]]+)?\]\]", body)))
+        updates.append((recorded.group(1) if recorded else header[1], header[3], targets))
+        if len(updates) >= limit:
+            break
+    return updates
 
 
 def outputs():
     pages = []
     for path in sorted(WIKI.rglob("*.md")):
         relative = path.relative_to(WIKI).as_posix()
-        if relative in GENERATED or path.name in {"log.md", "health-report.md", "lint-report.md"}:
+        if relative in GENERATED or path.name in {"health-report.md", "lint-report.md"}:
             continue
         pages.append((relative, parse_frontmatter(path.read_text(encoding="utf-8"))))
     topics = [(p, f) for p, f in pages if f.get("type") == "topic"]
@@ -48,12 +64,32 @@ def outputs():
     main = [(p, f) for p, f in entries if f.get("entry") == "research"]
     tools = [(p, f) for p, f in entries if f.get("entry") == "tools"]
     questions = [(p, f) for p, f in topics if not f.get("entry")]
-    nav = ["## 阅读入口", "", "- [[papers|论文库]]", "- [[references|项目、文档与其他资料]]",
+    nav = ["## 查找与回顾", "", "- [[references|Sources · 论文、文档与代码]]", "- [[papers|论文筛选]]",
            "- [[catalog|完整目录]]", "- [[overview|跨主题研究判断]]",
-           "- [[syntheses/research-questions|研究问题索引]]"]
-    home = ["## 主题地图", ""] + ["- " + link(p, f) for p, f in main]
-    home += ["", "- [[research-topics|全部主题与专题]]", ""] + nav
-    home += ["", "## 工具与工程笔记", ""] + ["- " + link(p, f) for p, f in tools]
+           "- [[syntheses/research-questions|研究问题索引]]", "- [[log|知识库日志]]"]
+    home = ["机器人与具身智能研究笔记。按问题探索，沿证据深入。", "", "## Topics", ""]
+    for p, f in main:
+        home += ["- " + link(p, f) + "\n  " + f.get("description", "")]
+    home += ["", "[[research-topics|全部 Topics]] · " + " · ".join(link(p, f) for p, f in tools), ""]
+    updates = recent_updates((WIKI / "log.md").read_text(encoding="utf-8"))
+    if updates:
+        by_target = {p.removesuffix(".md"): (p, f) for p, f in pages}
+        by_target.update({Path(p).stem: (p, f) for p, f in pages})
+        home += ["## 最近更新", "", "时间为北京时间；旧记录未记时分的只显示日期。", ""]
+        for timestamp, title, targets in updates:
+            related = []
+            for target in targets:
+                page = by_target.get(target.split('#')[0])
+                if page and page[1].get("type") == "redirect":
+                    page = by_target.get(page[1].get("redirect_to", ""))
+                if page:
+                    related.append(link(*page))
+                    if title.startswith("补充原始配图："):
+                        title = "补充配图：" + (page[1].get("nav_title") or page[1]["title"])
+            related = list(dict.fromkeys(related))
+            home += [f"- **{timestamp}** · {title}" + ("\n  " + " · ".join(related[:2]) if related else "")]
+        home += ["", "[[log|查看完整日志]]", ""]
+    home += nav
     result = {"index.md": document("index.md", "\n".join(home))}
     topic_body = ["主题是相互交叉的阅读地图，论文和概念可以参与多个主题；专题笔记讨论具体研究问题。这里没有强制的父子归属。", "", "## 研究入口", ""]
     for p, f in main:
@@ -69,14 +105,25 @@ def outputs():
     papers = [(p, f) for p, f in pages if f.get("source_type") == "paper"]
     papers.sort(key=lambda item: (-int(item[1].get("year", "0")) if item[1].get("year", "0").isdigit() else 0, item[0]))
     result["papers.md"] = document("papers.md", "按核实的文献年份排序；版本、译本及证据范围见各论文页。\n\n" + "\n".join(f'- {link(p, f)} · {f.get("year", "未核实")} · {f.get("venue", "发表信息见正文")}' for p, f in papers), "按主题、年份和关键词查找论文；共享基础通过正文链接阅读。")
-    refs = [(p, f) for p, f in pages if f.get("type") == "source" and f.get("source_type") != "paper"]
-    result["references.md"] = document("references.md", "项目、代码、文档和教材分别保留实际核查范围；论文见 [[papers|论文库]]。\n\n" + "\n".join("- " + link(p, f) for p, f in refs))
+    refs = [(p, f) for p, f in pages if f.get("type") == "source"]
+    source_body = ["论文、代码和文档统一在这里查找，各页保留自己的版本和证据范围。按年份、主题筛选论文可用 [[papers|论文库]]。", ""]
+    for kinds, title in [( {"paper"}, "Papers"), ({"repository"}, "Code"),
+                         ({"documentation", "tutorial", "book"}, "Docs & Books"),
+                         ({"project", "article"}, "Projects & Articles")]:
+        rows = [(p, f) for p, f in refs if f.get("source_type") in kinds]
+        if rows:
+            source_body += ["## " + title, ""] + ["- " + link(p, f) for p, f in rows] + [""]
+    result["references.md"] = document("references.md", "\n".join(source_body))
     catalog_pages = pages + [(p, {"title": title, "type": "navigation"}) for p, title in GENERATED.items() if p not in {"index.md", "catalog.md"}]
     directory = ["此页收录全部知识页；主题阅读入口见 [[research-topics|主题地图]]。", ""]
     for kind, title in GROUPS:
         rows = [(p, f) for p, f in catalog_pages if f.get("type") == kind]
         if rows:
             directory += ["## " + title, ""] + ["- " + link(p, f) for p, f in rows] + [""]
+    redirects = [(p, f) for p, f in pages if f.get("type") == "redirect"]
+    if redirects:
+        directory += ["<details>", "<summary>旧地址</summary>", ""]
+        directory += ["- " + link(p, f) for p, f in redirects] + ["", "</details>"]
     result["catalog.md"] = document("catalog.md", "\n".join(directory))
     return result
 

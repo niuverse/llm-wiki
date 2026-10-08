@@ -13,27 +13,27 @@ description: ""
 
 ## 研究地图
 
-- [[topics/world-models-and-representations#未解问题与优先补证|世界模型与表征]]
+- [[topics/world-models-and-representations#未解问题与优先补证|World Models]]
 - [[topics/robot-policy-learning#未解问题与优先补证|机器人策略学习]]
 - [[topics/planning-and-control#未解问题与优先补证|规划与控制]]
 - [[topics/physics-simulation#未解问题与优先补证|物理仿真]]
-- [[topics/assets-and-world-generation#未解问题与优先补证|三维资产与场景生成]]
-- [[topics/evaluation-and-transfer#未解问题与优先补证|评测与现实迁移]]
+- [[topics/assets-and-world-generation#未解问题与优先补证|3D 资产与场景]]
+- [[topics/evaluation-and-transfer#未解问题与优先补证|评测与 Sim-to-Real]]
 
 ## 具体专题
 
-- [[topics/asset-representation#未解问题与优先补证|资产格式怎样保留仿真语义]]
-- [[topics/collision-geometry#未解问题与优先补证|碰撞几何如何兼顾精度与计算]]
-- [[topics/contact-modeling#未解问题与优先补证|接触模型与求解怎样改变运动]]
-- [[topics/future-conditioned-action#未解问题与优先补证|未来预测怎样帮助动作学习]]
-- [[topics/policy-evaluation#未解问题与优先补证|数据与评测怎样支撑泛化判断]]
-- [[topics/robot-learning-systems#未解问题与优先补证|训练系统怎样提高有效学习效率]]
-- [[topics/simulation-ready-worlds#未解问题与优先补证|生成世界何时成为可执行环境]]
-- [[topics/simulation-transfer#未解问题与优先补证|仿真策略怎样可靠迁移到现实]]
-- [[topics/wheeled-robot-modeling#未解问题与优先补证|轮式机器人如何建模与分类]]
-- [[topics/world-model-decision#未解问题与优先补证|世界模型如何用于决策]]
-- [[topics/world-model-evaluation#未解问题与优先补证|如何验证世界模型的动作后果]]
+- [[topics/asset-representation#未解问题与优先补证|3D 资产格式]]
+- [[topics/collision-geometry#未解问题与优先补证|Collision Geometry]]
+- [[topics/contact-modeling#未解问题与优先补证|接触建模]]
+- [[topics/future-conditioned-action#未解问题与优先补证|未来预测与动作学习]]
+- [[topics/policy-evaluation#未解问题与优先补证|策略评测]]
+- [[topics/robot-learning-systems#未解问题与优先补证|RL 训练系统]]
+- [[topics/simulation-ready-worlds#未解问题与优先补证|Simulation-ready Worlds]]
+- [[topics/simulation-transfer#未解问题与优先补证|Sim-to-Real]]
+- [[topics/wheeled-robot-modeling#未解问题与优先补证|轮式机器人]]
+- [[topics/world-model-decision#未解问题与优先补证|World Models 与决策]]
+- [[topics/world-model-evaluation#未解问题与优先补证|World Model 评测]]
 
 ## 工具笔记
 
-- [[topics/agent-execution#未解问题与优先补证|智能体会话与工具执行怎样分工]]
+- [[topics/agent-execution#未解问题与优先补证|Agent Systems]]

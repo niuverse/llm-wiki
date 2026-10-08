@@ -55,7 +55,7 @@ flowchart LR
   G --> A
 ```
 
-这张图省略了引擎的内部缓存与计算重排，只用于追踪因果关系。具体接触模型见 [[ContactModelsInRobotics|机器人学中的接触模型]]，计算出的接触响应见 [[ContactSolvers|接触求解器]]。
+这张图省略了引擎的内部缓存与计算重排，只用于追踪因果关系。具体接触模型见 [[ContactModelsInRobotics|机器人学中的接触模型]]，计算出的接触响应见 [[ContactSolvers|Contact Solvers]]。
 
 ## 失效情形
 
@@ -66,7 +66,7 @@ flowchart LR
 
 ## 实践含义
 
-检查一个仿真环境时，先记录模型、初态、控制量、物理时间步和观测接口，再解释奖励和成功条件。这是基于上述结构提出的工程检查顺序，不是经过比较实验验证的最优流程。接到学习侧时，继续读 [[MarkovDecisionProcesses|MDP 与强化学习基础]]；排查现实迁移时，继续读 [[SimulationRealityGap|仿真—现实差距]]。
+检查一个仿真环境时，先记录模型、初态、控制量、物理时间步和观测接口，再解释奖励和成功条件。这是基于上述结构提出的工程检查顺序，不是经过比较实验验证的最优流程。接到学习侧时，继续读 [[MarkovDecisionProcesses|Markov Decision Process (MDP)]]；排查现实迁移时，继续读 [[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 自测
 
@@ -74,4 +74,4 @@ flowchart LR
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

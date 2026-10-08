@@ -1,5 +1,5 @@
 ---
-title: "OpenUSD 场景组合"
+title: "OpenUSD Composition"
 type: concept
 tags: [openusd, usd, scene-description, simulation-assets]
 sources: ["[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[nvidia-ovrtx]]", "[[learn-openusd-stage]]", "[[learn-openusd-file-formats]]", "[[learn-openusd-prim-composition]]", "[[openusd-glossary]]"]
@@ -7,9 +7,9 @@ modified: 2026-09-30
 topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 ---
 
-# OpenUSD 场景组合
+# OpenUSD Composition
 
-[[OpenUSD|OpenUSD]] 用共享数据模型和组合规则组织场景。不同作者把几何、材质、物理或传感器配置写在独立层中，应用再通过 `Stage` 访问组合结果；较强的编写意见可以覆写较弱意见，不必修改原始资产。它不仅是一组文件后缀。[[openusd-introduction|OpenUSD 官方介绍]]、[[learn-openusd-prim-composition|图元组合教程]]
+[[sources/openusd-introduction|OpenUSD]] 用共享数据模型和组合规则组织场景。不同作者把几何、材质、物理或传感器配置写在独立层中，应用再通过 `Stage` 访问组合结果；较强的编写意见可以覆写较弱意见，不必修改原始资产。它不仅是一组文件后缀。[[openusd-introduction|OpenUSD 官方介绍]]、[[learn-openusd-prim-composition|图元组合教程]]
 
 本页依据已收录的官方介绍、Learn OpenUSD 教程、术语表、Isaac Sim 资产结构与 ovrtx 来源页整理。它解释入门机制，不替代完整组合强度规则、列表编辑、命名空间编辑或载荷加载的操作参考；本次编辑没有重新核验全部官方文档。
 
@@ -67,8 +67,8 @@ flowchart LR
 - **无条件加载全部重资产。** 载荷允许控制工作集；忽略加载策略会失去这项组织能力。
 - **把 USD 当作完整骨骼绑定执行系统。** 官方介绍将其定位为场景制作、组合和数据提取基础，并明确其边界。[[openusd-introduction|官方介绍]]
 
-读一个资产时依次问：它描述什么、描述来自哪个层、最终由谁解释。相关入口：[[OpenUSD|OpenUSD]]、[[IsaacSimLegacyAssetStructure|旧版资产结构]]、[[SimulationRealityGap|仿真—现实差距]]。
+读一个资产时依次问：它描述什么、描述来自哪个层、最终由谁解释。相关入口：[[sources/openusd-introduction|OpenUSD]]、[[IsaacSimLegacyAssetStructure|旧版资产结构]]、[[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。

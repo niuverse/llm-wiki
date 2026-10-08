@@ -18,7 +18,7 @@ topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topi
 | [[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]] | 在真实 DROID 数据上微调的策略进入留出仿真域，诊断语言、场景与相机扰动 | 本文未用 RoboLab 示范做目标后训练；仿真—真机对应随策略变化，不能只凭仿真分数预测现实可靠性。原文还有表文统计冲突，具体数值应连同出处阅读 |
 | [[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] | 仿真预训练、目标微调与不同数据构成如何影响表现 | 本文配置下，预训练提高目标数据效率；加入合成示范不一定改善表现。联合训练与两阶段训练的预算不同，不能把差距完全归因于顺序；真机收益来自仿真与真实数据共同参与的方案 |
 
-这两篇说明仿真可以承担不同角色：受控测量环境或训练数据来源。它们没有共同控制的实验，不能据此判断哪种角色普遍更好，也不能将两个基准的成功率混成同一排名。更多机制见 [[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[RobotLearningDataComposition|机器人学习数据构成]]。
+这两篇说明仿真可以承担不同角色：受控测量环境或训练数据来源。它们没有共同控制的实验，不能据此判断哪种角色普遍更好，也不能将两个基准的成功率混成同一排名。更多机制见 [[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[RobotLearningDataComposition|训练数据构成]]。
 
 ## 先定义要估计的量
 
@@ -56,7 +56,7 @@ $$
 2. **固定接口。** 记录观测、动作单位与坐标系、控制器、频率、动作分段长度、延迟与成功判定。无法统一的接口差异作为比较条件公开。
 3. **给出成对对照。** 同一初始检查点比较冻结与适应结果；研究仿真数据价值时，匹配真实数据量，并记录总样本曝光量和训练预算。
 4. **分开统计随机性。** 区分训练重复和测试重复，逐任务给出试验分母及不确定性；不要由四舍五入后的跨任务均值倒推成功次数。
-5. **保留过程诊断。** 成功、碰撞、抓错对象、恢复与耗时分别报告。平滑或短轨迹不自动意味着任务完成，见 [[SimulationBenchmarkReportingPipeline|仿真基准报告流程]]。
+5. **保留过程诊断。** 成功、碰撞、抓错对象、恢复与耗时分别报告。平滑或短轨迹不自动意味着任务完成，见 [[SimulationBenchmarkReportingPipeline|仿真评测与统计]]。
 
 若目标是筛选检查点，可研究仿真与现实的排序一致性；若目标是预测真实成功率，则还要研究分数校准。这是两种不同的评估目标，均需多策略与多任务的实际对照，不能从单个模型的平均成功率推得。
 
@@ -68,4 +68,4 @@ $$
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|策略评测]]。

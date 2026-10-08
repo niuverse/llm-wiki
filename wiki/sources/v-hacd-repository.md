@@ -13,6 +13,7 @@ topics: ["topics/physics-simulation", "topics/collision-geometry"]
 source_type: repository
 source_version: "f900e42361491f525262d4825e758845e4969897"
 reviewed: 2026-10-04
+nav_title: "V-HACD · Code"
 ---
 
 # V-HACD：体素分解与数量预算的实现
@@ -77,7 +78,7 @@ $$
 
 ## 怎样与论文结果对照
 
-**我们的阅读建议。** 比较实验至少记录版本、填充模式、体素预算、误差、递归与最终数量／顶点预算。先细分再合并的结构说明：只对齐最终凸包数，仍可能产生不同的孔槽、顶点数和预处理误差。共同概念见 [[ApproximateConvexDecomposition|近似凸分解]]；任务证据与具体基线设置分别见 [[coacd-approximate-convex-decomposition|CoACD]]、[[convex-primitive-decomposition-for-collision-detection|凸基元分解]]、[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]。
+**我们的阅读建议。** 比较实验至少记录版本、填充模式、体素预算、误差、递归与最终数量／顶点预算。先细分再合并的结构说明：只对齐最终凸包数，仍可能产生不同的孔槽、顶点数和预处理误差。共同概念见 [[ApproximateConvexDecomposition|Approximate Convex Decomposition]]；任务证据与具体基线设置分别见 [[coacd-approximate-convex-decomposition|CoACD]]、[[convex-primitive-decomposition-for-collision-detection|凸基元分解]]、[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]。
 
 本页没有核查各仿真器打包的是 V-HACD 哪一版，也没有将 4.x 接口参数回填到旧论文基线。旧版 `m_concavity` 与本页百分比阈值的迁移，不能理解成名字替换就保持完全相同的算法和数值。
 
@@ -93,4 +94,4 @@ $$
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|Collision Geometry]]。

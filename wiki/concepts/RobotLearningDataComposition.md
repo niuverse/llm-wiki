@@ -1,5 +1,5 @@
 ---
-title: "机器人学习数据构成"
+title: "训练数据构成"
 type: concept
 tags: [robotics, imitation-learning, generalization]
 sources: ["[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/policy-evaluation"]
 ---
 
-# 机器人学习数据构成
+# 训练数据构成
 
 数据构成描述机器人学习看到了哪些任务、场景、来源与质量的数据，以及各类数据如何进入训练。样本总数只说明存量，不能说明实际梯度中谁占主导。[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 的受控实验分别改变任务覆盖、场景覆盖、示范来源和训练阶段，是理解这些维度的具体案例。
 
@@ -54,4 +54,4 @@ $z$ 是训练样本，$q_j$ 是第 $j$ 类的内部采样分布，$\alpha_j$ 是
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|策略评测]]。

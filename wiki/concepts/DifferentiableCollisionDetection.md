@@ -1,5 +1,5 @@
 ---
-title: "可微碰撞检测"
+title: "Differentiable Collision Detection"
 type: concept
 tags: [collision-detection, differentiable-optimization, robotics]
 sources: ["[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[mujoco-computation-collision-detection]]", "[[contact-models-in-robotics-a-comparative-analysis]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/physics-simulation", "topics/collision-geometry"]
 ---
 
-# 可微碰撞检测
+# Differentiable Collision Detection
 
 可微碰撞检测将物体配置映射为碰撞指标及其导数，让梯度优化器能使用几何约束。需要分清三个对象：**碰撞判定指标、表面点或最近点、完整接触动力学**。一个对象可求导，不代表其他对象都光滑或物理正确。[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]]、[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]]
 
@@ -77,7 +77,7 @@ flowchart LR
   F --> G[另行求解摩擦、冲量与时间推进]
 ```
 
-图中的最后一步属于 [[DifferentiablePhysics|可微物理]]，不会因碰撞查询可微而自动完成。
+图中的最后一步属于 [[DifferentiablePhysics|Differentiable Physics]]，不会因碰撞查询可微而自动完成。
 
 ## 证据与使用边界
 
@@ -87,4 +87,4 @@ flowchart LR
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|Collision Geometry]]。

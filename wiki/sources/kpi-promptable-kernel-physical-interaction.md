@@ -18,6 +18,7 @@ year: 2026
 venue: "arXiv 预印本"
 reviewed: 2026-10-08
 topics: ["topics/planning-and-control", "topics/robot-policy-learning", "topics/evaluation-and-transfer"]
+nav_title: "KPI"
 ---
 
 ## 一屏概览
@@ -168,4 +169,4 @@ Detector 将图像定位配合深度变成三维几何；Analyzer 组合直线�
 
 ## 研究归属
 
-[[topics/planning-and-control|规划与控制]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/evaluation-and-transfer|评测与现实迁移]]。坐标与力矩映射基础见 [[RobotCoordinateFrames|机器人坐标系]]、[[RobotRigidBodyDynamics|刚体动力学]]。
+[[topics/planning-and-control|规划与控制]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]]。坐标与力矩映射基础见 [[RobotCoordinateFrames|机器人坐标系]]、[[RobotRigidBodyDynamics|刚体动力学]]。

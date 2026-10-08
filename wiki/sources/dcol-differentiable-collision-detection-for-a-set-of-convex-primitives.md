@@ -15,6 +15,7 @@ year: 2023
 venue: "arXiv（归档稿未标注会议或期刊）"
 reviewed: 2026-10-04
 topics: ["topics/physics-simulation", "topics/collision-geometry"]
+nav_title: "DCOL"
 ---
 
 # DCOL：以最小均匀缩放构造可微碰撞约束
@@ -125,8 +126,8 @@ $$
 
 **我们的解释。** 论文使用“完全可微”的表述，但非唯一公共点、对称形状或退化活动约束会使最优解敏感性需要额外条件。例如两个球的尺度解与中心间距成正比，中心重合处的范数没有唯一梯度；因此不将作者表述扩大成所有位姿上的经典光滑性定理。优化中的尺度余量也应与所需物理间隙分别核验。
 
-与 [[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]] 相比，核心区别是“最小共同缩放”与“中心几何距离减厚度”；与 [[contact-models-in-robotics-a-comparative-analysis|接触模型比较]] 相比，DCOL 处理几何约束，后者处理接触冲量、摩擦和数值求解。相关基础：[[DifferentiableCollisionDetection|可微碰撞检测]]、[[CollisionGeometryForRobotSimulation|碰撞几何]]、[[DifferentiablePhysics|可微物理]]。论文实现链接为 [DifferentiableCollisions.jl](https://github.com/kevin-tracy/DifferentiableCollisions.jl)，未在本轮复核当前代码。
+与 [[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]] 相比，核心区别是“最小共同缩放”与“中心几何距离减厚度”；与 [[contact-models-in-robotics-a-comparative-analysis|接触模型比较]] 相比，DCOL 处理几何约束，后者处理接触冲量、摩擦和数值求解。相关基础：[[DifferentiableCollisionDetection|Differentiable Collision Detection]]、[[CollisionGeometryForRobotSimulation|碰撞几何]]、[[DifferentiablePhysics|Differentiable Physics]]。论文实现链接为 [DifferentiableCollisions.jl](https://github.com/kevin-tracy/DifferentiableCollisions.jl)，未在本轮复核当前代码。
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|Collision Geometry]]。

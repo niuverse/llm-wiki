@@ -1,5 +1,5 @@
 ---
-title: "MDP 与强化学习基础"
+title: "Markov Decision Process (MDP)"
 type: concept
 tags: [robotics, reinforcement-learning]
 sources: ["[[spinning-up-rl-key-concepts]]", "[[spinning-up-rl-algorithm-taxonomy]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]"]
@@ -7,7 +7,7 @@ modified: 2026-09-30
 topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/world-model-decision", "topics/policy-evaluation"]
 ---
 
-# MDP 与强化学习基础
+# Markov Decision Process (MDP)
 
 马尔可夫决策过程（MDP）把任务写成“状态 → 动作 → 下一状态与奖励”的交互。强化学习在这个循环中优化策略产生的**期望回报**。状态、观测、奖励、回报和成功条件各有含义，这是阅读机器人 RL、世界模型与评测论文的共同起点。[[spinning-up-rl-key-concepts|强化学习基础概念]]
 
@@ -53,7 +53,7 @@ $$
 | 优势 $A$ | 这个动作比策略平均选择好多少？ |
 | 成功判定 | 行为是否满足任务规定的条件？ |
 
-马尔可夫性质不是“物理世界没有历史”，而是选定的状态已经包含预测下一步所需的信息。如果只给当前图像，同样图像可能对应不同速度；这时需要观测历史或状态估计。潜在状态的处理见 [[LatentStateSpaceModels|潜在状态空间模型：估计与预测]]，对应的部分可观测建模见 [[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]。
+马尔可夫性质不是“物理世界没有历史”，而是选定的状态已经包含预测下一步所需的信息。如果只给当前图像，同样图像可能对应不同速度；这时需要观测历史或状态估计。潜在状态的处理见 [[LatentStateSpaceModels|Latent State-Space Models]]，对应的部分可观测建模见 [[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]。
 
 ## 失效情形
 
@@ -72,4 +72,4 @@ $$
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-model-decision|世界模型如何用于决策]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/planning-and-control|规划与控制]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-model-decision|World Models 与决策]] · [[topics/policy-evaluation|策略评测]]。

@@ -18,6 +18,7 @@ year: 2026
 venue: "arXiv 预印本"
 reviewed: 2026-10-08
 topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/evaluation-and-transfer", "topics/simulation-transfer"]
+nav_title: "SimEX"
 ---
 
 ## 一屏概览

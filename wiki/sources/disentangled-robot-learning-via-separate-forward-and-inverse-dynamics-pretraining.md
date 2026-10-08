@@ -15,6 +15,7 @@ year: 2026
 venue: "ICLR 2026"
 reviewed: 2026-10-04
 topics: ["topics/robot-policy-learning", "topics/world-models-and-representations", "topics/future-conditioned-action"]
+nav_title: "DeFI"
 ---
 
 # DeFI：分别预训练未来预测与逆动力学
@@ -130,8 +131,8 @@ GFDM 的采样混合包括 Fractal 30%、Bridge 10%、CALVIN-ABC 30%、Something
 
 **我们的解释。** DeFI 最有复用价值的思想是让视频预测与动作恢复各自接受合适监督，再用动作标注接到硬件；它的实验证据支持这套配置，而没有消除视觉变化到控制命令的一对多性。码本是否跨机器人保持同一动作语义，以及 DINO 特征是否足够刻画接触和力，不能从重建损失下降直接推出。
 
-机制基础见 [[InverseDynamicsModels|逆动力学模型]]、[[VisionLanguageActionModels|视觉—语言—动作模型]]；与 [[LatentDynamicsActionModels|潜在动力学动作模型]] 比较时，应区分离散潜在动作、潜在视觉状态和可执行动作。[[WorldModelsForEmbodiedAI|具身世界模型]] 与 [[SimulationRealityGap|仿真—现实差距]] 提供更广的预测与迁移背景。
+机制基础见 [[InverseDynamicsModels|Inverse Dynamics]]、[[VisionLanguageActionModels|Vision-Language-Action (VLA)]]；与 [[sources/lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] 比较时，应区分离散潜在动作、潜在视觉状态和可执行动作。[[WorldModelsForEmbodiedAI|具身世界模型]] 与 [[SimulationRealityGap|Sim-to-Real Gap]] 提供更广的预测与迁移背景。
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|世界模型与表征]] · [[topics/future-conditioned-action|未来预测怎样帮助动作学习]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|World Models]] · [[topics/future-conditioned-action|未来预测与动作学习]]。

@@ -62,8 +62,8 @@ $$
 
 **由几何模型得到的实践检查：** 先核对轮序、坐标轴和正转符号，再检查矩阵秩；满秩但条件差时，轮速噪声仍可被放大。轮速上限要求限制目标 $V_b$，实际滑移、惯性和摩擦则需要动力学与接触模型，不能通过伪逆自动补偿。
 
-相关机制见 [[OmnidirectionalWheels|全向轮]]、[[SteerableWheels|可转向轮]]、[[NonholonomicMobileRobots|非完整约束移动机器人]] 与 [[MobileRobotOdometry|移动机器人里程计]]。运动学和接触求解的区别见 [[ContactSolvers|接触求解器]]、[[SimulationRealityGap|仿真—现实差距]]。
+相关机制见 [[OmnidirectionalWheels|全向轮]]、[[SteerableWheels|可转向轮]]、[[NonholonomicMobileRobots|非完整约束移动机器人]] 与 [[MobileRobotOdometry|移动机器人里程计]]。运动学和接触求解的区别见 [[ContactSolvers|Contact Solvers]]、[[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 研究归属
 
-[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人]]。

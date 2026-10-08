@@ -1,5 +1,5 @@
 ---
-title: "模型预测控制：预测、优化、执行、重规划"
+title: "Model Predictive Control (MPC)"
 type: concept
 tags: [robotics, world-models, reinforcement-learning]
 sources: ["[[planet-learning-latent-dynamics]]", "[[td-mpc2-scalable-robust-world-models]]", "[[dino-wm-pretrained-visual-features]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/world-model-decision"]
 ---
 
-# 模型预测控制：预测、优化、执行、重规划
+# Model Predictive Control (MPC)
 
 模型预测控制（MPC）每次从当前状态出发，优化有限时域的动作序列，只执行开头，再用新观测重规划。**模型给动作后果，优化器选动作，反馈修正下一次计划。** 本页讨论已收录的学习模型实现；经典 MPC 的稳定性、约束可行性与鲁棒保证不能从这些实验直接推出。[[planet-learning-latent-dynamics|PlaNet]]、[[td-mpc2-scalable-robust-world-models|TD-MPC2]]
 
@@ -75,8 +75,8 @@ flowchart LR
 
 **我们的归纳。** 记录预测步长、规划时域、候选数、优化轮数、执行动作块长度和完整决策延迟，才能分辨模型误差、搜索失败与反馈不足。比较时还应明确终端价值是否存在、候选是否依赖预训练策略、是否热启动，以及允许多少真实交互。具体数字留在论文页维护。
 
-希望把反复搜索的成本转移到训练时，可读 [[ImaginedPolicyLearning|想象中的策略学习]]；评估是否真正改善任务执行，则读 [[WorldModelEvaluation|世界模型评估]]。
+希望把反复搜索的成本转移到训练时，可读 [[ImaginedPolicyLearning|想象中的策略学习]]；评估是否真正改善任务执行，则读 [[WorldModelEvaluation|World Model 评测]]。
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|世界模型如何用于决策]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|World Models 与决策]]。

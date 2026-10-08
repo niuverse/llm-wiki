@@ -11,6 +11,7 @@ extracted_text: graph/extracts/gltf-basic-structure.md
 source_date: unknown
 topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 source_type: tutorial
+nav_title: "glTF · Structure"
 ---
 
 ## 摘要
@@ -40,7 +41,7 @@ JSON 组织关系，几何和图像数据还需要沿引用读取。
 
 ## 关联
 
-机制解释见 [[GLTFSceneStructure|glTF 场景与数据结构]]；格式比较见 [[3d-model-formats-learning-map|三维模型格式学习地图]]；仿真物理分层见 [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]]。
+机制解释见 [[GLTFSceneStructure|glTF 场景与数据结构]]；格式比较见 [[topics/asset-representation|三维模型格式专题]]；仿真物理分层见 [[IsaacSimAssetStructure|Isaac Sim 资产结构 3.0]]。
 
 ## 开放问题
 
@@ -48,4 +49,4 @@ JSON 组织关系，几何和图像数据还需要沿引用读取。
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。

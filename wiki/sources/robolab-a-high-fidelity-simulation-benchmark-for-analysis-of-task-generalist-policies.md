@@ -16,6 +16,7 @@ year: 2026
 venue: "arXiv（预印本）"
 reviewed: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/policy-evaluation"]
+nav_title: "RoboLab"
 ---
 
 # RoboLab：在留出仿真环境中诊断通用机器人策略
@@ -36,7 +37,7 @@ topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topi
 
 **结论范围。** 表 I 报告五种策略的总体成功率都较低，π0.5 为23.3%；六个简单任务上的真机对照因策略而异，π0尤其明显失配。原文内部存在任务数、成功率和分组统计不一致，本页明确保留这些差异，不把论文改写成无歧义排行榜。
 
-本页依据 `raw/robolab.pdf`，arXiv:2604.09860v2，2026-04-14，完整阅读26页含附录，并核看 PDF 表 I 及其同页正文。本页只分析论文；项目实现与后续能力见 [[nvlabs-robolab|NVlabs/RoboLab 仓库来源页]]，共同项目入口为 [[RoboLab|RoboLab]]。项目主页或较晚仓库功能不作为本篇实验依据。
+本页依据 `raw/robolab.pdf`，arXiv:2604.09860v2，2026-04-14，完整阅读26页含附录，并核看 PDF 表 I 及其同页正文。本页只分析论文；项目实现与后续能力见 [[nvlabs-robolab|NVlabs/RoboLab 仓库来源页]]，共同项目入口为 [[sources/nvlabs-robolab|RoboLab]]。项目主页或较晚仓库功能不作为本篇实验依据。
 
 ## 方法：任务、指标与扰动如何连起来
 
@@ -129,8 +130,8 @@ $$
 
 **我们的解释。** 本文最值得复用的是诊断协议：隔离语言、场景和外参变化，同时检查任务成功、错误与轨迹。由于内部表文不一致、固定种子小样本以及真机匹配不完整，其数字更适合作为发现问题的线索，而非高精度预测现实成功率。没有对照训练数据内容的实验，“颜色或几何先验覆盖指令”等归因应保留为作者解释，不当作已经证明的训练机制。
 
-相关机制见 [[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[SimulationSensitivityAnalysis|仿真敏感性分析]]、[[SimulationRealityGap|仿真—现实差距]]、[[VisionLanguageActionModels|视觉—语言—动作模型]]。后续模型讨论可参考 [[pi07-steerable-generalist-robotic-foundation-model|π0.7]]，但其成绩不能与本页协议直接混排。
+相关机制见 [[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[SimulationSensitivityAnalysis|仿真敏感性分析]]、[[SimulationRealityGap|Sim-to-Real Gap]]、[[VisionLanguageActionModels|Vision-Language-Action (VLA)]]。后续模型讨论可参考 [[pi07-steerable-generalist-robotic-foundation-model|π0.7]]，但其成绩不能与本页协议直接混排。
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|策略评测]]。

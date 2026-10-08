@@ -6,7 +6,7 @@ sources: ["[[planet-learning-latent-dynamics]]", "[[td-mpc2-scalable-robust-worl
 modified: 2026-10-08
 entry: "research"
 nav_order: 3
-description: "规划与控制把目标、预测和约束变成可执行动作。学习模型和解析模型都可以参与其中；关键是状态怎样估计、动作怎样优化、反馈何时更新。"
+description: "动作规划、反馈控制与运动学"
 ---
 
 # 规划与控制

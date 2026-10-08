@@ -1,5 +1,5 @@
 ---
-title: "逆动力学模型"
+title: "Inverse Dynamics"
 type: concept
 tags: [robotics, inverse-dynamics, vla, world-models]
 sources: ["[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[dino-wm-pretrained-visual-features]]", "[[v-jepa-2-understanding-prediction-planning]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/robot-policy-learning", "topics/world-models-and-representations", "topics/future-conditioned-action"]
 ---
 
-# 逆动力学模型
+# Inverse Dynamics
 
 这里的逆动力学模型从当前与未来视觉状态推断动作或潜在动作，应与经典机器人学中由位置、速度、加速度求力矩的逆动力学区分。它回答“怎样实现这个变化”，正向动力学则回答“这个动作会造成什么变化”。[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]]、[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]]
 
@@ -48,7 +48,7 @@ flowchart LR
   A --> R["可执行动作"]
 ```
 
-图对应潜在动作路线；直接监督动作的模型不一定需要独立码本或适配器。共享模型也可以把逆动力学作为多种条件任务之一，见 [[LatentDynamicsActionModels|潜在动力学动作模型]]。
+图对应潜在动作路线；直接监督动作的模型不一定需要独立码本或适配器。共享模型也可以把逆动力学作为多种条件任务之一，见 [[sources/lda-1b-scaling-latent-dynamics-action-model|LDA-1B]]。
 
 ## 失效与验证
 
@@ -56,8 +56,8 @@ DeFI 检查的 200 次失败中，作者归因 62% 为未来预测失败、38% �
 
 应分别检查目标可达性、预测未来是否正确、逆映射是否执行到位，以及新机器人动作空间是否得到充分监督。Seer 去除 Franka 数据后的跨形态预训练收益有限且部分任务下降，说明数据规模不能独自保证迁移。[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer 附录 A.6.4]]
 
-[[VisualGoalPlanning|视觉目标规划]] 提供另一种接口：给正向模型候选动作，用目标特征误差搜索动作，而非训练一个目标到动作的逆映射。两者的监督需求与推理预算不同。方法之间的具体比较见 [[topics/future-conditioned-action|未来条件动作学习专题]]，评估原则见 [[WorldModelEvaluation|世界模型评估]]。
+[[VisualGoalPlanning|视觉目标规划]] 提供另一种接口：给正向模型候选动作，用目标特征误差搜索动作，而非训练一个目标到动作的逆映射。两者的监督需求与推理预算不同。方法之间的具体比较见 [[topics/future-conditioned-action|未来条件动作学习专题]]，评估原则见 [[WorldModelEvaluation|World Model 评测]]。
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|世界模型与表征]] · [[topics/future-conditioned-action|未来预测怎样帮助动作学习]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|World Models]] · [[topics/future-conditioned-action|未来预测与动作学习]]。
