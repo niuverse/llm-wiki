@@ -23,6 +23,10 @@ topics: ["topics/assets-and-world-generation", "topics/simulation-ready-worlds"]
 
 **研究问题。** 高层指令、低层控制、任务判定和合成数据往往分散在不同系统中。同一段机器人行为怎样既能执行，又能重放、评估，并留下对齐的动作、观察、技能和语言记录？
 
+![原文图 1](../assets/figures/magicsim-a-unified-infrastructure-for-executable-embodied-interaction/fig-1.webp)
+
+原文图 1；PDF 第 2 页。[查看原始来源](https://arxiv.org/pdf/2606.17511#page=2)
+
 **核心贡献。** MagicSim 在 Isaac Sim/Isaac Lab 上构建管理器式批处理执行层：共享任务接口、局部重置与状态恢复、异步规划服务、AtomicSkill 技能、运行中标注和成功门控记录。它是系统基础设施，不是新物理求解器，也没有提出新的通用策略学习算法。[论文 §1–3](https://arxiv.org/pdf/2606.17511v1#page=1)
 
 **结论范围。** 报告说明15种仿真族、约33种机器人、8个任务族及40多个具体任务的组织方式，展示多物理和长时域交互例子；没有给出本文统一协议下的逐任务成功率、异步吞吐消融或真机迁移成绩。低层强化学习接口与自动采集是当前路径，完整外部高层命令注入、InferenceRunner 和高层规划器闭环强化学习仍属计划/集成方向。[表3、§9.3、§12.3](https://arxiv.org/pdf/2606.17511v1#page=8)
@@ -56,6 +60,10 @@ flowchart TD
 
 场景、布局、地形、机器人、规划器、相机等管理器各自拥有状态，并按固定顺序执行重置：先决定布局，再建立/恢复对象及其他组件。操作指定`env_ids`，允许一个子环境重置、其他环境继续运行。对象以“环境编号、逻辑类别、实例编号”寻址，USD 图元路径只是后端句柄；重新实例化不应改变任务与标注引用的对象身份。[§5.2–5.3、图6](https://arxiv.org/pdf/2606.17511v1#page=16)
 
+![原文图 6](../assets/figures/magicsim-a-unified-infrastructure-for-executable-embodied-interaction/fig-6.webp)
+
+原文图 6；PDF 第 16 页。[查看原始来源](https://arxiv.org/pdf/2606.17511#page=16)
+
 全局种子分出各环境、各管理器的随机流；`get_state`与`reset_to`记录和恢复受支持的管理器初始状态。论文将确定性写成状态所有权、顺序和随机流隔离契约。**我们的解释：** 这比只存一个种子更可审计，但不等于已证明 GPU 求解、光线追踪和跨版本运行逐位一致；同一管理器内任意两个随机参数是否完全独立，也不能仅由“管理器流分离”推出。[§5.4](https://arxiv.org/pdf/2606.17511v1#page=19)
 
 后端运行期间能否增删对象决定三种重置方式：
@@ -78,11 +86,19 @@ flowchart TD
 
 不同机器人组合`base`、`arm`、`eef`三类动作通道。底盘通道可由轮式运动学或学习步态实现；机械臂可用微分 IK、cuRobo IK、Pink IK 等；末端执行器可为二值夹爪或多指关节目标。逆运动学（IK）根据末端目标反求满足机器人几何关系的关节配置；它与决定下一步任务目标是不同层的问题。相同通道名提供统一软件入口，不保证不同机器人的动力学、带宽或可达集相同。[§6.1–6.5、图11](https://arxiv.org/pdf/2606.17511v1#page=21)
 
+![原文图 11](../assets/figures/magicsim-a-unified-infrastructure-for-executable-embodied-interaction/fig-11.webp)
+
+原文图 11；PDF 第 23 页。[查看原始来源](https://arxiv.org/pdf/2606.17511#page=23)
+
 规划要区分层次：低层 cuRobo 动作项检查自碰撞和关节限制；中层服务再读取每环境的场景障碍。导航使用全局导航网格给路线，运行时占据栅格提供局部障碍代价，动态窗口方法滚动候选速度并选择较合适动作。不能把低层 IK 求解成功直接称为全场景无碰撞。
 
 ### 异步微批规划服务
 
 技能提交 IK 或轨迹规划请求，立即得到异步结果句柄（future）；等待期间机器人保持姿态或继续已有轨迹，物理批次不阻塞。工作线程在自己的 GPU 上下文预热，短暂收集同一时刻到达的请求，再批量求解。[§6.7、图13](https://arxiv.org/pdf/2606.17511v1#page=24)
+
+![原文图 13](../assets/figures/magicsim-a-unified-infrastructure-for-executable-embodied-interaction/fig-13.webp)
+
+原文图 13；PDF 第 25 页。[查看原始来源](https://arxiv.org/pdf/2606.17511#page=25)
 
 异构请求还要转换为固定张量形状：按环境去重、用当前正运动学填充未启用工具帧、按候选目标数量分组、分块并填充简单可解项，最终把结果切回各 future。多工具帧配对选择让双臂目标作为一对共同验证，而非分别找到不可同时实现的解。论文表7明确这些能力来自其 cuRobo 分支，不能当作所有上游版本的默认行为。[§6.6–6.8](https://arxiv.org/pdf/2606.17511v1#page=23)
 
@@ -112,6 +128,10 @@ flowchart TD
 ## 多物理与传感器的实际含义
 
 15种仿真族包括刚体、关节、FEM 软体、布料、流体、颗粒、绳索、磁力、火焰/流动效果和动画人物等。必须区分同场运行与物理双向耦合：图5展示五类代表性接触组合，但火焰、流动效果和动画人物通常只是共同显示/执行的上下文，并非任意对象间都有准确反作用力。§14明确薄壳、复合材料、粒子与跨求解器接触仍可能穿透或依赖参数调节。[§4.3–4.5、表6、§14.1](https://arxiv.org/pdf/2606.17511v1#page=12)
+
+![原文图 5](../assets/figures/magicsim-a-unified-infrastructure-for-executable-embodied-interaction/fig-5.webp)
+
+原文图 5；PDF 第 13 页。[查看原始来源](https://arxiv.org/pdf/2606.17511#page=13)
 
 触觉后端先回答采样点是否接触、深度和方向，再生成压力、形变或图像。平面传感器可用 SDF 查询；曲面指尖沿各触觉采样点自己的法线投射射线，避免把物体法线误当传感器压缩方向。正文将实时路径定位为几何接触加转导，没有宣称在主循环里完整求解弹性体 FEM。动画人物由动画图/IK 驱动，与受物理控制的人形机器人不同。[§6.10、§7.3–7.4](https://arxiv.org/pdf/2606.17511v1#page=26)
 

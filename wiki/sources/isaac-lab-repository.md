@@ -25,6 +25,10 @@ code_files:
 
 Isaac Lab 在 [[IsaacSim|Isaac Sim]] 上组织机器人任务、物理与传感器仿真，并接入强化学习训练器。本页沿固定提交的一条状态输入 Cartpole 训练路径解释配置怎样变成采样数据；README 的机器人种类、视觉任务与其他训练器能力没有因此全部得到实现核查。下面是官方源码的静态阅读，没有启动 Isaac Sim、训练策略或测量吞吐。
 
+![官方仓库配图](../assets/figures/isaac-lab-repository/readme-overview.webp)
+
+官方仓库配图。[查看原始来源](https://raw.githubusercontent.com/isaac-sim/IsaacLab/492751759af72a5d3f7e0e42768b95fd9f1ac6df/docs/source/_static/isaaclab.jpg)
+
 ## 从任务名到一次训练
 
 以 `Isaac-Cartpole-v0` 为例，注册文件把 Gym 任务名绑定到 `ManagerBasedRLEnv`、`CartpoleEnvCfg` 与 RSL-RL 配置入口。`train.py` 先启动 `AppLauncher`，然后才导入依赖仿真应用的模块；Hydra 根据任务取得环境与训练器配置，命令行可覆盖环境数量、种子、设备及训练轮数。多进程时按本地进程设置 CUDA 设备和种子。创建 Gym 环境后，脚本套上可选录像包装器和 `RslRlVecEnvWrapper`，构造 `OnPolicyRunner` 或 `DistillationRunner`，保存配置，再调用 `learn()`。（训练入口第 114–220 行）

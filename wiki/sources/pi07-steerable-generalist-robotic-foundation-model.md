@@ -23,7 +23,15 @@ topics: ["topics/robot-policy-learning", "topics/world-models-and-representation
 
 **研究问题。** 不同示范、失败回合和专用策略轨迹混在一起时，同一任务可能对应不同质量与执行方式。怎样让通用策略学习这些差异，并在执行时选择期望的行为？
 
+![原文图 1](../assets/figures/pi07-steerable-generalist-robotic-foundation-model/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://www.pi.website/download/pi07.pdf#page=1)
+
 **方法贡献。** π0.7 把子任务语言、视觉子目标、速度／质量／错误元数据和控制模式加入条件输入，并在训练中随机丢弃部分条件。约 5B 参数的 VLA 执行动作；独立的 BAGEL 14B 模型按需生成子目标，高层策略或人类给出子任务。（§III–VII，图 2）
+
+![原文图 2](../assets/figures/pi07-steerable-generalist-robotic-foundation-model/fig-2.webp)
+
+原文图 2；PDF 第 4 页。[查看原始来源](https://www.pi.website/download/pi07.pdf#page=4)
 
 **证据结论。** 作者报告已见任务上的专用策略级表现、未见环境指令遵循和有限跨形态迁移。必须区分三种情形：训练已见任务但无需再微调；未见任务通过逐步语言指导完成；再用指导记录训练高层策略实现自主执行。后两者不是同一种“零样本自主完成”。（§IX-A–D）
 
@@ -113,6 +121,46 @@ $\operatorname{sg}$ 表示停止梯度，$\mathcal L_{\rm FM}$ 为 [[FlowMatchin
 | 从指导变成自主执行 | 用五类任务的语言指导回合训练高层语言策略，自主版本接近指导版本 | 图 16；新增的是高层训练记录，不是完全无新数据学习 |
 | 混合质量扩展 | 折衣示范按质量／速度取前 30%、50%、80%、100%，有／无元数据共训练八个模型；有元数据随规模增加改善，无元数据可退化 | §IX-E、图 18 左；覆盖特定折衣分布，没有推出通用最优标签方案 |
 | 多样性作用 | 去掉最多样的 20% 数据，表现弱于去随机 20% 的等量对照 | 图 18 右；较接近多样性的受控比较，但作者承认大数据切片难以完全隔离因素 |
+
+![原文图 6、7](../assets/figures/pi07-steerable-generalist-robotic-foundation-model/fig-6-7.webp)
+
+原文图 6、7；PDF 第 9 页。[查看原始来源](https://www.pi.website/download/pi07.pdf#page=9)
+
+![原文图 8](../assets/figures/pi07-steerable-generalist-robotic-foundation-model/fig-8.webp)
+
+原文图 8；PDF 第 10 页。[查看原始来源](https://www.pi.website/download/pi07.pdf#page=10)
+
+![原文图 9](../assets/figures/pi07-steerable-generalist-robotic-foundation-model/fig-9.webp)
+
+原文图 9；PDF 第 11 页。[查看原始来源](https://www.pi.website/download/pi07.pdf#page=11)
+
+![原文图 10、11](../assets/figures/pi07-steerable-generalist-robotic-foundation-model/fig-10-11.webp)
+
+原文图 10、11；PDF 第 11 页。[查看原始来源](https://www.pi.website/download/pi07.pdf#page=11)
+
+![原文图 12](../assets/figures/pi07-steerable-generalist-robotic-foundation-model/fig-12.webp)
+
+原文图 12；PDF 第 12 页。[查看原始来源](https://www.pi.website/download/pi07.pdf#page=12)
+
+![原文图 14](../assets/figures/pi07-steerable-generalist-robotic-foundation-model/fig-14.webp)
+
+原文图 14；PDF 第 13 页。[查看原始来源](https://www.pi.website/download/pi07.pdf#page=13)
+
+![原文图 15、16](../assets/figures/pi07-steerable-generalist-robotic-foundation-model/fig-15-16.webp)
+
+原文图 15、16；PDF 第 13 页。[查看原始来源](https://www.pi.website/download/pi07.pdf#page=13)
+
+![原文图 17](../assets/figures/pi07-steerable-generalist-robotic-foundation-model/fig-17.webp)
+
+原文图 17；PDF 第 13 页。[查看原始来源](https://www.pi.website/download/pi07.pdf#page=13)
+
+![原文图 18](../assets/figures/pi07-steerable-generalist-robotic-foundation-model/fig-18.webp)
+
+原文图 18；PDF 第 14 页。[查看原始来源](https://www.pi.website/download/pi07.pdf#page=14)
+
+![原文图 22](../assets/figures/pi07-steerable-generalist-robotic-foundation-model/fig-22.webp)
+
+原文图 22；PDF 第 23 页。[查看原始来源](https://www.pi.website/download/pi07.pdf#page=23)
 
 附录 G 逐项定义成功与进度：例如折衬衫满分 6 才成功，换垃圾袋则按 12 分子阶段计分。人类折衣研究招募十位熟练遥操作员，每人三次且无预热；原文报告的 80.6% 成功率并非 30 次二值试验可直接整除的比例，正文未给可重算明细，因此本页只保留“作者报告值”，不据此声称统计等效。
 

@@ -23,6 +23,10 @@ topics: ["topics/world-models-and-representations", "topics/planning-and-control
 
 **研究问题。** 能否在不同奖励尺度、机器人动作维度和任务难度下，稳定学习可规划的潜在世界模型，并扩大到多任务和更大模型？
 
+![原文图 1](../assets/figures/td-mpc2-scalable-robust-world-models/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://arxiv.org/pdf/2310.16828v2#page=1)
+
 **方法贡献。** Nicklas Hansen、Hao Su、Xiaolong Wang 的 TD-MPC2 在 TD-MPC 上改进归一化、奖励／价值回归、策略先验与多任务接口。模型不重建观测，而是联合学习潜在转移、奖励和长期价值；执行时用短时域模型预测控制，末端价值补足时域之外的回报。
 
 **证据范围。** [ICLR 2024 论文 v2](https://arxiv.org/abs/2310.16828v2)验证了 104 个连续控制仿真任务；另在 80 个任务的离线混合质量数据上训练最大 317M 参数模型。它支持跨任务配置复用与规模扩大，尚不是跨现实机器人、未知控制接口或离散动作的通用控制证明。
@@ -30,6 +34,10 @@ topics: ["topics/world-models-and-representations", "topics/planning-and-control
 ## 方法：模型只需保留决策需要的信息吗
 
 令 $s_t$ 为当前状态观测，$a_t$ 为连续动作，$z_t$ 为潜在表示，$e$ 为可学习的任务嵌入。五个组件为（§3.1，式 2、图 3）：
+
+![原文图 3](../assets/figures/td-mpc2-scalable-robust-world-models/fig-3.webp)
+
+原文图 3；PDF 第 3 页。[查看原始来源](https://arxiv.org/pdf/2310.16828v2#page=3)
 
 $$
 z_t=h_\theta(s_t,e),\quad z_{t+1}=d_\theta(z_t,a_t,e),\quad
@@ -77,9 +85,17 @@ $$
 
 每组非负且和为 1，约束表示尺度，保留连续梯度；它不是对离散类别采样。默认 $V=8$、$\tau=1$。**数学核对：** 按正文式 5，$\tau\to\infty$ 趋向均匀分布，$\tau\to0^+$ 在唯一最大值条件下趋向独热分布；附录 H 把这两端的文字描述写反，不能照抄。图 9、21 支持归一化对稳定性的作用，不构成所有任务都不会梯度失稳的证明。
 
+![原文图 21](../assets/figures/td-mpc2-scalable-robust-world-models/fig-21.webp)
+
+原文图 21；PDF 第 26 页。[查看原始来源](https://arxiv.org/pdf/2310.16828v2#page=26)
+
 **从约束到尺度的教学推导。**若共有 $L$ 组、每组 $V$ 个分量，由非负且和为1可得 $1/V\le\|z^{(\ell)}\|_2^2\le1$，故整个向量满足 $\sqrt{L/V}\le\|z\|_2\le\sqrt L$。相比无约束输出，这固定了表示的数值尺度；但不同组数的模型仍有不同范数范围。
 
 其导数为 $\partial z_i/\partial u_j=z_i(\delta_{ij}-z_j)/\tau$，其中 $\delta_{ij}$ 为 Kronecker 指示符：连续可导，但概率接近0或1时也会饱和。这解释了论文把它视为离散代码的连续松弛，而不是实际抽样的类别状态。局部输出有界并不证明整个多步动力学全局稳定；归一化效果仍由图9等消融检验。
+
+![原文图 9、10](../assets/figures/td-mpc2-scalable-robust-world-models/fig-9-10.webp)
+
+原文图 9、10；PDF 第 8 页。[查看原始来源](https://arxiv.org/pdf/2310.16828v2#page=8)
 
 ### 短期模型、长期价值与在线动作搜索
 
@@ -112,6 +128,22 @@ $$
 | 规划与策略先验 | 图 9 | 80 任务消融中，单策略 42.2、仅规划 53.7、规划加先验 54.2；这些是该组消融数字，不能替换主实验 19M 的 57.1 |
 | 归一化与离散回归 | 图 9、附录 F–G | SimNorm、LayerNorm、离散回归和价值集成改善稳定性；Mish 对最终性能并非独有必要条件 |
 | 离线规划不确定性惩罚 | 附录 J、表 10 | 19M、80 任务额外实验从 56.54 到 62.01，惩罚系数 0.01；系数 0.1 降至 44.13。此正则未用于其余主实验 |
+
+![原文图 4](../assets/figures/td-mpc2-scalable-robust-world-models/fig-4.webp)
+
+原文图 4；PDF 第 5 页。[查看原始来源](https://arxiv.org/pdf/2310.16828v2#page=5)
+
+![原文图 5、6](../assets/figures/td-mpc2-scalable-robust-world-models/fig-5-6.webp)
+
+原文图 5、6；PDF 第 6 页。[查看原始来源](https://arxiv.org/pdf/2310.16828v2#page=6)
+
+![原文图 7](../assets/figures/td-mpc2-scalable-robust-world-models/fig-7.webp)
+
+原文图 7；PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2310.16828v2#page=7)
+
+![原文图 8](../assets/figures/td-mpc2-scalable-robust-world-models/fig-8.webp)
+
+原文图 8；PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2310.16828v2#page=7)
 
 单任务默认模型约 5M 参数，论文中的 DreamerV3 基线约 20M，训练重用设置也不同。成功率按**回合最后一步成功**计数，不是中途曾成功即可（附录 C、H）。对照 [[dreamerv3-mastering-diverse-control|2025 Nature 版 DreamerV3]] 时必须保留版本、任务集合、模型规模和数据预算；两篇论文中的聚合排名不能直接拼成统一排行榜。
 

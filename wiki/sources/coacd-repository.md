@@ -21,6 +21,10 @@ reviewed: 2026-10-04
 
 这个项目实现 [[coacd-approximate-convex-decomposition|CoACD 论文]] 的平面切割与树搜索，并提供 Python、C++ 和引擎集成入口。核心输出是**一组独立凸组件的顶点与三角形**；资产怎样导出、实例化成多个碰撞形状，以及怎样验收接触行为，仍由调用侧决定。
 
+![官方仓库配图](../assets/figures/coacd-repository/readme-overview.webp)
+
+官方仓库配图。[查看原始来源](https://raw.githubusercontent.com/SarahWeiii/CoACD/131010c4f03fec375ea88c5c6263f120046cb7f1/assets/teaser.png)
+
 本页静态复核官方提交 `131010c4f03fec375ea88c5c6263f120046cb7f1`（提交日期 2026-09-23），读取 README、接口和下列算法路径。旧 README 原始证据与缓存保留；新增代码快照列于页末。未编译、运行或测量该版本，论文中的实验不能自动当作当前实现的复现实绩。
 
 ## 调用契约：进入和离开算法的是什么

@@ -28,6 +28,10 @@ ovrtx 是供外部应用调用 Omniverse RTX 的 C／Python SDK。应用提供 O
 | `RenderProduct` | 通过 `camera` 关系选传感器，以 `orderedVars` 选输出，还配置分辨率／模式等 | `camera` 关系也能指向雷达类传感器 |
 | `RenderVar` | `sourceName` 标识输出语义；点云还列请求通道 | 图像是单张量，点云是多个具名张量与参数 |
 
+![官方文档：渲染结构](../assets/figures/nvidia-ovrtx/render-structure.svg)
+
+官方文档：渲染结构。[查看原始来源](https://github.com/NVIDIA-Omniverse/ovrtx/tree/main)
+
 例如激光雷达示例的 `/World/Render/Products/LidarProduct` 连接传感器和 `PointCloud` 输出，通道选择坐标、强度、计数和时间偏移。相同场景可以创建多个产品，以不同模式或分辨率读取。[application_flow.rst](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/docs/core/application_flow.rst)、[lidar_example.usda L54–85](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/examples/python/sensors/lidar/lidar_example.usda#L54-L85)
 
 共享的 [[OpenUSDSceneComposition|场景组合]] 解释引用与子层；本页的具体输出机制集中于 [[RTXSensorSimulationPipeline|RTX 传感器流程]]。
@@ -35,6 +39,10 @@ ovrtx 是供外部应用调用 Omniverse RTX 的 C／Python SDK。应用提供 O
 ## 从加载到一张图像
 
 官方最小 Python 示例创建 `Renderer`，`open_usd` 加载场景，再对 `/Render/Camera` 调用 `step(delta_time=1/60)`。返回值按产品路径组织；每个产品包含帧，帧包含渲染变量。示例把 `LdrColor` 映射到 CPU，再由 `np.from_dlpack` 创建 NumPy 视图用于显示或保存。这里的1/60是渲染请求时间增量，不能从这个独立示例推断任何机器人的物理积分周期。[minimal/main.py L26–64](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/examples/python/minimal/main.py#L26-L64)
+
+![官方示例：最小场景渲染](../assets/figures/nvidia-ovrtx/example-minimal.webp)
+
+官方示例：最小场景渲染。[查看原始来源](https://github.com/NVIDIA-Omniverse/ovrtx/tree/main)
 
 静态代码把同步形式展开为：`step_async(...).wait().fetch()`。第一阶段将产品集合与时间增量传入 C 绑定，第二阶段等待操作，第三阶段取得输出句柄并构造 Python 产品／帧／变量对象。API 入队成功和输出可读取是不同状态；映射时还检查变量本身是否完成。[renderer.py L799–864](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/python/ovrtx/_src/renderer.py#L799-L864)、[L1640–1720](https://github.com/NVIDIA-Omniverse/ovrtx/blob/29d11037fbcaed0f0f53e7f32d17bd0486fd453b/python/ovrtx/_src/renderer.py#L1640-L1720)
 

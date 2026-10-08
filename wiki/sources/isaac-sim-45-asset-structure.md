@@ -21,6 +21,8 @@ source_type: documentation
 
 核心结构是：来源阶段保留 `asset_base.usd`、`parts.usd` 和 `materials.usd`；transformation 阶段生成可用于仿真的 `asset_sim_optimized.usd`；物理、传感器、控制 graphs 和 ROS 集成作为 separate 轻量的特征层添加；最终 `asset.usd` 用子层、载荷、参考资料和变体组合仿真资产。
 
+> 配图状态（2026-10-08）：归档网页引用的官方资产结构图目前返回 404，尚未取得对应原图。此处保留旧版文字证据；6.0 的图说明另一套结构，不能替代本页的 4.5 配图。
+
 ## 核心主张
 
 - 导入的资产被拆成多个组件，以便 manage、reuse 和 simulate；来源示例指向 Isaac Sim 资产中的 `Robots/NVIDIA/Carter/nova_carter/`。

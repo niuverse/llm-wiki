@@ -19,6 +19,10 @@ source_type: tutorial
 
 NVIDIA Learn OpenUSD 的场景入门教程。`Stage` 呈现由根文件及引用、层等内容组合得到的场景图，而非单个文件。教程用 Python 演示创建、打开、保存和临时场景，以及根层添加子层。
 
+![舞台中的场景图与 USD 图元](../assets/figures/learn-openusd-stage/web-01.webp)
+
+舞台中的场景图与 USD 图元。[查看原始来源](https://docs.nvidia.com/learn-openusd/latest/_images/11.png)
+
 ## 核心主张
 
 - 场景图由图元（`Prim`）组成层级，表示几何、材质、灯光和组织元素。

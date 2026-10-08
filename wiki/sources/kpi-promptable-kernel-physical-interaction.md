@@ -24,6 +24,10 @@ topics: ["topics/planning-and-control", "topics/robot-policy-learning", "topics/
 
 **问题：** 相同末端轨迹，在不同刚度、阻尼和接触阻力下会产生不同作用力。只让高层规划轨迹、事先固定手臂控制增益，很难可靠转动阻力变化的绞盘、拉开几何不明的门或双手夹持箱子。（§I）
 
+![原文图 1](../assets/figures/kpi-promptable-kernel-physical-interaction/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://arxiv.org/pdf/2609.36151v1#page=1)
+
 **方法：** 高层同时输出运动参考与交互约定（interaction contract）：每个方向选择跟踪、顺应或力范围约束，并声明允许改变增益、参考推进和前馈中的哪些通道。KPI 在100 Hz 回路里依据位姿误差与估计力／力矩修改手臂控制器，腿和腰仍由未改动的 SONIC 跟踪器控制。（§III）
 
 **结果与范围：** G1＋Dex3 平台上，绞盘、开门通过、轻箱搬运各五次指令驱动试验，KPI 完成15/15，原生 SONIC 手臂控制为0/15，集成的 MCC* 为1/15。书写、负载和遥操作另有诊断或定性演示，不能都并入这15次成功率。（§IV、图4–8）
@@ -117,6 +121,10 @@ flowchart TD
 
 Detector 将图像定位配合深度变成三维几何；Analyzer 组合直线、圆弧等共享运动生成器，Verifier 核查并在执行后判断阶段结果。Analyzer 和 Verifier 是同一 VLM 的角色化调用，实验使用 GPT-6 Astra。高层只在阶段间修订，不能误读成 VLM 在100 Hz 生成控制。遥操作改用 SMPL／GMR 产生参考，由人给出交互约定。（§III-C、图2）
 
+![原文图 2](../assets/figures/kpi-promptable-kernel-physical-interaction/fig-2.webp)
+
+原文图 2；PDF 第 3 页。[查看原始来源](https://arxiv.org/pdf/2609.36151v1#page=3)
+
 ## 实验与对照
 
 | 设置与定位 | 结果 | 不能据此推断什么 |
@@ -127,6 +135,26 @@ Detector 将图像定位配合深度变成三维几何；Analyzer 组合直线�
 | 负载诊断，§IV-C、图7 | 按远、中、近位置评估；KPI 中／近位置可抬3 kg，远位置1.85 kg | 摩擦、箱面胶带和负载位置影响结果，不是额定通用负载 |
 | 白板书写，§IV-D、图8 | KPI 和固定参数版均形成可辨认字形；KPI 的平均估计力更接近目标 | 力改善没有显著字形收益；不应声称所有输出指标都提升 |
 | 开抽屉及跑步、跪下、起身搬箱，§IV-E | 遥操作演示 | 不是上述智能体自主15次测试的一部分 |
+
+![原文图 4](../assets/figures/kpi-promptable-kernel-physical-interaction/fig-4.webp)
+
+原文图 4；PDF 第 5 页。[查看原始来源](https://arxiv.org/pdf/2609.36151v1#page=5)
+
+![原文图 5](../assets/figures/kpi-promptable-kernel-physical-interaction/fig-5.webp)
+
+原文图 5；PDF 第 6 页。[查看原始来源](https://arxiv.org/pdf/2609.36151v1#page=6)
+
+![原文图 6](../assets/figures/kpi-promptable-kernel-physical-interaction/fig-6.webp)
+
+原文图 6；PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2609.36151v1#page=7)
+
+![原文图 7](../assets/figures/kpi-promptable-kernel-physical-interaction/fig-7.webp)
+
+原文图 7；PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2609.36151v1#page=7)
+
+![原文图 8](../assets/figures/kpi-promptable-kernel-physical-interaction/fig-8.webp)
+
+原文图 8；PDF 第 8 页。[查看原始来源](https://arxiv.org/pdf/2609.36151v1#page=8)
 
 共同底层为 SONIC；MCC* 是集成到该跟踪器的无力传感器导纳控制对照。对需施力接触，默认沿期望力方向把名义位置偏移10厘米。MCC* 让智能体给刚度，而 KPI 让它给约定，因而系统比较也包含高层接口差异。KPI-fixed 移除在线参数适应，用于绞盘、负载、书写的诊断，原文没有给它完整三任务15次成功率。（§IV）
 

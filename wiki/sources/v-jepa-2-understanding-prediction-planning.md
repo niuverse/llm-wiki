@@ -23,6 +23,10 @@ topics: ["topics/world-models-and-representations", "topics/planning-and-control
 
 **研究问题。** 大规模无动作视频预训练学到的表征，能否在补充少量机器人交互数据后，用于新环境中的动作后果预测和闭环规划？
 
+![原文图 1](../assets/figures/v-jepa-2-understanding-prediction-planning/fig-1.webp)
+
+原文图 1；PDF 第 2 页。[查看原始来源](https://arxiv.org/pdf/2506.09985v1#page=2)
+
 **方法贡献。** Mahmoud Assran 等先训练无动作的 V-JEPA 2，在表示空间补全被遮挡视频；再冻结编码器，用 Droid 的图像、末端状态和动作训练 V-JEPA 2-AC。后者预测动作后的视觉特征，通过与目标图像特征比较来搜索动作。视频理解、动作类别预判与机器人规划分别评测，不能合并成同一能力分数。
 
 **证据范围。** [arXiv v1](https://arxiv.org/abs/2506.09985v1)在超过百万小时视频预训练后，使用少于 62 小时机器人数据后训练，在两个未进入 Droid 的实验室进行 Franka + RobotiQ 操作。抓放需要人工提供两个中间目标，实际规划时域为一步、每动作约 16 秒。证据支持有限真机零样本部署，尚不支持无机器人数据、高速控制或自主长任务分解。
@@ -32,6 +36,10 @@ topics: ["topics/world-models-and-representations", "topics/planning-and-control
 ### 视频预训练：预测遮挡表示
 
 令 $y$ 为视频片段，$x$ 为移除部分图像块后的可见片段，$E_\theta$ 为视频编码器，$P_\phi$ 为预测器，$\Delta_y$ 为标识被遮挡位置的可学习标记。目标为（§2.1、式 1、图 2）：
+
+![原文图 2](../assets/figures/v-jepa-2-understanding-prediction-planning/fig-2.webp)
+
+原文图 2；PDF 第 4 页。[查看原始来源](https://arxiv.org/pdf/2506.09985v1#page=4)
 
 $$
 \mathcal L_{\rm pre}=\left\|P_\phi(\Delta_y,E_\theta(x))-\operatorname{sg}(E_{\bar\theta}(y))\right\|_1.
@@ -53,6 +61,10 @@ z_k=E(x_k)\in\mathbb R^{16\times16\times1408},\qquad
 $$
 
 约 300M 参数的动作预测器 $F_\varphi$ 交错接收动作、末端状态和图像块特征；帧级因果注意力允许看当前和过去的信息，禁止未来泄漏。训练由两项组成（§3.1、式 2–4、图 6）：
+
+![原文图 6](../assets/figures/v-jepa-2-understanding-prediction-planning/fig-6.webp)
+
+原文图 6；PDF 第 10 页。[查看原始来源](https://arxiv.org/pdf/2506.09985v1#page=10)
 
 $$
 \mathcal L_{\rm teacher}=\frac1{15}\sum_{k=1}^{15}\|\hat z_{k+1}-z_{k+1}\|_1,\qquad
@@ -77,6 +89,10 @@ $$
 
 给定当前图像 $x_0$、末端状态 $s_0$ 和目标图像 $x_g$，编码为 $z_0,z_g$。把预测器沿候选动作序列滚动 $T$ 步，最小化（§3.2、式 5、图 7）
 
+![原文图 7](../assets/figures/v-jepa-2-understanding-prediction-planning/fig-7.webp)
+
+原文图 7；PDF 第 11 页。[查看原始来源](https://arxiv.org/pdf/2506.09985v1#page=11)
+
 $$
 a^*_{1:T}\approx\arg\min_{a_{1:T}}
 \|F_\varphi^{(T)}(a_{1:T};s_0,z_0)-z_g\|_1.
@@ -97,12 +113,28 @@ $$
 
 抓放比单独抓取更高不意味着数据错误：两者是不同任务试验，抓放还得到三张目标图像，并按 **4 步抓取目标 → 10 步持物到达目标 → 4 步最终放置目标**切换（图 10、附录 B.2）。系统没有自动发现这些子目标，也不是检测到成功才触发切换。
 
+![原文图 10](../assets/figures/v-jepa-2-understanding-prediction-planning/fig-10.webp)
+
+原文图 10；PDF 第 14 页。[查看原始来源](https://arxiv.org/pdf/2506.09985v1#page=14)
+
 | 要检验的问题 | 原文定位 | 结果与适用条件 |
 |---|---|---|
 | 有限真机规划是否可行 | 图 8、表 2 | 三个单目标到达示例可进入目标 4 cm 内；两实验室杯／盒操作成功率如上，不是广泛对象统计 |
 | 潜在规划与视频生成规划成本 | 表 3、附录 B.2 | 同一 RTX 4090、时域 1、10 轮；V-JEPA 2-AC 用 800 候选、约 16 秒／动作；Cosmos 用 80 候选、约 4 分钟／动作。候选预算不同，不是等样本或等时长消融 |
 | 相机变化的影响 | §4.3、附录 B.4、图 16 | 各视角采 201 步随机动作，反推动作坐标旋转误差；误差随相机角度显著变化，说明隐式坐标识别不稳 |
 | 动作语义是否影响预测 | 附录 B.3、图 15 | 开／闭夹爪的定性预测对照显示杯子后果不同；同时可见累计位置漂移，不是完整物理正确性验证 |
+
+![原文图 8](../assets/figures/v-jepa-2-understanding-prediction-planning/fig-8.webp)
+
+原文图 8；PDF 第 12 页。[查看原始来源](https://arxiv.org/pdf/2506.09985v1#page=12)
+
+![原文图 15](../assets/figures/v-jepa-2-understanding-prediction-planning/fig-15.webp)
+
+原文图 15；PDF 第 39 页。[查看原始来源](https://arxiv.org/pdf/2506.09985v1#page=39)
+
+![原文图 16](../assets/figures/v-jepa-2-understanding-prediction-planning/fig-16.webp)
+
+原文图 16；PDF 第 40 页。[查看原始来源](https://arxiv.org/pdf/2506.09985v1#page=40)
 
 ### 视频表征和预判证据
 
@@ -113,6 +145,10 @@ $$
 | 人类动作预判 | §6、表 5 | EK100 提前 1 秒预测、按类平均 recall@5 为 39.7；是离散动作类别预判，不是机器人连续动作输出 |
 | 预判靠编码器还是预测器 | 附录 D.2、表 20 | 仅编码器 39.1，仅预测器 20.2，两者 39.7；该基准上的大部分收益可由语义表示解释，不能全部归给未来预测 |
 | 视频问答 | §7、表 6–8、附录 E | 需与语言模型对齐；大数据设置使用 88.5M 图文／视频文本对，PerceptionTest 测试准确率 84.0。其模型不是机器人操作用的 2-AC |
+
+![原文图 3](../assets/figures/v-jepa-2-understanding-prediction-planning/fig-3.webp)
+
+原文图 3；PDF 第 5 页。[查看原始来源](https://arxiv.org/pdf/2506.09985v1#page=5)
 
 不同视觉编码器的预训练数据不一致，高分辨率 V-JEPA 2 评估设置也有区别；论文 §5 明确将比较限定为系统层面。视频问答中 PerceptionTest 还做任务监督微调，不能把所有结果概括为零样本。完整评测范围见 [[WorldModelEvaluation|世界模型评估]]。
 

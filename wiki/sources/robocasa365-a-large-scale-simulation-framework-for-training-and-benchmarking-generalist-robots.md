@@ -25,6 +25,10 @@ topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topi
 
 **研究问题。** 怎样在可重复环境中分开研究任务多样性、场景多样性、数据质量、目标域适应和持续学习？RoboCasa365同时提供任务、环境、示范和训练协议，适合研究“训练数据如何影响能力”。
 
+![原文图 1](../assets/figures/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://robocasa.ai/assets/robocasa365_iclr26.pdf#page=1)
+
 **核心贡献。** 365个任务由65个原子任务与300个复合任务组成；2500个预训练厨房来自50布局×50风格，另有10个固定目标厨房；人类与 MimicGen 示范支持多任务训练、预训练后适应、持续学习及数据构成消融。[论文 §3](https://robocasa.ai/assets/robocasa365_iclr26.pdf#page=3)
 
 **主要结论。** 本文 GR00T N1.5协议中，预训练提高目标任务的数据效率，但把全部合成示范加进去不一定更好；多任务直接训练的未见复合任务成功率仍低，顺序学习出现明显遗忘。结果不能推出通用最优数据配比，也不能把目标数据微调后的成功当作零样本组合泛化。
@@ -37,9 +41,17 @@ topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topi
 
 厨房场景由布局和风格组成：布局决定平面结构，风格决定家具、电器及纹理实例。50个预训练布局参照美国50处真实住宅制作数字近似场景，与50种风格组合成2500场景。10个目标厨房来自原 RoboCasa 布局与风格的一一配对；预训练与目标风格在电器、家具和环境纹理选择上不重叠。**2500不是目标测试场景数，也不是2500个独立实测真实厨房。**[§3.2、图2](https://robocasa.ai/assets/robocasa365_iclr26.pdf#page=4)
 
+![原文图 2](../assets/figures/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots/fig-2.webp)
+
+原文图 2；PDF 第 4 页。[查看原始来源](https://robocasa.ai/assets/robocasa365_iclr26.pdf#page=4)
+
 ### 任务划分
 
 65个原子任务基于抓放、开关门、抽屉、杠杆、旋钮、按钮、插入、导航等技能；300个复合任务覆盖60类活动，由语言模型提出蓝图后编写任务代码。365任务中220个需要移动操作，145个不需要。[§3.3、图3、附录 E](https://robocasa.ai/assets/robocasa365_iclr26.pdf#page=5)
+
+![原文图 3](../assets/figures/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots/fig-3.webp)
+
+原文图 3；PDF 第 5 页。[查看原始来源](https://robocasa.ai/assets/robocasa365_iclr26.pdf#page=5)
 
 预训练人类示范覆盖全部65原子任务及235复合任务，共300任务。目标集选50任务：18原子、16预训练已见复合、16预训练未见复合。**“未见”是相对于预训练集：进入目标微调阶段后，这16任务也有目标示范。** 只有§4.1直接评估它们时，才是在该训练划分中的零样本新任务评估。
 
@@ -90,6 +102,10 @@ $$
 | 两阶段与一次联合训练 | 全数据联合训练22.5%，两阶段51.1% | 附录 H.3对表2；联合12万步，对照预训练8万+微调6万步，不能把全部差距只归因于顺序 |
 | 输入扰动 | 已见/未见复合基准40.6/42.1%；新语言38.3/39.2%；相机扰动28.8/31.5% | 附录 H.2表9；关节与底盘初态扰动也降分，说明视觉与初态泛化未解决 |
 | LoRA 适配 | 表10中 LoRA 总体1.2%，对照20.0% | 附录 H.4；特定配置结果，不证明所有低秩微调都失败；所谓“full”也须结合编码器冻结设置理解 |
+
+![原文图 5](../assets/figures/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots/fig-5.webp)
+
+原文图 5；PDF 第 8 页。[查看原始来源](https://robocasa.ai/assets/robocasa365_iclr26.pdf#page=8)
 
 ### 真机结果与需要保留的统计疑点
 

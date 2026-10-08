@@ -36,6 +36,9 @@ jobs:
           python3 -m unittest discover -s tools -p 'test_*.py'
           python3 -m unittest discover -s tests -p 'test_*.py'
 
+      - name: Verify local figure evidence
+        run: python3 tools/build_figures.py
+
       - name: Wiki structural health
         run: python3 tools/health.py --json
 
@@ -87,6 +90,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Verify local figure evidence
+        run: python3 tools/build_figures.py
 
       - name: Wiki structural health
         run: python3 tools/health.py --json

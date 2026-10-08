@@ -34,6 +34,10 @@ supplementary_files:
 
 UniLab 把机器人任务、CPU 物理后端和强化学习调度组合起来。本页沿一条 **SAC 离策略训练**路径解释从命令到环境转移、重放采样和参数回传的全过程。依据既有 README 与固定提交 `2a9e8ae635811a7385bb8ac111acb25f8c819a6c` 的官方源码；不是当前主分支的无版本说明，也不是已经复现实验。
 
+![官方仓库配图](../assets/figures/unilab-repository/readme-overview.webp)
+
+官方仓库配图。[查看原始来源](https://raw.githubusercontent.com/unilabsim/UniLab/2a9e8ae635811a7385bb8ac111acb25f8c819a6c/docs/sphinx/source/_static/assets/teaser.jpg)
+
 [[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab 论文]]提供性能与跨后端实验，本页验证代码如何实现其中一条数据路径。PPO、APPO、MLX PPO、TD3、FlashSAC 的入口可从 CLI 看到，但本次没有逐一审计它们的学习器。
 
 ## 从训练命令到一次更新

@@ -17,6 +17,30 @@ source_type: book
 
 Kevin M. Lynch 和 Frank C. Park 的 *Modern 机器人学* 章节 13 是轮式移动式机器人的运动学入口。该章把移动底盘配置写成 $q=(\phi,x,y)$，并用机体帧平面旋量（底盘坐标系下的平面旋量）$V_b=(\omega_{bz},v_{bx},v_{by})$ 连接车轮速度、底盘速度、里程计、运动规划和 feedback 控制。
 
+![原文图 13.1](../assets/figures/modern-robotics-chapter-13-wheeled-mobile-robots/fig-13.1.webp)
+
+原文图 13.1；PDF 第 536 页。[查看原始来源](https://hades.mech.northwestern.edu/images/2/2e/MR-largefont-v2.pdf#page=536)
+
+![原文图 13.2](../assets/figures/modern-robotics-chapter-13-wheeled-mobile-robots/fig-13.2.webp)
+
+原文图 13.2；PDF 第 538 页。[查看原始来源](https://hades.mech.northwestern.edu/images/2/2e/MR-largefont-v2.pdf#page=538)
+
+![原文图 13.3](../assets/figures/modern-robotics-chapter-13-wheeled-mobile-robots/fig-13.3.webp)
+
+原文图 13.3；PDF 第 539 页。[查看原始来源](https://hades.mech.northwestern.edu/images/2/2e/MR-largefont-v2.pdf#page=539)
+
+![原文图 13.4](../assets/figures/modern-robotics-chapter-13-wheeled-mobile-robots/fig-13.4.webp)
+
+原文图 13.4；PDF 第 540 页。[查看原始来源](https://hades.mech.northwestern.edu/images/2/2e/MR-largefont-v2.pdf#page=540)
+
+![原文图 13.5](../assets/figures/modern-robotics-chapter-13-wheeled-mobile-robots/fig-13.5.webp)
+
+原文图 13.5；PDF 第 541 页。[查看原始来源](https://hades.mech.northwestern.edu/images/2/2e/MR-largefont-v2.pdf#page=541)
+
+![原文图 13.6](../assets/figures/modern-robotics-chapter-13-wheeled-mobile-robots/fig-13.6.webp)
+
+原文图 13.6；PDF 第 543 页。[查看原始来源](https://hades.mech.northwestern.edu/images/2/2e/MR-largefont-v2.pdf#page=543)
+
 该章的中心边界很清楚：先忽略动力学，假设机器人在硬、flat、horizontal 地面上滚动不含 skidding。它把轮式移动式机器人分成全向和非完整约束两大类：[[OmnidirectionalWheels|全向车轮]] 通过全向轮或 mecanum 车轮释放底盘的横向约束；[[NonholonomicMobileRobots|非完整约束移动式机器人]] 则满足一个不可积分的 Pfaffian 速度约束。更细的结构分类应与 [[WheeledMobileRobotClassification|Campion et al. 的机动性/steerability taxonomy]] 一起读。
 
 来源网址: https://hades.mech.northwestern.edu/images/2/2e/MR-largefont-v2.pdf

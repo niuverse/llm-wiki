@@ -29,6 +29,10 @@ $$
 
 重叠不保证成立：采集和学习若竞争同一加速器，分别测量得到的耗时可能在并发时增加；缓冲缺数据、参数同步或任务依赖也会扩大 $T_w$。因此应从真实训练轨迹计算关键路径，不能只把各阶段独立计时取最大值。[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab 图 6、附录 A]]
 
+![原文图 6、7](../assets/figures/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms/fig-6-7.webp)
+
+原文图 6、7；PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2605.30313#page=7)
+
 ### 一个能算清收益的时间例子
 
 **教学构造，不是测量值。** 设 $T_c=8$ ms、$T_p=2$ ms、$T_d=1$ ms、$T_l=12$ ms、$T_s=1$ ms，且 $T_w=0$。串行一轮为 24 ms；理想稳定重叠后为 $\max(11,12)+1=13$ ms。即使把传输从 1 ms 降到 0，学习仍是最长路径，轮时仍为 13 ms。反过来，若采集增长到 20 ms，轮时变为 24 ms，优化学习核也暂时无用。

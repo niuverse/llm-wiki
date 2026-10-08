@@ -20,6 +20,10 @@ source_type: documentation
 
 截至 2026-10-02 读取的 6.1.0 官方指南，将策略导出物、张量接口、物理配置和运行生命周期明确分开。页面最后更新于 2026-09-18。它补充 [[PolicyDeploymentContract|策略部署契约]]；不能直接替代本库早期版本的 Isaac Sim 配置与调参说明。
 
+![Unitree H1 策略控制演示（动图）](../assets/figures/isaac-sim-policy-deployment/web-02.webp)
+
+Unitree H1 策略控制演示（动图）。[查看原始来源](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/_images/tutorial_lab_h1_walk_demo.gif)
+
 ## 核心主张
 
 - `policy.pt`／`policy.onnx` 是推理模型；训练检查点不能直接当部署模型。
@@ -27,6 +31,10 @@ source_type: documentation
 - `env.yaml` 保存时步、策略降频、资产、初态、增益、限制及执行器；三个部署文件应来自同一训练运行。
 - `RobotPolicyRunner` 按名称绑定支持的观测与动作，在每个物理步调用一次，并负责策略降频；调用方再加降频计数会改变执行周期。
 - 自定义项需要明确绑定；历史和修饰器的元数据不意味着部署实现已自动复现它们。不能把“模型成功加载”当成输入、物理与时序一致。
+
+![Spot 策略控制演示（动图）](../assets/figures/isaac-sim-policy-deployment/web-03.webp)
+
+Spot 策略控制演示（动图）。[查看原始来源](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/_images/tutorial_lab_spot_walk_demo.gif)
 
 ## 版本与证据边界
 

@@ -23,6 +23,10 @@ topics: ["topics/robot-policy-learning", "topics/world-models-and-representation
 
 **研究问题。** 视频包含大量交互变化，却通常没有机器人动作标签。能否让“预测未来”和“把变化转换为动作”分别利用这些视频，再在机器人数据上接合？
 
+![原文图 1](../assets/figures/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://openreview.net/forum?id=DdrsHWobR1#page=1)
+
 **方法贡献。** DeFI 分别预训练指令条件视频模型 GFDM 和逆动力学表示模型 GIDM。后者用当前／未来图像之间的变化学习离散潜在动作，再通过机器人动作监督训练可执行动作适配器。无动作标签的是预训练阶段，不是最终控制策略。（§3、附录 A.2–A.3）
 
 **证据结论。** CALVIN ABC-D 多视角平均连续任务长度为 4.51；去掉 GFDM 或 GIDM 预训练分别降到 3.28、4.16。结果支持两种预训练在该实现中均有贡献，但不证明分开训练普遍优于同预算联合训练。真机平均成功率 81.3% 来自八项 Franka 任务及论文特定重试协议。（表 1、3、4）
@@ -34,6 +38,10 @@ topics: ["topics/robot-policy-learning", "topics/world-models-and-representation
 ### 两个预训练问题为何分开
 
 普通行为克隆需要“观测—动作”配对；视频生成只需“当前—未来”图像，却不能自行给机器人命令。DeFI 的设计是让正向模块学“将发生什么视觉变化”，让逆向模块学“如何压缩这段变化”，最后才学习机器人动作的落地接口。这样两种视频预训练都能舍弃动作标签；代价是下游必须桥接正向预测特征与逆模型熟悉的 DINO 特征。（§2、3，图 2）
+
+![原文图 2](../assets/figures/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining/fig-2.webp)
+
+原文图 2；PDF 第 4 页。[查看原始来源](https://openreview.net/forum?id=DdrsHWobR1#page=4)
 
 | 阶段 | 可见输入 | 训练监督或执行输出 | 参数与接口变化 |
 | --- | --- | --- | --- |
@@ -113,6 +121,10 @@ GFDM 的采样混合包括 Fractal 30%、Bridge 10%、CALVIN-ABC 30%、Something
 - **表 5 存在内部矛盾。** “All w/o h.v.” 行列出 93.6、91.2、88.0、82.4、79.2，却写平均长度 3.92；按五级连续成功率求和应为 4.344。附录图 7 的零人类视频行另列 92.4、85.6、78.0、70.2、63.1，这些列值的和为 3.893，同样不能精确复原 3.92。本页保留这一冲突，不选择性拼成更强的消融结论。
 - 附录 A.2 的“预训练未见 CALVIN”出现在 GIDM 数据段落，不能推广到整个 DeFI：GFDM 表 11 明列 CALVIN-ABC。
 - 文本指令条件不等于通用语言交互；附录 A.6 明确缺少大语言模型支持的交互与具身推理能力。
+
+![原文图 7](../assets/figures/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining/fig-7.webp)
+
+原文图 7；PDF 第 21 页。[查看原始来源](https://openreview.net/forum?id=DdrsHWobR1#page=21)
 
 ## 我们的解释与关联
 

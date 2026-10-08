@@ -22,6 +22,10 @@ topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/ro
 
 **问题。** 机器人强化学习的总耗时来自仿真、动作推理、经验搬运、学习更新和同步。物理仿真放在 GPU 上，并不自动保证这些环节形成最高效的闭环。
 
+![原文图 1](../assets/figures/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://arxiv.org/pdf/2605.30313#page=1)
+
 **贡献。** Yufei Jia 等提出 [[UniLab|UniLab]]：CPU 批量刚体仿真和采集，GPU 更新策略与价值函数，统一协调经验缓冲、传输和参数同步。它支持 PPO、APPO、FastSAC、FlashSAC；贡献是训练系统组织，不是新的优化目标。
 
 **结论范围。** 作者报告同工作站若干任务约 3–10 倍的训练时间优势，但严格同步 PPO 的对比接近持平；较大收益伴随异步采集、经验重放及算法配置变化。应读成“存在高效的异构训练路径”，不能读成“CPU 物理普遍比 GPU 快”。证据为 [2026-06-02 的 arXiv v3](https://arxiv.org/abs/2605.30313v3)，42 页，含附录 A–C；[项目主页](https://unilabsim.github.io)不是本页实验数字的额外依据。
@@ -31,6 +35,10 @@ topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/ro
 ### 按数据依赖安排采集与更新
 
 CPU 后端包括 [[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]] 和 MotrixSim。后端负责物理语义，任务定义动作、观测、奖励和终止，训练层安排数据移动与学习。相同接口不意味着两个后端具有相同接触语义或完全相同任务配置。（§3.1–3.3，图 2）
+
+![原文图 2](../assets/figures/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms/fig-2.webp)
+
+原文图 2；PDF 第 4 页。[查看原始来源](https://arxiv.org/pdf/2605.30313#page=4)
 
 | 算法 | 更新依赖 | 系统执行方式 |
 | --- | --- | --- |
@@ -42,13 +50,25 @@ APPO 的重要性是允许计算重叠，代价是必须处理策略滞后；本
 
 这一执行差异的通用时间模型与数值例子见 [[HeterogeneousRobotRLTraining#一个能算清收益的时间例子|异构训练的关键路径]]。本文比较的关键是哪些阶段能退出学习器关键路径，不能仅以物理内核快慢解释图 3。
 
+![原文图 3](../assets/figures/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms/fig-3.webp)
+
+原文图 3；PDF 第 4 页。[查看原始来源](https://arxiv.org/pdf/2605.30313#page=4)
+
 ### 先采样，再传输：重放缓冲的归属变化
 
 附录 A 的基线本来就将 CPU 仿真与 GPU 学习分开，但学习器还维护 GPU 重放缓存：每次采样前延迟同步新行，再随机索引并聚合数据。这让缓存维护进入学习器关键路径。
 
 优化后，**主重放缓冲仍在 CPU 共享内存**。采集侧从一个重放快照采样，打包到两个共享槽之一；CUDA 路径把这些打包槽注册为锁页内存，后台线程异步传入“冷”GPU 批次槽。GPU 从“热”槽更新策略、评论器和目标网络，下轮再交换冷热槽。锁页的是传输源槽，不能写成“整个重放缓冲都锁页”或“所有经验仍常驻 GPU”。（附录 A.1–A.3，图 9–10）
 
+![原文图 9、10](../assets/figures/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms/fig-9-10.webp)
+
+原文图 9、10；PDF 第 14 页。[查看原始来源](https://arxiv.org/pdf/2605.30313#page=14)
+
 这没有消灭采样与复制成本，只改变它们的执行者和发生时间。图 12 的独立微基准甚至显示 CPU 预采样加传输为 4.81 ms，设备侧增量传输加采样为 2.05 ms；局部操作更贵仍可能因重叠而使整个循环更快。（附录 A.5）
+
+![原文图 11、12](../assets/figures/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms/fig-11-12.webp)
+
+原文图 11、12；PDF 第 16 页。[查看原始来源](https://arxiv.org/pdf/2605.30313#page=16)
 
 ### 用一轮重放解释三个模块的接口
 
@@ -57,6 +77,10 @@ APPO 的重要性是允许计算重叠，代价是必须处理策略滞后；本
 若每块采集 $N$ 个环境的 $K$ 步，执行 $U$ 次、每次大小 $B$ 的更新，则样本消费数与新增转移数之比为 $UB/(NK)$。这是理解复用强度的计数，不等同于独立样本数；重放中的同一转移可多次抽到。改变该比值会同时改变计算负载和学习分布，因此训练加速不能自动归因于调度。论文具体配置见附录 C.4；固定代码中的容量、批次切片与同步细节另见 [[unilab-repository|UniLab 实现解析]]。
 
 训练时 CPU 策略副本供采集、GPU 执行梯度更新；部署时使用训练后的策略做控制，并不需要保留整个重放与学习循环。图 7 证明作者进行了若干部署展示，未进一步测定本文调度设计对真机控制延迟的独立贡献。
+
+![原文图 6、7](../assets/figures/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms/fig-6-7.webp)
+
+原文图 6、7；PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2605.30313#page=7)
 
 ### 随机化也是接口契约
 
@@ -77,6 +101,14 @@ APPO 的重要性是允许计算重叠，代价是必须处理策略滞后；本
 | 四阶段重放消融 | 三种子均值 101.23→89.7→94.04→85.04 s；峰值 CUDA 预留内存 2362→2362→692→692 MB | 调度、存储归属、异步传输影响不同：先移除缓存降低显存但可能变慢，再隐藏搬运才改善时间；附录 A.4，图 11 |
 | 跨后端迁移 | 每策略一个检查点、每格 100 回合；折返跑成功率本后端 1.00／0.97，跨后端 0.92／0.91 | 有限四任务的零样本迁移；成功定义为无提前终止，不是现实任务完成率；附录 C.2，表 7 |
 | 跨平台 | macOS、ROCm、XPU 上给出训练曲线，部分设备列训练分钟数 | 支持可训练性，未证明不同硬件绝对吞吐相等；§4.5，图 8、表 3 |
+
+![原文图 5](../assets/figures/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms/fig-5.webp)
+
+原文图 5；PDF 第 6 页。[查看原始来源](https://arxiv.org/pdf/2605.30313#page=6)
+
+![原文图 8](../assets/figures/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms/fig-8.webp)
+
+原文图 8；PDF 第 8 页。[查看原始来源](https://arxiv.org/pdf/2605.30313#page=8)
 
 ### 不能被主结论遮住的比较差异
 

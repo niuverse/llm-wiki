@@ -24,6 +24,18 @@ topics: ["topics/robot-policy-learning", "topics/simulation-transfer", "topics/e
 
 **问题：** 人的身体比例、手指关节和机器人不同。身体与手分别重定向，可能各自接近示范，却使指尖错过物体；普通整向量策略又没有显式表达躯干、手臂、手指之间的信息关系。（§1–3）
 
+![原文图 1](../assets/figures/dexweave-dexterous-humanoid-loco-manipulation/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://arxiv.org/pdf/2609.34724v1#page=1)
+
+![原文图 2](../assets/figures/dexweave-dexterous-humanoid-loco-manipulation/fig-2.webp)
+
+原文图 2；PDF 第 4 页。[查看原始来源](https://arxiv.org/pdf/2609.34724v1#page=4)
+
+![原文图 3](../assets/figures/dexweave-dexterous-humanoid-loco-manipulation/fig-3.webp)
+
+原文图 3；PDF 第 6 页。[查看原始来源](https://arxiv.org/pdf/2609.34724v1#page=6)
+
 **方法：** 先分别初始化身体与手，再联合调整上肢和手指，保住指尖与物体的接触关系。用按身体区域分词、限制注意力方向的 Transformer，通过 PPO 学习跟踪重定向参考。**每条参考单独训练策略**，不是能按语言执行新任务的通用人形机器人模型。（§3、附录 B–D）
 
 **结果：** Isaac Lab 训练、MuJoCo 评测，操作参考的完成率为97.5%，对照物体条件 MLP 为85%；G1＋Inspire 手的真机展示是定性证据，不能把97.5%当成硬件成功率。（表3、§4.3）

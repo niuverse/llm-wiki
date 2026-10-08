@@ -23,6 +23,10 @@ topics: ["topics/physics-simulation", "topics/collision-geometry"]
 
 **研究问题。** 两个凸物体已经穿透时，怎样仍提供可用于梯度优化的碰撞指标，并统一处理多种凸基元？
 
+![原文图 1](../assets/figures/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://arxiv.org/pdf/2207.00669#page=1)
+
 **核心贡献。** 同时围绕各自参考点缩放两个形状，求两者刚好相交时的最小尺度 $\alpha^\star$。将六类凸基元的成员约束写成线性约束与二阶锥约束，用定制内点法求解，并对最优值或最优解求导。[原文第 II–III 节](https://arxiv.org/abs/2207.00669)
 
 **主要证据。** 表 I 报告单次求值平均约 5.0–9.4 微秒、额外求导约 1.3–1.7 微秒；第 IV 节展示三类轨迹优化和十二基元接触仿真。它证明一组优化与仿真示例可行，没有建立所有引擎、形状或退化配置下的普遍速度与光滑性保证。
@@ -60,6 +64,10 @@ $$
 
 原文图 2 和第 III-B 节支持凸多面体、胶囊体、圆柱体、圆锥体、椭球体及带厚度凸多边形。设 $Q$ 为物体坐标到世界坐标的旋转矩阵，$r$ 为位置，以下三个例子足以看清构造：
 
+![原文图 2](../assets/figures/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives/fig-2.webp)
+
+原文图 2；PDF 第 3 页。[查看原始来源](https://arxiv.org/pdf/2207.00669#page=3)
+
 | 基元 | 缩放后的成员约束 | 约束类型 |
 | --- | --- | --- |
 | 多面体 $Aw\le b$ | $AQ^\top(x-r)\le\alpha b$ | 线性不等式 |
@@ -96,6 +104,18 @@ $$
 | 第 IV-A.2 节、图 3 | 六自由度四旋翼穿过含 12 个障碍的走廊，几何采用外包球 | 支持简化几何下的规划集成，未验证真实旋翼轮廓间隙 |
 | 第 IV-A.3 节、图 5 | 全平移与姿态控制的圆锥体穿过方孔 | 展示姿态梯度能帮助找到狭窄通行解 |
 | 第 IV-B 节、图 6 | 12 个随机位姿凸基元相撞，互补时间步进，100 Hz 仿真；作者报告约束满足至机器精度 | 这是所示仿真步进频率，不等于整套仿真实时吞吐量；没有复杂机器人摩擦基准 |
+
+![原文图 3](../assets/figures/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives/fig-3.webp)
+
+原文图 3；PDF 第 5 页。[查看原始来源](https://arxiv.org/pdf/2207.00669#page=5)
+
+![原文图 4](../assets/figures/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives/fig-4.webp)
+
+原文图 4；PDF 第 5 页。[查看原始来源](https://arxiv.org/pdf/2207.00669#page=5)
+
+![原文图 5、6](../assets/figures/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives/fig-5-6.webp)
+
+原文图 5、6；PDF 第 6 页。[查看原始来源](https://arxiv.org/pdf/2207.00669#page=6)
 
 论文没有单独的系统消融表；“穿透时仍返回指标”“求导便宜”主要由构造与微基准支持，规划性能由案例展示。
 

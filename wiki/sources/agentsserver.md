@@ -17,6 +17,10 @@ source_type: repository
 
 AgentsServer 是 AgentsDock 的自托管后端：客户端负责呈现会话，服务器持有工作区、会话状态与已安装的智能体工具，并管理每轮请求的接收、执行和事件记录。它不是把聊天界面直接连到一个模型 HTTP 接口；模型访问、工具执行和账户认证仍由所选后端及其配置承担。[官方仓库](https://github.com/ZhengyiLuo/AgentsServer)
 
+![官方仓库配图](../assets/figures/agentsserver/readme-overview.webp)
+
+官方仓库配图。[查看原始来源](https://raw.githubusercontent.com/ZhengyiLuo/AgentsServer/bcb250eb5fab8678d41dc23489427f013305b57d/assets/agentsdock-preview.png)
+
 本页从原先的 README 摘要补充为**固定提交的部分源码核查**。代码版本是 [`bcb250eb5fab8678d41dc23489427f013305b57d`](https://github.com/ZhengyiLuo/AgentsServer/tree/bcb250eb5fab8678d41dc23489427f013305b57d)，读取于 2026-10-04；它不一定已进入正式发布。原登记 `raw/agentsserver-version.txt` 的 `0.1.26-beta.2` 只对应旧快照，不能拿来标记本次代码。
 
 ## 模块怎样分工

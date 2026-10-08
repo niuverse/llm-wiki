@@ -19,6 +19,10 @@ source_type: documentation
 
 这是 [[NVIDIA|NVIDIA]] Isaac Sim 6.0 文档中的机器人设置 / 资产结构页面，说明导入的机器人资产如何按 USD 组件分层组织，以便审查、reuse、仿真和多运行时调优。页面本身标注为 Isaac Sim 6.0 早期开发者发布，且说明该版本文档 incomplete；因此本页应视为 Isaac Sim 6.0 EDR / USD 资产结构 3.0 的官方设计意图，而不是 GA 发布行为的最终保证。
 
+![Isaac Sim 6.0 资产层与物理层组合](../assets/figures/isaac-sim-asset-structure/web-01.webp)
+
+Isaac Sim 6.0 资产层与物理层组合。[查看原始来源](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/_images/isim_6.0_full_ref_external_asset-diagram.png)
+
 核心思想是把一个机器人资产拆成来源/几何/材质/实例/物理/机器人/结构规范/控制/ROS/末端执行器等职责明确的 USD 层，再用子层、参考资料、载荷和变体组合成最终可加载资产。这个结构服务两个目标：一是让原始导入的来源可以保持不变并可重新导入；二是让 [[MuJoCo|MuJoCo]]、PhysX、USD / Newton 等运行时特定的物理调优不互相污染。
 
 ## 核心主张
@@ -31,6 +35,18 @@ source_type: documentation
 - 特征是叠加在转换后的资产上的轻量的层，例如物理设置、传感器配置、控制 graphs、ROS 集成和 gripper 技术栈。
 - Adding/modifying 特征的工作流是：把 optimized 资产作为 temporary sub-层引入特征阶段，作者特征后保存前断开 sub-层，再把特征作为载荷加入最终资产；变体可用于运行时特征 switching。
 - 机器人结构规范被描述为与仿真资产结构解耦的机器人结构描述，并且必须作为子层包含在机器人资产中。
+
+![Isaac Sim 6.0 机器人资产目录](../assets/figures/isaac-sim-asset-structure/web-02.webp)
+
+Isaac Sim 6.0 机器人资产目录。[查看原始来源](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/_images/isim_6.0_full_ref_external_asset-file-structure.png)
+
+![末端执行器、控制器与物理变体](../assets/figures/isaac-sim-asset-structure/web-03.webp)
+
+末端执行器、控制器与物理变体。[查看原始来源](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/_images/isim_6.0_full_ref_external_asset-diagram_2.png)
+
+![Inspire Hand 资产目录示例](../assets/figures/isaac-sim-asset-structure/web-04.webp)
+
+Inspire Hand 资产目录示例。[查看原始来源](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/_images/isim_6.0_full_ref_external_asset-file-structure_inspire.png)
 
 ## 关键引文
 

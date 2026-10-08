@@ -71,6 +71,10 @@ flowchart TD
 
 性能实验还须记录失败和提前终止。论文图 17 可以在达到自身模型精度、超过迭代上限或检测到停滞时结束，因此只看该图耗时不能判断各方法在相同参考物理精度下谁更快。
 
+![原文图 17](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-17.webp)
+
+原文图 17；PDF 第 14 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=14)
+
 ## 失效情形
 
 - **收敛慢与残差偏大**：病态系统、冗余接触可能让局部更新互相抵消，有限迭代下留下误差。[[contact-models-in-robotics-a-comparative-analysis|接触模型比较论文]]

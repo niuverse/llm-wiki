@@ -52,6 +52,10 @@ DINO 特征减少直接拟合所有像素细节的需求，也保留空间结构
 
 评估应同时检查表征预测和闭环动作。LDA-1B 的规模曲线使用离线动作 L1 误差；部分真机“成功率”实际是完成比例或加权进度分数，不能混作完整任务成功概率。数据路由收益也应在相同数据和预算下比较。[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B 图 10、附录表 VII–VIII]]
 
+![原文图 10](../assets/figures/lda-1b-scaling-latent-dynamics-action-model/fig-10.webp)
+
+原文图 10；PDF 第 8 页。[查看原始来源](https://arxiv.org/pdf/2602.12215#page=8)
+
 与 [[InverseDynamicsModels|逆动力学模型]]、[[RobotContextConditioning|上下文条件化]] 的关系见 [[topics/future-conditioned-action|未来条件动作学习专题]]；动作执行接口见 [[VisionLanguageActionModels|视觉—语言—动作模型]]。
 
 ## 研究归属

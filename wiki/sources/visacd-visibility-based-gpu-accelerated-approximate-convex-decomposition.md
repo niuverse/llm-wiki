@@ -23,6 +23,14 @@ topics: ["topics/physics-simulation", "topics/collision-geometry"]
 
 **研究问题。** 近似凸分解每试一个平面都实际切网格、重新计算凹度很贵；只试少量轴对齐切面又容易受输入姿态影响。能否不实际切割就比较大量候选？
 
+![原文图 1](../assets/figures/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://arxiv.org/pdf/2604.04244#page=1)
+
+![原文图 2](../assets/figures/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition/fig-2.webp)
+
+原文图 2；PDF 第 2 页。[查看原始来源](https://arxiv.org/pdf/2604.04244#page=2)
+
 **核心贡献。** 用跨越外部凹陷的可见性线段衡量凹度，以被切面截断的线段总长度作为切割收益。在 GPU 上并行计算可见性与候选分数，从几何关系生成非轴对齐切面，再贪心切割。[原文第 3 节](https://arxiv.org/abs/2604.04244)
 
 **证据范围。** 表 1 在三个数据集报告凹度／部件数，PartNet-Mobility 中平均耗时 16.97 秒，对比 CoACD 36.31 秒。对比关闭了 CoACD 合并，且论文未给出完整硬件与重复运行统计；不能推成任意配置、硬件下的加速比。没有机器人任务成功率或在线仿真吞吐量实验。
@@ -59,6 +67,10 @@ Q_p(M,E)=\sum_i I_p(e_i)\|e_i\|_2.
 $$
 
 $E$ 是可见性边集合。关键收益是候选评价仅需线段—平面关系；不必为每个候选切割、封口和重建凸包。它是近似评分，而不是切割后凹度的精确恒等式。[第 3.3 节，式（1）–（3）、图 3](https://arxiv.org/abs/2604.04244)
+
+![原文图 3](../assets/figures/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition/fig-3.webp)
+
+原文图 3；PDF 第 3 页。[查看原始来源](https://arxiv.org/pdf/2604.04244#page=3)
 
 ### 评分与真实切割之间隔着哪一步
 

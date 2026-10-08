@@ -23,6 +23,10 @@ source_type: repository
 
 RoboLab 将任务语义、机器人与传感器配置、策略通信、回合执行和结果分析分开，使同一任务可以配上不同策略或扰动配置。本页固定于本地归档提交 `7d45d74904eade3b578a8eb1f2f9f89bc3d40326`（作者日期2026-06-01）；旧快照 `5d3ba41e…` 仍保留。[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|论文页]] 负责实验结论，本页解释这个较晚代码版本实际如何工作。
 
+![官方仓库配图](../assets/figures/nvlabs-robolab/readme-overview.webp)
+
+官方仓库配图。[查看原始来源](https://media.githubusercontent.com/media/NVlabs/RoboLab/7d45d74904eade3b578a8eb1f2f9f89bc3d40326/docs/images/robolab.png)
+
 **阅读与验证范围。** 本轮静态追踪了任务、环境工厂、π0客户端、评估循环、结果持久化和自适应采样的关键路径；下面链接固定到归档提交的文件行号。没有安装或运行 Isaac Sim、策略服务或第三方测试，因此代码路径支持“如何实现”，不支持吞吐量、稳定性或论文成绩已复现。
 
 ## 一条具体任务怎样成为环境

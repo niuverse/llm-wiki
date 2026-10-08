@@ -73,6 +73,30 @@ $\delta_m$ 表示固定当前转向角时能立即采用的独立速度方向；
 | $(1,1)$ | 固定轮轴加中心转向轮；当前沿一维速度方向运动 | 三轮车／汽车式，图 10 |
 | $(1,2)$ | 两个独立中心转向角决定当前一维运动方向 | 两中心转向轮加脚轮，图 11 |
 
+![原文图 6](../assets/figures/structural-properties-and-classification-of-wheeled-mobile-robots/fig-6.webp)
+
+原文图 6；PDF 第 11 页。[查看原始来源](https://nd.ics.org.ru/nd1104002/#page=11)
+
+![原文图 7](../assets/figures/structural-properties-and-classification-of-wheeled-mobile-robots/fig-7.webp)
+
+原文图 7；PDF 第 12 页。[查看原始来源](https://nd.ics.org.ru/nd1104002/#page=12)
+
+![原文图 8](../assets/figures/structural-properties-and-classification-of-wheeled-mobile-robots/fig-8.webp)
+
+原文图 8；PDF 第 13 页。[查看原始来源](https://nd.ics.org.ru/nd1104002/#page=13)
+
+![原文图 9](../assets/figures/structural-properties-and-classification-of-wheeled-mobile-robots/fig-9.webp)
+
+原文图 9；PDF 第 14 页。[查看原始来源](https://nd.ics.org.ru/nd1104002/#page=14)
+
+![原文图 10](../assets/figures/structural-properties-and-classification-of-wheeled-mobile-robots/fig-10.webp)
+
+原文图 10；PDF 第 15 页。[查看原始来源](https://nd.ics.org.ru/nd1104002/#page=15)
+
+![原文图 11](../assets/figures/structural-properties-and-classification-of-wheeled-mobile-robots/fig-11.webp)
+
+原文图 11；PDF 第 15 页。[查看原始来源](https://nd.ics.org.ru/nd1104002/#page=15)
+
 这不是全世界所有轮式机构的穷尽分类，而是上述理想接触与非退化假设下的结构分类。$\delta_M=3$ 的 $(1,2)$ 也不能瞬间实现任意底盘速度：先调整轮角需要时间。（§II.C–IV.B）
 
 ## 四种模型回答四类问题

@@ -7,6 +7,7 @@ import re
 from datetime import date
 from pathlib import Path
 from typing import Any
+from urllib.parse import unquote, urlsplit
 
 
 META_FILES = {"index.md", "log.md", "health-report.md", "lint-report.md"}
@@ -73,6 +74,26 @@ def check_broken_wikilinks(root: Path, pages: list[Path]) -> list[dict[str, str]
                     }
                 )
     return broken
+
+
+def check_local_images(root: Path, pages: list[Path]) -> list[dict[str, str]]:
+    """Images must resolve inside the Obsidian vault, not merely on the website."""
+    errors = []
+    vault = (root / "wiki").resolve()
+    for page in pages:
+        text = re.sub(r"```.*?```", "", read_text(page), flags=re.DOTALL)
+        for target in re.findall(r"!\[[^\]]*\]\(([^)]+)\)", text):
+            target = target.strip().strip("<>")
+            url = urlsplit(target)
+            if url.scheme or url.netloc:
+                errors.append({"page": str(page.relative_to(root)), "target": target,
+                               "reason": "image must be archived inside wiki for offline reading"})
+                continue
+            image = (page.parent / unquote(url.path)).resolve()
+            if not image.is_relative_to(vault) or not image.is_file():
+                errors.append({"page": str(page.relative_to(root)), "target": target,
+                               "reason": "image missing or outside Obsidian vault"})
+    return errors
 
 
 def check_empty_files(root: Path, pages: list[Path]) -> list[dict[str, Any]]:
@@ -307,6 +328,7 @@ def run(root: Path) -> dict[str, Any]:
         "total_pages": len(pages),
         "empty_files": check_empty_files(root, pages),
         "broken_wikilinks": check_broken_wikilinks(root, pages),
+        "local_images": check_local_images(root, pages),
         "index_sync": check_index_sync(root, pages),
         "log_coverage": check_log_coverage(root),
         "source_files": check_source_files(root),
@@ -326,6 +348,7 @@ def format_report(results: dict[str, Any]) -> str:
     sections = [
         ("Empty / Stub Files", results["empty_files"]),
         ("Broken Wikilinks", results["broken_wikilinks"]),
+        ("Local Images", results["local_images"]),
         ("Log Coverage", results["log_coverage"]),
         ("Missing Source Artifacts", results["source_files"]["missing"]),
         ("Language Artifacts", results["language_artifacts"]),
@@ -359,6 +382,7 @@ def has_failures(results: dict[str, Any]) -> bool:
     return bool(
         results["empty_files"]
         or results["broken_wikilinks"]
+        or results["local_images"]
         or results["index_sync"]["in_index_not_on_disk"]
         or results["index_sync"]["on_disk_not_in_index"]
         or results["log_coverage"]

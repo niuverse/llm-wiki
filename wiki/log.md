@@ -780,3 +780,83 @@ AGENTS.md 从 333 行精简至 72 行，将重复操作收敛为入口表，保�
 ## [2026-10-08] ingest | Rho 发布文档：检查点接口与 LIBERO 最小验证
 
 [[rho-release-documentation|本页]]：归档并完整阅读固定提交的官方 README，单独登记为文档来源；记录检查点与归一化接口、40回合评测方案及论文与文档执行块长差异。 接入相关主题与共享概念。未运行第三方模型或硬件实验；文档阅读不等同于实现核查。
+
+## [2026-10-08] maintenance | 全库补齐可离线显示的原文配图
+
+扫描所有知识页；向54篇来源页和4篇概念页嵌入264份本地图，保留原图图注、图号、PDF页码和来源链接。位图压缩为 WebP，SVG 保留矢量，动图保留动画；原始证据不变。逐页清单见仓库 `graph/figure-report.md`，衍生记录见 `graph/figures.json`。Isaac Sim 4.5 官方旧图失效，已在正文明确说明。补充图片路径、图号覆盖与证据哈希检查，并接入持续集成。
+
+## [2026-10-08] ingest | 补充原始配图：agentsserver
+
+为 [[agentsserver]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：coacd-repository
+
+为 [[coacd-repository]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：dreamerv3-mastering-diverse-control
+
+为 [[dreamerv3-mastering-diverse-control]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：gltf-basic-structure
+
+为 [[gltf-basic-structure]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：isaac-lab-repository
+
+为 [[isaac-lab-repository]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：isaac-sim-asset-structure
+
+为 [[isaac-sim-asset-structure]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：isaac-sim-policy-deployment
+
+为 [[isaac-sim-policy-deployment]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：learn-openusd-prim-composition
+
+为 [[learn-openusd-prim-composition]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：learn-openusd-stage
+
+为 [[learn-openusd-stage]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：mujoco-computation-collision-detection
+
+为 [[mujoco-computation-collision-detection]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：mujoco-overview
+
+为 [[mujoco-overview]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：mujoco-playground-repository
+
+为 [[mujoco-playground-repository]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：nvlabs-robolab
+
+为 [[nvlabs-robolab]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：omniverse-omni-physics-articulations
+
+为 [[omniverse-omni-physics-articulations]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：robotics-simulation-infrastructure
+
+为 [[robotics-simulation-infrastructure]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：spinning-up-rl-algorithm-taxonomy
+
+为 [[spinning-up-rl-algorithm-taxonomy]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：spinning-up-rl-key-concepts
+
+为 [[spinning-up-rl-key-concepts]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：unilab-repository
+
+为 [[unilab-repository]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。
+
+## [2026-10-08] ingest | 补充原始配图：viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation
+
+为 [[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]] 归档官方配图并生成库内显示副本；来源地址、原始字节哈希与本地图对应关系见 `graph/acquisitions.jsonl` 与 `graph/figures.json`。此次补充不将项目演示等同于独立复现实验。

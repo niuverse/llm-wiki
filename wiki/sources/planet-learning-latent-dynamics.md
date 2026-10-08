@@ -23,6 +23,10 @@ topics: ["topics/world-models-and-representations", "topics/planning-and-control
 
 **研究问题。** 只有图像、动作与奖励时，怎样学出足以支持在线规划的状态和动力学？单张图像不含完整速度与遮挡信息，直接预测整段像素又使大量候选动作的评估过于昂贵。
 
+![原文图 1](../assets/figures/planet-learning-latent-dynamics/fig-1.webp)
+
+原文图 1；PDF 第 2 页。[查看原始来源](https://arxiv.org/pdf/1811.04551v5#page=2)
+
 **方法贡献。** Danijar Hafner 等提出 PlaNet：用兼有确定性记忆与随机状态的循环状态空间模型（RSSM）学习环境，在潜在空间用交叉熵方法（CEM）搜索动作，执行首个动作后重新观测、规划。它不训练演员或价值网络。论文同时提出潜在多步预测正则（latent overshooting），但最终 RSSM 并不依赖这一正则。
 
 **证据范围。** ICML 2019 论文在六个 DeepMind Control Suite 图像控制任务中展示较高数据效率；没有真机验证。其贡献是打通「图像状态估计 → 潜在预测 → 动作搜索 → 新观测修正」，不是证明像素预测能自动获得通用物理模型。以下定位均指[归档版本论文](https://arxiv.org/abs/1811.04551v5)的章节、表和附录。
@@ -30,6 +34,10 @@ topics: ["topics/world-models-and-representations", "topics/planning-and-control
 ## 方法：为什么要同时保留记忆与随机状态
 
 令 $o_t$ 为第 $t$ 步图像，$a_t$ 为动作，$r_t$ 为奖励。为与知识库记号一致，下面把原文随机状态 $s_t$ 改记为 $z_t$，确定性循环记忆仍为 $h_t$。RSSM 的生成与推断结构为（§3，式 4、图 2）：
+
+![原文图 2](../assets/figures/planet-learning-latent-dynamics/fig-2.webp)
+
+原文图 2；PDF 第 4 页。[查看原始来源](https://arxiv.org/pdf/1811.04551v5#page=4)
 
 $$
 h_t=f_\theta(h_{t-1},z_{t-1},a_{t-1}),\qquad
@@ -40,6 +48,10 @@ $$
 这里 $p_\theta$ 是不看当前图像的预测先验，$q_\theta$ 是看到当前图像后的后验。训练与真实交互时用后验更新信念；规划时没有未来图像，只能沿先验推进。观测解码器 $p_\theta(o_t\mid h_t,z_t)$ 和奖励模型 $p_\theta(r_t\mid h_t,z_t)$ 共用潜在状态。
 
 确定性记忆为长时间保留信息提供路径，例如小车暂时离开画面时仍保留运动历史；随机状态为部分可观测条件下的多个可能状态提供表达空间。图 4 的纯 GRU、纯随机状态空间模型与 RSSM 对照支持组合结构在所测任务中更有效。**作者解释**是随机性也可能使规划更稳健；实验没有单独证明这就是性能提升的唯一原因。
+
+![原文图 4](../assets/figures/planet-learning-latent-dynamics/fig-4.webp)
+
+原文图 4；PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/1811.04551v5#page=7)
 
 ### 一次决策里哪些量真实、哪些量预测
 
@@ -83,9 +95,17 @@ $$
 
 标准目标直接约束一步先验；长时间无观测滚动会进入训练时较少覆盖的状态。潜在多步预测正则从较早的后验出发，连续推进若干步，让得到的预测分布接近目标时刻的后验；超过一步时停止目标后验的梯度。这样避免为每种预测距离重新解码图像（§4、图 3、式 7）。
 
+![原文图 3](../assets/figures/planet-learning-latent-dynamics/fig-3.webp)
+
+原文图 3；PDF 第 5 页。[查看原始来源](https://arxiv.org/pdf/1811.04551v5#page=5)
+
 **两步例子（教学重构）。**通常训练会先用真实 $o_{t+1}$ 形成后验，再预测 $t+2$；两步正则则从 $t$ 的状态出发，不看 $o_{t+1}$，连续预测到 $t+2$，再与利用真实数据形成的 $t+2$ 后验比较。额外监督落在潜在分布上，因此不用为每个起点和距离再生成一幅图像；它针对的是“模型连续吃自己的预测”这条路径。
 
 但附录 D、图 8 显示：该正则显著改善 DRNN，对最终 RSSM 反而略有损害。原文关于多步界同时约束原一步分布的表述包含猜想，不能把该理论关系扩写成已经充分证明的一般定理。
+
+![原文图 8](../assets/figures/planet-learning-latent-dynamics/fig-8.webp)
+
+原文图 8；PDF 第 14 页。[查看原始来源](https://arxiv.org/pdf/1811.04551v5#page=14)
 
 ## 实验与消融：什么被支持
 
@@ -106,6 +126,18 @@ $$
 | 一个模型能否覆盖多个任务 | 附录 C、图 6–7 | 不输入任务身份，动作补齐后可联合学习六任务，但学习较慢；不是广泛跨域通用性验证 |
 | 多步预测正则 | 附录 D、图 8 | 对 DRNN 有益，对 RSSM 略有损害 |
 | 规划时域与搜索预算 | 附录 J、图 12 | 在真实 Cheetah 仿真器上，过短时域不足，过长时域因搜索维度增大而变差；不只涉及学到的模型误差 |
+
+![原文图 5](../assets/figures/planet-learning-latent-dynamics/fig-5.webp)
+
+原文图 5；PDF 第 8 页。[查看原始来源](https://arxiv.org/pdf/1811.04551v5#page=8)
+
+![原文图 6、7](../assets/figures/planet-learning-latent-dynamics/fig-6-7.webp)
+
+原文图 6、7；PDF 第 13 页。[查看原始来源](https://arxiv.org/pdf/1811.04551v5#page=13)
+
+![原文图 12](../assets/figures/planet-learning-latent-dynamics/fig-12.webp)
+
+原文图 12；PDF 第 20 页。[查看原始来源](https://arxiv.org/pdf/1811.04551v5#page=20)
 
 ## 局限与我们的解释
 
