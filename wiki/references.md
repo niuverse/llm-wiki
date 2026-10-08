@@ -54,12 +54,15 @@ description: ""
 - [[sources/agentsserver|AgentsServer]]
 - [[sources/awesome-world-models|AwesomeWorldModels]]
 - [[sources/coacd-repository|CoACD · Code]]
+- [[sources/deepseek-harness|DeepSeek Harness]]
 - [[sources/isaac-lab-repository|Isaac Lab · Code]]
 - [[sources/maniskill-repository|ManiSkill · Code]]
 - [[sources/mjlab-repository|mjlab · Code]]
 - [[sources/mujoco-playground-repository|MuJoCo Playground · Code]]
 - [[sources/nvidia-ovrtx|ovrtx]]
 - [[sources/nvlabs-robolab|RoboLab · Code]]
+- [[sources/opencode-harness|OpenCode]]
+- [[sources/pi-agent-harness|pi]]
 - [[sources/unilab-repository|UniLab · Code]]
 - [[sources/v-hacd-repository|V-HACD · Code]]
 
@@ -70,6 +73,7 @@ description: ""
 - [[sources/isaac-sim-asset-structure|Isaac Sim · 资产结构 3.0]]
 - [[sources/isaac-sim-core-api-collision-approximation|Isaac Sim · Collision Approximation]]
 - [[sources/isaac-sim-policy-deployment|Isaac Sim · 策略部署]]
+- [[sources/langgraph-persistence|LangGraph]]
 - [[sources/learn-openusd-file-formats|OpenUSD · File Formats]]
 - [[sources/learn-openusd-prim-composition|OpenUSD · Prim Composition]]
 - [[sources/learn-openusd-stage|OpenUSD · Stage]]
@@ -89,5 +93,7 @@ description: ""
 
 ## Projects & Articles
 
+- [[sources/anthropic-long-running-harness|Anthropic]]
+- [[sources/anthropic-managed-agents|Anthropic Managed Agents]]
 - [[sources/robotics-simulation-infrastructure|Robotics Simulation Infrastructure]]
 - [[sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]]

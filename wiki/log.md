@@ -894,3 +894,45 @@ Sources 统一收录论文、代码与文档，保留各自证据身份；侧栏
 时间：2026-10-08 19:19（北京时间，UTC+08:00）
 
 Browse 保留可展开的 Topics 与 Sources 文件夹，隐藏同名的 [[research-topics|主题索引]] 和 [[references|资料索引]]，避免两套入口并列。索引页仍可从 [[index|首页]] 访问，内容与旧链接不变。
+
+## [2026-10-08] ingest | DeepSeek Harness 当前版本与执行机制
+
+时间：2026-10-08 23:30（北京时间，UTC+08:00）
+
+首次归档官方架构、生命周期、工具处理、压缩与沙箱文档，固定到 0.2.1-alpha.1；另存 npm 默认 0.2.0-rc.2 的版本信息及对照文档。静态核查流记录、工具调度和局部重试代码，纠正旧笔记逐块持久化的描述；保留压缩文档与代码时序不一致的证据。[[deepseek-harness]]
+
+## [2026-10-08] ingest | pi 的循环、会话与 pi-durable
+
+时间：2026-10-08 23:30（北京时间，UTC+08:00）
+
+沿官方跳转定位 earendil-works/pi，固定 main 提交归档 agent-core、会话格式、压缩及实验持久包资料。区分核心循环的源码核查与 pi-durable 的文档解析，不将开发分支或实验接口视为稳定默认行为。[[pi-agent-harness|pi：可组合循环与持久化实验]]
+
+## [2026-10-08] ingest | OpenCode 的会话执行
+
+时间：2026-10-08 23:30（北京时间，UTC+08:00）
+
+固定 dev 提交，全文核查流处理器及外层循环片段，解释工具状态、文件快照、重复调用检测、压缩和停止条件；未运行第三方软件。[[opencode-harness|OpenCode：编码任务的会话执行]]
+
+## [2026-10-08] ingest | LangGraph 状态与检查点
+
+时间：2026-10-08 23:30（北京时间，UTC+08:00）
+
+完整收录官方 Persistence 和 Checkpointers，区分检查点、逐任务写入、重新执行与持久化模式；固定代码只核查 Pregel 调度说明，不将检查点等同于外部操作恰好执行一次。[[langgraph-persistence|LangGraph：状态图与 Checkpoints]]
+
+## [2026-10-08] ingest | Anthropic 长任务交接
+
+时间：2026-10-08 23:30（北京时间，UTC+08:00）
+
+归档并完整阅读官方工程文章，提炼跨上下文窗口的初始化、逐项验证与任务交接，标明 Web 开发设置与未经本库复现的边界。[[anthropic-long-running-harness|Anthropic：跨上下文窗口的任务交接]]
+
+## [2026-10-08] ingest | Anthropic Managed Agents 架构
+
+时间：2026-10-08 23:30（北京时间，UTC+08:00）
+
+归档并完整阅读官方文章，解释会话、执行循环和沙箱各自生命周期；作为架构说明，不充当 Claude Code／SDK 源码验证。[[anthropic-managed-agents]]
+
+## [2026-10-08] refresh | DeepSeek Harness 与 Agent Harness 系统理解
+
+时间：2026-10-08 23:30（北京时间，UTC+08:00）
+
+将 [[dsh-learning-map]] 旧待核实笔记改为稳定跳转，正式解析归入 [[deepseek-harness]]；新增唯一共享基础 [[AgentHarness]]，扩充 [[topics/agent-execution|Agent Systems]] 的框架比较、具体例子与可验证问题，不新增学习路径。旧逐块持久化判断改为实时流与结算记录分离，依据固定版本文档和 assistant-stream.ts；旧包数量、本机状态、Cordis 论文推导未复核，不再作当前事实。Codex、Claude Agent SDK、Deep Agents、Cordis 论文及完整故障恢复实验仍是未收录缺口。本轮仅更新本地知识，未安装、升级或运行这些框架。
