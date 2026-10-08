@@ -24,6 +24,14 @@ topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topi
 
 **研究问题。** 用目标仿真基准的数据训练后再测同类场景，可能掩盖策略对未见环境的脆弱性。RoboLab 用在真实 DROID 数据上微调的现成策略，进入高保真、可控扰动的仿真环境，考察视觉、操作程序与关系理解。
 
+![原文图 1](../assets/figures/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://arxiv.org/pdf/2604.09860#page=1)
+
+![原文图 2](../assets/figures/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies/fig-2.webp)
+
+原文图 2；PDF 第 2 页。[查看原始来源](https://arxiv.org/pdf/2604.09860#page=2)
+
 **核心贡献。** RoboLab-120 提供分能力轴的任务、过程错误和轨迹指标；场景与任务生成工具支持扩展；混合神经后验估计用于描述哪些环境参数与成功相关。[论文 §III](https://arxiv.org/pdf/2604.09860v2#page=3)
 
 **结论范围。** 表 I 报告五种策略的总体成功率都较低，π0.5 为23.3%；六个简单任务上的真机对照因策略而异，π0尤其明显失配。原文内部存在任务数、成功率和分组统计不一致，本页明确保留这些差异，不把论文改写成无歧义排行榜。
@@ -47,6 +55,10 @@ topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topi
 ### 成功率之外还记录什么
 
 任务分数是子任务分数的归一化平均，例如“抓柠檬并抓青柠”可以分别计抓取、放置进度。额外记录抓错物体、提前掉落、夹爪碰撞。最终成功仍可能经历错误，图3正是在说明这个差别。[§III-B、图3](https://arxiv.org/pdf/2604.09860v2#page=3)
+
+![原文图 3](../assets/figures/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies/fig-3.webp)
+
+原文图 3；PDF 第 3 页。[查看原始来源](https://arxiv.org/pdf/2604.09860#page=3)
 
 轨迹质量包括速度、路径长度及频谱弧长 SPARC。路径长度 $L=\sum_{k=0}^{N-1}\|p_{k+1}-p_k\|_2$ 使用末端位置序列；SPARC 对归一化速度频谱曲线取负弧长，越接近零通常越平滑。原文式(1)采用不超过10Hz 的自适应截止频率，频谱阈值为0.05。**我们的解释：** 不动作也可能路径短，动作平滑也可能抓错对象，所以这些指标必须与任务结果和错误事件并读，不能独立当“智能程度”。[§III-B、式(1)](https://arxiv.org/pdf/2604.09860v2#page=4)
 

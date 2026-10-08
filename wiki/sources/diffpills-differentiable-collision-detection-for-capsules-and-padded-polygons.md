@@ -23,6 +23,14 @@ topics: ["topics/physics-simulation", "topics/collision-geometry"]
 
 **研究问题。** 机器人用胶囊体或带厚度多边形近似后，怎样同时得到碰撞状态及其对位置、姿态的导数，供轨迹优化使用？
 
+![原文图 1](../assets/figures/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://arxiv.org/pdf/2207.00202#page=1)
+
+![原文图 2](../assets/figures/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons/fig-2.webp)
+
+原文图 2；PDF 第 3 页。[查看原始来源](https://arxiv.org/pdf/2207.00202#page=3)
+
 **核心贡献。** 先求两条中心线段、两个二维凸多边形，或线段与多边形之间的最近点；这些问题都可化为小规模凸二次规划（QP）。再减去两个形状的厚度，得到有符号的邻近指标。导数通过最优性条件求出，而不是逐条对几何判断分支求导。[原文第 II–IV 节](https://arxiv.org/abs/2207.00202)
 
 **证据范围。** 第 V 节展示 ALTRO 优化胶囊体车辆避让静止车辆的轨迹；论文没有大规模速度基准、与其他方法的定量排名或完整摩擦接触仿真实验。状态估计和强化学习是作者提出的用途，不能写成已验证成果。
@@ -113,6 +121,10 @@ $$
 | 第 V 节、图 4 | 一辆受加速度和转向角速度控制的车辆避让静止大型车辆；碰撞体为胶囊体；ALTRO 使用 $\phi\ge0$ 约束 | 该碰撞指标及导数可以接入需要梯度的车辆轨迹优化 |
 | 附录 A、算法 4–5 | 两变量盒约束枚举内部点、边和角点，并恢复对偶变量 | 给出了小问题专用求解方法；没有配套定量速度消融 |
 | 第 II-C 节、附录 B | 复用求解时的线性系统分解 | 给出低额外求导成本的算法依据；不能据此写成对 GJK 的实测速度优势 |
+
+![原文图 4](../assets/figures/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons/fig-4.webp)
+
+原文图 4；PDF 第 5 页。[查看原始来源](https://arxiv.org/pdf/2207.00202#page=5)
 
 ## 局限与我们的解释
 

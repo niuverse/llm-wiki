@@ -33,6 +33,10 @@ topics: ["topics/world-models-and-representations", "topics/evaluation-and-trans
 
 论文把世界模型理解为学习环境变化、支持预测和决策的内部模型。但覆盖范围较宽：既包括接收动作并为控制服务的动力学，也包括尚未具备动作接口的视频或表征模型。**“能预测视频”与“能预测我采取某个动作的后果”是不同能力。**（§1、3）
 
+![原文图1子图：世界模型核心概念](../assets/figures/a-comprehensive-survey-on-world-models-for-embodied-ai/core-concepts.webp)
+
+原文图1子图：世界模型核心概念。[查看原始来源](https://arxiv.org/pdf/2510.16732)
+
 在部分可观测环境中，真实状态 $s_t$ 通常不可直接访问；智能体获得观测 $o_t$ 并执行动作 $a_t$。一种做法是用潜在状态 $z_t$ 汇总相关历史，学习：
 
 $$
@@ -52,6 +56,14 @@ $$
 | 功能 | 决策耦合／通用模型 | 是否输入动作？怎样连接策略、规划或价值估计？ |
 | 时间 | 序列模拟与推理／整体差异预测（原文 Global Difference Prediction） | 是逐步递推还是联合预测多个未来位置？训练因子分解和执行方式是否一致？ |
 | 空间 | 全局向量／特征令牌序列／空间潜在网格／分解式可渲染表示 | 哪些空间结构被保留？是否需要几何监督、相机信息或渲染？ |
+
+![原文图1子图：世界模型与决策](../assets/figures/a-comprehensive-survey-on-world-models-for-embodied-ai/decision.webp)
+
+原文图1子图：世界模型与决策。[查看原始来源](https://arxiv.org/pdf/2510.16732)
+
+![原文图1子图：通用世界模型](../assets/figures/a-comprehensive-survey-on-world-models-for-embodied-ai/general.webp)
+
+原文图1子图：通用世界模型。[查看原始来源](https://arxiv.org/pdf/2510.16732)
 
 分类来自 §3、表 I。“整体差异预测”是该综述的组织术语；本库不把它当成跨文献统一定义。一个模型可以联合训练未来片段、再滚动执行；令牌也可以是连续特征，不能看到 Transformer 或 token 就推断使用离散码本。
 

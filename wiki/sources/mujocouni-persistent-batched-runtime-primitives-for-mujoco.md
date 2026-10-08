@@ -37,6 +37,10 @@ topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/ro
 
 `BatchEnvPool(model, nbatch=N, nthread=W)` 为每个环境复制一个 `mjModel`，为每个工作线程创建一个 `mjData`。因此它**不是每环境一份完整 `mjData` 的所有权设计**，也不是把当前状态完全藏进对象后直接无参步进：`step`、`forward` 等仍显式接收状态数组。持久的是模型、工作资源与交互生命周期。（§3.2–3.3，图 1）
 
+![原文图 1](../assets/figures/mujocouni-persistent-batched-runtime-primitives-for-mujoco/fig-1.webp)
+
+原文图 1；PDF 第 3 页。[查看原始来源](https://arxiv.org/pdf/2605.24922#page=3)
+
 ### 五个基元及其计算含义
 
 | 基元 | 做什么 | 对学习循环的作用 |
@@ -73,6 +77,26 @@ topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/ro
 | Go1 全重置 | 4096 环境：C++ 3.5 ms，Python 循环 53 ms，约 15 倍 | 重置接口微基准；部分重置随子集大小变化；§4.5，图 4 |
 | Franka 位点雅可比 | 4096 环境：0.53 ms 对 11.9 ms，约 22 倍 | 单个位点查询微基准；§4.6，图 5 |
 | 高度场采样 | 4096 环境、每环境 $4\times4$ 点：0.52 ms 对 290 ms，约 555 倍 | 特定楼梯地形与 Python 循环基线；§4.7，图 6 |
+
+![原文图 2](../assets/figures/mujocouni-persistent-batched-runtime-primitives-for-mujoco/fig-2.webp)
+
+原文图 2；PDF 第 6 页。[查看原始来源](https://arxiv.org/pdf/2605.24922#page=6)
+
+![原文图 3](../assets/figures/mujocouni-persistent-batched-runtime-primitives-for-mujoco/fig-3.webp)
+
+原文图 3；PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2605.24922#page=7)
+
+![原文图 4](../assets/figures/mujocouni-persistent-batched-runtime-primitives-for-mujoco/fig-4.webp)
+
+原文图 4；PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2605.24922#page=7)
+
+![原文图 5](../assets/figures/mujocouni-persistent-batched-runtime-primitives-for-mujoco/fig-5.webp)
+
+原文图 5；PDF 第 8 页。[查看原始来源](https://arxiv.org/pdf/2605.24922#page=8)
+
+![原文图 6](../assets/figures/mujocouni-persistent-batched-runtime-primitives-for-mujoco/fig-6.webp)
+
+原文图 6；PDF 第 8 页。[查看原始来源](https://arxiv.org/pdf/2605.24922#page=8)
 
 这些倍数不能相乘，也不能替换成 RL 训练加速比：只优化重置或查询时，整体收益仍取决于它们在训练总时间中的占比。
 

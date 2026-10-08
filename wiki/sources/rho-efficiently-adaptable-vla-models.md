@@ -24,6 +24,18 @@ topics: ["topics/robot-policy-learning", "topics/evaluation-and-transfer"]
 
 **问题：** 一个多机器人预训练模型，怎样较低成本地适配某种机器人、某个任务，以及部署时暴露的具体错误？Rho 将三种适配分开，而不是把所有变化都归为一次端到端微调。（§1–2）
 
+![原文图 1](../assets/figures/rho-efficiently-adaptable-vla-models/fig-1.webp)
+
+原文图 1；PDF 第 2 页。[查看原始来源](https://arxiv.org/pdf/2609.38164v1#page=2)
+
+![原文图 2](../assets/figures/rho-efficiently-adaptable-vla-models/fig-2.webp)
+
+原文图 2；PDF 第 6 页。[查看原始来源](https://arxiv.org/pdf/2609.38164v1#page=6)
+
+![原文图 3](../assets/figures/rho-efficiently-adaptable-vla-models/fig-3.webp)
+
+原文图 3；PDF 第 8 页。[查看原始来源](https://arxiv.org/pdf/2609.38164v1#page=8)
+
 **方法：** 约5.22B 参数的视觉—语言—动作模型，以物理理解增强的视觉语言骨干为条件，用流匹配生成动作块；先多机器人预训练，再做机器人专属中间训练与任务微调。在线阶段采用既有 FlowDAgger 思路，冻结动作生成器，通过少量纠正轨迹训练一个选择初始潜变量的小策略。（§2–3、附录 F）
 
 **结果与边界：** 作者报告 RoboEval 73.4%、LIBERO 97.9%，但后者包含在线专家纠正，不能当成单纯离线微调成绩。FR3 的两项在线适配各用15条纠正轨迹，测试的是指定困难配置，不足以证明广泛的新任务泛化。（表8–10、附录 F、I）
@@ -100,6 +112,10 @@ $$
 
 统计口径也应保留原文差异：附录部分叙述泛称三个种子，而图6／表19及具体设置列出 Easy 四个种子、Hard 三个有效种子。本页按明确列出的设置理解，不将其统一改写为所有实验均三种子。FR3 插接中间训练0／1／2轮的独立比较为18／30、23／30、26／30，不应与主结果图14的插接80%混为同一试验。（附录 D）
 
+![原文图 6](../assets/figures/rho-efficiently-adaptable-vla-models/fig-6.webp)
+
+原文图 6；PDF 第 16 页。[查看原始来源](https://arxiv.org/pdf/2609.38164v1#page=16)
+
 ## 主实验：数字后面的协议
 
 | 评测与定位 | 作者结果 | 必须一起保留的条件 |
@@ -110,9 +126,17 @@ $$
 | UR，§4.2 | 工具箱46.7%、小电子件60% | 各30次评测，分别150／160条示范；18 Hz 执行，任务时限60／90秒 |
 | FR3，图14、附录 I | 三类任务五种操作，150次平均80% | 每变体30次，30秒／30 Hz；任务专属微调50000步，示范量因任务而异 |
 
+![原文图 14](../assets/figures/rho-efficiently-adaptable-vla-models/fig-14.webp)
+
+原文图 14；PDF 第 25 页。[查看原始来源](https://arxiv.org/pdf/2609.38164v1#page=25)
+
 RoboEval 用32步动作块、每次执行16步，最长250步。除总成功率，还评估行为指标；Rho 在九项中五项最好，不等于所有碰撞与动作质量指标都最佳。（§4.1、附录 I）
 
 **原文内部的措辞边界。** 图8图注称其余任务“匹配最佳”，但表22点估计中，Cube Handover 为0.80 vs Molmo 0.86、Lift Pot 为0.71 vs π0.5 0.72。没有进一步统计检验时，应报告表内数值和总体优势，不能把图注强化成逐任务都持平或领先。（图8、表22）
+
+![原文图 8](../assets/figures/rho-efficiently-adaptable-vla-models/fig-8.webp)
+
+原文图 8；PDF 第 18 页。[查看原始来源](https://arxiv.org/pdf/2609.38164v1#page=18)
 
 LIBERO 97.9%与架构章节出现的98.3%属于不同实验，不能挑较高数字作为统一总成绩。论文表15给出 LIBERO 预测16步、执行8步，固定版本发布文档则写预测16步、执行16步；本次只核查了文档，未追踪代码默认值，复现前必须对照实际配置。（附录 I、[[rho-release-documentation|发布文档]]）
 

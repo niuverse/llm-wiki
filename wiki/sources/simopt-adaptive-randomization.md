@@ -24,6 +24,10 @@ topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 
 **研究问题：** 域随机化的范围依赖手调，过宽会让策略保守甚至让任务无解；能否用少量真实交互自动调整训练用的仿真分布？Chebotar 等提出 SimOpt，交替训练策略、执行真实策略、匹配闭环观测轨迹并更新参数分布。
 
+![原文图 1](../assets/figures/simopt-adaptive-randomization/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://arxiv.org/pdf/1810.05687v4#page=1)
+
 **主要贡献：** 用任务相关的观测一致性校正一族仿真环境，既不要求真实环境的完整状态，也不要求在真实环境中计算训练奖励。当前实现使用高斯参数分布、PPO 和无梯度采样优化。
 
 **结论范围：** 摇摆插销任务在两轮更新后达到 18/20，抽屉任务在一轮更新后达到 20/20；每轮采三条真实轨迹，但仿真使用 64 块 GPU。依据为 [原论文](https://arxiv.org/abs/1810.05687v4) 第 III–IV 节与附录 A–C；本页完整复核 v4，旧 v2 仍保留为独立原始快照。
@@ -31,6 +35,10 @@ topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ## 方法：交替改策略与训练分布
 
 设 $\xi$ 为仿真参数，例如机器人柔顺性、阻尼、绳索性质与物体尺寸；$p_\phi(\xi)$ 为参数分布，本文采用 $\phi=(\mu,\Sigma)$ 参数化的高斯分布，其中 $\mu$ 是均值，$\Sigma$ 是完整协方差矩阵。每轮先在当前分布中训练策略 $\pi_i$，再在真实系统执行该策略，取得观测轨迹 $\tau_{\mathrm{real}}^{\mathrm{ob}}$。（第 III 节、图 3、算法 1）
+
+![原文图 3](../assets/figures/simopt-adaptive-randomization/fig-3.webp)
+
+原文图 3；PDF 第 3 页。[查看原始来源](https://arxiv.org/pdf/1810.05687v4#page=3)
 
 保持策略 $\pi_i$ 固定，采样不同仿真参数并执行同一闭环策略，求解
 
@@ -70,6 +78,10 @@ $$
 
 完整协方差允许参数一起变化：图 9 显示关节柔顺性与阻尼之间出现相关性。作者解释为参数作用可相互补偿；因此能复现任务行为的参数分布不必对应唯一真实物理参数。
 
+![原文图 9](../assets/figures/simopt-adaptive-randomization/fig-9.webp)
+
+原文图 9；PDF 第 6 页。[查看原始来源](https://arxiv.org/pdf/1810.05687v4#page=6)
+
 ### 从轨迹代价到分布更新：一个简化推导
 
 为解释 REPS 的方向，暂时不限制新分布一定是高斯。令旧密度为 $p(\xi)$，新密度为 $q(\xi)$，固定策略下候选参数的轨迹代价为 $c(\xi)$。最小化 $\mathbb E_q[c]$ 并限制 $D_{KL}(q\Vert p)$，对约束引入正乘子 $\eta$，再加入 $\int q=1$ 的归一化约束。对 $q$ 求驻点得
@@ -92,6 +104,18 @@ $\lambda$ 是归一化约束的乘子，$Z$ 为归一化常数。低代价样本
 | 仿真间位置迁移，第 IV-C 节、图 6–7 | 抽屉侧向偏移 15 cm 和 22 cm，分别需要约 3 和 5 轮更新 | 从较窄可学习分布逐渐移到目标分布，有别于一开始覆盖整个范围 |
 | 真实摇摆插销，第 IV-D.1 节、图 8 | ABB Yumi；两轮更新后成功 18/20；每轮 3 条真实轨迹、3 次分布更新，每次 9,600 个仿真样本 | 支持软绳与刚体混合任务中的迁移 |
 | 真实抽屉，第 IV-D.2 节、图 8 | Franka Panda；一轮更新后成功 20/20；每轮 3 条真实轨迹、20 次分布更新，每次 9,600 个仿真样本 | 更新后夹爪更能保持与把手正交，避免手指受力张开 |
+
+![原文图 4](../assets/figures/simopt-adaptive-randomization/fig-4.webp)
+
+原文图 4；PDF 第 4 页。[查看原始来源](https://arxiv.org/pdf/1810.05687v4#page=4)
+
+![原文图 5、6](../assets/figures/simopt-adaptive-randomization/fig-5-6.webp)
+
+原文图 5、6；PDF 第 5 页。[查看原始来源](https://arxiv.org/pdf/1810.05687v4#page=5)
+
+![原文图 7、8](../assets/figures/simopt-adaptive-randomization/fig-7-8.webp)
+
+原文图 7、8；PDF 第 6 页。[查看原始来源](https://arxiv.org/pdf/1810.05687v4#page=6)
 
 真实观测由关节读数与 DART 深度跟踪得到；DART 需要对象的三维关节模型。策略输出七维关节速度，抽屉任务另加夹爪命令。摇摆插销的仿真奖励还使用孔位、角度对齐和是否完全插入，证明“不用真实奖励”依赖仿真奖励可计算。（第 IV-A、D 节）
 

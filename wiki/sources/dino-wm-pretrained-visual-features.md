@@ -23,6 +23,14 @@ topics: ["topics/world-models-and-representations", "topics/planning-and-control
 
 **研究问题。** 在只有预先收集的图像—动作轨迹、没有任务奖励时，能否学到可复用于新目标的世界模型，测试时再通过搜索得到行为？
 
+![原文图 1](../assets/figures/dino-wm-pretrained-visual-features/fig-1.webp)
+
+原文图 1；PDF 第 3 页。[查看原始来源](https://proceedings.mlr.press/v267/zhou25t.html#page=3)
+
+![原文图 2](../assets/figures/dino-wm-pretrained-visual-features/fig-2.webp)
+
+原文图 2；PDF 第 4 页。[查看原始来源](https://proceedings.mlr.press/v267/zhou25t.html#page=4)
+
 **方法贡献。** Gaoyue Zhou、Hengkai Pan、Yann LeCun、Lerrel Pinto 冻结 DINOv2 的空间图像块特征，训练动作条件化的 Transformer 预测下一帧特征，再让预测终态接近目标图像的特征。解码器仅用于可视化，任务执行不必生成视频，也不需要预学逆动力学或目标专用策略。
 
 **证据范围。** [ICML 2025 正式论文](https://proceedings.mlr.press/v267/zhou25t.html)在六类仿真环境和三组配置泛化实验中验证视觉目标规划。这里的「零样本」指学好环境动力学后为新目标直接规划，**不是零训练数据、无动作数据或全新现实世界的零适配控制**。

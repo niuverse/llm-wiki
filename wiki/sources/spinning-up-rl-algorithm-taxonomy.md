@@ -17,6 +17,10 @@ source_type: tutorial
 
 教程按环境模型的使用方式和学习对象组织 RL 方法，解释策略优化、Q 学习、两者结合，以及模型在规划、数据生成和策略中的作用。原文明确以 2018 年为背景；这里保留基础分类，不据此判断当前方法流行度。
 
+![强化学习算法分类](../assets/figures/spinning-up-rl-algorithm-taxonomy/web-01.svg)
+
+强化学习算法分类。[查看原始来源](https://spinningup.openai.com/en/latest/_images/rl_algorithms_9_15.svg)
+
 ## 核心主张
 
 - 是否使用环境模型是一个分类轴，学习策略、价值还是模型是另一个轴；简单树形分类无法表达全部组合。

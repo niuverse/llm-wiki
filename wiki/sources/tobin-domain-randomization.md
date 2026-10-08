@@ -24,6 +24,10 @@ topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 
 **研究问题：** 不追求照片级渲染，能否只用仿真标注训练物体定位网络，再让真实机器人据此抓取？Tobin 等把纹理、光照、相机和干扰物作为训练时的变化因素，检验真实图像能否落入网络已经学会处理的变化范围。
 
+![原文图 1](../assets/figures/tobin-domain-randomization/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://arxiv.org/pdf/1703.06907v1#page=1)
+
 **主要贡献：** 将视觉域随机化用于需要厘米级定位的桌面抓取，并分别消融训练样本、纹理数量、干扰物、相机、噪声和预训练。网络预测位置，现成运动规划器执行抓取，论文没有训练端到端操作策略。
 
 **结论范围：** 八种已知几何对象、480 张真实测试图像上，作者报告平均定位误差约 1.5 cm；从定位最稳定的两个对象中进行抓取，成功 38/40。多数实验使用 ImageNet 初始化，也有从头训练成功的结果，不能把所有实验概括为“完全没用真实图像预训练”。依据为 [原论文](https://arxiv.org/abs/1703.06907v1) 第 III–IV 节、表 I–II 与图 4–6；本页复核完整归档 v1。
@@ -31,6 +35,10 @@ topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ## 方法：把外观变化与位置标签分开
 
 训练输入是 $224\times224$ 单目 RGB 图像，标签是目标物体在世界坐标系中的位置 $(x,y,z)$。渲染时目标与干扰物的位置、纹理、光照和相机一起变化，位置标签由仿真直接取得。网络沿用 VGG-16 卷积层，把全连接层缩为 256 和 64 个单元，最后回归位置，使用位置误差的 $L_2$ 损失与 Adam 训练。这里的“检测”是已知目标的坐标回归，不是开放类别检测或完整六维位姿估计。（第 III 节、图 2）
+
+![原文图 2](../assets/figures/tobin-domain-randomization/fig-2.webp)
+
+原文图 2；PDF 第 4 页。[查看原始来源](https://arxiv.org/pdf/1703.06907v1#page=4)
 
 用本页的统一记号重述其监督学习目标：设 $q$ 是物体和场景配置，$\xi$ 是随机渲染参数，$\mathcal R(q,\xi)$ 是渲染图像，$y(q)$ 是真实位置，$d_\theta$ 是定位网络，则
 
@@ -70,7 +78,19 @@ $$
 | 纹理数量，图 5 | 固定 10,000 个训练样本时，少于 1,000 种纹理明显退化 | 场景位置变化不能替代足够的外观变化 |
 | Fetch 抓取，第 IV-D 节、图 6 | 两个定位最稳定对象共 38/40；Spam 罐配未见食品干扰物 9/10 | 支持定位加预设抓取规划的可行性；未见的是干扰物，不是任意目标类别 |
 
+![原文图 5](../assets/figures/tobin-domain-randomization/fig-5.webp)
+
+原文图 5；PDF 第 5 页。[查看原始来源](https://arxiv.org/pdf/1703.06907v1#page=5)
+
+![原文图 6](../assets/figures/tobin-domain-randomization/fig-6.webp)
+
+原文图 6；PDF 第 6 页。[查看原始来源](https://arxiv.org/pdf/1703.06907v1#page=6)
+
 表 II 的各模型使用 20,000 个训练样本；不能把它与表 I 各对象的最佳模型或图 4 的样本量曲线当作同一实验条件。
+
+![原文图 4](../assets/figures/tobin-domain-randomization/fig-4.webp)
+
+原文图 4；PDF 第 5 页。[查看原始来源](https://arxiv.org/pdf/1703.06907v1#page=5)
 
 ## 局限与我们的解释
 

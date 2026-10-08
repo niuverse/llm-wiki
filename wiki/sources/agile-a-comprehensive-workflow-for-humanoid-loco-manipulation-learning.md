@@ -22,9 +22,17 @@ topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 
 **研究问题：** 人形机器人策略在仿真中训练成功后，为什么验证、导出和硬件迁移仍然脆弱？Zhao 等把常见问题归为开发流程断裂与训练—部署接口不一致，提出 AGILE，把训练前检查、可复现训练、统一评估和部署描述文件接成闭环。
 
+![原文图 1](../assets/figures/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning/fig-1.webp)
+
+原文图 1；PDF 第 2 页。[查看原始来源](https://arxiv.org/pdf/2603.20147#page=2)
+
 **主要贡献：** 在 Isaac Lab 与 RSL-RL 之上组织一套工程框架，同时实现可独立开关的平滑正则、奖励归一化、终止处理、虚拟悬挂等训练模块。论文的中心贡献是流程与接口的统一，不是一个新的通用强化学习算法。
 
 **结论范围：** 案例覆盖 Unitree G1、Booster T1 的五类技能。运动跟踪的定量指标来自 MuJoCo，真实迁移主要是定性演示；GR00T N1.5 微调后的 90% 成功率来自 100 次闭环仿真测试。依据为 [原论文](https://arxiv.org/abs/2603.20147) 第 3–5 节、表 2–3 与图 4–8；本页完整复核归档 v1 的 18 页及附录，不把代码链接视为已独立审计的证据。
+
+![原文图 4](../assets/figures/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning/fig-4.webp)
+
+原文图 4；PDF 第 9 页。[查看原始来源](https://arxiv.org/pdf/2603.20147#page=9)
 
 ## 方法：让训练结果沿同一套接口进入评估与部署
 
@@ -92,6 +100,10 @@ $x_T$ 是终止状态，$\sigma>0$ 为固定偏移，论文各任务取 5。自�
 
 高度控制任务只让强化学习策略控制腿，训练时腰和上身跟随随机目标，但用有加减速限制的梯形速度曲线连接目标，避免瞬间跳变。部署时上身自由度交给独立 IK 或 VLA 控制器。若训练教师使用地形扫描、真实速度或接触等特权信息，再蒸馏为只使用硬件可得观测的 LSTM 或历史 MLP 学生。（第 3.3.2、4.2 节、图 3）
 
+![原文图 3](../assets/figures/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning/fig-3.webp)
+
+原文图 3；PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2603.20147#page=7)
+
 此外还有观测—动作镜像增强、低速平衡指令采样、缓存跌倒初态等模块；它们都是可选工具，原文没有主张所有任务都必须全部启用。
 
 ## 实验与消融：结果在哪个环境成立
@@ -106,7 +118,15 @@ $x_T$ 是终止状态，$\sigma>0$ 为固定偏移，论文各任务取 5。自�
 | 虚拟悬挂，图 7(c) | G1 速度＋高度控制，5 个种子，前 2,000 轮撤除辅助 | 更快离开负奖励阶段，最终奖励更高 |
 | 对称增强，图 7(d) | T1 速度跟踪，5 个种子 | 奖励改善较小；作者强调行为对称性未由奖励曲线充分刻画 |
 
+![原文图 6](../assets/figures/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning/fig-6.webp)
+
+原文图 6；PDF 第 12 页。[查看原始来源](https://arxiv.org/pdf/2603.20147#page=12)
+
 图 7 的阴影通常为一倍标准差，但终止实验是最小—最大范围，不能统一当作同一种误差条。
+
+![原文图 7](../assets/figures/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning/fig-7.webp)
+
+原文图 7；PDF 第 13 页。[查看原始来源](https://arxiv.org/pdf/2603.20147#page=13)
 
 ### 确定性评估与随机评估
 
@@ -118,7 +138,15 @@ $x_T$ 是终止状态，$\sigma>0$ 为固定偏移，论文各任务取 5。自�
 
 第 4.5 节冻结下身移动策略，让右臂和腰部的强化学习专家用特权状态学习抓放，再生成 **100 条成功示范** 微调 GR00T N1.5。视觉—语言策略替换专家输入后，在 **100 个随机初始机器人状态的闭环仿真测试中成功 90%**，不能记为真实机器人 VLA 成功率。（图 5）
 
+![原文图 5](../assets/figures/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning/fig-5.webp)
+
+原文图 5；PDF 第 11 页。[查看原始来源](https://arxiv.org/pdf/2603.20147#page=11)
+
 表 2 给出的单张 L40 训练时间约为：移动与高度控制 10 小时、G1／T1 起身 25／15 小时、运动模仿 6 小时、抓放 10 小时。第 5.2 节概括为五类任务实现硬件迁移，但图 8 直接呈现的是速度、高度、起身和舞蹈；抓放／VLA 的定量证据仍是上述仿真测试。没有外部动作捕捉系统，不能从演示反推出真实跟踪误差、失败概率或能耗。
+
+![原文图 8](../assets/figures/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning/fig-8.webp)
+
+原文图 8；PDF 第 14 页。[查看原始来源](https://arxiv.org/pdf/2603.20147#page=14)
 
 ## 局限与我们的解释
 

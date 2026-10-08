@@ -20,6 +20,10 @@ source_type: documentation
 
 MuJoCo 官方计算章从 $M\dot v+c=\tau+J^Tf$ 连接执行器、连续动力学、柔性约束、接触求解、积分及仿真数据一致性。本轮完整阅读固定 3.8.0 文档，保留原来源页 ID；机制分别整理到 [[RobotRigidBodyDynamics|刚体动力学]]、[[SimulationTimeStepping|步长与控制频率]] 和 [[ContactSolvers|接触求解器]]。
 
+![接触坐标系与摩擦锥基底](../assets/figures/mujoco-computation-collision-detection/web-01.svg)
+
+接触坐标系与摩擦锥基底。[查看原始来源](https://mujoco.readthedocs.io/en/3.8.0/_images/contact_frame.svg)
+
 ## 核心主张
 
 - 广义位置与速度可能不同维：球关节和自由关节以四元数表示姿态，而角速度只有三维；不能直接做普通数组差分与加法。
@@ -29,6 +33,22 @@ MuJoCo 官方计算章从 $M\dot v+c=\tau+J^Tf$ 连接执行器、连续动力�
 - 碰撞对由宽相、刚体内包围盒树及过滤规则筛选；普通非凸网格在碰撞中用凸包表示，通常应分解成多个凸几何体。
 - 原生 GJK/EPA 与旧 libccd/MPR 的距离查询和多接触点行为不同；单次多接触生成仅支持相应几何与接触边距条件。
 - `mj_step` 推进状态后，部分派生量仍对应先前状态。保存全部积分状态、版本和体系结构，才可讨论确定性重放。
+
+![投影 Gauss–Seidel 求解的几何示意](../assets/figures/mujoco-computation-collision-detection/web-02.svg)
+
+投影 Gauss–Seidel 求解的几何示意。[查看原始来源](https://mujoco.readthedocs.io/en/3.8.0/_images/gPGS.svg)
+
+![约束岛与稀疏矩阵分块](../assets/figures/mujoco-computation-collision-detection/web-03.svg)
+
+约束岛与稀疏矩阵分块。[查看原始来源](https://mujoco.readthedocs.io/en/3.8.0/_images/island.svg)
+
+![柔性接触的势能形状](../assets/figures/mujoco-computation-collision-detection/web-04.webp)
+
+柔性接触的势能形状。[查看原始来源](https://mujoco.readthedocs.io/en/3.8.0/_images/softcontact.png)
+
+![凸体碰撞检测示意（动图）](../assets/figures/mujoco-computation-collision-detection/web-05.webp)
+
+凸体碰撞检测示意（动图）。[查看原始来源](https://mujoco.readthedocs.io/en/3.8.0/_images/ccd_light.gif)
 
 ## 版本刷新记录
 

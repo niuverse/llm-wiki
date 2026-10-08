@@ -46,6 +46,10 @@ topics: ["topics/robot-policy-learning", "topics/world-models-and-representation
 
 模型为四种目标分别学习任务嵌入，缺少的动作或未来视觉模态由可学习占位标记代替。例如策略任务输入含噪动作和未来视觉占位标记；视觉预测任务输入含噪未来特征和动作占位标记。按目标启用对应输出损失。（§III-B，图 2）
 
+![原文图 2](../assets/figures/lda-1b-scaling-latent-dynamics-action-model/fig-2.webp)
+
+原文图 2；PDF 第 3 页。[查看原始来源](https://arxiv.org/pdf/2602.12215#page=3)
+
 若 $x$ 是动作或未来特征，$\epsilon$ 是同形状高斯噪声，$v_\theta$ 是模型预测的去噪向量场，则原文式 1 的核心监督为：
 
 $$
@@ -105,6 +109,14 @@ flowchart LR
 | 视觉／空间变化 | 新物体 60%、新背景 60%、分布外位置 40% | 表 III；图注称三项均为 60%，与表格不符，应保留冲突而采用逐格值描述 |
 | 数据与模型扩展 | 在留出的 Agibot World 子集上，扩大数据、目标与参数降低动作 L1 误差 | §V-C、图 10；主要纵轴是离线动作误差，不能写成等量的闭环成功率改善 |
 
+![原文图 6](../assets/figures/lda-1b-scaling-latent-dynamics-action-model/fig-6.webp)
+
+原文图 6；PDF 第 6 页。[查看原始来源](https://arxiv.org/pdf/2602.12215#page=6)
+
+![原文图 10](../assets/figures/lda-1b-scaling-latent-dynamics-action-model/fig-10.webp)
+
+原文图 10；PDF 第 8 页。[查看原始来源](https://arxiv.org/pdf/2602.12215#page=8)
+
 真机使用 Galbot G1 夹爪／22 自由度 SharpaWave 手，以及 Unitree G1 的 10 自由度 BrainCo 手。策略主要使用头部第一视角 RGB。主要对照在过滤后的专家子集微调，LDA 使用全部混合质量轨迹，因此系统比较同时改变了数据使用方式；它支持整套方案收益，不能单独证明网络结构造成全部差距。（§V-B、附录 C）
 
 ### 真机图表的指标必须逐任务解释
@@ -117,13 +129,29 @@ flowchart LR
 | Pull Nail 80%，π0.5 为 0% | 10 次试验，定位／单爪移除／完整移除分别计 0.25／0.5／1 | 图 7、表 VIII |
 | Flip Bread 90%，两基线 10% | 10 次试验，首次翻成功计 1，第二次计 0.5，否则 0 | 图 7、表 VIII |
 
+![原文图 7](../assets/figures/lda-1b-scaling-latent-dynamics-action-model/fig-7.webp)
+
+原文图 7；PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2602.12215#page=7)
+
 夹爪任务大多只有 10 次试验，敲击任务 60 次；灵巧手瓶子和笔记本任务 20 次，其余 10 次。表 VII 规定 200 秒超时。图上的同一“Success Rate”标题掩盖了不同分母和部分完成规则，跨任务均值需要谨慎解释。
 
 ## 局限与原文口径问题
 
 作者在 §VI 承认固定 DINO 特征、主要第一视角输入与人工数据分工的局限。图 9／16 的特征可视化和图 11 的动作条件注意力差值是定性分析，不能验证因果模型正确性或物理约束满足度；附录中“动力学建模是可靠控制必要条件”的措辞也超出了有限基线对照能证明的范围。
 
+![原文图 9](../assets/figures/lda-1b-scaling-latent-dynamics-action-model/fig-9.webp)
+
+原文图 9；PDF 第 8 页。[查看原始来源](https://arxiv.org/pdf/2602.12215#page=8)
+
+![原文图 11](../assets/figures/lda-1b-scaling-latent-dynamics-action-model/fig-11.webp)
+
+原文图 11；PDF 第 9 页。[查看原始来源](https://arxiv.org/pdf/2602.12215#page=9)
+
 参数口径尚不完全透明：图 1 写 1.6B，表 I 写排除冻结组件后的可训练 1B，附录 A 指定 Qwen3-VL-4B-Instruct 并在微调时解冻。因此不能简单将 1.6B 写为包含所有组件的部署总参数，也不能把预训练的 1B 可训练参数套到微调阶段。表 II 的增强对照名为 GR00T-EI30k，正文／附录名为 GR00T-EI10k；共同描述是 EI-30K 的高质量子集。本页按这一共同定义引用，保留命名差异。
+
+![原文图 1](../assets/figures/lda-1b-scaling-latent-dynamics-action-model/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://arxiv.org/pdf/2602.12215#page=1)
 
 ## 我们的解释与关联
 

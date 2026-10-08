@@ -17,6 +17,10 @@ source_type: tutorial
 
 OpenAI 的基础教程定义状态、观测、动作、策略、轨迹、回报、价值函数和 MDP，并连接交互循环与期望回报优化。页面标有 2018 年版权和修订号 `038665d6`，此处记录 2026-09-30 获取的快照，不将其视为最新算法综述。
 
+![智能体与环境的交互循环](../assets/figures/spinning-up-rl-key-concepts/web-01.webp)
+
+智能体与环境的交互循环。[查看原始来源](https://spinningup.openai.com/en/latest/_images/rl_diagram_transparent_bg.png)
+
 ## 核心主张
 
 - 状态是完整描述，观测可以只包含部分信息；策略在实际系统中可能只能读取观测。

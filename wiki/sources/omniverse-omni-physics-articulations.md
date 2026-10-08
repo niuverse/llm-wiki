@@ -19,6 +19,10 @@ source_type: documentation
 
 这是 [[NVIDIA|NVIDIA]] Omni 物理文档中的关节系统页面，最后更新时间为 2026-05-01。它说明 [[omniverse-omni-physics-articulations|PhysX]] 如何用约化坐标关节系统（约化坐标关节系统）模拟由关节连接的刚体，并给出 USD / PhysX API 层面的根部放置、关节状态、驱动器 envelope、关节摩擦、闭环 breaking、mimic 关节和 tendons rules。
 
+![关节系统示例](../assets/figures/omniverse-omni-physics-articulations/web-01.webp)
+
+关节系统示例。[查看原始来源](https://docs.omniverse.nvidia.com/kit/docs/omni_physics/latest/_images/ext_physics-articulation_examples.png)
+
 本页对 Isaac Sim / PhysX 机器人仿真的价值在于：它把“关节系统只是 jointed 刚体的加速实现”纠正为一个更具体的建模选择。关节系统用根部机体和关节角度表达配置，而不是让每个链接拥有独立世界位姿；这带来 zero 关节错误由设计和更好的质量比率处理，但也要求拓扑基本是树，并引入根部选择、闭环处理、关节限制、mimic 柔顺性和张量 API access 等约束。
 
 ## 核心主张
@@ -33,6 +37,10 @@ source_type: documentation
 - 关节系统关节本身不支持闭环；闭链关节需要作为 regular 关节并标记 `excludeFromArticulation`。闭环关节系统更难求解，来源建议降低仿真时间步并参考稳定性指南。
 - Mimic 关节用 $q_A + Gq_B + \gamma = 0$ 约束两个 DOF，适合 gear / rack-与-pinion；gripper 接触中硬 mimic 约束可能和硬接触竞争，来源建议用自然频率和阻尼比率添加柔顺性。
 - 肌腱是关节系统内部约束：固定肌腱约束关节位置的加权和；空间肌腱通过附着点之间的视线距离，建模液压执行器、人工肌肉或弹性绳索类机构。
+
+![闭环中的关节系统边与额外约束](../assets/figures/omniverse-omni-physics-articulations/web-02.webp)
+
+闭环中的关节系统边与额外约束。[查看原始来源](https://docs.omniverse.nvidia.com/kit/docs/omni_physics/latest/_images/closed_loops_sketch.png)
 
 ## 关键引文
 

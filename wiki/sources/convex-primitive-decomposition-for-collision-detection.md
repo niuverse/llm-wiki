@@ -23,6 +23,10 @@ topics: ["topics/physics-simulation", "topics/collision-geometry"]
 
 **研究问题。** 自动碰撞体为什么一定要是一组任意凸包？盒体、球体、胶囊体等参数基元更容易编辑，也可能得到引擎的专用加速；困难在于如何自动紧贴复杂输入。
 
+![原文图 1](../assets/figures/convex-primitive-decomposition-for-collision-detection/fig-1.webp)
+
+原文图 1；PDF 第 2 页。[查看原始来源](https://arxiv.org/pdf/2602.07369#page=2)
+
 **核心贡献。** 将每个面初始化为被凸基元包住的区域，利用可相加的法向矩阵估计方向，再以合并后新增体积为代价，自底向上合并为少量参数基元。支持盒体、球体、胶囊体、圆柱体、截锥体和等腰梯形棱柱。[原文第 3 节](https://arxiv.org/abs/2602.07369)
 
 **关键证据。** 在 60 多个主要来自 Sketchfab 的模型上，平均单向 Hausdorff／Chamfer 距离和估算存储字节数优于所比较的 CoACD、V-HACD 设置；24 个模型的 Rapier 落球实验展示相当或更低帧耗时。数量少不是唯一解释：很多输出的基元数反而多于基线凸包数。
@@ -44,6 +48,10 @@ $C$ 是当前合并的面集合，$\varepsilon$ 控制切向项；原文也使�
 
 位置和尺寸仍由该簇顶点计算。先沿候选轴求最大／最小投影得到定向包围盒；再以该中心与各轴尝试其他基元，逐点扩张参数以包住簇中顶点。凸性保证一个面的全部顶点被包住时，该面也被包住。因此算法按**面**初始化而非只按顶点：只包住每个顶点的小球会在面内部留下缺口，图 12 展示这种失败。
 
+![原文图 12、13](../assets/figures/convex-primitive-decomposition-for-collision-detection/fig-12-13.webp)
+
+原文图 12、13；PDF 第 12 页。[查看原始来源](https://arxiv.org/pdf/2602.07369#page=12)
+
 ### 怎样读懂这个 $3\times3$ 矩阵
 
 以下是对第 3.1 节公式的教学展开。对任意单位方向 $u$，忽略切向修正时：
@@ -53,6 +61,10 @@ u^\top Q_Cu=\sum_{f\in C}A_f(n_f^\top u)^2.
 $$
 
 它统计面法向沿 $u$ 的面积加权投影能量。因此最大特征向量寻找“最多表面朝向的方向”，最小特征向量寻找“最少法向指向的方向”。若全部面平行于 $xy$ 平面，$Q_C=\operatorname{diag}(0,0,\sum_fA_f)$，最大特征向量就是 $z$ 轴；但平面内的两轴无法仅靠它区分。圆柱侧面法向绕轴分布，却很少沿轴，最小特征向量于是可以揭示柱轴。切向项用于缓解部分平面内歧义，但也会改变方向偏好，论文第 3.4 节与图 10 对此做了讨论。
+
+![原文图 10](../assets/figures/convex-primitive-decomposition-for-collision-detection/fig-10.webp)
+
+原文图 10；PDF 第 11 页。[查看原始来源](https://arxiv.org/pdf/2602.07369#page=11)
 
 还可看出 $(-n)(-n)^\top=nn^\top$：这个方向统计不区分法向正负。它保留的是朝向分布，既没有保存顶点位置，也没有编码“这里是物体内部”。所以必须再用原始顶点求中心、尺寸与覆盖范围，不能把 $Q_C$ 直接当作一个完整碰撞体。
 
@@ -79,6 +91,10 @@ h=\max_{p\in P_C}a^\top(p-c)-\min_{p\in P_C}a^\top(p-c).
 $$
 
 $r$ 与 $h$ 分别决定半径和高度；球体取到中心的最大距离，盒体取三个方向的投影范围。胶囊体考虑球形端部；截锥体和梯形棱柱逐步调整两端尺寸，附录算法 2–3 给出过程。每个形状只需支持体积计算、给定方向初始化和逐点扩大包覆，因而可扩展形状族。**这里选择的是有限候选轴上的包覆近似，不是全方向最小体积基元的精确优化。** [第 3.2 节、图 2]
+
+![原文图 2](../assets/figures/convex-primitive-decomposition-for-collision-detection/fig-2.webp)
+
+原文图 2；PDF 第 5 页。[查看原始来源](https://arxiv.org/pdf/2602.07369#page=5)
 
 ### 为什么用新增体积排序
 
@@ -117,11 +133,39 @@ $V$ 表示基元体积。优先队列每次选择代价最低的相邻合并，�
 | 图 16，交集代价 | 原代价 1.29 秒；密集交集采样 523.53 秒，稀疏采样 34.045 秒，几何差异很小 | 更精确的局部体积估计在该案例不值得其成本；正文“至少 30 倍”不完全对应图中稀疏配置的约 26 倍，宜保留原始数字 |
 | 图 7、9 | 更粗目标需更多合并；实测时间随面数近似线性，但最坏情况可达二次复杂度 | 细分输出生成更快并不矛盾；经验扩展性不是线性复杂度证明 |
 
+![原文图 7](../assets/figures/convex-primitive-decomposition-for-collision-detection/fig-7.webp)
+
+原文图 7；PDF 第 10 页。[查看原始来源](https://arxiv.org/pdf/2602.07369#page=10)
+
+![原文图 9](../assets/figures/convex-primitive-decomposition-for-collision-detection/fig-9.webp)
+
+原文图 9；PDF 第 11 页。[查看原始来源](https://arxiv.org/pdf/2602.07369#page=11)
+
+![原文图 11](../assets/figures/convex-primitive-decomposition-for-collision-detection/fig-11.webp)
+
+原文图 11；PDF 第 11 页。[查看原始来源](https://arxiv.org/pdf/2602.07369#page=11)
+
+![原文图 14](../assets/figures/convex-primitive-decomposition-for-collision-detection/fig-14.webp)
+
+原文图 14；PDF 第 12 页。[查看原始来源](https://arxiv.org/pdf/2602.07369#page=12)
+
+![原文图 16](../assets/figures/convex-primitive-decomposition-for-collision-detection/fig-16.webp)
+
+原文图 16；PDF 第 13 页。[查看原始来源](https://arxiv.org/pdf/2602.07369#page=13)
+
 **比较限制。** 作者逐模型手动选择基元目标数量，并在部分形状调整权重或切向项；基线也存在个别参数调整。仿真相似性主要靠人工观察，帧耗时同时受碰撞算法成本和落球行为变化影响。论文提供有用工程证据，但不是统一精度、统一输出预算、跨引擎的严格排名。[第 4–5 节]
 
 ## 局限与我们的解释
 
 **作者列出的失败情形。** 内部面会污染方向估计，导致外层立方体未恢复为紧包围盒（图 17）；共面区域会退化或过度合并；小拓扑变化能改变输出；有机曲面需更多基元才能表达高频细节。附录图 22 还对一个复杂场景额外删除极薄盒体，因此“始终包住所有输入表面”的构造性质不能无条件套到该后处理之后。
+
+![原文图 17](../assets/figures/convex-primitive-decomposition-for-collision-detection/fig-17.webp)
+
+原文图 17；PDF 第 13 页。[查看原始来源](https://arxiv.org/pdf/2602.07369#page=13)
+
+![原文图 22](../assets/figures/convex-primitive-decomposition-for-collision-detection/fig-22.webp)
+
+原文图 22；PDF 第 23 页。[查看原始来源](https://arxiv.org/pdf/2602.07369#page=23)
 
 **我们的解释。** 这篇论文支持把“输出形状种类 × 引擎支持 × 接触行为”一起评估。对精细机器人抓握、插入或滚动接触，落球与视觉检查不足以证明法向、间隙和任务动力学正确；这些用途仍需任务级证据。它与 [[coacd-approximate-convex-decomposition|CoACD]] 的比较应保留输入要求差异：前者可直接覆盖开放表面，后者主体假设实体流形并强调功能性凹陷。
 

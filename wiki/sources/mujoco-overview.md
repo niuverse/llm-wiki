@@ -17,6 +17,10 @@ source_type: documentation
 
 MuJoCo 官方总览把模型编译、运行状态、广义坐标、执行器、几何、传感器和接触放在同一计算框架中。此处归档的是 2026-09-30 获取的 `stable` 页面；具体行为应按文档与实际安装版本核对。
 
+![MuJoCo 最小场景](../assets/figures/mujoco-overview/web-01.webp)
+
+MuJoCo 最小场景。[查看原始来源](https://mujoco.readthedocs.io/en/stable/_images/hello.png)
+
 ## 核心主张
 
 - `mjModel` 保存编译后的模型描述，`mjData` 保存时变状态与中间结果；`mj_step` 推进一个物理时间步。
@@ -25,6 +29,10 @@ MuJoCo 官方总览把模型编译、运行状态、广义坐标、执行器、�
 - 执行器由传动、激活动力学与力生成组成；控制输入经执行器映射后才成为广义力。
 - 接触采用软约束与凸优化表述。缓慢滑移可能来自模型柔顺性，而非摩擦系数不足或求解器未收敛。
 - 仿真发散需要检查时间步、积分器和初始穿透；单位必须自洽，运行时角量使用弧度。
+
+![刚体、几何体与站点的关系](../assets/figures/mujoco-overview/web-02.webp)
+
+刚体、几何体与站点的关系。[查看原始来源](https://mujoco.readthedocs.io/en/stable/_images/bodygeomsite.png)
 
 ## 关键引文
 

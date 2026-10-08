@@ -6,7 +6,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
-from health import check_research_structure, frontmatter_list
+from health import check_research_structure, frontmatter_list, check_local_images
 
 
 HEALTH = Path(__file__).with_name("health.py")
@@ -103,6 +103,24 @@ class ResearchStructureTests(unittest.TestCase):
     def test_topic_cannot_be_nested_under_another_topic(self):
         issues = self.check_memberships('[]', domain="topics/learning")
         self.assertIn("no mandatory parent", issues[0]["issue"])
+
+
+class LocalImageTests(unittest.TestCase):
+    def test_only_vault_local_images_are_portable(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "wiki/sources").mkdir(parents=True)
+            (root / "wiki/assets").mkdir()
+            (root / "raw").mkdir()
+            (root / "wiki/assets/figure.webp").write_bytes(b"image")
+            (root / "raw/figure.webp").write_bytes(b"image")
+            page = root / "wiki/sources/paper.md"
+            page.write_text("![ok](../assets/figure.webp)\n![missing](../assets/missing.webp)\n"
+                            "![outside](../../raw/figure.webp)\n![remote](https://example.com/image.png)\n"
+                            "```markdown\n![example](missing.png)\n```", encoding="utf-8")
+            errors = check_local_images(root, [page])
+            self.assertEqual(len(errors), 3)
+            self.assertNotIn("../assets/figure.webp", [error["target"] for error in errors])
 
 
 if __name__ == "__main__":

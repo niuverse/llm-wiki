@@ -23,6 +23,10 @@ topics: ["topics/robot-policy-learning", "topics/world-models-and-representation
 
 **研究问题。** 在机器人示范中，只学动作会忽略视觉变化；只学未来图像又不能保证控制有效。能否让未来预测直接参与动作计算，并在同一网络内接受动作监督？
 
+![原文图 1](../assets/figures/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://proceedings.iclr.cc/paper_files/paper/2025/hash/e5b5c402bb7bd5e60bede6961d6fe39e-Abstract-Conference.html#page=1)
+
 **方法贡献。** 预测逆动力学模型（PIDM）的具体实现 Seer，用 `[FRS]` 标记承载未来视觉预测，用 `[INV]` 标记读取当前历史和预测未来表示并输出动作块。单向注意力连接这两类标记；执行时无需先生成完整未来图像再交给另一个模型。（§3，图 2）
 
 **证据结论。** 联合训练和机器人数据预训练均改善本文实验。CALVIN 的 4.28 属于 **Seer-Large**，标准 Seer 是 3.98；真机四项主要任务均值为 78.4%，六任务均值为 71.1%。这些数字不能混为同一模型、同一任务集合的得分。（表 2、4、A-IV）
@@ -52,6 +56,10 @@ $$
 ### 注意力结构怎样接通视觉与动作
 
 MAE 预训练 ViT 编码图像，Perceiver Resampler 压缩图像标记；CLIP 编码语言，MLP 编码机器人状态。GPT-2 风格主干在各时刻加入两种读出标记：`[FRS]` 读取目标、观测和状态，`[INV]` 还可以读取 `[FRS]`，反向读取被屏蔽。ViT 解码器重建未来图像，MLP 动作头输出末端六维动作与夹爪命令。（图 2、附录 A.1–A.2）
+
+![原文图 2](../assets/figures/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation/fig-2.webp)
+
+原文图 2；PDF 第 4 页。[查看原始来源](https://proceedings.iclr.cc/paper_files/paper/2025/hash/e5b5c402bb7bd5e60bede6961d6fe39e-Abstract-Conference.html#page=4)
 
 ```mermaid
 flowchart LR
@@ -100,6 +108,14 @@ $$
 | 跨机器人预训练 | 去除 Franka 的 OXE 子集预训练：六任务均值 56.7%；从头 53.3%；DROID 71.1% | 表 A-IV；OXE 的堆杯、按按钮反而下降，跨形态收益明显弱于同形态数据 |
 
 图 3 还显示较少下游数据时的预训练收益和测试范围内的模型规模收益，但没有给出跨模型家族、跨数据分布的统一尺度律。图 5 的干扰测试覆盖相同形状不同颜色物体、自然背景、新物体与附加光源；其中自然背景堆杯虽从 6.67% 提高到 33.3%，仍体现明显失效空间。
+
+![原文图 3](../assets/figures/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation/fig-3.webp)
+
+原文图 3；PDF 第 7 页。[查看原始来源](https://proceedings.iclr.cc/paper_files/paper/2025/hash/e5b5c402bb7bd5e60bede6961d6fe39e-Abstract-Conference.html#page=7)
+
+![原文图 5](../assets/figures/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation/fig-5.webp)
+
+原文图 5；PDF 第 10 页。[查看原始来源](https://proceedings.iclr.cc/paper_files/paper/2025/hash/e5b5c402bb7bd5e60bede6961d6fe39e-Abstract-Conference.html#page=10)
 
 ## 局限与证据质量
 

@@ -26,6 +26,10 @@ code_files:
 
 MuJoCo Playground 提供以 MJX 为基础的机器人学习环境和训练入口，覆盖经典控制、移动、操作与视觉任务。固定提交支持 MJX 的 JAX 与 Warp 实现；`--impl warp` 选择物理执行实现，本页核查的训练入口仍然是 JAX/Brax PPO，并不会因此变成 PyTorch 训练。下面沿状态 Cartpole 的一次训练解释环境、包装器和训练器的分工；本次只做静态源码阅读，没有编译环境、训练或测量速度。
 
+![官方仓库配图](../assets/figures/mujoco-playground-repository/readme-overview.webp)
+
+官方仓库配图。[查看原始来源](https://raw.githubusercontent.com/google-deepmind/mujoco_playground/33f1b2843a7ec5537c4882177aa2a9f236e9b692/assets/banner.png)
+
 ## 配置怎样进入训练
 
 `train_jax_ppo.py` 先由任务注册模块加载环境配置，再选相应任务族的 PPO 配置，将用户明确设置的命令行参数覆盖进去；构造环境后，根据状态或视觉输入选择网络工厂，并将 `wrapper.wrap_for_brax_training` 传给外部 Brax 训练函数。训练完成后，入口构造推理函数，采样轨迹并可用 MuJoCo 渲染视频。（入口第 185–456 行）

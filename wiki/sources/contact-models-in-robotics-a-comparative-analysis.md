@@ -23,6 +23,10 @@ topics: ["topics/physics-simulation", "topics/contact-modeling"]
 
 **研究问题。** 仿真器给出不同接触行为，究竟来自接触定律的简化，还是求解器没有解准？怎样在固定其他部件时分别评价？
 
+![原文图 1](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-1.webp)
+
+原文图 1；PDF 第 1 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=1)
+
 **核心贡献。** 从单边接触、Coulomb 摩擦和最大耗散原理出发，对照 LCP、CCP、RaiSim 类模型和完整非线性互补问题（NCP）；用统一 C++ 框架 ContactBench 重实现求解器，分别检查物理残差、步长一致性、耗时和四足 MPC 行为。[原文第 II–IV 节](https://arxiv.org/abs/2304.06372)
 
 **核心结论。** 模型可因松弛而稳定收敛到不同物理规律，较完整模型也可因数值迭代失败而给出错误轨迹。平坦高摩擦场景可能掩盖差异，崎岖低摩擦场景会放大差异。没有一个被测方案同时在准确性、鲁棒性与效率上全面占优。
@@ -105,6 +109,62 @@ ADMM 通过全局线性求解、锥投影和对偶更新处理接触耦合；近
 
 论文的重要设计是固定 Pinocchio 动力学与 HPP-FCL 碰撞输入，再改变接触表述和求解策略。这样图 3–16 的差异更容易归因于接触模型、数值算法与任务条件，而不是不同引擎同时改变碰撞形状、积分器与接触参数。[第 IV 节，ContactBench 实验设置]
 
+![原文图 3](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-3.webp)
+
+原文图 3；PDF 第 4 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=4)
+
+![原文图 4](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-4.webp)
+
+原文图 4；PDF 第 5 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=5)
+
+![原文图 5](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-5.webp)
+
+原文图 5；PDF 第 6 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=6)
+
+![原文图 6](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-6.webp)
+
+原文图 6；PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=7)
+
+![原文图 7](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-7.webp)
+
+原文图 7；PDF 第 9 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=9)
+
+![原文图 8](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-8.webp)
+
+原文图 8；PDF 第 11 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=11)
+
+![原文图 9](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-9.webp)
+
+原文图 9；PDF 第 12 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=12)
+
+![原文图 12](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-12.webp)
+
+原文图 12；PDF 第 12 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=12)
+
+![原文图 10](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-10.webp)
+
+原文图 10；PDF 第 12 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=12)
+
+![原文图 11](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-11.webp)
+
+原文图 11；PDF 第 12 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=12)
+
+![原文图 13](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-13.webp)
+
+原文图 13；PDF 第 13 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=13)
+
+![原文图 14](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-14.webp)
+
+原文图 14；PDF 第 14 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=14)
+
+![原文图 15](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-15.webp)
+
+原文图 15；PDF 第 14 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=14)
+
+![原文图 16](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-16.webp)
+
+原文图 16；PDF 第 14 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=14)
+
 下图按上述机制重画，用于说明信息流：
 
 ```mermaid
@@ -131,7 +191,15 @@ ContactBench 固定 Pinocchio 刚体动力学和 HPP-FCL 碰撞检测。默认�
 | 图 16–17 | Solo、Talos、Allegro 手动态接触；冷启动／热启动 | PGS 较快到达中等精度但可能停滞；全局方法单轮更贵，热启动明显缩小耗时差距 |
 | 图 18–19 | Solo-12 MPC：平坦 $\mu=0.9$；崎岖粗糙度 0.1 米、$\mu=0.3$ | 前者主要粘着，控制速度接近；后者滑动与求解困难使高层速度明显分化，NCP/PGS 也偶有未收敛 |
 
+![原文图 18、19](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-18-19.webp)
+
+原文图 18、19；PDF 第 15 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=15)
+
 图 17 的停止判据对应各自模型，且可能提前停止，所以该图只展示该协议的计算成本，**不能独自证明谁以相同物理精度更快**。MPC 场景也没有与真实硬件轨迹逐一对齐；它支持仿真选择会改变控制行为，不直接量化真实迁移成功率。
+
+![原文图 17](../assets/figures/contact-models-in-robotics-a-comparative-analysis/fig-17.webp)
+
+原文图 17；PDF 第 14 页。[查看原始来源](https://arxiv.org/pdf/2304.06372#page=14)
 
 ## 局限与我们的解释
 

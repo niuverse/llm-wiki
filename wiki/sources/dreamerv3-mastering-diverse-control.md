@@ -31,6 +31,10 @@ topics: ["topics/world-models-and-representations", "topics/planning-and-control
 
 令 $x_t$ 为观测，$a_t$ 为动作，$r_t$ 为奖励，$c_t\in\{0,1\}$ 为回合继续标记；确定性记忆 $h_t$ 与随机潜在变量 $z_t$ 合成模型状态 $s_t=(h_t,z_t)$。世界模型为 RSSM：
 
+![原文图 1](../assets/figures/dreamerv3-mastering-diverse-control/web-01.webp)
+
+原文图 1。[查看原始来源](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-025-08744-2/MediaObjects/41586_2025_8744_Fig1_HTML.png)
+
 $$
 h_t=f_\phi(h_{t-1},z_{t-1},a_{t-1}),\quad
 z_t\sim q_\phi(z_t\mid h_t,x_t),\quad
@@ -42,6 +46,10 @@ $$
 ### 世界模型的三种压力
 
 用 $q_t,p_t$ 简写当步后验与先验，$\operatorname{sg}$ 为停止梯度：
+
+![原文图 3](../assets/figures/dreamerv3-mastering-diverse-control/web-03.webp)
+
+原文图 3。[查看原始来源](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-025-08744-2/MediaObjects/41586_2025_8744_Fig3_HTML.png)
 
 $$
 \mathcal L_{\rm model}=\mathbb E\sum_t
@@ -103,6 +111,10 @@ $$
 \operatorname{symexp}(x)=\operatorname{sign}(x)(\exp(|x|)-1).
 $$
 
+![原文图 6](../assets/figures/dreamerv3-mastering-diverse-control/web-06.webp)
+
+原文图 6。[查看原始来源](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-025-08744-2/MediaObjects/41586_2025_8744_Fig6_HTML.png)
+
 变换在原点附近近似恒等，在大幅度处压缩正负数值。奖励和价值则用 **symexp 间隔的桶**及双桶软标签训练：真实标量位于相邻桶之间时，按距离分配两个权重，最小化交叉熵；读出时按桶位置的概率加权平均得到连续预测。正式版的这套读出应与早期版本区分，不能统一改写成「先预测 symlog 均值，再 symexp」。图像重建也不应笼统说成所有像素都做同一种向量 symlog 处理（“Robust predictions”“Methods / Distributions”）。
 
 **双桶回归如何稳定梯度？**令相邻实际桶位置为 $b_k\le y\le b_{k+1}$，目标权重为
@@ -128,6 +140,18 @@ Nature 版还使用分块 GRU、RMSNorm、SiLU、自适应梯度裁剪与 LaProp
 | 稳定性组件的价值 | 图 6a，14 个任务 | KL 平衡和最低信息阈值作用最突出，其次是回报归一化与双桶回归；单个组件只在部分任务上关键 |
 | 表示依赖什么学习信号 | 图 6b | 阻断重建梯度的损害较大，支持该模型对无监督表示目标的依赖；不能解释成训练完全不需要奖励 |
 | 更大模型与更多重放 | 图 6c–d | Crafter 与一个 DMLab 任务，6 种模型规模 12M–400M；扩大规模和重放量改善性能／数据效率，不是所有任务上的普遍规模定律 |
+
+![原文图 2](../assets/figures/dreamerv3-mastering-diverse-control/web-02.webp)
+
+原文图 2。[查看原始来源](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-025-08744-2/MediaObjects/41586_2025_8744_Fig2_HTML.png)
+
+![原文图 4](../assets/figures/dreamerv3-mastering-diverse-control/web-04.webp)
+
+原文图 4。[查看原始来源](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-025-08744-2/MediaObjects/41586_2025_8744_Fig4_HTML.png)
+
+![原文图 5](../assets/figures/dreamerv3-mastering-diverse-control/web-05.webp)
+
+原文图 5。[查看原始来源](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-025-08744-2/MediaObjects/41586_2025_8744_Fig5_HTML.png)
 
 默认模型约 200M，每个代理在单张 A100 上训练；通常 5 个种子，BSuite 和 Minecraft 各 10 个。回放比随基准数据预算选择，环境实例数量也不同。原文将重放比定义为训练时间步数与收集时间步数之比，不能不经批次长度、动作重复换算就与其他论文的「每环境步梯度更新次数」比较（“Methods / Computational choices”“Experience replay”）。
 

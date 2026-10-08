@@ -34,6 +34,7 @@
 - 正文、标题、导航、表格和图示默认简体中文。保留官方标题、专名、引文、代码与通用缩写；术语首次出现可附英文便于查找。修改内容时清理中英混写，普通名词不用 `source`、`claim`、`pipeline`、`tradeoff`、`failure mode`、`runtime`、`workflow`、`boundary`。
 - 自然段一行，不为列宽手动换行；保留 Markdown 的结构性换行，不重排 `raw/`。
 - 数学、仿真、机器人、优化、ML、系统主题须解释机制，不能止于摘要。按内容需要写数学结构、直觉、来源支持的失败情形与实践含义；首次定义变量，说明假设和适用范围。
+- 引用原文图号时，在相关段落或表格后嵌入可直接阅读的本地图；图片放在 `wiki/assets/figures/`，使用相对 Markdown 图片链接，兼容 Obsidian 与 Quartz。保留图号、完整图注、来源与页码，裁剪和压缩不能改动图例或数据；衍生图片及裁剪坐标登记在 `graph/figures.json`，原始证据不变。同一图可跨页复用，缺失图片必须说明原因，不以图号定位代替图片。
 - 公式用 `$...$` 或 `$$...$$`，不要用 `\(...\)` / `\[...\]`。结构、分类、因果链适合用 Mermaid 时，使用兼容 Obsidian/Quartz 的 fenced `mermaid` 图，并用正文解释。
 
 ## 页面元数据
@@ -77,6 +78,7 @@ modified: YYYY-MM-DD
 ## 验证与发布
 
 - 知识修改后运行 `uv run python tools/build_catalog.py --check` 和 `uv run python tools/health.py`，检查链接、目录、日志、证据文件、语言与证据状态；修复本次引入的问题。语言统计直接核对原文，不能把屏蔽链接后的断裂文本当作真实语病。
+- 图片修改后运行 `uv run python tools/build_figures.py` 核对图片与原始证据；需要重建时加 `--render`。知识修改还需重建并提交 `uv run python tools/build_graph.py --report` 的产物，避免 CI 图谱同步失败。
 - 大规模知识修改或发布层修改运行 `npm run wiki:build`；前端代码按变化做类型与浏览器验证。检查成功不等于事实正确。
 - 本地预览 `npm run wiki:preview`；生产构建 `npm run wiki:build`，输出 `public/`。直接运行 Quartz 时必须指定 `-d wiki`。
 - 不自动 `git push`、合并 PR 或部署。现有 GitHub Pages 从 `main` 部署；推送到 `main` 等同触发公开发布。
