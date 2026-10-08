@@ -17,6 +17,7 @@ baseline_commit: 5d3ba41e551aced710b3d585b245a313a9a407ce
 current_commit: 7d45d74904eade3b578a8eb1f2f9f89bc3d40326
 topics: ["topics/assets-and-world-generation", "topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/simulation-ready-worlds", "topics/policy-evaluation"]
 source_type: repository
+nav_title: "RoboLab · Code"
 ---
 
 # RoboLab 实现：从任务定义到可追溯的评估记录
@@ -86,8 +87,8 @@ flowchart LR
 
 归档 README／文档另介绍结果看板、场景／任务制作技能、更多策略后端、调试和显存规划。它们是该版本的文档能力说明；本轮没有逐个执行，也没有将其回填为论文已经测量的效果。基准结果还取决于相机与动作适配、成功判定器、种子、时序、模型检查点和训练数据，单独固定仓库提交并不足以固定整个实验。
 
-这条实现路径提供了一个具体判断：策略错误、接口错误和判定错误可能产生同样的低成功率，但应在不同层排查。[[SimulationSensitivityAnalysis|参数敏感性分析]] 研究环境变化，[[RoboticsSimulationInfrastructure|仿真基础设施]] 研究这些层之间的接口，[[RoboLab|项目入口]] 汇合论文与实现。
+这条实现路径提供了一个具体判断：策略错误、接口错误和判定错误可能产生同样的低成功率，但应在不同层排查。[[SimulationSensitivityAnalysis|参数敏感性分析]] 研究环境变化，[[RoboticsSimulationInfrastructure|仿真基础设施]] 研究这些层之间的接口，相关实验协议见 [[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab 论文]]。
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/simulation-ready-worlds|生成世界何时成为可执行环境]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/simulation-ready-worlds|Simulation-ready Worlds]] · [[topics/policy-evaluation|策略评测]]。

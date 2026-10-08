@@ -2,11 +2,11 @@
 title: "机器人策略学习"
 type: "topic"
 tags: ["robotics", "source-backed"]
-sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[kpi-promptable-kernel-physical-interaction]]", "[[dexweave-dexterous-humanoid-loco-manipulation]]", "[[rho-efficiently-adaptable-vla-models]]"]
-modified: 2026-10-08
+sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[kpi-promptable-kernel-physical-interaction]]", "[[dexweave-dexterous-humanoid-loco-manipulation]]", "[[rho-efficiently-adaptable-vla-models]]", "[[spinning-up-rl-key-concepts]]", "[[spinning-up-rl-algorithm-taxonomy]]", "[[nvlabs-robolab]]"]
+modified: "2026-10-08"
 entry: "research"
 nav_order: 2
-description: "策略学习关注如何把观测与任务条件变成动作，以及数据、监督和优化怎样决定学到的行为。按学习目标与信息接口串联论文，比按模型名称堆列表更容易比较。"
+description: "VLA、训练目标与数据"
 ---
 
 # 机器人策略学习
@@ -15,11 +15,11 @@ description: "策略学习关注如何把观测与任务条件变成动作，以
 
 ## 阅读地图
 
-- **动作从哪里来。** [[VisionLanguageActionModels|视觉—语言—动作模型]] 解释观测、语言、动作块和闭环执行；[[RobotLearningObjectives|机器人学习目标]] 区分示范、回报与动力学监督。
+- **动作从哪里来。** [[VisionLanguageActionModels|Vision-Language-Action (VLA)]] 解释观测、语言、动作块和闭环执行；[[RobotLearningObjectives|机器人学习目标]] 区分示范、回报与动力学监督。
 - **未来怎样帮助动作。** [[topics/future-conditioned-action|未来条件动作学习]] 比较 [[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]]、[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]]、[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B]]，共同基础见 [[InverseDynamicsModels|逆动力学]]。
-- **任务条件与组合。** [[RobotContextConditioning|机器人上下文条件化]] 与 [[CompositionalGeneralizationInRobotics|组合泛化]] 解释指令、子目标和新任务的不同含义，论文实例见 [[pi07-steerable-generalist-robotic-foundation-model|π0.7]]。
+- **任务条件与组合。** [[RobotContextConditioning|Context Conditioning]] 与 [[CompositionalGeneralizationInRobotics|组合泛化]] 解释指令、子目标和新任务的不同含义，论文实例见 [[pi07-steerable-generalist-robotic-foundation-model|π0.7]]。
 - **通过实验修改代码技能。** [[simex-simulation-integrated-robotics-autoresearch|SimEX]] 持久保存感知控制代码与使用说明，先仿真探索、再用少量真机反馈筛选修复；每次任务重新生成程序，其改进对象与模型权重训练不同。
-- **数据组织。** [[RobotLearningDataComposition|机器人学习数据构成]] 连接质量、覆盖和训练阶段；[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 提供特定协议下的比较。
+- **数据组织。** [[RobotLearningDataComposition|训练数据构成]] 连接质量、覆盖和训练阶段；[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 提供特定协议下的比较。
 - **训练怎样执行。** [[topics/robot-learning-systems|有效学习效率]] 讨论采集和学习器协作，别把物理吞吐量直接当成策略质量。
 
 ## 当前理解
@@ -37,6 +37,17 @@ description: "策略学习关注如何把观测与任务条件变成动作，以
 
 这一比较按“改什么、何时反馈”组织，不把硬件试验、轨迹跟踪完成率和有在线纠正的基准成绩放在同一排行榜。表内建议是本库的阅读判断；实验依据和边界在各来源页。
 
+## 常见研究问题
+
+| 想快速判断什么 | 入口 |
+| --- | --- |
+| 增加合成示范后性能下降 | [[RobotLearningDataComposition|数据构成与梯度占比]] |
+| 模型是否真正具备组合泛化 | [[CompositionalGeneralizationInRobotics|组成部分与任务组合]] |
+| 是否可以用评测任务数据做后训练 | [[simulation-post-training-evaluation|评测目的与后训练]]，该页含尚未收录资料 |
+| 训练很快，但实际回报提升慢 | [[HeterogeneousRobotRLTraining|端到端训练效率]] |
+| 成功率相近但失败行为不同 | [[SimulationBenchmarkReportingPipeline|回合证据与统计报告]] |
+| 生成视频怎样变成动作示范 | [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|资产条件化交互生成]] |
+
 ## 未解问题与优先补证
 
-固定数据和计算预算时，表示、目标函数与动作参数化各贡献多少？组合泛化的测试是否已经含有低层任务经验或测试指导？定义与协议沿 [[topics/evaluation-and-transfer|评测与现实迁移]] 检查。需要补基础时使用 [[robot-learning-and-evaluation-learning-path|机器人学习路径]]。
+固定数据和计算预算时，表示、目标函数与动作参数化各贡献多少？组合泛化的测试是否已经含有低层任务经验或测试指导？定义与协议沿 [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] 检查。

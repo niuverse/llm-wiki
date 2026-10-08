@@ -16,6 +16,7 @@ year: 2026
 venue: "arXiv 预印本"
 reviewed: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
+nav_title: "GRAIL"
 ---
 
 ## 一屏概览
@@ -163,10 +164,10 @@ $$
 
 ## 关联与材料
 
-本页已包含 [[AssetConditionedHOIGeneration|资产条件化人物—物体交互生成]] 的专属机制。跨论文机制见 [[VisualSimToReal|视觉仿真到现实迁移]]、[[SimulationRealityGap|仿真—现实差距]]、[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]；[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]] 是本文视觉迁移环节引用的相关路线，[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] 提供另一种训练—评估—部署组织方式，不能从两篇论文并列推断它们已被联合验证。
+本页已包含 [[AssetConditionedHOIGeneration|资产条件化人物—物体交互生成]] 的专属机制。跨论文机制见 [[VisualSimToReal|Visual Sim-to-Real]]、[[SimulationRealityGap|Sim-to-Real Gap]]、[[TaskGeneralistPolicyEvaluation|通用任务策略评估]]；[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]] 是本文视觉迁移环节引用的相关路线，[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] 提供另一种训练—评估—部署组织方式，不能从两篇论文并列推断它们已被联合验证。
 
-[项目主页](https://research.nvidia.com/labs/dair/grail/) 位于 [[NVIDIA|NVIDIA]] 研究网站；本次不对代码、数据许可证或独立复现情况作已核实的判断。
+[项目主页](https://research.nvidia.com/labs/dair/grail/) 位于 NVIDIA 研究网站；本次不对代码、数据许可证或独立复现情况作已核实的判断。
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

@@ -71,8 +71,8 @@ $$
 
 **由模型推得的检查：** 半径、轮距、轮序和正转符号错误会形成系统偏差；冗余轮系的 $H^\dagger$ 只能拟合不一致读数，不能判断所有残差都来自哪一只轮；转向几何在区间内变化时，固定 $H$ 假设需要相应细化。上述因素应与执行器跟踪误差、接触滑移分别检查。
 
-几何基础见 [[WheeledRobotKinematics|轮式运动学]]、[[OmnidirectionalWheels|全向轮]]；可行控制集合见 [[NonholonomicMobileRobots|非完整约束移动机器人]]。运动学估计与物理现实的差异见 [[SimulationRealityGap|仿真—现实差距]]。
+几何基础见 [[WheeledRobotKinematics|轮式运动学]]、[[OmnidirectionalWheels|全向轮]]；可行控制集合见 [[NonholonomicMobileRobots|非完整约束移动机器人]]。运动学估计与物理现实的差异见 [[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 研究归属
 
-[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人]]。

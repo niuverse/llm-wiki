@@ -14,11 +14,12 @@ acquired: 2026-10-02
 snapshot_sha256: d67c4888c7756d8e82e027faf4976216639272eb5b2322a3b5f2ca3897947b93
 topics: ["topics/physics-simulation", "topics/evaluation-and-transfer", "topics/contact-modeling", "topics/collision-geometry", "topics/simulation-transfer"]
 source_type: documentation
+nav_title: "MuJoCo · Computation"
 ---
 
 ## 摘要
 
-MuJoCo 官方计算章从 $M\dot v+c=\tau+J^Tf$ 连接执行器、连续动力学、柔性约束、接触求解、积分及仿真数据一致性。本轮完整阅读固定 3.8.0 文档，保留原来源页 ID；机制分别整理到 [[RobotRigidBodyDynamics|刚体动力学]]、[[SimulationTimeStepping|步长与控制频率]] 和 [[ContactSolvers|接触求解器]]。
+MuJoCo 官方计算章从 $M\dot v+c=\tau+J^Tf$ 连接执行器、连续动力学、柔性约束、接触求解、积分及仿真数据一致性。本轮完整阅读固定 3.8.0 文档，保留原来源页 ID；机制分别整理到 [[RobotRigidBodyDynamics|刚体动力学]]、[[SimulationTimeStepping|步长与控制频率]] 和 [[ContactSolvers|Contact Solvers]]。
 
 ![接触坐标系与摩擦锥基底](../assets/figures/mujoco-computation-collision-detection/web-01.svg)
 
@@ -62,7 +63,7 @@ MuJoCo 官方计算章从 $M\dot v+c=\tau+J^Tf$ 连接执行器、连续动力�
 
 ## 关联
 
-[[MuJoCo|MuJoCo]]、[[RobotCoordinateFrames|坐标与位姿]]、[[RobotRigidBodyDynamics|动力学]]、[[SimulationTimeStepping|数值积分]]、[[CollisionGeometryForRobotSimulation|碰撞几何]]、[[ApproximateConvexDecomposition|凸分解]]、[[ContactModelsInRobotics|接触模型]]、[[RoboticsSimulationLoop|仿真循环]]、[[SimulationRealityGap|现实差距]]。
+[[sources/mujoco-overview|MuJoCo]]、[[RobotCoordinateFrames|坐标与位姿]]、[[RobotRigidBodyDynamics|动力学]]、[[SimulationTimeStepping|数值积分]]、[[CollisionGeometryForRobotSimulation|碰撞几何]]、[[ApproximateConvexDecomposition|凸分解]]、[[ContactModelsInRobotics|接触模型]]、[[RoboticsSimulationLoop|仿真循环]]、[[SimulationRealityGap|现实差距]]。
 
 ## 归档记录
 
@@ -70,4 +71,4 @@ MuJoCo 官方计算章从 $M\dot v+c=\tau+J^Tf$ 连接执行器、连续动力�
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/contact-modeling|接触建模]] · [[topics/collision-geometry|Collision Geometry]] · [[topics/simulation-transfer|Sim-to-Real]]。

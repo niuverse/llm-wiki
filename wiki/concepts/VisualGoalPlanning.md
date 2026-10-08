@@ -1,5 +1,5 @@
 ---
-title: "视觉目标规划：让动作后果接近目标图像"
+title: "Visual Goal Planning"
 type: concept
 tags: [world-models, robotics, evaluation]
 sources: ["[[dino-wm-pretrained-visual-features]]", "[[v-jepa-2-understanding-prediction-planning]]", "[[pi07-steerable-generalist-robotic-foundation-model]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/world-model-decision"]
 ---
 
-# 视觉目标规划：让动作后果接近目标图像
+# Visual Goal Planning
 
 视觉目标规划用图像描述希望达到的状态：预测候选动作造成的特征变化，再搜索使预测终态接近目标的动作。**目标图像决定想达到什么，动作条件模型决定怎样行动可能达到它。** 这与先生成未来图像、再交给策略或逆模型产生动作的接口不同。[[dino-wm-pretrained-visual-features|DINO-WM]]、[[v-jepa-2-understanding-prediction-planning|V-JEPA 2-AC]]；另一类接口见 [[pi07-steerable-generalist-robotic-foundation-model|π0.7 的视觉子目标]]。
 
@@ -37,7 +37,7 @@ $$
 a^*_{t:t+H-1}\in\arg\min_a D\!\left(\hat z_{t+H}(a),z_g\right).
 $$
 
-DINO-WM 采用平方 L2，V-JEPA 2-AC 采用 L1；两者用 [[CrossEntropyMethod|CEM]] 搜索并接入 [[ModelPredictiveControl|模型预测控制]]。**没有训练奖励预测器，仍然有目标函数**：特征距离被选作完成任务的代理。动作通过比较模型后果得到，因此可以不另学 [[InverseDynamicsModels|逆动力学模型]]；这只是接口选择，不能证明逆模型没有价值。
+DINO-WM 采用平方 L2，V-JEPA 2-AC 采用 L1；两者用 [[CrossEntropyMethod|CEM]] 搜索并接入 [[ModelPredictiveControl|模型预测控制]]。**没有训练奖励预测器，仍然有目标函数**：特征距离被选作完成任务的代理。动作通过比较模型后果得到，因此可以不另学 [[InverseDynamicsModels|Inverse Dynamics]]；这只是接口选择，不能证明逆模型没有价值。
 
 ```mermaid
 flowchart LR
@@ -73,8 +73,8 @@ flowchart LR
 - **视角与控制坐标错配。** 无显式标定的模型可能错误推断动作坐标轴，精细抓取还受夹爪开度与对齐误差影响。[[v-jepa-2-understanding-prediction-planning|相机敏感性与操作失败]]
 - **优化和反馈预算不足。** 可微模型不保证梯度搜索容易；完整规划延迟远大于单次前向计算，执行反馈的频率也受影响。[[dino-wm-pretrained-visual-features|优化器与延迟实验]]、[[v-jepa-2-understanding-prediction-planning|阻塞式规划]]
 
-**我们的归纳。** 将目标可达性、目标图像获取方式、子目标信息、相机条件、动作坐标和决策预算都视为方法接口。比较时先对齐这些条件，再看预测误差和闭环成功；详细数值在来源页维护，跨方法证据放在 [[WorldModelEvaluation|世界模型评估]]。
+**我们的归纳。** 将目标可达性、目标图像获取方式、子目标信息、相机条件、动作坐标和决策预算都视为方法接口。比较时先对齐这些条件，再看预测误差和闭环成功；详细数值在来源页维护，跨方法证据放在 [[WorldModelEvaluation|World Model 评测]]。
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|世界模型如何用于决策]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|World Models 与决策]]。

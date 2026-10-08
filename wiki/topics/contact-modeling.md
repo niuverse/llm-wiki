@@ -1,5 +1,5 @@
 ---
-title: "接触模型与求解怎样改变运动"
+title: "接触建模"
 type: "topic"
 tags: ["simulation", "source-backed"]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[omniverse-omni-physics-articulations]]"]
@@ -7,7 +7,7 @@ modified: "2026-10-04"
 description: "区分物理近似、离散化和求解误差，避免用稳定性代替真实性。"
 ---
 
-# 接触模型与求解怎样改变运动
+# 接触建模
 
 区分物理近似、离散化和求解误差，避免用稳定性代替真实性。
 
@@ -25,10 +25,10 @@ description: "区分物理近似、离散化和求解误差，避免用稳定性
 
 ## 机制基础
 
-[[ContactModelsInRobotics|机器人学中的接触模型]]、[[ContactComplementarity|接触互补]]、[[ContactSolvers|接触求解器]]、[[DifferentiablePhysics|可微物理]]、[[ReducedCoordinateArticulations|约化坐标关节系统]]。
+[[ContactModelsInRobotics|机器人学中的接触模型]]、[[ContactComplementarity|Contact Complementarity]]、[[ContactSolvers|Contact Solvers]]、[[DifferentiablePhysics|Differentiable Physics]]、[[ReducedCoordinateArticulations|约化坐标关节系统]]。
 
 ## 未解问题与优先补证
 
 相同几何、控制、步长和预算下，不同接触模型的残差、能量与任务成功如何变化？浮动基座、柔性接触和可变形材料仍需教材与独立实验补证。
 
-这些是研究问题与验证要求，尚未作为已有结论。沿 [[topics/physics-simulation|物理仿真]] 与 [[topics/assets-and-world-generation|资产与场景生成]] 查看相关研究；基础学习可沿 [[simulation-and-assets-learning-path|学习路径]] 进行。
+这些是研究问题与验证要求，尚未作为已有结论。沿 [[topics/physics-simulation|物理仿真]] 与 [[topics/assets-and-world-generation|资产与场景生成]] 查看相关研究。

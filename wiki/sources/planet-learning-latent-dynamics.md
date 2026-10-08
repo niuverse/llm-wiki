@@ -15,6 +15,7 @@ year: 2019
 venue: "ICML"
 reviewed: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/world-model-decision"]
+nav_title: "PlaNet"
 ---
 
 # PlaNet：从像素学习潜在动力学并规划
@@ -154,4 +155,4 @@ $$
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|世界模型如何用于决策]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|World Models 与决策]]。

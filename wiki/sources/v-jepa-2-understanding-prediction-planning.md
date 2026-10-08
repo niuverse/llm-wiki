@@ -15,6 +15,7 @@ year: 2025
 venue: "arXiv 预印本"
 reviewed: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/evaluation-and-transfer", "topics/world-model-decision", "topics/world-model-evaluation"]
+nav_title: "V-JEPA 2"
 ---
 
 # V-JEPA 2：视频表征怎样接到机器人规划
@@ -150,7 +151,7 @@ $$
 
 原文图 3；PDF 第 5 页。[查看原始来源](https://arxiv.org/pdf/2506.09985v1#page=5)
 
-不同视觉编码器的预训练数据不一致，高分辨率 V-JEPA 2 评估设置也有区别；论文 §5 明确将比较限定为系统层面。视频问答中 PerceptionTest 还做任务监督微调，不能把所有结果概括为零样本。完整评测范围见 [[WorldModelEvaluation|世界模型评估]]。
+不同视觉编码器的预训练数据不一致，高分辨率 V-JEPA 2 评估设置也有区别；论文 §5 明确将比较限定为系统层面。视频问答中 PerceptionTest 还做任务监督微调，不能把所有结果概括为零样本。完整评测范围见 [[WorldModelEvaluation|World Model 评测]]。
 
 ## 局限与我们的解释
 
@@ -169,4 +170,4 @@ $$
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/world-model-decision|世界模型如何用于决策]] · [[topics/world-model-evaluation|如何验证世界模型的动作后果]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/planning-and-control|规划与控制]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/world-model-decision|World Models 与决策]] · [[topics/world-model-evaluation|World Model 评测]]。

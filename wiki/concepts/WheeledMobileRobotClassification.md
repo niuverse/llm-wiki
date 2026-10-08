@@ -58,4 +58,4 @@ $(3,0)$、$(2,1)$、$(1,2)$ 都有 $\delta_M=3$，却不能视作相同能力：
 
 ## 研究归属
 
-[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人]]。

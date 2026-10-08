@@ -1,15 +1,15 @@
 ---
-title: "DeepSeek Harness 来源获取计划"
+title: "DeepSeek Harness · 待核实笔记"
 type: synthesis
 tags: [source-plan]
 sources: []
-modified: 2026-08-18
+modified: "2026-10-08"
 topics: ["topics/agent-execution"]
 ---
 
-# DeepSeek Harness 来源获取计划
+# DeepSeek Harness · 待核实笔记
 
-这个页面是 DeepSeek Harness（`dsh`）的来源获取计划（来源 plan），不是学习地图：它等的是后续 `ingest`，而不是复习路径。当前知识库还没有 ingest 任何 DSH 相关 canonical 来源，本页内容基于对本机安装包源码（`@deepseek-ai/dsh` 0.1.0-rc.7）和官方 GitHub 仓库文档的一手调研，属于 `conversation-derived` / `unsourced learning scaffold`：机制描述可靠，但尚未升级为 source-backed claim。来源获取计划见文末。
+本页保留早期讨论中的 DeepSeek Harness（`dsh`）机制笔记与候选资料。对应源码和文档尚未归档收录，以下版本、接口和实验环境描述均未经本库来源验证，不能作为已确认结论；本次只整理入口，不重新核查这些实现。
 
 ## 主题边界
 
@@ -35,7 +35,7 @@ flowchart LR
   K --> L["goal / subagent / workflow / plan / compaction"]
 ```
 
-学习顺序建议：先掌握 Cordis 五个核心思想（插件是 Service、ctx 是服务仓库、inject 声明依赖、typed events 四种分发、注册是可逆 effect），再理解 profile/bundle 组合层，然后沿 turn/step 循环把 session 日志、prompt 组装、工具调度、LLM 流式串起来，最后进入沙箱/审批和编排能力。
+
 
 ## 核心概念
 
@@ -123,8 +123,8 @@ compaction 是可选 seam：`agent/pre-step` 压力触发（`pressure`）或 `ag
 
 ## 实践连接
 
-- **当前会话就跑在 DSH 上**：本会话运行于 `dsh web`（127.0.0.1:3080）。goal 工具（同会话目标 + round 续跑）、subagent、工作流、plan mode、sandbox 审批（本会话是 `never` 策略）都是活例子。
-- **本机有完整实现可读**：`/Users/ruziniu/.npm/_npx/1e7f6d9597241db0/node_modules/@deepseek-ai/` 下 219 个已编译包；`dsh --profile web --dump-config` 可看本机实际组合的配置树。
+- **早期讨论记录的环境，非当前会话**：当时记录运行于 `dsh web`（127.0.0.1:3080）。goal 工具（同会话目标 + round 续跑）、subagent、工作流、plan mode、sandbox 审批（本会话是 `never` 策略）都是活例子。
+- **早期讨论记录的本机路径，当前未核验**：`/Users/ruziniu/.npm/_npx/1e7f6d9597241db0/node_modules/@deepseek-ai/` 下 219 个已编译包；`dsh --profile web --dump-config` 可看本机实际组合的配置树。
 - **Python SDK**：`pip install deepseek-harness-sdk`（Python 3.10+，自带内置运行时）；`DeepSeekHarness(provider, model, ...)` 延迟启动并复用运行时，`harness.run(task, session_id)` 返回 `result.final_response`；**复用同一 session id 会保留该会话的 Bash 进程**（cwd、导出变量、shell 函数）。
 - **试插件开发**：官方 cookbook 有 `adding-a-tool.md`、`adding-an-llm-adapter.md`、`adding-a-settings-card.md` 等分步指南。
 - **自引用运行时**：`dsh-tool-cordis` 提供 `cordis_inspect`/`cordis_define`/`cordis_run`/`cordis_stop`/`cordis_undefine` 五个工具，agent 可以在运行中检查并动态挂载/卸载自己进程内的插件——即论文说的 self-evolving agent harness。
@@ -148,4 +148,4 @@ compaction 是可选 seam：`agent/pre-step` 压力触发（`pressure`）或 `ag
 
 ## 研究归属
 
-[[topics/agent-execution|智能体会话与工具执行怎样分工]]。
+[[topics/agent-execution|Agent Systems]]。

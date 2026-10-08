@@ -11,37 +11,37 @@ description: "按主题、年份和关键词查找论文；共享基础通过正
 
 按核实的文献年份排序；版本、译本及证据范围见各论文页。
 
-- [[sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning]] · 2026 · arXiv 预印本
-- [[sources/convex-primitive-decomposition-for-collision-detection|凸基元分解：按碰撞成本拟合可编辑的几何]] · 2026 · Computer Graphics Forum 45(2), Eurographics 2026
-- [[sources/dexweave-dexterous-humanoid-loco-manipulation|DexWeave：联合重定向手臂与手指，学习人形机器人灵巧操作]] · 2026 · arXiv 预印本
-- [[sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|Disentangled Robot Learning via Separate Forward and Inverse Dynamics Pretraining]] · 2026 · ICLR 2026
-- [[sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2: An Agentic, Simulation-Ready 3D World Engine for Embodied AI]] · 2026 · arXiv（预印本）
-- [[sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors]] · 2026 · arXiv 预印本
-- [[sources/kpi-promptable-kernel-physical-interaction|KPI：用交互约定连接高层智能体与人形机器人接触控制]] · 2026 · arXiv 预印本
-- [[sources/lda-1b-scaling-latent-dynamics-action-model|LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion]] · 2026 · arXiv 预印本
-- [[sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim: A Unified Infrastructure for Executable Embodied Interaction]] · 2026 · arXiv（技术报告）
-- [[sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni: Persistent Batched Runtime Primitives for MuJoCo]] · 2026 · arXiv 技术报告
-- [[sources/pi07-steerable-generalist-robotic-foundation-model|π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities]] · 2026 · Physical Intelligence 技术报告
-- [[sources/rho-efficiently-adaptable-vla-models|Rho：分离机器人适配、任务微调与潜在空间在线纠正]] · 2026 · arXiv 预印本
-- [[sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots]] · 2026 · ICLR 2026
-- [[sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies]] · 2026 · arXiv（预印本）
-- [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX：让编程智能体在仿真中开发并修复机器人技能]] · 2026 · arXiv 预印本
-- [[sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab: A Heterogeneous Architecture for Robot RL Beyond GPU-Dominant Paradigms]] · 2026 · arXiv 预印本
-- [[sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD：用可见性快速评价凸分解切面]] · 2026 · Eurographics 2026 Short Papers
-- [[sources/worldecho-worldsync-action-following|WorldEcho／WorldSync：世界模型是否忠实执行动作]] · 2026 · arXiv 预印本
-- [[sources/a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]] · 2025 · arXiv 预印本
-- [[sources/dino-wm-pretrained-visual-features|DINO-WM：用预训练视觉特征进行目标规划]] · 2025 · ICML
-- [[sources/dreamerv3-mastering-diverse-control|DreamerV3：在想象中学习控制策略]] · 2025 · Nature
-- [[sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen: Towards a Generative 3D World Engine for Embodied Intelligence]] · 2025 · arXiv（预印本）
-- [[sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation]] · 2025 · ICLR 2025
-- [[sources/v-jepa-2-understanding-prediction-planning|V-JEPA 2：视频表征怎样接到机器人规划]] · 2025 · arXiv 预印本
-- [[sources/contact-models-in-robotics-a-comparative-analysis|接触模型比较：物理近似与数值求解怎样改变机器人运动]] · 2024 · arXiv（归档稿未标注会议或期刊）
-- [[sources/td-mpc2-scalable-robust-world-models|TD-MPC2：以任务价值学习潜在模型并规划]] · 2024 · ICLR
-- [[sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL：以最小均匀缩放构造可微碰撞约束]] · 2023 · arXiv（归档稿未标注会议或期刊）
-- [[sources/coacd-approximate-convex-decomposition|CoACD：保留碰撞相关凹陷的凸分解]] · 2022 · ACM Transactions on Graphics 41(4), Article 42
-- [[sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills：把胶囊体与带厚度多边形的碰撞写成二次规划]] · 2022 · arXiv（归档稿未标注会议或期刊）
-- [[sources/planet-learning-latent-dynamics|PlaNet：从像素学习潜在动力学并规划]] · 2019 · ICML
-- [[sources/simopt-adaptive-randomization|Closing the Sim-to-Real Loop: Adapting Simulation Randomization with Real World Experience]] · 2019 · arXiv 预印本
-- [[sources/peng-dynamics-randomization|Sim-to-Real Transfer of Robotic Control with Dynamics Randomization]] · 2018 · arXiv 预印本
-- [[sources/tobin-domain-randomization|Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World]] · 2017 · arXiv 预印本
-- [[sources/structural-properties-and-classification-of-wheeled-mobile-robots|Structural Properties and Classification of Kinematic and Dynamic Models of Wheeled Mobile Robots]] · 1996 · IEEE Transactions on Robotics and Automation
+- [[sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] · 2026 · arXiv 预印本
+- [[sources/convex-primitive-decomposition-for-collision-detection|Convex Primitive Decomposition]] · 2026 · Computer Graphics Forum 45(2), Eurographics 2026
+- [[sources/dexweave-dexterous-humanoid-loco-manipulation|DexWeave]] · 2026 · arXiv 预印本
+- [[sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]] · 2026 · ICLR 2026
+- [[sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] · 2026 · arXiv（预印本）
+- [[sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] · 2026 · arXiv 预印本
+- [[sources/kpi-promptable-kernel-physical-interaction|KPI]] · 2026 · arXiv 预印本
+- [[sources/lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] · 2026 · arXiv 预印本
+- [[sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] · 2026 · arXiv（技术报告）
+- [[sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]] · 2026 · arXiv 技术报告
+- [[sources/pi07-steerable-generalist-robotic-foundation-model|π0.7]] · 2026 · Physical Intelligence 技术报告
+- [[sources/rho-efficiently-adaptable-vla-models|Rho]] · 2026 · arXiv 预印本
+- [[sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] · 2026 · ICLR 2026
+- [[sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]] · 2026 · arXiv（预印本）
+- [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX]] · 2026 · arXiv 预印本
+- [[sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] · 2026 · arXiv 预印本
+- [[sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]] · 2026 · Eurographics 2026 Short Papers
+- [[sources/worldecho-worldsync-action-following|WorldEcho／WorldSync]] · 2026 · arXiv 预印本
+- [[sources/a-comprehensive-survey-on-world-models-for-embodied-ai|World Models · 综述]] · 2025 · arXiv 预印本
+- [[sources/dino-wm-pretrained-visual-features|DINO-WM]] · 2025 · ICML
+- [[sources/dreamerv3-mastering-diverse-control|DreamerV3]] · 2025 · Nature
+- [[sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen]] · 2025 · arXiv（预印本）
+- [[sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]] · 2025 · ICLR 2025
+- [[sources/v-jepa-2-understanding-prediction-planning|V-JEPA 2]] · 2025 · arXiv 预印本
+- [[sources/contact-models-in-robotics-a-comparative-analysis|Contact Models · 比较研究]] · 2024 · arXiv（归档稿未标注会议或期刊）
+- [[sources/td-mpc2-scalable-robust-world-models|TD-MPC2]] · 2024 · ICLR
+- [[sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]] · 2023 · arXiv（归档稿未标注会议或期刊）
+- [[sources/coacd-approximate-convex-decomposition|CoACD]] · 2022 · ACM Transactions on Graphics 41(4), Article 42
+- [[sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]] · 2022 · arXiv（归档稿未标注会议或期刊）
+- [[sources/planet-learning-latent-dynamics|PlaNet]] · 2019 · ICML
+- [[sources/simopt-adaptive-randomization|SimOpt]] · 2019 · arXiv 预印本
+- [[sources/peng-dynamics-randomization|Dynamics Randomization · Peng]] · 2018 · arXiv 预印本
+- [[sources/tobin-domain-randomization|Domain Randomization · Tobin]] · 2017 · arXiv 预印本
+- [[sources/structural-properties-and-classification-of-wheeled-mobile-robots|Wheeled Robots · Campion]] · 1996 · IEEE Transactions on Robotics and Automation

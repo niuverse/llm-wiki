@@ -15,6 +15,7 @@ year: 1996
 venue: "IEEE Transactions on Robotics and Automation"
 reviewed: 2026-10-04
 topics: ["topics/planning-and-control", "topics/wheeled-robot-modeling"]
+nav_title: "Wheeled Robots · Campion"
 ---
 
 ## 一屏概览
@@ -182,4 +183,4 @@ $$
 
 ## 研究归属
 
-[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人]]。

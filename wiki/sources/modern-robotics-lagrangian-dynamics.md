@@ -14,6 +14,7 @@ acquired: 2026-10-02
 snapshot_sha256: 1e2daa2da44bd5323acb621267ae2be9e9d9dfbc0c4c8e1c2fa8c553171c9596
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 source_type: tutorial
+nav_title: "Modern Robotics · 动力学"
 ---
 
 ## 摘要
@@ -34,7 +35,7 @@ source_type: tutorial
 
 ## 关联
 
-[[RobotRigidBodyDynamics|动力学与力矩]]、[[RobotCoordinateFrames|坐标表示]]、[[ReducedCoordinateArticulations|关节系统与驱动]]、[[ContactSolvers|接触求解器]]、[[mujoco-computation-collision-detection|MuJoCo 计算文档]]。
+[[RobotRigidBodyDynamics|动力学与力矩]]、[[RobotCoordinateFrames|坐标表示]]、[[ReducedCoordinateArticulations|关节系统与驱动]]、[[ContactSolvers|Contact Solvers]]、[[mujoco-computation-collision-detection|MuJoCo 计算文档]]。
 
 ## 官方视频
 
@@ -46,4 +47,4 @@ source_type: tutorial
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

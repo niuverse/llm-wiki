@@ -33,7 +33,7 @@ $$
 
 $f$ 是接触、关节限制等约束坐标中的力，$J$ 将广义速度映射为约束速度，$J^T$ 将约束力映射为广义力；$\tau$ 包含执行器、被动力和外加力。这里 $c_M$ 与前式的 $c+g$ 对应，符号同名并不代表定义相同。含四元数时 $v$ 与 $\dot q$ 也不宜当成同维数组。[[mujoco-computation-collision-detection|MuJoCo 计算章]]
 
-约束力未知时，不能只做一次矩阵求逆就得到完整动力学。先构造接触和约束，再求 $f$，最后推进速度与位姿；模型与求解的区别见 [[ContactModelsInRobotics|接触模型]] 和 [[ContactSolvers|接触求解器]]。
+约束力未知时，不能只做一次矩阵求逆就得到完整动力学。先构造接触和约束，再求 $f$，最后推进速度与位姿；模型与求解的区别见 [[ContactModelsInRobotics|接触模型]] 和 [[ContactSolvers|Contact Solvers]]。
 
 ### 一个可手算的教学例子
 
@@ -82,4 +82,4 @@ RL 通过动力学获得训练轨迹；控制器用动力学预测输入后果�
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

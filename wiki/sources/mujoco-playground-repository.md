@@ -20,6 +20,7 @@ code_files:
   - raw/code-playground-mujoco-playground-src-dm-control-suite-cartpole-py-2026-10-04-24983aeae334.py
   - raw/code-playground-mujoco-playground-src-registry-py-2026-10-04-b23d5dd0d18d.py
   - raw/code-playground-mujoco-playground-config-dm-control-suite-params-py-2026-10-04-ba246dffcc43.py
+nav_title: "MuJoCo Playground · Code"
 ---
 
 ## 定位与阅读范围
@@ -81,4 +82,4 @@ Cartpole 视觉分支使用批量渲染得到 RGB，再转为灰度、平移像�
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|RL 训练系统]]。

@@ -87,4 +87,4 @@ flowchart LR
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触建模]]。

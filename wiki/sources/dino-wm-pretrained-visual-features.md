@@ -15,6 +15,7 @@ year: 2025
 venue: "ICML"
 reviewed: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/evaluation-and-transfer", "topics/world-model-decision", "topics/world-model-evaluation"]
+nav_title: "DINO-WM"
 ---
 
 # DINO-WM：用预训练视觉特征进行目标规划
@@ -71,7 +72,7 @@ $$
 
 这里 $T$ 是规划时域，$\hat z_0=E(o_0)$。[[CrossEntropyMethod|CEM]] 从高斯动作分布采样，保留目标距离最小的候选并重拟合，执行前一段动作后根据新观测重规划（§3.2、附录 A.5）。**没有任务奖励模型不等于没有目标函数**：目标特征距离本身就是人为选定的优化准则。基础机制见 [[VisualGoalPlanning|视觉目标规划]]、[[ModelPredictiveControl|模型预测控制]]。
 
-模型可微，因此也能对动作求梯度；然而可微不保证目标曲面好优化。附录 A.5 显示 CEM 优于其直接梯度下降设置，闭环再规划又能改善开环结果。本文通过搜索动作后果实现控制，不必另训 [[InverseDynamicsModels|逆动力学模型]]。
+模型可微，因此也能对动作求梯度；然而可微不保证目标曲面好优化。附录 A.5 显示 CEM 优于其直接梯度下降设置，闭环再规划又能改善开环结果。本文通过搜索动作后果实现控制，不必另训 [[InverseDynamicsModels|Inverse Dynamics]]。
 
 ### 冻结表示与独立解码器怎样改变优化目标
 
@@ -140,4 +141,4 @@ PushT 要求推手与 T 形物体同时达到随机可行目标，而非仅对�
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/world-model-decision|世界模型如何用于决策]] · [[topics/world-model-evaluation|如何验证世界模型的动作后果]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/planning-and-control|规划与控制]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/world-model-decision|World Models 与决策]] · [[topics/world-model-evaluation|World Model 评测]]。

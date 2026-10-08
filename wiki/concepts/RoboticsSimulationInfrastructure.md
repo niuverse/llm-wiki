@@ -106,4 +106,4 @@ RoboLab 的许可证、第三方声明、已知问题、安装测试和资产治
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/simulation-ready-worlds|生成世界何时成为可执行环境]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/simulation-ready-worlds|Simulation-ready Worlds]] · [[topics/robot-learning-systems|RL 训练系统]]。

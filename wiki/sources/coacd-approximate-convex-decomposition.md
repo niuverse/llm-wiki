@@ -15,6 +15,7 @@ year: 2022
 venue: "ACM Transactions on Graphics 41(4), Article 42"
 reviewed: 2026-10-04
 topics: ["topics/physics-simulation", "topics/collision-geometry"]
+nav_title: "CoACD"
 ---
 
 # CoACD：保留碰撞相关凹陷的凸分解
@@ -143,8 +144,8 @@ flowchart TD
 
 **我们的解释。** 这篇论文最有价值的证据链是“碰撞空隙被改变 → 抓握方式受影响 → 策略训练结果变化”。它没有证明凸包越少、凹度越低就一定训练越快；端到端还取决于碰撞检测、接触点和求解器。比较具体资产时，应同时保留孔隙、生成参数和目标引擎中的任务表现。
 
-相关基础：[[ApproximateConvexDecomposition|近似凸分解]]、[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[SimulationRealityGap|仿真—现实差距]]。实现细节和参数接口另见 [[coacd-repository|CoACD 仓库来源]]；共享入口为 [[CoACD|CoACD]] 与 [[VHACD|V-HACD]]。
+相关基础：[[ApproximateConvexDecomposition|Approximate Convex Decomposition]]、[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[SimulationRealityGap|Sim-to-Real Gap]]。实现细节和参数接口另见 [[coacd-repository|CoACD 仓库来源]]；共享入口为 [[sources/coacd-repository|CoACD]] 与 [[sources/v-hacd-repository|V-HACD]]。
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|Collision Geometry]]。

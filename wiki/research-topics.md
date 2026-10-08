@@ -1,5 +1,5 @@
 ---
-title: "主题地图"
+title: "Topics"
 type: "navigation"
 modified: "2026-10-04"
 tags: ["navigation", "learn"]
@@ -13,27 +13,27 @@ description: ""
 
 ## 研究入口
 
-- [[topics/world-models-and-representations|世界模型与表征]]
+- [[topics/world-models-and-representations|World Models]]
 - [[topics/robot-policy-learning|机器人策略学习]]
 - [[topics/planning-and-control|规划与控制]]
 - [[topics/physics-simulation|物理仿真]]
-- [[topics/assets-and-world-generation|三维资产与场景生成]]
-- [[topics/evaluation-and-transfer|评测与现实迁移]]
+- [[topics/assets-and-world-generation|3D 资产与场景]]
+- [[topics/evaluation-and-transfer|评测与 Sim-to-Real]]
 
 ## 专题笔记
 
-- [[topics/asset-representation|资产格式怎样保留仿真语义]]
-- [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]
-- [[topics/contact-modeling|接触模型与求解怎样改变运动]]
-- [[topics/future-conditioned-action|未来预测怎样帮助动作学习]]
-- [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]
-- [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]
-- [[topics/simulation-ready-worlds|生成世界何时成为可执行环境]]
-- [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]
-- [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]
-- [[topics/world-model-decision|世界模型如何用于决策]]
-- [[topics/world-model-evaluation|如何验证世界模型的动作后果]]
+- [[topics/asset-representation|3D 资产格式]]
+- [[topics/collision-geometry|Collision Geometry]]
+- [[topics/contact-modeling|接触建模]]
+- [[topics/future-conditioned-action|未来预测与动作学习]]
+- [[topics/policy-evaluation|策略评测]]
+- [[topics/robot-learning-systems|RL 训练系统]]
+- [[topics/simulation-ready-worlds|Simulation-ready Worlds]]
+- [[topics/simulation-transfer|Sim-to-Real]]
+- [[topics/wheeled-robot-modeling|轮式机器人]]
+- [[topics/world-model-decision|World Models 与决策]]
+- [[topics/world-model-evaluation|World Model 评测]]
 
 ## 工具与工程笔记
 
-- [[topics/agent-execution|智能体会话与工具执行怎样分工]]
+- [[topics/agent-execution|Agent Systems]]

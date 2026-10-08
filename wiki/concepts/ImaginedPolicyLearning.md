@@ -1,5 +1,5 @@
 ---
-title: "想象中的策略学习：世界模型到演员与价值评估器"
+title: "Imagination-based Policy Learning"
 type: concept
 tags: [world-models, robotics, reinforcement-learning]
 sources: ["[[dreamerv3-mastering-diverse-control]]", "[[planet-learning-latent-dynamics]]", "[[td-mpc2-scalable-robust-world-models]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/world-model-decision"]
 ---
 
-# 想象中的策略学习：世界模型到演员与价值评估器
+# Imagination-based Policy Learning
 
 想象中的策略学习把行为优化放到模型内部：用真实交互学习世界模型，从真实经验中的状态出发生成潜在轨迹，再训练策略选择高回报动作。**模型生成训练经验，演员将行为偏好存入参数。** 执行时仍需从新观测更新状态，但可直接采样策略，省去逐次候选动作搜索。以下以 [[dreamerv3-mastering-diverse-control|DreamerV3 的 Nature 版]]为具体实现，不把其所有设计当作这类方法的共同要求。
 
@@ -79,8 +79,8 @@ $$
 
 **我们的解释。** 想象策略适合把反复行为优化的成本放到训练阶段，但模型误差也会进入策略训练。换奖励、换目标或换动力学后，原策略是否仍合适应分别验证；执行省掉搜索，不代表免除重新学习的需要。[[ModelPredictiveControl|在线规划]]则把更多计算保留到当前决策，[[td-mpc2-scalable-robust-world-models|TD-MPC2]]还组合策略先验与搜索，两种计算位置并非不能共存。
 
-比较方法时分别核算真实交互、模型训练、行为训练和执行延迟；同时核对版本、输入与预算，不能将不同论文的聚合排名拼接。目标通过图像给出时可进一步读 [[VisualGoalPlanning|视觉目标规划]]，比较条件见 [[WorldModelEvaluation|世界模型评估]]。
+比较方法时分别核算真实交互、模型训练、行为训练和执行延迟；同时核对版本、输入与预算，不能将不同论文的聚合排名拼接。目标通过图像给出时可进一步读 [[VisualGoalPlanning|视觉目标规划]]，比较条件见 [[WorldModelEvaluation|World Model 评测]]。
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|世界模型如何用于决策]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|World Models 与决策]]。

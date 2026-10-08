@@ -1,5 +1,5 @@
 ---
-title: "交叉熵方法：从候选动作到精英分布"
+title: "Cross-Entropy Method (CEM)"
 type: concept
 tags: [world-models, robotics]
 sources: ["[[planet-learning-latent-dynamics]]", "[[dino-wm-pretrained-visual-features]]", "[[v-jepa-2-understanding-prediction-planning]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/world-model-decision"]
 ---
 
-# 交叉熵方法：从候选动作到精英分布
+# Cross-Entropy Method (CEM)
 
 交叉熵方法（Cross-Entropy Method，CEM）通过“采样候选 → 评分 → 保留精英 → 拟合新分布”搜索高质量解。它只需要能给候选打分，不要求评分函数可微。PlaNet 用预测回报评分，DINO-WM 与 V-JEPA 2-AC 用目标特征距离评分；这三种用法共用优化套路，但任务目标和动力学不同。[[planet-learning-latent-dynamics|PlaNet §2、附录 B]]、[[dino-wm-pretrained-visual-features|DINO-WM 附录 A.5]]、[[v-jepa-2-understanding-prediction-planning|V-JEPA 2 §3.2]]
 
@@ -81,4 +81,4 @@ PlaNet 与 V-JEPA 2-AC 的论文描述每次搜索重新初始化动作高斯；
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|世界模型如何用于决策]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|World Models 与决策]]。

@@ -11,6 +11,7 @@ extracted_text: graph/extracts/robotics-simulation-infrastructure.md
 source_date: 2026-05-13
 topics: ["topics/assets-and-world-generation", "topics/simulation-ready-worlds"]
 source_type: article
+nav_title: "Robotics Simulation Infrastructure"
 ---
 
 # Stone Tao：机器人仿真基础设施中的接口设计
@@ -63,4 +64,4 @@ $$
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/simulation-ready-worlds|生成世界何时成为可执行环境]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/simulation-ready-worlds|Simulation-ready Worlds]]。

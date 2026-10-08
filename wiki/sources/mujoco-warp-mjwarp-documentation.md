@@ -14,6 +14,7 @@ repo_commit_snapshot: raw/mujoco-warp-main-commit.json
 repo_commit_sha: fb56eb0820aa22252a9ec869408484ac86d2b869
 topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/robot-learning-systems"]
 source_type: documentation
+nav_title: "MuJoCo Warp · Docs"
 ---
 
 ## 摘要
@@ -42,17 +43,17 @@ source_type: documentation
 
 ### MJWarp
 
-MJWarp / MuJoCo Warp 是 [[mujoco-warp-mjwarp-documentation|MuJoCo 官方文档]] 中描述的实现：它以 NVIDIA Warp 编写，针对 NVIDIA 硬件和并行仿真优化。项目由 Google DeepMind 和 [[NVIDIA|NVIDIA]] 共同开发维护，代码位于 `google-deepmind/mujoco_warp` 仓库。
+MJWarp / MuJoCo Warp 是 [[mujoco-warp-mjwarp-documentation|MuJoCo 官方文档]] 中描述的实现：它以 NVIDIA Warp 编写，针对 NVIDIA 硬件和并行仿真优化。项目由 Google DeepMind 和 NVIDIA 共同开发维护，代码位于 `google-deepmind/mujoco_warp` 仓库。
 
 MJWarp 的定位是高吞吐量采样 / RL，而不是低延迟单一步骤控制。文档把它放在 MuJoCo 生态的批处理的 options 中：CPU `mujoco.rollout`、JAX/MJX 和 `mujoco_warp.step`。它支持设备侧 `mjw.Model` / `mjw.Data`、批处理的 worlds、批次渲染和 per-世界字段，但也明确有特征 gaps：例如 PGS / noslip、部分积分器/传感器/插件/flex/用户参数支持，以及当前不可用的 Warp 自动微分。
 
 ## 关联
 
 - [[mujoco-warp-mjwarp-documentation|MJWarp]] - 本来源对应的面向 GPU 的 MuJoCo 后端实体。
-- [[MuJoCo|MuJoCo]] - MJWarp 是 MuJoCo 生态的 GPU 实现。
+- [[sources/mujoco-overview|MuJoCo]] - MJWarp 是 MuJoCo 生态的 GPU 实现。
 - [[mjlab-repository|mjlab]] 和 [[mujoco-playground-repository|MuJoCoPlayground]] - README 明确指向这两个机器人学习集成路径。
-- [[HeterogeneousRobotRLTraining|异构机器人强化学习训练]] - MJWarp 是 GPU 侧物理路线的代表，与 MuJoCoUni / UniLab 的 CPU 侧路线构成对照。
-- [[DifferentiablePhysics|可微物理]] - MJWarp 当前不支持 Warp 自动微分，不能把 GPU MuJoCo 路线自动等同于可微的物理。
+- [[HeterogeneousRobotRLTraining|异构 RL 训练]] - MJWarp 是 GPU 侧物理路线的代表，与 MuJoCoUni / UniLab 的 CPU 侧路线构成对照。
+- [[DifferentiablePhysics|Differentiable Physics]] - MJWarp 当前不支持 Warp 自动微分，不能把 GPU MuJoCo 路线自动等同于可微的物理。
 
 ## 开放问题
 
@@ -62,4 +63,4 @@ MJWarp 的定位是高吞吐量采样 / RL，而不是低延迟单一步骤控�
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|RL 训练系统]]。

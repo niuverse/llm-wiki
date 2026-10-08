@@ -15,6 +15,7 @@ year: 2025
 venue: "ICLR 2025"
 reviewed: 2026-10-04
 topics: ["topics/robot-policy-learning", "topics/world-models-and-representations", "topics/future-conditioned-action"]
+nav_title: "Seer"
 ---
 
 # Seer：用预测未来的表示指导逆动力学
@@ -129,8 +130,8 @@ $$
 
 **我们的解释。** Seer 的关键是让动作模块消费受未来图像监督的表示，使动作误差也能塑造这份表示。它不保证预测图像满足物理规律，也不保证把同一视觉变化迁移到另一控制器仍得到正确动作。附录 OXE 实验正说明“数据更杂更多”与“动作先验更适配”不是同一件事。
 
-机制见 [[InverseDynamicsModels|逆动力学模型]] 和 [[VisionLanguageActionModels|视觉—语言—动作模型]]。与 [[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]] 比较时，应分别检查训练阶段、动作标签、相机、预训练规模与冻结策略；两篇各自的成功不能直接判定“联合”或“解耦”普遍更优。
+机制见 [[InverseDynamicsModels|Inverse Dynamics]] 和 [[VisionLanguageActionModels|Vision-Language-Action (VLA)]]。与 [[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]] 比较时，应分别检查训练阶段、动作标签、相机、预训练规模与冻结策略；两篇各自的成功不能直接判定“联合”或“解耦”普遍更优。
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|世界模型与表征]] · [[topics/future-conditioned-action|未来预测怎样帮助动作学习]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|World Models]] · [[topics/future-conditioned-action|未来预测与动作学习]]。

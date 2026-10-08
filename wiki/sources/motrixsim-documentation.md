@@ -16,6 +16,7 @@ supplementary_files:
   - raw/motrixsim-v020-scene-model-2026-10-04-85c130e01e5a.html
   - raw/motrixsim-v020-scene-data-2026-10-04-9a5cb93890b4.html
   - raw/motrixsim-v020-actuator-2026-10-04-83c0e020e1ef.html
+nav_title: "MotrixSim · Docs"
 ---
 
 ## 用途与证据范围
@@ -58,7 +59,7 @@ flowchart LR
 
 快速入门正文存在内部不一致：代码与路径使用 Spot、循环为 `while True`，解释段落却提 Go1 和 1000 次步进。本页只依据实际展示的调用序列，不把两段混成一份可复现程序。未安装 SDK 或运行示例，未检验状态数组所有权、线程安全、批量吞吐或接触精度。
 
-[[unilab-repository|UniLab 实现]]将该引擎置于 CPU 仿真后端位置，但不因此揭示其专有求解器。调度机制见 [[HeterogeneousRobotRLTraining|异构机器人强化学习训练]]，物理真实性的独立问题见 [[SimulationRealityGap|仿真—现实差距]]。
+[[unilab-repository|UniLab 实现]]将该引擎置于 CPU 仿真后端位置，但不因此揭示其专有求解器。调度机制见 [[HeterogeneousRobotRLTraining|异构 RL 训练]]，物理真实性的独立问题见 [[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 已读版本化材料
 
@@ -73,4 +74,8 @@ flowchart LR
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|RL 训练系统]]。
+
+## 相关资料
+
+- [[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]

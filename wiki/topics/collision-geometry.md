@@ -1,5 +1,5 @@
 ---
-title: "碰撞几何如何兼顾精度与计算"
+title: "Collision Geometry"
 type: "topic"
 tags: ["simulation", "source-backed"]
 sources: ["[[coacd-approximate-convex-decomposition]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[v-hacd-repository]]", "[[coacd-repository]]", "[[isaac-sim-core-api-collision-approximation]]"]
@@ -7,7 +7,7 @@ modified: "2026-10-04"
 description: "几何近似和可微查询解决不同问题；表示误差需连同下游任务评估。"
 ---
 
-# 碰撞几何如何兼顾精度与计算
+# Collision Geometry
 
 对照凸分解、基元表示与可微接近度，检查几何误差如何进入任务。
 
@@ -34,10 +34,10 @@ description: "几何近似和可微查询解决不同问题；表示误差需连
 
 ## 机制基础
 
-[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[ApproximateConvexDecomposition|近似凸分解]]、[[DifferentiableCollisionDetection|可微碰撞检测]]。
+[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[ApproximateConvexDecomposition|Approximate Convex Decomposition]]、[[DifferentiableCollisionDetection|Differentiable Collision Detection]]。
 
 ## 未解问题与优先补证
 
 同一资产与任务中，几何误差、接近度梯度、接触数量和仿真吞吐量应怎样联合评估？可微几何查询对完整接触动力学的优化收益仍需单独验证。
 
-这些是研究问题与验证要求，尚未作为已有结论。沿 [[topics/physics-simulation|物理仿真]] 与 [[topics/assets-and-world-generation|资产与场景生成]] 查看相关研究；基础学习可沿 [[simulation-and-assets-learning-path|学习路径]] 进行。
+这些是研究问题与验证要求，尚未作为已有结论。沿 [[topics/physics-simulation|物理仿真]] 与 [[topics/assets-and-world-generation|资产与场景生成]] 查看相关研究。

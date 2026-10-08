@@ -1,5 +1,5 @@
 ---
-title: "ovrtx 的 RTX 传感器仿真流程"
+title: "RTX Sensor Simulation"
 type: concept
 tags: [sensor-simulation, openusd, robotics]
 sources: ["[[nvidia-ovrtx]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 ---
 
-# ovrtx 的 RTX 传感器仿真流程
+# RTX Sensor Simulation
 
 本页解释 [[nvidia-ovrtx|ovrtx]] 已归档 `0.3.0` 预发布版本的接口：以 OpenUSD 场景配置传感器，通过 `RenderProduct` 请求输出，再映射为 CPU／CUDA 上的 DLPack 张量。它是具体 SDK 的机制页，不代表所有 RTX 传感器系统共有同一 API。第二轮在固定提交 `29d11037fbcaed0f0f53e7f32d17bd0486fd453b` 上静态核对了步进、映射、DLPack 与释放的关键包装代码；没有运行 GPU 示例，也没有审计二进制传感器实现。
 
@@ -69,8 +69,8 @@ Python 包装在已有数组存活时延迟真正释放缓冲，因此“退出 
 
 **工程解释：**把随机变量采样、场景写入、预热、渲染、同步与输出读取分别记录，能定位观察变化来自哪一步。属性可写并不证明整个执行过程确定；真实传感器分布、材质响应、标定、运动补偿和噪声仍需单独验证。
 
-相关页面：[[OpenUSDSceneComposition|OpenUSD 场景组合]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[SimulationRealityGap|仿真—现实差距]]。
+相关页面：[[OpenUSDSceneComposition|OpenUSD Composition]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。

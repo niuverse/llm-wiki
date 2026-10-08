@@ -1,5 +1,5 @@
 ---
-title: "近似凸分解"
+title: "Approximate Convex Decomposition"
 type: concept
 tags: [collision-detection, convex-decomposition, simulation-assets, robotics]
 sources: ["[[v-hacd-repository]]", "[[coacd-approximate-convex-decomposition]]", "[[coacd-repository]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/physics-simulation", "topics/collision-geometry"]
 ---
 
-# 近似凸分解
+# Approximate Convex Decomposition
 
 近似凸分解（Approximate Convex Decomposition，ACD）将非凸形状拆成一组近似凸的部件，再以各部件凸包作为碰撞体。它试图在保留任务相关空隙与降低几何处理成本之间取得平衡；**凸包数量、近似误差和实际仿真成本是不同的量**。[[coacd-approximate-convex-decomposition|CoACD]]、[[convex-primitive-decomposition-for-collision-detection|凸基元分解]]
 
@@ -69,8 +69,8 @@ flowchart LR
 - **预处理、拓扑与方向影响结果。** 水密化、顶点采样、内部面和退化法向都可能改变分解。[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]、[[convex-primitive-decomposition-for-collision-detection|凸基元分解]]
 - **预算与引擎不匹配。** 阈值很小可保留更多细节，却可能生成更多几何或接触查询；某种基元若必须转成凸包，其专用加速收益也可能消失。[[coacd-approximate-convex-decomposition|CoACD 参数消融]]、[[convex-primitive-decomposition-for-collision-detection|基元成本消融]]
 
-**我们的综合建议。** 保存原始网格、修复后网格、参数、输出碰撞体与目标引擎版本；按任务空隙、几何偏差、接触行为、总耗时分开验收。混用基元与凸包是可测试的工程选择，现有来源尚未证明统一混合方案最优。当前实现接口见 [[coacd-repository|CoACD 仓库来源]]；完整上下游见 [[CollisionGeometryForRobotSimulation|碰撞几何]]、[[ContactSolvers|接触求解器]]。
+**我们的综合建议。** 保存原始网格、修复后网格、参数、输出碰撞体与目标引擎版本；按任务空隙、几何偏差、接触行为、总耗时分开验收。混用基元与凸包是可测试的工程选择，现有来源尚未证明统一混合方案最优。当前实现接口见 [[coacd-repository|CoACD 仓库来源]]；完整上下游见 [[CollisionGeometryForRobotSimulation|碰撞几何]]、[[ContactSolvers|Contact Solvers]]。
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|Collision Geometry]]。

@@ -10,6 +10,7 @@ source_url: https://github.com/ZhengyiLuo/AgentsDock-Releases
 source_date: unknown
 topics: ["topics/agent-execution"]
 source_type: repository
+nav_title: "AgentsDock · Releases"
 ---
 
 # AgentsDock Releases：安装包与更新信息的分发入口
@@ -44,8 +45,8 @@ README 声明 macOS 发布物在发布前经过 Developer ID 签名与 Apple 公
 
 [固定 README](https://github.com/ZhengyiLuo/AgentsDock-Releases/blob/0637b37147fb0d9b10b995ce6876a80325197d8d/README.md) 与 [官方 Git 树响应](https://api.github.com/repos/ZhengyiLuo/AgentsDock-Releases/git/trees/0637b37147fb0d9b10b995ce6876a80325197d8d?recursive=1) 均按提交固定。没有下载或运行发布二进制；已移除旧页缺少资产快照支撑的“当前稳定版包含哪些平台、Android 测试版将怎样演进”判断。
 
-关联：[[AgentsDock|AgentsDock 客户端]]、[[AgentsServer|自托管执行后端]]、[[agentsserver|后端实现复核]]、[[topics/agent-execution|智能体会话与工具执行怎样分工]]。
+关联：AgentsDock 客户端、[[sources/agentsserver|自托管执行后端]]、[[agentsserver|后端实现复核]]、[[topics/agent-execution|Agent Systems]]。
 
 ## 研究归属
 
-[[topics/agent-execution|智能体会话与工具执行怎样分工]]。
+[[topics/agent-execution|Agent Systems]]。

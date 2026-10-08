@@ -14,6 +14,7 @@ acquired: 2026-10-02
 snapshot_sha256: d9e59e49dd99b47608238c048d135b5ec0f116ec4c876a04731a1dbec1007c20
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 source_type: documentation
+nav_title: "Isaac Sim · 策略部署"
 ---
 
 ## 摘要
@@ -50,4 +51,4 @@ Spot 策略控制演示（动图）。[查看原始来源](https://docs.isaacsim
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

@@ -14,6 +14,7 @@ acquired: 2026-10-02
 snapshot_sha256: 2c249299585a645ed5287effcff2d0ab896286dcb86ed49b838b8df4d87a9f53
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 source_type: tutorial
+nav_title: "Modern Robotics · 齐次变换"
 ---
 
 ## 摘要
@@ -45,4 +46,4 @@ Kevin Lynch 与 Frank Park 的官方课程用齐次变换统一刚体位姿、�
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

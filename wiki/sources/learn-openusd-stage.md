@@ -11,6 +11,7 @@ extracted_text: graph/extracts/learn-openusd-stage.md
 source_date: unknown
 topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 source_type: tutorial
+nav_title: "OpenUSD · Stage"
 ---
 
 # Stage - Learn OpenUSD
@@ -39,7 +40,7 @@ NVIDIA Learn OpenUSD 的场景入门教程。`Stage` 呈现由根文件及引用
 
 ## 关联
 
-[[USDAFileSyntax|USDA 文件语法]] 使用教程的最小例子；[[OpenUSDSceneComposition|场景组合]] 展开层、图元与求值机制；[[OpenUSD|OpenUSD]] 是跨来源项目入口。
+[[USDAFileSyntax|USDA 文件语法]] 使用教程的最小例子；[[OpenUSDSceneComposition|场景组合]] 展开层、图元与求值机制；[[sources/openusd-introduction|OpenUSD]] 是跨来源项目入口。
 
 ## 开放问题
 
@@ -47,4 +48,4 @@ NVIDIA Learn OpenUSD 的场景入门教程。`Stage` 呈现由根文件及引用
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。

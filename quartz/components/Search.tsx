@@ -7,6 +7,7 @@ import { i18n } from "../i18n"
 
 export interface SearchOptions {
   enablePreview: boolean
+  buttonLabel?: string
 }
 
 const defaultOptions: SearchOptions = {
@@ -27,7 +28,7 @@ export default ((userOpts?: Partial<SearchOptions>) => {
               <circle cx="8" cy="8" r="7" />
             </g>
           </svg>
-          <p>{i18n(cfg.locale).components.search.title}</p>
+          <p>{opts.buttonLabel ?? i18n(cfg.locale).components.search.title}</p>
         </button>
         <div class="search-container">
           <div class="search-space">

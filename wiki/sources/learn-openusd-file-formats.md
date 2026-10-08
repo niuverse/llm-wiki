@@ -11,6 +11,7 @@ extracted_text: graph/extracts/learn-openusd-file-formats.md
 source_date: unknown
 topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 source_type: tutorial
+nav_title: "OpenUSD · File Formats"
 ---
 
 # OpenUSD File Formats - Learn OpenUSD
@@ -34,7 +35,7 @@ NVIDIA Learn OpenUSD 解释 `.usd`、`.usda`、`.usdc` 和 `.usdz` 的差别：U
 
 ## 关联
 
-[[USDAFileSyntax|USDA 文件语法]] 解释文本层的语义；[[OpenUSDSceneComposition|OpenUSD 场景组合]] 将格式放回场景组合；[[OpenUSD|OpenUSD]] 汇总项目来源。
+[[USDAFileSyntax|USDA 文件语法]] 解释文本层的语义；[[OpenUSDSceneComposition|OpenUSD Composition]] 将格式放回场景组合；[[sources/openusd-introduction|OpenUSD]] 汇总项目来源。
 
 ## 开放问题
 
@@ -42,4 +43,4 @@ NVIDIA Learn OpenUSD 解释 `.usd`、`.usda`、`.usdc` 和 `.usdz` 的差别：U
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。

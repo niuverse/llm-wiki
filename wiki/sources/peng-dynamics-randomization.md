@@ -18,6 +18,7 @@ year: 2018
 venue: "arXiv 预印本"
 reviewed: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
+nav_title: "Dynamics Randomization · Peng"
 ---
 
 ## 一屏概览
@@ -110,4 +111,4 @@ $$
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

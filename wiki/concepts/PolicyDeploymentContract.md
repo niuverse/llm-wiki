@@ -1,5 +1,5 @@
 ---
-title: "策略部署契约：同一模型如何执行同一行为"
+title: "策略部署接口"
 type: concept
 tags: [robotics, simulation, sim-to-real, systems]
 sources: ["[[isaac-sim-policy-deployment]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[peng-dynamics-randomization]]", "[[isaac-lab-repository]]", "[[mjlab-repository]]", "[[mujoco-playground-repository]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ---
 
-# 策略部署契约：同一模型如何执行同一行为
+# 策略部署接口
 
 模型权重相同，行为也可能不同：输入的关节顺序、历史、尺度、动作含义或更新时间改变，机器人执行的就不是训练时的闭环系统。部署契约记录这些条件；[[isaac-sim-policy-deployment|Isaac Sim 部署指南]] 与 [[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE，第 3.5 节]] 都将输入输出复现纳入部署过程。优先核对这些已知条件，再判断未知物理差距，是本页采用的诊断建议。
 
@@ -73,4 +73,4 @@ $\theta$ 是模型权重，$\mathcal A$ 是观测组装与预处理，$H$ 是历
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

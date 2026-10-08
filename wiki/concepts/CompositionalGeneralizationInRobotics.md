@@ -1,5 +1,5 @@
 ---
-title: "机器人学中的组合泛化"
+title: "Compositional Generalization"
 type: concept
 tags: [robotics, generalization, robot-foundation-models, evaluation]
 sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/policy-evaluation"]
 ---
 
-# 机器人学中的组合泛化
+# Compositional Generalization
 
 组合泛化是把已有技能、物体、关系或指令用于新的组合。判断“新”必须说明划分单位：完整任务未见，不代表组成技能、场景或机器人都未见。[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 与 [[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 都考察组合行为，但提示方式、训练数据和评估协议不同。
 
@@ -52,7 +52,7 @@ flowchart LR
   E --> F["指导轨迹：可用于高层训练"]
 ```
 
-图中的反馈是闭环执行，最后一支是新的训练步骤；两者不能混为同一种推理能力。上下文接口见 [[RobotContextConditioning|机器人上下文条件化]]。
+图中的反馈是闭环执行，最后一支是新的训练步骤；两者不能混为同一种推理能力。上下文接口见 [[RobotContextConditioning|Context Conditioning]]。
 
 **进度与全成率的教学例子。** 对三个必须依次完成的阶段，假设每一步在前面全成功条件下的成功率都是 0.9，则全成率为 $0.9^3=0.729$。这里直接假设的是条件成功率，不要求阶段在实际机器人系统中独立。如果另一个评测把三个指令各计一分，即使平均拿到 90% 的指令分数，也不能据此还原 72.9% 的整任务成功率；错误是否集中在同一批回合会改变结果。这正是记录逐回合结果、顺序依赖和失败阶段的必要性。例子只演示上述概率关系，不是 π0.7 或 RoboCasa365 的报告数字。
 
@@ -66,4 +66,4 @@ RoboCasa365 将原子、已见组合和未见组合任务分组；“未见组�
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/robot-policy-learning|机器人策略学习]] · [[topics/policy-evaluation|策略评测]]。

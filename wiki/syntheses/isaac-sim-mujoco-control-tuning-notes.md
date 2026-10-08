@@ -76,4 +76,4 @@ $\omega_n$ 为固有角频率，$\zeta$ 为阻尼比。这解释了为什么 $K_
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/physics-simulation|物理仿真]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/physics-simulation|物理仿真]] · [[topics/simulation-transfer|Sim-to-Real]] · [[topics/contact-modeling|接触建模]]。

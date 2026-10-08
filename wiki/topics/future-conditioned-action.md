@@ -1,5 +1,5 @@
 ---
-title: "未来预测怎样帮助动作学习"
+title: "未来预测与动作学习"
 type: "topic"
 tags: ["world-models", "source-backed"]
 sources: ["[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[pi07-steerable-generalist-robotic-foundation-model]]"]
@@ -7,7 +7,7 @@ modified: "2026-10-04"
 description: "区分未来监督、逆动力学、潜在动作和上下文条件化的作用。"
 ---
 
-# 未来预测怎样帮助动作学习
+# 未来预测与动作学习
 
 区分未来监督、逆动力学、潜在动作和上下文条件化的作用。
 
@@ -31,10 +31,10 @@ description: "区分未来监督、逆动力学、潜在动作和上下文条件
 
 ## 机制基础
 
-[[InverseDynamicsModels|逆动力学模型]]、[[LatentDynamicsActionModels|潜在动力学动作模型]]、[[VisionLanguageActionModels|视觉—语言—动作模型]]、[[RobotContextConditioning|机器人上下文条件化]]。
+[[InverseDynamicsModels|Inverse Dynamics]]、[[VisionLanguageActionModels|Vision-Language-Action (VLA)]]、[[RobotContextConditioning|Context Conditioning]]。
 
 ## 未解问题与优先补证
 
 固定机器人动作数据、视频数据与模型预算后，收益来自未来预测目标、表示预训练还是动作解码器？跨机器人潜在动作是否保留相同语义？
 
-这些是研究问题与验证要求，尚未作为已有结论。沿 [[topics/world-models-and-representations|世界模型与表征]] 查看相关研究；基础学习可沿 [[world-models-learning-path|学习路径]] 进行。
+这些是研究问题与验证要求，尚未作为已有结论。沿 [[topics/world-models-and-representations|World Models]] 查看相关研究。

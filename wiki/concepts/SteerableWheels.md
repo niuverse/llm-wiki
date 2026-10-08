@@ -52,8 +52,8 @@ $$
 
 以下是**由几何关系提出的实现建议**，不是上述论文已经测得的硬件失效统计：求转向角时，应处理零接触速度下方向不定；同一速度可由角度 $\beta$ 与正轮速，或 $\beta+\pi$ 与反轮速实现，选支需要考虑角度限位与连续性；目标轮角还须满足实际转向速率，不能假设即时到位。
 
-现代独立转向模块的具体分类应按偏置、车轮约束和协调方式推导，不能仅凭 swerve 名称指定类别。接触、轮胎变形和执行器能力还需相应证据。估计中的轮角与滑移影响见 [[MobileRobotOdometry|里程计]]、[[SimulationRealityGap|仿真—现实差距]]。
+现代独立转向模块的具体分类应按偏置、车轮约束和协调方式推导，不能仅凭 swerve 名称指定类别。接触、轮胎变形和执行器能力还需相应证据。估计中的轮角与滑移影响见 [[MobileRobotOdometry|里程计]]、[[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 研究归属
 
-[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人如何建模与分类]]。
+[[topics/planning-and-control|规划与控制]] · [[topics/wheeled-robot-modeling|轮式机器人]]。

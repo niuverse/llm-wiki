@@ -1,5 +1,5 @@
 ---
-title: "可用于仿真的三维世界生成"
+title: "Simulation-ready 3D Generation"
 type: concept
 tags: [robotics, embodied-ai, simulation, 3d-generation]
 sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[robotics-simulation-infrastructure]]", "[[mujoco-computation-collision-detection]]", "[[coacd-approximate-convex-decomposition]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/assets-and-world-generation", "topics/simulation-ready-worlds"]
 ---
 
-# 可用于仿真的三维世界生成
+# Simulation-ready 3D Generation
 
 可用于仿真的生成系统需要交付能加载、能接触、能执行任务的资产与环境。视觉外观只是其中一层。[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen V1]] 主要组织资产生成、检查、纹理和物理打包；[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|V2]] 再加入部件交互语义、任务布局和有状态编辑。它们生成可执行的显式环境，与预测未来观测的 [[WorldModelsForEmbodiedAI|学得世界模型]] 有不同的输出契约。
 
@@ -40,10 +40,10 @@ V2 的“Collision Success 98.6%”来自另一组 200 资产、每个资产四�
 
 ## 场景生成与编辑
 
-V2 以类型化场景树约束对象角色，通过广度优先放置处理支撑、重叠和可达性，再以物理沉降检查布局。交互式编辑对现有世界计算有界修改，验证成功才提交；失败保留原状态。这把生成模型的语义建议与确定性几何／状态维护分开。具体机制见 [[AgenticSceneTaskGeneration|智能体式场景与任务生成]]。
+V2 以类型化场景树约束对象角色，通过广度优先放置处理支撑、重叠和可达性，再以物理沉降检查布局。交互式编辑对现有世界计算有界修改，验证成功才提交；失败保留原状态。这把生成模型的语义建议与确定性几何／状态维护分开。具体机制见 [[AgenticSceneTaskGeneration|Agentic Scene Generation]]。
 
-主要残余问题包括初态已经满足目标、尺寸不相容、桌边物体不稳定，以及物理参数只具类别合理性。多引擎转换尚不能替代 [[SimulationRealityGap|仿真与现实差距]] 验证；V2 转述的策略学习改进来自配套研究，不能单独归因于世界生成器。阅读顺序见 [[embodiedgen-v1-v2-learning-map|EmbodiedGen 学习地图]]。
+主要残余问题包括初态已经满足目标、尺寸不相容、桌边物体不稳定，以及物理参数只具类别合理性。多引擎转换尚不能替代 [[SimulationRealityGap|仿真与现实差距]] 验证；V2 转述的策略学习改进来自配套研究，不能单独归因于世界生成器。阅读顺序见 [[topics/simulation-ready-worlds|EmbodiedGen 专题]]。
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/simulation-ready-worlds|生成世界何时成为可执行环境]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/simulation-ready-worlds|Simulation-ready Worlds]]。

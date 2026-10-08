@@ -1,15 +1,15 @@
 ---
-title: "评测与现实迁移"
+title: "评测与 Sim-to-Real"
 type: "topic"
 tags: ["robotics", "source-backed"]
 sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[simopt-adaptive-randomization]]", "[[peng-dynamics-randomization]]", "[[kpi-promptable-kernel-physical-interaction]]", "[[dexweave-dexterous-humanoid-loco-manipulation]]", "[[rho-efficiently-adaptable-vla-models]]"]
 modified: 2026-10-08
 entry: "research"
 nav_order: 6
-description: "评测定义我们要测量什么，现实迁移检验仿真和训练中得到的能力是否在硬件上成立。两者交叉于任务分布、观测和控制接口，但评测方法并不自动带来迁移能力。"
+description: "评测协议、失败诊断与现实迁移"
 ---
 
-# 评测与现实迁移
+# 评测与 Sim-to-Real
 
 评测定义我们要测量什么，现实迁移检验仿真和训练中得到的能力是否在硬件上成立。两者交叉于任务分布、观测和控制接口，但评测方法并不自动带来迁移能力。
 
@@ -19,7 +19,7 @@ description: "评测定义我们要测量什么，现实迁移检验仿真和训
 - **设计比较协议。** [[simulation-post-training-evaluation|冻结、适应与真实迁移协议]] 说明哪些预算和数据接触会改变问题；[[RobotLearningDataComposition|数据构成]] 帮助解释训练条件。
 - **定位失败因素。** [[SimulationSensitivityAnalysis|仿真敏感性分析]]、[[SimulationBenchmarkReportingPipeline|基准报告]] 连接扰动、成功、过程与轨迹指标。
 - **处理环境差异。** [[topics/simulation-transfer|可靠迁移]] 串联 [[DomainRandomization|域随机化]]、[[SystemIdentificationForSimulation|系统辨识]] 与 [[PolicyDeploymentContract|部署约定]]。
-- **验证预测系统。** [[topics/world-model-evaluation|动作后果评估]] 将视觉质量、动作遵循与真实控制表现分开；预测方法入口见 [[topics/world-models-and-representations|世界模型与表征]]。
+- **验证预测系统。** [[topics/world-model-evaluation|动作后果评估]] 将视觉质量、动作遵循与真实控制表现分开；预测方法入口见 [[topics/world-models-and-representations|World Models]]。
 
 ## 当前理解
 

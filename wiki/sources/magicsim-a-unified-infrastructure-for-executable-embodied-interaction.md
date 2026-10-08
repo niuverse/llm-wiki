@@ -15,6 +15,7 @@ year: 2026
 venue: "arXiv（技术报告）"
 reviewed: 2026-10-04
 topics: ["topics/assets-and-world-generation", "topics/simulation-ready-worlds"]
+nav_title: "MagicSim"
 ---
 
 # MagicSim：让任务执行、规划、重放与数据记录共用一个回合
@@ -166,10 +167,10 @@ $$
 
 MagicSim 最清楚的贡献是统一回合中的因果记录：初态、动作、技能阶段、规划结果、任务状态和数据提交相互对应。这对 [[RoboticsSimulationInfrastructure|机器人仿真基础设施]] 有借鉴价值，也说明为什么 [[SimulationReady3DWorldGeneration|世界生成]] 完成后仍需要执行、判定和记录层。
 
-但软件接口统一解决的是系统组合，不自动解决 [[ContactModelsInRobotics|接触物理]] 的准确性、[[TaskGeneralistPolicyEvaluation|评测有效性]] 或 [[SimulationRealityGap|现实迁移]]。固定技能词表限制行为覆盖，成功筛选影响数据分布；共享状态与种子需要实际重放误差和失败统计来验证。与 [[HeterogeneousRobotRLTraining|异构机器人强化学习训练]] 相比，这里的主要异步对象是单仿真批次中的技能与规划请求，不能直接等同于采集器和学习器之间的异步。
+但软件接口统一解决的是系统组合，不自动解决 [[ContactModelsInRobotics|接触物理]] 的准确性、[[TaskGeneralistPolicyEvaluation|评测有效性]] 或 [[SimulationRealityGap|现实迁移]]。固定技能词表限制行为覆盖，成功筛选影响数据分布；共享状态与种子需要实际重放误差和失败统计来验证。与 [[HeterogeneousRobotRLTraining|异构 RL 训练]] 相比，这里的主要异步对象是单仿真批次中的技能与规划请求，不能直接等同于采集器和学习器之间的异步。
 
-原 [[ExecutableEmbodiedInteractionInfrastructure|可执行具身交互基础设施]] 页中的论文专属机制已在本页完整解释；[[AgenticSceneTaskGeneration|智能体式场景与任务生成]] 保留跨系统通用部分。
+原 [[ExecutableEmbodiedInteractionInfrastructure|可执行具身交互基础设施]] 页中的论文专属机制已在本页完整解释；[[AgenticSceneTaskGeneration|Agentic Scene Generation]] 保留跨系统通用部分。
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/simulation-ready-worlds|生成世界何时成为可执行环境]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/simulation-ready-worlds|Simulation-ready Worlds]]。

@@ -21,6 +21,7 @@ code_files:
   - raw/code-mjlab-src-mjlab-tasks-registry-py-2026-10-04-f1c82c8f1ff5.py
   - raw/code-mjlab-src-mjlab-rl-vecenv-wrapper-py-2026-10-04-d458aa421d72.py
   - raw/code-mjlab-src-mjlab-sim-sim-py-2026-10-04-e9e7eb9bb404.py
+nav_title: "mjlab · Code"
 ---
 
 ## 定位与阅读范围
@@ -79,4 +80,4 @@ flowchart LR
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|RL 训练系统]]。

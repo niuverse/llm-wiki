@@ -2,31 +2,48 @@ import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 import KnowledgeMeta from "./quartz/components/KnowledgeMeta"
 import KnowledgeRelations from "./quartz/components/KnowledgeRelations"
+import ImageViewer from "./quartz/components/ImageViewer"
 
 const navigation = [
   Component.PageTitle(),
   Component.MobileOnly(Component.Spacer()),
   Component.Flex({
     components: [
-      { Component: Component.Search(), grow: true },
+      {
+        Component: Component.ConditionalRender({
+          component: Component.Search(),
+          condition: (p) => p.fileData.slug !== "index",
+        }),
+        grow: true,
+      },
       { Component: Component.Darkmode() },
       { Component: Component.ReaderMode() },
     ],
   }),
   Component.Explorer({
-    title: "笔记目录",
-    folderClickBehavior: "link",
+    title: "Browse",
+    folderClickBehavior: "collapse",
     folderDefaultState: "collapsed",
-    filterFn: (node) => !["tags", "domains"].includes(node.slugSegment),
+    sortFn: (a, b) => {
+      const folders = ["topics", "concepts", "sources", "syntheses"]
+      if (a.isFolder && b.isFolder)
+        return folders.indexOf(a.slugSegment) - folders.indexOf(b.slugSegment)
+      if (a.isFolder !== b.isFolder) return a.isFolder ? -1 : 1
+      return a.displayName.localeCompare(b.displayName, undefined, { numeric: true })
+    },
+    filterFn: (node) =>
+      !["tags", "domains", "entities"].includes(node.slugSegment) &&
+      !["research-topics", "references"].includes(node.slug) &&
+      node.data?.type !== "redirect",
     mapFn: (node) => {
       const names: Record<string, string> = {
-        topics: "主题地图",
-        sources: "论文与资料",
-        concepts: "共享概念",
-        syntheses: "学习与综合",
-        entities: "项目与工具",
+        topics: "Topics",
+        concepts: "Concepts",
+        sources: "Sources",
+        syntheses: "Notes",
       }
       if (node.isFolder && names[node.slugSegment]) node.displayName = names[node.slugSegment]
+      else if (node.data?.navTitle) node.displayName = node.data.navTitle
     },
   }),
 ]
@@ -34,7 +51,7 @@ const navigation = [
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [KnowledgeRelations()],
+  afterBody: [KnowledgeRelations(), ImageViewer()],
   footer: Component.Footer({ links: { GitHub: "https://github.com/niuverse/llm-wiki" } }),
 }
 
@@ -46,6 +63,10 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.ArticleTitle(),
     Component.ConditionalRender({
+      component: Component.Search({ buttonLabel: "搜索论文、概念或研究问题…" }),
+      condition: (p) => p.fileData.slug === "index",
+    }),
+    Component.ConditionalRender({
       component: Component.ContentMeta(),
       condition: (p) => !["navigation", "redirect"].includes(String(p.fileData.frontmatter?.type)),
     }),
@@ -54,6 +75,10 @@ export const defaultContentPageLayout: PageLayout = {
   left: navigation,
   right: [
     Component.ConditionalRender({
+      component: Component.DesktopOnly(Component.TableOfContents()),
+      condition: (p) => p.fileData.slug !== "index",
+    }),
+    Component.ConditionalRender({
       component: Component.Graph({
         localGraph: { showTags: false },
         globalGraph: { showTags: false },
@@ -61,7 +86,6 @@ export const defaultContentPageLayout: PageLayout = {
       condition: (p) =>
         !["navigation", "redirect", "domain"].includes(String(p.fileData.frontmatter?.type)),
     }),
-    Component.DesktopOnly(Component.TableOfContents()),
   ],
 }
 

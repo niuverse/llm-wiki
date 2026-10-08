@@ -18,6 +18,7 @@ year: 2026
 venue: "arXiv 预印本"
 reviewed: 2026-10-08
 topics: ["topics/robot-policy-learning", "topics/simulation-transfer", "topics/evaluation-and-transfer"]
+nav_title: "DexWeave"
 ---
 
 ## 一屏概览

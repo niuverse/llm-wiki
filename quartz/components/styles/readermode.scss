@@ -4,14 +4,20 @@
   position: relative;
   background: none;
   border: none;
-  width: 20px;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--darkgray);
+  font: inherit;
+  font-size: 0.8rem;
   height: 32px;
   margin: 0;
   text-align: inherit;
   flex-shrink: 0;
 
   & svg {
-    position: absolute;
+    position: static;
     width: 20px;
     height: 20px;
     top: calc(50% - 10px);

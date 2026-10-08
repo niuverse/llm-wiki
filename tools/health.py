@@ -60,7 +60,8 @@ def normalize_wikilink(raw: str) -> str:
 
 
 def check_broken_wikilinks(root: Path, pages: list[Path]) -> list[dict[str, str]]:
-    ids = page_ids(root, pages)
+    # Maintenance and navigation pages are valid destinations too.
+    ids = page_ids(root, list((root / "wiki").rglob("*.md")))
     broken = []
     for page in pages:
         text = read_text(page)
@@ -101,7 +102,8 @@ def check_empty_files(root: Path, pages: list[Path]) -> list[dict[str, Any]]:
     for page in pages:
         raw = read_text(page)
         body = strip_frontmatter(raw)
-        if len(body) < STUB_THRESHOLD_CHARS:
+        # Redirects are intentionally short; their targets are checked separately.
+        if not body or (len(body) < STUB_THRESHOLD_CHARS and parse_frontmatter(raw).get("type") != "redirect"):
             empty.append(
                 {
                     "path": page.relative_to(root).as_posix(),

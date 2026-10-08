@@ -16,6 +16,7 @@ year: 2025
 venue: "arXiv（预印本）"
 reviewed: 2026-10-04
 topics: ["topics/assets-and-world-generation", "topics/simulation-ready-worlds"]
+nav_title: "EmbodiedGen"
 ---
 
 # EmbodiedGen：从生成三维内容到可导入仿真的资产
@@ -32,7 +33,7 @@ topics: ["topics/assets-and-world-generation", "topics/simulation-ready-worlds"]
 
 **结论范围。** 论文展示多种生成结果和仿真接入；明确的质量检查定量实验是 150 个杯子，检查器识别“不可用资产”的精确率为 68.7%、召回率为 76.7%。视觉示例和能导入仿真不能证明质量、摩擦或接触响应与真实物体一致。
 
-本页复核本地 `raw/embodiedgen.pdf`，对应 arXiv:2506.10600v2，PDF 标注 2025-06-16；元数据 `source_date` 保留原登记日期 2025-06-12。完整阅读 16 页，含参考文献。项目归入 [[EmbodiedGen|EmbodiedGen]]。
+本页复核本地 `raw/embodiedgen.pdf`，对应 arXiv:2506.10600v2，PDF 标注 2025-06-16；元数据 `source_date` 保留原登记日期 2025-06-12。完整阅读 16 页，含参考文献。项目归入 [[sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen]]。
 
 ## 方法：每一阶段解决什么
 
@@ -150,10 +151,10 @@ $B$ 是训练批量，$r_b,s_b$ 是同一表面点在参考／搜索视图中的
 
 **作者证据中的限制。** 质量检查未达到高精确率、高召回率，几何完整性和分割错误需要重试；正文的“物理准确”和“最先进质量”表述比本版本的定量证据更强。论文没有完整质量门消融、跨引擎动力学一致性实验或大规模真机对照。
 
-**我们的解释。** 最可复用的思想是把三维生成产物当作候选资产，并显式检查外观、几何、尺度、描述文件与仿真行为。视觉语言模型估计的参数适合作为后续随机化或标定起点；把这些参数写进 URDF，仅建立了可执行描述，不会自动缩小 [[SimulationRealityGap|仿真—现实差距]]。
+**我们的解释。** 最可复用的思想是把三维生成产物当作候选资产，并显式检查外观、几何、尺度、描述文件与仿真行为。视觉语言模型估计的参数适合作为后续随机化或标定起点；把这些参数写进 URDF，仅建立了可执行描述，不会自动缩小 [[SimulationRealityGap|Sim-to-Real Gap]]。
 
-机制基础见 [[SimulationReady3DWorldGeneration|可用于仿真的三维世界生成]]、[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]。后续版本见 [[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]]；两代对照见 [[embodiedgen-v1-v2-learning-map|EmbodiedGen 学习地图]]。
+机制基础见 [[SimulationReady3DWorldGeneration|Simulation-ready 3D Generation]]、[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]。后续版本见 [[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]]；两代对照见 [[topics/simulation-ready-worlds|EmbodiedGen 专题]]。
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/simulation-ready-worlds|生成世界何时成为可执行环境]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/simulation-ready-worlds|Simulation-ready Worlds]]。

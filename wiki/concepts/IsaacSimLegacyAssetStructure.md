@@ -46,8 +46,8 @@ flowchart LR
 
 看到旧文件名时，应先检查它实际承载的职责，再决定拆分位置。不能把旧 `asset_base.usd` 与新 `base.usda` 视为严格等价，也不能仅重命名文件就认定完成迁移。4.5来源没有给出多物理引擎分层方案或完整自动迁移规则。
 
-相关页面：[[OpenUSDSceneComposition|OpenUSD 场景组合]]、[[IsaacSim|Isaac Sim]]、[[SimulationRealityGap|仿真—现实差距]]。本次为现页与来源页的编辑整理，没有重新检查官方导入器。
+相关页面：[[OpenUSDSceneComposition|OpenUSD Composition]]、[[sources/isaac-sim-asset-structure|Isaac Sim]]、[[SimulationRealityGap|Sim-to-Real Gap]]。本次为现页与来源页的编辑整理，没有重新检查官方导入器。
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。

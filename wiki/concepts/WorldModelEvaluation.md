@@ -1,5 +1,5 @@
 ---
-title: "世界模型评估"
+title: "World Model 评测"
 type: concept
 tags: [embodied-ai, world-models, evaluation]
 sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[dreamerv3-mastering-diverse-control]]", "[[td-mpc2-scalable-robust-world-models]]", "[[dino-wm-pretrained-visual-features]]", "[[v-jepa-2-understanding-prediction-planning]]", "[[worldecho-worldsync-action-following]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/evaluation-and-transfer", "topics/world-model-evaluation"]
 ---
 
-# 世界模型评估
+# World Model 评测
 
 世界模型要分别回答四个问题：**生成内容是否像真实观测、状态结构是否准确、是否忠实响应动作、接入决策是否有用。** 这些是互补证据，不是一个分数由低到高自动证明的能力阶梯。[[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]、[[worldecho-worldsync-action-following|WorldEcho]]
 
@@ -96,8 +96,8 @@ V-JEPA 2 的 EK100 39.7 是提前一秒预测动作类别的按类平均 recall@
 | 结果与统计 | 指标公式、单位、成功条件、试验分母、种子与不确定性 |
 | 部署限制 | 机器人形态、相机选择、校准、是否使用本地适应数据 |
 
-这张卡是依据已收录研究提出的整理建议。[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 的视觉子目标尤其需要区分“目标本身质量”与“接入策略后的收益”，不能只评图像。相关基础见 [[RobotContextConditioning|机器人上下文条件化]]、[[WorldModelTaxonomy|世界模型分类]]、[[WorldModelsForEmbodiedAI|具身智能世界模型]]、[[TaskGeneralistPolicyEvaluation|通用策略评估]] 和 [[SimulationRealityGap|仿真—现实差距]]。
+这张卡是依据已收录研究提出的整理建议。[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 的视觉子目标尤其需要区分“目标本身质量”与“接入策略后的收益”，不能只评图像。相关基础见 [[RobotContextConditioning|Context Conditioning]]、[[WorldModelTaxonomy|世界模型分类]]、[[WorldModelsForEmbodiedAI|World Models]]、[[TaskGeneralistPolicyEvaluation|通用策略评估]] 和 [[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/world-model-evaluation|如何验证世界模型的动作后果]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/world-model-evaluation|World Model 评测]]。

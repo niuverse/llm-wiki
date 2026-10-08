@@ -84,10 +84,10 @@ flowchart TD
 
 ## 编辑前的检查
 
-先问修改的是共享几何、中性动力学、后端参数还是可选功能，再进入对应层。常见问题是直接覆盖导入来源、混写不同后端属性、保留不必要的临时子层，以及只重命名文件却没有重新划分职责。分层让差异可以定位，但不能替代 [[SimulationRealityGap|仿真—现实差距]] 验证。
+先问修改的是共享几何、中性动力学、后端参数还是可选功能，再进入对应层。常见问题是直接覆盖导入来源、混写不同后端属性、保留不必要的临时子层，以及只重命名文件却没有重新划分职责。分层让差异可以定位，但不能替代 [[SimulationRealityGap|Sim-to-Real Gap]] 验证。
 
-相关页面：[[OpenUSDSceneComposition|OpenUSD 场景组合]]、[[CollisionGeometryForRobotSimulation|碰撞几何]]、[[ReducedCoordinateArticulations|约化坐标关节系统]]、[[IsaacSim|Isaac Sim]]、[[MuJoCo|MuJoCo]]。
+相关页面：[[OpenUSDSceneComposition|OpenUSD Composition]]、[[CollisionGeometryForRobotSimulation|碰撞几何]]、[[ReducedCoordinateArticulations|约化坐标关节系统]]、[[sources/isaac-sim-asset-structure|Isaac Sim]]、[[sources/mujoco-overview|MuJoCo]]。
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。

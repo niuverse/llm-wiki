@@ -12,6 +12,7 @@ extracted_text: graph/extracts/awesome-world-models-readme.md
 source_date: 2026-03-28
 topics: ["topics/world-models-and-representations", "topics/evaluation-and-transfer", "topics/planning-and-control", "topics/world-model-evaluation", "topics/world-model-decision"]
 source_type: repository
+nav_title: "AwesomeWorldModels"
 ---
 
 # AwesomeWorldModels：世界模型文献索引
@@ -30,7 +31,7 @@ README 用三层组合标题组织论文，再按年份分组：
 | 时间建模 | 顺序式 `Sequential`、整体式 `Global` | 索引把方法归于逐步展开还是整体预测？具体定义需合读综述 |
 | 空间表示 | 全局潜在向量、标记特征序列、空间潜在网格、分解式渲染表示 | 预测对象保留什么空间结构？ |
 
-归档 README 实际列出12个组合章节，不是把所有类别的笛卡尔积都完整填满。图标另外标记自动驾驶、机器人操作、导航和视频生成的主要领域；作者明确这些领域不互斥。分类是资料组织视角，不能仅从类别推断动作监督、真实部署能力或模型优劣。机制定义见 [[WorldModelTaxonomy|世界模型分类体系]]。
+归档 README 实际列出12个组合章节，不是把所有类别的笛卡尔积都完整填满。图标另外标记自动驾驶、机器人操作、导航和视频生成的主要领域；作者明确这些领域不互斥。分类是资料组织视角，不能仅从类别推断动作监督、真实部署能力或模型优劣。机制定义见 [[WorldModelTaxonomy|World Model 分类]]。
 
 ## 一个条目能提供什么
 
@@ -49,8 +50,8 @@ README 用三层组合标题组织论文，再按年份分组：
 
 归档范围是 README 及提交元数据。首页所链中英文幻灯片、外部实现、数据集与视频均未在本轮审计。原始 README 以 UTF-16 保存，阅读缓存为可重建 Markdown；本轮未修改原始文件。
 
-相关入口：[[WorldModelsForEmbodiedAI|具身世界模型]]、[[WorldModelEvaluation|世界模型评估]]、[[topics/world-model-evaluation|动作后果评估专题]]、[[topics/world-model-decision|世界模型与决策专题]]。
+相关入口：[[WorldModelsForEmbodiedAI|具身世界模型]]、[[WorldModelEvaluation|World Model 评测]]、[[topics/world-model-evaluation|动作后果评估专题]]、[[topics/world-model-decision|世界模型与决策专题]]。
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-evaluation|如何验证世界模型的动作后果]] · [[topics/world-model-decision|世界模型如何用于决策]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-evaluation|World Model 评测]] · [[topics/world-model-decision|World Models 与决策]]。

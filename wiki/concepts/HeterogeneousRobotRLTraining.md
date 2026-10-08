@@ -1,5 +1,5 @@
 ---
-title: "异构机器人强化学习训练"
+title: "异构 RL 训练"
 type: concept
 tags: [robotics, reinforcement-learning, simulation, systems]
 sources: ["[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[unilab-repository]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[motrixsim-documentation]]", "[[mujoco-warp-mjwarp-documentation]]", "[[mjlab-repository]]", "[[mujoco-playground-repository]]", "[[isaac-lab-repository]]", "[[maniskill-repository]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/robot-learning-systems"]
 ---
 
-# 异构机器人强化学习训练
+# 异构 RL 训练
 
 异构训练把仿真、策略推理、经验缓冲、学习更新与参数同步分配给不同硬件。设计目标是缩短达到目标策略性能的时间；CPU 或 GPU 上的独立物理吞吐量只解释其中一部分。[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] 提供 CPU 仿真与 GPU 学习的具体证据，[[mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]] 提供可嵌入训练循环的批量物理接口。
 
@@ -88,8 +88,8 @@ flowchart LR
 
 这是依据上述系统实验提出的整理方法。UniLab 同算法 PPO 接近持平，较大加速含异步或重放配置；跨平台训练也不证明吞吐量相等。视觉渲染占主导、多加速器或非刚体任务需要重新测量，不能继承其单工作站刚体控制结论。[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab §4、§7]]
 
-具体软件能力与版本见 [[unilab-repository|UniLab 仓库]]、[[motrixsim-documentation|MotrixSim 文档]]、[[mujoco-warp-mjwarp-documentation|MJWarp 文档]]、[[mjlab-repository|mjlab]]、[[mujoco-playground-repository|MuJoCo Playground]]、[[isaac-lab-repository|Isaac Lab]]、[[maniskill-repository|ManiSkill]]；本页不复制随版本变化的功能表。上层关系见 [[RoboticsSimulationInfrastructure|仿真基础设施]] 与 [[SimulationRealityGap|仿真—现实差距]]。
+具体软件能力与版本见 [[unilab-repository|UniLab 仓库]]、[[motrixsim-documentation|MotrixSim 文档]]、[[mujoco-warp-mjwarp-documentation|MJWarp 文档]]、[[mjlab-repository|mjlab]]、[[mujoco-playground-repository|MuJoCo Playground]]、[[isaac-lab-repository|Isaac Lab]]、[[maniskill-repository|ManiSkill]]；本页不复制随版本变化的功能表。上层关系见 [[RoboticsSimulationInfrastructure|仿真基础设施]] 与 [[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|RL 训练系统]]。

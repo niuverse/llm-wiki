@@ -19,6 +19,7 @@ supplementary_files:
   - raw/mani-mani-skill-agents-controllers-pd-joint-pos-2026-10-04-ce05feb05c43.py
   - raw/mani-mani-skill-vector-wrappers-gymnasium-2026-10-04-66784e43ea5d.py
   - raw/mani-mani-skill-utils-registration-2026-10-04-5e553c27ed82.py
+nav_title: "ManiSkill · Code"
 ---
 
 ## 用途与本次核查范围
@@ -103,4 +104,4 @@ $$
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|RL 训练系统]]。

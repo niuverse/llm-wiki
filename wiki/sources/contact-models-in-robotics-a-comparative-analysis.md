@@ -15,6 +15,7 @@ year: 2024
 venue: "arXiv（归档稿未标注会议或期刊）"
 reviewed: 2026-10-04
 topics: ["topics/physics-simulation", "topics/contact-modeling"]
+nav_title: "Contact Models · 比较研究"
 ---
 
 # 接触模型比较：物理近似与数值求解怎样改变机器人运动
@@ -207,8 +208,8 @@ ContactBench 固定 Pinocchio 刚体动力学和 HPP-FCL 碰撞检测。默认�
 
 **我们的解释。** 应先问“想逼近哪种物理模型”，再问“在预算内解到什么精度”。提高迭代数不能消除模型松弛本身的差异，换成 NCP 也不能代替收敛检查。精度、速度与稳定性之外，还需要任务对误差的容忍程度：平稳站立与滑动操作对同一种松弛的敏感性不同。
 
-共享机制分别见 [[ContactModelsInRobotics|机器人接触模型]]、[[ContactComplementarity|接触互补]]、[[ContactSolvers|接触求解器]]；与 [[SimulationRealityGap|仿真—现实差距]]、[[DifferentiablePhysics|可微物理]] 关联时须保留上述实验边界。[[MuJoCo|MuJoCo]] 是相关引擎入口。ContactBench 与文中 RaiSim 类算法说明保留在本论文页，避免把该文重实现与产品状态混为一谈；作者代码入口为 [ContactBench](https://github.com/Simple-Robotics/contactbench)。
+共享机制分别见 [[ContactModelsInRobotics|机器人接触模型]]、[[ContactComplementarity|Contact Complementarity]]、[[ContactSolvers|Contact Solvers]]；与 [[SimulationRealityGap|Sim-to-Real Gap]]、[[DifferentiablePhysics|Differentiable Physics]] 关联时须保留上述实验边界。[[sources/mujoco-overview|MuJoCo]] 是相关引擎入口。ContactBench 与文中 RaiSim 类算法说明保留在本论文页，避免把该文重实现与产品状态混为一谈；作者代码入口为 [ContactBench](https://github.com/Simple-Robotics/contactbench)。
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触建模]]。

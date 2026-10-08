@@ -1,5 +1,5 @@
 ---
-title: "潜在状态空间模型：估计与预测"
+title: "Latent State-Space Models"
 type: concept
 tags: [world-models, embodied-ai]
 sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[spinning-up-rl-key-concepts]]", "[[planet-learning-latent-dynamics]]", "[[dreamerv3-mastering-diverse-control]]"]
@@ -7,13 +7,13 @@ modified: 2026-10-04
 topics: ["topics/world-models-and-representations", "topics/planning-and-control", "topics/world-model-decision"]
 ---
 
-# 潜在状态空间模型：估计与预测
+# Latent State-Space Models
 
 潜在状态空间模型用不可直接观测的状态组织序列：一部分模型解释观测怎样产生，另一部分预测状态如何随动作变化。关键分工是**读取新观测后的状态估计**与**没有未来观测时的动力学预测**。潜在变量可帮助压缩历史，但不能仅凭名字就断言它等于真实物理状态。[[planet-learning-latent-dynamics|PlaNet 的潜在建模]]、[[a-comprehensive-survey-on-world-models-for-embodied-ai|具身世界模型综述]]
 
 ## 从速度不可见的例子理解
 
-**教学例子。** 两张相同位置的杯子图像，可能分别来自静止杯子与运动杯子。单帧外观相同，下一帧却可能不同；历史帮助推断速度，动作还会改变后果。模型应保留预测所需的信息，而非只描述当前外观。状态与观测的基础区别见 [[MarkovDecisionProcesses|MDP 与强化学习基础]]。
+**教学例子。** 两张相同位置的杯子图像，可能分别来自静止杯子与运动杯子。单帧外观相同，下一帧却可能不同；历史帮助推断速度，动作还会改变后果。模型应保留预测所需的信息，而非只描述当前外观。状态与观测的基础区别见 [[MarkovDecisionProcesses|Markov Decision Process (MDP)]]。
 
 ## 生成假设与近似推断
 
@@ -113,8 +113,8 @@ flowchart LR
 
 同一类状态模型可以供 [[ModelPredictiveControl|在线动作规划]]使用，也可以供 [[ImaginedPolicyLearning|想象中的策略学习]]使用；状态结构相近不意味着执行算法相同。冻结视觉特征上的确定性动力学是另一类表示选择，见 [[VisualGoalPlanning|视觉目标规划]]，不能全部称作带变分后验的 RSSM。
 
-更广的表示与用途分类见 [[WorldModelTaxonomy|世界模型分类]]、[[WorldModelsForEmbodiedAI|具身世界模型]]；预测与控制表现的区分见 [[WorldModelEvaluation|世界模型评估]]。与机器人动作模型的连接可读 [[LatentDynamicsActionModels|潜在动力学动作模型]]。
+更广的表示与用途分类见 [[WorldModelTaxonomy|世界模型分类]]、[[WorldModelsForEmbodiedAI|具身世界模型]]；预测与控制表现的区分见 [[WorldModelEvaluation|World Model 评测]]。与机器人动作模型的连接可读 [[sources/lda-1b-scaling-latent-dynamics-action-model|LDA-1B]]。
 
 ## 研究归属
 
-[[topics/world-models-and-representations|世界模型与表征]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|世界模型如何用于决策]]。
+[[topics/world-models-and-representations|World Models]] · [[topics/planning-and-control|规划与控制]] · [[topics/world-model-decision|World Models 与决策]]。

@@ -28,6 +28,7 @@ supplementary_files:
   - raw/uni-src-unilab-algos-torch-offpolicy-double-buffer-runner-2026-10-04-8698233babf0.py
   - raw/uni-src-unilab-algos-torch-offpolicy-worker-2026-10-04-166ecf2408aa.py
   - raw/uni-src-unilab-ipc-replay-buffer-2026-10-04-d370c5270b47.py
+nav_title: "UniLab · Code"
 ---
 
 ## 用途与本次核查范围
@@ -92,7 +93,7 @@ CUDA、ROCm、XPU、MPS／CPU 由不同传输实现分派。已读 CUDA 类同�
 
 ## 这次核查支持什么
 
-代码确认了 CPU 主重放、两个批次槽、提前一轮预取、CPU 策略副本以及分块同步的具体实现。它也显示“异步”需要明确粒度：采集进程独立运行，但数据水位、采集令牌和就绪事件仍建立依赖。共享机制见 [[HeterogeneousRobotRLTraining|异构机器人强化学习训练]]。
+代码确认了 CPU 主重放、两个批次槽、提前一轮预取、CPU 策略副本以及分块同步的具体实现。它也显示“异步”需要明确粒度：采集进程独立运行，但数据水位、采集令牌和就绪事件仍建立依赖。共享机制见 [[HeterogeneousRobotRLTraining|异构 RL 训练]]。
 
 未安装或运行第三方项目，未实测吞吐、验证 GPU 调度或复现论文回报；SAC 损失、全部任务配置、原生物理后端及硬件分支不属于本轮审计范围。MuJoCoUni 接口与实验见 [[mujocouni-persistent-batched-runtime-primitives-for-mujoco|论文页]]；Motrix 的文档可见范围见 [[motrixsim-documentation|官方文档解析]]。
 
@@ -119,4 +120,4 @@ CUDA、ROCm、XPU、MPS／CPU 由不同传输实现分派。已读 CUDA 类同�
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|训练系统怎样提高有效学习效率]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/physics-simulation|物理仿真]] · [[topics/robot-learning-systems|RL 训练系统]]。

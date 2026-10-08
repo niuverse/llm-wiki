@@ -15,6 +15,7 @@ year: 2022
 venue: "arXiv（归档稿未标注会议或期刊）"
 reviewed: 2026-10-04
 topics: ["topics/physics-simulation", "topics/collision-geometry"]
+nav_title: "DiffPills"
 ---
 
 # DiffPills：把碰撞约束交给梯度优化
@@ -132,8 +133,8 @@ $$
 
 **我们的解释。** 若中心几何已经相交，平方距离可在一段配置范围内保持零，$\phi$ 随之保持负常数；因此“负值能判碰撞”不保证“负值梯度总能指向脱离穿透的方向”。这可直接从式（20）推得，但不是论文给出的失效统计。[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]] 改用最小均匀缩放，适合与此比较；两篇原始稿都出现在 2022 年 7 月，不能仅依据编号把它们描述为相隔很久的技术代际。
 
-相关基础：[[DifferentiableCollisionDetection|可微碰撞检测]]、[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[DifferentiablePhysics|可微物理]]。论文公开实现为 [DiffPills.jl](https://github.com/kevin-tracy/DiffPills.jl)，本页未复核其当前代码状态。
+相关基础：[[DifferentiableCollisionDetection|Differentiable Collision Detection]]、[[CollisionGeometryForRobotSimulation|机器人仿真的碰撞几何]]、[[DifferentiablePhysics|Differentiable Physics]]。论文公开实现为 [DiffPills.jl](https://github.com/kevin-tracy/DiffPills.jl)，本页未复核其当前代码状态。
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|Collision Geometry]]。

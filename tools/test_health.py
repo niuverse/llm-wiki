@@ -6,7 +6,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
-from health import check_research_structure, frontmatter_list, check_local_images
+from health import check_research_structure, frontmatter_list, check_local_images, check_broken_wikilinks, check_empty_files
 
 
 HEALTH = Path(__file__).with_name("health.py")
@@ -14,6 +14,29 @@ BODY = "这是一段有待外部资料验证的学习笔记，明确保留证据
 
 
 class HealthGateTests(unittest.TestCase):
+    def test_short_redirect_still_requires_body_and_valid_target(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "wiki").mkdir()
+            page = root / "wiki/old.md"
+            header = "---\ntype: redirect\nredirect_to: missing\n---\n"
+            page.write_text(header + "内容已并入 [[missing]]。", encoding="utf-8")
+            self.assertEqual(check_empty_files(root, [page]), [])
+            self.assertTrue(check_research_structure(root, [page]))
+            page.write_text(header, encoding="utf-8")
+            self.assertEqual(check_empty_files(root, [page])[0]["status"], "empty")
+
+    def test_log_link_requires_an_existing_log_file(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            wiki = root / "wiki"
+            wiki.mkdir()
+            page = wiki / "catalog.md"
+            page.write_text("[[log|知识库日志]]", encoding="utf-8")
+            self.assertEqual(len(check_broken_wikilinks(root, [page])), 1)
+            (wiki / "log.md").write_text("# 知识库日志", encoding="utf-8")
+            self.assertEqual(check_broken_wikilinks(root, [page]), [])
+
     def check_page(self, *, tags="[unsourced]", body=BODY):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

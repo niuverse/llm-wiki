@@ -15,6 +15,7 @@ year: 2026
 venue: "arXiv 预印本"
 reviewed: 2026-10-04
 topics: ["topics/robot-policy-learning", "topics/world-models-and-representations", "topics/evaluation-and-transfer", "topics/future-conditioned-action", "topics/policy-evaluation"]
+nav_title: "LDA-1B"
 ---
 
 # LDA-1B：按监督条件利用异构交互数据
@@ -157,8 +158,8 @@ flowchart LR
 
 **我们的解释。** 本文最值得迁移的研究设计是把“能模仿的动作”与“有信息的动作后果”分开使用，而不是假设所有数据都应提供策略监督。下一步比较其他路线时，应同时控制表示、动作接口、数据质量与下游适配预算，不能仅按模型名称排名。
 
-机制基础见 [[LatentDynamicsActionModels|潜在动力学动作模型]]、[[WorldModelsForEmbodiedAI|具身世界模型]]、[[VisionLanguageActionModels|视觉—语言—动作模型]]。与 [[RobotContextConditioning|机器人上下文条件化]] 及 [[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 对照时，LDA 的核心在训练目标分配，后者的核心在条件化区分数据与执行意图；两者可否组合仍是研究假设。
+机制基础见 [[WorldModelsForEmbodiedAI|具身世界模型]]、[[VisionLanguageActionModels|Vision-Language-Action (VLA)]]。与 [[RobotContextConditioning|Context Conditioning]] 及 [[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 对照时，LDA 的核心在训练目标分配，后者的核心在条件化区分数据与执行意图；两者可否组合仍是研究假设。
 
 ## 研究归属
 
-[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|世界模型与表征]] · [[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/future-conditioned-action|未来预测怎样帮助动作学习]] · [[topics/policy-evaluation|数据与评测怎样支撑泛化判断]]。
+[[topics/robot-policy-learning|机器人策略学习]] · [[topics/world-models-and-representations|World Models]] · [[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/future-conditioned-action|未来预测与动作学习]] · [[topics/policy-evaluation|策略评测]]。

@@ -13,6 +13,7 @@ topics: ["topics/physics-simulation", "topics/collision-geometry"]
 source_type: repository
 source_version: "131010c4f03fec375ea88c5c6263f120046cb7f1"
 reviewed: 2026-10-04
+nav_title: "CoACD · Code"
 ---
 
 # CoACD：从网格到可用碰撞组件的实现
@@ -83,7 +84,7 @@ flowchart TD
 
 ## 使用判断与实现边界
 
-**我们的工程解释。** 把调参分为输入修复、误差预算、搜索预算、输出压缩四步。先确认修复后仍有任务需要的孔槽，再调分解误差；最后为目标引擎测组件数、接触行为与总步进耗时。代码提供机制，不证明某个参数组合对机器人任务最优。共同原理见 [[ApproximateConvexDecomposition|近似凸分解]]、[[CollisionGeometryForRobotSimulation|碰撞几何]]。
+**我们的工程解释。** 把调参分为输入修复、误差预算、搜索预算、输出压缩四步。先确认修复后仍有任务需要的孔槽，再调分解误差；最后为目标引擎测组件数、接触行为与总步进耗时。代码提供机制，不证明某个参数组合对机器人任务最优。共同原理见 [[ApproximateConvexDecomposition|Approximate Convex Decomposition]]、[[CollisionGeometryForRobotSimulation|碰撞几何]]。
 
 静态阅读还发现此提交的 `CoACD_freeMeshArray` 先释放各组件数组，随后将外层 `meshes_ptr` 置空再 `delete[]`。按代码顺序，最初的外层数组未在这里释放；这提示长时间批量调用应核查内存生命周期，但本页没有运行泄漏检测，也没有测量增长量。[第 144–156 行](https://github.com/SarahWeiii/CoACD/blob/131010c4f03fec375ea88c5c6263f120046cb7f1/public/coacd.cpp#L144)
 
@@ -105,4 +106,4 @@ flowchart TD
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|碰撞几何如何兼顾精度与计算]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/collision-geometry|Collision Geometry]]。

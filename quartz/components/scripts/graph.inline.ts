@@ -576,21 +576,43 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   const slug = e.detail.url
   addToVisited(simplifySlug(slug))
 
-  async function renderLocalGraph() {
-    cleanupLocalGraphs()
-    const localGraphContainers = document.getElementsByClassName("graph-container")
-    for (const container of localGraphContainers) {
-      localGraphCleanups.push(await renderGraph(container as HTMLElement, slug))
-    }
+  // Serialize rendering so closing a graph or navigating away cannot leave a late canvas running.
+  let active = true
+  let revision = 0
+  let pending = Promise.resolve()
+  function renderLocalGraph() {
+    const requested = ++revision
+    pending = pending
+      .then(async () => {
+        if (!active || requested !== revision) return
+        cleanupLocalGraphs()
+        const localGraphContainers = document.getElementsByClassName("graph-container")
+        for (const container of localGraphContainers) {
+          if (!container.closest<HTMLDetailsElement>(".graph-details")?.open) continue
+          const cleanup = await renderGraph(container as HTMLElement, slug)
+          if (!active || requested !== revision) cleanup()
+          else localGraphCleanups.push(cleanup)
+        }
+      })
+      .catch(console.error)
+    return pending
   }
 
-  await renderLocalGraph()
+  const disclosures = document.querySelectorAll<HTMLDetailsElement>(".graph-details")
+  const onToggle = () => {
+    void renderLocalGraph()
+  }
+  disclosures.forEach((details) => details.addEventListener("toggle", onToggle))
+  void renderLocalGraph()
   const handleThemeChange = () => {
     void renderLocalGraph()
   }
 
   document.addEventListener("themechange", handleThemeChange)
   window.addCleanup(() => {
+    active = false
+    revision++
+    disclosures.forEach((details) => details.removeEventListener("toggle", onToggle))
     document.removeEventListener("themechange", handleThemeChange)
   })
 

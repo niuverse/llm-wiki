@@ -1,5 +1,5 @@
 ---
-title: "视觉仿真到现实迁移"
+title: "Visual Sim-to-Real"
 type: concept
 tags: [robotics, sim-to-real, reinforcement-learning]
 sources: ["[[tobin-domain-randomization]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ---
 
-# 视觉仿真到现实迁移
+# Visual Sim-to-Real
 
 视觉仿真到现实迁移研究如何把仿真训练的视觉模块或视觉策略用于真实机器人。必须先区分两类证据：[[tobin-domain-randomization|Tobin]] 迁移的是位置预测网络，抓取由现成规划器执行；[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]] 与 [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] 则让视觉策略在真实人形机器人上闭环执行动作。视觉定位精度不直接等于闭环操作成功率。
 
@@ -78,8 +78,8 @@ GRAIL 将数据问题前移：视频看起来合理，还需经过公制重建�
 
 “没有真实策略微调”与“完全没有真实信息”要分开。相机标定和手部辨识已经利用真实系统的信息；它们与用真实示范优化策略权重是不同步骤。这个区别有助于比较迁移成本，不改变各论文对零样本策略部署的原有用语。
 
-跨论文关系见 [[DomainRandomization|域随机化]]、[[SystemIdentificationForSimulation|系统辨识]]、[[PolicyDeploymentContract|部署契约]]、[[SimulationRealityGap|仿真—现实差距]] 与 [[TaskGeneralistPolicyEvaluation|策略评估]]。生成式世界模型的视觉质量与控制可信度区别见 [[WorldModelsForEmbodiedAI|具身智能世界模型]]。
+跨论文关系见 [[DomainRandomization|域随机化]]、[[SystemIdentificationForSimulation|系统辨识]]、[[PolicyDeploymentContract|部署契约]]、[[SimulationRealityGap|Sim-to-Real Gap]] 与 [[TaskGeneralistPolicyEvaluation|策略评估]]。生成式世界模型的视觉质量与控制可信度区别见 [[WorldModelsForEmbodiedAI|World Models]]。
 
 ## 研究归属
 
-[[topics/evaluation-and-transfer|评测与现实迁移]] · [[topics/simulation-transfer|仿真策略怎样可靠迁移到现实]]。
+[[topics/evaluation-and-transfer|评测与 Sim-to-Real]] · [[topics/simulation-transfer|Sim-to-Real]]。

@@ -1,5 +1,5 @@
 ---
-title: "可微物理"
+title: "Differentiable Physics"
 type: concept
 tags: [robotics, simulation, differentiable-optimization]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]"]
@@ -7,7 +7,7 @@ modified: 2026-10-04
 topics: ["topics/physics-simulation", "topics/contact-modeling"]
 ---
 
-# 可微物理
+# Differentiable Physics
 
 可微物理让优化器使用仿真对状态、控制或参数的导数。关键问题是：**梯度描述所实现模型的敏感性，不自动描述真实系统的敏感性**。[[contact-models-in-robotics-a-comparative-analysis|接触模型比较论文]] 将数值接触产物视为可微仿真的潜在风险，但没有提供所有可微方法的统一实验排名。
 
@@ -37,7 +37,7 @@ $$
 
 ## 直觉
 
-优化器会沿“让损失下降”的方向更新参数。如果求解映射 $S$ 使用接触松弛、人工柔顺性或方向有偏的摩擦，那么导数也包含这些选择。优化器可能降低仿真损失，却依赖真实系统没有的行为。比较论文为这个风险提供模型与残差层面的依据，是否发生在具体任务仍需验证。[[ContactComplementarity|接触互补]]、[[ContactSolvers|接触求解器]]
+优化器会沿“让损失下降”的方向更新参数。如果求解映射 $S$ 使用接触松弛、人工柔顺性或方向有偏的摩擦，那么导数也包含这些选择。优化器可能降低仿真损失，却依赖真实系统没有的行为。比较论文为这个风险提供模型与残差层面的依据，是否发生在具体任务仍需验证。[[ContactComplementarity|Contact Complementarity]]、[[ContactSolvers|Contact Solvers]]
 
 ```mermaid
 flowchart LR
@@ -55,7 +55,7 @@ flowchart LR
 
 作为数学教学区分，若求解器迭代为 $y^{k+1}=T(y^k,\theta)$，逐步对实际执行的 $K$ 次迭代求导，得到的是 $y^K$ 对参数的导数，可能依赖初始化与 $K$。若假设已经收敛到满足 $g(y^\star,\theta)=0$ 的解，再隐式求导，目标则是这个方程解的敏感性。二者对应不同映射，有限预算时不必相同。
 
-例如标量迭代 $y^{k+1}=\rho y^k+\theta$、$y^0=0$、$|\rho|<1$，执行 $K$ 次后的导数是 $(1-\rho^K)/(1-\rho)$，收敛解的导数是 $1/(1-\rho)$。当收敛慢时差异更明显。这个例子是基础几何级数推导，不是已收录论文对所有可微引擎的实验比较；两篇碰撞论文采用的隐式求导机制见 [[DifferentiableCollisionDetection|可微碰撞检测]]，接触求解预算问题见 [[ContactSolvers|接触求解器]]。
+例如标量迭代 $y^{k+1}=\rho y^k+\theta$、$y^0=0$、$|\rho|<1$，执行 $K$ 次后的导数是 $(1-\rho^K)/(1-\rho)$，收敛解的导数是 $1/(1-\rho)$。当收敛慢时差异更明显。这个例子是基础几何级数推导，不是已收录论文对所有可微引擎的实验比较；两篇碰撞论文采用的隐式求导机制见 [[DifferentiableCollisionDetection|Differentiable Collision Detection]]，接触求解预算问题见 [[ContactSolvers|Contact Solvers]]。
 
 ## 碰撞查询与完整动力学的区别
 
@@ -70,12 +70,12 @@ flowchart LR
 ## 失效情形
 
 - 接触力、内部力或松弛解偏离参考规律，梯度随之描述近似模型。[[contact-models-in-robotics-a-comparative-analysis|接触模型比较论文]]
-- 只验证碰撞查询导数，就把结论扩展到完整动力学；DCOL 与 DiffPills 的问题范围不支持这种扩展。[[DifferentiableCollisionDetection|可微碰撞检测]]
+- 只验证碰撞查询导数，就把结论扩展到完整动力学；DCOL 与 DiffPills 的问题范围不支持这种扩展。[[DifferentiableCollisionDetection|Differentiable Collision Detection]]
 
 ## 实践含义
 
-对系统辨识和轨迹优化，建议同时核对正向残差、局部梯度与闭环任务。这是研究检查建议：有限差分只能检查导数是否符合当前实现，不能单独证明模型物理正确；更换步长、松弛和迭代预算后重复验证，才能观察更新是否依赖数值选择。进一步看 [[SimulationRealityGap|仿真—现实差距]]。
+对系统辨识和轨迹优化，建议同时核对正向残差、局部梯度与闭环任务。这是研究检查建议：有限差分只能检查导数是否符合当前实现，不能单独证明模型物理正确；更换步长、松弛和迭代预算后重复验证，才能观察更新是否依赖数值选择。进一步看 [[SimulationRealityGap|Sim-to-Real Gap]]。
 
 ## 研究归属
 
-[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触模型与求解怎样改变运动]]。
+[[topics/physics-simulation|物理仿真]] · [[topics/contact-modeling|接触建模]]。

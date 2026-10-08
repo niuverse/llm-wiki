@@ -44,8 +44,8 @@ flowchart LR
 
 ## 实践含义
 
-glTF 在本知识库用于理解三维场景的组织与读取。GLB 容器、扩展、验证器和材质细节仍待专门收录。更广的格式选择见 [[3d-model-formats-learning-map|三维模型格式学习地图]]；非破坏式资产组合见 [[OpenUSDSceneComposition|OpenUSD 场景组合]]。
+glTF 在本知识库用于理解三维场景的组织与读取。GLB 容器、扩展、验证器和材质细节仍待专门收录。更广的格式选择见 [[topics/asset-representation|三维模型格式专题]]；非破坏式资产组合见 [[OpenUSDSceneComposition|OpenUSD Composition]]。
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。

@@ -12,6 +12,7 @@ source_readme: raw/ovrtx-readme.md
 source_date: 2026-05-19
 topics: ["topics/assets-and-world-generation", "topics/asset-representation"]
 source_type: repository
+nav_title: "ovrtx"
 ---
 
 # NVIDIA ovrtx：把传感器渲染接成张量接口
@@ -70,4 +71,4 @@ README 宣称物理准确传感器和高吞吐。本页检查的是公开接口�
 
 ## 研究归属
 
-[[topics/assets-and-world-generation|三维资产与场景生成]] · [[topics/asset-representation|资产格式怎样保留仿真语义]]。
+[[topics/assets-and-world-generation|3D 资产与场景]] · [[topics/asset-representation|3D 资产格式]]。
