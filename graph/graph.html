@@ -8,7 +8,7 @@ code { background: #f4f4f4; padding: 0.1rem 0.25rem; border-radius: 4px; }
 pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 </style>
 <h1>LLM Wiki Graph</h1>
-<p>Nodes: 161. Edges: 1247.</p>
+<p>Nodes: 166. Edges: 1274.</p>
 <h2>Nodes</h2>
 <ul><li><strong>智能体式场景与任务生成</strong> <code>concepts/AgenticSceneTaskGeneration</code> <span>concept</span></li>
 <li><strong>近似凸分解</strong> <code>concepts/ApproximateConvexDecomposition</code> <span>concept</span></li>
@@ -86,6 +86,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>接触模型比较：物理近似与数值求解怎样改变机器人运动</strong> <code>sources/contact-models-in-robotics-a-comparative-analysis</code> <span>source</span></li>
 <li><strong>凸基元分解：按碰撞成本拟合可编辑的几何</strong> <code>sources/convex-primitive-decomposition-for-collision-detection</code> <span>source</span></li>
 <li><strong>DCOL：以最小均匀缩放构造可微碰撞约束</strong> <code>sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives</code> <span>source</span></li>
+<li><strong>DexWeave：联合重定向手臂与手指，学习人形机器人灵巧操作</strong> <code>sources/dexweave-dexterous-humanoid-loco-manipulation</code> <span>source</span></li>
 <li><strong>DiffPills：把胶囊体与带厚度多边形的碰撞写成二次规划</strong> <code>sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons</code> <span>source</span></li>
 <li><strong>DINO-WM：用预训练视觉特征进行目标规划</strong> <code>sources/dino-wm-pretrained-visual-features</code> <span>source</span></li>
 <li><strong>Disentangled Robot Learning via Separate Forward and Inverse Dynamics Pretraining</strong> <code>sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining</code> <span>source</span></li>
@@ -99,6 +100,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>Asset Structure - Isaac Sim Documentation</strong> <code>sources/isaac-sim-asset-structure</code> <span>source</span></li>
 <li><strong>Isaac Sim Core API Collision Approximation</strong> <code>sources/isaac-sim-core-api-collision-approximation</code> <span>source</span></li>
 <li><strong>Isaac Sim 6.1: Deploying policies in Isaac Sim</strong> <code>sources/isaac-sim-policy-deployment</code> <span>source</span></li>
+<li><strong>KPI：用交互约定连接高层智能体与人形机器人接触控制</strong> <code>sources/kpi-promptable-kernel-physical-interaction</code> <span>source</span></li>
 <li><strong>LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion</strong> <code>sources/lda-1b-scaling-latent-dynamics-action-model</code> <span>source</span></li>
 <li><strong>OpenUSD File Formats - Learn OpenUSD</strong> <code>sources/learn-openusd-file-formats</code> <span>source</span></li>
 <li><strong>What Is Prim Composition? - Learn OpenUSD</strong> <code>sources/learn-openusd-prim-composition</code> <span>source</span></li>
@@ -124,9 +126,12 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities</strong> <code>sources/pi07-steerable-generalist-robotic-foundation-model</code> <span>source</span></li>
 <li><strong>PlaNet：从像素学习潜在动力学并规划</strong> <code>sources/planet-learning-latent-dynamics</code> <span>source</span></li>
 <li><strong>Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation</strong> <code>sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation</code> <span>source</span></li>
+<li><strong>Rho：分离机器人适配、任务微调与潜在空间在线纠正</strong> <code>sources/rho-efficiently-adaptable-vla-models</code> <span>source</span></li>
+<li><strong>Rho 发布文档：检查点接口与 LIBERO 最小验证</strong> <code>sources/rho-release-documentation</code> <span>source</span></li>
 <li><strong>RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots</strong> <code>sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots</code> <span>source</span></li>
 <li><strong>RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies</strong> <code>sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies</code> <span>source</span></li>
 <li><strong>Robotics Simulation Infrastructure</strong> <code>sources/robotics-simulation-infrastructure</code> <span>source</span></li>
+<li><strong>SimEX：让编程智能体在仿真中开发并修复机器人技能</strong> <code>sources/simex-simulation-integrated-robotics-autoresearch</code> <span>source</span></li>
 <li><strong>Closing the Sim-to-Real Loop: Adapting Simulation Randomization with Real World Experience</strong> <code>sources/simopt-adaptive-randomization</code> <span>source</span></li>
 <li><strong>Part 2: Kinds of RL Algorithms - Spinning Up</strong> <code>sources/spinning-up-rl-algorithm-taxonomy</code> <span>source</span></li>
 <li><strong>Part 1: Key Concepts in RL - Spinning Up</strong> <code>sources/spinning-up-rl-key-concepts</code> <span>source</span></li>
@@ -271,6 +276,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>concepts/DomainRandomization</code> -> <code>topics/simulation-transfer</code></li>
 <li><code>concepts/FlowMatching</code> -> <code>sources/lda-1b-scaling-latent-dynamics-action-model</code></li>
 <li><code>concepts/FlowMatching</code> -> <code>sources/pi07-steerable-generalist-robotic-foundation-model</code></li>
+<li><code>concepts/FlowMatching</code> -> <code>sources/rho-efficiently-adaptable-vla-models</code></li>
 <li><code>concepts/FlowMatching</code> -> <code>concepts/VisionLanguageActionModels</code></li>
 <li><code>concepts/FlowMatching</code> -> <code>topics/robot-policy-learning</code></li>
 <li><code>concepts/FlowMatching</code> -> <code>topics/world-models-and-representations</code></li>
@@ -601,6 +607,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>concepts/SystemIdentificationForSimulation</code> -> <code>sources/simopt-adaptive-randomization</code></li>
 <li><code>concepts/SystemIdentificationForSimulation</code> -> <code>sources/peng-dynamics-randomization</code></li>
 <li><code>concepts/SystemIdentificationForSimulation</code> -> <code>sources/mujoco-computation-collision-detection</code></li>
+<li><code>concepts/SystemIdentificationForSimulation</code> -> <code>sources/simex-simulation-integrated-robotics-autoresearch</code></li>
 <li><code>concepts/SystemIdentificationForSimulation</code> -> <code>concepts/DifferentiablePhysics</code></li>
 <li><code>concepts/SystemIdentificationForSimulation</code> -> <code>concepts/RobotCoordinateFrames</code></li>
 <li><code>concepts/SystemIdentificationForSimulation</code> -> <code>concepts/SimulationTimeStepping</code></li>
@@ -914,6 +921,10 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives</code> -> <code>sources/contact-models-in-robotics-a-comparative-analysis</code></li>
 <li><code>sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives</code> -> <code>topics/physics-simulation</code></li>
 <li><code>sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives</code> -> <code>topics/collision-geometry</code></li>
+<li><code>sources/dexweave-dexterous-humanoid-loco-manipulation</code> -> <code>concepts/PolicyDeploymentContract</code></li>
+<li><code>sources/dexweave-dexterous-humanoid-loco-manipulation</code> -> <code>concepts/RobotCoordinateFrames</code></li>
+<li><code>sources/dexweave-dexterous-humanoid-loco-manipulation</code> -> <code>sources/kpi-promptable-kernel-physical-interaction</code></li>
+<li><code>sources/dexweave-dexterous-humanoid-loco-manipulation</code> -> <code>topics/simulation-transfer</code></li>
 <li><code>sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons</code> -> <code>topics/physics-simulation</code></li>
 <li><code>sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons</code> -> <code>topics/collision-geometry</code></li>
 <li><code>sources/dino-wm-pretrained-visual-features</code> -> <code>sources/td-mpc2-scalable-robust-world-models</code></li>
@@ -972,6 +983,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/isaac-sim-policy-deployment</code> -> <code>concepts/ReducedCoordinateArticulations</code></li>
 <li><code>sources/isaac-sim-policy-deployment</code> -> <code>topics/evaluation-and-transfer</code></li>
 <li><code>sources/isaac-sim-policy-deployment</code> -> <code>topics/simulation-transfer</code></li>
+<li><code>sources/kpi-promptable-kernel-physical-interaction</code> -> <code>concepts/PolicyDeploymentContract</code></li>
+<li><code>sources/kpi-promptable-kernel-physical-interaction</code> -> <code>sources/simex-simulation-integrated-robotics-autoresearch</code></li>
+<li><code>sources/kpi-promptable-kernel-physical-interaction</code> -> <code>topics/planning-and-control</code></li>
+<li><code>sources/kpi-promptable-kernel-physical-interaction</code> -> <code>topics/robot-policy-learning</code></li>
+<li><code>sources/kpi-promptable-kernel-physical-interaction</code> -> <code>topics/evaluation-and-transfer</code></li>
+<li><code>sources/kpi-promptable-kernel-physical-interaction</code> -> <code>concepts/RobotCoordinateFrames</code></li>
+<li><code>sources/kpi-promptable-kernel-physical-interaction</code> -> <code>concepts/RobotRigidBodyDynamics</code></li>
 <li><code>sources/lda-1b-scaling-latent-dynamics-action-model</code> -> <code>concepts/RobotContextConditioning</code></li>
 <li><code>sources/lda-1b-scaling-latent-dynamics-action-model</code> -> <code>sources/pi07-steerable-generalist-robotic-foundation-model</code></li>
 <li><code>sources/lda-1b-scaling-latent-dynamics-action-model</code> -> <code>topics/robot-policy-learning</code></li>
@@ -1091,6 +1109,10 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation</code> -> <code>topics/robot-policy-learning</code></li>
 <li><code>sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation</code> -> <code>topics/world-models-and-representations</code></li>
 <li><code>sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation</code> -> <code>topics/future-conditioned-action</code></li>
+<li><code>sources/rho-efficiently-adaptable-vla-models</code> -> <code>sources/rho-release-documentation</code></li>
+<li><code>sources/rho-efficiently-adaptable-vla-models</code> -> <code>concepts/VisionLanguageActionModels</code></li>
+<li><code>sources/rho-efficiently-adaptable-vla-models</code> -> <code>sources/simex-simulation-integrated-robotics-autoresearch</code></li>
+<li><code>sources/rho-release-documentation</code> -> <code>concepts/PolicyDeploymentContract</code></li>
 <li><code>sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots</code> -> <code>entities/MuJoCo</code></li>
 <li><code>sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots</code> -> <code>entities/RoboLab</code></li>
 <li><code>sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots</code> -> <code>concepts/VisionLanguageActionModels</code></li>
@@ -1111,6 +1133,11 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/robotics-simulation-infrastructure</code> -> <code>sources/mjlab-repository</code></li>
 <li><code>sources/robotics-simulation-infrastructure</code> -> <code>topics/assets-and-world-generation</code></li>
 <li><code>sources/robotics-simulation-infrastructure</code> -> <code>topics/simulation-ready-worlds</code></li>
+<li><code>sources/simex-simulation-integrated-robotics-autoresearch</code> -> <code>sources/simopt-adaptive-randomization</code></li>
+<li><code>sources/simex-simulation-integrated-robotics-autoresearch</code> -> <code>concepts/DomainRandomization</code></li>
+<li><code>sources/simex-simulation-integrated-robotics-autoresearch</code> -> <code>concepts/PolicyDeploymentContract</code></li>
+<li><code>sources/simex-simulation-integrated-robotics-autoresearch</code> -> <code>topics/simulation-transfer</code></li>
+<li><code>sources/simex-simulation-integrated-robotics-autoresearch</code> -> <code>topics/robot-policy-learning</code></li>
 <li><code>sources/simopt-adaptive-randomization</code> -> <code>concepts/DifferentiablePhysics</code></li>
 <li><code>sources/simopt-adaptive-randomization</code> -> <code>topics/evaluation-and-transfer</code></li>
 <li><code>sources/simopt-adaptive-randomization</code> -> <code>topics/simulation-transfer</code></li>
@@ -1389,6 +1416,8 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>topics/collision-geometry</code> -> <code>topics/assets-and-world-generation</code></li>
 <li><code>topics/contact-modeling</code> -> <code>topics/physics-simulation</code></li>
 <li><code>topics/contact-modeling</code> -> <code>topics/assets-and-world-generation</code></li>
+<li><code>topics/evaluation-and-transfer</code> -> <code>sources/dexweave-dexterous-humanoid-loco-manipulation</code></li>
+<li><code>topics/evaluation-and-transfer</code> -> <code>sources/rho-efficiently-adaptable-vla-models</code></li>
 <li><code>topics/evaluation-and-transfer</code> -> <code>topics/policy-evaluation</code></li>
 <li><code>topics/evaluation-and-transfer</code> -> <code>topics/simulation-transfer</code></li>
 <li><code>topics/evaluation-and-transfer</code> -> <code>topics/world-model-evaluation</code></li>
@@ -1408,7 +1437,10 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>topics/policy-evaluation</code> -> <code>topics/robot-policy-learning</code></li>
 <li><code>topics/robot-learning-systems</code> -> <code>topics/robot-policy-learning</code></li>
 <li><code>topics/robot-learning-systems</code> -> <code>topics/evaluation-and-transfer</code></li>
+<li><code>topics/robot-policy-learning</code> -> <code>sources/dexweave-dexterous-humanoid-loco-manipulation</code></li>
+<li><code>topics/robot-policy-learning</code> -> <code>sources/rho-efficiently-adaptable-vla-models</code></li>
 <li><code>topics/robot-policy-learning</code> -> <code>topics/future-conditioned-action</code></li>
+<li><code>topics/robot-policy-learning</code> -> <code>sources/rho-release-documentation</code></li>
 <li><code>topics/robot-policy-learning</code> -> <code>topics/evaluation-and-transfer</code></li>
 <li><code>topics/simulation-ready-worlds</code> -> <code>topics/physics-simulation</code></li>
 <li><code>topics/simulation-transfer</code> -> <code>topics/physics-simulation</code></li>
@@ -1955,6 +1987,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "path": "wiki/sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives.md"
     },
     {
+      "id": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "label": "DexWeave：联合重定向手臂与手指，学习人形机器人灵巧操作",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/dexweave-dexterous-humanoid-loco-manipulation.md"
+    },
+    {
       "id": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
       "label": "DiffPills：把胶囊体与带厚度多边形的碰撞写成二次规划",
       "type": "source",
@@ -2044,6 +2083,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/isaac-sim-policy-deployment.md"
+    },
+    {
+      "id": "sources/kpi-promptable-kernel-physical-interaction",
+      "label": "KPI：用交互约定连接高层智能体与人形机器人接触控制",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/kpi-promptable-kernel-physical-interaction.md"
     },
     {
       "id": "sources/lda-1b-scaling-latent-dynamics-action-model",
@@ -2221,6 +2267,20 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "path": "wiki/sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation.md"
     },
     {
+      "id": "sources/rho-efficiently-adaptable-vla-models",
+      "label": "Rho：分离机器人适配、任务微调与潜在空间在线纠正",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/rho-efficiently-adaptable-vla-models.md"
+    },
+    {
+      "id": "sources/rho-release-documentation",
+      "label": "Rho 发布文档：检查点接口与 LIBERO 最小验证",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/rho-release-documentation.md"
+    },
+    {
       "id": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
       "label": "RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots",
       "type": "source",
@@ -2240,6 +2300,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/robotics-simulation-infrastructure.md"
+    },
+    {
+      "id": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "label": "SimEX：让编程智能体在仿真中开发并修复机器人技能",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/simex-simulation-integrated-robotics-autoresearch.md"
     },
     {
       "id": "sources/simopt-adaptive-randomization",
@@ -3241,6 +3308,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "concepts/FlowMatching--sources/pi07-steerable-generalist-robotic-foundation-model",
       "from": "concepts/FlowMatching",
       "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/FlowMatching--sources/rho-efficiently-adaptable-vla-models",
+      "from": "concepts/FlowMatching",
+      "to": "sources/rho-efficiently-adaptable-vla-models",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5555,6 +5629,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "concepts/SystemIdentificationForSimulation--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "concepts/SystemIdentificationForSimulation",
+      "to": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/DifferentiablePhysics--concepts/SystemIdentificationForSimulation",
       "from": "concepts/SystemIdentificationForSimulation",
       "to": "concepts/DifferentiablePhysics",
@@ -7746,6 +7827,34 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "concepts/PolicyDeploymentContract--sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "from": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "from": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "to": "concepts/RobotCoordinateFrames",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dexweave-dexterous-humanoid-loco-manipulation--sources/kpi-promptable-kernel-physical-interaction",
+      "from": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "to": "sources/kpi-promptable-kernel-physical-interaction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dexweave-dexterous-humanoid-loco-manipulation--topics/simulation-transfer",
+      "from": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "to": "topics/simulation-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons--topics/physics-simulation",
       "from": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
       "to": "topics/physics-simulation",
@@ -8148,6 +8257,55 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "sources/isaac-sim-policy-deployment--topics/simulation-transfer",
       "from": "sources/isaac-sim-policy-deployment",
       "to": "topics/simulation-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--sources/kpi-promptable-kernel-physical-interaction",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/kpi-promptable-kernel-physical-interaction--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/kpi-promptable-kernel-physical-interaction--topics/planning-and-control",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "topics/planning-and-control",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/kpi-promptable-kernel-physical-interaction--topics/robot-policy-learning",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "topics/robot-policy-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/kpi-promptable-kernel-physical-interaction--topics/evaluation-and-transfer",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "topics/evaluation-and-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--sources/kpi-promptable-kernel-physical-interaction",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "concepts/RobotCoordinateFrames",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotRigidBodyDynamics--sources/kpi-promptable-kernel-physical-interaction",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "concepts/RobotRigidBodyDynamics",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -8985,6 +9143,34 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "sources/rho-efficiently-adaptable-vla-models--sources/rho-release-documentation",
+      "from": "sources/rho-efficiently-adaptable-vla-models",
+      "to": "sources/rho-release-documentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--sources/rho-efficiently-adaptable-vla-models",
+      "from": "sources/rho-efficiently-adaptable-vla-models",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/rho-efficiently-adaptable-vla-models--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "sources/rho-efficiently-adaptable-vla-models",
+      "to": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--sources/rho-release-documentation",
+      "from": "sources/rho-release-documentation",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "entities/MuJoCo--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
       "from": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
       "to": "entities/MuJoCo",
@@ -9121,6 +9307,41 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "sources/robotics-simulation-infrastructure--topics/simulation-ready-worlds",
       "from": "sources/robotics-simulation-infrastructure",
       "to": "topics/simulation-ready-worlds",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/simex-simulation-integrated-robotics-autoresearch--sources/simopt-adaptive-randomization",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "sources/simopt-adaptive-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DomainRandomization--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "concepts/DomainRandomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/simex-simulation-integrated-robotics-autoresearch--topics/simulation-transfer",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "topics/simulation-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/simex-simulation-integrated-robotics-autoresearch--topics/robot-policy-learning",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "topics/robot-policy-learning",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -11071,6 +11292,20 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "sources/dexweave-dexterous-humanoid-loco-manipulation--topics/evaluation-and-transfer",
+      "from": "topics/evaluation-and-transfer",
+      "to": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/rho-efficiently-adaptable-vla-models--topics/evaluation-and-transfer",
+      "from": "topics/evaluation-and-transfer",
+      "to": "sources/rho-efficiently-adaptable-vla-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "topics/evaluation-and-transfer--topics/policy-evaluation",
       "from": "topics/evaluation-and-transfer",
       "to": "topics/policy-evaluation",
@@ -11204,9 +11439,30 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "sources/dexweave-dexterous-humanoid-loco-manipulation--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/rho-efficiently-adaptable-vla-models--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/rho-efficiently-adaptable-vla-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "topics/future-conditioned-action--topics/robot-policy-learning",
       "from": "topics/robot-policy-learning",
       "to": "topics/future-conditioned-action",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/rho-release-documentation--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/rho-release-documentation",
       "type": "EXTRACTED",
       "confidence": 1.0
     },

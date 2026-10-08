@@ -533,6 +533,13 @@
       "path": "wiki/sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives.md"
     },
     {
+      "id": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "label": "DexWeave：联合重定向手臂与手指，学习人形机器人灵巧操作",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/dexweave-dexterous-humanoid-loco-manipulation.md"
+    },
+    {
       "id": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
       "label": "DiffPills：把胶囊体与带厚度多边形的碰撞写成二次规划",
       "type": "source",
@@ -622,6 +629,13 @@
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/isaac-sim-policy-deployment.md"
+    },
+    {
+      "id": "sources/kpi-promptable-kernel-physical-interaction",
+      "label": "KPI：用交互约定连接高层智能体与人形机器人接触控制",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/kpi-promptable-kernel-physical-interaction.md"
     },
     {
       "id": "sources/lda-1b-scaling-latent-dynamics-action-model",
@@ -799,6 +813,20 @@
       "path": "wiki/sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation.md"
     },
     {
+      "id": "sources/rho-efficiently-adaptable-vla-models",
+      "label": "Rho：分离机器人适配、任务微调与潜在空间在线纠正",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/rho-efficiently-adaptable-vla-models.md"
+    },
+    {
+      "id": "sources/rho-release-documentation",
+      "label": "Rho 发布文档：检查点接口与 LIBERO 最小验证",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/rho-release-documentation.md"
+    },
+    {
       "id": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
       "label": "RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots",
       "type": "source",
@@ -818,6 +846,13 @@
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/robotics-simulation-infrastructure.md"
+    },
+    {
+      "id": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "label": "SimEX：让编程智能体在仿真中开发并修复机器人技能",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/simex-simulation-integrated-robotics-autoresearch.md"
     },
     {
       "id": "sources/simopt-adaptive-randomization",
@@ -1819,6 +1854,13 @@
       "id": "concepts/FlowMatching--sources/pi07-steerable-generalist-robotic-foundation-model",
       "from": "concepts/FlowMatching",
       "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/FlowMatching--sources/rho-efficiently-adaptable-vla-models",
+      "from": "concepts/FlowMatching",
+      "to": "sources/rho-efficiently-adaptable-vla-models",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4133,6 +4175,13 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/SystemIdentificationForSimulation--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "concepts/SystemIdentificationForSimulation",
+      "to": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/DifferentiablePhysics--concepts/SystemIdentificationForSimulation",
       "from": "concepts/SystemIdentificationForSimulation",
       "to": "concepts/DifferentiablePhysics",
@@ -6324,6 +6373,34 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/PolicyDeploymentContract--sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "from": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "from": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "to": "concepts/RobotCoordinateFrames",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dexweave-dexterous-humanoid-loco-manipulation--sources/kpi-promptable-kernel-physical-interaction",
+      "from": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "to": "sources/kpi-promptable-kernel-physical-interaction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dexweave-dexterous-humanoid-loco-manipulation--topics/simulation-transfer",
+      "from": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "to": "topics/simulation-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons--topics/physics-simulation",
       "from": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
       "to": "topics/physics-simulation",
@@ -6726,6 +6803,55 @@
       "id": "sources/isaac-sim-policy-deployment--topics/simulation-transfer",
       "from": "sources/isaac-sim-policy-deployment",
       "to": "topics/simulation-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--sources/kpi-promptable-kernel-physical-interaction",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/kpi-promptable-kernel-physical-interaction--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/kpi-promptable-kernel-physical-interaction--topics/planning-and-control",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "topics/planning-and-control",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/kpi-promptable-kernel-physical-interaction--topics/robot-policy-learning",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "topics/robot-policy-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/kpi-promptable-kernel-physical-interaction--topics/evaluation-and-transfer",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "topics/evaluation-and-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotCoordinateFrames--sources/kpi-promptable-kernel-physical-interaction",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "concepts/RobotCoordinateFrames",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotRigidBodyDynamics--sources/kpi-promptable-kernel-physical-interaction",
+      "from": "sources/kpi-promptable-kernel-physical-interaction",
+      "to": "concepts/RobotRigidBodyDynamics",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -7563,6 +7689,34 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/rho-efficiently-adaptable-vla-models--sources/rho-release-documentation",
+      "from": "sources/rho-efficiently-adaptable-vla-models",
+      "to": "sources/rho-release-documentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--sources/rho-efficiently-adaptable-vla-models",
+      "from": "sources/rho-efficiently-adaptable-vla-models",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/rho-efficiently-adaptable-vla-models--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "sources/rho-efficiently-adaptable-vla-models",
+      "to": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--sources/rho-release-documentation",
+      "from": "sources/rho-release-documentation",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "entities/MuJoCo--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
       "from": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
       "to": "entities/MuJoCo",
@@ -7699,6 +7853,41 @@
       "id": "sources/robotics-simulation-infrastructure--topics/simulation-ready-worlds",
       "from": "sources/robotics-simulation-infrastructure",
       "to": "topics/simulation-ready-worlds",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/simex-simulation-integrated-robotics-autoresearch--sources/simopt-adaptive-randomization",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "sources/simopt-adaptive-randomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/DomainRandomization--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "concepts/DomainRandomization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/simex-simulation-integrated-robotics-autoresearch--topics/simulation-transfer",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "topics/simulation-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/simex-simulation-integrated-robotics-autoresearch--topics/robot-policy-learning",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "topics/robot-policy-learning",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -9649,6 +9838,20 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/dexweave-dexterous-humanoid-loco-manipulation--topics/evaluation-and-transfer",
+      "from": "topics/evaluation-and-transfer",
+      "to": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/rho-efficiently-adaptable-vla-models--topics/evaluation-and-transfer",
+      "from": "topics/evaluation-and-transfer",
+      "to": "sources/rho-efficiently-adaptable-vla-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "topics/evaluation-and-transfer--topics/policy-evaluation",
       "from": "topics/evaluation-and-transfer",
       "to": "topics/policy-evaluation",
@@ -9782,9 +9985,30 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/dexweave-dexterous-humanoid-loco-manipulation--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/dexweave-dexterous-humanoid-loco-manipulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/rho-efficiently-adaptable-vla-models--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/rho-efficiently-adaptable-vla-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "topics/future-conditioned-action--topics/robot-policy-learning",
       "from": "topics/robot-policy-learning",
       "to": "topics/future-conditioned-action",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/rho-release-documentation--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/rho-release-documentation",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
