@@ -2,8 +2,8 @@
 title: "仿真系统辨识与闭环分布校准"
 type: concept
 tags: [robotics, simulation, sim-to-real]
-sources: ["[[simopt-adaptive-randomization]]", "[[peng-dynamics-randomization]]", "[[mujoco-computation-collision-detection]]"]
-modified: 2026-10-04
+sources: ["[[simopt-adaptive-randomization]]", "[[peng-dynamics-randomization]]", "[[mujoco-computation-collision-detection]]", "[[simex-simulation-integrated-robotics-autoresearch]]"]
+modified: 2026-10-08
 topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
 ---
 
@@ -46,6 +46,10 @@ flowchart LR
 ```
 
 图对应 SimOpt 的交替步骤；真实与仿真采集的输入动作可以因闭环观测不同而不同，不是简单逐步拷贝真实动作。
+
+## 固定程序的定性校准
+
+[[simex-simulation-integrated-robotics-autoresearch|SimEX，§2.4]] 在真实试验后固定已执行脚本，定性比较仿真与真实轨迹，必要时由编程智能体修改仿真，再用该环境筛选工具库修复。脚本固定不代表逐时刻动作固定，因为程序仍可根据观测闭环行动。它与 SimOpt 都将环境校准和控制改进分步处理，但没有 SimOpt 的显式轨迹损失、KL 约束或分布更新算法；不能把上面的数学形式写成其已验证实现。
 
 ## 直觉
 

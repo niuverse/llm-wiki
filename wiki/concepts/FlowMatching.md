@@ -2,8 +2,8 @@
 title: "流匹配：从噪声生成动作与未来表示"
 type: concept
 tags: [robotics, world-models, vla]
-sources: ["[[lda-1b-scaling-latent-dynamics-action-model]]", "[[pi07-steerable-generalist-robotic-foundation-model]]"]
-modified: 2026-10-04
+sources: ["[[lda-1b-scaling-latent-dynamics-action-model]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[rho-efficiently-adaptable-vla-models]]"]
+modified: 2026-10-08
 topics: ["topics/robot-policy-learning", "topics/world-models-and-representations", "topics/future-conditioned-action"]
 ---
 
@@ -60,6 +60,10 @@ $$
 动作块内部的物理时间索引与生成时间 $\tau$ 是两回事。π0.7 用 5 次去噪更新生成 50 个控制时刻的动作，随后只执行 15 或 25 步再更新；5 不是动作长度，50 也不是模型求解步数。LDA-1B 的视觉和动作还使用不同采样频率。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 §VI–VIII]]、[[lda-1b-scaling-latent-dynamics-action-model|LDA-1B §III]]
 
 流匹配损失小并不保证积分误差小、动作约束满足或闭环成功。动作尺度影响平方损失权重，较少求解步数会改变近似误差，观测条件之外的隐藏接触状态仍可能不可辨识。前三项是该数学结构导出的检查点，不是这里两篇论文均单独验证过的失败实验。落到控制时还要检查动作坐标、缩放、延迟和执行块长，见 [[VisionLanguageActionModels|视觉—语言—动作模型]]。
+
+## 固定向量场，学习从哪里出发
+
+[[rho-efficiently-adaptable-vla-models|Rho 的在线适配]] 采用 FlowDAgger：保持生成器 $G_\theta$ 冻结，用小策略 $\pi_\phi(o)$ 代替高斯初值，输出 $a=G_\theta(o,\pi_\phi(o))$。把纠正动作近似逆映射到初始潜变量，再监督学习小策略。这给出与更新整个向量场不同的适配位置，但不保证任意纠正动作都能稳定反演；Rho 对离散欧拉求逆做不动点迭代，并通过往返误差筛选样本。具体阈值和实验适用范围保留在来源页。
 
 ## 研究归属
 

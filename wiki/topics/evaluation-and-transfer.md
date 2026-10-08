@@ -2,8 +2,8 @@
 title: "评测与现实迁移"
 type: "topic"
 tags: ["robotics", "source-backed"]
-sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[simopt-adaptive-randomization]]", "[[peng-dynamics-randomization]]"]
-modified: "2026-10-04"
+sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[simopt-adaptive-randomization]]", "[[peng-dynamics-randomization]]", "[[kpi-promptable-kernel-physical-interaction]]", "[[dexweave-dexterous-humanoid-loco-manipulation]]", "[[rho-efficiently-adaptable-vla-models]]"]
+modified: 2026-10-08
 entry: "research"
 nav_order: 6
 description: "评测定义我们要测量什么，现实迁移检验仿真和训练中得到的能力是否在硬件上成立。两者交叉于任务分布、观测和控制接口，但评测方法并不自动带来迁移能力。"
@@ -24,6 +24,8 @@ description: "评测定义我们要测量什么，现实迁移检验仿真和训
 ## 当前理解
 
 RoboLab 主要使用留出仿真域诊断已有策略；RoboCasa365 研究仿真训练与适应；SimOpt 用真实交互调整随机化分布。它们回答的问题不同，不能凭一个总成功率判定通用优劣。具体协议和限制分别见 [[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]]、[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]、[[simopt-adaptive-randomization|SimOpt]]。动力学随机化的观察条件也要明确，见 [[peng-dynamics-randomization|Peng 等的迁移实验]]。
+
+近期案例说明成功率必须附带终止与适应条件：[[dexweave-dexterous-humanoid-loco-manipulation|DexWeave]] 的完成率针对参考片段，[[rho-efficiently-adaptable-vla-models|Rho]] 的 LIBERO 主成绩包含在线专家纠正，而 [[kpi-promptable-kernel-physical-interaction|KPI]] 的15次硬件试验仅覆盖三项选定任务。比较前先列明训练数据、测试期间反馈、动作执行块长和总预算。
 
 ## 未解问题与优先补证
 

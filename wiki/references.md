@@ -39,6 +39,7 @@ description: ""
 - [[sources/omniverse-omni-physics-articulations|Articulations - Omni Physics]]
 - [[sources/openusd-glossary|USD Terms and Concepts]]
 - [[sources/openusd-introduction|Introduction to USD]]
+- [[sources/rho-release-documentation|Rho 发布文档：检查点接口与 LIBERO 最小验证]]
 - [[sources/robotics-simulation-infrastructure|Robotics Simulation Infrastructure]]
 - [[sources/spinning-up-rl-algorithm-taxonomy|Part 2: Kinds of RL Algorithms - Spinning Up]]
 - [[sources/spinning-up-rl-key-concepts|Part 1: Key Concepts in RL - Spinning Up]]
