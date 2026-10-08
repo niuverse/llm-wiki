@@ -1,6 +1,13 @@
 {
   "nodes": [
     {
+      "id": "concepts/AgentHarness",
+      "label": "Agent Harness",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/AgentHarness.md"
+    },
+    {
       "id": "concepts/AgenticSceneTaskGeneration",
       "label": "Agentic Scene Generation",
       "type": "concept",
@@ -400,6 +407,20 @@
       "path": "wiki/sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.md"
     },
     {
+      "id": "sources/anthropic-long-running-harness",
+      "label": "Anthropic：跨上下文窗口的任务交接",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/anthropic-long-running-harness.md"
+    },
+    {
+      "id": "sources/anthropic-managed-agents",
+      "label": "Anthropic Managed Agents：分离会话、循环与执行环境",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/anthropic-managed-agents.md"
+    },
+    {
       "id": "sources/awesome-world-models",
       "label": "AwesomeWorldModels：世界模型文献索引",
       "type": "source",
@@ -440,6 +461,13 @@
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives.md"
+    },
+    {
+      "id": "sources/deepseek-harness",
+      "label": "DeepSeek Harness：插件、事件与执行边界",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/deepseek-harness.md"
     },
     {
       "id": "sources/dexweave-dexterous-humanoid-loco-manipulation",
@@ -545,6 +573,13 @@
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/kpi-promptable-kernel-physical-interaction.md"
+    },
+    {
+      "id": "sources/langgraph-persistence",
+      "label": "LangGraph：状态图与 Checkpoints",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/langgraph-persistence.md"
     },
     {
       "id": "sources/lda-1b-scaling-latent-dynamics-action-model",
@@ -680,6 +715,13 @@
       "path": "wiki/sources/omniverse-omni-physics-articulations.md"
     },
     {
+      "id": "sources/opencode-harness",
+      "label": "OpenCode：编码任务的会话执行",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/opencode-harness.md"
+    },
+    {
       "id": "sources/openusd-glossary",
       "label": "USD Terms and Concepts",
       "type": "source",
@@ -699,6 +741,13 @@
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/peng-dynamics-randomization.md"
+    },
+    {
+      "id": "sources/pi-agent-harness",
+      "label": "pi：可组合循环与持久化实验",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/pi-agent-harness.md"
     },
     {
       "id": "sources/pi07-steerable-generalist-robotic-foundation-model",
@@ -853,13 +902,6 @@
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/worldecho-worldsync-action-following.md"
-    },
-    {
-      "id": "syntheses/dsh-learning-map",
-      "label": "DeepSeek Harness · 待核实笔记",
-      "type": "synthesis",
-      "color": "#9C27B0",
-      "path": "wiki/syntheses/dsh-learning-map.md"
     },
     {
       "id": "syntheses/isaac-sim-mujoco-control-tuning-notes",
@@ -1024,6 +1066,55 @@
     }
   ],
   "edges": [
+    {
+      "id": "concepts/AgentHarness--sources/deepseek-harness",
+      "from": "concepts/AgentHarness",
+      "to": "sources/deepseek-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--sources/pi-agent-harness",
+      "from": "concepts/AgentHarness",
+      "to": "sources/pi-agent-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--sources/opencode-harness",
+      "from": "concepts/AgentHarness",
+      "to": "sources/opencode-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--sources/langgraph-persistence",
+      "from": "concepts/AgentHarness",
+      "to": "sources/langgraph-persistence",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--sources/anthropic-long-running-harness",
+      "from": "concepts/AgentHarness",
+      "to": "sources/anthropic-long-running-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--sources/anthropic-managed-agents",
+      "from": "concepts/AgentHarness",
+      "to": "sources/anthropic-managed-agents",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--topics/agent-execution",
+      "from": "concepts/AgentHarness",
+      "to": "topics/agent-execution",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
     {
       "id": "concepts/AgenticSceneTaskGeneration--sources/nvlabs-robolab",
       "from": "concepts/AgenticSceneTaskGeneration",
@@ -5295,6 +5386,41 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/anthropic-long-running-harness--topics/agent-execution",
+      "from": "sources/anthropic-long-running-harness",
+      "to": "topics/agent-execution",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/anthropic-managed-agents--sources/deepseek-harness",
+      "from": "sources/anthropic-managed-agents",
+      "to": "sources/deepseek-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/anthropic-managed-agents--sources/pi-agent-harness",
+      "from": "sources/anthropic-managed-agents",
+      "to": "sources/pi-agent-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/anthropic-managed-agents--sources/langgraph-persistence",
+      "from": "sources/anthropic-managed-agents",
+      "to": "sources/langgraph-persistence",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/anthropic-managed-agents--topics/agent-execution",
+      "from": "sources/anthropic-managed-agents",
+      "to": "topics/agent-execution",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/awesome-world-models--sources/dino-wm-pretrained-visual-features",
       "from": "sources/awesome-world-models",
       "to": "sources/dino-wm-pretrained-visual-features",
@@ -5501,6 +5627,20 @@
       "id": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives--topics/collision-geometry",
       "from": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
       "to": "topics/collision-geometry",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/deepseek-harness--sources/pi-agent-harness",
+      "from": "sources/deepseek-harness",
+      "to": "sources/pi-agent-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/deepseek-harness--topics/agent-execution",
+      "from": "sources/deepseek-harness",
+      "to": "topics/agent-execution",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5998,6 +6138,20 @@
       "id": "concepts/RobotRigidBodyDynamics--sources/kpi-promptable-kernel-physical-interaction",
       "from": "sources/kpi-promptable-kernel-physical-interaction",
       "to": "concepts/RobotRigidBodyDynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/langgraph-persistence--sources/pi-agent-harness",
+      "from": "sources/langgraph-persistence",
+      "to": "sources/pi-agent-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/langgraph-persistence--topics/agent-execution",
+      "from": "sources/langgraph-persistence",
+      "to": "topics/agent-execution",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -6751,6 +6905,27 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/opencode-harness--sources/pi-agent-harness",
+      "from": "sources/opencode-harness",
+      "to": "sources/pi-agent-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/deepseek-harness--sources/opencode-harness",
+      "from": "sources/opencode-harness",
+      "to": "sources/deepseek-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/opencode-harness--topics/agent-execution",
+      "from": "sources/opencode-harness",
+      "to": "topics/agent-execution",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/openusd-glossary--sources/openusd-introduction",
       "from": "sources/openusd-glossary",
       "to": "sources/openusd-introduction",
@@ -6838,6 +7013,13 @@
       "id": "sources/peng-dynamics-randomization--topics/simulation-transfer",
       "from": "sources/peng-dynamics-randomization",
       "to": "topics/simulation-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/pi-agent-harness--topics/agent-execution",
+      "from": "sources/pi-agent-harness",
+      "to": "topics/agent-execution",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -7496,13 +7678,6 @@
       "id": "sources/worldecho-worldsync-action-following--topics/world-model-evaluation",
       "from": "sources/worldecho-worldsync-action-following",
       "to": "topics/world-model-evaluation",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "syntheses/dsh-learning-map--topics/agent-execution",
-      "from": "syntheses/dsh-learning-map",
-      "to": "topics/agent-execution",
       "type": "EXTRACTED",
       "confidence": 1.0
     },

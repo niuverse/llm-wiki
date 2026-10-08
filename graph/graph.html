@@ -8,9 +8,10 @@ code { background: #f4f4f4; padding: 0.1rem 0.25rem; border-radius: 4px; }
 pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 </style>
 <h1>LLM Wiki Graph</h1>
-<p>Nodes: 146. Edges: 1075.</p>
+<p>Nodes: 152. Edges: 1094.</p>
 <h2>Nodes</h2>
-<ul><li><strong>Agentic Scene Generation</strong> <code>concepts/AgenticSceneTaskGeneration</code> <span>concept</span></li>
+<ul><li><strong>Agent Harness</strong> <code>concepts/AgentHarness</code> <span>concept</span></li>
+<li><strong>Agentic Scene Generation</strong> <code>concepts/AgenticSceneTaskGeneration</code> <span>concept</span></li>
 <li><strong>Approximate Convex Decomposition</strong> <code>concepts/ApproximateConvexDecomposition</code> <span>concept</span></li>
 <li><strong>机器人仿真的碰撞几何</strong> <code>concepts/CollisionGeometryForRobotSimulation</code> <span>concept</span></li>
 <li><strong>Compositional Generalization</strong> <code>concepts/CompositionalGeneralizationInRobotics</code> <span>concept</span></li>
@@ -67,12 +68,15 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>AgentsDock Releases</strong> <code>sources/agentsdock-releases</code> <span>source</span></li>
 <li><strong>AgentsServer</strong> <code>sources/agentsserver</code> <span>source</span></li>
 <li><strong>AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning</strong> <code>sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning</code> <span>source</span></li>
+<li><strong>Anthropic：跨上下文窗口的任务交接</strong> <code>sources/anthropic-long-running-harness</code> <span>source</span></li>
+<li><strong>Anthropic Managed Agents：分离会话、循环与执行环境</strong> <code>sources/anthropic-managed-agents</code> <span>source</span></li>
 <li><strong>AwesomeWorldModels：世界模型文献索引</strong> <code>sources/awesome-world-models</code> <span>source</span></li>
 <li><strong>CoACD：保留碰撞相关凹陷的凸分解</strong> <code>sources/coacd-approximate-convex-decomposition</code> <span>source</span></li>
 <li><strong>CoACD 项目：接口、尺度与分解代码</strong> <code>sources/coacd-repository</code> <span>source</span></li>
 <li><strong>接触模型比较：物理近似与数值求解怎样改变机器人运动</strong> <code>sources/contact-models-in-robotics-a-comparative-analysis</code> <span>source</span></li>
 <li><strong>凸基元分解：按碰撞成本拟合可编辑的几何</strong> <code>sources/convex-primitive-decomposition-for-collision-detection</code> <span>source</span></li>
 <li><strong>DCOL：以最小均匀缩放构造可微碰撞约束</strong> <code>sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives</code> <span>source</span></li>
+<li><strong>DeepSeek Harness：插件、事件与执行边界</strong> <code>sources/deepseek-harness</code> <span>source</span></li>
 <li><strong>DexWeave：联合重定向手臂与手指，学习人形机器人灵巧操作</strong> <code>sources/dexweave-dexterous-humanoid-loco-manipulation</code> <span>source</span></li>
 <li><strong>DiffPills：把胶囊体与带厚度多边形的碰撞写成二次规划</strong> <code>sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons</code> <span>source</span></li>
 <li><strong>DINO-WM：用预训练视觉特征进行目标规划</strong> <code>sources/dino-wm-pretrained-visual-features</code> <span>source</span></li>
@@ -88,6 +92,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>Isaac Sim Core API Collision Approximation</strong> <code>sources/isaac-sim-core-api-collision-approximation</code> <span>source</span></li>
 <li><strong>Isaac Sim 6.1: Deploying policies in Isaac Sim</strong> <code>sources/isaac-sim-policy-deployment</code> <span>source</span></li>
 <li><strong>KPI：用交互约定连接高层智能体与人形机器人接触控制</strong> <code>sources/kpi-promptable-kernel-physical-interaction</code> <span>source</span></li>
+<li><strong>LangGraph：状态图与 Checkpoints</strong> <code>sources/langgraph-persistence</code> <span>source</span></li>
 <li><strong>LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion</strong> <code>sources/lda-1b-scaling-latent-dynamics-action-model</code> <span>source</span></li>
 <li><strong>OpenUSD File Formats - Learn OpenUSD</strong> <code>sources/learn-openusd-file-formats</code> <span>source</span></li>
 <li><strong>What Is Prim Composition? - Learn OpenUSD</strong> <code>sources/learn-openusd-prim-composition</code> <span>source</span></li>
@@ -107,9 +112,11 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>NVIDIA ovrtx</strong> <code>sources/nvidia-ovrtx</code> <span>source</span></li>
 <li><strong>NVlabs/RoboLab</strong> <code>sources/nvlabs-robolab</code> <span>source</span></li>
 <li><strong>Articulations - Omni Physics</strong> <code>sources/omniverse-omni-physics-articulations</code> <span>source</span></li>
+<li><strong>OpenCode：编码任务的会话执行</strong> <code>sources/opencode-harness</code> <span>source</span></li>
 <li><strong>USD Terms and Concepts</strong> <code>sources/openusd-glossary</code> <span>source</span></li>
 <li><strong>Introduction to USD</strong> <code>sources/openusd-introduction</code> <span>source</span></li>
 <li><strong>Sim-to-Real Transfer of Robotic Control with Dynamics Randomization</strong> <code>sources/peng-dynamics-randomization</code> <span>source</span></li>
+<li><strong>pi：可组合循环与持久化实验</strong> <code>sources/pi-agent-harness</code> <span>source</span></li>
 <li><strong>π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities</strong> <code>sources/pi07-steerable-generalist-robotic-foundation-model</code> <span>source</span></li>
 <li><strong>PlaNet：从像素学习潜在动力学并规划</strong> <code>sources/planet-learning-latent-dynamics</code> <span>source</span></li>
 <li><strong>Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation</strong> <code>sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation</code> <span>source</span></li>
@@ -132,7 +139,6 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation</strong> <code>sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation</code> <span>source</span></li>
 <li><strong>VisACD：用可见性快速评价凸分解切面</strong> <code>sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition</code> <span>source</span></li>
 <li><strong>WorldEcho／WorldSync：世界模型是否忠实执行动作</strong> <code>sources/worldecho-worldsync-action-following</code> <span>source</span></li>
-<li><strong>DeepSeek Harness · 待核实笔记</strong> <code>syntheses/dsh-learning-map</code> <span>synthesis</span></li>
 <li><strong>Isaac Sim 与 MuJoCo 物理和控制笔记</strong> <code>syntheses/isaac-sim-mujoco-control-tuning-notes</code> <span>synthesis</span></li>
 <li><strong>Isaac Sim `mujoco.usda` 运行时语义</strong> <code>syntheses/isaac-sim-mujoco-usda-runtime-semantics</code> <span>synthesis</span></li>
 <li><strong>ovrtx API 边界</strong> <code>syntheses/ovrtx-api-boundary</code> <span>synthesis</span></li>
@@ -157,7 +163,14 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>World Model 评测</strong> <code>topics/world-model-evaluation</code> <span>topic</span></li>
 <li><strong>World Models</strong> <code>topics/world-models-and-representations</code> <span>topic</span></li></ul>
 <h2>Edges</h2>
-<ul><li><code>concepts/AgenticSceneTaskGeneration</code> -> <code>sources/nvlabs-robolab</code></li>
+<ul><li><code>concepts/AgentHarness</code> -> <code>sources/deepseek-harness</code></li>
+<li><code>concepts/AgentHarness</code> -> <code>sources/pi-agent-harness</code></li>
+<li><code>concepts/AgentHarness</code> -> <code>sources/opencode-harness</code></li>
+<li><code>concepts/AgentHarness</code> -> <code>sources/langgraph-persistence</code></li>
+<li><code>concepts/AgentHarness</code> -> <code>sources/anthropic-long-running-harness</code></li>
+<li><code>concepts/AgentHarness</code> -> <code>sources/anthropic-managed-agents</code></li>
+<li><code>concepts/AgentHarness</code> -> <code>topics/agent-execution</code></li>
+<li><code>concepts/AgenticSceneTaskGeneration</code> -> <code>sources/nvlabs-robolab</code></li>
 <li><code>concepts/AgenticSceneTaskGeneration</code> -> <code>sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies</code></li>
 <li><code>concepts/AgenticSceneTaskGeneration</code> -> <code>sources/robotics-simulation-infrastructure</code></li>
 <li><code>concepts/AgenticSceneTaskGeneration</code> -> <code>sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai</code></li>
@@ -767,6 +780,11 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning</code> -> <code>sources/mujoco-overview</code></li>
 <li><code>sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning</code> -> <code>topics/evaluation-and-transfer</code></li>
 <li><code>sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning</code> -> <code>topics/simulation-transfer</code></li>
+<li><code>sources/anthropic-long-running-harness</code> -> <code>topics/agent-execution</code></li>
+<li><code>sources/anthropic-managed-agents</code> -> <code>sources/deepseek-harness</code></li>
+<li><code>sources/anthropic-managed-agents</code> -> <code>sources/pi-agent-harness</code></li>
+<li><code>sources/anthropic-managed-agents</code> -> <code>sources/langgraph-persistence</code></li>
+<li><code>sources/anthropic-managed-agents</code> -> <code>topics/agent-execution</code></li>
 <li><code>sources/awesome-world-models</code> -> <code>sources/dino-wm-pretrained-visual-features</code></li>
 <li><code>sources/awesome-world-models</code> -> <code>sources/v-jepa-2-understanding-prediction-planning</code></li>
 <li><code>sources/awesome-world-models</code> -> <code>sources/planet-learning-latent-dynamics</code></li>
@@ -797,6 +815,8 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives</code> -> <code>sources/contact-models-in-robotics-a-comparative-analysis</code></li>
 <li><code>sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives</code> -> <code>topics/physics-simulation</code></li>
 <li><code>sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives</code> -> <code>topics/collision-geometry</code></li>
+<li><code>sources/deepseek-harness</code> -> <code>sources/pi-agent-harness</code></li>
+<li><code>sources/deepseek-harness</code> -> <code>topics/agent-execution</code></li>
 <li><code>sources/dexweave-dexterous-humanoid-loco-manipulation</code> -> <code>concepts/PolicyDeploymentContract</code></li>
 <li><code>sources/dexweave-dexterous-humanoid-loco-manipulation</code> -> <code>concepts/RobotCoordinateFrames</code></li>
 <li><code>sources/dexweave-dexterous-humanoid-loco-manipulation</code> -> <code>sources/kpi-promptable-kernel-physical-interaction</code></li>
@@ -868,6 +888,8 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/kpi-promptable-kernel-physical-interaction</code> -> <code>topics/evaluation-and-transfer</code></li>
 <li><code>sources/kpi-promptable-kernel-physical-interaction</code> -> <code>concepts/RobotCoordinateFrames</code></li>
 <li><code>sources/kpi-promptable-kernel-physical-interaction</code> -> <code>concepts/RobotRigidBodyDynamics</code></li>
+<li><code>sources/langgraph-persistence</code> -> <code>sources/pi-agent-harness</code></li>
+<li><code>sources/langgraph-persistence</code> -> <code>topics/agent-execution</code></li>
 <li><code>sources/lda-1b-scaling-latent-dynamics-action-model</code> -> <code>concepts/RobotContextConditioning</code></li>
 <li><code>sources/lda-1b-scaling-latent-dynamics-action-model</code> -> <code>sources/pi07-steerable-generalist-robotic-foundation-model</code></li>
 <li><code>sources/lda-1b-scaling-latent-dynamics-action-model</code> -> <code>topics/robot-policy-learning</code></li>
@@ -975,6 +997,9 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/omniverse-omni-physics-articulations</code> -> <code>syntheses/isaac-sim-mujoco-control-tuning-notes</code></li>
 <li><code>sources/omniverse-omni-physics-articulations</code> -> <code>topics/physics-simulation</code></li>
 <li><code>sources/omniverse-omni-physics-articulations</code> -> <code>topics/contact-modeling</code></li>
+<li><code>sources/opencode-harness</code> -> <code>sources/pi-agent-harness</code></li>
+<li><code>sources/opencode-harness</code> -> <code>sources/deepseek-harness</code></li>
+<li><code>sources/opencode-harness</code> -> <code>topics/agent-execution</code></li>
 <li><code>sources/openusd-glossary</code> -> <code>sources/openusd-introduction</code></li>
 <li><code>sources/openusd-glossary</code> -> <code>topics/assets-and-world-generation</code></li>
 <li><code>sources/openusd-glossary</code> -> <code>topics/asset-representation</code></li>
@@ -988,6 +1013,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/peng-dynamics-randomization</code> -> <code>sources/simopt-adaptive-randomization</code></li>
 <li><code>sources/peng-dynamics-randomization</code> -> <code>topics/evaluation-and-transfer</code></li>
 <li><code>sources/peng-dynamics-randomization</code> -> <code>topics/simulation-transfer</code></li>
+<li><code>sources/pi-agent-harness</code> -> <code>topics/agent-execution</code></li>
 <li><code>sources/pi07-steerable-generalist-robotic-foundation-model</code> -> <code>topics/robot-policy-learning</code></li>
 <li><code>sources/pi07-steerable-generalist-robotic-foundation-model</code> -> <code>topics/world-models-and-representations</code></li>
 <li><code>sources/pi07-steerable-generalist-robotic-foundation-model</code> -> <code>topics/evaluation-and-transfer</code></li>
@@ -1082,7 +1108,6 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/worldecho-worldsync-action-following</code> -> <code>topics/world-models-and-representations</code></li>
 <li><code>sources/worldecho-worldsync-action-following</code> -> <code>topics/evaluation-and-transfer</code></li>
 <li><code>sources/worldecho-worldsync-action-following</code> -> <code>topics/world-model-evaluation</code></li>
-<li><code>syntheses/dsh-learning-map</code> -> <code>topics/agent-execution</code></li>
 <li><code>syntheses/isaac-sim-mujoco-control-tuning-notes</code> -> <code>sources/isaac-sim-asset-structure</code></li>
 <li><code>syntheses/isaac-sim-mujoco-control-tuning-notes</code> -> <code>sources/contact-models-in-robotics-a-comparative-analysis</code></li>
 <li><code>syntheses/isaac-sim-mujoco-control-tuning-notes</code> -> <code>concepts/IsaacSimAssetStructure</code></li>
@@ -1235,6 +1260,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <h2>Raw Data</h2>
 <pre id="graph-data">{
   "nodes": [
+    {
+      "id": "concepts/AgentHarness",
+      "label": "Agent Harness",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/AgentHarness.md"
+    },
     {
       "id": "concepts/AgenticSceneTaskGeneration",
       "label": "Agentic Scene Generation",
@@ -1635,6 +1667,20 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "path": "wiki/sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning.md"
     },
     {
+      "id": "sources/anthropic-long-running-harness",
+      "label": "Anthropic：跨上下文窗口的任务交接",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/anthropic-long-running-harness.md"
+    },
+    {
+      "id": "sources/anthropic-managed-agents",
+      "label": "Anthropic Managed Agents：分离会话、循环与执行环境",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/anthropic-managed-agents.md"
+    },
+    {
       "id": "sources/awesome-world-models",
       "label": "AwesomeWorldModels：世界模型文献索引",
       "type": "source",
@@ -1675,6 +1721,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives.md"
+    },
+    {
+      "id": "sources/deepseek-harness",
+      "label": "DeepSeek Harness：插件、事件与执行边界",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/deepseek-harness.md"
     },
     {
       "id": "sources/dexweave-dexterous-humanoid-loco-manipulation",
@@ -1780,6 +1833,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/kpi-promptable-kernel-physical-interaction.md"
+    },
+    {
+      "id": "sources/langgraph-persistence",
+      "label": "LangGraph：状态图与 Checkpoints",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/langgraph-persistence.md"
     },
     {
       "id": "sources/lda-1b-scaling-latent-dynamics-action-model",
@@ -1915,6 +1975,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "path": "wiki/sources/omniverse-omni-physics-articulations.md"
     },
     {
+      "id": "sources/opencode-harness",
+      "label": "OpenCode：编码任务的会话执行",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/opencode-harness.md"
+    },
+    {
       "id": "sources/openusd-glossary",
       "label": "USD Terms and Concepts",
       "type": "source",
@@ -1934,6 +2001,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/peng-dynamics-randomization.md"
+    },
+    {
+      "id": "sources/pi-agent-harness",
+      "label": "pi：可组合循环与持久化实验",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/pi-agent-harness.md"
     },
     {
       "id": "sources/pi07-steerable-generalist-robotic-foundation-model",
@@ -2088,13 +2162,6 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/worldecho-worldsync-action-following.md"
-    },
-    {
-      "id": "syntheses/dsh-learning-map",
-      "label": "DeepSeek Harness · 待核实笔记",
-      "type": "synthesis",
-      "color": "#9C27B0",
-      "path": "wiki/syntheses/dsh-learning-map.md"
     },
     {
       "id": "syntheses/isaac-sim-mujoco-control-tuning-notes",
@@ -2259,6 +2326,55 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
     }
   ],
   "edges": [
+    {
+      "id": "concepts/AgentHarness--sources/deepseek-harness",
+      "from": "concepts/AgentHarness",
+      "to": "sources/deepseek-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--sources/pi-agent-harness",
+      "from": "concepts/AgentHarness",
+      "to": "sources/pi-agent-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--sources/opencode-harness",
+      "from": "concepts/AgentHarness",
+      "to": "sources/opencode-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--sources/langgraph-persistence",
+      "from": "concepts/AgentHarness",
+      "to": "sources/langgraph-persistence",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--sources/anthropic-long-running-harness",
+      "from": "concepts/AgentHarness",
+      "to": "sources/anthropic-long-running-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--sources/anthropic-managed-agents",
+      "from": "concepts/AgentHarness",
+      "to": "sources/anthropic-managed-agents",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--topics/agent-execution",
+      "from": "concepts/AgentHarness",
+      "to": "topics/agent-execution",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
     {
       "id": "concepts/AgenticSceneTaskGeneration--sources/nvlabs-robolab",
       "from": "concepts/AgenticSceneTaskGeneration",
@@ -6530,6 +6646,41 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "sources/anthropic-long-running-harness--topics/agent-execution",
+      "from": "sources/anthropic-long-running-harness",
+      "to": "topics/agent-execution",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/anthropic-managed-agents--sources/deepseek-harness",
+      "from": "sources/anthropic-managed-agents",
+      "to": "sources/deepseek-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/anthropic-managed-agents--sources/pi-agent-harness",
+      "from": "sources/anthropic-managed-agents",
+      "to": "sources/pi-agent-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/anthropic-managed-agents--sources/langgraph-persistence",
+      "from": "sources/anthropic-managed-agents",
+      "to": "sources/langgraph-persistence",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/anthropic-managed-agents--topics/agent-execution",
+      "from": "sources/anthropic-managed-agents",
+      "to": "topics/agent-execution",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/awesome-world-models--sources/dino-wm-pretrained-visual-features",
       "from": "sources/awesome-world-models",
       "to": "sources/dino-wm-pretrained-visual-features",
@@ -6736,6 +6887,20 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives--topics/collision-geometry",
       "from": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
       "to": "topics/collision-geometry",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/deepseek-harness--sources/pi-agent-harness",
+      "from": "sources/deepseek-harness",
+      "to": "sources/pi-agent-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/deepseek-harness--topics/agent-execution",
+      "from": "sources/deepseek-harness",
+      "to": "topics/agent-execution",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -7233,6 +7398,20 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "concepts/RobotRigidBodyDynamics--sources/kpi-promptable-kernel-physical-interaction",
       "from": "sources/kpi-promptable-kernel-physical-interaction",
       "to": "concepts/RobotRigidBodyDynamics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/langgraph-persistence--sources/pi-agent-harness",
+      "from": "sources/langgraph-persistence",
+      "to": "sources/pi-agent-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/langgraph-persistence--topics/agent-execution",
+      "from": "sources/langgraph-persistence",
+      "to": "topics/agent-execution",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -7986,6 +8165,27 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "sources/opencode-harness--sources/pi-agent-harness",
+      "from": "sources/opencode-harness",
+      "to": "sources/pi-agent-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/deepseek-harness--sources/opencode-harness",
+      "from": "sources/opencode-harness",
+      "to": "sources/deepseek-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/opencode-harness--topics/agent-execution",
+      "from": "sources/opencode-harness",
+      "to": "topics/agent-execution",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/openusd-glossary--sources/openusd-introduction",
       "from": "sources/openusd-glossary",
       "to": "sources/openusd-introduction",
@@ -8073,6 +8273,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "sources/peng-dynamics-randomization--topics/simulation-transfer",
       "from": "sources/peng-dynamics-randomization",
       "to": "topics/simulation-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/pi-agent-harness--topics/agent-execution",
+      "from": "sources/pi-agent-harness",
+      "to": "topics/agent-execution",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -8731,13 +8938,6 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "sources/worldecho-worldsync-action-following--topics/world-model-evaluation",
       "from": "sources/worldecho-worldsync-action-following",
       "to": "topics/world-model-evaluation",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "syntheses/dsh-learning-map--topics/agent-execution",
-      "from": "syntheses/dsh-learning-map",
-      "to": "topics/agent-execution",
       "type": "EXTRACTED",
       "confidence": 1.0
     },

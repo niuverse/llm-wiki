@@ -32,14 +32,16 @@ description: ""
 
 时间为北京时间；旧记录未记时分的只显示日期。
 
-- **2026-10-08 19:19** · 去除 Browse 重复入口
-- **2026-10-08 19:14** · 首页与正文阅读体验优化
-- **2026-10-08 19:00** · 精简分类、合并学习路径与项目索引
-  [[topics/world-models-and-representations|World Models]] · [[topics/physics-simulation|物理仿真]]
-- **2026-10-08 18:47** · 世界模型主题的学习与研究入口整理
-  [[topics/world-models-and-representations|World Models]] · [[topics/world-model-decision|World Models 与决策]]
-- **2026-10-08 18:38** · 恢复日志入口与简化持续更新规则
-  [[log|知识库日志]]
+- **2026-10-08 23:30** · DeepSeek Harness 与 Agent Harness 系统理解
+  [[sources/deepseek-harness|DeepSeek Harness]] · [[concepts/AgentHarness|Agent Harness]]
+- **2026-10-08 23:30** · Anthropic Managed Agents 架构
+  [[sources/anthropic-managed-agents|Anthropic Managed Agents]]
+- **2026-10-08 23:30** · Anthropic 长任务交接
+  [[sources/anthropic-long-running-harness|Anthropic]]
+- **2026-10-08 23:30** · LangGraph 状态与检查点
+  [[sources/langgraph-persistence|LangGraph]]
+- **2026-10-08 23:30** · OpenCode 的会话执行
+  [[sources/opencode-harness|OpenCode]]
 
 [[log|查看完整日志]]
 
