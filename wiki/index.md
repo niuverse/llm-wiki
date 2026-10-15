@@ -32,16 +32,16 @@ description: ""
 
 时间为北京时间；旧记录未记时分的只显示日期。
 
-- **2026-10-08 23:30** · DeepSeek Harness 与 Agent Harness 系统理解
-  [[sources/deepseek-harness|DeepSeek Harness]] · [[concepts/AgentHarness|Agent Harness]]
-- **2026-10-08 23:30** · Anthropic Managed Agents 架构
-  [[sources/anthropic-managed-agents|Anthropic Managed Agents]]
-- **2026-10-08 23:30** · Anthropic 长任务交接
-  [[sources/anthropic-long-running-harness|Anthropic]]
-- **2026-10-08 23:30** · LangGraph 状态与检查点
-  [[sources/langgraph-persistence|LangGraph]]
-- **2026-10-08 23:30** · OpenCode 的会话执行
-  [[sources/opencode-harness|OpenCode]]
+- **2026-10-15 21:01** · 本轮来源全名与归档登记核对
+  [[sources/gap-graph-as-policy|GaP]] · [[sources/enpire-agentic-robot-policy-self-improvement|ENPIRE]]
+- **2026-10-15 21:00** · 机器人 Harness 与 Physical RSI
+  [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX]] · [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]
+- **2026-10-15 20:52** · Physical RSI 研究框架
+  [[sources/physical-rsi-research-map|Physical RSI 研究框架]] · [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]
+- **2026-10-15 20:52** · GaP 代码核查
+  [[sources/gap-runtime-repository|GaP 代码核查]] · [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]
+- **2026-10-15 20:51** · GaP
+  [[sources/gap-graph-as-policy|GaP]] · [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]
 
 [[log|查看完整日志]]
 

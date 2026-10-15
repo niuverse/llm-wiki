@@ -4,8 +4,8 @@ type: topic
 entry: tools
 nav_order: 1
 tags: [agents, source-backed]
-sources: ["[[deepseek-harness]]", "[[pi-agent-harness]]", "[[opencode-harness]]", "[[langgraph-persistence]]", "[[anthropic-long-running-harness]]", "[[anthropic-managed-agents]]", "[[agentsserver]]", "[[agentsdock-releases]]"]
-modified: 2026-10-08
+sources: ["[[deepseek-harness]]", "[[pi-agent-harness]]", "[[opencode-harness]]", "[[langgraph-persistence]]", "[[anthropic-long-running-harness]]", "[[anthropic-managed-agents]]", "[[agentsserver]]", "[[agentsdock-releases]]", "[[gap-graph-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[robofoundry-system-as-policy]]"]
+modified: 2026-10-15
 description: "从工具循环理解上下文、会话恢复与框架设计。"
 ---
 
@@ -62,6 +62,10 @@ description: "从工具循环理解上下文、会话恢复与框架设计。"
 如果以后用 agent 自动维护知识，优先落实一条可验收闭环：定位相关旧页 → 完整读证据 → 更新判断与引用 → 运行检查 → 记录变更。只有真实任务反复出现中断丢进度、权限失控或无法确认完成时，再增加对应运行机制。[[anthropic-long-running-harness|任务交接]]提供经验，[[anthropic-managed-agents|职责分离]]提供架构理由；它们不能直接证明自动研究的事实质量。
 
 已有 [[agentsserver|AgentsServer]] 负责连接客户端与本机执行后端，[[agentsdock-releases|AgentsDock]] 提供客户端发布资料。它们与本轮的循环和状态研究相邻，但不是同一层的替代产品。
+
+## 机器人执行与系统自改进
+
+[[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]] 把本页的状态、上下文和工具机制接到真实动作：GaP 将策略组织为技能图，RegenHarness 检查物理证据能否授权进度，RoboFoundry 把记忆管理和技能接口纳入系统演化。执行可靠性与改进能力是两个评测对象，共享机制见 [[RobotHarness]] 和 [[PhysicalRecursiveSelfImprovement]]。
 
 ## 未解问题与优先补证
 

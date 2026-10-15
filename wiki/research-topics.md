@@ -27,6 +27,7 @@ description: ""
 - [[topics/contact-modeling|接触建模]]
 - [[topics/future-conditioned-action|未来预测与动作学习]]
 - [[topics/policy-evaluation|策略评测]]
+- [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]
 - [[topics/robot-learning-systems|RL 训练系统]]
 - [[topics/simulation-ready-worlds|Simulation-ready Worlds]]
 - [[topics/simulation-transfer|Sim-to-Real]]

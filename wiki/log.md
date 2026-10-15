@@ -936,3 +936,90 @@ Browse 保留可展开的 Topics 与 Sources 文件夹，隐藏同名的 [[resea
 时间：2026-10-08 23:30（北京时间，UTC+08:00）
 
 将 [[dsh-learning-map]] 旧待核实笔记改为稳定跳转，正式解析归入 [[deepseek-harness]]；新增唯一共享基础 [[AgentHarness]]，扩充 [[topics/agent-execution|Agent Systems]] 的框架比较、具体例子与可验证问题，不新增学习路径。旧逐块持久化判断改为实时流与结算记录分离，依据固定版本文档和 assistant-stream.ts；旧包数量、本机状态、Cordis 论文推导未复核，不再作当前事实。Codex、Claude Agent SDK、Deep Agents、Cordis 论文及完整故障恢复实验仍是未收录缺口。本轮仅更新本地知识，未安装、升级或运行这些框架。
+
+## [2026-10-15] ingest | ENPIRE
+
+时间：2026-10-15 20:36（北京时间，UTC+08:00）
+
+归档并完整阅读 2606.19980v2 的 HTML 正文、参考文献和附录，记录机制、执行接口、实验协议与证据限制；原始快照及获取记录保留版本和 SHA-256。[[enpire-agentic-robot-policy-self-improvement|ENPIRE]]；比较归入 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]。本次未运行论文系统。
+
+## [2026-10-15] ingest | RACaP
+
+时间：2026-10-15 20:38（北京时间，UTC+08:00）
+
+归档并完整阅读 2609.29394v1 的 HTML 正文、参考文献和附录，记录机制、执行接口、实验协议与证据限制；原始快照及获取记录保留版本和 SHA-256。[[racap-evolvable-robot-learning|RACaP]]；比较归入 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]。本次未运行论文系统。
+
+## [2026-10-15] ingest | RoboHarness
+
+时间：2026-10-15 20:38（北京时间，UTC+08:00）
+
+归档并完整阅读 2610.14018v1 的 HTML 正文、参考文献和附录，记录机制、执行接口、实验协议与证据限制；原始快照及获取记录保留版本和 SHA-256。[[roboharness-visual-geometric-control|RoboHarness]]；比较归入 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]。本次未运行论文系统。
+
+## [2026-10-15] ingest | PhysEvo
+
+时间：2026-10-15 20:41（北京时间，UTC+08:00）
+
+归档并完整阅读 2610.08995v1 的 HTML 正文、参考文献和附录，记录机制、执行接口、实验协议与证据限制；原始快照及获取记录保留版本和 SHA-256。[[physevo-physical-recursive-self-improvement|PhysEvo]]；比较归入 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]。本次未运行论文系统。
+
+## [2026-10-15] ingest | EmbodiRSI
+
+时间：2026-10-15 20:41（北京时间，UTC+08:00）
+
+归档并完整阅读 2609.38905v3 的 HTML 正文、参考文献和附录，记录机制、执行接口、实验协议与证据限制；原始快照及获取记录保留版本和 SHA-256。[[embodirsi-data-efficient-robot-adaptation|EmbodiRSI]]；比较归入 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]。本次未运行论文系统。
+
+## [2026-10-15] ingest | RoboFoundry
+
+时间：2026-10-15 20:46（北京时间，UTC+08:00）
+
+归档并完整阅读 2609.32862v1 的 HTML 正文、参考文献和附录，记录机制、执行接口、实验协议与证据限制；原始快照及获取记录保留版本和 SHA-256。[[robofoundry-system-as-policy|RoboFoundry]]；比较归入 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]。本次未运行论文系统。
+
+## [2026-10-15] ingest | RegenHarness
+
+时间：2026-10-15 20:47（北京时间，UTC+08:00）
+
+归档并完整阅读 2609.27612v1 的 HTML 正文、参考文献和附录，记录机制、执行接口、实验协议与证据限制；原始快照及获取记录保留版本和 SHA-256。[[regenharness-evidence-gated-self-improvement|RegenHarness]]；比较归入 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]。本次未运行论文系统。
+
+## [2026-10-15] ingest | GaP
+
+时间：2026-10-15 20:51（北京时间，UTC+08:00）
+
+归档并完整阅读 2607.05369v1 的 HTML 正文、参考文献和附录，记录机制、执行接口、实验协议与证据限制；原始快照及获取记录保留版本和 SHA-256。[[gap-graph-as-policy|GaP]]；比较归入 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]。本次未运行论文系统。
+
+## [2026-10-15] ingest | GaP 代码核查
+
+时间：2026-10-15 20:52（北京时间，UTC+08:00）
+
+归档固定提交 c8b5515df80d3029ca5dc7f7f1ec1c327b70bbea 的原始资料并按来源页声明范围核查；[[gap-runtime-repository|GaP 代码核查]] 保留版本、证据路径与限制，连接 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]。未运行机器人系统。
+
+## [2026-10-15] ingest | Physical RSI 研究框架
+
+时间：2026-10-15 20:52（北京时间，UTC+08:00）
+
+归档固定提交 8ea92d4152e3e22c6143155b5ff8a68ded5c8461 的原始资料并按来源页声明范围核查；[[physical-rsi-research-map|Physical RSI 研究框架]] 保留版本、证据路径与限制，连接 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]。未运行机器人系统。
+
+## [2026-10-15] research | 机器人 Harness 与 Physical RSI
+
+时间：2026-10-15 21:00（北京时间，UTC+08:00）
+
+围绕用户从 GaP 扩展到机器人 Harness 和物理 RSI 的请求，搜索截至 2026-10-15 的原始资料，完整阅读并收录八篇论文、固定核查 GaP 九文件代码资料及 Physical RSI 作者 README，复用已有 [[simex-simulation-integrated-robotics-autoresearch|SimEX]]。新增 [[topics/robot-harness-and-physical-rsi|研究专题]]、[[RobotHarness|机器人 Harness]] 与 [[PhysicalRecursiveSelfImprovement|Physical RSI]]，同步 [[topics/robot-policy-learning|策略学习]]、[[topics/agent-execution|Agent Systems]]、[[AgentHarness]] 和 SimEX 关系；新增四幅原始架构图／机制图并登记来源、裁剪与校验和。
+
+总览原先强调模型、接口、训练和评测的假设链；本次依据 GaP、RACaP、RoboFoundry、EmbodiRSI 与 PhysEvo，补充执行系统更新和改进程序更新的区别，明确在线／冻结协议和元层增益不能混为一谈。[[overview|总览]] 只增加这项跨主题判断。保留 RoboHarness 日期／编号、GaP 插口数及提示例子的原文冲突；RegenHarness 的 RSI 协议不当作已完成定量实验。
+
+ASPIRE、Harness VLA、123 轮负结果、Who Improves the Robot 全文、RSI-Anything、HarnessPAI、Cortex 等仅列为下一批候选，不用于知识结论；未扩大到全部自主实验室或模型演化研究。未运行机器人系统，GaP 检查为限定范围静态核查；标准提取器不支持 tgz，代码缓存逐成员原文解码。
+
+## [2026-10-15] ingest | 本轮来源全名与归档登记核对
+
+时间：2026-10-15 21:01（北京时间，UTC+08:00）
+
+补充前述十项收录的完整名称，便于日志覆盖检查与来源追溯；不改变既有记录。
+
+- [[gap-graph-as-policy|GaP：面向变式自动化的 Graph-as-Policy 多智能体自学习 Harness]]
+- [[enpire-agentic-robot-policy-self-improvement|ENPIRE：把真实机器人实验接入编码智能体的改进循环]]
+- [[racap-evolvable-robot-learning|RACaP：演化技能 API，再以冻结代码闭环执行]]
+- [[embodirsi-data-efficient-robot-adaptation|EmbodiRSI：用失败恢复和自适应采集改进机器人策略]]
+- [[physevo-physical-recursive-self-improvement|PhysEvo：冻结模型下的任务工具与诊断工具共同演化]]
+- [[roboharness-visual-geometric-control|RoboHarness：用视觉关键点和几何约束连接模型与机器人]]
+- [[robofoundry-system-as-policy|RoboFoundry：通过系统即策略实现机器人自我演化]]
+- [[regenharness-evidence-gated-self-improvement|RegenHarness：证据门控的机器人执行与自改进协议]]
+- [[gap-runtime-repository|Graph as Policy 公开实现：技能图执行、验证与检查点]]
+- [[physical-rsi-research-map|Physical RSI 作者资料库：执行更新与改进程序更新的区分]]

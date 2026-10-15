@@ -2,8 +2,8 @@
 title: "Agent Harness"
 type: concept
 tags: [agents, source-backed]
-sources: ["[[deepseek-harness]]", "[[pi-agent-harness]]", "[[opencode-harness]]", "[[langgraph-persistence]]", "[[anthropic-long-running-harness]]", "[[anthropic-managed-agents]]"]
-modified: 2026-10-08
+sources: ["[[deepseek-harness]]", "[[pi-agent-harness]]", "[[opencode-harness]]", "[[langgraph-persistence]]", "[[anthropic-long-running-harness]]", "[[anthropic-managed-agents]]", "[[gap-runtime-repository]]", "[[regenharness-evidence-gated-self-improvement]]"]
+modified: 2026-10-15
 topics: ["topics/agent-execution"]
 ---
 
@@ -79,3 +79,7 @@ flowchart TD
 | 接入另一种 UI | 会话查询与事件订阅 |
 
 这是依据几个实现整理的设计建议，不是要求每个项目都建立六层抽象。DSH 把替换能力系统化成插件和服务；pi 核心提供循环钩子，实验持久包另提供任务与存储；LangGraph 显式描述状态转换。选择依据应是任务失败在哪里，而不是组件更多看起来更完整。具体比较与可动手验证的问题见 [[topics/agent-execution|Agent Systems]]。
+
+## 进入机器人系统时多了什么
+
+物理工具返回、对象效果成立和整个任务完成是不同事件；历史恢复也不能恢复物理环境。[[RobotHarness|机器人 Harness]] 在本页的上下文与执行状态基础上，补充异步技能、证据时效、资源占用和物理验收；[[PhysicalRecursiveSelfImprovement|Physical RSI]] 再区分任务系统更新与改进程序更新。具体依据见 [[gap-runtime-repository|GaP 检查点实现]]、[[regenharness-evidence-gated-self-improvement|证据提交机制]]。
