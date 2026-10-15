@@ -2,8 +2,8 @@
 title: "机器人策略学习"
 type: "topic"
 tags: ["robotics", "source-backed"]
-sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[kpi-promptable-kernel-physical-interaction]]", "[[dexweave-dexterous-humanoid-loco-manipulation]]", "[[rho-efficiently-adaptable-vla-models]]", "[[spinning-up-rl-key-concepts]]", "[[spinning-up-rl-algorithm-taxonomy]]", "[[nvlabs-robolab]]"]
-modified: "2026-10-08"
+sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[kpi-promptable-kernel-physical-interaction]]", "[[dexweave-dexterous-humanoid-loco-manipulation]]", "[[rho-efficiently-adaptable-vla-models]]", "[[spinning-up-rl-key-concepts]]", "[[spinning-up-rl-algorithm-taxonomy]]", "[[nvlabs-robolab]]", "[[gap-graph-as-policy]]", "[[racap-evolvable-robot-learning]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]"]
+modified: 2026-10-15
 entry: "research"
 nav_order: 2
 description: "VLA、训练目标与数据"
@@ -47,6 +47,10 @@ description: "VLA、训练目标与数据"
 | 训练很快，但实际回报提升慢 | [[HeterogeneousRobotRLTraining|端到端训练效率]] |
 | 成功率相近但失败行为不同 | [[SimulationBenchmarkReportingPipeline|回合证据与统计报告]] |
 | 生成视频怎样变成动作示范 | [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|资产条件化交互生成]] |
+
+## 模型之外的策略更新
+
+[[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]] 比较技能图、API、工具、记忆和训练经验等更新对象。[[gap-graph-as-policy|GaP]] 优化执行图，[[racap-evolvable-robot-learning|RACaP]] 演化 API 与经验，[[embodirsi-data-efficient-robot-adaptation|EmbodiRSI]] 用失败引导数据与策略更新，[[physevo-physical-recursive-self-improvement|PhysEvo]] 还修改诊断工具。这些机制补充权重训练视角；是否改善“产生下一次更新的方法”，需按 [[PhysicalRecursiveSelfImprovement|递归增益]] 单独检验。
 
 ## 未解问题与优先补证
 

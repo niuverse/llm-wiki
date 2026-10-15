@@ -3,7 +3,7 @@ title: "SimEX：让编程智能体在仿真中开发并修复机器人技能"
 type: source
 tags: [robotics, simulation, sim-to-real, embodied-ai, source-backed]
 sources: []
-modified: 2026-10-08
+modified: 2026-10-15
 source_file: raw/simex-simulation-integrated-robotics-autoresearch-2026-10-08-8664f39dc78b.pdf
 source_kind: pdf
 source_type: paper
@@ -17,7 +17,7 @@ paper_title: "SimEX: Simulation-Integrated Robotics AutoResearch"
 year: 2026
 venue: "arXiv 预印本"
 reviewed: 2026-10-08
-topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/evaluation-and-transfer", "topics/simulation-transfer"]
+topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/evaluation-and-transfer", "topics/simulation-transfer", "topics/robot-harness-and-physical-rsi"]
 nav_title: "SimEX"
 ---
 
@@ -192,3 +192,7 @@ ENPIRE* 与 ASPIRE* 是作者在统一接口下重实现的方法；零样本基
 - [[topics/simulation-transfer|仿真迁移专题]] 与 [[topics/robot-policy-learning|机器人策略学习]]：分别比较仿真的作用和被改进的策略表示。
 
 复习时可问：持久化的是哪两个文件？成功判据与策略分别能看到什么？为何对齐时固定脚本，而修复时更换工具库？为什么仿真最高分不自动决定下一次真机版本？26/30与每任务五次适应、约10分钟之间是什么关系？
+
+## 与机器人 Harness 研究的连接
+
+[[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]] 将本页的工具库修复与 [[gap-graph-as-policy|图策略优化]]、[[enpire-agentic-robot-policy-self-improvement|真实实验自动化]]、[[physevo-physical-recursive-self-improvement|诊断工具继承]] 对照。SimEX 的真实失败进入仿真修复，是现实反馈参与更新选择的例子；是否连改进程序本身也更有效，需要另做对照，不能仅由最终 26/30 的任务成绩推断。此处是跨来源解释，本页原始实验协议保持不变。

@@ -3,7 +3,7 @@ title: "总览"
 type: synthesis
 tags: [robotics, embodied-ai]
 sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[isaac-sim-core-api-collision-approximation]]", "[[coacd-approximate-convex-decomposition]]", "[[convex-primitive-decomposition-for-collision-detection]]", "[[visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[awesome-world-models]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[planet-learning-latent-dynamics]]", "[[dreamerv3-mastering-diverse-control]]", "[[td-mpc2-scalable-robust-world-models]]", "[[dino-wm-pretrained-visual-features]]", "[[v-jepa-2-understanding-prediction-planning]]", "[[worldecho-worldsync-action-following]]", "[[modern-robotics-lagrangian-dynamics]]", "[[simopt-adaptive-randomization]]", "[[isaac-sim-policy-deployment]]"]
-modified: 2026-10-04
+modified: 2026-10-15
 ---
 
 # 当前研究判断
@@ -21,6 +21,8 @@ modified: 2026-10-04
 **数据规模要连同构成和训练阶段解释。** RoboCasa365 的任务／场景覆盖消融支持扩大覆盖；混入更多混合质量合成轨迹未继续改善其结果，两阶段方案的报告结果高于联合训练，但前者为预训练8万步加微调6万步，后者为12万步，不能把全部差距归因于训练顺序。任务覆盖消融也同时改变样本量；这些结果不能直接推成普遍配比规律。[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]]
 
 **能执行、能重放、能迁移是不同验收标准。** EmbodiedGen 讨论生成资产的仿真就绪性，MagicSim 讨论回合执行与数据对齐，但没有本报告统一协议下的成功率或吞吐消融；AGILE 讨论开发与导出契约，VIRAL 项目页提供定性案例，GRAIL 则提供限定任务的真机试验。单个环节成立不能替代全链验证。[[SimulationReady3DWorldGeneration|Simulation-ready 3D Generation]]、[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|可执行具身交互基础设施]]、[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|人形机器人强化学习工作流]]、[[VisualSimToReal|Visual Sim-to-Real]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|资产条件化人物—物体交互生成]]
+
+**执行系统与改进程序都可能成为学习对象，但证据不能混用。** GaP、RACaP 与 RoboFoundry 将技能图、接口和上下文纳入更新；EmbodiRSI 在固定学习形式下改进经验，PhysEvo 还展示诊断工具被后续修复继承。任务成功率提升不自动证明改进程序更有效，冻结评测与在线演化成绩也不能直接排序。[[topics/robot-harness-and-physical-rsi|专题证据比较]]、[[PhysicalRecursiveSelfImprovement|递归增益的验证边界]]
 
 ## 证据强在哪里，弱在哪里
 

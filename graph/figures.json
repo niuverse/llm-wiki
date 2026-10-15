@@ -5766,6 +5766,92 @@
       "png_bytes": 143722,
       "image_sha256": "360c7532452a9c23cb039fd1e89c4de505448089e7f7ea44821e84e6a786cf36",
       "display_label": "官方示例：最小场景渲染"
+    },
+    {
+      "note": "wiki/sources/gap-graph-as-policy.md",
+      "source_file": "raw/gap-graph-as-policy-fig-1-2026-10-15-64d8f12afef2.pdf",
+      "source_sha256": "64d8f12afef21edbae7b11a97f1d20a13cd0e53efd5699e7e86ea4781efbb0ef",
+      "figures": [
+        "1"
+      ],
+      "image": "wiki/assets/figures/gap-graph-as-policy/fig-1.webp",
+      "quality": 95,
+      "page": 1,
+      "crop": [
+        0.17,
+        0.35,
+        0.83,
+        0.695
+      ],
+      "scale": 3,
+      "width": 1212,
+      "height": 821,
+      "bytes": 236080,
+      "png_bytes": 499970,
+      "image_sha256": "f6bbf49dbe26648b027ee1c601eae26c5f6d677c3bb303879ccafcaa28378448"
+    },
+    {
+      "note": "wiki/sources/physevo-physical-recursive-self-improvement.md",
+      "source_file": "raw/physevo-physical-recursive-self-improvement-fig-2-2026-10-15-67ad795b24c5.png",
+      "source_sha256": "67ad795b24c5fd491264a6ca9a3c708fe905c7f9fa537319527c2852ee0d47b9",
+      "figures": [
+        "2"
+      ],
+      "image": "wiki/assets/figures/physevo-physical-recursive-self-improvement/fig-2.webp",
+      "quality": 95,
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "width": 1876,
+      "height": 769,
+      "bytes": 231388,
+      "png_bytes": 588243,
+      "image_sha256": "62215c130c445430a53bc596daecf69af2ebb743e135cbf30bd1a85f27cc4216"
+    },
+    {
+      "note": "wiki/sources/embodirsi-data-efficient-robot-adaptation.md",
+      "source_file": "raw/embodirsi-data-efficient-robot-adaptation-fig-2-2026-10-15-3723f6aedfd3.png",
+      "source_sha256": "3723f6aedfd306f3767491e2faafa87fe38a83a6f46c51b0adb41b5e990fbae7",
+      "figures": [
+        "2"
+      ],
+      "image": "wiki/assets/figures/embodirsi-data-efficient-robot-adaptation/fig-2.webp",
+      "quality": 95,
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "width": 2012,
+      "height": 900,
+      "bytes": 300744,
+      "png_bytes": 743647,
+      "image_sha256": "da0eee09f374a90ebbc9097f5b3e1845795c1877f257926230f39ce3aee73787"
+    },
+    {
+      "note": "wiki/sources/regenharness-evidence-gated-self-improvement.md",
+      "source_file": "raw/regenharness-evidence-gated-self-improvement-fig-1-2026-10-15-fa90c88c7a7b.png",
+      "source_sha256": "fa90c88c7a7bf667080d64738f0fdd2229a3057e4529c07a46c5bdec44814ba5",
+      "figures": [
+        "1"
+      ],
+      "image": "wiki/assets/figures/regenharness-evidence-gated-self-improvement/fig-1.webp",
+      "quality": 95,
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "width": 2047,
+      "height": 1210,
+      "bytes": 215708,
+      "png_bytes": 407720,
+      "image_sha256": "9f27f1df426c82a9b5381125b1be20b18127b4fe55b91d1215712bb0059d8b79"
     }
   ]
 }

@@ -16,14 +16,22 @@ description: "按主题、年份和关键词查找论文；共享基础通过正
 - [[sources/dexweave-dexterous-humanoid-loco-manipulation|DexWeave]] · 2026 · arXiv 预印本
 - [[sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]] · 2026 · ICLR 2026
 - [[sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] · 2026 · arXiv（预印本）
+- [[sources/embodirsi-data-efficient-robot-adaptation|EmbodiRSI]] · 2026 · arXiv 预印本
+- [[sources/enpire-agentic-robot-policy-self-improvement|ENPIRE]] · 2026 · arXiv 预印本
+- [[sources/gap-graph-as-policy|GaP]] · 2026 · arXiv 预印本
 - [[sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] · 2026 · arXiv 预印本
 - [[sources/kpi-promptable-kernel-physical-interaction|KPI]] · 2026 · arXiv 预印本
 - [[sources/lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] · 2026 · arXiv 预印本
 - [[sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] · 2026 · arXiv（技术报告）
 - [[sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]] · 2026 · arXiv 技术报告
+- [[sources/physevo-physical-recursive-self-improvement|PhysEvo]] · 2026 · arXiv 预印本
 - [[sources/pi07-steerable-generalist-robotic-foundation-model|π0.7]] · 2026 · Physical Intelligence 技术报告
+- [[sources/racap-evolvable-robot-learning|RACaP]] · 2026 · arXiv 预印本
+- [[sources/regenharness-evidence-gated-self-improvement|RegenHarness]] · 2026 · arXiv 预印本
 - [[sources/rho-efficiently-adaptable-vla-models|Rho]] · 2026 · arXiv 预印本
 - [[sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] · 2026 · ICLR 2026
+- [[sources/robofoundry-system-as-policy|RoboFoundry]] · 2026 · arXiv 预印本
+- [[sources/roboharness-visual-geometric-control|RoboHarness]] · 2026 · arXiv 预印本
 - [[sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]] · 2026 · arXiv（预印本）
 - [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX]] · 2026 · arXiv 预印本
 - [[sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] · 2026 · arXiv 预印本

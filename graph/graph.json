@@ -183,6 +183,13 @@
       "path": "wiki/concepts/OpenUSDSceneComposition.md"
     },
     {
+      "id": "concepts/PhysicalRecursiveSelfImprovement",
+      "label": "Physical RSI：物理世界递归自改进",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/PhysicalRecursiveSelfImprovement.md"
+    },
+    {
       "id": "concepts/PolicyDeploymentContract",
       "label": "策略部署接口",
       "type": "concept",
@@ -216,6 +223,13 @@
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/RobotCoordinateFrames.md"
+    },
+    {
+      "id": "concepts/RobotHarness",
+      "label": "机器人 Harness",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/RobotHarness.md"
     },
     {
       "id": "concepts/RobotLearningDataComposition",
@@ -519,6 +533,34 @@
       "path": "wiki/sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai.md"
     },
     {
+      "id": "sources/embodirsi-data-efficient-robot-adaptation",
+      "label": "EmbodiRSI：用失败恢复和自适应采集改进机器人策略",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/embodirsi-data-efficient-robot-adaptation.md"
+    },
+    {
+      "id": "sources/enpire-agentic-robot-policy-self-improvement",
+      "label": "ENPIRE：把真实机器人实验接入编码智能体的改进循环",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/enpire-agentic-robot-policy-self-improvement.md"
+    },
+    {
+      "id": "sources/gap-graph-as-policy",
+      "label": "GaP：面向变式自动化的 Graph-as-Policy 多智能体自学习 Harness",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/gap-graph-as-policy.md"
+    },
+    {
+      "id": "sources/gap-runtime-repository",
+      "label": "Graph as Policy 公开实现：技能图执行、验证与检查点",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/gap-runtime-repository.md"
+    },
+    {
       "id": "sources/gltf-basic-structure",
       "label": "The Basic Structure of glTF - Khronos glTF Tutorials",
       "type": "source",
@@ -743,6 +785,20 @@
       "path": "wiki/sources/peng-dynamics-randomization.md"
     },
     {
+      "id": "sources/physevo-physical-recursive-self-improvement",
+      "label": "PhysEvo：冻结模型下的任务工具与诊断工具共同演化",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/physevo-physical-recursive-self-improvement.md"
+    },
+    {
+      "id": "sources/physical-rsi-research-map",
+      "label": "Physical RSI 作者资料库：执行更新与改进程序更新的区分",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/physical-rsi-research-map.md"
+    },
+    {
       "id": "sources/pi-agent-harness",
       "label": "pi：可组合循环与持久化实验",
       "type": "source",
@@ -771,6 +827,20 @@
       "path": "wiki/sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation.md"
     },
     {
+      "id": "sources/racap-evolvable-robot-learning",
+      "label": "RACaP：演化技能 API，再以冻结代码闭环执行",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/racap-evolvable-robot-learning.md"
+    },
+    {
+      "id": "sources/regenharness-evidence-gated-self-improvement",
+      "label": "RegenHarness：证据门控的机器人执行与自改进协议",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/regenharness-evidence-gated-self-improvement.md"
+    },
+    {
       "id": "sources/rho-efficiently-adaptable-vla-models",
       "label": "Rho：分离机器人适配、任务微调与潜在空间在线纠正",
       "type": "source",
@@ -790,6 +860,20 @@
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots.md"
+    },
+    {
+      "id": "sources/robofoundry-system-as-policy",
+      "label": "RoboFoundry：通过系统即策略实现机器人自我演化",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/robofoundry-system-as-policy.md"
+    },
+    {
+      "id": "sources/roboharness-visual-geometric-control",
+      "label": "RoboHarness：用视觉关键点和几何约束连接模型与机器人",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/roboharness-visual-geometric-control.md"
     },
     {
       "id": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
@@ -1009,6 +1093,13 @@
       "path": "wiki/topics/policy-evaluation.md"
     },
     {
+      "id": "topics/robot-harness-and-physical-rsi",
+      "label": "机器人 Harness 与 Physical RSI",
+      "type": "topic",
+      "color": "#00897B",
+      "path": "wiki/topics/robot-harness-and-physical-rsi.md"
+    },
+    {
       "id": "topics/robot-learning-systems",
       "label": "RL 训练系统",
       "type": "topic",
@@ -1109,9 +1200,37 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/AgentHarness--sources/gap-runtime-repository",
+      "from": "concepts/AgentHarness",
+      "to": "sources/gap-runtime-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--sources/regenharness-evidence-gated-self-improvement",
+      "from": "concepts/AgentHarness",
+      "to": "sources/regenharness-evidence-gated-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/AgentHarness--topics/agent-execution",
       "from": "concepts/AgentHarness",
       "to": "topics/agent-execution",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--concepts/RobotHarness",
+      "from": "concepts/AgentHarness",
+      "to": "concepts/RobotHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--concepts/PhysicalRecursiveSelfImprovement",
+      "from": "concepts/AgentHarness",
+      "to": "concepts/PhysicalRecursiveSelfImprovement",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2726,6 +2845,76 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/physical-rsi-research-map",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/physical-rsi-research-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/embodirsi-data-efficient-robot-adaptation",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/embodirsi-data-efficient-robot-adaptation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/physevo-physical-recursive-self-improvement",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/physevo-physical-recursive-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/enpire-agentic-robot-policy-self-improvement",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/enpire-agentic-robot-policy-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/racap-evolvable-robot-learning",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/racap-evolvable-robot-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--concepts/RobotHarness",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "concepts/RobotHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/regenharness-evidence-gated-self-improvement",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/regenharness-evidence-gated-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/robofoundry-system-as-policy",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/robofoundry-system-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--topics/robot-harness-and-physical-rsi",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/PolicyDeploymentContract--sources/isaac-sim-policy-deployment",
       "from": "concepts/PolicyDeploymentContract",
       "to": "sources/isaac-sim-policy-deployment",
@@ -2967,6 +3156,69 @@
       "id": "concepts/RobotCoordinateFrames--topics/simulation-transfer",
       "from": "concepts/RobotCoordinateFrames",
       "to": "topics/simulation-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/gap-graph-as-policy",
+      "from": "concepts/RobotHarness",
+      "to": "sources/gap-graph-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/gap-runtime-repository",
+      "from": "concepts/RobotHarness",
+      "to": "sources/gap-runtime-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/regenharness-evidence-gated-self-improvement",
+      "from": "concepts/RobotHarness",
+      "to": "sources/regenharness-evidence-gated-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/robofoundry-system-as-policy",
+      "from": "concepts/RobotHarness",
+      "to": "sources/robofoundry-system-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/enpire-agentic-robot-policy-self-improvement",
+      "from": "concepts/RobotHarness",
+      "to": "sources/enpire-agentic-robot-policy-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/racap-evolvable-robot-learning",
+      "from": "concepts/RobotHarness",
+      "to": "sources/racap-evolvable-robot-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/kpi-promptable-kernel-physical-interaction",
+      "from": "concepts/RobotHarness",
+      "to": "sources/kpi-promptable-kernel-physical-interaction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--concepts/VisionLanguageActionModels",
+      "from": "concepts/RobotHarness",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--topics/robot-harness-and-physical-rsi",
+      "from": "concepts/RobotHarness",
+      "to": "topics/robot-harness-and-physical-rsi",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5183,6 +5435,20 @@
       "confidence": 1.0
     },
     {
+      "id": "overview--topics/robot-harness-and-physical-rsi",
+      "from": "overview",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--overview",
+      "from": "overview",
+      "to": "concepts/PhysicalRecursiveSelfImprovement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/HeterogeneousRobotRLTraining--overview",
       "from": "overview",
       "to": "concepts/HeterogeneousRobotRLTraining",
@@ -5872,6 +6138,90 @@
       "id": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai--topics/assets-and-world-generation",
       "from": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
       "to": "topics/assets-and-world-generation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/embodirsi-data-efficient-robot-adaptation",
+      "from": "sources/embodirsi-data-efficient-robot-adaptation",
+      "to": "concepts/RobotHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/embodirsi-data-efficient-robot-adaptation--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "sources/embodirsi-data-efficient-robot-adaptation",
+      "to": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/embodirsi-data-efficient-robot-adaptation--sources/physevo-physical-recursive-self-improvement",
+      "from": "sources/embodirsi-data-efficient-robot-adaptation",
+      "to": "sources/physevo-physical-recursive-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/embodirsi-data-efficient-robot-adaptation--topics/robot-harness-and-physical-rsi",
+      "from": "sources/embodirsi-data-efficient-robot-adaptation",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/enpire-agentic-robot-policy-self-improvement--sources/gap-graph-as-policy",
+      "from": "sources/enpire-agentic-robot-policy-self-improvement",
+      "to": "sources/gap-graph-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/enpire-agentic-robot-policy-self-improvement--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "sources/enpire-agentic-robot-policy-self-improvement",
+      "to": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/gap-graph-as-policy--sources/gap-runtime-repository",
+      "from": "sources/gap-graph-as-policy",
+      "to": "sources/gap-runtime-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/VisionLanguageActionModels--sources/gap-graph-as-policy",
+      "from": "sources/gap-graph-as-policy",
+      "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/gap-graph-as-policy--sources/racap-evolvable-robot-learning",
+      "from": "sources/gap-graph-as-policy",
+      "to": "sources/racap-evolvable-robot-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/gap-graph-as-policy--sources/robofoundry-system-as-policy",
+      "from": "sources/gap-graph-as-policy",
+      "to": "sources/robofoundry-system-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/gap-graph-as-policy",
+      "from": "sources/gap-graph-as-policy",
+      "to": "concepts/PhysicalRecursiveSelfImprovement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/gap-runtime-repository--sources/regenharness-evidence-gated-self-improvement",
+      "from": "sources/gap-runtime-repository",
+      "to": "sources/regenharness-evidence-gated-self-improvement",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -7017,6 +7367,55 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/PolicyDeploymentContract--sources/physevo-physical-recursive-self-improvement",
+      "from": "sources/physevo-physical-recursive-self-improvement",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/physevo-physical-recursive-self-improvement--sources/racap-evolvable-robot-learning",
+      "from": "sources/physevo-physical-recursive-self-improvement",
+      "to": "sources/racap-evolvable-robot-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/physevo-physical-recursive-self-improvement--sources/regenharness-evidence-gated-self-improvement",
+      "from": "sources/physevo-physical-recursive-self-improvement",
+      "to": "sources/regenharness-evidence-gated-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/physevo-physical-recursive-self-improvement--topics/robot-harness-and-physical-rsi",
+      "from": "sources/physevo-physical-recursive-self-improvement",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/embodirsi-data-efficient-robot-adaptation--sources/physical-rsi-research-map",
+      "from": "sources/physical-rsi-research-map",
+      "to": "sources/embodirsi-data-efficient-robot-adaptation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/physevo-physical-recursive-self-improvement--sources/physical-rsi-research-map",
+      "from": "sources/physical-rsi-research-map",
+      "to": "sources/physevo-physical-recursive-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/enpire-agentic-robot-policy-self-improvement--sources/physical-rsi-research-map",
+      "from": "sources/physical-rsi-research-map",
+      "to": "sources/enpire-agentic-robot-policy-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/pi-agent-harness--topics/agent-execution",
       "from": "sources/pi-agent-harness",
       "to": "topics/agent-execution",
@@ -7108,6 +7507,27 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/racap-evolvable-robot-learning--sources/robofoundry-system-as-policy",
+      "from": "sources/racap-evolvable-robot-learning",
+      "to": "sources/robofoundry-system-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--sources/racap-evolvable-robot-learning",
+      "from": "sources/racap-evolvable-robot-learning",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/gap-graph-as-policy--sources/regenharness-evidence-gated-self-improvement",
+      "from": "sources/regenharness-evidence-gated-self-improvement",
+      "to": "sources/gap-graph-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/rho-efficiently-adaptable-vla-models--sources/rho-release-documentation",
       "from": "sources/rho-efficiently-adaptable-vla-models",
       "to": "sources/rho-release-documentation",
@@ -7174,6 +7594,41 @@
       "id": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots--topics/policy-evaluation",
       "from": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
       "to": "topics/policy-evaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PolicyDeploymentContract--sources/roboharness-visual-geometric-control",
+      "from": "sources/roboharness-visual-geometric-control",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/racap-evolvable-robot-learning--sources/roboharness-visual-geometric-control",
+      "from": "sources/roboharness-visual-geometric-control",
+      "to": "sources/racap-evolvable-robot-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/roboharness-visual-geometric-control",
+      "from": "sources/roboharness-visual-geometric-control",
+      "to": "concepts/RobotHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/roboharness-visual-geometric-control",
+      "from": "sources/roboharness-visual-geometric-control",
+      "to": "concepts/PhysicalRecursiveSelfImprovement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/roboharness-visual-geometric-control--topics/robot-harness-and-physical-rsi",
+      "from": "sources/roboharness-visual-geometric-control",
+      "to": "topics/robot-harness-and-physical-rsi",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -7307,6 +7762,27 @@
       "id": "sources/simex-simulation-integrated-robotics-autoresearch--topics/robot-policy-learning",
       "from": "sources/simex-simulation-integrated-robotics-autoresearch",
       "to": "topics/robot-policy-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/simex-simulation-integrated-robotics-autoresearch--topics/robot-harness-and-physical-rsi",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/gap-graph-as-policy--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "sources/gap-graph-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/physevo-physical-recursive-self-improvement--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "sources/physevo-physical-recursive-self-improvement",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -8123,6 +8599,48 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/gap-graph-as-policy--topics/agent-execution",
+      "from": "topics/agent-execution",
+      "to": "sources/gap-graph-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/regenharness-evidence-gated-self-improvement--topics/agent-execution",
+      "from": "topics/agent-execution",
+      "to": "sources/regenharness-evidence-gated-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/robofoundry-system-as-policy--topics/agent-execution",
+      "from": "topics/agent-execution",
+      "to": "sources/robofoundry-system-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "topics/agent-execution--topics/robot-harness-and-physical-rsi",
+      "from": "topics/agent-execution",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--topics/agent-execution",
+      "from": "topics/agent-execution",
+      "to": "concepts/RobotHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--topics/agent-execution",
+      "from": "topics/agent-execution",
+      "to": "concepts/PhysicalRecursiveSelfImprovement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/mujoco-overview--topics/asset-representation",
       "from": "topics/asset-representation",
       "to": "sources/mujoco-overview",
@@ -8459,6 +8977,62 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/gap-graph-as-policy--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/gap-graph-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/gap-runtime-repository--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/gap-runtime-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/enpire-agentic-robot-policy-self-improvement--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/enpire-agentic-robot-policy-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/racap-evolvable-robot-learning--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/racap-evolvable-robot-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/robofoundry-system-as-policy--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/robofoundry-system-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/regenharness-evidence-gated-self-improvement--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/regenharness-evidence-gated-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/physical-rsi-research-map--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/physical-rsi-research-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/rho-efficiently-adaptable-vla-models--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/rho-efficiently-adaptable-vla-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "topics/robot-learning-systems--topics/robot-policy-learning",
       "from": "topics/robot-learning-systems",
       "to": "topics/robot-policy-learning",
@@ -8487,6 +9061,34 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/gap-graph-as-policy--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/gap-graph-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/racap-evolvable-robot-learning--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/racap-evolvable-robot-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/embodirsi-data-efficient-robot-adaptation--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/embodirsi-data-efficient-robot-adaptation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/physevo-physical-recursive-self-improvement--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/physevo-physical-recursive-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "topics/future-conditioned-action--topics/robot-policy-learning",
       "from": "topics/robot-policy-learning",
       "to": "topics/future-conditioned-action",
@@ -8504,6 +9106,20 @@
       "id": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors--topics/robot-policy-learning",
       "from": "topics/robot-policy-learning",
       "to": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "topics/robot-harness-and-physical-rsi--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "concepts/PhysicalRecursiveSelfImprovement",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
