@@ -2,8 +2,8 @@
 title: "机器人仿真基础设施"
 type: concept
 tags: [robotics, simulation, reinforcement-learning]
-sources: ["[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[nvlabs-robolab]]", "[[unilab-repository]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[motrixsim-documentation]]", "[[mujoco-warp-mjwarp-documentation]]", "[[mjlab-repository]]", "[[mujoco-playground-repository]]", "[[isaac-lab-repository]]", "[[maniskill-repository]]", "[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[isaac-sim-policy-deployment]]", "[[mujoco-computation-collision-detection]]"]
-modified: 2026-10-04
+sources: ["[[robotics-simulation-infrastructure]]", "[[nvidia-ovrtx]]", "[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms]]", "[[nvlabs-robolab]]", "[[unilab-repository]]", "[[mujocouni-persistent-batched-runtime-primitives-for-mujoco]]", "[[motrixsim-documentation]]", "[[mujoco-warp-mjwarp-documentation]]", "[[mjlab-repository]]", "[[mujoco-playground-repository]]", "[[isaac-lab-repository]]", "[[maniskill-repository]]", "[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[isaac-sim-policy-deployment]]", "[[mujoco-computation-collision-detection]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]"]
+modified: 2026-10-16
 topics: ["topics/assets-and-world-generation", "topics/robot-policy-learning", "topics/physics-simulation", "topics/simulation-ready-worlds", "topics/robot-learning-systems"]
 ---
 
@@ -76,6 +76,7 @@ flowchart LR
 | [[isaac-lab-repository|Isaac Lab]]、[[maniskill-repository|ManiSkill]] | 任务组合与操作／视觉学习 | 框架 API 取舍不能直接成为引擎精度排名 |
 | [[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen]]／[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|V2]] | 从生成到修复、碰撞、参数与接口验证 | 可执行资产不等于真实物理参数 |
 | [[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] | 每个任务的环境定义统一服务采集、训练和评估，对齐初态、任务、动作与记录门控 | 已实现与计划能力分开，接口存在不代表任务效果已测量 |
+| [[robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]]／[[robosimstudio-repository|Code]] | 基于 Newton 与 Viser 的显式多物理场分岛耦合、三级在线调参（`LIVE`／`RECAPTURE`／`REBUILD`）、`scene.py` 热重载门控与双时钟力反馈遥操作 | 端到端 Real2Sim2Real 仅单任务先导验证；外部引擎协同仿真存在主机侧开销，多冲程软体擦杆使用接触门控插销 |
 | [[nvlabs-robolab|RoboLab]] | 任务数据类、策略适配、诊断、结果分析和场景制作 | 代码快照能力与可复现基准结果分开 |
 
 RoboLab 的许可证、第三方声明、已知问题、安装测试和资产治理同样影响可复现性；智能体生成场景必须接入任务注册与验证。[[AgenticSceneTaskGeneration|场景与任务生成]] 的低制作成本，不能替代任务语义和成功条件检查。

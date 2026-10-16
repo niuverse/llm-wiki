@@ -897,6 +897,20 @@
       "path": "wiki/sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies.md"
     },
     {
+      "id": "sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "label": "RoboSimStudio: An Interactive Toolkit for Rapid Real2Sim of Robot Manipulation Tasks",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/robosimstudio-interactive-toolkit-rapid-real2sim.md"
+    },
+    {
+      "id": "sources/robosimstudio-repository",
+      "label": "RoboSimStudio 公开实现：多物理场编译、协同仿真桥、实时热重载与力反馈工程分析",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/robosimstudio-repository.md"
+    },
+    {
       "id": "sources/robotics-simulation-infrastructure",
       "label": "Robotics Simulation Infrastructure",
       "type": "source",
@@ -3597,6 +3611,20 @@
       "id": "concepts/RoboticsSimulationInfrastructure--sources/mujoco-computation-collision-detection",
       "from": "concepts/RoboticsSimulationInfrastructure",
       "to": "sources/mujoco-computation-collision-detection",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RoboticsSimulationInfrastructure--sources/robosimstudio-repository",
+      "from": "concepts/RoboticsSimulationInfrastructure",
+      "to": "sources/robosimstudio-repository",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -6324,6 +6352,20 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/gap-graph-as-policy--sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "from": "sources/gap-graph-as-policy",
+      "to": "sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/gap-graph-as-policy--sources/robosimstudio-repository",
+      "from": "sources/gap-graph-as-policy",
+      "to": "sources/robosimstudio-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/PhysicalRecursiveSelfImprovement--sources/gap-graph-as-policy",
       "from": "sources/gap-graph-as-policy",
       "to": "concepts/PhysicalRecursiveSelfImprovement",
@@ -7787,6 +7829,41 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/robosimstudio-interactive-toolkit-rapid-real2sim--sources/robosimstudio-repository",
+      "from": "sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "to": "sources/robosimstudio-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/mujoco-overview--sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "from": "sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "to": "sources/mujoco-overview",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/isaac-lab-repository--sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "from": "sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "to": "sources/isaac-lab-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/maniskill-repository--sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "from": "sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "to": "sources/maniskill-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/mujoco-warp-mjwarp-documentation--sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "from": "sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "to": "sources/mujoco-warp-mjwarp-documentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/RobotCoordinateFrames--sources/robotics-simulation-infrastructure",
       "from": "sources/robotics-simulation-infrastructure",
       "to": "concepts/RobotCoordinateFrames",
@@ -8949,6 +9026,20 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/robosimstudio-interactive-toolkit-rapid-real2sim--topics/physics-simulation",
+      "from": "topics/physics-simulation",
+      "to": "sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/robosimstudio-repository--topics/physics-simulation",
+      "from": "topics/physics-simulation",
+      "to": "sources/robosimstudio-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/RobotRigidBodyDynamics--topics/physics-simulation",
       "from": "topics/physics-simulation",
       "to": "concepts/RobotRigidBodyDynamics",
@@ -9134,6 +9225,20 @@
       "id": "sources/physical-rsi-research-map--topics/robot-harness-and-physical-rsi",
       "from": "topics/robot-harness-and-physical-rsi",
       "to": "sources/physical-rsi-research-map",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/robosimstudio-interactive-toolkit-rapid-real2sim--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/robosimstudio-repository--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/robosimstudio-repository",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -9351,6 +9456,20 @@
       "id": "topics/physics-simulation--topics/simulation-ready-worlds",
       "from": "topics/simulation-ready-worlds",
       "to": "topics/physics-simulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/robosimstudio-interactive-toolkit-rapid-real2sim--topics/simulation-transfer",
+      "from": "topics/simulation-transfer",
+      "to": "sources/robosimstudio-interactive-toolkit-rapid-real2sim",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/robosimstudio-repository--topics/simulation-transfer",
+      "from": "topics/simulation-transfer",
+      "to": "sources/robosimstudio-repository",
       "type": "EXTRACTED",
       "confidence": 1.0
     },

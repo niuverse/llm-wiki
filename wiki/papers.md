@@ -34,6 +34,7 @@ description: "按主题、年份和关键词查找论文；共享基础通过正
 - [[sources/robofoundry-system-as-policy|RoboFoundry]] · 2026 · arXiv 预印本
 - [[sources/roboharness-visual-geometric-control|RoboHarness]] · 2026 · arXiv 预印本
 - [[sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]] · 2026 · arXiv（预印本）
+- [[sources/robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]] · 2026 · arXiv 预印本（v1）
 - [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX]] · 2026 · arXiv 预印本
 - [[sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] · 2026 · arXiv 预印本
 - [[sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]] · 2026 · Eurographics 2026 Short Papers

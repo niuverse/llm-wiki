@@ -2,8 +2,8 @@
 title: "物理仿真"
 type: "topic"
 tags: ["simulation", "source-backed"]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[coacd-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[mujoco-overview]]", "[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[nvidia-ovrtx]]", "[[modern-robotics-homogeneous-transformations]]", "[[modern-robotics-lagrangian-dynamics]]", "[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[isaac-sim-policy-deployment]]"]
-modified: "2026-10-08"
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[mujoco-computation-collision-detection]]", "[[coacd-approximate-convex-decomposition]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[mujoco-overview]]", "[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[nvidia-ovrtx]]", "[[modern-robotics-homogeneous-transformations]]", "[[modern-robotics-lagrangian-dynamics]]", "[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[isaac-sim-policy-deployment]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]"]
+modified: "2026-10-16"
 entry: "research"
 nav_order: 4
 description: "碰撞、接触与动力学求解"
@@ -23,7 +23,7 @@ description: "碰撞、接触与动力学求解"
 
 ## 当前理解
 
-几何改变接触输入，接触模型决定所求的关系，数值方法决定在给定预算下如何近似求解。这个分工由 [[contact-models-in-robotics-a-comparative-analysis|接触比较论文]]、[[mujoco-computation-collision-detection|MuJoCo 计算文档]] 和 [[coacd-approximate-convex-decomposition|CoACD]] 的不同实验对象支持。可微接近度与欧氏穿透距离也应区分，见 [[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]]。
+几何改变接触输入，接触模型决定所求的关系，数值方法决定在给定预算下如何近似求解。这个分工由 [[contact-models-in-robotics-a-comparative-analysis|接触比较论文]]、[[mujoco-computation-collision-detection|MuJoCo 计算文档]] 和 [[coacd-approximate-convex-decomposition|CoACD]] 的不同实验对象支持。当同一操作任务同时包含铰接机械臂、薄壳布料与体积软体时，[[robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]] 及其 [[robosimstudio-repository|多物理场分岛与协同仿真实现]] 进一步展示了如何把 MuJoCo-Warp、VBD 与外部隐式有限元引擎（SuperDex、Genesis）组合在同一场景中，并通过子步位姿插值、非对称 EMA 力旋量滤波与单步冲量限幅维持跨求解器接触稳定。可微接近度与欧氏穿透距离也应区分，见 [[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]]。
 
 ## 按现象定位问题
 

@@ -47,6 +47,7 @@ description: ""
 - [[sources/robofoundry-system-as-policy|RoboFoundry]]
 - [[sources/roboharness-visual-geometric-control|RoboHarness]]
 - [[sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]]
+- [[sources/robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]]
 - [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX]]
 - [[sources/simopt-adaptive-randomization|SimOpt]]
 - [[sources/structural-properties-and-classification-of-wheeled-mobile-robots|Wheeled Robots · Campion]]
@@ -74,6 +75,7 @@ description: ""
 - [[sources/opencode-harness|OpenCode]]
 - [[sources/physical-rsi-research-map|Physical RSI 研究框架]]
 - [[sources/pi-agent-harness|pi]]
+- [[sources/robosimstudio-repository|RoboSimStudio · Code]]
 - [[sources/unilab-repository|UniLab · Code]]
 - [[sources/v-hacd-repository|V-HACD · Code]]
 

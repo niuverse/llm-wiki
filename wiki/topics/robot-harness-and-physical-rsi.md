@@ -2,8 +2,8 @@
 title: "机器人 Harness 与 Physical RSI"
 type: topic
 tags: [robotics, agents, embodied-ai, source-backed]
-sources: ["[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[roboharness-visual-geometric-control]]", "[[robofoundry-system-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[physical-rsi-research-map]]", "[[simex-simulation-integrated-robotics-autoresearch]]"]
-modified: 2026-10-15
+sources: ["[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[roboharness-visual-geometric-control]]", "[[robofoundry-system-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[physical-rsi-research-map]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]"]
+modified: 2026-10-16
 description: "从技能图与物理验收到自主实验、系统演化和递归增益的证据。"
 topics: ["topics/robot-policy-learning", "topics/agent-execution", "topics/evaluation-and-transfer"]
 ---
@@ -47,6 +47,7 @@ flowchart TD
 | [[simex-simulation-integrated-robotics-autoresearch|SimEX]]，09-30，复用 | 工具代码、使用说明与仿真假设 | 真实失败触发多次仿真修复试验 | 真实测试有人工重置；工具迁移不是模型权重学习 |
 | [[embodirsi-data-efficient-robot-adaptation|EmbodiRSI v3]]，10-03 | 困难场景采样、恢复轨迹和策略权重 | Real-to-Sim-to-Real；仿真纠错仅用于训练 | 固定学习形式下的经验改进，不是实证算法自我重写 |
 | [[physevo-physical-recursive-self-improvement|PhysEvo]]，10-06 | 任务接口／技能与元层诊断工具 | 执行反馈、候选验收、诊断工具继承 | 有元层资源复用案例，缺少分离继承净收益的完整受控实验 |
+| [[robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]]，10-13 | 多物理场仿真配置、物理约束与 [[gap-graph-as-policy|GaP]] 技能图 | 视频对齐 IoU／无照片六项物理门控／仿真时空反馈与真机失败回流 | 端到端 Real2Sim2Real 仅单任务先导验证；[[robosimstudio-repository|代码核查]]显示多冲程擦杆依赖接触门控插销 |
 
 同名消歧：此处 RoboHarness 是视觉—几何接口论文 `2610.14018`；另有 *RoboHarness: Memory-driven Orchestration of Heterogeneous Robot Policies for Long-Horizon Planning*（`2607.18060`），以及同名软件包，不能混用作者、代码或实验。编码机器人 RHO（`2606.16458`）也不同于库内 [[rho-efficiently-adaptable-vla-models|Rho VLA]]。
 

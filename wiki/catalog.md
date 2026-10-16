@@ -165,6 +165,8 @@ description: ""
 - [[sources/robofoundry-system-as-policy|RoboFoundry]]
 - [[sources/roboharness-visual-geometric-control|RoboHarness]]
 - [[sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]]
+- [[sources/robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]]
+- [[sources/robosimstudio-repository|RoboSimStudio · Code]]
 - [[sources/robotics-simulation-infrastructure|Robotics Simulation Infrastructure]]
 - [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX]]
 - [[sources/simopt-adaptive-randomization|SimOpt]]
