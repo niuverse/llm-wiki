@@ -70,4 +70,4 @@ GaP 面向 Variational Automation（VA）：同一工作站长期重复同类任
 
 §6 承认可靠性与吞吐尚未达到工业目标，任务主要是准静态操作，只有插线依赖力觉；动态目标、柔性物体与更复杂接触尚待验证。图结构不能代替标定、技能质量、仿真保真度与实际成功判定。
 
-从 [[RobotHarness|机器人 Harness]] 看，GaP 给出一种易组合、可检查的执行产物；[[racap-evolvable-robot-learning|RACaP]] 进一步演化 API、提示与经验，[[robofoundry-system-as-policy|RoboFoundry]] 将上下文管理也作为更新对象。从 [[PhysicalRecursiveSelfImprovement|Physical RSI]] 看，GaP 展示的是反复改进任务图，尚未以对照实验说明生成／诊断／选择更新的程序自身获得了可继承的增益。
+从 [[RobotHarness|机器人 Harness]] 看，GaP 给出一种易组合、可检查的执行产物；[[racap-evolvable-robot-learning|RACaP]] 进一步演化 API、提示与经验，[[robofoundry-system-as-policy|RoboFoundry]] 将上下文管理也作为更新对象，而 [[robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]]（及其 [[robosimstudio-repository|公开代码]]）进一步将 GaP 接入由单段视频构建的多物理场仿真闭环，展示在刚柔耦合海绵擦杆任务中经过 14 轮仿真反馈将擦除率从 0% 提升至 100% 并迁回真机。从 [[PhysicalRecursiveSelfImprovement|Physical RSI]] 看，GaP 展示的是反复改进任务图，尚未以对照实验说明生成／诊断／选择更新的程序自身获得了可继承的增益。

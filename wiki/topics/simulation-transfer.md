@@ -2,8 +2,8 @@
 title: "Sim-to-Real"
 type: "topic"
 tags: ["simulation", "source-backed"]
-sources: ["[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[isaac-sim-policy-deployment]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[dexweave-dexterous-humanoid-loco-manipulation]]"]
-modified: 2026-10-08
+sources: ["[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[isaac-sim-policy-deployment]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[dexweave-dexterous-humanoid-loco-manipulation]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]"]
+modified: 2026-10-16
 description: "比较视觉与动力学随机化、分布适配和部署接口校验。"
 ---
 
@@ -18,6 +18,7 @@ description: "比较视觉与动力学随机化、分布适配和部署接口校
 | 视觉随机化 | [[tobin-domain-randomization|Tobin 等]] | 仿真视觉定位成功不代表所有物理参数正确 |
 | 动力学随机化 | [[peng-dynamics-randomization|Peng 等]] | 对随机参数稳健不等于恢复真实参数 |
 | 仿真辅助的技能开发与修复 | [[simex-simulation-integrated-robotics-autoresearch|SimEX]] | 每任务约10分钟是真机适应交互，不包含数小时级的编排推理；跨仿真器评测不能当作硬件结果 |
+| 人机与编码智能体共驾的多物理场 Real2Sim2Real | [[robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]]、[[robosimstudio-repository|RoboSimStudio · Code]] | 单视频构建与真机部署仅在海绵擦杆单任务做先导验证；公开演示中多往复擦拭需接触门控插销防止软体滑脱 |
 | 分布适配 | [[simopt-adaptive-randomization|SimOpt]] | 匹配轨迹分布不等于参数唯一可辨识 |
 | 部署流程与视觉策略 | [[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]]、[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL 项目页]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] | 流程建议、演示与定量实验不能混作同等证据 |
 
@@ -36,6 +37,8 @@ description: "比较视觉与动力学随机化、分布适配和部署接口校
 - [[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL: Generating Humanoid Loco-Manipulation from 3D Assets and Video Priors]]
 - [[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation]]
 - [[isaac-sim-policy-deployment|Isaac Sim 6.1: Deploying policies in Isaac Sim]]
+- [[robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio: An Interactive Toolkit for Rapid Real2Sim of Robot Manipulation Tasks]]
+- [[robosimstudio-repository|RoboSimStudio 公开实现：工程架构与核心机制核查]]
 
 ## 机制基础
 

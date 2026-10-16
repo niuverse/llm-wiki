@@ -1033,3 +1033,16 @@ ASPIRE、Harness VLA、123 轮负结果、Who Improves the Robot 全文、RSI-An
 [[CompositionalGeneralizationInRobotics|组合泛化]] 原先只由 π0.7 与 RoboCasa365（均为仿真或仿真预训练路径）支撑；本次补上真机、控制原子训练分布、留出组合任务这一类证据，并新增「报告组合失败比例时必须同时给出原子侧基线」这一判断，依据是 SmolVLA 的低组合失败占比来自弱原子而非强组合。新建 [[AtomicSkillAndCompositionalEvaluation|原子技能与组合泛化评测]] 沉淀可复用的分解设计与指标假设，同步 [[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[topics/policy-evaluation|策略评测]] 与 [[topics/evaluation-and-transfer|评测与 Sim-to-Real]]。
 
 保留原文内部不一致：§4.2 正文给出的 motor atom 跨模型平均成功率（pick-and-place 74%、pour 20% 等）与图 3 中同名的 cross-model mean 读数（69%、16% 等）不同，论文未说明口径差异，两个读数并列记录在来源页。未运行任何机器人系统，结论限于归档 PDF。
+
+## [2026-10-16] ingest | RoboSimStudio: An Interactive Toolkit for Rapid Real2Sim of Robot Manipulation Tasks
+
+时间：2026-10-16 17:36（北京时间，UTC+08:00）
+
+按用户学习请求先同步本仓库远端最新提交，并在 `AGENTS.md` 与 `wiki-research` 技能中补充“每次开始学习、研究或收录前先从远端拉取最新状态”的规范。归档 arXiv 2610.18835v1 原始 PDF（`raw/robosimstudio-interactive-toolkit-rapid-real2sim-2026-10-16-e701248a4cd0.pdf`）并完整阅读全文 13 页，新建论文来源页 [[robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]]，嵌入并登记全部七幅原文图（图 1–7），记录声明式机器人接口、Newton 多物理场耦合、Viser 人机交互工作台、编码智能体时空反馈、18 项富接触操作任务、主臂力反馈遥操作与海绵擦杆端到端 Real2Sim2Real 先导实验。
+
+## [2026-10-16] ingest | RoboSimStudio 公开实现：多物理场编译、协同仿真桥、实时热重载与力反馈工程分析
+
+时间：2026-10-16 17:36（北京时间，UTC+08:00）
+
+固定官方仓库 `robosimstudio/robosimstudio` 提交 `73739abe212f963e8a9f5862b27bca370df091a7`，归档 34 个核心工程文件（`raw/robosimstudio-repository-2026-10-16-5860aeb05800.tgz` 及阅读缓存 `graph/extracts/robosimstudio-repository-2026-10-16-5860aeb05800.md`），新建代码核查来源页 [[robosimstudio-repository|RoboSimStudio · Code]]。深入解析五包单向依赖与 PEP 562 惰性导入、`compile_scene` 十阶段不可调换顺序、按后端相等分岛与多世界碰撞对步幅展开、`SolverOneWay` 子步位移差摩擦恢复、九阶段 CUDA 图可捕获性铁律与 `LIVE`／`RECAPTURE`／`REBUILD` 三级在线调参、`CosimRig` 子步插值与 `WrenchAccumulator` 非对称 EMA 滤波加冲量限幅、`wipe_the_bar` 的 Preston 磨损与 `bar.Latch` 接触门控顺应锁定（并列说明论文未展开的 33 次纯摩擦滑脱消融）、`robosimstudio_real2sim_agent` 的热重载与四类定量门控（`compare_still`／`look_sheet`／`gate`／`compare_take`）、`ConnectorNewton` 的 `SimBus` 线程隔离与特权工具边界，以及 100 Hz/60 Hz 双时钟力反馈遥操作的速度相关死区与安全门控。同步更新 [[gap-graph-as-policy|GaP]]、[[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]、[[topics/simulation-transfer|Sim-to-Real]]、[[topics/physics-simulation|物理仿真]] 与 [[RoboticsSimulationInfrastructure|机器人仿真基础设施]]。本轮为静态源码核查，未在本机启动 GPU 仿真或连接硬件。
+

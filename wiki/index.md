@@ -32,16 +32,16 @@ description: ""
 
 时间为北京时间；旧记录未记时分的只显示日期。
 
+- **2026-10-16 17:36** · RoboSimStudio 公开实现：多物理场编译、协同仿真桥、实时热重载与力反馈工程分析
+  [[sources/robosimstudio-repository|RoboSimStudio · Code]] · [[sources/gap-graph-as-policy|GaP]]
+- **2026-10-16 17:36** · RoboSimStudio: An Interactive Toolkit for Rapid Real2Sim of Robot Manipulation Tasks
+  [[sources/robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]]
 - **2026-10-16 15:22** · ATOM-Bench: A Real-World Benchmark for Atomic Skills and Compositional Generalization in Manipulation Policies
   [[sources/atom-bench-atomic-skills-and-compositional-generalization|ATOM-Bench]] · [[concepts/CompositionalGeneralizationInRobotics|Compositional Generalization]]
 - **2026-10-15 21:01** · 本轮来源全名与归档登记核对
   [[sources/gap-graph-as-policy|GaP]] · [[sources/enpire-agentic-robot-policy-self-improvement|ENPIRE]]
 - **2026-10-15 21:00** · 机器人 Harness 与 Physical RSI
   [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX]] · [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]
-- **2026-10-15 20:52** · Physical RSI 研究框架
-  [[sources/physical-rsi-research-map|Physical RSI 研究框架]] · [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]
-- **2026-10-15 20:52** · GaP 代码核查
-  [[sources/gap-runtime-repository|GaP 代码核查]] · [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]
 
 [[log|查看完整日志]]
 

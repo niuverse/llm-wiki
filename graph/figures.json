@@ -5984,6 +5984,160 @@
       "bytes": 75952,
       "png_bytes": 485469,
       "image_sha256": "b4acfc8975b6ab4e37d9cd33f15ec972594d37dda88114a69b4b99449989b4b6"
+    },
+    {
+      "note": "wiki/sources/robosimstudio-interactive-toolkit-rapid-real2sim.md",
+      "source_file": "raw/robosimstudio-interactive-toolkit-rapid-real2sim-2026-10-16-e701248a4cd0.pdf",
+      "source_sha256": "e701248a4cd0cec436dab3fd39ce5817ea6dc953401d166b17ce46ab36f7aa04",
+      "page": 1,
+      "figures": [
+        "1"
+      ],
+      "crop": [
+        0.16,
+        0.27,
+        0.84,
+        0.578
+      ],
+      "image": "wiki/assets/figures/robosimstudio-interactive-toolkit-rapid-real2sim/fig-1.webp",
+      "scale": 3,
+      "width": 1250,
+      "height": 733,
+      "bytes": 134358,
+      "png_bytes": 614860,
+      "image_sha256": "5711aea888629e99bc52efd5cc79b246b9c42eff93bf9642a3855ba86971d85a"
+    },
+    {
+      "note": "wiki/sources/robosimstudio-interactive-toolkit-rapid-real2sim.md",
+      "source_file": "raw/robosimstudio-interactive-toolkit-rapid-real2sim-2026-10-16-e701248a4cd0.pdf",
+      "source_sha256": "e701248a4cd0cec436dab3fd39ce5817ea6dc953401d166b17ce46ab36f7aa04",
+      "page": 4,
+      "figures": [
+        "2"
+      ],
+      "crop": [
+        0.16,
+        0.082,
+        0.84,
+        0.322
+      ],
+      "image": "wiki/assets/figures/robosimstudio-interactive-toolkit-rapid-real2sim/fig-2.webp",
+      "scale": 3,
+      "width": 1250,
+      "height": 572,
+      "bytes": 83236,
+      "png_bytes": 321171,
+      "image_sha256": "00f90c3102c29e07c7066861ce6c52870b2472d517fd2344b3aaa3263cfec8ef"
+    },
+    {
+      "note": "wiki/sources/robosimstudio-interactive-toolkit-rapid-real2sim.md",
+      "source_file": "raw/robosimstudio-interactive-toolkit-rapid-real2sim-2026-10-16-e701248a4cd0.pdf",
+      "source_sha256": "e701248a4cd0cec436dab3fd39ce5817ea6dc953401d166b17ce46ab36f7aa04",
+      "page": 5,
+      "figures": [
+        "3"
+      ],
+      "crop": [
+        0.16,
+        0.082,
+        0.84,
+        0.254
+      ],
+      "image": "wiki/assets/figures/robosimstudio-interactive-toolkit-rapid-real2sim/fig-3.webp",
+      "scale": 3,
+      "width": 1250,
+      "height": 410,
+      "bytes": 92184,
+      "png_bytes": 457438,
+      "image_sha256": "445aee7084d430c7405ec5afafbce901acf8e5f585843853dbf8e5b0b3ab53a0"
+    },
+    {
+      "note": "wiki/sources/robosimstudio-interactive-toolkit-rapid-real2sim.md",
+      "source_file": "raw/robosimstudio-interactive-toolkit-rapid-real2sim-2026-10-16-e701248a4cd0.pdf",
+      "source_sha256": "e701248a4cd0cec436dab3fd39ce5817ea6dc953401d166b17ce46ab36f7aa04",
+      "page": 5,
+      "figures": [
+        "4"
+      ],
+      "crop": [
+        0.16,
+        0.335,
+        0.84,
+        0.525
+      ],
+      "image": "wiki/assets/figures/robosimstudio-interactive-toolkit-rapid-real2sim/fig-4.webp",
+      "scale": 3,
+      "width": 1250,
+      "height": 453,
+      "bytes": 66520,
+      "png_bytes": 337768,
+      "image_sha256": "d5670125e5d8729eee25521c7816112f5d77f2f5f2b60e17df17a51dddd8fa70"
+    },
+    {
+      "note": "wiki/sources/robosimstudio-interactive-toolkit-rapid-real2sim.md",
+      "source_file": "raw/robosimstudio-interactive-toolkit-rapid-real2sim-2026-10-16-e701248a4cd0.pdf",
+      "source_sha256": "e701248a4cd0cec436dab3fd39ce5817ea6dc953401d166b17ce46ab36f7aa04",
+      "page": 6,
+      "figures": [
+        "5"
+      ],
+      "crop": [
+        0.16,
+        0.082,
+        0.84,
+        0.276
+      ],
+      "image": "wiki/assets/figures/robosimstudio-interactive-toolkit-rapid-real2sim/fig-5.webp",
+      "scale": 3,
+      "width": 1250,
+      "height": 462,
+      "bytes": 94222,
+      "png_bytes": 496213,
+      "image_sha256": "a52dd5a355b30cc1fa3cb1bfcf19cdd511c945f48d68f137178616a5f39a0676"
+    },
+    {
+      "note": "wiki/sources/robosimstudio-interactive-toolkit-rapid-real2sim.md",
+      "source_file": "raw/robosimstudio-interactive-toolkit-rapid-real2sim-2026-10-16-e701248a4cd0.pdf",
+      "source_sha256": "e701248a4cd0cec436dab3fd39ce5817ea6dc953401d166b17ce46ab36f7aa04",
+      "page": 7,
+      "figures": [
+        "6"
+      ],
+      "crop": [
+        0.62,
+        0.712,
+        0.835,
+        0.86
+      ],
+      "image": "wiki/assets/figures/robosimstudio-interactive-toolkit-rapid-real2sim/fig-6.webp",
+      "scale": 3,
+      "width": 396,
+      "height": 353,
+      "bytes": 18412,
+      "png_bytes": 128344,
+      "image_sha256": "18f4f74bd0057713599ba8dea7fd072719de4f8307565e9665e637df6182b326"
+    },
+    {
+      "note": "wiki/sources/robosimstudio-interactive-toolkit-rapid-real2sim.md",
+      "source_file": "raw/robosimstudio-interactive-toolkit-rapid-real2sim-2026-10-16-e701248a4cd0.pdf",
+      "source_sha256": "e701248a4cd0cec436dab3fd39ce5817ea6dc953401d166b17ce46ab36f7aa04",
+      "page": 7,
+      "figures": [
+        "7"
+      ],
+      "crop": [
+        0.16,
+        0.082,
+        0.84,
+        0.474
+      ],
+      "image": "wiki/assets/figures/robosimstudio-interactive-toolkit-rapid-real2sim/fig-7.webp",
+      "scale": 3,
+      "width": 1250,
+      "height": 933,
+      "bytes": 246620,
+      "png_bytes": 1150758,
+      "image_sha256": "53fb414c6bbc774b51dc40a0d4d1f3439d3674966b7a0fddc43d98f2d18bf554"
     }
   ]
 }
