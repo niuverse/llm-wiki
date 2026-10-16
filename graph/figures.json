@@ -5852,6 +5852,138 @@
       "bytes": 215708,
       "png_bytes": 407720,
       "image_sha256": "9f27f1df426c82a9b5381125b1be20b18127b4fe55b91d1215712bb0059d8b79"
+    },
+    {
+      "note": "wiki/sources/atom-bench-atomic-skills-and-compositional-generalization.md",
+      "source_file": "raw/atom-bench-atomic-skills-compositional-generalization-2606.16826.pdf",
+      "source_sha256": "41a4d09ade2fdb9c59bfda08525c6171824554108c75448e6df47ae4b5ca659b",
+      "page": 2,
+      "figures": [
+        "1"
+      ],
+      "crop": [
+        0.1,
+        0.105,
+        0.9,
+        0.406
+      ],
+      "image": "wiki/assets/figures/atom-bench-atomic-skills-and-compositional-generalization/fig-1.webp",
+      "scale": 3,
+      "width": 1470,
+      "height": 716,
+      "bytes": 143294,
+      "png_bytes": 649144,
+      "image_sha256": "b2d450845c11d3d0f9ee2e9cdff9814600ab198cbec8a27fadb763f7255fee3a"
+    },
+    {
+      "note": "wiki/sources/atom-bench-atomic-skills-and-compositional-generalization.md",
+      "source_file": "raw/atom-bench-atomic-skills-compositional-generalization-2606.16826.pdf",
+      "source_sha256": "41a4d09ade2fdb9c59bfda08525c6171824554108c75448e6df47ae4b5ca659b",
+      "page": 6,
+      "figures": [
+        "3"
+      ],
+      "crop": [
+        0.1,
+        0.105,
+        0.9,
+        0.352
+      ],
+      "image": "wiki/assets/figures/atom-bench-atomic-skills-and-compositional-generalization/fig-3.webp",
+      "scale": 3,
+      "width": 1470,
+      "height": 588,
+      "bytes": 36610,
+      "png_bytes": 81550,
+      "image_sha256": "1063dba3d7f671c3e2e0e64a9ee9c394bae6ecd1b4ebefa8505d2c0aeee1f6e1"
+    },
+    {
+      "note": "wiki/sources/atom-bench-atomic-skills-and-compositional-generalization.md",
+      "source_file": "raw/atom-bench-atomic-skills-compositional-generalization-2606.16826.pdf",
+      "source_sha256": "41a4d09ade2fdb9c59bfda08525c6171824554108c75448e6df47ae4b5ca659b",
+      "page": 7,
+      "figures": [
+        "4"
+      ],
+      "crop": [
+        0.1,
+        0.105,
+        0.9,
+        0.328
+      ],
+      "image": "wiki/assets/figures/atom-bench-atomic-skills-and-compositional-generalization/fig-4.webp",
+      "scale": 3,
+      "width": 1470,
+      "height": 531,
+      "bytes": 16760,
+      "png_bytes": 48147,
+      "image_sha256": "bd9816d8837c5fbbd47b04ffacfd1f8edd20df3fbe3bb17b916429039ada9560"
+    },
+    {
+      "note": "wiki/sources/atom-bench-atomic-skills-and-compositional-generalization.md",
+      "source_file": "raw/atom-bench-atomic-skills-compositional-generalization-2606.16826.pdf",
+      "source_sha256": "41a4d09ade2fdb9c59bfda08525c6171824554108c75448e6df47ae4b5ca659b",
+      "page": 7,
+      "figures": [
+        "5"
+      ],
+      "crop": [
+        0.1,
+        0.435,
+        0.9,
+        0.697
+      ],
+      "image": "wiki/assets/figures/atom-bench-atomic-skills-and-compositional-generalization/fig-5.webp",
+      "scale": 3,
+      "width": 1470,
+      "height": 624,
+      "bytes": 136578,
+      "png_bytes": 693513,
+      "image_sha256": "974170e870b5828dc0dd588d158487508b8031fc0d30975dd4cf00cff0b1d741"
+    },
+    {
+      "note": "wiki/sources/atom-bench-atomic-skills-and-compositional-generalization.md",
+      "source_file": "raw/atom-bench-atomic-skills-compositional-generalization-2606.16826.pdf",
+      "source_sha256": "41a4d09ade2fdb9c59bfda08525c6171824554108c75448e6df47ae4b5ca659b",
+      "page": 8,
+      "figures": [
+        "6"
+      ],
+      "crop": [
+        0.1,
+        0.105,
+        0.9,
+        0.374
+      ],
+      "image": "wiki/assets/figures/atom-bench-atomic-skills-and-compositional-generalization/fig-6.webp",
+      "scale": 3,
+      "width": 1470,
+      "height": 640,
+      "bytes": 107760,
+      "png_bytes": 534917,
+      "image_sha256": "a5a2ca121882e2fc74d753b5edc8301673c4c503a3c0dc3191acd39b3dde8045"
+    },
+    {
+      "note": "wiki/sources/atom-bench-atomic-skills-and-compositional-generalization.md",
+      "source_file": "raw/atom-bench-atomic-skills-compositional-generalization-2606.16826.pdf",
+      "source_sha256": "41a4d09ade2fdb9c59bfda08525c6171824554108c75448e6df47ae4b5ca659b",
+      "page": 18,
+      "figures": [
+        "7"
+      ],
+      "crop": [
+        0.11,
+        0.222,
+        0.89,
+        0.5
+      ],
+      "image": "wiki/assets/figures/atom-bench-atomic-skills-and-compositional-generalization/fig-7.webp",
+      "scale": 3,
+      "width": 1434,
+      "height": 661,
+      "bytes": 75952,
+      "png_bytes": 485469,
+      "image_sha256": "b4acfc8975b6ab4e37d9cd33f15ec972594d37dda88114a69b4b99449989b4b6"
     }
   ]
 }

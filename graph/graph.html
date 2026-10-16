@@ -8,11 +8,12 @@ code { background: #f4f4f4; padding: 0.1rem 0.25rem; border-radius: 4px; }
 pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 </style>
 <h1>LLM Wiki Graph</h1>
-<p>Nodes: 165. Edges: 1169.</p>
+<p>Nodes: 167. Edges: 1183.</p>
 <h2>Nodes</h2>
 <ul><li><strong>Agent Harness</strong> <code>concepts/AgentHarness</code> <span>concept</span></li>
 <li><strong>Agentic Scene Generation</strong> <code>concepts/AgenticSceneTaskGeneration</code> <span>concept</span></li>
 <li><strong>Approximate Convex Decomposition</strong> <code>concepts/ApproximateConvexDecomposition</code> <span>concept</span></li>
+<li><strong>原子技能与组合泛化评测</strong> <code>concepts/AtomicSkillAndCompositionalEvaluation</code> <span>concept</span></li>
 <li><strong>机器人仿真的碰撞几何</strong> <code>concepts/CollisionGeometryForRobotSimulation</code> <span>concept</span></li>
 <li><strong>Compositional Generalization</strong> <code>concepts/CompositionalGeneralizationInRobotics</code> <span>concept</span></li>
 <li><strong>Contact Complementarity</strong> <code>concepts/ContactComplementarity</code> <span>concept</span></li>
@@ -72,6 +73,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning</strong> <code>sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning</code> <span>source</span></li>
 <li><strong>Anthropic：跨上下文窗口的任务交接</strong> <code>sources/anthropic-long-running-harness</code> <span>source</span></li>
 <li><strong>Anthropic Managed Agents：分离会话、循环与执行环境</strong> <code>sources/anthropic-managed-agents</code> <span>source</span></li>
+<li><strong>ATOM-Bench: A Real-World Benchmark for Atomic Skills and Compositional Generalization in Manipulation Policies</strong> <code>sources/atom-bench-atomic-skills-and-compositional-generalization</code> <span>source</span></li>
 <li><strong>AwesomeWorldModels：世界模型文献索引</strong> <code>sources/awesome-world-models</code> <span>source</span></li>
 <li><strong>CoACD：保留碰撞相关凹陷的凸分解</strong> <code>sources/coacd-approximate-convex-decomposition</code> <span>source</span></li>
 <li><strong>CoACD 项目：接口、尺度与分解代码</strong> <code>sources/coacd-repository</code> <span>source</span></li>
@@ -206,6 +208,12 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>concepts/ApproximateConvexDecomposition</code> -> <code>concepts/ContactSolvers</code></li>
 <li><code>concepts/ApproximateConvexDecomposition</code> -> <code>topics/physics-simulation</code></li>
 <li><code>concepts/ApproximateConvexDecomposition</code> -> <code>topics/collision-geometry</code></li>
+<li><code>concepts/AtomicSkillAndCompositionalEvaluation</code> -> <code>sources/atom-bench-atomic-skills-and-compositional-generalization</code></li>
+<li><code>concepts/AtomicSkillAndCompositionalEvaluation</code> -> <code>concepts/CompositionalGeneralizationInRobotics</code></li>
+<li><code>concepts/AtomicSkillAndCompositionalEvaluation</code> -> <code>concepts/TaskGeneralistPolicyEvaluation</code></li>
+<li><code>concepts/AtomicSkillAndCompositionalEvaluation</code> -> <code>topics/policy-evaluation</code></li>
+<li><code>concepts/AtomicSkillAndCompositionalEvaluation</code> -> <code>topics/evaluation-and-transfer</code></li>
+<li><code>concepts/AtomicSkillAndCompositionalEvaluation</code> -> <code>topics/robot-policy-learning</code></li>
 <li><code>concepts/CollisionGeometryForRobotSimulation</code> -> <code>sources/mujoco-computation-collision-detection</code></li>
 <li><code>concepts/CollisionGeometryForRobotSimulation</code> -> <code>sources/isaac-sim-core-api-collision-approximation</code></li>
 <li><code>concepts/CollisionGeometryForRobotSimulation</code> -> <code>sources/v-hacd-repository</code></li>
@@ -226,6 +234,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>concepts/CollisionGeometryForRobotSimulation</code> -> <code>topics/collision-geometry</code></li>
 <li><code>concepts/CompositionalGeneralizationInRobotics</code> -> <code>sources/pi07-steerable-generalist-robotic-foundation-model</code></li>
 <li><code>concepts/CompositionalGeneralizationInRobotics</code> -> <code>sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots</code></li>
+<li><code>concepts/CompositionalGeneralizationInRobotics</code> -> <code>sources/atom-bench-atomic-skills-and-compositional-generalization</code></li>
 <li><code>concepts/CompositionalGeneralizationInRobotics</code> -> <code>concepts/RobotContextConditioning</code></li>
 <li><code>concepts/CompositionalGeneralizationInRobotics</code> -> <code>concepts/TaskGeneralistPolicyEvaluation</code></li>
 <li><code>concepts/CompositionalGeneralizationInRobotics</code> -> <code>concepts/RobotLearningDataComposition</code></li>
@@ -632,6 +641,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>concepts/TaskGeneralistPolicyEvaluation</code> -> <code>sources/robotics-simulation-infrastructure</code></li>
 <li><code>concepts/TaskGeneralistPolicyEvaluation</code> -> <code>sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors</code></li>
 <li><code>concepts/TaskGeneralistPolicyEvaluation</code> -> <code>sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots</code></li>
+<li><code>concepts/TaskGeneralistPolicyEvaluation</code> -> <code>sources/atom-bench-atomic-skills-and-compositional-generalization</code></li>
 <li><code>concepts/TaskGeneralistPolicyEvaluation</code> -> <code>concepts/SimulationSensitivityAnalysis</code></li>
 <li><code>concepts/TaskGeneralistPolicyEvaluation</code> -> <code>concepts/RobotLearningObjectives</code></li>
 <li><code>concepts/TaskGeneralistPolicyEvaluation</code> -> <code>concepts/RobotLearningDataComposition</code></li>
@@ -823,6 +833,12 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/anthropic-managed-agents</code> -> <code>sources/pi-agent-harness</code></li>
 <li><code>sources/anthropic-managed-agents</code> -> <code>sources/langgraph-persistence</code></li>
 <li><code>sources/anthropic-managed-agents</code> -> <code>topics/agent-execution</code></li>
+<li><code>sources/atom-bench-atomic-skills-and-compositional-generalization</code> -> <code>topics/policy-evaluation</code></li>
+<li><code>sources/atom-bench-atomic-skills-and-compositional-generalization</code> -> <code>sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies</code></li>
+<li><code>sources/atom-bench-atomic-skills-and-compositional-generalization</code> -> <code>sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots</code></li>
+<li><code>sources/atom-bench-atomic-skills-and-compositional-generalization</code> -> <code>topics/evaluation-and-transfer</code></li>
+<li><code>sources/atom-bench-atomic-skills-and-compositional-generalization</code> -> <code>sources/pi07-steerable-generalist-robotic-foundation-model</code></li>
+<li><code>sources/atom-bench-atomic-skills-and-compositional-generalization</code> -> <code>topics/robot-policy-learning</code></li>
 <li><code>sources/awesome-world-models</code> -> <code>sources/dino-wm-pretrained-visual-features</code></li>
 <li><code>sources/awesome-world-models</code> -> <code>sources/v-jepa-2-understanding-prediction-planning</code></li>
 <li><code>sources/awesome-world-models</code> -> <code>sources/planet-learning-latent-dynamics</code></li>
@@ -1370,6 +1386,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "path": "wiki/concepts/ApproximateConvexDecomposition.md"
     },
     {
+      "id": "concepts/AtomicSkillAndCompositionalEvaluation",
+      "label": "原子技能与组合泛化评测",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/AtomicSkillAndCompositionalEvaluation.md"
+    },
+    {
       "id": "concepts/CollisionGeometryForRobotSimulation",
       "label": "机器人仿真的碰撞几何",
       "type": "concept",
@@ -1781,6 +1804,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/anthropic-managed-agents.md"
+    },
+    {
+      "id": "sources/atom-bench-atomic-skills-and-compositional-generalization",
+      "label": "ATOM-Bench: A Real-World Benchmark for Atomic Skills and Compositional Generalization in Manipulation Policies",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/atom-bench-atomic-skills-and-compositional-generalization.md"
     },
     {
       "id": "sources/awesome-world-models",
@@ -2716,6 +2746,48 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "concepts/AtomicSkillAndCompositionalEvaluation--sources/atom-bench-atomic-skills-and-compositional-generalization",
+      "from": "concepts/AtomicSkillAndCompositionalEvaluation",
+      "to": "sources/atom-bench-atomic-skills-and-compositional-generalization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AtomicSkillAndCompositionalEvaluation--concepts/CompositionalGeneralizationInRobotics",
+      "from": "concepts/AtomicSkillAndCompositionalEvaluation",
+      "to": "concepts/CompositionalGeneralizationInRobotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AtomicSkillAndCompositionalEvaluation--concepts/TaskGeneralistPolicyEvaluation",
+      "from": "concepts/AtomicSkillAndCompositionalEvaluation",
+      "to": "concepts/TaskGeneralistPolicyEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AtomicSkillAndCompositionalEvaluation--topics/policy-evaluation",
+      "from": "concepts/AtomicSkillAndCompositionalEvaluation",
+      "to": "topics/policy-evaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AtomicSkillAndCompositionalEvaluation--topics/evaluation-and-transfer",
+      "from": "concepts/AtomicSkillAndCompositionalEvaluation",
+      "to": "topics/evaluation-and-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AtomicSkillAndCompositionalEvaluation--topics/robot-policy-learning",
+      "from": "concepts/AtomicSkillAndCompositionalEvaluation",
+      "to": "topics/robot-policy-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/CollisionGeometryForRobotSimulation--sources/mujoco-computation-collision-detection",
       "from": "concepts/CollisionGeometryForRobotSimulation",
       "to": "sources/mujoco-computation-collision-detection",
@@ -2852,6 +2924,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "concepts/CompositionalGeneralizationInRobotics--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
       "from": "concepts/CompositionalGeneralizationInRobotics",
       "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/CompositionalGeneralizationInRobotics--sources/atom-bench-atomic-skills-and-compositional-generalization",
+      "from": "concepts/CompositionalGeneralizationInRobotics",
+      "to": "sources/atom-bench-atomic-skills-and-compositional-generalization",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -5698,6 +5777,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "concepts/TaskGeneralistPolicyEvaluation--sources/atom-bench-atomic-skills-and-compositional-generalization",
+      "from": "concepts/TaskGeneralistPolicyEvaluation",
+      "to": "sources/atom-bench-atomic-skills-and-compositional-generalization",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/SimulationSensitivityAnalysis--concepts/TaskGeneralistPolicyEvaluation",
       "from": "concepts/TaskGeneralistPolicyEvaluation",
       "to": "concepts/SimulationSensitivityAnalysis",
@@ -7031,6 +7117,48 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "sources/anthropic-managed-agents--topics/agent-execution",
       "from": "sources/anthropic-managed-agents",
       "to": "topics/agent-execution",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/atom-bench-atomic-skills-and-compositional-generalization--topics/policy-evaluation",
+      "from": "sources/atom-bench-atomic-skills-and-compositional-generalization",
+      "to": "topics/policy-evaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/atom-bench-atomic-skills-and-compositional-generalization--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "from": "sources/atom-bench-atomic-skills-and-compositional-generalization",
+      "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/atom-bench-atomic-skills-and-compositional-generalization--sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "from": "sources/atom-bench-atomic-skills-and-compositional-generalization",
+      "to": "sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/atom-bench-atomic-skills-and-compositional-generalization--topics/evaluation-and-transfer",
+      "from": "sources/atom-bench-atomic-skills-and-compositional-generalization",
+      "to": "topics/evaluation-and-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/atom-bench-atomic-skills-and-compositional-generalization--sources/pi07-steerable-generalist-robotic-foundation-model",
+      "from": "sources/atom-bench-atomic-skills-and-compositional-generalization",
+      "to": "sources/pi07-steerable-generalist-robotic-foundation-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/atom-bench-atomic-skills-and-compositional-generalization--topics/robot-policy-learning",
+      "from": "sources/atom-bench-atomic-skills-and-compositional-generalization",
+      "to": "topics/robot-policy-learning",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
