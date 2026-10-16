@@ -2,14 +2,14 @@
 title: "Compositional Generalization"
 type: concept
 tags: [robotics, generalization, robot-foundation-models, evaluation]
-sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
-modified: 2026-10-04
+sources: ["[[pi07-steerable-generalist-robotic-foundation-model]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[atom-bench-atomic-skills-and-compositional-generalization]]"]
+modified: 2026-10-16
 topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/policy-evaluation"]
 ---
 
 # Compositional Generalization
 
-组合泛化是把已有技能、物体、关系或指令用于新的组合。判断“新”必须说明划分单位：完整任务未见，不代表组成技能、场景或机器人都未见。[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 与 [[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 都考察组合行为，但提示方式、训练数据和评估协议不同。
+组合泛化是把已有技能、物体、关系或指令用于新的组合。判断“新”必须说明划分单位：完整任务未见，不代表组成技能、场景或机器人都未见。[[pi07-steerable-generalist-robotic-foundation-model|π0.7]] 与 [[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 都考察组合行为，但提示方式、训练数据和评估协议不同；[[atom-bench-atomic-skills-and-compositional-generalization|ATOM-Bench]] 把这条判断搬到真机上，并显式控制策略在适配阶段见过哪些原子。
 
 ## 先定义测试条件
 
@@ -30,6 +30,24 @@ $S$ 必须说明是完整任务成功、子目标完成比例还是其他分数�
 | 指标 | 完整成功与平均子目标进度是否分开 |
 
 这是根据来源协议整理的比较框架。π0.7 在已有任务上的免微调结果仍利用了相关专家策略的自主数据；其未见长任务可由人指导完成，再用指导轨迹训练高层自主分解。**固定低层策略不等于整套系统没有接收新任务数据。** 来源的长指令评测还使用指令完成比例，不能替代完整长任务成功率。[[pi07-steerable-generalist-robotic-foundation-model|π0.7 §IX]]
+
+## 真机上的受控分解
+
+要让“组合失败”成为可归因的说法，必须控制策略在适配阶段见过的部分。[[atom-bench-atomic-skills-and-compositional-generalization|ATOM-Bench]] 的做法是：把桌面操作拆成物理动作原子与语言／逻辑原子，策略**只在原子任务上联合微调**，组合任务的示范完全不进入适配数据，再用原子隔离表现作为参照。设计清单与指标假设见 [[AtomicSkillAndCompositionalEvaluation|原子技能与组合泛化评测]]。
+
+它给出的核心事实是：**原子表现强并不带来组合成功，而且两者差距在所有被评策略上一致存在**。
+
+| 策略 | Franka 原子参照 AS | Franka 组合 SR | Cobot 原子参照 AS | Cobot 组合 SR |
+| --- | --- | --- | --- | --- |
+| Pi0.5 | 83.3 | 15.8 | 79.5 | 16.7 |
+| Motus | 69.3 | 10.8 | 68.5 | 7.5 |
+| LingBot-VLA | 60.3 | 3.3 | 47.2 | 0.0 |
+| GROOT N1.6 | 66.3 | 3.3 | 48.2 | 1.7 |
+| SmolVLA | 33.3 | 0.0 | 32.5 | 0.0 |
+
+AS 是该组合任务所涉原子在隔离条件下的平均过程成功率；数值与口径见 [[atom-bench-atomic-skills-and-compositional-generalization|来源页 §4.3]]。这张表也说明为什么「组合失败份额」不能单独引用：SmolVLA 的份额最低，但它同时是原子能力最弱的模型——低占比来自原子侧没有学会，而不是组合能力强。**报告组合泛化时必须同时给出原子侧基线，否则该比例可以被弱原子“压低”。**
+
+该基准还显示原子内部难度并不齐平：`pick_place` 最容易，倾倒、改变位姿、推动与铰接物开合明显更难；语言侧的颜色、形状、大小与空间关系较易，而计数与排除偏低。也就是说，「哪些部件没学会」本身就是组合失败的重要来源，不能一律归给组合机制。
 
 ## 为什么长组合更难
 
@@ -61,6 +79,8 @@ flowchart LR
 π0.7 删除最多样的 20% 数据比随机删除等量数据更影响未见短任务表现，支持其设置下任务覆盖的重要性；这不证明任意增加任务名都能改善泛化。论文同时承认未见任务与未见任务—机器人组合通常弱于已见任务。完整实验与支持程度见 [[pi07-steerable-generalist-robotic-foundation-model|来源页]]。
 
 RoboCasa365 将原子、已见组合和未见组合任务分组；“未见组合”仍允许组成技能、物体或场景重叠，其数据多样性与持续学习实验也揭示覆盖和旧技能保持的影响。具体数字与训练条件保留在 [[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365 来源页]]，不在概念页重新混合成统一成功率。
+
+ATOM-Bench 把同一问题放在真机上，代价是规模：五个策略、每任务 10 个物理种子、需要人工摆场景与标注得分点。它的“组合”也只沿任务结构一条轴留出，物体类别与场景因素仍与训练重叠；扰动实验只有六任务、单策略、单平台，只能作为方向性判断。原子隔离表现被当作组合上限这一假设，正是上表差距需要谨慎解读的地方：多阶段任务的条件成功率衰减会被计入该差距，而来源没有报告原子任务与组合任务的状态分布重叠程度。[[atom-bench-atomic-skills-and-compositional-generalization|ATOM-Bench §4.3、§6、附录 C]]
 
 实践中应记录首次失败阶段、部分完成、恢复次数和总时限，同时记录训练与测试的成分重叠。只报告一个总体均值，难以分清技能不会、顺序错误或依赖人工提示。更多评估组织见 [[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[RobotLearningDataComposition|数据构成]]。
 

@@ -1023,3 +1023,13 @@ ASPIRE、Harness VLA、123 轮负结果、Who Improves the Robot 全文、RSI-An
 - [[regenharness-evidence-gated-self-improvement|RegenHarness：证据门控的机器人执行与自改进协议]]
 - [[gap-runtime-repository|Graph as Policy 公开实现：技能图执行、验证与检查点]]
 - [[physical-rsi-research-map|Physical RSI 作者资料库：执行更新与改进程序更新的区分]]
+
+## [2026-10-16] ingest | ATOM-Bench: A Real-World Benchmark for Atomic Skills and Compositional Generalization in Manipulation Policies
+
+时间：2026-10-16 15:22（北京时间，UTC+08:00）
+
+按用户学习请求归档 arXiv 2606.16826v1 的 PDF 并完整阅读正文八页与附录 A–E，新建来源页 `atom-bench-atomic-skills-and-compositional-generalization`（[[atom-bench-atomic-skills-and-compositional-generalization|ATOM-Bench]]），记录 motor／instruction 原子分类法、配对单臂双臂任务套件、数据采集、AS／CFS／TG 指标定义与假设、表 1／表 2 数字、失败归因与扰动实验结果。原始 PDF 保留于 `raw/atom-bench-atomic-skills-compositional-generalization-2606.16826.pdf`，阅读缓存为 `graph/extracts/atom-bench-atomic-skills-compositional-generalization-2606.16826.md`；新增六幅原文图（图 1、3、4、5、6、7）并登记来源、页码、裁剪坐标与校验和。
+
+[[CompositionalGeneralizationInRobotics|组合泛化]] 原先只由 π0.7 与 RoboCasa365（均为仿真或仿真预训练路径）支撑；本次补上真机、控制原子训练分布、留出组合任务这一类证据，并新增「报告组合失败比例时必须同时给出原子侧基线」这一判断，依据是 SmolVLA 的低组合失败占比来自弱原子而非强组合。新建 [[AtomicSkillAndCompositionalEvaluation|原子技能与组合泛化评测]] 沉淀可复用的分解设计与指标假设，同步 [[TaskGeneralistPolicyEvaluation|通用任务策略评估]]、[[topics/policy-evaluation|策略评测]] 与 [[topics/evaluation-and-transfer|评测与 Sim-to-Real]]。
+
+保留原文内部不一致：§4.2 正文给出的 motor atom 跨模型平均成功率（pick-and-place 74%、pour 20% 等）与图 3 中同名的 cross-model mean 读数（69%、16% 等）不同，论文未说明口径差异，两个读数并列记录在来源页。未运行任何机器人系统，结论限于归档 PDF。

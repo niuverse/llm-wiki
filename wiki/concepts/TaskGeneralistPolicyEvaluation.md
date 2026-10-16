@@ -2,8 +2,8 @@
 title: "通用任务策略评估"
 type: concept
 tags: [robotics, evaluation, vla]
-sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]"]
-modified: 2026-10-04
+sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[nvlabs-robolab]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[robotics-simulation-infrastructure]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[atom-bench-atomic-skills-and-compositional-generalization]]"]
+modified: 2026-10-16
 topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/policy-evaluation"]
 ---
 
@@ -50,8 +50,9 @@ $n_i$ 是任务试验数，$M$ 是任务数。$G_i$ 可以包含终态、多个�
 | RoboLab 现实对照表 V、VIII | 作者称六任务对照，但一项仿真值缺失；策略间差距不一致 | 不能声称仿真分数能准确预测任意策略的现实成功率 |
 | RoboCasa365 表1 | 多任务训练平均值 GR00T N1.5 20.0%、π0.5 16.9% | 模型骨干冻结、步数和批量不同，非等算力架构比较 |
 | RoboCasa365 附录 H.3 | 两阶段 51.1%、联合训练 22.5%，分别 140k 与 120k 步 | 不能隔离“训练顺序”本身的因果收益 |
+| ATOM-Bench 表 1、表 2 | 真机、每任务 10 个固定物理种子；组合任务 SR 与原子隔离参照 AS 长期分离（如 Pi0.5 15.8% 对 83.3%） | 不能把 AS 与组合 SR 的差距全部归因于组合机制，因为该参照假设见 [[AtomicSkillAndCompositionalEvaluation|原子技能与组合泛化评测]] |
 
-完整数字及原文内部不一致见两篇来源页。RoboLab 的任务难度数 65+38+18=121，与总数 120 不符；能力轴计数也在不同位置变化。因此概念层保留关系／视觉／程序性三类解释，不把有冲突的计数当作稳定分类事实。
+完整数字及原文内部不一致见各来源页。RoboLab 的任务难度数 65+38+18=121，与总数 120 不符；能力轴计数也在不同位置变化。ATOM-Bench 正文的 motor atom 跨模型平均成功率与其图 3 中同名的 cross-model mean 读数不一致。因此概念层保留关系／视觉／程序性三类解释，不把有冲突的计数当作稳定分类事实。
 
 ## 结论需要多窄
 

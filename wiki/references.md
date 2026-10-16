@@ -15,6 +15,7 @@ description: ""
 
 - [[sources/a-comprehensive-survey-on-world-models-for-embodied-ai|World Models · 综述]]
 - [[sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]]
+- [[sources/atom-bench-atomic-skills-and-compositional-generalization|ATOM-Bench]]
 - [[sources/coacd-approximate-convex-decomposition|CoACD]]
 - [[sources/contact-models-in-robotics-a-comparative-analysis|Contact Models · 比较研究]]
 - [[sources/convex-primitive-decomposition-for-collision-detection|Convex Primitive Decomposition]]
