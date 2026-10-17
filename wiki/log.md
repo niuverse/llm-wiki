@@ -1046,3 +1046,15 @@ ASPIRE、Harness VLA、123 轮负结果、Who Improves the Robot 全文、RSI-An
 
 固定官方仓库 `robosimstudio/robosimstudio` 提交 `73739abe212f963e8a9f5862b27bca370df091a7`，归档 34 个核心工程文件（`raw/robosimstudio-repository-2026-10-16-5860aeb05800.tgz` 及阅读缓存 `graph/extracts/robosimstudio-repository-2026-10-16-5860aeb05800.md`），新建代码核查来源页 [[robosimstudio-repository|RoboSimStudio · Code]]。深入解析五包单向依赖与 PEP 562 惰性导入、`compile_scene` 十阶段不可调换顺序、按后端相等分岛与多世界碰撞对步幅展开、`SolverOneWay` 子步位移差摩擦恢复、九阶段 CUDA 图可捕获性铁律与 `LIVE`／`RECAPTURE`／`REBUILD` 三级在线调参、`CosimRig` 子步插值与 `WrenchAccumulator` 非对称 EMA 滤波加冲量限幅、`wipe_the_bar` 的 Preston 磨损与 `bar.Latch` 接触门控顺应锁定（并列说明论文未展开的 33 次纯摩擦滑脱消融）、`robosimstudio_real2sim_agent` 的热重载与四类定量门控（`compare_still`／`look_sheet`／`gate`／`compare_take`）、`ConnectorNewton` 的 `SimBus` 线程隔离与特权工具边界，以及 100 Hz/60 Hz 双时钟力反馈遥操作的速度相关死区与安全门控。同步更新 [[gap-graph-as-policy|GaP]]、[[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]、[[topics/simulation-transfer|Sim-to-Real]]、[[topics/physics-simulation|物理仿真]] 与 [[RoboticsSimulationInfrastructure|机器人仿真基础设施]]。本轮为静态源码核查，未在本机启动 GPU 仿真或连接硬件。
 
+## [2026-10-17] ingest | ASPIRE: Agentic /Skills Discovery for Robotics
+
+时间：2026-10-17 21:57（北京时间，UTC+08:00）
+
+按用户系统学习请求归档 arXiv 2607.00272v1 原始 PDF（`raw/aspire-agentic-skills-discovery-for-robotics-2026-10-17-9df00979a6d5.pdf`）并完整阅读正文与附录 A–E 共 43 页（阅读缓存 `graph/extracts/aspire-agentic-skills-discovery-for-robotics-2026-10-17-9df00979a6d5.md`），新建论文来源页 [[aspire-agentic-skills-discovery-for-robotics|ASPIRE]]，嵌入并登记全部六幅正文图（图 1–6）。完整梳理协调器—执行器（Coordinator–Actor）架构、暴露原语级多模态追踪的机器人执行引擎、六大类异构技能库（定位消歧、运动原语、导航恢复、物体级策略抓取、场景理解、调试工作流）、维护持久任务分析账本 $A_i$ 的程序演化搜索（算法 1）、LIBERO-Pro / Robosuite / BEHAVIOR-1K 主实验（表 2–4）、`LIBERO-90 → LIBERO-Pro Long` 技能库规模零样本迁移扩展律与单任务非单调退化（表 5–6）、Franka 仿真向双臂 YAM 真机的跨本体技能迁移（表 1）以及留出验证集选择方差（表 7–9）。
+
+## [2026-10-17] ingest | NVlabs/ASPIRE 公开实现：受限 CaP 运行时、技能验证器、多模型扩展与双臂 YAM System 2 架构核查
+
+时间：2026-10-17 21:57（北京时间，UTC+08:00）
+
+固定官方仓库 `NVlabs/ASPIRE` 主分支 `v1.0` 提交 `fa00f0ef2bc1d91d594b9aa502c22133c9f538f7`（并对照论文期分支 `v0.1` 提交 `317a72e649d9c083298a1724d873491e499c0712`），归档 61 个核心工程文件（`raw/nvlabs-aspire-repository-2026-10-17-cdf064f957c9.tgz` 及阅读缓存 `graph/extracts/nvlabs-aspire-repository-2026-10-17-cdf064f957c9.md`），新建代码核查来源页 [[nvlabs-aspire-repository|ASPIRE · Code]]。深入解析 `v0.1 → v1.0`（`cap-harness`）的五层架构演进、`_ProgramValidator` AST 静态沙盒与无特权白名单 `ToolRegistry`、主机侧特权协议见证器（`BehaviorPickupWitness` 与 `RobosuiteBimanualProtocolEvaluator`）、四项种子防泄漏审计（`audit_seeding.py`）与密封环境哈希（`provenance.py`）、正交叶子桶耗时归因 `RunTiming` 与关键帧 PNG 压缩优化、`batch.py` 的 `spawn` 进程池与 `PR_SET_PDEATHSIG` 内核级防僵尸机制、独立盲测技能验证器（`verifier-prompt.md` 区分可传递性 `transmits` 与跨任务泛化性 `generalizes`）、响亮/静默失配触发器修剪与静态检查器 `lint_skills.py`、Robosuite `nut_assembly` 从论文 9% 跃升至 99% 的几何与 PyRoKi IK 预检实现，以及双臂 YAM 真机客户端安全联锁、单通道执行与 System 2 原生 MCP 三阶魔方/药瓶精细操作闭环。同步更新 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]、[[RobotHarness|机器人 Harness]]、[[PhysicalRecursiveSelfImprovement|Physical RSI]]、[[topics/robot-policy-learning|机器人策略学习]]、[[topics/agent-execution|Agent Systems]] 与 [[topics/simulation-transfer|Sim-to-Real]]。本轮为静态源码核查，未在本机启动 GPU 仿真或连接硬件。
+

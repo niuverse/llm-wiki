@@ -4,8 +4,8 @@ type: topic
 entry: tools
 nav_order: 1
 tags: [agents, source-backed]
-sources: ["[[deepseek-harness]]", "[[pi-agent-harness]]", "[[opencode-harness]]", "[[langgraph-persistence]]", "[[anthropic-long-running-harness]]", "[[anthropic-managed-agents]]", "[[agentsserver]]", "[[agentsdock-releases]]", "[[gap-graph-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[robofoundry-system-as-policy]]"]
-modified: 2026-10-15
+sources: ["[[deepseek-harness]]", "[[pi-agent-harness]]", "[[opencode-harness]]", "[[langgraph-persistence]]", "[[anthropic-long-running-harness]]", "[[anthropic-managed-agents]]", "[[agentsserver]]", "[[agentsdock-releases]]", "[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[robofoundry-system-as-policy]]"]
+modified: 2026-10-17
 description: "从工具循环理解上下文、会话恢复与框架设计。"
 ---
 
@@ -65,7 +65,7 @@ description: "从工具循环理解上下文、会话恢复与框架设计。"
 
 ## 机器人执行与系统自改进
 
-[[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]] 把本页的状态、上下文和工具机制接到真实动作：GaP 将策略组织为技能图，RegenHarness 检查物理证据能否授权进度，RoboFoundry 把记忆管理和技能接口纳入系统演化。执行可靠性与改进能力是两个评测对象，共享机制见 [[RobotHarness]] 和 [[PhysicalRecursiveSelfImprovement]]。
+[[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]] 把本页的状态、上下文和工具机制接到真实动作：[[aspire-agentic-skills-discovery-for-robotics|ASPIRE]] 与 [[nvlabs-aspire-repository|ASPIRE · Code]] 将协调器—执行器—盲测验证器三角色分工、AST 受限沙盒及 System 2 MCP 会话用于机器人程序精化与技能库治理，GaP 将策略组织为技能图，RegenHarness 检查物理证据能否授权进度，RoboFoundry 把记忆管理和技能接口纳入系统演化。执行可靠性与改进能力是两个评测对象，共享机制见 [[RobotHarness]] 和 [[PhysicalRecursiveSelfImprovement]]。
 
 ## 未解问题与优先补证
 

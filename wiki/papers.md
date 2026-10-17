@@ -12,6 +12,7 @@ description: "按主题、年份和关键词查找论文；共享基础通过正
 按核实的文献年份排序；版本、译本及证据范围见各论文页。
 
 - [[sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] · 2026 · arXiv 预印本
+- [[sources/aspire-agentic-skills-discovery-for-robotics|ASPIRE]] · 2026 · arXiv 预印本（v1）
 - [[sources/atom-bench-atomic-skills-and-compositional-generalization|ATOM-Bench]] · 2026 · arXiv（预印本，v1）
 - [[sources/convex-primitive-decomposition-for-collision-detection|Convex Primitive Decomposition]] · 2026 · Computer Graphics Forum 45(2), Eurographics 2026
 - [[sources/dexweave-dexterous-humanoid-loco-manipulation|DexWeave]] · 2026 · arXiv 预印本

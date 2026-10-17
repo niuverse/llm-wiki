@@ -2,8 +2,8 @@
 title: "Physical RSI：物理世界递归自改进"
 type: concept
 tags: [robotics, agents, embodied-ai, source-backed]
-sources: ["[[physical-rsi-research-map]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]"]
-modified: 2026-10-15
+sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[physical-rsi-research-map]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]"]
+modified: 2026-10-17
 topics: ["topics/robot-harness-and-physical-rsi", "topics/robot-policy-learning", "topics/evaluation-and-transfer"]
 ---
 
@@ -53,6 +53,6 @@ $$
 
 ## 常见误解与实践意义
 
-循环次数多不等于递归层次深；模型权重冻结也不等于没有学习；生成一个新技能不等于改变学习算法；某个模型自己说成功不等于独立验证。跨场景迁移还要说明任务是否改变，跨任务复用则要证明保留下来的资源实际被读取或调用，而不仅是存盘。[[physical-rsi-research-map]]、[[robofoundry-system-as-policy]]
+循环次数多不等于递归层次深；模型权重冻结也不等于没有学习；生成一个新技能不等于改变学习算法；某个模型自己说成功不等于独立验证。跨场景迁移还要说明任务是否改变，跨任务复用则要证明保留下来的资源实际被读取或调用，而不仅是存盘。[[aspire-agentic-skills-discovery-for-robotics|ASPIRE]] 与其 [[nvlabs-aspire-repository|v1.0 代码库]] 提供了两个关键例证：首先，在 `LIBERO-90 → LIBERO-Pro Long` 的零样本迁移消融（源任务数 $N \in \{0, 25, 50, 90\}$）中，虽然宏平均成功率随技能库扩大单调增长（$4.7\% \to 30.5\%$），但单个任务（如 `Stove+moka pot` 在 $N=50 \to 90$ 时从 0.68 降至 0.26）会出现因陈旧或过度特化技能引发的非单调退化；其次，ASPIRE v1.0 明确将技能入库门控拆分为**可传递性验证（transmits）**与**跨任务泛化证据（generalizes）**——独立盲测验证器（Skill Verifier）在隔离目录中不看原解、仅凭技能文本在 5 个种子 2 次尝试内复现修复，只能证明“文本把解法写清楚了”，而该技能是否真正跨任务泛化，仍需由后续不同任务在 `skill_report.json` 中给出的 `useful` / `misleading` / `wrong` 评级独立检验。[[physical-rsi-research-map]]、[[robofoundry-system-as-policy]]
 
 工程上可以先建立可追溯的执行—诊断—候选—验收—保留链，再判断值得开放哪些更新面。对研究而言，最有价值的缺口是低成本地测出“改进器为何更有效”，而不是给所有自主循环统一贴 RSI 标签。当前工作比较与候选资料见 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]。
