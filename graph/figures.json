@@ -6138,6 +6138,138 @@
       "bytes": 246620,
       "png_bytes": 1150758,
       "image_sha256": "53fb414c6bbc774b51dc40a0d4d1f3439d3674966b7a0fddc43d98f2d18bf554"
+    },
+    {
+      "note": "wiki/sources/aspire-agentic-skills-discovery-for-robotics.md",
+      "source_file": "raw/aspire-agentic-skills-discovery-for-robotics-2026-10-17-9df00979a6d5.pdf",
+      "source_sha256": "9df00979a6d52c7fcfbcc9d17275fc5196e6431d872a0624fea642a63f9beefc",
+      "page": 2,
+      "figures": [
+        "1"
+      ],
+      "crop": [
+        0.1,
+        0.095,
+        0.905,
+        0.448
+      ],
+      "image": "wiki/assets/figures/aspire-agentic-skills-discovery-for-robotics/fig-1.webp",
+      "scale": 3,
+      "width": 1439,
+      "height": 893,
+      "bytes": 191154,
+      "png_bytes": 740887,
+      "image_sha256": "f309c8f1b57f32e3d9dbf4e45596b222fbb70e1350499cd97fa9491c93917585"
+    },
+    {
+      "note": "wiki/sources/aspire-agentic-skills-discovery-for-robotics.md",
+      "source_file": "raw/aspire-agentic-skills-discovery-for-robotics-2026-10-17-9df00979a6d5.pdf",
+      "source_sha256": "9df00979a6d52c7fcfbcc9d17275fc5196e6431d872a0624fea642a63f9beefc",
+      "page": 4,
+      "figures": [
+        "2"
+      ],
+      "crop": [
+        0.1,
+        0.095,
+        0.9,
+        0.41
+      ],
+      "image": "wiki/assets/figures/aspire-agentic-skills-discovery-for-robotics/fig-2.webp",
+      "scale": 3,
+      "width": 1430,
+      "height": 797,
+      "bytes": 163026,
+      "png_bytes": 388034,
+      "image_sha256": "80fe9365622957b34d897138ef4874dc4e0a11fe151c21a1c08aa508093a9e77"
+    },
+    {
+      "note": "wiki/sources/aspire-agentic-skills-discovery-for-robotics.md",
+      "source_file": "raw/aspire-agentic-skills-discovery-for-robotics-2026-10-17-9df00979a6d5.pdf",
+      "source_sha256": "9df00979a6d52c7fcfbcc9d17275fc5196e6431d872a0624fea642a63f9beefc",
+      "page": 5,
+      "figures": [
+        "3"
+      ],
+      "crop": [
+        0.1,
+        0.16,
+        0.9,
+        0.705
+      ],
+      "image": "wiki/assets/figures/aspire-agentic-skills-discovery-for-robotics/fig-3.webp",
+      "scale": 3,
+      "width": 1430,
+      "height": 1377,
+      "bytes": 322470,
+      "png_bytes": 1350337,
+      "image_sha256": "0ef23c983b88bcefcb53af132b79cc5bc172d7b6b605392bd9a1204b188c993b"
+    },
+    {
+      "note": "wiki/sources/aspire-agentic-skills-discovery-for-robotics.md",
+      "source_file": "raw/aspire-agentic-skills-discovery-for-robotics-2026-10-17-9df00979a6d5.pdf",
+      "source_sha256": "9df00979a6d52c7fcfbcc9d17275fc5196e6431d872a0624fea642a63f9beefc",
+      "page": 8,
+      "figures": [
+        "4"
+      ],
+      "crop": [
+        0.1,
+        0.095,
+        0.9,
+        0.638
+      ],
+      "image": "wiki/assets/figures/aspire-agentic-skills-discovery-for-robotics/fig-4.webp",
+      "scale": 3,
+      "width": 1430,
+      "height": 1373,
+      "bytes": 162722,
+      "png_bytes": 252495,
+      "image_sha256": "c61be751ca29e2e71dc24904fdeb231f3c440c3de79c3f7149d4434de59f33e8"
+    },
+    {
+      "note": "wiki/sources/aspire-agentic-skills-discovery-for-robotics.md",
+      "source_file": "raw/aspire-agentic-skills-discovery-for-robotics-2026-10-17-9df00979a6d5.pdf",
+      "source_sha256": "9df00979a6d52c7fcfbcc9d17275fc5196e6431d872a0624fea642a63f9beefc",
+      "page": 9,
+      "figures": [
+        "5"
+      ],
+      "crop": [
+        0.1,
+        0.095,
+        0.9,
+        0.335
+      ],
+      "image": "wiki/assets/figures/aspire-agentic-skills-discovery-for-robotics/fig-5.webp",
+      "scale": 3,
+      "width": 1430,
+      "height": 608,
+      "bytes": 52244,
+      "png_bytes": 88944,
+      "image_sha256": "393b927ab7d441ea81769198f09325fc46b128764ccc35fe4a866169b3cca78b"
+    },
+    {
+      "note": "wiki/sources/aspire-agentic-skills-discovery-for-robotics.md",
+      "source_file": "raw/aspire-agentic-skills-discovery-for-robotics-2026-10-17-9df00979a6d5.pdf",
+      "source_sha256": "9df00979a6d52c7fcfbcc9d17275fc5196e6431d872a0624fea642a63f9beefc",
+      "page": 11,
+      "figures": [
+        "6"
+      ],
+      "crop": [
+        0.1,
+        0.095,
+        0.9,
+        0.235
+      ],
+      "image": "wiki/assets/figures/aspire-agentic-skills-discovery-for-robotics/fig-6.webp",
+      "scale": 3,
+      "width": 1430,
+      "height": 355,
+      "bytes": 35030,
+      "png_bytes": 66789,
+      "image_sha256": "b9efc13cb11bfaf4c35bdc4e0fde3274b359581b866ae5da02931e7d7d7fa371"
     }
   ]
 }

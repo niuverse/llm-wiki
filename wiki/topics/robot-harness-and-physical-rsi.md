@@ -2,8 +2,8 @@
 title: "机器人 Harness 与 Physical RSI"
 type: topic
 tags: [robotics, agents, embodied-ai, source-backed]
-sources: ["[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[roboharness-visual-geometric-control]]", "[[robofoundry-system-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[physical-rsi-research-map]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]"]
-modified: 2026-10-16
+sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[roboharness-visual-geometric-control]]", "[[robofoundry-system-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[physical-rsi-research-map]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]"]
+modified: 2026-10-17
 description: "从技能图与物理验收到自主实验、系统演化和递归增益的证据。"
 topics: ["topics/robot-policy-learning", "topics/agent-execution", "topics/evaluation-and-transfer"]
 ---
@@ -12,7 +12,7 @@ topics: ["topics/robot-policy-learning", "topics/agent-execution", "topics/evalu
 
 **当前最清楚的趋势是：机器人能力的可改进对象，已经从模型权重扩展到技能接口、上下文、工具代码和实验组织；但任务表现提升，与改进程序本身越来越有效，仍需分别验证。** 这个判断来自下列已读原文的交叉分析，不是“所有系统都已实现 RSI”的结论。
 
-本轮截至 **2026-10-15**，从 Graph as Policy 出发，选择完整阅读八篇原始论文，固定版本核查 GaP 公开代码的关键路径，完整阅读 Physical RSI 作者资料库的 README，并复用已有 [[simex-simulation-integrated-robotics-autoresearch|SimEX]] 精读。覆盖执行架构、系统／技能演化、真实实验自动化、数据适配与递归证据；未运行机器人系统。更广候选置于文末，不进入已证实结论。
+截至 **2026-10-17**，本专题已完整阅读十篇原始论文（含 [[gap-graph-as-policy|GaP]]、[[aspire-agentic-skills-discovery-for-robotics|ASPIRE]]、[[racap-evolvable-robot-learning|RACaP]]、[[robofoundry-system-as-policy|RoboFoundry]]、[[robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]] 等），固定版本静态核查 [[gap-runtime-repository|GaP]]、[[nvlabs-aspire-repository|NVlabs/ASPIRE]] 与 [[robosimstudio-repository|RoboSimStudio]] 公开仓库的关键路径，完整阅读 [[physical-rsi-research-map|Physical RSI 作者资料库]] 的 README，并复用已有 [[simex-simulation-integrated-robotics-autoresearch|SimEX]] 精读。覆盖执行架构、系统／技能演化、真实实验自动化、数据适配与递归证据；未运行机器人系统。更广候选置于文末，不进入已证实结论。
 
 ## 先分清三个问题
 
@@ -38,6 +38,7 @@ flowchart TD
 
 | 工作／版本日期 | 主要更新或组织对象 | 反馈与验证 | 最值得抓住的边界 |
 | --- | --- | --- | --- |
+| [[aspire-agentic-skills-discovery-for-robotics|ASPIRE]]，06-30（[[nvlabs-aspire-repository|代码 v1.0]] 为 10-15） | 任务级 Python 控制程序与跨任务共享 Markdown 技能库（`/skills`） | 原语级多模态追踪、$K$ 候选演化搜索、[[nvlabs-aspire-repository|独立盲测 Verifier]] 与留出集单次评测 | 零样本迁移随库扩大局部非单调；跨本体 Sim-to-Real 是加速真机调试而非零样本直接部署 |
 | [[gap-graph-as-policy|GaP]]，07-06 | 类型化技能图的结构与参数 | 仿真排练、节点检查点；真实任务测试 | 已知工作站的 VA；购物任务没有启用自学习；[[gap-runtime-repository|真实检查点不能直接继承仿真真值]] |
 | [[enpire-agentic-robot-policy-self-improvement|ENPIRE v2]]，09-20 | 策略、训练代码、实验安排 | 真实机器人收集结果，人在前期配置奖励／重置／约束 | 自主阶段依赖已建环境；接近 99% 指带反馈重试的协议 |
 | [[regenharness-evidence-gated-self-improvement|RegenHarness]]，09-23 | 物理执行契约、可信状态提交和配置发布 | 证据身份／版本检查、有界恢复、回归发布协议 | 真实巡检案例已展示；RSI 定量对照主要仍是协议设计 |
@@ -53,7 +54,7 @@ flowchart TD
 
 ## 从 GaP 出发，三个最有解释力的对照
 
-**GaP → RACaP／RoboFoundry：从执行产物到系统更新面。** GaP 将机器人程序限制成可检查技能图；RACaP 进一步改变技能 API、提示和经验；RoboFoundry 还把保留、检索、使用历史信息的程序纳入修改。它们共同说明能力并不只存储在参数中，但修改自由度增大后，更难定位收益究竟来自模型、接口、已有原子技能还是更多试验。[[gap-graph-as-policy]]、[[racap-evolvable-robot-learning]]、[[robofoundry-system-as-policy]]
+**GaP → ASPIRE／RACaP／RoboFoundry：从执行产物到技能库治理与系统更新面。** GaP 将机器人程序限制成可检查技能图；ASPIRE 让编码智能体根据原语级追踪修补程序并把跨任务修复沉淀为上下文技能库（`/skills`），其 [[nvlabs-aspire-repository|v1.0 实现]] 还引入了隔离盲测验证器（Skill Verifier）与静态 AST 检查器（`lint_skills.py`）防止烂技能污染共享库；RACaP 进一步改变技能 API、提示和经验并在部署时保留 ReAct 循环；RoboFoundry 则把保留、检索、使用历史信息的上下文系统也纳入在线修改。它们共同说明能力并不只存储在参数中，但修改自由度增大后，必须区分“冻结单程序评测（ASPIRE）”、“冻结 API + 在线 ReAct（RACaP）”与“测试流在线演化（RoboFoundry）”三类截然不同的计分协议。[[gap-graph-as-policy]]、[[aspire-agentic-skills-discovery-for-robotics]]、[[nvlabs-aspire-repository]]、[[racap-evolvable-robot-learning]]、[[robofoundry-system-as-policy]]
 
 **GaP → RegenHarness：图连通不等于任务已完成。** GaP 的结构验证和仿真检查点回答“图能否执行、此仿真状态是否过关”；RegenHarness 进一步规定“谁有权接受进度、证据是否属于当前任务、取消后机器人是否真的停止”。如果目标是建设机器人系统，这组对照比单看成功率更有用。它还揭示静态、仿真、感知验收和真实真值四类检查不可互换。[[gap-runtime-repository]]、[[regenharness-evidence-gated-self-improvement]]
 
@@ -63,6 +64,7 @@ flowchart TD
 
 | 报告中的亮点 | 可支持的结论 | 不能直接推出 |
 | --- | --- | --- |
+| ASPIRE 在 LIBERO-Pro 达 72%，LIBERO-90 $\to$ Long 零样本 30.5%，YAM 抽屉 0/20 $\to$ 11/20 | 原语级追踪与演化搜索显著提升冻结程序成功率；跨任务技能库改善零样本长时域生成并大幅减少真机自主调试 Token | 技能库越大对每个单任务都单调变好（表 6 存在检索干扰退化）；真机结果仍经真机追踪调试而非零样本直接部署 |
 | GaP 购物混合扰动 97%，真实抓放 25/25 | 有界工作站下模块化策略有位置鲁棒性 | 任意新环境或工业长期无故障；CaP-X 输入条件也不完全匹配 |
 | ENPIRE 约 99% 子任务可靠性 | 在带反馈、每子任务至多八次尝试的执行方式下有高完成率 | 单次尝试 99%，或无需前期人类配置 |
 | RACaP 的 LIBERO-PRO 从 59/180 到 81/180 | 该课程与冻结评测下系统演化带来增益 | 换本体直接成功，或长任务所有类别都显著改善 |
@@ -92,7 +94,7 @@ flowchart TD
 
 | 优先级／缺口 | 候选原始资料 | 下一步具体核查 |
 | --- | --- | --- |
-| 高：自动发现技能与积累经验 | [ASPIRE，06-30 v1](https://arxiv.org/abs/2607.00272v1)；[RATS / Playful Agentic Robot Learning](https://arxiv.org/abs/2606.19419) | 技能怎样继承、哪些任务用于搜索／冻结测试，机器人与仿真适配投入 |
+| 高：自动发现技能与积累经验 | [RATS / Playful Agentic Robot Learning](https://arxiv.org/abs/2606.19419) | 与已收录 [[aspire-agentic-skills-discovery-for-robotics|ASPIRE]] 对照：自由探索发现的技能如何验收、与配对评估的 [[racap-evolvable-robot-learning|RACaP]] 在相同预算下如何比较 |
 | 高：冻结 VLA 的执行 Harness | [Harness VLA，09-24 v5](https://arxiv.org/abs/2607.08448v5)；[Guava](https://arxiv.org/abs/2606.18363) | VLA 交接、重新定位、记忆与重试的作用，是否保持相同观测和预算 |
 | 高：负结果与验收器 | [What Stops Recursive Self-Improvement in Robotics?，09-23](https://arxiv.org/abs/2609.31760)；[FailBench](https://arxiv.org/abs/2609.03611) | 123 轮实验中局部过关与最终目标的差距，验收错误怎样累积 |
 | 高：概念与元层实证 | [Who Improves the Robot?，10-13](https://arxiv.org/abs/2610.18842)；[RSI-Anything，10-09](https://arxiv.org/abs/2610.13912v1) | 前者补全文分级论证；后者检查实验是否涉及真实物理反馈及改进程序增益，不能只看 world model 标签 |

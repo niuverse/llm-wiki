@@ -15,6 +15,7 @@ description: ""
 
 - [[sources/a-comprehensive-survey-on-world-models-for-embodied-ai|World Models · 综述]]
 - [[sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]]
+- [[sources/aspire-agentic-skills-discovery-for-robotics|ASPIRE]]
 - [[sources/atom-bench-atomic-skills-and-compositional-generalization|ATOM-Bench]]
 - [[sources/coacd-approximate-convex-decomposition|CoACD]]
 - [[sources/contact-models-in-robotics-a-comparative-analysis|Contact Models · 比较研究]]
@@ -71,6 +72,7 @@ description: ""
 - [[sources/mjlab-repository|mjlab · Code]]
 - [[sources/mujoco-playground-repository|MuJoCo Playground · Code]]
 - [[sources/nvidia-ovrtx|ovrtx]]
+- [[sources/nvlabs-aspire-repository|ASPIRE · Code]]
 - [[sources/nvlabs-robolab|RoboLab · Code]]
 - [[sources/opencode-harness|OpenCode]]
 - [[sources/physical-rsi-research-map|Physical RSI 研究框架]]

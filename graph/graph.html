@@ -8,7 +8,7 @@ code { background: #f4f4f4; padding: 0.1rem 0.25rem; border-radius: 4px; }
 pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 </style>
 <h1>LLM Wiki Graph</h1>
-<p>Nodes: 169. Edges: 1198.</p>
+<p>Nodes: 171. Edges: 1216.</p>
 <h2>Nodes</h2>
 <ul><li><strong>Agent Harness</strong> <code>concepts/AgentHarness</code> <span>concept</span></li>
 <li><strong>Agentic Scene Generation</strong> <code>concepts/AgenticSceneTaskGeneration</code> <span>concept</span></li>
@@ -73,6 +73,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning</strong> <code>sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning</code> <span>source</span></li>
 <li><strong>Anthropic：跨上下文窗口的任务交接</strong> <code>sources/anthropic-long-running-harness</code> <span>source</span></li>
 <li><strong>Anthropic Managed Agents：分离会话、循环与执行环境</strong> <code>sources/anthropic-managed-agents</code> <span>source</span></li>
+<li><strong>ASPIRE: Agentic /Skills Discovery for Robotics</strong> <code>sources/aspire-agentic-skills-discovery-for-robotics</code> <span>source</span></li>
 <li><strong>ATOM-Bench: A Real-World Benchmark for Atomic Skills and Compositional Generalization in Manipulation Policies</strong> <code>sources/atom-bench-atomic-skills-and-compositional-generalization</code> <span>source</span></li>
 <li><strong>AwesomeWorldModels：世界模型文献索引</strong> <code>sources/awesome-world-models</code> <span>source</span></li>
 <li><strong>CoACD：保留碰撞相关凹陷的凸分解</strong> <code>sources/coacd-approximate-convex-decomposition</code> <span>source</span></li>
@@ -118,6 +119,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>MuJoCo Warp (MJWarp) Documentation</strong> <code>sources/mujoco-warp-mjwarp-documentation</code> <span>source</span></li>
 <li><strong>MuJoCoUni: Persistent Batched Runtime Primitives for MuJoCo</strong> <code>sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco</code> <span>source</span></li>
 <li><strong>NVIDIA ovrtx</strong> <code>sources/nvidia-ovrtx</code> <span>source</span></li>
+<li><strong>NVlabs/ASPIRE 公开实现：受限 CaP 运行时、技能验证器、多模型扩展与双臂 YAM System 2 架构核查</strong> <code>sources/nvlabs-aspire-repository</code> <span>source</span></li>
 <li><strong>NVlabs/RoboLab</strong> <code>sources/nvlabs-robolab</code> <span>source</span></li>
 <li><strong>Articulations - Omni Physics</strong> <code>sources/omniverse-omni-physics-articulations</code> <span>source</span></li>
 <li><strong>OpenCode：编码任务的会话执行</strong> <code>sources/opencode-harness</code> <span>source</span></li>
@@ -428,6 +430,8 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>concepts/OpenUSDSceneComposition</code> -> <code>concepts/SimulationRealityGap</code></li>
 <li><code>concepts/OpenUSDSceneComposition</code> -> <code>topics/assets-and-world-generation</code></li>
 <li><code>concepts/OpenUSDSceneComposition</code> -> <code>topics/asset-representation</code></li>
+<li><code>concepts/PhysicalRecursiveSelfImprovement</code> -> <code>sources/aspire-agentic-skills-discovery-for-robotics</code></li>
+<li><code>concepts/PhysicalRecursiveSelfImprovement</code> -> <code>sources/nvlabs-aspire-repository</code></li>
 <li><code>concepts/PhysicalRecursiveSelfImprovement</code> -> <code>sources/physical-rsi-research-map</code></li>
 <li><code>concepts/PhysicalRecursiveSelfImprovement</code> -> <code>sources/embodirsi-data-efficient-robot-adaptation</code></li>
 <li><code>concepts/PhysicalRecursiveSelfImprovement</code> -> <code>sources/physevo-physical-recursive-self-improvement</code></li>
@@ -473,6 +477,8 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>concepts/RobotCoordinateFrames</code> -> <code>concepts/PolicyDeploymentContract</code></li>
 <li><code>concepts/RobotCoordinateFrames</code> -> <code>topics/evaluation-and-transfer</code></li>
 <li><code>concepts/RobotCoordinateFrames</code> -> <code>topics/simulation-transfer</code></li>
+<li><code>concepts/RobotHarness</code> -> <code>sources/aspire-agentic-skills-discovery-for-robotics</code></li>
+<li><code>concepts/RobotHarness</code> -> <code>sources/nvlabs-aspire-repository</code></li>
 <li><code>concepts/RobotHarness</code> -> <code>sources/gap-graph-as-policy</code></li>
 <li><code>concepts/RobotHarness</code> -> <code>sources/gap-runtime-repository</code></li>
 <li><code>concepts/RobotHarness</code> -> <code>sources/regenharness-evidence-gated-self-improvement</code></li>
@@ -837,6 +843,12 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/anthropic-managed-agents</code> -> <code>sources/pi-agent-harness</code></li>
 <li><code>sources/anthropic-managed-agents</code> -> <code>sources/langgraph-persistence</code></li>
 <li><code>sources/anthropic-managed-agents</code> -> <code>topics/agent-execution</code></li>
+<li><code>sources/aspire-agentic-skills-discovery-for-robotics</code> -> <code>sources/nvlabs-aspire-repository</code></li>
+<li><code>sources/aspire-agentic-skills-discovery-for-robotics</code> -> <code>sources/mujoco-playground-repository</code></li>
+<li><code>sources/aspire-agentic-skills-discovery-for-robotics</code> -> <code>topics/robot-harness-and-physical-rsi</code></li>
+<li><code>sources/aspire-agentic-skills-discovery-for-robotics</code> -> <code>sources/gap-graph-as-policy</code></li>
+<li><code>sources/aspire-agentic-skills-discovery-for-robotics</code> -> <code>sources/racap-evolvable-robot-learning</code></li>
+<li><code>sources/aspire-agentic-skills-discovery-for-robotics</code> -> <code>sources/robofoundry-system-as-policy</code></li>
 <li><code>sources/atom-bench-atomic-skills-and-compositional-generalization</code> -> <code>topics/policy-evaluation</code></li>
 <li><code>sources/atom-bench-atomic-skills-and-compositional-generalization</code> -> <code>sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies</code></li>
 <li><code>sources/atom-bench-atomic-skills-and-compositional-generalization</code> -> <code>sources/robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots</code></li>
@@ -1058,6 +1070,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/nvidia-ovrtx</code> -> <code>concepts/SimulationRealityGap</code></li>
 <li><code>sources/nvidia-ovrtx</code> -> <code>topics/assets-and-world-generation</code></li>
 <li><code>sources/nvidia-ovrtx</code> -> <code>topics/asset-representation</code></li>
+<li><code>sources/nvlabs-aspire-repository</code> -> <code>sources/regenharness-evidence-gated-self-improvement</code></li>
 <li><code>sources/nvlabs-robolab</code> -> <code>sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies</code></li>
 <li><code>sources/nvlabs-robolab</code> -> <code>concepts/RobotCoordinateFrames</code></li>
 <li><code>sources/nvlabs-robolab</code> -> <code>concepts/PolicyDeploymentContract</code></li>
@@ -1266,6 +1279,8 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>syntheses/world-models-and-simulation-research</code> -> <code>sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms</code></li>
 <li><code>syntheses/world-models-and-simulation-research</code> -> <code>sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies</code></li>
 <li><code>syntheses/world-models-and-simulation-research</code> -> <code>sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation</code></li>
+<li><code>topics/agent-execution</code> -> <code>sources/aspire-agentic-skills-discovery-for-robotics</code></li>
+<li><code>topics/agent-execution</code> -> <code>sources/nvlabs-aspire-repository</code></li>
 <li><code>topics/agent-execution</code> -> <code>sources/gap-graph-as-policy</code></li>
 <li><code>topics/agent-execution</code> -> <code>sources/regenharness-evidence-gated-self-improvement</code></li>
 <li><code>topics/agent-execution</code> -> <code>sources/robofoundry-system-as-policy</code></li>
@@ -1322,6 +1337,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>topics/policy-evaluation</code> -> <code>sources/spinning-up-rl-algorithm-taxonomy</code></li>
 <li><code>topics/policy-evaluation</code> -> <code>sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms</code></li>
 <li><code>topics/policy-evaluation</code> -> <code>topics/robot-policy-learning</code></li>
+<li><code>topics/robot-harness-and-physical-rsi</code> -> <code>sources/nvlabs-aspire-repository</code></li>
 <li><code>topics/robot-harness-and-physical-rsi</code> -> <code>sources/gap-graph-as-policy</code></li>
 <li><code>topics/robot-harness-and-physical-rsi</code> -> <code>sources/gap-runtime-repository</code></li>
 <li><code>topics/robot-harness-and-physical-rsi</code> -> <code>sources/enpire-agentic-robot-policy-self-improvement</code></li>
@@ -1334,6 +1350,8 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>topics/robot-harness-and-physical-rsi</code> -> <code>sources/rho-efficiently-adaptable-vla-models</code></li>
 <li><code>topics/robot-learning-systems</code> -> <code>topics/robot-policy-learning</code></li>
 <li><code>topics/robot-learning-systems</code> -> <code>topics/evaluation-and-transfer</code></li>
+<li><code>topics/robot-policy-learning</code> -> <code>sources/aspire-agentic-skills-discovery-for-robotics</code></li>
+<li><code>topics/robot-policy-learning</code> -> <code>sources/nvlabs-aspire-repository</code></li>
 <li><code>topics/robot-policy-learning</code> -> <code>sources/dexweave-dexterous-humanoid-loco-manipulation</code></li>
 <li><code>topics/robot-policy-learning</code> -> <code>sources/rho-efficiently-adaptable-vla-models</code></li>
 <li><code>topics/robot-policy-learning</code> -> <code>sources/gap-graph-as-policy</code></li>
@@ -1362,6 +1380,8 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>topics/simulation-ready-worlds</code> -> <code>sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation</code></li>
 <li><code>topics/simulation-ready-worlds</code> -> <code>sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors</code></li>
 <li><code>topics/simulation-ready-worlds</code> -> <code>topics/physics-simulation</code></li>
+<li><code>topics/simulation-transfer</code> -> <code>sources/aspire-agentic-skills-discovery-for-robotics</code></li>
+<li><code>topics/simulation-transfer</code> -> <code>sources/nvlabs-aspire-repository</code></li>
 <li><code>topics/simulation-transfer</code> -> <code>sources/robosimstudio-interactive-toolkit-rapid-real2sim</code></li>
 <li><code>topics/simulation-transfer</code> -> <code>sources/robosimstudio-repository</code></li>
 <li><code>topics/simulation-transfer</code> -> <code>topics/physics-simulation</code></li>
@@ -1823,6 +1843,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "path": "wiki/sources/anthropic-managed-agents.md"
     },
     {
+      "id": "sources/aspire-agentic-skills-discovery-for-robotics",
+      "label": "ASPIRE: Agentic /Skills Discovery for Robotics",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/aspire-agentic-skills-discovery-for-robotics.md"
+    },
+    {
       "id": "sources/atom-bench-atomic-skills-and-compositional-generalization",
       "label": "ATOM-Bench: A Real-World Benchmark for Atomic Skills and Compositional Generalization in Manipulation Policies",
       "type": "source",
@@ -2136,6 +2163,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/nvidia-ovrtx.md"
+    },
+    {
+      "id": "sources/nvlabs-aspire-repository",
+      "label": "NVlabs/ASPIRE 公开实现：受限 CaP 运行时、技能验证器、多模型扩展与双臂 YAM System 2 架构核查",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/nvlabs-aspire-repository.md"
     },
     {
       "id": "sources/nvlabs-robolab",
@@ -4303,6 +4337,20 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/aspire-agentic-skills-discovery-for-robotics",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/aspire-agentic-skills-discovery-for-robotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/nvlabs-aspire-repository",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/nvlabs-aspire-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/PhysicalRecursiveSelfImprovement--sources/physical-rsi-research-map",
       "from": "concepts/PhysicalRecursiveSelfImprovement",
       "to": "sources/physical-rsi-research-map",
@@ -4614,6 +4662,20 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "concepts/RobotCoordinateFrames--topics/simulation-transfer",
       "from": "concepts/RobotCoordinateFrames",
       "to": "topics/simulation-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/aspire-agentic-skills-discovery-for-robotics",
+      "from": "concepts/RobotHarness",
+      "to": "sources/aspire-agentic-skills-discovery-for-robotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/nvlabs-aspire-repository",
+      "from": "concepts/RobotHarness",
+      "to": "sources/nvlabs-aspire-repository",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -7166,6 +7228,48 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "sources/aspire-agentic-skills-discovery-for-robotics--sources/nvlabs-aspire-repository",
+      "from": "sources/aspire-agentic-skills-discovery-for-robotics",
+      "to": "sources/nvlabs-aspire-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/aspire-agentic-skills-discovery-for-robotics--sources/mujoco-playground-repository",
+      "from": "sources/aspire-agentic-skills-discovery-for-robotics",
+      "to": "sources/mujoco-playground-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/aspire-agentic-skills-discovery-for-robotics--topics/robot-harness-and-physical-rsi",
+      "from": "sources/aspire-agentic-skills-discovery-for-robotics",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/aspire-agentic-skills-discovery-for-robotics--sources/gap-graph-as-policy",
+      "from": "sources/aspire-agentic-skills-discovery-for-robotics",
+      "to": "sources/gap-graph-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/aspire-agentic-skills-discovery-for-robotics--sources/racap-evolvable-robot-learning",
+      "from": "sources/aspire-agentic-skills-discovery-for-robotics",
+      "to": "sources/racap-evolvable-robot-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/aspire-agentic-skills-discovery-for-robotics--sources/robofoundry-system-as-policy",
+      "from": "sources/aspire-agentic-skills-discovery-for-robotics",
+      "to": "sources/robofoundry-system-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/atom-bench-atomic-skills-and-compositional-generalization--topics/policy-evaluation",
       "from": "sources/atom-bench-atomic-skills-and-compositional-generalization",
       "to": "topics/policy-evaluation",
@@ -8713,6 +8817,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "sources/nvlabs-aspire-repository--sources/regenharness-evidence-gated-self-improvement",
+      "from": "sources/nvlabs-aspire-repository",
+      "to": "sources/regenharness-evidence-gated-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/nvlabs-robolab--sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
       "from": "sources/nvlabs-robolab",
       "to": "sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies",
@@ -10169,6 +10280,20 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "sources/aspire-agentic-skills-discovery-for-robotics--topics/agent-execution",
+      "from": "topics/agent-execution",
+      "to": "sources/aspire-agentic-skills-discovery-for-robotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/nvlabs-aspire-repository--topics/agent-execution",
+      "from": "topics/agent-execution",
+      "to": "sources/nvlabs-aspire-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/gap-graph-as-policy--topics/agent-execution",
       "from": "topics/agent-execution",
       "to": "sources/gap-graph-as-policy",
@@ -10561,6 +10686,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "sources/nvlabs-aspire-repository--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/nvlabs-aspire-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/gap-graph-as-policy--topics/robot-harness-and-physical-rsi",
       "from": "topics/robot-harness-and-physical-rsi",
       "to": "sources/gap-graph-as-policy",
@@ -10641,6 +10773,20 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "topics/evaluation-and-transfer--topics/robot-learning-systems",
       "from": "topics/robot-learning-systems",
       "to": "topics/evaluation-and-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/aspire-agentic-skills-discovery-for-robotics--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/aspire-agentic-skills-discovery-for-robotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/nvlabs-aspire-repository--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/nvlabs-aspire-repository",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -10837,6 +10983,20 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "topics/physics-simulation--topics/simulation-ready-worlds",
       "from": "topics/simulation-ready-worlds",
       "to": "topics/physics-simulation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/aspire-agentic-skills-discovery-for-robotics--topics/simulation-transfer",
+      "from": "topics/simulation-transfer",
+      "to": "sources/aspire-agentic-skills-discovery-for-robotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/nvlabs-aspire-repository--topics/simulation-transfer",
+      "from": "topics/simulation-transfer",
+      "to": "sources/nvlabs-aspire-repository",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
