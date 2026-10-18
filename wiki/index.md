@@ -32,16 +32,16 @@ description: ""
 
 时间为北京时间；旧记录未记时分的只显示日期。
 
-- **2026-10-17 21:57** · NVlabs/ASPIRE 公开实现：受限 CaP 运行时、技能验证器、多模型扩展与双臂 YAM System 2 架构核查
-  [[sources/nvlabs-aspire-repository|ASPIRE · Code]] · [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]
-- **2026-10-17 21:57** · ASPIRE: Agentic /Skills Discovery for Robotics
-  [[sources/aspire-agentic-skills-discovery-for-robotics|ASPIRE]]
-- **2026-10-16 17:36** · RoboSimStudio 公开实现：多物理场编译、协同仿真桥、实时热重载与力反馈工程分析
-  [[sources/robosimstudio-repository|RoboSimStudio · Code]] · [[sources/gap-graph-as-policy|GaP]]
-- **2026-10-16 17:36** · RoboSimStudio: An Interactive Toolkit for Rapid Real2Sim of Robot Manipulation Tasks
-  [[sources/robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]]
-- **2026-10-16 15:22** · ATOM-Bench: A Real-World Benchmark for Atomic Skills and Compositional Generalization in Manipulation Policies
-  [[sources/atom-bench-atomic-skills-and-compositional-generalization|ATOM-Bench]] · [[concepts/CompositionalGeneralizationInRobotics|Compositional Generalization]]
+- **2026-10-18 22:17** · ThriftyDAgger 正文缓存同步重建
+  [[sources/thriftydagger-budget-aware-interventions|ThriftyDAgger]]
+- **2026-10-18 22:17** · ThriftyDAgger 补充材料阅读缓存修复
+  [[sources/thriftydagger-budget-aware-interventions|ThriftyDAgger]]
+- **2026-10-18 22:16** · 接管学习来源的图注与版本核对
+  [[sources/rho-efficiently-adaptable-vla-models|Rho]] · [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX]]
+- **2026-10-18 22:15** · 接管学习与仿真自改进的来源整合
+  [[sources/rho-efficiently-adaptable-vla-models|Rho]] · [[sources/embodirsi-data-efficient-robot-adaptation|EmbodiRSI]]
+- **2026-10-18 22:14** · ThriftyDAgger: Budget-Aware Novelty and Risk Gating for Interactive Imitation Learning
+  [[sources/thriftydagger-budget-aware-interventions|ThriftyDAgger]] · [[concepts/InteractiveImitationLearning|交互式模仿学习与 DAgger]]
 
 [[log|查看完整日志]]
 

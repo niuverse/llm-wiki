@@ -6270,6 +6270,213 @@
       "bytes": 35030,
       "png_bytes": 66789,
       "image_sha256": "b9efc13cb11bfaf4c35bdc4e0fde3274b359581b866ae5da02931e7d7d7fa371"
+    },
+    {
+      "note": "wiki/sources/dagger-no-regret-imitation-learning.md",
+      "source_file": "raw/dagger-no-regret-imitation-learning-2026-10-18-17bdd6e049e6.pdf",
+      "source_sha256": "17bdd6e049e64f09010b322f9e2d4fb5c744c33ff7ac99b4c4561e39bd9082a7",
+      "page": 6,
+      "figures": [
+        "2"
+      ],
+      "crop": [
+        0.535,
+        0.3,
+        0.92,
+        0.575
+      ],
+      "image": "wiki/assets/figures/dagger-no-regret-imitation-learning/fig-2.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 708,
+      "height": 655,
+      "bytes": 27612,
+      "png_bytes": 48470,
+      "image_sha256": "6f7ac710d80173354603efbab8840e5d28e92e1ee868a32a76ec33ebe2c69c20"
+    },
+    {
+      "note": "wiki/sources/hg-dagger-human-experts.md",
+      "source_file": "raw/hg-dagger-human-experts-2026-10-18-5e3aefda8fa8.pdf",
+      "source_sha256": "5e3aefda8fa803c4bbd5c6760cc468a9ce926f0d2b38da24834069c3fdadbbd0",
+      "page": 1,
+      "figures": [
+        "1"
+      ],
+      "crop": [
+        0.57,
+        0.18,
+        0.87,
+        0.33
+      ],
+      "image": "wiki/assets/figures/hg-dagger-human-experts/fig-1.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 552,
+      "height": 358,
+      "bytes": 11340,
+      "png_bytes": 23891,
+      "image_sha256": "548dae0a5c3430b5fafebe3399fb39ce10a7f25fa20ce11396f74ea1fd8b6ae1"
+    },
+    {
+      "note": "wiki/sources/thriftydagger-budget-aware-interventions.md",
+      "source_file": "raw/thriftydagger-budget-aware-interventions-2026-10-18-8641a8d4dda7.pdf",
+      "source_sha256": "8641a8d4dda75363f8b622910f3f00fb021e491a0cbda211ea79792f790acd40",
+      "page": 2,
+      "figures": [
+        "1"
+      ],
+      "crop": [
+        0.17,
+        0.08,
+        0.84,
+        0.325
+      ],
+      "image": "wiki/assets/figures/thriftydagger-budget-aware-interventions/fig-1.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1231,
+      "height": 583,
+      "bytes": 91482,
+      "png_bytes": 198652,
+      "image_sha256": "bc425b3da80dd08eb431788231ffe37b9fda1dffbb4836be1041d5d800e75401"
+    },
+    {
+      "note": "wiki/sources/sirius-robot-learning-on-the-job.md",
+      "source_file": "raw/sirius-robot-learning-on-the-job-2026-10-18-bd0a1258b620.pdf",
+      "source_sha256": "bd0a1258b620a882642640230faae5f9034b8ec1ffb2cb436f9cda253ac862a2",
+      "page": 7,
+      "figures": [
+        "5"
+      ],
+      "crop": [
+        0.07,
+        0.055,
+        0.94,
+        0.32
+      ],
+      "image": "wiki/assets/figures/sirius-robot-learning-on-the-job/fig-5.webp",
+      "width": 1598,
+      "height": 631,
+      "bytes": 130076,
+      "png_bytes": 350400,
+      "quality": 92,
+      "scale": 3,
+      "image_sha256": "9b4e9633b0b2f2ee4fb7e728f765aa4ceb23bc570764f9b66349c9fca825e51f"
+    },
+    {
+      "note": "wiki/sources/sirius-fleet-visual-world-models.md",
+      "source_file": "raw/sirius-fleet-visual-world-models-2026-10-18-c33ca3b5878e.pdf",
+      "source_sha256": "c33ca3b5878e40f515dee957100deb267419b6dd72c25e5cbf55181e9dad150b",
+      "page": 8,
+      "figures": [
+        "6"
+      ],
+      "crop": [
+        0.17,
+        0.085,
+        0.84,
+        0.27
+      ],
+      "image": "wiki/assets/figures/sirius-fleet-visual-world-models/fig-6.webp",
+      "width": 1231,
+      "height": 441,
+      "bytes": 75532,
+      "png_bytes": 100378,
+      "quality": 92,
+      "scale": 3,
+      "image_sha256": "a4fb1c2a0e4723a84fbf15f806fd41744387ad671df9ba464666b77d0e3f6c56"
+    },
+    {
+      "note": "wiki/sources/sirius-fleet-visual-world-models.md",
+      "source_file": "raw/sirius-fleet-visual-world-models-2026-10-18-c33ca3b5878e.pdf",
+      "source_sha256": "c33ca3b5878e40f515dee957100deb267419b6dd72c25e5cbf55181e9dad150b",
+      "page": 4,
+      "figures": [
+        "2"
+      ],
+      "crop": [
+        0.17,
+        0.085,
+        0.83,
+        0.345
+      ],
+      "image": "wiki/assets/figures/sirius-fleet-visual-world-models/fig-2.webp",
+      "width": 1212,
+      "height": 619,
+      "bytes": 95420,
+      "png_bytes": 190343,
+      "quality": 92,
+      "scale": 3,
+      "image_sha256": "a39ef9c007ff4a3114d383a05eed77ac837b80b4a0082651584091609858616b"
+    },
+    {
+      "note": "wiki/sources/flowdagger-latent-space-corrections.md",
+      "source_file": "raw/flowdagger-2026-10-18-0f7fc3c1792e.pdf",
+      "source_sha256": "0f7fc3c1792ef4645ef866526736a83a5e2cf4f55be513158bb2e165c62df1dd",
+      "page": 2,
+      "figures": [
+        "1"
+      ],
+      "crop": [
+        0.17,
+        0.08,
+        0.84,
+        0.31
+      ],
+      "image": "wiki/assets/figures/flowdagger-latent-space-corrections/fig-1.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1231,
+      "height": 547,
+      "bytes": 77902,
+      "png_bytes": 119858,
+      "image_sha256": "f766bdaa8ea6636dd91274e3998ca0524e3fc5f1d12eba4649a03643090056f5"
+    },
+    {
+      "note": "wiki/sources/hi-wm-human-in-world-model.md",
+      "source_file": "raw/hi-wm-2026-10-18-b4bfe7763207.pdf",
+      "source_sha256": "b4bfe7763207753e55d035ccf8302b097ba1a4b5b33c0f720a31023ad0827d93",
+      "page": 6,
+      "figures": [
+        "3"
+      ],
+      "crop": [
+        0.1,
+        0.09,
+        0.91,
+        0.295
+      ],
+      "image": "wiki/assets/figures/hi-wm-human-in-world-model/fig-3.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1488,
+      "height": 488,
+      "bytes": 79414,
+      "png_bytes": 115533,
+      "image_sha256": "f5fcf63b09756d7ab1119b32a8031bbe30167e9bd9dace5877c62079d34b823b"
+    },
+    {
+      "note": "wiki/sources/hi-wm-human-in-world-model.md",
+      "source_file": "raw/hi-wm-2026-10-18-b4bfe7763207.pdf",
+      "source_sha256": "b4bfe7763207753e55d035ccf8302b097ba1a4b5b33c0f720a31023ad0827d93",
+      "page": 10,
+      "figures": [
+        "6"
+      ],
+      "crop": [
+        0.1,
+        0.095,
+        0.91,
+        0.38
+      ],
+      "image": "wiki/assets/figures/hi-wm-human-in-world-model/fig-6.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1488,
+      "height": 678,
+      "bytes": 124156,
+      "png_bytes": 275928,
+      "image_sha256": "b704cb946608f357ebf476c77f1704f7fc4c3dd48b2969b59f9e8ae1da16e540"
     }
   ]
 }

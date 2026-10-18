@@ -2,8 +2,8 @@
 title: "机器人 Harness 与 Physical RSI"
 type: topic
 tags: [robotics, agents, embodied-ai, source-backed]
-sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[roboharness-visual-geometric-control]]", "[[robofoundry-system-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[physical-rsi-research-map]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]"]
-modified: 2026-10-17
+sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[roboharness-visual-geometric-control]]", "[[robofoundry-system-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[physical-rsi-research-map]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]", "[[dagger-no-regret-imitation-learning]]", "[[hg-dagger-human-experts]]", "[[thriftydagger-budget-aware-interventions]]", "[[sirius-robot-learning-on-the-job]]", "[[sirius-fleet-visual-world-models]]", "[[flowdagger-latent-space-corrections]]", "[[hi-wm-human-in-world-model]]"]
+modified: 2026-10-18
 description: "从技能图与物理验收到自主实验、系统演化和递归增益的证据。"
 topics: ["topics/robot-policy-learning", "topics/agent-execution", "topics/evaluation-and-transfer"]
 ---
@@ -31,6 +31,12 @@ flowchart TD
 ```
 
 上图是本库综合示意。执行反馈改变本次动作，是闭环控制；保留改动让下一次表现更好，是系统自改进；保留的改动进一步改善产生未来更新的方法，才触及严格口径的递归自改进。共享机制分别见 [[RobotHarness|机器人 Harness]] 与 [[PhysicalRecursiveSelfImprovement|Physical RSI]]，定义争议见 [[physical-rsi-research-map|作者研究框架]]。
+
+## 接管学习怎样接入这个框架
+
+2026-10-18 补充的 [[topics/interactive-policy-improvement|接管学习与仿真自改进]] 专题，从 DAgger、HG-DAgger 和 ThriftyDAgger 的访问状态监督与门控，连接 Sirius／Sirius-Fleet 的数据重权和监控、FlowDAgger 的潜变量适配、Hi-WM 的世界模型纠正分支，以及本专题已有的 EmbodiRSI、SimEX、PhysEvo。七篇新来源已各自完整阅读；已有 Rho 全文复读，EmbodiRSI、SimEX、PhysEvo 按归档原版定向复核，阅读范围保留在来源页。
+
+最重要的分工是：接管产生当前状态上的纠正，训练把经验写入策略，Harness 组织何时接管、哪些证据入库和如何验收；只有进一步改变并继承诊断／采集程序，才进入本专题讨论的改进器问题。[[InteractiveImitationLearning|交互式模仿学习]] 负责共享机制，跨论文比较和联合设计问题集中在新专题，本页不重复各方法实验。
 
 ## 已读工作：它们各自把什么变成可改进对象
 

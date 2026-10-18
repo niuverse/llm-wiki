@@ -120,6 +120,13 @@
       "path": "wiki/concepts/ImaginedPolicyLearning.md"
     },
     {
+      "id": "concepts/InteractiveImitationLearning",
+      "label": "交互式模仿学习与 DAgger",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/InteractiveImitationLearning.md"
+    },
+    {
       "id": "concepts/InverseDynamicsModels",
       "label": "Inverse Dynamics",
       "type": "concept",
@@ -491,6 +498,13 @@
       "path": "wiki/sources/convex-primitive-decomposition-for-collision-detection.md"
     },
     {
+      "id": "sources/dagger-no-regret-imitation-learning",
+      "label": "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/dagger-no-regret-imitation-learning.md"
+    },
+    {
       "id": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
       "label": "DCOL：以最小均匀缩放构造可微碰撞约束",
       "type": "source",
@@ -568,6 +582,13 @@
       "path": "wiki/sources/enpire-agentic-robot-policy-self-improvement.md"
     },
     {
+      "id": "sources/flowdagger-latent-space-corrections",
+      "label": "FlowDAgger: Human-in-the-Loop Adaptation of Generative Robot Policies in Latent Space",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/flowdagger-latent-space-corrections.md"
+    },
+    {
       "id": "sources/gap-graph-as-policy",
       "label": "GaP：面向变式自动化的 Graph-as-Policy 多智能体自学习 Harness",
       "type": "source",
@@ -594,6 +615,20 @@
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.md"
+    },
+    {
+      "id": "sources/hg-dagger-human-experts",
+      "label": "HG-DAgger: Interactive Imitation Learning with Human Experts",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/hg-dagger-human-experts.md"
+    },
+    {
+      "id": "sources/hi-wm-human-in-world-model",
+      "label": "Hi-WM: Human-in-the-World-Model for Scalable Robot Post-Training",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/hi-wm-human-in-world-model.md"
     },
     {
       "id": "sources/isaac-lab-repository",
@@ -946,6 +981,20 @@
       "path": "wiki/sources/simopt-adaptive-randomization.md"
     },
     {
+      "id": "sources/sirius-fleet-visual-world-models",
+      "label": "Multi-Task Interactive Robot Fleet Learning with Visual World Models",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/sirius-fleet-visual-world-models.md"
+    },
+    {
+      "id": "sources/sirius-robot-learning-on-the-job",
+      "label": "Robot Learning on the Job: Human-in-the-Loop Autonomy and Learning During Deployment",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/sirius-robot-learning-on-the-job.md"
+    },
+    {
       "id": "sources/spinning-up-rl-algorithm-taxonomy",
       "label": "Part 2: Kinds of RL Algorithms - Spinning Up",
       "type": "source",
@@ -972,6 +1021,13 @@
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/td-mpc2-scalable-robust-world-models.md"
+    },
+    {
+      "id": "sources/thriftydagger-budget-aware-interventions",
+      "label": "ThriftyDAgger: Budget-Aware Novelty and Risk Gating for Interactive Imitation Learning",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/thriftydagger-budget-aware-interventions.md"
     },
     {
       "id": "sources/tobin-domain-randomization",
@@ -1112,6 +1168,13 @@
       "type": "topic",
       "color": "#00897B",
       "path": "wiki/topics/future-conditioned-action.md"
+    },
+    {
+      "id": "topics/interactive-policy-improvement",
+      "label": "接管学习与仿真自改进",
+      "type": "topic",
+      "color": "#00897B",
+      "path": "wiki/topics/interactive-policy-improvement.md"
     },
     {
       "id": "topics/physics-simulation",
@@ -2264,6 +2327,118 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/InteractiveImitationLearning--sources/dagger-no-regret-imitation-learning",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "sources/dagger-no-regret-imitation-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--sources/hg-dagger-human-experts",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "sources/hg-dagger-human-experts",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--sources/thriftydagger-budget-aware-interventions",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "sources/thriftydagger-budget-aware-interventions",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--sources/sirius-robot-learning-on-the-job",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "sources/sirius-robot-learning-on-the-job",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--sources/sirius-fleet-visual-world-models",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "sources/sirius-fleet-visual-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--sources/flowdagger-latent-space-corrections",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "sources/flowdagger-latent-space-corrections",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--sources/hi-wm-human-in-world-model",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "sources/hi-wm-human-in-world-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--sources/embodirsi-data-efficient-robot-adaptation",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "sources/embodirsi-data-efficient-robot-adaptation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--sources/rho-efficiently-adaptable-vla-models",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "sources/rho-efficiently-adaptable-vla-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--sources/simex-simulation-integrated-robotics-autoresearch",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--concepts/RobotLearningObjectives",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "concepts/RobotLearningObjectives",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--concepts/RobotLearningDataComposition",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "concepts/RobotLearningDataComposition",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--concepts/PolicyDeploymentContract",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--concepts/RobotHarness",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "concepts/RobotHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--concepts/PhysicalRecursiveSelfImprovement",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "concepts/PhysicalRecursiveSelfImprovement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--topics/interactive-policy-improvement",
+      "from": "concepts/InteractiveImitationLearning",
+      "to": "topics/interactive-policy-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/InverseDynamicsModels--sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
       "from": "concepts/InverseDynamicsModels",
       "to": "sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining",
@@ -2985,6 +3160,27 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/dagger-no-regret-imitation-learning",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/dagger-no-regret-imitation-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/flowdagger-latent-space-corrections",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/flowdagger-latent-space-corrections",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/hi-wm-human-in-world-model",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/hi-wm-human-in-world-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/PhysicalRecursiveSelfImprovement--concepts/RobotHarness",
       "from": "concepts/PhysicalRecursiveSelfImprovement",
       "to": "concepts/RobotHarness",
@@ -2995,6 +3191,13 @@
       "id": "concepts/PhysicalRecursiveSelfImprovement--sources/simex-simulation-integrated-robotics-autoresearch",
       "from": "concepts/PhysicalRecursiveSelfImprovement",
       "to": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--topics/interactive-policy-improvement",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "topics/interactive-policy-improvement",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3314,6 +3517,41 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/RobotHarness--sources/sirius-robot-learning-on-the-job",
+      "from": "concepts/RobotHarness",
+      "to": "sources/sirius-robot-learning-on-the-job",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/sirius-fleet-visual-world-models",
+      "from": "concepts/RobotHarness",
+      "to": "sources/sirius-fleet-visual-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/flowdagger-latent-space-corrections",
+      "from": "concepts/RobotHarness",
+      "to": "sources/flowdagger-latent-space-corrections",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/hi-wm-human-in-world-model",
+      "from": "concepts/RobotHarness",
+      "to": "sources/hi-wm-human-in-world-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/embodirsi-data-efficient-robot-adaptation",
+      "from": "concepts/RobotHarness",
+      "to": "sources/embodirsi-data-efficient-robot-adaptation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/RobotHarness--sources/racap-evolvable-robot-learning",
       "from": "concepts/RobotHarness",
       "to": "sources/racap-evolvable-robot-learning",
@@ -3331,6 +3569,13 @@
       "id": "concepts/RobotHarness--concepts/VisionLanguageActionModels",
       "from": "concepts/RobotHarness",
       "to": "concepts/VisionLanguageActionModels",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--topics/interactive-policy-improvement",
+      "from": "concepts/RobotHarness",
+      "to": "topics/interactive-policy-improvement",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3363,9 +3608,37 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/RobotLearningDataComposition--sources/sirius-robot-learning-on-the-job",
+      "from": "concepts/RobotLearningDataComposition",
+      "to": "sources/sirius-robot-learning-on-the-job",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningDataComposition--sources/flowdagger-latent-space-corrections",
+      "from": "concepts/RobotLearningDataComposition",
+      "to": "sources/flowdagger-latent-space-corrections",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningDataComposition--sources/embodirsi-data-efficient-robot-adaptation",
+      "from": "concepts/RobotLearningDataComposition",
+      "to": "sources/embodirsi-data-efficient-robot-adaptation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/RobotLearningDataComposition--concepts/RobotLearningObjectives",
       "from": "concepts/RobotLearningDataComposition",
       "to": "concepts/RobotLearningObjectives",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningDataComposition--topics/interactive-policy-improvement",
+      "from": "concepts/RobotLearningDataComposition",
+      "to": "topics/interactive-policy-improvement",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -3422,6 +3695,20 @@
       "id": "concepts/RobotLearningObjectives--sources/lda-1b-scaling-latent-dynamics-action-model",
       "from": "concepts/RobotLearningObjectives",
       "to": "sources/lda-1b-scaling-latent-dynamics-action-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningObjectives--sources/dagger-no-regret-imitation-learning",
+      "from": "concepts/RobotLearningObjectives",
+      "to": "sources/dagger-no-regret-imitation-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotLearningObjectives--sources/flowdagger-latent-space-corrections",
+      "from": "concepts/RobotLearningObjectives",
+      "to": "sources/flowdagger-latent-space-corrections",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -6093,6 +6380,27 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/dagger-no-regret-imitation-learning--sources/hg-dagger-human-experts",
+      "from": "sources/dagger-no-regret-imitation-learning",
+      "to": "sources/hg-dagger-human-experts",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dagger-no-regret-imitation-learning--sources/thriftydagger-budget-aware-interventions",
+      "from": "sources/dagger-no-regret-imitation-learning",
+      "to": "sources/thriftydagger-budget-aware-interventions",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/dagger-no-regret-imitation-learning--topics/interactive-policy-improvement",
+      "from": "sources/dagger-no-regret-imitation-learning",
+      "to": "topics/interactive-policy-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives--sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
       "from": "sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives",
       "to": "sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons",
@@ -6366,9 +6674,9 @@
       "confidence": 1.0
     },
     {
-      "id": "concepts/RobotHarness--sources/embodirsi-data-efficient-robot-adaptation",
+      "id": "sources/embodirsi-data-efficient-robot-adaptation--topics/interactive-policy-improvement",
       "from": "sources/embodirsi-data-efficient-robot-adaptation",
-      "to": "concepts/RobotHarness",
+      "to": "topics/interactive-policy-improvement",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -6404,6 +6712,27 @@
       "id": "sources/enpire-agentic-robot-policy-self-improvement--sources/simex-simulation-integrated-robotics-autoresearch",
       "from": "sources/enpire-agentic-robot-policy-self-improvement",
       "to": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/flowdagger-latent-space-corrections--sources/rho-efficiently-adaptable-vla-models",
+      "from": "sources/flowdagger-latent-space-corrections",
+      "to": "sources/rho-efficiently-adaptable-vla-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/flowdagger-latent-space-corrections--sources/hi-wm-human-in-world-model",
+      "from": "sources/flowdagger-latent-space-corrections",
+      "to": "sources/hi-wm-human-in-world-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/flowdagger-latent-space-corrections--topics/interactive-policy-improvement",
+      "from": "sources/flowdagger-latent-space-corrections",
+      "to": "topics/interactive-policy-improvement",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -6509,6 +6838,34 @@
       "id": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors--topics/simulation-transfer",
       "from": "sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors",
       "to": "topics/simulation-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/hg-dagger-human-experts--sources/thriftydagger-budget-aware-interventions",
+      "from": "sources/hg-dagger-human-experts",
+      "to": "sources/thriftydagger-budget-aware-interventions",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/hg-dagger-human-experts--topics/interactive-policy-improvement",
+      "from": "sources/hg-dagger-human-experts",
+      "to": "topics/interactive-policy-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/hi-wm-human-in-world-model--topics/interactive-policy-improvement",
+      "from": "sources/hi-wm-human-in-world-model",
+      "to": "topics/interactive-policy-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/hi-wm-human-in-world-model--topics/robot-harness-and-physical-rsi",
+      "from": "sources/hi-wm-human-in-world-model",
+      "to": "topics/robot-harness-and-physical-rsi",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -7640,6 +7997,20 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/InteractiveImitationLearning--sources/physevo-physical-recursive-self-improvement",
+      "from": "sources/physevo-physical-recursive-self-improvement",
+      "to": "concepts/InteractiveImitationLearning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/physevo-physical-recursive-self-improvement--topics/interactive-policy-improvement",
+      "from": "sources/physevo-physical-recursive-self-improvement",
+      "to": "topics/interactive-policy-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/embodirsi-data-efficient-robot-adaptation--sources/physical-rsi-research-map",
       "from": "sources/physical-rsi-research-map",
       "to": "sources/embodirsi-data-efficient-robot-adaptation",
@@ -7790,6 +8161,13 @@
       "id": "sources/rho-efficiently-adaptable-vla-models--sources/simex-simulation-integrated-robotics-autoresearch",
       "from": "sources/rho-efficiently-adaptable-vla-models",
       "to": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/rho-efficiently-adaptable-vla-models--topics/interactive-policy-improvement",
+      "from": "sources/rho-efficiently-adaptable-vla-models",
+      "to": "topics/interactive-policy-improvement",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -8067,6 +8445,13 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/simex-simulation-integrated-robotics-autoresearch--topics/interactive-policy-improvement",
+      "from": "sources/simex-simulation-integrated-robotics-autoresearch",
+      "to": "topics/interactive-policy-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/DifferentiablePhysics--sources/simopt-adaptive-randomization",
       "from": "sources/simopt-adaptive-randomization",
       "to": "concepts/DifferentiablePhysics",
@@ -8084,6 +8469,55 @@
       "id": "sources/simopt-adaptive-randomization--topics/simulation-transfer",
       "from": "sources/simopt-adaptive-randomization",
       "to": "topics/simulation-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/sirius-fleet-visual-world-models--sources/sirius-robot-learning-on-the-job",
+      "from": "sources/sirius-fleet-visual-world-models",
+      "to": "sources/sirius-robot-learning-on-the-job",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/sirius-fleet-visual-world-models--topics/interactive-policy-improvement",
+      "from": "sources/sirius-fleet-visual-world-models",
+      "to": "topics/interactive-policy-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/sirius-fleet-visual-world-models",
+      "from": "sources/sirius-fleet-visual-world-models",
+      "to": "concepts/PhysicalRecursiveSelfImprovement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/sirius-fleet-visual-world-models--topics/robot-harness-and-physical-rsi",
+      "from": "sources/sirius-fleet-visual-world-models",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/sirius-robot-learning-on-the-job--topics/interactive-policy-improvement",
+      "from": "sources/sirius-robot-learning-on-the-job",
+      "to": "topics/interactive-policy-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/sirius-robot-learning-on-the-job--topics/robot-harness-and-physical-rsi",
+      "from": "sources/sirius-robot-learning-on-the-job",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/sirius-robot-learning-on-the-job",
+      "from": "sources/sirius-robot-learning-on-the-job",
+      "to": "concepts/PhysicalRecursiveSelfImprovement",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -8224,6 +8658,13 @@
       "id": "sources/td-mpc2-scalable-robust-world-models--topics/world-model-decision",
       "from": "sources/td-mpc2-scalable-robust-world-models",
       "to": "topics/world-model-decision",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/thriftydagger-budget-aware-interventions--topics/interactive-policy-improvement",
+      "from": "sources/thriftydagger-budget-aware-interventions",
+      "to": "topics/interactive-policy-improvement",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -9068,6 +9509,34 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/PolicyDeploymentContract--topics/interactive-policy-improvement",
+      "from": "topics/interactive-policy-improvement",
+      "to": "concepts/PolicyDeploymentContract",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/simulation-post-training-evaluation--topics/interactive-policy-improvement",
+      "from": "topics/interactive-policy-improvement",
+      "to": "syntheses/simulation-post-training-evaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "topics/interactive-policy-improvement--topics/robot-harness-and-physical-rsi",
+      "from": "topics/interactive-policy-improvement",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "topics/interactive-policy-improvement--topics/robot-policy-learning",
+      "from": "topics/interactive-policy-improvement",
+      "to": "topics/robot-policy-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/openusd-introduction--topics/physics-simulation",
       "from": "topics/physics-simulation",
       "to": "sources/openusd-introduction",
@@ -9271,9 +9740,51 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/sirius-fleet-visual-world-models--topics/policy-evaluation",
+      "from": "topics/policy-evaluation",
+      "to": "sources/sirius-fleet-visual-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/thriftydagger-budget-aware-interventions--topics/policy-evaluation",
+      "from": "topics/policy-evaluation",
+      "to": "sources/thriftydagger-budget-aware-interventions",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/rho-efficiently-adaptable-vla-models--topics/policy-evaluation",
+      "from": "topics/policy-evaluation",
+      "to": "sources/rho-efficiently-adaptable-vla-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/embodirsi-data-efficient-robot-adaptation--topics/policy-evaluation",
+      "from": "topics/policy-evaluation",
+      "to": "sources/embodirsi-data-efficient-robot-adaptation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms--topics/policy-evaluation",
       "from": "topics/policy-evaluation",
       "to": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "topics/interactive-policy-improvement--topics/policy-evaluation",
+      "from": "topics/policy-evaluation",
+      "to": "topics/interactive-policy-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--topics/policy-evaluation",
+      "from": "topics/policy-evaluation",
+      "to": "concepts/InteractiveImitationLearning",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -9355,6 +9866,41 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/dagger-no-regret-imitation-learning--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/dagger-no-regret-imitation-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/hg-dagger-human-experts--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/hg-dagger-human-experts",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/thriftydagger-budget-aware-interventions--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/thriftydagger-budget-aware-interventions",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/flowdagger-latent-space-corrections--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "sources/flowdagger-latent-space-corrections",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--topics/robot-harness-and-physical-rsi",
+      "from": "topics/robot-harness-and-physical-rsi",
+      "to": "concepts/InteractiveImitationLearning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/rho-efficiently-adaptable-vla-models--topics/robot-harness-and-physical-rsi",
       "from": "topics/robot-harness-and-physical-rsi",
       "to": "sources/rho-efficiently-adaptable-vla-models",
@@ -9432,9 +9978,37 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/dagger-no-regret-imitation-learning--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/dagger-no-regret-imitation-learning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/flowdagger-latent-space-corrections--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/flowdagger-latent-space-corrections",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/hi-wm-human-in-world-model--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "sources/hi-wm-human-in-world-model",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "topics/future-conditioned-action--topics/robot-policy-learning",
       "from": "topics/robot-policy-learning",
       "to": "topics/future-conditioned-action",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/InteractiveImitationLearning--topics/robot-policy-learning",
+      "from": "topics/robot-policy-learning",
+      "to": "concepts/InteractiveImitationLearning",
       "type": "EXTRACTED",
       "confidence": 1.0
     },

@@ -2,8 +2,8 @@
 title: "机器人学习目标"
 type: concept
 tags: [robotics, imitation-learning, reinforcement-learning]
-sources: ["[[spinning-up-rl-key-concepts]]", "[[spinning-up-rl-algorithm-taxonomy]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[lda-1b-scaling-latent-dynamics-action-model]]"]
-modified: 2026-10-04
+sources: ["[[spinning-up-rl-key-concepts]]", "[[spinning-up-rl-algorithm-taxonomy]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[dagger-no-regret-imitation-learning]]", "[[flowdagger-latent-space-corrections]]"]
+modified: 2026-10-18
 topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/policy-evaluation"]
 ---
 
@@ -42,6 +42,10 @@ $$
 **教学例子：** 机器人夹住杯子后抬升，杯子滑落。动作模仿问“给定这些输入，是否复现了数据中的动作”；如果把失败轨迹无差别当专家数据，模型可能学到导致滑落的动作。回报目标问“这条动作序列是否获得任务奖励”，可用失败结果区分不同策略。动力学目标问“这些动作之后杯子怎样移动”，滑落本身也是可学习的状态变化，但预测得准仍需要规划或策略把预测转成动作选择。
 
 这也解释了训练和测试的区别：训练阶段用上述信号更新参数；普通闭环评估阶段读取固定策略并观察结果，环境里有奖励字段不等于评估时正在进行 RL。RoboCasa365的示范训练与目标适配属于前者的监督学习应用；具体算法是否再使用回报或预测目标，应另查其损失和更新步骤。
+
+## 当前策略采集，也可以用监督学习更新
+
+[[dagger-no-regret-imitation-learning|DAgger]] 在当前执行访问的状态查询专家、聚合数据，再最小化监督损失；[[flowdagger-latent-space-corrections|FlowDAgger]] 进一步将纠正动作反演为潜变量标签，训练冻结生成器前的小策略。因此“on-policy 收集”描述数据与当前策略的关系，并不自动意味着使用回报目标。接管段又改变了后续状态，严格的采集分布还受到专家和门控影响，机制见 [[InteractiveImitationLearning|交互式模仿学习]]。
 
 ## 直觉与比较
 
