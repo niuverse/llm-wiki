@@ -20,8 +20,10 @@ description: "按主题、年份和关键词查找论文；共享基础通过正
 - [[sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]] · 2026 · arXiv（预印本）
 - [[sources/embodirsi-data-efficient-robot-adaptation|EmbodiRSI]] · 2026 · arXiv 预印本
 - [[sources/enpire-agentic-robot-policy-self-improvement|ENPIRE]] · 2026 · arXiv 预印本
+- [[sources/flowdagger-latent-space-corrections|FlowDAgger]] · 2026 · arXiv 预印本 v1；官方项目页标注 CoRL 2026
 - [[sources/gap-graph-as-policy|GaP]] · 2026 · arXiv 预印本
 - [[sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] · 2026 · arXiv 预印本
+- [[sources/hi-wm-human-in-world-model|Hi-WM]] · 2026 · arXiv 预印本 v2
 - [[sources/kpi-promptable-kernel-physical-interaction|KPI]] · 2026 · arXiv 预印本
 - [[sources/lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] · 2026 · arXiv 预印本
 - [[sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] · 2026 · arXiv（技术报告）
@@ -47,12 +49,17 @@ description: "按主题、年份和关键词查找论文；共享基础通过正
 - [[sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]] · 2025 · ICLR 2025
 - [[sources/v-jepa-2-understanding-prediction-planning|V-JEPA 2]] · 2025 · arXiv 预印本
 - [[sources/contact-models-in-robotics-a-comparative-analysis|Contact Models · 比较研究]] · 2024 · arXiv（归档稿未标注会议或期刊）
+- [[sources/sirius-fleet-visual-world-models|Sirius-Fleet：世界模型监控与多任务接管]] · 2024 · CoRL 2024（所读为 arXiv v1）
 - [[sources/td-mpc2-scalable-robust-world-models|TD-MPC2]] · 2024 · ICLR
 - [[sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]] · 2023 · arXiv（归档稿未标注会议或期刊）
+- [[sources/sirius-robot-learning-on-the-job|Sirius：部署中接管与加权学习]] · 2023 · RSS 2023
 - [[sources/coacd-approximate-convex-decomposition|CoACD]] · 2022 · ACM Transactions on Graphics 41(4), Article 42
 - [[sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]] · 2022 · arXiv（归档稿未标注会议或期刊）
+- [[sources/thriftydagger-budget-aware-interventions|ThriftyDAgger]] · 2022 · CoRL 2021 · PMLR 164:598–608（2022 出版）
+- [[sources/hg-dagger-human-experts|HG-DAgger]] · 2019 · ICRA 2019；本次阅读 arXiv v2
 - [[sources/planet-learning-latent-dynamics|PlaNet]] · 2019 · ICML
 - [[sources/simopt-adaptive-randomization|SimOpt]] · 2019 · arXiv 预印本
 - [[sources/peng-dynamics-randomization|Dynamics Randomization · Peng]] · 2018 · arXiv 预印本
 - [[sources/tobin-domain-randomization|Domain Randomization · Tobin]] · 2017 · arXiv 预印本
+- [[sources/dagger-no-regret-imitation-learning|DAgger]] · 2011 · AISTATS 2011 · PMLR 15:627–635
 - [[sources/structural-properties-and-classification-of-wheeled-mobile-robots|Wheeled Robots · Campion]] · 1996 · IEEE Transactions on Robotics and Automation

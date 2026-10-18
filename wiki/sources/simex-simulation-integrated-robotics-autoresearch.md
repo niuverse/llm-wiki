@@ -3,7 +3,7 @@ title: "SimEX：让编程智能体在仿真中开发并修复机器人技能"
 type: source
 tags: [robotics, simulation, sim-to-real, embodied-ai, source-backed]
 sources: []
-modified: 2026-10-15
+modified: 2026-10-18
 source_file: raw/simex-simulation-integrated-robotics-autoresearch-2026-10-08-8664f39dc78b.pdf
 source_kind: pdf
 source_type: paper
@@ -16,8 +16,8 @@ snapshot_sha256: 8664f39dc78bfefaabdc34591aab768de5d097f100fd771cdedc2d52fb2a3e9
 paper_title: "SimEX: Simulation-Integrated Robotics AutoResearch"
 year: 2026
 venue: "arXiv 预印本"
-reviewed: 2026-10-08
-topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/evaluation-and-transfer", "topics/simulation-transfer", "topics/robot-harness-and-physical-rsi"]
+reviewed: 2026-10-18
+topics: ["topics/robot-policy-learning", "topics/physics-simulation", "topics/evaluation-and-transfer", "topics/simulation-transfer", "topics/robot-harness-and-physical-rsi", "topics/interactive-policy-improvement"]
 nav_title: "SimEX"
 ---
 
@@ -27,7 +27,7 @@ nav_title: "SimEX"
 
 ![原文图 1](../assets/figures/simex-simulation-integrated-robotics-autoresearch/fig-1.webp)
 
-原文图 1；PDF 第 2 页。[查看原始来源](https://arxiv.org/pdf/2609.38982v1#page=2)
+原文图 1（完整图注中译）：SimEX 借助仿真将编程智能体用于真实机器人。（1）智能体通过仿真中的开放式自动研究开发多样的机器人能力。（2）随后以少量试验高效适配真实机器人，将每次真实执行转化为多次候选修复的仿真测试。下方展示使用优化后工具库的真实机器人执行。 PDF 第 2 页。[查看原始来源](https://arxiv.org/pdf/2609.38982v1#page=2)
 
 **主要贡献：** 持久产物是一对文件：`toolbox.py` 保存技能实现，`skill.md` 保存用法、测得的限制和已知失败情形。任务脚本由模型按需生成；改进发生在工具库和仿真环境中，论文没有以更新模型权重作为学习机制。阶段一兼顾新能力与旧任务回放，阶段二先复现真实行为，再以多种假设筛选代码修复。（§2.1–2.4）
 
@@ -77,7 +77,7 @@ flowchart TD
 
 ![原文图 2](../assets/figures/simex-simulation-integrated-robotics-autoresearch/fig-2.webp)
 
-原文图 2；PDF 第 4 页。[查看原始来源](https://arxiv.org/pdf/2609.38982v1#page=4)
+原文图 2（完整图注中译）：SimEX 概览。准备阶段在仿真中重建真实工作区并初始化工具库。阶段一执行独立的“探测—聚焦—优化”循环，保留在聚焦任务及能力库回放上取得的改进。阶段二先执行一次机器人回合，通过固定策略重放对齐仿真器，创建候选修复，再把仿真筛选证据交给编程智能体，辅助其选择修复。 PDF 第 4 页。[查看原始来源](https://arxiv.org/pdf/2609.38982v1#page=4)
 
 ### 阶段一：探索、聚焦、优化
 
@@ -127,7 +127,7 @@ $Q$ 表示本轮聚焦任务与旧能力回放的集合。这个式子是本页�
 
 ![原文图 3](../assets/figures/simex-simulation-integrated-robotics-autoresearch/fig-3.webp)
 
-原文图 3；PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2609.38982v1#page=7)
+原文图 3（完整图注中译）：三类评测任务的总体表现。 PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2609.38982v1#page=7)
 
 毛巾任务也不是七项全都要求标准折叠：包含平移、缩小覆盖面积、半折和双折。旋转半折的判据同时检查面积、两轴尺寸及平整程度，堆成一团不算成功；完整方法在该项仅8/25。扫码要求先读到条码再收纳，盘子要求先抬高至少5厘米再送入箱中。因此平均分不能替代具体技能判据。（附录 B、表4）
 
@@ -151,13 +151,13 @@ ENPIRE* 与 ASPIRE* 是作者在统一接口下重实现的方法；零样本基
 
 ![原文图 5](../assets/figures/simex-simulation-integrated-robotics-autoresearch/fig-5.webp)
 
-原文图 5；PDF 第 8 页。[查看原始来源](https://arxiv.org/pdf/2609.38982v1#page=8)
+原文图 5（完整图注中译）：细粒度消融。各点表示平均任务成功率，红线标示完整 SimEX 的结果。每项消融都会降低表现。 PDF 第 8 页。[查看原始来源](https://arxiv.org/pdf/2609.38982v1#page=8)
 
 同一条码协议中，同时更换优化智能体和程序生成模型，SimEX 的七任务均值依次为 Fable 5.1：85%，Opus 5：77%，GPT-5.5：67%，GPT-6 Astra：82%。这支持方法在四种配置中都有收益，但没有分离优化能力与程序生成能力，也不是四模型各自的完整真机评测。（§3.4、图6、表6–9）
 
 ![原文图 6](../assets/figures/simex-simulation-integrated-robotics-autoresearch/fig-6.webp)
 
-原文图 6；PDF 第 9 页。[查看原始来源](https://arxiv.org/pdf/2609.38982v1#page=9)
+原文图 6（完整图注中译）：跨智能体比较。主要结论在不同编程智能体下仍然成立。 PDF 第 9 页。[查看原始来源](https://arxiv.org/pdf/2609.38982v1#page=9)
 
 ### “10分钟”与实际资源
 
@@ -196,3 +196,9 @@ ENPIRE* 与 ASPIRE* 是作者在统一接口下重实现的方法；零样本基
 ## 与机器人 Harness 研究的连接
 
 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]] 将本页的工具库修复与 [[gap-graph-as-policy|图策略优化]]、[[enpire-agentic-robot-policy-self-improvement|真实实验自动化]]、[[physevo-physical-recursive-self-improvement|诊断工具继承]] 对照。SimEX 的真实失败进入仿真修复，是现实反馈参与更新选择的例子；是否连改进程序本身也更有效，需要另做对照，不能仅由最终 26/30 的任务成绩推断。此处是跨来源解释，本页原始实验协议保持不变。
+
+## 与接管式数据改进的区别
+
+与 [[InteractiveImitationLearning|交互式模仿学习]] 相比，SimEX 把真实执行结果作为诊断和候选修复的证据，而不是把专家接管动作聚合为行为克隆数据。一次真实反馈可以支持多次仿真对照，最终继承的是 `toolbox.py` 和 `skill.md`；harness 执行、记录和评分，编程智能体负责选择试验、修改代码以及采纳或拒绝修复。由此，它与接管式 DAgger 可以共享失败记录和回归评测设施，但两种更新机制如何联合、由谁决定补数据还是改工具，仍是设计推演，论文没有验证这样的联合系统。（§2.1、§2.4；比较入口见 [[topics/interactive-policy-improvement|交互式策略改进]]）
+
+2026-10-18 沿用此前全篇精读，本次定向复核归档 v1 的§2.1、§2.4，确认持久产物、harness 权责和真实反馈到仿真修复的流程；未重新检查全部实验，也未核查代码或运行系统。

@@ -2,8 +2,8 @@
 title: "机器人策略学习"
 type: "topic"
 tags: ["robotics", "source-backed"]
-sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[kpi-promptable-kernel-physical-interaction]]", "[[dexweave-dexterous-humanoid-loco-manipulation]]", "[[rho-efficiently-adaptable-vla-models]]", "[[spinning-up-rl-key-concepts]]", "[[spinning-up-rl-algorithm-taxonomy]]", "[[nvlabs-robolab]]", "[[gap-graph-as-policy]]", "[[racap-evolvable-robot-learning]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]"]
-modified: 2026-10-17
+sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[kpi-promptable-kernel-physical-interaction]]", "[[dexweave-dexterous-humanoid-loco-manipulation]]", "[[rho-efficiently-adaptable-vla-models]]", "[[spinning-up-rl-key-concepts]]", "[[spinning-up-rl-algorithm-taxonomy]]", "[[nvlabs-robolab]]", "[[gap-graph-as-policy]]", "[[racap-evolvable-robot-learning]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[dagger-no-regret-imitation-learning]]", "[[flowdagger-latent-space-corrections]]", "[[hi-wm-human-in-world-model]]"]
+modified: 2026-10-18
 entry: "research"
 nav_order: 2
 description: "VLA、训练目标与数据"
@@ -20,6 +20,7 @@ description: "VLA、训练目标与数据"
 - **任务条件与组合。** [[RobotContextConditioning|Context Conditioning]] 与 [[CompositionalGeneralizationInRobotics|组合泛化]] 解释指令、子目标和新任务的不同含义，论文实例见 [[pi07-steerable-generalist-robotic-foundation-model|π0.7]]。
 - **通过实验修改代码技能。** [[simex-simulation-integrated-robotics-autoresearch|SimEX]] 持久保存感知控制代码与使用说明，先仿真探索、再用少量真机反馈筛选修复；每次任务重新生成程序，其改进对象与模型权重训练不同。
 - **数据组织。** [[RobotLearningDataComposition|训练数据构成]] 连接质量、覆盖和训练阶段；[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots|RoboCasa365]] 提供特定协议下的比较。
+- **从当前策略的失败处学习。** [[InteractiveImitationLearning|交互式模仿学习与 DAgger]] 解释学生访问状态、专家标签与控制权门控；[[topics/interactive-policy-improvement|接管学习与仿真自改进]] 比较人工纠正、世界模型分支、自动恢复和工具修复，区分监督训练与系统演化。
 - **训练怎样执行。** [[topics/robot-learning-systems|有效学习效率]] 讨论采集和学习器协作，别把物理吞吐量直接当成策略质量。
 
 ## 当前理解

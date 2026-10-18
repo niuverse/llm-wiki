@@ -2,8 +2,8 @@
 title: "Physical RSI：物理世界递归自改进"
 type: concept
 tags: [robotics, agents, embodied-ai, source-backed]
-sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[physical-rsi-research-map]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]"]
-modified: 2026-10-17
+sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[physical-rsi-research-map]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]", "[[dagger-no-regret-imitation-learning]]", "[[flowdagger-latent-space-corrections]]", "[[hi-wm-human-in-world-model]]"]
+modified: 2026-10-18
 topics: ["topics/robot-harness-and-physical-rsi", "topics/robot-policy-learning", "topics/evaluation-and-transfer"]
 ---
 
@@ -23,6 +23,10 @@ $$
 $\mathcal E$ 是实际交互环境。若每次都用同一训练／搜索程序，只让数据和策略变多，循环仍可有效，却不足以证明 $U_t$ 自身改善。若系统创建诊断工具，并在后续迭代中使用它生成更好的修复，才出现需要进一步验证的程序继承链。[[embodirsi-data-efficient-robot-adaptation|EmbodiRSI]] 明示学习形式固定；[[physevo-physical-recursive-self-improvement|PhysEvo]] 展示诊断工具的修订与继承，二者不能只按名字归为同等证据。
 
 “Physical”也要有明确作用：仅给软件 agent 换成机器人主题任务不够；真实物理反馈是否改变了候选产生或保留决策？仿真中的递归优化和真实部署成功是两项证据，连接它们仍需实验证明。[[physical-rsi-research-map|作者框架]] 提出这个因果边界；[[simex-simulation-integrated-robotics-autoresearch|SimEX]] 提供真实失败进入仿真假设检验的具体实例。
+
+## 交互式模仿学习提供一个固定改进程序的参照
+
+[[dagger-no-regret-imitation-learning|DAgger]] 反复执行当前策略、查询专家并聚合数据；[[flowdagger-latent-space-corrections|FlowDAgger]] 改变纠正的监督空间；[[hi-wm-human-in-world-model|Hi-WM]] 改变纠正发生的环境并支持回退分支。它们可以使下一版策略更好，却不能仅凭循环和参数更新说明改进程序 $U_t$ 本身更好。[[InteractiveImitationLearning|交互式模仿学习]] 因而是研究外层智能体收益时有意义的参照：在相同策略起点和总成本下，比较自动诊断、采集选择或工具继承是否优于固定纠正程序。具体联合设计仍属于 [[topics/interactive-policy-improvement|待验证研究问题]]。
 
 ## 可观察的四种证据
 

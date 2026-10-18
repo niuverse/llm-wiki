@@ -4,7 +4,7 @@ nav_title: PhysEvo
 type: source
 tags: [robotics, embodied-ai, source-backed]
 sources: []
-modified: '2026-10-15'
+modified: '2026-10-18'
 source_file: raw/physevo-physical-recursive-self-improvement-2026-10-15-1a3572e42b7d.html
 source_kind: html
 source_type: paper
@@ -29,7 +29,7 @@ topics: [topics/robot-harness-and-physical-rsi, topics/robot-policy-learning, to
 
 PhysEvo 用同一个冻结的 Astra 分别扮演任务执行者与元智能体。前者通过工具控制机器人，后者回看轨迹、修改动作／观测工具与技能说明，也能修改自己的诊断工具。被接受的修改由下一轮继承，作者据此称为 Physical RSI。（§1、§3）
 
-完整阅读 v1 HTML 正文、参考文献与附录 A–F；未核查实现或运行机器人。本文最有价值的证据是诊断工具跨轮复用的具体案例；总体任务成绩与“改进过程本身持续变强”的证明需要分开。
+此前已完整阅读 v1 HTML 正文、参考文献与附录 A–F；本次（2026-10-18）针对 §3.1–3.3 与 §5.5 复核双层 Harness 和诊断工具继承，没有重新通读全文、核查实现或运行机器人。本文最有价值的证据是诊断工具跨轮复用的具体案例；总体任务成绩与“改进过程本身持续变强”的证明需要分开。
 
 ## 双层 Harness 与继承
 
@@ -77,3 +77,9 @@ $E_r$ 是当前可用的执行证据，$\widetilde H_r$ 为候选，$y_r$ 为测
 作者采用“任务与诊断资源经过测试后持续继承”的 RSI 用法。我们的证据判读是：任务系统改进和元工具复用有支持；若要证明改进能力本身增强，还需冻结初始能力、数据和资源，比较新旧元层在未用于开发的任务上的修复收益，排除仅因工具库更大或试验更多带来的提升。这是 [[PhysicalRecursiveSelfImprovement|Physical RSI]] 中需单独评估的量。
 
 与 [[racap-evolvable-robot-learning|RACaP]] 的部署冻结策略、[[regenharness-evidence-gated-self-improvement|RegenHarness]] 的证据与版本治理互补；与 [[embodirsi-data-efficient-robot-adaptation|EmbodiRSI]] 修改训练经验分布的含义不同。专题见 [[topics/robot-harness-and-physical-rsi]]。
+
+## 与接管数据闭环的关系
+
+与 [[InteractiveImitationLearning|交互式模仿学习]] 共享的是“执行暴露问题，纠正经验证后进入下一轮”的反馈结构，保留对象却不同：[[embodirsi-data-efficient-robot-adaptation|EmbodiRSI]] 保留训练经验并更新策略；PhysEvo 保留动作接口、技能说明和诊断工具，模型权重冻结，也没有训练独立动作策略。因此不能把轨迹回看或同回合闭环纠错直接称为 DAgger 的专家动作标注。（§3、§5.3；与 DAgger 的分类比较为本页解释）
+
+对于 [[topics/interactive-policy-improvement|交互式策略改进]]，可借鉴的部分是把请求动作、实际下发命令和物理结果对齐，先判定错误来自能力不足、接口受限还是观察缺失，再选择修复对象；“同一个系统可在数据更新与 Harness 修改之间自动选择”是进一步的设计设想，本文没有验证这种联合选择器。

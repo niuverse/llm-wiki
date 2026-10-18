@@ -1058,3 +1058,98 @@ ASPIRE、Harness VLA、123 轮负结果、Who Improves the Robot 全文、RSI-An
 
 固定官方仓库 `NVlabs/ASPIRE` 主分支 `v1.0` 提交 `fa00f0ef2bc1d91d594b9aa502c22133c9f538f7`（并对照论文期分支 `v0.1` 提交 `317a72e649d9c083298a1724d873491e499c0712`），归档 61 个核心工程文件（`raw/nvlabs-aspire-repository-2026-10-17-cdf064f957c9.tgz` 及阅读缓存 `graph/extracts/nvlabs-aspire-repository-2026-10-17-cdf064f957c9.md`），新建代码核查来源页 [[nvlabs-aspire-repository|ASPIRE · Code]]。深入解析 `v0.1 → v1.0`（`cap-harness`）的五层架构演进、`_ProgramValidator` AST 静态沙盒与无特权白名单 `ToolRegistry`、主机侧特权协议见证器（`BehaviorPickupWitness` 与 `RobosuiteBimanualProtocolEvaluator`）、四项种子防泄漏审计（`audit_seeding.py`）与密封环境哈希（`provenance.py`）、正交叶子桶耗时归因 `RunTiming` 与关键帧 PNG 压缩优化、`batch.py` 的 `spawn` 进程池与 `PR_SET_PDEATHSIG` 内核级防僵尸机制、独立盲测技能验证器（`verifier-prompt.md` 区分可传递性 `transmits` 与跨任务泛化性 `generalizes`）、响亮/静默失配触发器修剪与静态检查器 `lint_skills.py`、Robosuite `nut_assembly` 从论文 9% 跃升至 99% 的几何与 PyRoKi IK 预检实现，以及双臂 YAM 真机客户端安全联锁、单通道执行与 System 2 原生 MCP 三阶魔方/药瓶精细操作闭环。同步更新 [[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]]、[[RobotHarness|机器人 Harness]]、[[PhysicalRecursiveSelfImprovement|Physical RSI]]、[[topics/robot-policy-learning|机器人策略学习]]、[[topics/agent-execution|Agent Systems]] 与 [[topics/simulation-transfer|Sim-to-Real]]。本轮为静态源码核查，未在本机启动 GPU 仿真或连接硬件。
 
+
+
+## [2026-10-18] review | SimEX 的 harness 权责与接管式学习边界
+
+时间：2026-10-18 22:11（北京时间，UTC+08:00）
+
+复用 [[simex-simulation-integrated-robotics-autoresearch|SimEX]] 既有全篇精读，定向复核归档 v1 的§2.1、§2.4：明确 harness 只执行与评分、智能体作优化决策，持久更新为工具代码及说明；补充与 [[InteractiveImitationLearning|交互式模仿学习]] 的区别，标明联合补数据与修复工具仍属设计推演。关联 [[topics/interactive-policy-improvement|交互式策略改进]]。未新增论文收录，未重跑实验。
+
+## [2026-10-18] review | 复核 EmbodiRSI 的恢复数据与 Harness 闭环
+
+时间：2026-10-18 22:11（北京时间，UTC+08:00）
+
+复用 [[embodirsi-data-efficient-robot-adaptation|EmbodiRSI]] v3 的既有完整阅读与不可变快照，本次复核 §3.3、附录 A、D.1，明确恢复从当前状态继续、仅最终成功回合入训练、混合轨迹动作并非逐状态专家重标、特权监控不等于策略输入，以及监督层的依赖与产物验收。新增与 [[InteractiveImitationLearning|交互式模仿学习]]、[[topics/interactive-policy-improvement|交互式策略改进]] 的机制关系；未宣称本次重读全文或运行系统。
+
+## [2026-10-18] review | 复核 PhysEvo 的工具继承与接管学习区别
+
+时间：2026-10-18 22:11（北京时间，UTC+08:00）
+
+复用 [[physevo-physical-recursive-self-improvement|PhysEvo]] v1 的既有完整阅读与不可变快照，本次复核 §3.1–3.3 与 §5.5，区分双层 Harness、诊断工具跨轮继承及 DAgger 动作标签，说明自动选择数据更新或接口修改仍属未验证的系统设计设想。关联 [[InteractiveImitationLearning|交互式模仿学习]] 和 [[topics/interactive-policy-improvement|交互式策略改进]]，未新增重复来源页。
+
+## [2026-10-18] ingest | Robot Learning on the Job: Human-in-the-Loop Autonomy and Learning During Deployment
+
+时间：2026-10-18 22:12（北京时间，UTC+08:00）
+
+完整阅读并归档 [[sirius-robot-learning-on-the-job|Sirius]] arXiv v3 的14页正文、参考文献与附录，补全四类样本权重、接管前15步删除、人工预算驱动轮次、固定内存保留策略和自主评测协议；嵌入原文关键评测图。明确仿真与真机动作接口不同，100%指人机团队，85%存储削减只对应特定任务，保留正文不同加速表述的差异。连接 [[InteractiveImitationLearning]]、[[topics/interactive-policy-improvement]] 与 [[topics/robot-harness-and-physical-rsi]]；未核查代码或复现训练。
+
+## [2026-10-18] ingest | Multi-Task Interactive Robot Fleet Learning with Visual World Models
+
+时间：2026-10-18 22:12（北京时间，UTC+08:00）
+
+完整阅读并归档 [[sirius-fleet-visual-world-models|Sirius-Fleet]] arXiv v1 的28页正文、参考文献与附录，补全世界模型—异常预测—请求监控—人工接管—聚合更新的信息流，嵌入架构和评测原图。澄清世界模型输入是视觉历史，不是已验证的动作条件仿真器；自主与人机成功率分开记录。保留正文与附录对世界模型数据量、初始训练epoch等协议冲突，并指出阈值公式参数与文字方向不一致；图中最终人机成绩超过95%，中间轮次未达到。连接 [[InteractiveImitationLearning]]、[[RobotHarness]] 与相关专题；未核查代码或运行系统。
+
+## [2026-10-18] ingest | FlowDAgger: Human-in-the-Loop Adaptation of Generative Robot Policies in Latent Space
+
+时间：2026-10-18 22:13（北京时间，UTC+08:00）
+
+完整阅读 [[flowdagger-latent-space-corrections|FlowDAgger]] arXiv v1 正文、参考文献和附录共 14 页，归档完整官方项目页并核查固定提交的局部代码，补入逐步不动点反演、Cosmos 联合潜变量与末端反传例外、双缓存训练、脚本专家和真人接管的区别及 50 回合协议。更正“冻结权重等于无反传／无遗忘”的过度解释，保留原文正文与附录表述差异；与 [[InteractiveImitationLearning]]、[[hi-wm-human-in-world-model|Hi-WM]]、[[rho-efficiently-adaptable-vla-models|Rho]] 和 [[topics/interactive-policy-improvement|交互式策略改进]] 互链。仓库仅做指定路径静态核查，未运行。
+
+## [2026-10-18] ingest | Hi-WM: Human-in-the-World-Model for Scalable Robot Post-Training
+
+时间：2026-10-18 22:13（北京时间，UTC+08:00）
+
+完整阅读 [[hi-wm-human-in-world-model|Hi-WM]] 当前 v2 的 15 页正文与参考文献，并复核 v1 全文差异，保留两版原始快照与完整官方项目页。解释双臂动作接口、失败／边缘数据、控制权交接、回退分支和新旧数据混合后训练，记录 3 任务、2 骨干与 20%／35% 数据预算的真实适用范围。并列两版成本主张 10 万与 4500 万美元冲突，不背书金额；说明绝对数据规模、重复试验、冻结状态及完整状态恢复实现缺失。与 [[RobotHarness]]、[[flowdagger-latent-space-corrections|FlowDAgger]] 及 [[topics/interactive-policy-improvement|交互式策略改进]] 互链。
+
+## [2026-10-18] review | Rho 在线纠正接口与交互式策略改进
+
+时间：2026-10-18 22:14（北京时间，UTC+08:00）
+
+完整复读 [[rho-efficiently-adaptable-vla-models|Rho]] 已归档 v1 共52页提取文本（正文、参考文献、附录 A–H），并视觉核对 PDF 第10页的训练数据统计；检查整页主要数字及原文定位。修正旧页§章节／附录错引（原文没有附录 I）、将旧页误写的 FR3 中间训练3278小时更正为原文278小时，并保留种子数与图注等原文内部差异。重点复核§6.2、§7.6及附录 F：明确采用 [[flowdagger-latent-space-corrections|FlowDAgger]]，区分仿真特权脚本专家和真机人工纠正；补足16步预测范围、八步查询间隔、混合动作块反演与固定检查点评测。新增到 [[InteractiveImitationLearning|交互式模仿学习]] 和 [[topics/interactive-policy-improvement|交互式策略改进]] 的语义链接。没有重下同版本或重跑实验。
+
+## [2026-10-18] ingest | A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning
+
+时间：2026-10-18 22:14（北京时间，UTC+08:00）
+
+完整阅读 AISTATS 2011 正式版 9 页，归档原文与缓存，补充混合控制、全状态专家标注、理论前提及三类实验，嵌入原文实验图，明确选择性接管不能直接继承保证。 来源页：[[dagger-no-regret-imitation-learning]]；直接关联 [[InteractiveImitationLearning|交互式模仿学习]] 与 [[topics/interactive-policy-improvement|接管学习与仿真自改进]]。
+
+## [2026-10-18] ingest | HG-DAgger: Interactive Imitation Learning with Human Experts
+
+时间：2026-10-18 22:14（北京时间，UTC+08:00）
+
+完整阅读 arXiv v2 7 页，归档原文与缓存，整理连续接管的数据筛选、疑虑阈值与车辆评测；区分人工训练门控和未实现的自动门控方向，保留实体实验样本规模限制。 来源页：[[hg-dagger-human-experts]]；直接关联 [[InteractiveImitationLearning|交互式模仿学习]] 与 [[topics/interactive-policy-improvement|接管学习与仿真自改进]]。
+
+## [2026-10-18] ingest | ThriftyDAgger: Budget-Aware Novelty and Risk Gating for Interactive Imitation Learning
+
+时间：2026-10-18 22:14（北京时间，UTC+08:00）
+
+完整阅读正式版 11 页及官网补充附录 8 页，归档 PDF、原始 ZIP 和其 PDF 成员，嵌入原图。核实 CoRL 2021 与 PMLR 2022 出版年份差别，保留成功概率定义与损失边界不一致、目标请求频率非严格总预算、减少切换不等于减少人工动作，以及自主／含接管成功率区别。 来源页：[[thriftydagger-budget-aware-interventions]]；直接关联 [[InteractiveImitationLearning|交互式模仿学习]] 与 [[topics/interactive-policy-improvement|接管学习与仿真自改进]]。
+
+## [2026-10-18] research | 接管学习与仿真自改进的来源整合
+
+时间：2026-10-18 22:15（北京时间，UTC+08:00）
+
+按本次对话明确范围，新增七篇论文精读（DAgger、HG-DAgger、ThriftyDAgger、Sirius、Sirius-Fleet、FlowDAgger、Hi-WM），包括正式补充附录、Hi-WM两版和两份官方项目页；复读 [[rho-efficiently-adaptable-vla-models|Rho]] 52页，复用并定向核对 [[embodirsi-data-efficient-robot-adaptation|EmbodiRSI]]、[[simex-simulation-integrated-robotics-autoresearch|SimEX]] 与 [[physevo-physical-recursive-self-improvement|PhysEvo]]。新增 [[InteractiveImitationLearning|交互式模仿学习]] 与 [[topics/interactive-policy-improvement|接管学习与仿真自改进]]，沿已有 [[RobotHarness|机器人 Harness]]、[[PhysicalRecursiveSelfImprovement|Physical RSI]]、[[RobotLearningObjectives|学习目标]]、[[RobotLearningDataComposition|数据构成]] 和相关专题互链；九幅本地图登记原始证据、裁剪与校验和。
+
+原先对话的机制关联保留为设计推演，不能当成已验证的统一系统。原文核查进一步明确：Sirius-Fleet世界模型是视觉历史预测的监控器；ThriftyDAgger的执行时100%包含接管；FlowDAgger冻结权重仍有旧任务退化且Cosmos反演存在输入反传；Hi-WM两版成本主张冲突、状态恢复实现细节不全，不据此背书金额或确定性重放。Rho旧页将3278小时更正为278小时并修复不存在的附录I等定位。跨主题总判断未改变，因此不重写 [[overview|总览]]。
+
+没有扩展到未在答复中列为核心来源的其他论文，没有运行机器人模型或训练；FlowDAgger代码仅核查来源页声明的固定提交与路径。更新日志后重建目录和显式链接图谱，完成结构、图片和生产构建检查后以独立分支提交PR。
+
+## [2026-10-18] review | 接管学习来源的图注与版本核对
+
+时间：2026-10-18 22:16（北京时间，UTC+08:00）
+
+为 [[rho-efficiently-adaptable-vla-models|Rho]] 与 [[simex-simulation-integrated-robotics-autoresearch|SimEX]] 既有11幅图片补齐完整中文图注，保留原图、页码、来源链接及Rho图注与表格的措辞差异；核实 [[dagger-no-regret-imitation-learning|DAgger]] 的PMLR RIS日期与会议日期不同，[[thriftydagger-budget-aware-interventions|ThriftyDAgger]] 的2022-01-11来自正式论文集出版元数据。新增九幅图均已核对可读性及来源登记，原始证据未覆盖或删除。目录检查、健康检查、296幅图片校验、图谱构建和Quartz生产构建通过，既有工具与页面测试共33项通过；本轮未运行机器人模型或训练。
+
+## [2026-10-18] review | ThriftyDAgger 补充材料阅读缓存修复
+
+时间：2026-10-18 22:17（北京时间，UTC+08:00）
+
+提交前检查发现 [[thriftydagger-budget-aware-interventions|ThriftyDAgger]] 补充附录的标准提取含52个NUL字符，导致Markdown缓存被Git识别为二进制。用PyMuPDF逐页排序提取完整文本重建该缓存，并在缓存和来源页说明方法与公式核查边界；原始PDF、ZIP及校验和均未修改。
+
+## [2026-10-18] review | ThriftyDAgger 正文缓存同步重建
+
+时间：2026-10-18 22:17（北京时间，UTC+08:00）
+
+对新增缓存进行相同检查，[[thriftydagger-budget-aware-interventions|ThriftyDAgger]] 正文标准提取也有53个NUL字符，故分别从对应正文11页PDF与补充8页PDF重建两份完整缓存，核对来源路径和页数，避免破损数学字形进入阅读缓存。来源页同步注明两份缓存的提取方式，原始证据不变。

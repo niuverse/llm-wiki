@@ -2,8 +2,8 @@
 title: "训练数据构成"
 type: concept
 tags: [robotics, imitation-learning, generalization]
-sources: ["[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]"]
-modified: 2026-10-04
+sources: ["[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[sirius-robot-learning-on-the-job]]", "[[flowdagger-latent-space-corrections]]", "[[embodirsi-data-efficient-robot-adaptation]]"]
+modified: 2026-10-18
 topics: ["topics/evaluation-and-transfer", "topics/robot-policy-learning", "topics/policy-evaluation"]
 ---
 
@@ -43,6 +43,12 @@ $z$ 是训练样本，$q_j$ 是第 $j$ 类的内部采样分布，$\alpha_j$ 是
 | 训练调度 | 联合训练 22.5%、先预训练再目标适配 51.1% | 前者 120k 步，后者 80k+60k 步，顺序与预算混杂 |
 
 以上数值对应原文 §4.2、§4.4、附录 H.1与 H.3，具体骨干、目标集与预算见来源页；不同表行不可拼成同一次实验。
+
+## 接管数据的身份与保留规则
+
+交互采集同时产生策略自主动作、专家纠正和接管前的可疑片段，不能因为最终回合成功就给每个动作统一贴上“专家正确动作”标签。[[sirius-robot-learning-on-the-job|Sirius]] 对这些片段设置不同训练权重；[[flowdagger-latent-space-corrections|FlowDAgger]] 以固定批次份额混合纠正与成功自主执行的两个缓冲区。这里的份额是训练设计，并不是两类数据自然占比。
+
+[[embodirsi-data-efficient-robot-adaptation|EmbodiRSI]] 的实验只保留最终成功轨迹，包括恢复后成功的回合；失败回合用于调整后续采集。因此“400条保留轨迹”既不等于400次尝试，也不等于400条纯专家示范。门控、恢复和成功筛选共同改变训练分布，基本机制见 [[InteractiveImitationLearning|交互式模仿学习]]，跨方法预算比较见 [[topics/interactive-policy-improvement|接管学习与仿真自改进]]。
 
 ## 阶段为何不能只用一个比例描述
 

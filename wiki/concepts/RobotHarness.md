@@ -2,8 +2,8 @@
 title: "机器人 Harness"
 type: concept
 tags: [robotics, agents, source-backed]
-sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[regenharness-evidence-gated-self-improvement]]", "[[robofoundry-system-as-policy]]", "[[enpire-agentic-robot-policy-self-improvement]]"]
-modified: 2026-10-17
+sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[regenharness-evidence-gated-self-improvement]]", "[[robofoundry-system-as-policy]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[sirius-robot-learning-on-the-job]]", "[[sirius-fleet-visual-world-models]]", "[[flowdagger-latent-space-corrections]]", "[[hi-wm-human-in-world-model]]", "[[embodirsi-data-efficient-robot-adaptation]]"]
+modified: 2026-10-18
 topics: ["topics/robot-harness-and-physical-rsi", "topics/agent-execution", "topics/robot-policy-learning"]
 ---
 
@@ -50,6 +50,14 @@ flowchart TD
 技能图把全任务分成局部生成和可定位的失败；共享技能接口把对象中心与末端目标转换封装起来；上下文规则使模型只看到当前阶段所需的信息。这些分别减少接口混乱、重复几何估计与历史污染，但收益依赖既有工具能力和调用约定。[[gap-graph-as-policy|GaP]] 与 [[robofoundry-system-as-policy|RoboFoundry]] 给出不同改进面，不能仅把提示变长就称作更强 Harness。
 
 状态存储也不是环境回滚。机器人已经松手，恢复旧日志不能让物体自动回到夹爪；跨崩溃重发需要后端去重，资源释放需要真正停止的确认。RegenHarness 明示其取消返回即停止的假设，提醒实现者检查物理后端是否满足。[[regenharness-evidence-gated-self-improvement]]
+
+## 接管怎样变成下一轮的训练经验
+
+执行 Harness 可以让人类、脚本或规划器临时接替策略；改进 Harness 则要把接管转成可追溯的数据、训练作业和候选验收。[[InteractiveImitationLearning|交互式模仿学习]] 中，触发干预、执行动作、为样本赋予监督身份和决定入库不是同一个动作。[[sirius-robot-learning-on-the-job|Sirius]] 区分接管前片段、专家纠正和自主片段，[[flowdagger-latent-space-corrections|FlowDAgger]] 把纠正映射为潜变量训练目标，说明控制权交接之外还需要方法特有的数据契约。
+
+[[sirius-fleet-visual-world-models|Sirius-Fleet]] 的世界模型为异常监控提供表示与未来预测，[[hi-wm-human-in-world-model|Hi-WM]] 则让动作在世界模型中执行并回退分支；二者的接口用途不同。[[embodirsi-data-efficient-robot-adaptation|EmbodiRSI]] 从策略当前状态恢复，再根据失败归因组织后续采集；外层编排负责检查生成、训练与评估作业的前置产物和完成状态。
+
+**工程建议：** 记录自主提出动作、实际执行动作、控制者、干预起止、策略／环境版本与结果；为动作块定义中断和交还规则。只有环境、控制器和策略所需历史都恢复，状态分支才可能成为可比较实验；恢复应用日志本身做不到这一点。候选策略应在关闭外部帮助的条件下验收，联合设计与待验证问题见 [[topics/interactive-policy-improvement|接管学习与仿真自改进]]。这些建议基于上述机制综合提出，本库没有实现一套统一的接管训练系统。
 
 ## 验证强度要沿证据链检查
 

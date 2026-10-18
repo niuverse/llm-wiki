@@ -2,8 +2,8 @@
 title: "策略评测"
 type: "topic"
 tags: ["robotics", "source-backed"]
-sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[nvlabs-robolab]]", "[[spinning-up-rl-key-concepts]]", "[[spinning-up-rl-algorithm-taxonomy]]", "[[atom-bench-atomic-skills-and-compositional-generalization]]"]
-modified: "2026-10-16"
+sources: ["[[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies]]", "[[robocasa365-a-large-scale-simulation-framework-for-training-and-benchmarking-generalist-robots]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[nvlabs-robolab]]", "[[spinning-up-rl-key-concepts]]", "[[spinning-up-rl-algorithm-taxonomy]]", "[[atom-bench-atomic-skills-and-compositional-generalization]]", "[[sirius-fleet-visual-world-models]]", "[[thriftydagger-budget-aware-interventions]]", "[[rho-efficiently-adaptable-vla-models]]", "[[embodirsi-data-efficient-robot-adaptation]]"]
+modified: "2026-10-18"
 description: "数据构成和评测协议共同影响泛化判断；仿真高分不等于真实可靠。"
 ---
 
@@ -37,6 +37,12 @@ description: "数据构成和评测协议共同影响泛化判断；仿真高分
 [[robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]] 用固定策略和受控扰动诊断失败，但有限真机对照并非所有策略都一致；固定种子的测试回合不等于独立训练种子。[[unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] 的端到端收益也要连同算法、硬件与视觉负载阅读。教学上应同时记录“比较了什么”和“还没有隔离什么”。
 
 [[atom-bench-atomic-skills-and-compositional-generalization|ATOM-Bench]] 用配对单臂／双臂任务与固定物理种子控制初始条件，但初始摆放仍由操作员按半透明蒙版人工对齐，对齐误差未被量化；它也显示同一篇论文内部的口径需要核对——正文给出的 motor atom 跨模型平均成功率与图 3 中同名的 cross-model mean 读数不一致。引用具体百分比时应对照原图。[[atom-bench-atomic-skills-and-compositional-generalization|来源页 §4.2]]
+
+## 接管和在线适配的分母
+
+[[sirius-fleet-visual-world-models|Sirius-Fleet]] 将自主策略表现与人机联合表现分开；[[thriftydagger-budget-aware-interventions|ThriftyDAgger]] 的执行时求助也必须与完全自主执行区别。接管后完成一个任务，不能直接证明学生已经学会恢复。[[rho-efficiently-adaptable-vla-models|Rho]] 的仿真在线纠正又使用特权脚本专家，不能把纠正回合数解释成人工时长。
+
+比较适配效率时，还需同时记录专家查询、实际纠正动作、监看时间、所有尝试和保留轨迹；[[embodirsi-data-efficient-robot-adaptation|EmbodiRSI]] 的保留成功轨迹预算不是采集总次数。协议与组合设计问题见 [[topics/interactive-policy-improvement|接管学习与仿真自改进]]，机制见 [[InteractiveImitationLearning|交互式模仿学习]]。
 
 ## 例子：在未见厨房中打开抽屉
 

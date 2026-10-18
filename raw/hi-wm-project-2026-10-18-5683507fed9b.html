@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Hi-WM uses a learned world model as a reusable corrective substrate for failure-targeted robot policy post-training." />
+  <title>Hi-WM: Human-in-the-World-Model for Scalable Robot Post-Training</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #faf9f6; /* 更干净整洁的学术白/米白底色 */
+      --ink: #15221b;
+      --ink-soft: #47554f;
+      --accent: #1d6f5f;
+      --accent-strong: #114d42;
+      --line: rgba(21, 34, 27, 0.1);
+      --demo-bg: #f8f6ef;
+      --demo-panel: rgba(255, 255, 255, 0.95);
+      --demo-panel-border: rgba(21, 34, 27, 0.08);
+      --demo-text: #15221b;
+      --demo-text-soft: rgba(21, 34, 27, 0.62);
+      --status-off: #ef4444;
+      --status-on: #22c55e;
+      --key-shadow: #cfd4dc;
+      --key-active: #2c7be5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      font-family: "Noto Sans", sans-serif;
+      color: var(--ink);
+      background-color: var(--bg);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    main { padding-bottom: 4rem; }
+
+    /* 统一的容器宽度控制 */
+    .container { width: calc(80% - 2rem); max-width: 1200px; margin: 0 auto; }
+    .container.narrow { max-width: 900px; }
+
+    .section { padding: 4rem 0; }
+
+    /* === 学术风头部排版 === */
+    .hero {
+      padding: 5rem 0 3rem;
+      text-align: center;
+    }
+    .publication-title {
+      font-family: "Castoro", serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: #000;
+    }
+    .publication-authors { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .publication-affiliations { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 0.5rem; }
+    .publication-note { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 2rem; }
+
+    .publication-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 8px; /* 弱化药丸形状，采用更学术的圆角矩形 */
+      background: var(--ink);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: opacity 0.18s ease;
+    }
+    .link-pill:hover { opacity: 0.85; }
+
+    .hero-video-frame {
+      margin: 0 auto 3.5rem;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #050705;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    .hero-video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      background: #050705;
+    }
+
+    /* === 核心图与摘要流 === */
+    .teaser-wrapper {
+      margin: 0 auto 3.5rem;
+    }
+    .teaser-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* 仅给图片保留轻微层级 */
+    }
+    .teaser-wrapper p {
+      margin-top: 1.2rem;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      text-align: justify;
+    }
+
+    .abstract-section h2, .section-head h2 {
+      font-family: "Castoro", serif;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .abstract-text {
+      font-size: 1.05rem;
+      text-align: justify; /* 左右对齐，更符合论文排版直觉 */
+      color: #222;
+    }
+    .abstract-text p { margin-bottom: 1.2rem; }
+    .abstract-text .placeholder { font-weight: 700; color: var(--accent-strong); }
+
+    .section-head p { text-align: center; color: var(--ink-soft); margin-bottom: 2rem;}
+
+    /* === 交互组件区 (保持原有的功能性设计) === */
+    .demo-shell {
+      background: #fff;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 40px rgba(21, 34, 27, 0.05);
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+    .demo-toolbar {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--line);
+      background: #fafafa;
+    }
+    .demo-toolbar-main { display: flex; align-items: center; gap: 1rem; }
+    .demo-chip {
+      padding: 0.35rem 0.7rem; border-radius: 6px;
+      background: rgba(29, 111, 95, 0.1); color: var(--accent-strong);
+      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+    }
+    .demo-title strong { font-size: 1.05rem; display: block; }
+    .demo-title span { color: var(--demo-text-soft); font-size: 0.9rem; }
+
+    .demo-toolbar-actions { display: flex; align-items: center; gap: 0.8rem; }
+    .status-wrap, .latency-wrap {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 0.9rem; border-radius: 6px;
+      background: #fff; border: 1px solid var(--line); font-size: 0.9rem;
+    }
+    #status-dot {
+      width: 0.6rem; height: 0.6rem; border-radius: 50%;
+      background: var(--status-off);
+    }
+    #status-dot.connected { background: var(--status-on); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 0; border-radius: 6px; padding: 0.7rem 1.2rem;
+      font-weight: 600; cursor: pointer; transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary { color: #fff; background: #2c7be5; }
+    .btn-gray { background: #fff; border: 1px solid var(--line); }
+
+    .demo-body {
+      display: grid; grid-template-columns: 240px minmax(0, 1fr) 240px; gap: 1rem;
+      padding: 1.5rem; background: var(--demo-bg);
+    }
+    .arm-panel, .viewport-panel {
+      background: var(--demo-panel); border: 1px solid var(--demo-panel-border); border-radius: 16px;
+    }
+    .arm-panel { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; padding: 1.5rem; }
+    .arm-label { font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: var(--accent-strong); }
+    .key-grid { display: grid; grid-template-columns: repeat(3, 50px); gap: 0.5rem; }
+    .key {
+      width: 50px; height: 50px; background: #fff; border: 1px solid #dbe2ea;
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: #334155; box-shadow: 0 3px 0 var(--key-shadow);
+      transition: all 0.1s ease; user-select: none;
+    }
+    .key.dim { background: #f1f5f9; color: #94a3b8; box-shadow: 0 3px 0 #e2e8f0; }
+    .key.pressed { background: var(--key-active); color: #fff; box-shadow: 0 0 0 transparent; transform: translateY(3px); }
+    .arm-hint { text-align: center; color: var(--demo-text-soft); font-size: 0.85rem; }
+
+    .viewport-panel { padding: 1.2rem; }
+    #canvas-wrap {
+      position: relative; width: 100%; aspect-ratio: 1/1;
+      border-radius: 12px; overflow: hidden; background: #000;
+    }
+    #view { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+    #overlay {
+      position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: rgba(17, 24, 39, 0.75); color: #fff; pointer-events: none; gap: 0.5rem;
+    }
+    #overlay.hidden { display: none; }
+    #overlay-title { font-size: 1.5rem; font-weight: 700; }
+    #overlay-sub { font-size: 1rem; opacity: 0.8; }
+    #overlay-hint { font-size: 0.85rem; opacity: 0.6; margin-top: 1rem; }
+
+    .demo-footnote-card {
+      margin-top: 1.2rem; padding: 1rem; background: #fff;
+      border: 1px solid var(--line); border-radius: 12px;
+    }
+    .demo-footnote-card strong { font-size: 0.95rem; display: block; margin-bottom: 0.3rem; }
+    .demo-footnote-card p { font-size: 0.9rem; color: var(--ink-soft); }
+
+    pre {
+      overflow-x: auto; padding: 1.5rem; border-radius: 12px;
+      background: #f1f5f9; border: 1px solid var(--line);
+      font-size: 0.9rem; line-height: 1.6;
+    }
+
+    @media (max-width: 1080px) {
+      .demo-body { grid-template-columns: 1fr; }
+      .viewport-panel { order: -1; }
+      .arm-panel { flex-direction: row; justify-content: space-around; padding: 1rem; }
+    }
+    @media (max-width: 720px) {
+      .hero { padding: 3rem 0 2rem; }
+      .container { width: 90%; }
+      .demo-toolbar { flex-direction: column; align-items: flex-start; }
+      .arm-panel { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="container narrow">
+        <h1 class="publication-title">Hi-WM: Human-in-the-World-Model for Scalable Robot Post-Training</h1>
+
+        <div class="publication-authors">
+          Yaxuan Li<sup>1,*</sup> &nbsp; Zhongyi Zhou<sup>1,*</sup> &nbsp; Yefei Chen<sup>1,*</sup> &nbsp; Yanjiang Guo<sup>2</sup><br />
+          Jiaming Liu<sup>3</sup> &nbsp; Shanghang Zhang<sup>3</sup> &nbsp; Jianyu Chen<sup>2</sup> &nbsp; Yichen Zhu<sup>4</sup>
+        </div>
+
+        <div class="publication-affiliations">
+          <span>1. Current Robotics</span> &nbsp; | &nbsp;
+          <span>2. Tsinghua University</span> &nbsp; | &nbsp;
+          <span>3. Peking University</span> &nbsp; | &nbsp;
+          <span>4. University of Toronto</span>
+        </div>
+
+        <div class="publication-note">
+          <sup>*</sup>Equal contribution
+        </div>
+
+        <div class="publication-links">
+          <a class="link-pill" href="https://arxiv.org/pdf/2604.21741" target="_blank" rel="noopener noreferrer">Paper</a>
+          <a class="link-pill" href="http://arxiv.org/abs/2604.21741" target="_blank" rel="noopener noreferrer">arXiv</a>
+        </div>
+
+        <figure class="hero-video-frame">
+          <video class="hero-video" controls playsinline preload="metadata" aria-label="Hi-WM project video">
+            <source src="9be7605cdfc352d6486b6f8979432923.mp4" type="video/mp4" />
+            Your browser does not support embedded video.
+          </video>
+        </figure>
+
+        <div class="teaser-wrapper">
+          <img src="hiwm.png" alt="Hi-WM overview figure" />
+          <p>Hi-WM overview. A policy is rolled out in a learned world model. When the rollout becomes failure-prone, a human provides short corrective actions. Cached states support rollback and branching, producing multiple continuations for post-training.</p>
+        </div>
+
+        <div class="abstract-section">
+          <h2>Abstract</h2>
+          <div class="abstract-text">
+            <p>Post-training is essential for turning pretrained generalist robot policies into reliable task-specific controllers, but existing human-in-the-loop pipelines remain tied to physical execution: each correction requires robot time, scene setup, resets, and operator supervision in the real world. Meanwhile, action-conditioned world models have been studied mainly for imagination, synthetic data generation, and policy evaluation. We propose <span class="placeholder">Human-in-the-World-Model (Hi-WM)</span>, a post-training framework that uses a learned world model as a reusable corrective substrate for failure-targeted policy improvement. A policy is first rolled out in closed loop inside the world model; when the rollout becomes incorrect or failure-prone, a human intervenes directly in the model to provide short corrective actions.</p>
+            <p>Hi-WM caches intermediate states and supports rollback and branching, allowing a single failure state to be reused for multiple corrective continuations and yielding dense supervision around behaviors that the base policy handles poorly. The resulting corrective trajectories are then added back to the training set for post-training. We evaluate Hi-WM on three real-world manipulation tasks spanning both rigid and deformable object interaction, and on two policy backbones. Hi-WM improves real-world success by 37.9 points on average over the base policy and by 19.0 points over a world-model closed-loop baseline, while world-model evaluation correlates strongly with real-world performance (r = 0.953). These results suggest that world models can serve not only as generators or evaluators, but also as effective corrective substrates for scalable robot post-training.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Online Interaction</h2>
+<!--          <p>The interactive demo is now embedded directly in the paper page instead of living as a standalone full-screen app. Desktop keyboard input is recommended for control.</p>-->
+        </div>
+
+        <div class="demo-shell">
+          <div class="demo-toolbar">
+            <div class="demo-toolbar-main">
+              <div class="demo-chip">Interactive Demo</div>
+              <div class="demo-title">
+                <strong>Hi-WM World Model Playground</strong>
+                <span id="demo-caption">Connect to the deployed environment and interact in-page.</span>
+              </div>
+            </div>
+            <div class="demo-toolbar-actions">
+              <button class="btn btn-primary" id="btnConnect" type="button">Connect</button>
+              <button class="btn btn-gray" id="btnReset" type="button" disabled>Reset</button>
+              <div class="status-wrap">
+                <div id="status-dot"></div>
+                <span id="status-text">Disconnected</span>
+              </div>
+              <div class="latency-wrap">
+                <span>Latency</span>
+                <span id="latency">-</span>
+                <span>ms</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-body">
+            <aside class="arm-panel">
+              <div class="arm-label">Left Arm</div>
+              <div class="key-grid" aria-hidden="true">
+                <div class="key" id="kQ">Q</div><div class="key" id="kW">W</div><div class="key" id="kE">E</div>
+                <div class="key" id="kA">A</div><div class="key" id="kS">S</div><div class="key" id="kD">D</div>
+              </div>
+              <div class="arm-hint" id="hintLeft"></div>
+            </aside>
+
+            <section class="viewport-panel">
+              <div id="canvas-wrap">
+                <canvas id="view" width="512" height="512"></canvas>
+                <div id="overlay">
+                  <div id="overlay-title">PUSHT (TOP-DOWN)</div>
+                  <div id="overlay-sub">Click Connect to start</div>
+                  <div id="overlay-hint">AD: X-axis, WS: Y-axis | JL: X-axis, IK: Y-axis</div>
+                </div>
+              </div>
+              <div class="demo-footnote-card">
+                <strong>Controls</strong>
+                <p>Use keyboard input after the websocket connection is established. The highlighted keys reflect the current control state.</p>
+              </div>
+            </section>
+
+            <aside class="arm-panel">
+              <div class="arm-label">Right Arm</div>
+              <div class="key-grid" aria-hidden="true">
+                <div class="key" id="kU">U</div><div class="key" id="kI">I</div><div class="key" id="kO">O</div>
+                <div class="key" id="kJ">J</div><div class="key" id="kK">K</div><div class="key" id="kL">L</div>
+              </div>
+              <div class="arm-hint" id="hintRight"></div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow">
+        <div class="section-head">
+          <h2>BibTeX</h2>
+        </div>
+        <pre><code>@article{li2026hiwm,
+  title   = {Hi-WM: Human-in-the-World-Model for Scalable Robot Post-Training},
+  author  = {Yaxuan Li and Zhongyi Zhou and Yefei Chen and Yanjiang Guo and Jiaming Liu and Shanghang Zhang and Jianyu Chen and Yichen Zhu},
+  journal = {arXiv preprint arXiv:2604.21741},
+  year    = {2026},
+  url     = {http://arxiv.org/abs/2604.21741}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const TASK = "yam_push_t_xy";
+    const META = {
+      title: "YAM PUSH-T XY",
+      leftKeys: ["w", "a", "s", "d"],
+      rightKeys: ["i", "j", "k", "l"],
+      hintLeft: "AD: X  WS: Y",
+      hintRight: "JL: X  IK: Y",
+      hint: "WASD: left XY | IJKL: right XY",
+      caption: ""
+    };
+
+    const canvas = document.getElementById("view");
+    const ctx = canvas.getContext("2d");
+    const overlay = document.getElementById("overlay");
+    const overlayTitle = document.getElementById("overlay-title");
+    const overlaySub = document.getElementById("overlay-sub");
+    const overlayHint = document.getElementById("overlay-hint");
+    const statusDot = document.getElementById("status-dot");
+    const statusText = document.getElementById("status-text");
+    const latencyEl = document.getElementById("latency");
+    const btnConnect = document.getElementById("btnConnect");
+    const btnReset = document.getElementById("btnReset");
+    const hintLeft = document.getElementById("hintLeft");
+    const hintRight = document.getElementById("hintRight");
+    const demoCaption = document.getElementById("demo-caption");
+
+    let ws = null;
+    let hasFrame = false;
+    let lastSendMs = 0;
+    let lastActionJson = null;
+
+    const ALL_KEYS = ["q", "w", "e", "a", "s", "d", "u", "i", "o", "j", "k", "l"];
+    const ACTION_KEYS = ["w", "a", "s", "d", "q", "e", "i", "j", "k", "l", "u", "o"];
+    const KEY_ELS = {};
+    const KEY_MAP = {
+      KeyQ: "q", KeyW: "w", KeyE: "e", KeyA: "a", KeyS: "s", KeyD: "d",
+      KeyU: "u", KeyI: "i", KeyO: "o", KeyJ: "j", KeyK: "k", KeyL: "l"
+    };
+    const keyState = {};
+
+    function updateStaticDemoText() {
+      const activeKeys = new Set([...META.leftKeys, ...META.rightKeys]);
+      ALL_KEYS.forEach((key) => {
+        KEY_ELS[key] = document.getElementById("k" + key.toUpperCase());
+        if (!KEY_ELS[key]) return;
+        if (!activeKeys.has(key)) {
+          KEY_ELS[key].classList.add("dim");
+        }
+      });
+      hintLeft.textContent = META.hintLeft;
+      hintRight.textContent = META.hintRight;
+      overlayTitle.textContent = META.title;
+      overlayHint.textContent = META.hint;
+      demoCaption.textContent = META.caption;
+    }
+
+    function setStatus(connected) {
+      statusDot.className = connected ? "connected" : "";
+      statusText.textContent = connected ? "Connected" : "Disconnected";
+      btnReset.disabled = !connected;
+      if (!connected) { latencyEl.textContent = "-"; }
+    }
+
+    function send(msg) {
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify(msg));
+      }
+    }
+
+    function buildDefaultWsUrl() { return "wss://hi-worldmodel.ngrok.dev/ws"; }
+
+    function clearCanvas() {
+      ctx.fillStyle = "#000";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function releaseAllKeys() {
+      ALL_KEYS.forEach((key) => {
+        keyState[key] = 0;
+        if (KEY_ELS[key]) { KEY_ELS[key].classList.remove("pressed"); }
+      });
+      lastActionJson = null;
+      send({ type: "action", action: Object.fromEntries(ACTION_KEYS.map((key) => [key, 0])), t_client: performance.now() });
+    }
+
+    function connect(url) {
+      if (ws) { ws.close(); ws = null; }
+      hasFrame = false;
+      clearCanvas();
+      overlay.classList.remove("hidden");
+      overlaySub.textContent = "Connecting...";
+      ws = new WebSocket(url);
+      ws.binaryType = "arraybuffer";
+
+      ws.onopen = () => {
+        setStatus(true);
+        overlaySub.textContent = "Press keys to start";
+        send({ type: "init", task: TASK });
+      };
+
+      ws.onmessage = async (event) => {
+        if (lastSendMs > 0) { latencyEl.textContent = String(Date.now() - lastSendMs); }
+        try {
+          const imgData = event.data.slice(8);
+          const blob = new Blob([imgData], { type: "image/png" });
+          const bitmap = await createImageBitmap(blob);
+          ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+          if (!hasFrame) {
+            hasFrame = true;
+            overlay.classList.add("hidden");
+          }
+        } catch (_) {}
+      };
+
+      ws.onerror = () => {
+        setStatus(false);
+        overlaySub.textContent = "Connection error. Try again.";
+      };
+
+      ws.onclose = (event) => {
+        setStatus(false);
+        releaseAllKeys();
+        ws = null;
+        if (!hasFrame) {
+          overlaySub.textContent = event.reason || "Disconnected. Click Connect to retry.";
+        }
+      };
+    }
+
+    window.addEventListener("keydown", (event) => {
+      const key = KEY_MAP[event.code];
+      if (!key) return;
+      event.preventDefault();
+      keyState[key] = 1;
+      if (KEY_ELS[key]) { KEY_ELS[key].classList.add("pressed"); }
+    });
+
+    window.addEventListener("keyup", (event) => {
+      const key = KEY_MAP[event.code];
+      if (!key) return;
+      event.preventDefault();
+      keyState[key] = 0;
+      if (KEY_ELS[key]) { KEY_ELS[key].classList.remove("pressed"); }
+    });
+
+    window.addEventListener("blur", releaseAllKeys);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) { releaseAllKeys(); }
+    });
+
+    btnConnect.addEventListener("click", () => { connect(buildDefaultWsUrl()); });
+
+    btnReset.addEventListener("click", () => {
+      hasFrame = false;
+      clearCanvas();
+      overlay.classList.remove("hidden");
+      overlaySub.textContent = "Press keys to start";
+      releaseAllKeys();
+      send({ type: "set_task", task: TASK });
+    });
+
+    updateStaticDemoText();
+    clearCanvas();
+    setStatus(false);
+
+    setInterval(() => {
+      if (!ws || ws.readyState !== WebSocket.OPEN) return;
+      const action = {};
+      ACTION_KEYS.forEach((key) => { action[key] = keyState[key] || 0; });
+      const msg = JSON.stringify({ type: "action", action, t_client: performance.now() });
+      if (msg !== lastActionJson) {
+        lastSendMs = Date.now();
+        ws.send(msg);
+        lastActionJson = msg;
+      }
+    }, 50);
+  </script>
+</body>
+</html>
