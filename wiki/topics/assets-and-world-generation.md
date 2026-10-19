@@ -2,8 +2,8 @@
 title: "3D 资产与场景"
 type: "topic"
 tags: ["simulation", "source-backed"]
-sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]", "[[openusd-introduction]]"]
-modified: "2026-10-04"
+sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]", "[[openusd-introduction]]", "[[physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics]]", "[[vr-gs-physical-dynamics-aware-interactive-gaussian-splatting]]", "[[physdreamer-physics-based-interaction-with-3d-objects]]", "[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects]]"]
+modified: "2026-10-19"
 entry: "research"
 nav_order: 5
 description: "3D 资产、场景表示与环境生成"
@@ -17,6 +17,7 @@ description: "3D 资产、场景表示与环境生成"
 
 - **表示与组合。** [[topics/asset-representation|资产格式与仿真语义]] 串联 [[OpenUSDSceneComposition|OpenUSD Composition]]、[[USDAFileSyntax|USDA 语法]] 与 [[GLTFSceneStructure|glTF 场景结构]]。
 - **资产生成。** [[SimulationReady3DWorldGeneration|可用于仿真的世界生成]] 解释从几何外观到物理配置的验收；版本演进见 [[topics/simulation-ready-worlds|EmbodiedGen 两代专题]]。
+- **物理集成 3D 高斯资产。** [[PhysicsIntegrated3DGaussians|物理集成 3D 高斯与连续介质仿真]] 阐述如何将静态 3DGS 重建补全为可变形连续体或弹簧质点数字资产（[[physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics|PhysGaussian]]、[[vr-gs-physical-dynamics-aware-interactive-gaussian-splatting|VR-GS]]、[[physdreamer-physics-based-interaction-with-3d-objects|PhysDreamer]]、[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin]]）。
 - **场景与任务。** [[AgenticSceneTaskGeneration|场景与任务生成]] 区分语义条件、空间约束、任务代码与可执行验证。
 - **交互与回放。** [[topics/simulation-ready-worlds|Simulation-ready Worlds]] 比较 [[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]] 和生成系统的接口职责。
 - **传感器与使用者。** [[RTXSensorSimulationPipeline|RTX 传感器仿真]] 连接观测生成，[[topics/robot-policy-learning|策略学习]] 和 [[topics/evaluation-and-transfer|评测]] 决定环境最终如何使用。

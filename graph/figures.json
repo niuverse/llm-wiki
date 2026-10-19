@@ -6477,6 +6477,424 @@
       "bytes": 124156,
       "png_bytes": 275928,
       "image_sha256": "b704cb946608f357ebf476c77f1704f7fc4c3dd48b2969b59f9e8ae1da16e540"
+    },
+    {
+      "note": "wiki/sources/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics.md",
+      "source_file": "raw/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics-2026-10-19-95b0b94d80e3.pdf",
+      "source_sha256": "95b0b94d80e3161396235dbc67d0e0b0877f62b41a90c9921652dca05671eb47",
+      "page": 1,
+      "figures": [
+        "1"
+      ],
+      "crop": [
+        0.075,
+        0.258,
+        0.895,
+        0.445
+      ],
+      "image": "wiki/assets/figures/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics/fig-1.webp",
+      "scale": 3,
+      "width": 1507,
+      "height": 445,
+      "bytes": 180740,
+      "png_bytes": 833876,
+      "image_sha256": "dfe7fb5d8de065b03aa0497491acdd3914d820c44733617088c59372479c897e"
+    },
+    {
+      "note": "wiki/sources/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics.md",
+      "source_file": "raw/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics-2026-10-19-95b0b94d80e3.pdf",
+      "source_sha256": "95b0b94d80e3161396235dbc67d0e0b0877f62b41a90c9921652dca05671eb47",
+      "page": 3,
+      "figures": [
+        "2"
+      ],
+      "crop": [
+        0.075,
+        0.088,
+        0.895,
+        0.292
+      ],
+      "image": "wiki/assets/figures/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics/fig-2.webp",
+      "scale": 3,
+      "width": 1507,
+      "height": 485,
+      "bytes": 116410,
+      "png_bytes": 395169,
+      "image_sha256": "a00f0e799324ec8af328f254c6103c309b5aa6c7c8c238927df4b8d7854aacd4"
+    },
+    {
+      "note": "wiki/sources/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics.md",
+      "source_file": "raw/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics-2026-10-19-95b0b94d80e3.pdf",
+      "source_sha256": "95b0b94d80e3161396235dbc67d0e0b0877f62b41a90c9921652dca05671eb47",
+      "page": 6,
+      "figures": [
+        "3"
+      ],
+      "crop": [
+        0.075,
+        0.082,
+        0.9,
+        0.708
+      ],
+      "image": "wiki/assets/figures/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics/fig-3.webp",
+      "scale": 3,
+      "width": 1516,
+      "height": 1489,
+      "bytes": 522024,
+      "png_bytes": 2720076,
+      "image_sha256": "5378ac7e93f16abfd1d5f19e1cac457ad37fd9447e9a5a15082450ad60e104f5"
+    },
+    {
+      "note": "wiki/sources/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics.md",
+      "source_file": "raw/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics-2026-10-19-95b0b94d80e3.pdf",
+      "source_sha256": "95b0b94d80e3161396235dbc67d0e0b0877f62b41a90c9921652dca05671eb47",
+      "page": 7,
+      "figures": [
+        "4"
+      ],
+      "crop": [
+        0.075,
+        0.082,
+        0.475,
+        0.455
+      ],
+      "image": "wiki/assets/figures/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics/fig-4.webp",
+      "scale": 3,
+      "width": 736,
+      "height": 888,
+      "bytes": 93446,
+      "png_bytes": 503328,
+      "image_sha256": "45549fa47146a825f86be855b361c94a2ce0572145274154e29a0a4f4a80d481"
+    },
+    {
+      "note": "wiki/sources/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics.md",
+      "source_file": "raw/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics-2026-10-19-95b0b94d80e3.pdf",
+      "source_sha256": "95b0b94d80e3161396235dbc67d0e0b0877f62b41a90c9921652dca05671eb47",
+      "page": 7,
+      "figures": [
+        "5"
+      ],
+      "crop": [
+        0.5,
+        0.082,
+        0.898,
+        0.163
+      ],
+      "image": "wiki/assets/figures/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics/fig-5.webp",
+      "scale": 3,
+      "width": 731,
+      "height": 194,
+      "bytes": 21770,
+      "png_bytes": 82307,
+      "image_sha256": "10c3fd39c3c4a490077673296e940cd2a34aec96639c6a7c74f3664c979c7a43"
+    },
+    {
+      "note": "wiki/sources/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics.md",
+      "source_file": "raw/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics-2026-10-19-95b0b94d80e3.pdf",
+      "source_sha256": "95b0b94d80e3161396235dbc67d0e0b0877f62b41a90c9921652dca05671eb47",
+      "page": 8,
+      "figures": [
+        "6"
+      ],
+      "crop": [
+        0.075,
+        0.285,
+        0.475,
+        0.412
+      ],
+      "image": "wiki/assets/figures/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics/fig-6.webp",
+      "scale": 3,
+      "width": 736,
+      "height": 302,
+      "bytes": 32138,
+      "png_bytes": 165539,
+      "image_sha256": "44e36b34cc23218ff8390bf07caf260f00d27683a511c47e4ba257a51ef47251"
+    },
+    {
+      "note": "wiki/sources/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics.md",
+      "source_file": "raw/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics-2026-10-19-95b0b94d80e3.pdf",
+      "source_sha256": "95b0b94d80e3161396235dbc67d0e0b0877f62b41a90c9921652dca05671eb47",
+      "page": 8,
+      "figures": [
+        "7"
+      ],
+      "crop": [
+        0.5,
+        0.085,
+        0.898,
+        0.175
+      ],
+      "image": "wiki/assets/figures/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics/fig-7.webp",
+      "scale": 3,
+      "width": 731,
+      "height": 215,
+      "bytes": 14316,
+      "png_bytes": 46021,
+      "image_sha256": "6ca21ae8313a340a881d9343bcdd882ac6f4cf476229863047161106c9ac326b"
+    },
+    {
+      "note": "wiki/sources/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics.md",
+      "source_file": "raw/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics-2026-10-19-95b0b94d80e3.pdf",
+      "source_sha256": "95b0b94d80e3161396235dbc67d0e0b0877f62b41a90c9921652dca05671eb47",
+      "page": 8,
+      "figures": [
+        "8"
+      ],
+      "crop": [
+        0.5,
+        0.235,
+        0.898,
+        0.363
+      ],
+      "image": "wiki/assets/figures/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics/fig-8.webp",
+      "scale": 3,
+      "width": 731,
+      "height": 305,
+      "bytes": 22196,
+      "png_bytes": 119735,
+      "image_sha256": "570dad1f7d914debac74bd800651c0db5ba36660cc7905fab59531a8b6045e1e"
+    },
+    {
+      "note": "wiki/sources/pac-nerf-physics-augmented-continuum-neural-radiance-fields.md",
+      "source_file": "raw/pac-nerf-physics-augmented-continuum-neural-radiance-fields-2026-10-19-f7a0a1226081.pdf",
+      "source_sha256": "f7a0a1226081733cea25dc1e53d4233295f3a06936fcc14c2e7318ee40f3c26d",
+      "page": 3,
+      "figures": [
+        "1"
+      ],
+      "crop": [
+        0.16,
+        0.095,
+        0.84,
+        0.275
+      ],
+      "image": "wiki/assets/figures/pac-nerf-physics-augmented-continuum-neural-radiance-fields/fig-1.webp",
+      "scale": 3,
+      "width": 1250,
+      "height": 429,
+      "bytes": 44352,
+      "png_bytes": 110293,
+      "image_sha256": "cec3346ca79355ee8509394bba99fc3c1f91254782aeb9d0c7d8969daf6b7ea5"
+    },
+    {
+      "note": "wiki/sources/pac-nerf-physics-augmented-continuum-neural-radiance-fields.md",
+      "source_file": "raw/pac-nerf-physics-augmented-continuum-neural-radiance-fields-2026-10-19-f7a0a1226081.pdf",
+      "source_sha256": "f7a0a1226081733cea25dc1e53d4233295f3a06936fcc14c2e7318ee40f3c26d",
+      "page": 7,
+      "figures": [
+        "4"
+      ],
+      "crop": [
+        0.16,
+        0.095,
+        0.84,
+        0.415
+      ],
+      "image": "wiki/assets/figures/pac-nerf-physics-augmented-continuum-neural-radiance-fields/fig-4.webp",
+      "scale": 3,
+      "width": 1250,
+      "height": 762,
+      "bytes": 117408,
+      "png_bytes": 525706,
+      "image_sha256": "deb9f060e997a6306593027e8e2a5b9f719952a048bacd739c9a3f0b8249f0a4"
+    },
+    {
+      "note": "wiki/sources/vr-gs-physical-dynamics-aware-interactive-gaussian-splatting.md",
+      "source_file": "raw/vr-gs-physical-dynamics-aware-interactive-gaussian-splatting-2026-10-19-294b63f0d0e0.pdf",
+      "source_sha256": "294b63f0d0e0ad9df74a2d5b895f992fc1861ef934bae62c9631620b8b2b17bf",
+      "page": 4,
+      "figures": [
+        "2"
+      ],
+      "crop": [
+        0.08,
+        0.095,
+        0.92,
+        0.3
+      ],
+      "image": "wiki/assets/figures/vr-gs-physical-dynamics-aware-interactive-gaussian-splatting/fig-2.webp",
+      "scale": 3,
+      "width": 1544,
+      "height": 488,
+      "bytes": 141938,
+      "png_bytes": 533759,
+      "image_sha256": "2b3c9b609efe0e61ab107b2ea16af63ed94f54cc1300fa47fde47b1b7bb29b88"
+    },
+    {
+      "note": "wiki/sources/vr-gs-physical-dynamics-aware-interactive-gaussian-splatting.md",
+      "source_file": "raw/vr-gs-physical-dynamics-aware-interactive-gaussian-splatting-2026-10-19-294b63f0d0e0.pdf",
+      "source_sha256": "294b63f0d0e0ad9df74a2d5b895f992fc1861ef934bae62c9631620b8b2b17bf",
+      "page": 5,
+      "figures": [
+        "3"
+      ],
+      "crop": [
+        0.08,
+        0.092,
+        0.488,
+        0.195
+      ],
+      "image": "wiki/assets/figures/vr-gs-physical-dynamics-aware-interactive-gaussian-splatting/fig-3.webp",
+      "scale": 3,
+      "width": 750,
+      "height": 246,
+      "bytes": 22074,
+      "png_bytes": 46795,
+      "image_sha256": "f8cbdab1a79f76aad3de143052e1926c4cbd6d676cb8fe93976b0d70111e3fe1"
+    },
+    {
+      "note": "wiki/sources/spring-gaus-reconstruction-and-simulation-of-elastic-objects.md",
+      "source_file": "raw/spring-gaus-reconstruction-and-simulation-of-elastic-objects-2026-10-19-03d88ab0f14a.pdf",
+      "source_sha256": "03d88ab0f14a191f371d98b53c43ad45cafd392cb653722b672fd582853eab4e",
+      "page": 6,
+      "figures": [
+        "2"
+      ],
+      "crop": [
+        0.21,
+        0.14,
+        0.79,
+        0.425
+      ],
+      "image": "wiki/assets/figures/spring-gaus-reconstruction-and-simulation-of-elastic-objects/fig-2.webp",
+      "scale": 3,
+      "width": 1066,
+      "height": 678,
+      "bytes": 67332,
+      "png_bytes": 207191,
+      "image_sha256": "1f0bc3eb68d08a5fd2cc31fd1035edddf0eb69c6c92af8d32ea7db3de61c5750"
+    },
+    {
+      "note": "wiki/sources/physdreamer-physics-based-interaction-with-3d-objects.md",
+      "source_file": "raw/physdreamer-physics-based-interaction-with-3d-objects-2026-10-19-683aff31d3e1.pdf",
+      "source_sha256": "683aff31d3e1fb2e183a584f5531d78aaa4323d4d8fa8dc1c240ba5c779e720a",
+      "page": 6,
+      "figures": [
+        "3"
+      ],
+      "crop": [
+        0.075,
+        0.055,
+        0.92,
+        0.332
+      ],
+      "image": "wiki/assets/figures/physdreamer-physics-based-interaction-with-3d-objects/fig-3.webp",
+      "scale": 3,
+      "width": 1050,
+      "height": 512,
+      "bytes": 71396,
+      "png_bytes": 258100,
+      "image_sha256": "c01d8ca79b7627ecb5952304ad5cad41810bab17405234f5d02686fa3f91643c"
+    },
+    {
+      "note": "wiki/sources/physdreamer-physics-based-interaction-with-3d-objects.md",
+      "source_file": "raw/physdreamer-physics-based-interaction-with-3d-objects-2026-10-19-683aff31d3e1.pdf",
+      "source_sha256": "683aff31d3e1fb2e183a584f5531d78aaa4323d4d8fa8dc1c240ba5c779e720a",
+      "page": 9,
+      "figures": [
+        "4"
+      ],
+      "crop": [
+        0.45,
+        0.055,
+        0.92,
+        0.268
+      ],
+      "image": "wiki/assets/figures/physdreamer-physics-based-interaction-with-3d-objects/fig-4.webp",
+      "scale": 3,
+      "width": 585,
+      "height": 394,
+      "bytes": 17020,
+      "png_bytes": 37345,
+      "image_sha256": "b6e3b8c037a581393badab4ec0e0006f51912a1143d4a3ce42a9fad7f7233dbc"
+    },
+    {
+      "note": "wiki/sources/gic-gaussian-informed-continuum-physical-property-identification.md",
+      "source_file": "raw/gic-gaussian-informed-continuum-physical-property-identification-2026-10-19-3349f443e056.pdf",
+      "source_sha256": "3349f443e05657a011ebf4ade59028e6ef0f9f8ef875074f541ba2f8a6719eee",
+      "page": 4,
+      "figures": [
+        "1"
+      ],
+      "crop": [
+        0.17,
+        0.092,
+        0.83,
+        0.392
+      ],
+      "image": "wiki/assets/figures/gic-gaussian-informed-continuum-physical-property-identification/fig-1.webp",
+      "scale": 3,
+      "width": 1212,
+      "height": 714,
+      "bytes": 115302,
+      "png_bytes": 410323,
+      "image_sha256": "487f4661bfa69b6afd43efc82be37a0333be211bb3ab1cf8cb2656e9e0d09fd7"
+    },
+    {
+      "note": "wiki/sources/gic-gaussian-informed-continuum-physical-property-identification.md",
+      "source_file": "raw/gic-gaussian-informed-continuum-physical-property-identification-2026-10-19-3349f443e056.pdf",
+      "source_sha256": "3349f443e05657a011ebf4ade59028e6ef0f9f8ef875074f541ba2f8a6719eee",
+      "page": 6,
+      "figures": [
+        "3"
+      ],
+      "crop": [
+        0.17,
+        0.092,
+        0.83,
+        0.21
+      ],
+      "image": "wiki/assets/figures/gic-gaussian-informed-continuum-physical-property-identification/fig-3.webp",
+      "scale": 3,
+      "width": 1212,
+      "height": 281,
+      "bytes": 35866,
+      "png_bytes": 45525,
+      "image_sha256": "9e09dca42d76819179db9a170ad5026b1f03b28476e3dcae61546cd738f0128a"
+    },
+    {
+      "note": "wiki/sources/phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects.md",
+      "source_file": "raw/phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects-2026-10-19-79389c194d83.pdf",
+      "source_sha256": "79389c194d83177ac4d1ef076b5d358af823361dd75423cce5087e89f836e01f",
+      "page": 1,
+      "figures": [
+        "1"
+      ],
+      "crop": [
+        0.09,
+        0.242,
+        0.91,
+        0.464
+      ],
+      "image": "wiki/assets/figures/phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects/fig-1.webp",
+      "scale": 3,
+      "width": 1506,
+      "height": 529,
+      "bytes": 130070,
+      "png_bytes": 735304,
+      "image_sha256": "07f8ced42a05f53ec9ecdf8ba4aa6f1c68104967f634a331c2cd85316c27162e"
+    },
+    {
+      "note": "wiki/sources/phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects.md",
+      "source_file": "raw/phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects-2026-10-19-79389c194d83.pdf",
+      "source_sha256": "79389c194d83177ac4d1ef076b5d358af823361dd75423cce5087e89f836e01f",
+      "page": 3,
+      "figures": [
+        "2"
+      ],
+      "crop": [
+        0.09,
+        0.072,
+        0.91,
+        0.338
+      ],
+      "image": "wiki/assets/figures/phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects/fig-2.webp",
+      "scale": 3,
+      "width": 1506,
+      "height": 633,
+      "bytes": 125646,
+      "png_bytes": 512571,
+      "image_sha256": "2f9ec5065ef9e53bdef98455003a7f13f1a1ee37a7e08172ce29778e9beef7cb"
     }
   ]
 }

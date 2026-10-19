@@ -2,9 +2,9 @@
 title: "System Identification"
 type: concept
 tags: [robotics, simulation, sim-to-real]
-sources: ["[[simopt-adaptive-randomization]]", "[[peng-dynamics-randomization]]", "[[mujoco-computation-collision-detection]]", "[[simex-simulation-integrated-robotics-autoresearch]]"]
-modified: 2026-10-08
-topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer"]
+sources: ["[[simopt-adaptive-randomization]]", "[[peng-dynamics-randomization]]", "[[mujoco-computation-collision-detection]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[pac-nerf-physics-augmented-continuum-neural-radiance-fields]]", "[[spring-gaus-reconstruction-and-simulation-of-elastic-objects]]", "[[physdreamer-physics-based-interaction-with-3d-objects]]", "[[gic-gaussian-informed-continuum-physical-property-identification]]", "[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects]]"]
+modified: 2026-10-19
+topics: ["topics/evaluation-and-transfer", "topics/simulation-transfer", "topics/physics-simulation"]
 ---
 
 # System Identification
@@ -50,6 +50,14 @@ flowchart LR
 ## 固定程序的定性校准
 
 [[simex-simulation-integrated-robotics-autoresearch|SimEX，§2.4]] 在真实试验后固定已执行脚本，定性比较仿真与真实轨迹，必要时由编程智能体修改仿真，再用该环境筛选工具库修复。脚本固定不代表逐时刻动作固定，因为程序仍可根据观测闭环行动。它与 SimOpt 都将环境校准和控制改进分步处理，但没有 SimOpt 的显式轨迹损失、KL 约束或分布更新算法；不能把上面的数学形式写成其已验证实现。
+
+## 从多视角视频或生成先验辨识连续介质与柔性体参数
+
+当辨识对象从刚体关节扩展到未知几何的弹性体、塑性体、颗粒介质与流体时，[[PhysicsIntegrated3DGaussians|物理集成 3D 高斯与连续介质仿真]] 提供了另一条端到端可微辨识路线：
+
+- **分阶段消除初态与材料参数的耦合不可辨识性：** 若初速度 $v_0$ 与杨氏模量 $E$ 均未知，两者在单段轨迹上容易相互补偿。[[pac-nerf-physics-augmented-continuum-neural-radiance-fields|PAC-NeRF（§3.4）]]、[[spring-gaus-reconstruction-and-simulation-of-elastic-objects|Spring-Gaus（附录 B）]]、[[physdreamer-physics-based-interaction-with-3d-objects|PhysDreamer（§4.2）]] 与 [[gic-gaussian-informed-continuum-physical-property-identification|GIC（附录 A.3）]] 一致采用分阶段解耦：先在碰撞或接触发生前的最初 2–3 帧上单独优化初速度 $v_0$，再冻结 $v_0$ 在后续接触变形帧上优化材料参数。
+- **观测监督信号的选择（RGB 光度 vs 2D 掩码 + 3D 表面/跟踪点）：** 在小变形或平滑纹理下，2D 像素颜色损失由于隐含了表面切向纹理对应，甚至比仅算三维点云 Chamfer 距离的 Oracle 更准（[[pac-nerf-physics-augmented-continuum-neural-radiance-fields|PAC-NeRF 表 2]]）；但在剧烈塑性形变（如橡皮泥）或真实拍摄光照变化下，静态辐射场渲染出的 RGB 纹理会严重失真并误导梯度，此时改用高斯引导连续体渲染 **2D 掩码 + 3D 提取表面 Chamfer 损失**（[[gic-gaussian-informed-continuum-physical-property-identification|GIC §5.1、表 2]]）或 **CoTracker3 三维密集跟踪损失**（[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin 式 3]]）更为稳健。
+- **均质参数 vs 空间异质参数场：** 真实物体往往由不同硬度的部件组成（如花朵的花瓣与花茎）。在稠密 MPM 粒子上直接逐点反演自由度过高，可通过稀疏弹簧锚点降维（[[spring-gaus-reconstruction-and-simulation-of-elastic-objects|Spring-Gaus]] 的 $N_A=2048$ 锚点刚度、[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin]] 的零阶拓扑 + 一阶稠密刚度）或低频三平面神经场 + K-Means 驱动粒子（[[physdreamer-physics-based-interaction-with-3d-objects|PhysDreamer]]）来恢复空间异质分布。
 
 ## 直觉
 

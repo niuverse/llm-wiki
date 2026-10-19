@@ -2,8 +2,8 @@
 title: "Simulation-ready Worlds"
 type: "topic"
 tags: ["simulation", "source-backed"]
-sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]", "[[nvlabs-robolab]]", "[[robotics-simulation-infrastructure]]", "[[mujoco-overview]]", "[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[contact-models-in-robotics-a-comparative-analysis]]", "[[nvidia-ovrtx]]", "[[mujoco-computation-collision-detection]]", "[[modern-robotics-homogeneous-transformations]]", "[[modern-robotics-lagrangian-dynamics]]", "[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[isaac-sim-policy-deployment]]"]
-modified: "2026-10-08"
+sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]", "[[nvlabs-robolab]]", "[[robotics-simulation-infrastructure]]", "[[mujoco-overview]]", "[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[contact-models-in-robotics-a-comparative-analysis]]", "[[nvidia-ovrtx]]", "[[mujoco-computation-collision-detection]]", "[[modern-robotics-homogeneous-transformations]]", "[[modern-robotics-lagrangian-dynamics]]", "[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[isaac-sim-policy-deployment]]", "[[physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics]]", "[[physgaussian-repository]]", "[[vr-gs-physical-dynamics-aware-interactive-gaussian-splatting]]", "[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects]]"]
+modified: "2026-10-19"
 description: "沿几何、物理、语义与回放检查生成资产到交互数据的链条。"
 ---
 
@@ -27,7 +27,9 @@ description: "沿几何、物理、语义与回放检查生成资产到交互数
 
 ## 机制基础
 
-[[SimulationReady3DWorldGeneration|Simulation-ready 3D Generation]]、[[AgenticSceneTaskGeneration|Agentic Scene Generation]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]。
+[[SimulationReady3DWorldGeneration|Simulation-ready 3D Generation]]、[[AgenticSceneTaskGeneration|Agentic Scene Generation]]、[[RoboticsSimulationInfrastructure|机器人仿真基础设施]]、[[PhysicsIntegrated3DGaussians|物理集成 3D 高斯与连续介质仿真]]。
+
+对于以三维高斯溅射（3DGS）重建的场景，“可用于物理交互（Simulation-ready）”需要一套不同于刚体 CAD 网格的准备链条：[[physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics|PhysGaussian]]（[[physgaussian-repository|Code]]）通过各向异性正则化与内部粒子填充解决表面空壳坍塌；[[vr-gs-physical-dynamics-aware-interactive-gaussian-splatting|VR-GS]] 进一步加入内生 3DGS 物体分割、被遮挡支撑面的 LaMa 引导 3D 修补、VDB/TetGen 四面体笼双层嵌入与实时阴影贴图；而 [[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin]] 则在稀疏 3 视角 RGB-D 下通过 TRELLIS 单图 3D 形状先验 + SuperGlue/PnP/ARAP 配准补全背面几何，并通过零阶 + 一阶优化构建可实时运行（57 FPS）的弹簧质点数字孪生。
 
 ## EmbodiedGen V1 与 V2
 

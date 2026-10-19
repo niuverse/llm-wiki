@@ -2,8 +2,8 @@
 title: "Sim-to-Real"
 type: "topic"
 tags: ["simulation", "source-backed"]
-sources: ["[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[isaac-sim-policy-deployment]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[dexweave-dexterous-humanoid-loco-manipulation]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]"]
-modified: 2026-10-17
+sources: ["[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning]]", "[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors]]", "[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation]]", "[[isaac-sim-policy-deployment]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[dexweave-dexterous-humanoid-loco-manipulation]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]", "[[pac-nerf-physics-augmented-continuum-neural-radiance-fields]]", "[[spring-gaus-reconstruction-and-simulation-of-elastic-objects]]", "[[gic-gaussian-informed-continuum-physical-property-identification]]", "[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects]]"]
+modified: 2026-10-19
 description: "比较视觉与动力学随机化、分布适配和部署接口校验。"
 ---
 
@@ -19,6 +19,7 @@ description: "比较视觉与动力学随机化、分布适配和部署接口校
 | 动力学随机化 | [[peng-dynamics-randomization|Peng 等]] | 对随机参数稳健不等于恢复真实参数 |
 | 仿真辅助的技能开发与修复 | [[simex-simulation-integrated-robotics-autoresearch|SimEX]]、[[aspire-agentic-skills-discovery-for-robotics|ASPIRE]]（[[nvlabs-aspire-repository|Code]]） | SimEX 每任务约10分钟不含数小时编排推理；ASPIRE 的跨本体技能迁移是作为上下文指导加速真机自主调试（减少 40%–89% Token），而非零样本直接部署仿真代码 |
 | 人机与编码智能体共驾的多物理场 Real2Sim2Real | [[robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]]、[[robosimstudio-repository|RoboSimStudio · Code]] | 单视频构建与真机部署仅在海绵擦杆单任务做先导验证；公开演示中多往复擦拭需接触门控插销防止软体滑脱 |
+| 基于可微 MPM / 弹簧质点与 3DGS 的柔性物体 Real2Sim | [[pac-nerf-physics-augmented-continuum-neural-radiance-fields|PAC-NeRF]]、[[spring-gaus-reconstruction-and-simulation-of-elastic-objects|Spring-Gaus]]、[[gic-gaussian-informed-continuum-physical-property-identification|GIC]]、[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin]] | GIC 的 UR10 软体抓取验证了三档夹爪宽度下的静态挤压形变一致性；PhysTwin 支持绳索/毛绒玩具实时遥操作与基于模型的运动规划，但尚未覆盖塑性切割或高动态冲击 |
 | 分布适配 | [[simopt-adaptive-randomization|SimOpt]] | 匹配轨迹分布不等于参数唯一可辨识 |
 | 部署流程与视觉策略 | [[agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]]、[[viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL 项目页]]、[[grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] | 流程建议、演示与定量实验不能混作同等证据 |
 
@@ -41,10 +42,14 @@ description: "比较视觉与动力学随机化、分布适配和部署接口校
 - [[nvlabs-aspire-repository|NVlabs/ASPIRE 公开实现：受限 CaP 运行时、技能验证器、多模型扩展与双臂 YAM System 2 架构核查]]
 - [[robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio: An Interactive Toolkit for Rapid Real2Sim of Robot Manipulation Tasks]]
 - [[robosimstudio-repository|RoboSimStudio 公开实现：工程架构与核心机制核查]]
+- [[pac-nerf-physics-augmented-continuum-neural-radiance-fields|PAC-NeRF: Physics Augmented Continuum Neural Radiance Fields for Geometry-Agnostic System Identification]]
+- [[spring-gaus-reconstruction-and-simulation-of-elastic-objects|Spring-Gaus: Reconstruction and Simulation of Elastic Objects with Spring-Mass 3D Gaussians]]
+- [[gic-gaussian-informed-continuum-physical-property-identification|GIC: Gaussian-Informed Continuum for Physical Property Identification and Simulation]]
+- [[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin: Physics-Informed Reconstruction and Simulation of Deformable Objects from Videos]]
 
 ## 机制基础
 
-[[DomainRandomization|Domain Randomization]]、[[SystemIdentificationForSimulation|System Identification]]、[[PolicyDeploymentContract|策略部署接口]]、[[VisualSimToReal|Visual Sim-to-Real]]、[[SimulationTimeStepping|仿真步长、积分器与控制频率]]、[[RobotCoordinateFrames|机器人坐标系与位姿]]、[[RobotRigidBodyDynamics|机器人刚体动力学]]、[[RoboticsSimulationLoop|机器人仿真循环]]。
+[[DomainRandomization|Domain Randomization]]、[[SystemIdentificationForSimulation|System Identification]]、[[PolicyDeploymentContract|策略部署接口]]、[[VisualSimToReal|Visual Sim-to-Real]]、[[SimulationTimeStepping|仿真步长、积分器与控制频率]]、[[RobotCoordinateFrames|机器人坐标系与位姿]]、[[RobotRigidBodyDynamics|机器人刚体动力学]]、[[RoboticsSimulationLoop|机器人仿真循环]]、[[PhysicsIntegrated3DGaussians|物理集成 3D 高斯与连续介质仿真]]。
 
 ## 未解问题与优先补证
 
