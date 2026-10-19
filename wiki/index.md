@@ -32,16 +32,16 @@ description: ""
 
 时间为北京时间；旧记录未记时分的只显示日期。
 
-- **2026-10-18 22:17** · ThriftyDAgger 正文缓存同步重建
-  [[sources/thriftydagger-budget-aware-interventions|ThriftyDAgger]]
-- **2026-10-18 22:17** · ThriftyDAgger 补充材料阅读缓存修复
-  [[sources/thriftydagger-budget-aware-interventions|ThriftyDAgger]]
-- **2026-10-18 22:16** · 接管学习来源的图注与版本核对
-  [[sources/rho-efficiently-adaptable-vla-models|Rho]] · [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX]]
-- **2026-10-18 22:15** · 接管学习与仿真自改进的来源整合
-  [[sources/rho-efficiently-adaptable-vla-models|Rho]] · [[sources/embodirsi-data-efficient-robot-adaptation|EmbodiRSI]]
-- **2026-10-18 22:14** · ThriftyDAgger: Budget-Aware Novelty and Risk Gating for Interactive Imitation Learning
-  [[sources/thriftydagger-budget-aware-interventions|ThriftyDAgger]] · [[concepts/InteractiveImitationLearning|交互式模仿学习与 DAgger]]
+- **2026-10-19 17:38** · PhysGaussian 与物理集成 3D 高斯（Physical 3DGS）体系整合
+  [[sources/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics|PhysGaussian]] · [[sources/pac-nerf-physics-augmented-continuum-neural-radiance-fields|PAC-NeRF]]
+- **2026-10-19 17:38** · PhysTwin: Physics-Informed Reconstruction and Simulation of Deformable Objects from Videos
+  [[sources/phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin]]
+- **2026-10-19 17:38** · GIC: Gaussian-Informed Continuum for Physical Property Identification and Simulation
+  [[sources/gic-gaussian-informed-continuum-physical-property-identification|GIC]]
+- **2026-10-19 17:38** · PhysDreamer: Physics-Based Interaction with 3D Objects via Video Generation
+  [[sources/physdreamer-physics-based-interaction-with-3d-objects|PhysDreamer]]
+- **2026-10-19 17:38** · Reconstruction and Simulation of Elastic Objects with Spring-Mass 3D Gaussians
+  [[sources/spring-gaus-reconstruction-and-simulation-of-elastic-objects|Spring-Gaus]]
 
 [[log|查看完整日志]]
 

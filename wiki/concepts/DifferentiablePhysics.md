@@ -2,9 +2,9 @@
 title: "Differentiable Physics"
 type: concept
 tags: [robotics, simulation, differentiable-optimization]
-sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]"]
-modified: 2026-10-04
-topics: ["topics/physics-simulation", "topics/contact-modeling"]
+sources: ["[[contact-models-in-robotics-a-comparative-analysis]]", "[[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives]]", "[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons]]", "[[pac-nerf-physics-augmented-continuum-neural-radiance-fields]]", "[[spring-gaus-reconstruction-and-simulation-of-elastic-objects]]", "[[physdreamer-physics-based-interaction-with-3d-objects]]", "[[gic-gaussian-informed-continuum-physical-property-identification]]", "[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects]]"]
+modified: 2026-10-19
+topics: ["topics/physics-simulation", "topics/contact-modeling", "topics/simulation-transfer"]
 ---
 
 # Differentiable Physics
@@ -66,6 +66,14 @@ flowchart LR
 优化定义的碰撞或接触查询，常对最优性条件 $g(y^\star,\theta)=0$ 求导，得到 $dy^\star/d\theta=-(\partial_y g)^{-1}\partial_\theta g$。这要求对应线性化系统可解；非唯一解、退化接触或状态切换需要额外处理。最优碰撞指标可求导也不保证某个接触点选择处处可微，详见 [[DifferentiableCollisionDetection|碰撞指标与最优解的区别]]。
 
 [[dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]] 确实将碰撞约束放入互补时间步进并展示凸体相撞，因此不能说它完全没有动力学集成。但该演示没有覆盖复杂机器人全部摩擦模式与参数敏感性；[[diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]] 的主要应用证据则是避碰轨迹优化。
+
+## 连续介质可微 MPM 与弹簧质点在视觉反演中的实践机制
+
+当可微物理与神经辐射场或三维高斯溅射结合（见 [[PhysicsIntegrated3DGaussians|物理集成 3D 高斯与连续介质仿真]]）以从视频反演材料参数时，[[pac-nerf-physics-augmented-continuum-neural-radiance-fields|PAC-NeRF]]、[[spring-gaus-reconstruction-and-simulation-of-elastic-objects|Spring-Gaus]]、[[physdreamer-physics-based-interaction-with-3d-objects|PhysDreamer]]、[[gic-gaussian-informed-continuum-physical-property-identification|GIC]] 与 [[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin]] 揭示了三项关键的梯度工程经验：
+
+1. **长子步展开的显存检查点与帧间梯度截断：** 显式 MPM 为满足 CFL 稳定性通常需要 $\Delta t \approx 4\times 10^{-5}\text{--}10^{-4}\text{ s}$，相邻视频帧间包含数百个物理子步（如 [[physdreamer-physics-based-interaction-with-3d-objects|PhysDreamer]] 每帧 768 子步）。直接沿整段视频展开反向传播既会撑爆 GPU 显存，又会导致梯度爆炸或消失；工程上需结合**子步状态重计算检查点（checkpointing）**、**K-Means 驱动粒子降采样**，并将反传梯度截断在相邻视频帧之间（[[physdreamer-physics-based-interaction-with-3d-objects|PhysDreamer §4.2–5.2]]）。
+2. **显式 MPM 相比显式有限元（FEM）在反演中的时间步优势：** [[pac-nerf-physics-augmented-continuum-neural-radiance-fields|PAC-NeRF（§5.3.2、附录 D）]] 在与 $\nabla\text{Sim}$ 对比时指出，四面体网格上的辛积分显式 FEM 对步长极其敏感且在大变形下容易网格翻转，需要数万个微小子步，累积的数值误差会导致反向传播失败；而欧拉—拉格朗日混合的 MPM 无需维护网格连接，在大变形与拓扑变化下允许更大的有效步长。
+3. **非可微离散拓扑与可微连续刚度的分层优化：** 在三维弹簧质点系统中，弹簧连接半径与最大邻居数等拓扑超参数不可微；[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin（§4.2.1，表 3）]] 先用零阶演化策略（CMA-ES）搜索离散拓扑与均质刚度初值，再用可微弹簧模拟器的一阶梯度精化数万根弹簧的异质刚度，证明了零阶与一阶优化互补的必要性。
 
 ## 失效情形
 

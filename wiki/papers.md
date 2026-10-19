@@ -46,12 +46,19 @@ description: "按主题、年份和关键词查找论文；共享基础通过正
 - [[sources/dino-wm-pretrained-visual-features|DINO-WM]] · 2025 · ICML
 - [[sources/dreamerv3-mastering-diverse-control|DreamerV3]] · 2025 · Nature
 - [[sources/embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen]] · 2025 · arXiv（预印本）
+- [[sources/phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin]] · 2025 · arXiv 预印本（v1）
 - [[sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]] · 2025 · ICLR 2025
 - [[sources/v-jepa-2-understanding-prediction-planning|V-JEPA 2]] · 2025 · arXiv 预印本
 - [[sources/contact-models-in-robotics-a-comparative-analysis|Contact Models · 比较研究]] · 2024 · arXiv（归档稿未标注会议或期刊）
+- [[sources/gic-gaussian-informed-continuum-physical-property-identification|GIC]] · 2024 · NeurIPS 2024（arXiv v3）
+- [[sources/physdreamer-physics-based-interaction-with-3d-objects|PhysDreamer]] · 2024 · ECCV 2024（arXiv v2）
+- [[sources/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics|PhysGaussian]] · 2024 · CVPR 2024（arXiv v3）
 - [[sources/sirius-fleet-visual-world-models|Sirius-Fleet：世界模型监控与多任务接管]] · 2024 · CoRL 2024（所读为 arXiv v1）
+- [[sources/spring-gaus-reconstruction-and-simulation-of-elastic-objects|Spring-Gaus]] · 2024 · ECCV 2024（arXiv v3）
 - [[sources/td-mpc2-scalable-robust-world-models|TD-MPC2]] · 2024 · ICLR
+- [[sources/vr-gs-physical-dynamics-aware-interactive-gaussian-splatting|VR-GS]] · 2024 · SIGGRAPH 2024（arXiv v2）
 - [[sources/dcol-differentiable-collision-detection-for-a-set-of-convex-primitives|DCOL]] · 2023 · arXiv（归档稿未标注会议或期刊）
+- [[sources/pac-nerf-physics-augmented-continuum-neural-radiance-fields|PAC-NeRF]] · 2023 · ICLR 2023 Spotlight（arXiv v1）
 - [[sources/sirius-robot-learning-on-the-job|Sirius：部署中接管与加权学习]] · 2023 · RSS 2023
 - [[sources/coacd-approximate-convex-decomposition|CoACD]] · 2022 · ACM Transactions on Graphics 41(4), Article 42
 - [[sources/diffpills-differentiable-collision-detection-for-capsules-and-padded-polygons|DiffPills]] · 2022 · arXiv（归档稿未标注会议或期刊）

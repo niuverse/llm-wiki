@@ -1153,3 +1153,57 @@ ASPIRE、Harness VLA、123 轮负结果、Who Improves the Robot 全文、RSI-An
 时间：2026-10-18 22:17（北京时间，UTC+08:00）
 
 对新增缓存进行相同检查，[[thriftydagger-budget-aware-interventions|ThriftyDAgger]] 正文标准提取也有53个NUL字符，故分别从对应正文11页PDF与补充8页PDF重建两份完整缓存，核对来源路径和页数，避免破损数学字形进入阅读缓存。来源页同步注明两份缓存的提取方式，原始证据不变。
+
+## [2026-10-19] ingest | PhysGaussian: Physics-Integrated 3D Gaussians for Generative Dynamics
+
+时间：2026-10-19 17:38（北京时间，UTC+08:00）
+
+按用户系统学习请求归档 arXiv 2311.12198v3（CVPR 2024）原始 PDF（`raw/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics-2026-10-19-95b0b94d80e3.pdf`）并完整阅读全文 13 页，新建论文来源页 [[physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics|PhysGaussian]]，嵌入并登记正文全部八幅图（图 1–8）。详细梳理“所见即所仿（$\text{WS}^2$）”原则、显式 APIC-MPM P2G/G2P 离散、一阶局部仿射高斯核协方差演化 $a_p(t) = F_p(t) A_p F_p(t)^T$、极分解视线逆旋转球谐函数 $f_t(d) = f_0(R_p^T d)$、无总变形梯度 $F_p$ 的速度梯度率形式更新、不透明度场六向射线搜索加奇偶计数内部填充、各向异性正则化损失 $\mathcal{L}_{\text{aniso}}$、五类本构与塑性返回映射（Fixed Corotated、StVK、Neo-Hookean、Drucker-Prager 沙土、von Mises 金属、Herschel-Bulkley 黏塑性流体）以及晶格变形基准消融实验（表 1）。
+
+## [2026-10-19] ingest | XPandora/PhysGaussian 公开实现：Warp MPM 核函数、Taichi 内部填充与论文—源码差异核查
+
+时间：2026-10-19 17:38（北京时间，UTC+08:00）
+
+固定官方仓库 `XPandora/PhysGaussian` 提交 `8339ed6aa2cd5d50e1001a254a3d95aea678a956`，归档全部 21 个源码与场景配置文件（`raw/physgaussian-repository-2026-10-19-d9fc70e92aff.tgz` 及阅读缓存 `graph/extracts/physgaussian-repository-2026-10-19-d9fc70e92aff.md`），新建代码核查来源页 [[physgaussian-repository|PhysGaussian · Code]]。深入解析 PyTorch + Taichi + NVIDIA Warp 三框架协同数据流、$[0,2]^3$ 坐标与协方差正逆变换及不可调换的初始化顺序，并记录静态核查发现的四处论文—源码差异：（1）内部填充粒子在 `filling.py:306–322` 中直接从最近邻表面核复制 6 维协方差而非按论文 §3.7 初始化为体积球 $\operatorname{diag}(r_p^2, r_p^2, r_p^2)$，且默认 `visualize=False` 仅参与 MPM 力学支撑而不进入渲染；（2）布尔标志 `update_cov_with_F` 字面含义反转（默认 `False` 执行 `F_trial * init_cov * F_trial^T`，设为 `True` 才执行率形式增量更新）；（3）`add_surface_collider` 在 `mpm_solver_warp.py:648` 算出摩擦滑移速度 `v` 后误将网格速度覆写为零向量，致使 `slip` 与摩擦面退化为 `sticky`；（4）源码额外实现了论文未展开的第 6 类带应变软化与刚度归零损伤的 `plasticine` 本构。
+
+## [2026-10-19] ingest | PAC-NeRF: Physics Augmented Continuum Neural Radiance Fields for Geometry-Agnostic System Identification
+
+时间：2026-10-19 17:38（北京时间，UTC+08:00）
+
+归档 arXiv 2303.05512v1（ICLR 2023 Spotlight）原始 PDF（`raw/pac-nerf-physics-augmented-continuum-neural-radiance-fields-2026-10-19-f7a0a1226081.pdf`）并完整阅读全文 14 页，新建论文来源页 [[pac-nerf-physics-augmented-continuum-neural-radiance-fields|PAC-NeRF]]，嵌入并登记图 1 与图 4。记录欧拉—拉格朗日混合 DirectVoxGO + DiffTaichi MLS-MPM 架构、辐射场平流守恒律、初始帧 $\text{G2P} \to \text{P2G}$ 一致性重采样、$\alpha_p^3$ 虚空粒子应力软化、三阶段系统辨识流程以及五类连续介质合成基准结果，阐明其渲染速度与大变形纹理模糊瓶颈如何直接推动 PhysGaussian 与 GIC。
+
+## [2026-10-19] ingest | VR-GS: A Physical Dynamics-Aware Interactive Gaussian Splatting System in Virtual Reality
+
+时间：2026-10-19 17:38（北京时间，UTC+08:00）
+
+归档 arXiv 2401.16663v2（SIGGRAPH 2024）原始 PDF（`raw/vr-gs-physical-dynamics-aware-interactive-gaussian-splatting-2026-10-19-294b63f0d0e0.pdf`）并完整阅读全文 12 页（使用 PyMuPDF 逐页无 NUL 重建缓存），新建论文来源页 [[vr-gs-physical-dynamics-aware-interactive-gaussian-splatting|VR-GS]]，嵌入并登记图 2 与图 3。解析同一团队为何从 PhysGaussian 的逐核 MPM 转向四面体笼 XPBD、局部紧致四面体加全局笼网格的**双层变形嵌入（Two-Level Embedding）**如何消除跨单元分段常数梯度引起的尖刺伪影、内生 3DGS 分割与 LaMa 引导 3D 空洞修补、光源深度阴影贴图，以及相对 PhysGaussian 的 $6.6\text{--}18.6\times$ 单帧加速与笼网格过密导致 XPBD 约束不收敛变软的折中分析。
+
+## [2026-10-19] ingest | Reconstruction and Simulation of Elastic Objects with Spring-Mass 3D Gaussians
+
+时间：2026-10-19 17:38（北京时间，UTC+08:00）
+
+归档 arXiv 2403.09434v3（ECCV 2024）原始 PDF（`raw/spring-gaus-reconstruction-and-simulation-of-elastic-objects-2026-10-19-03d88ab0f14a.pdf`）并完整阅读全文 20 页，新建论文来源页 [[spring-gaus-reconstruction-and-simulation-of-elastic-objects|Spring-Gaus]]，嵌入并登记图 2。梳理外观高斯与 $N_A=2048$ 体积采样弹簧质点锚点的解耦设计、非线性胡克定律与反距离加权（IDW）插值、可微拓扑连接软向量 $\eta(\kappa)$ 与锚点级刚度降维 $k_{i,j} = k_i / l_{i,j}$、真实稀疏视角下的 6D 静态—动态配准与掩码中心损失，以及合成与真实弹性物体上的动态重建、未来预测和异质刚度消融（表 1–3）。
+
+## [2026-10-19] ingest | PhysDreamer: Physics-Based Interaction with 3D Objects via Video Generation
+
+时间：2026-10-19 17:38（北京时间，UTC+08:00）
+
+归档 arXiv 2404.13026v2（ECCV 2024）原始 PDF（`raw/physdreamer-physics-based-interaction-with-3d-objects-2026-10-19-683aff31d3e1.pdf`）并完整阅读全文 22 页，新建论文来源页 [[physdreamer-physics-based-interaction-with-3d-objects|PhysDreamer]]，嵌入并登记图 3 与图 4。记录如何利用图生视频模型（Stable Video Diffusion）生成参考视频并通过可微 MPM + 可微 3DGS 蒸馏双尺度三平面空间杨氏模量场 $E(\mathbf{x})$、两阶段解耦优化与 768 子步激活检查点加帧间梯度截断、基于 K-Means 驱动粒子（Driving Particles）与 8-NN 局部刚体配准的 $10\text{--}50\times$ 仿真加速，以及 800 样本人类 2AFC 评测中揭示的“MPM 网格阻尼使薄叶变慢反而获 86% 人类偏好”的评测洞见。
+
+## [2026-10-19] ingest | GIC: Gaussian-Informed Continuum for Physical Property Identification and Simulation
+
+时间：2026-10-19 17:38（北京时间，UTC+08:00）
+
+归档 arXiv 2406.14927v3（NeurIPS 2024）原始 PDF（`raw/gic-gaussian-informed-continuum-physical-property-identification-2026-10-19-3349f443e056.pdf`）并完整阅读全文 22 页，新建论文来源页 [[gic-gaussian-informed-continuum-physical-property-identification|GIC]]，嵌入并登记图 1 与图 3。解析共享主干运动分解动态 3DGS 与防止大变形核膨胀的 $\mathcal{L}_1$ 尺度正则化、结合多视角高斯深度过滤与四轮“上采样—均值滤波—占据重置”的由粗到细密度场填充（算法 1）、将连续体包装为无色高斯渲染 2D 掩码代理与 3D 表面 Chamfer 距离的双重形状监督，以及在 PAC-NeRF 五材质基准、Spring-Gaus 未来预测基准与 UR10 真机软体抓取上的实验证据。
+
+## [2026-10-19] ingest | PhysTwin: Physics-Informed Reconstruction and Simulation of Deformable Objects from Videos
+
+时间：2026-10-19 17:38（北京时间，UTC+08:00）
+
+归档 arXiv 2503.17973v1 原始 PDF（`raw/phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects-2026-10-19-79389c194d83.pdf`）并完整阅读全文 16 页（使用 PyMuPDF 逐页无 NUL 重建缓存），新建论文来源页 [[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin]]，嵌入并登记图 1 与图 2。记录带手部/夹爪主动控制点的动量守恒三维弹簧质点模型、基于 TRELLIS 单图 3D 生成先验与 SuperGlue/PnP/ARAP 的完整形状配准、Grounded-SAM2 + CoTracker3 三维伪轨迹监督、**零阶 CMA-ES 离散拓扑搜索 + 一阶可微稠密刚度精化**的分层优化、线性混合蒙皮（LBS）高斯更新，以及在 22 个真实柔性交互场景上相对 Spring-Gaus 和 30 倍数据量 GNN 基线的优势与 57 FPS 实时遥操作/模型预测规划应用。
+
+## [2026-10-19] research | PhysGaussian 与物理集成 3D 高斯（Physical 3DGS）体系整合
+
+时间：2026-10-19 17:38（北京时间，UTC+08:00）
+
+围绕用户系统学习 PhysGaussian 及其相关工作的请求，先同步本仓库远端最新 `main` 分支，完整归档并精读 7 篇代表性论文（[[physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics|PhysGaussian]]、[[pac-nerf-physics-augmented-continuum-neural-radiance-fields|PAC-NeRF]]、[[vr-gs-physical-dynamics-aware-interactive-gaussian-splatting|VR-GS]]、[[spring-gaus-reconstruction-and-simulation-of-elastic-objects|Spring-Gaus]]、[[physdreamer-physics-based-interaction-with-3d-objects|PhysDreamer]]、[[gic-gaussian-informed-continuum-physical-property-identification|GIC]]、[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin]]）与 [[physgaussian-repository|XPandora/PhysGaussian 官方仓库]]（共 8 份原始资料，新增并校验 19 幅原文图）。新建跨论文概念页 [[PhysicsIntegrated3DGaussians|物理集成 3D 高斯与连续介质仿真]]，统合四类高斯—物理耦合架构（逐核直接 MPM、双层四面体笼 XPBD、K-Means 驱动粒子可微 MPM、稀疏弹簧质点锚点 IDW/LBS）、局部仿射协方差与球谐演化、三代内部体积填充与形状补全策略，以及从真实视频或视频生成先验反演物理参数的优化设计；同步更新 [[DifferentiablePhysics|可微物理]]、[[SystemIdentificationForSimulation|系统辨识]]、[[topics/physics-simulation|物理仿真]]、[[topics/assets-and-world-generation|3D 资产与场景]]、[[topics/simulation-ready-worlds|Simulation-ready Worlds]] 与 [[topics/simulation-transfer|Sim-to-Real]]。本轮未在本机编译运行 GPU 仿真。
