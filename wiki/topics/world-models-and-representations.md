@@ -2,8 +2,8 @@
 title: "World Models"
 type: "topic"
 tags: ["world-models", "source-backed"]
-sources: ["[[planet-learning-latent-dynamics]]", "[[dreamerv3-mastering-diverse-control]]", "[[dino-wm-pretrained-visual-features]]", "[[v-jepa-2-understanding-prediction-planning]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[td-mpc2-scalable-robust-world-models]]", "[[worldecho-worldsync-action-following]]"]
-modified: "2026-10-08"
+sources: ["[[planet-learning-latent-dynamics]]", "[[dreamerv3-mastering-diverse-control]]", "[[dino-wm-pretrained-visual-features]]", "[[v-jepa-2-understanding-prediction-planning]]", "[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[pi07-steerable-generalist-robotic-foundation-model]]", "[[lda-1b-scaling-latent-dynamics-action-model]]", "[[predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation]]", "[[disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining]]", "[[td-mpc2-scalable-robust-world-models]]", "[[worldecho-worldsync-action-following]]", "[[code-as-world-executable-world-representations]]", "[[s-space-spatial-workspace-mllm]]", "[[agentgarten-code-worlds-evolving-agents]]"]
+modified: "2026-10-20"
 entry: "research"
 nav_order: 1
 description: "表征、动力学预测与机器人决策"
@@ -26,12 +26,15 @@ description: "表征、动力学预测与机器人决策"
 | 预测怎样变成动作？ | [[topics/world-model-decision|World Models 与决策]] | 执行时搜索动作，还是训练时学习策略；完整控制回路见 [[topics/planning-and-control|规划与控制]] |
 | 未来信息怎样帮助训练？ | [[topics/future-conditioned-action|未来预测与动作学习]] | 未来是监督、表示还是策略条件；相关学习问题见 [[topics/robot-policy-learning|机器人策略学习]] |
 | 怎样证明预测有用？ | [[topics/world-model-evaluation|如何验证动作后果]] | 分开看视觉质量、动作遵循与闭环任务表现 |
+| 表示能否被查询、干预或执行？ | [[code-as-world-executable-world-representations|Code-as-World]]、[[s-space-spatial-workspace-mllm|S-Space]]、[[agentgarten-code-worlds-evolving-agents|AgentGarten]] | 显式代码状态、内部线性读出、渲染器条件接口是三种不同的“可操作” |
 
 专题持续汇总方法比较、现有证据与未解问题；需要核对具体实现或实验时，再沿专题进入来源页。
 
 ## 当前理解
 
 预测对象相似不代表训练监督或执行接口相同。PlaNet 在潜在状态中搜索动作；Dreamer 以想象数据训练策略；DINO-WM 与 V-JEPA 2-AC 以目标表征距离规划。各路线的具体证据见 [[planet-learning-latent-dynamics|PlaNet]]、[[dreamerv3-mastering-diverse-control|Dreamer]]、[[dino-wm-pretrained-visual-features|DINO-WM]] 和 [[v-jepa-2-understanding-prediction-planning|V-JEPA 2]]。这个地图按信息与决策接口组织它们，属于我们的研究视角。
+
+另一条线不问“预测下一帧”，而问“世界表示能否被查询、干预与执行”。[[code-as-world-executable-world-representations|Code-as-World]] 把物理世界写成 $p=(C,E,A)$，用轨迹生成监督；[[s-space-spatial-workspace-mllm|S-Space]] 在模型内部读出三维坐标并做因果干预；[[agentgarten-code-worlds-evolving-agents|AgentGarten]] 用代码世界维护状态、神经渲染器生成观测。三者共同把“表示”从被动预测器变成可操作接口，但证据分别来自 VQA、机制实验与交互环境，不能互相替代。入口见 [[topics/executable-world-representations|可执行世界表示与智能体化评测]]。
 
 ## 例子：预测相似，动作也应该相似吗？
 

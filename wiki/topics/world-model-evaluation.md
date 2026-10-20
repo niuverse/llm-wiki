@@ -2,8 +2,8 @@
 title: "World Model 评测"
 type: "topic"
 tags: ["world-models", "source-backed"]
-sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[worldecho-worldsync-action-following]]", "[[v-jepa-2-understanding-prediction-planning]]", "[[dino-wm-pretrained-visual-features]]"]
-modified: "2026-10-04"
+sources: ["[[a-comprehensive-survey-on-world-models-for-embodied-ai]]", "[[worldecho-worldsync-action-following]]", "[[v-jepa-2-understanding-prediction-planning]]", "[[dino-wm-pretrained-visual-features]]", "[[harnesseval-w-agentifying-evaluation-of-visual-worlds]]"]
+modified: "2026-10-20"
 description: "分开检验视觉质量、动作遵循和闭环控制收益。"
 ---
 
@@ -17,12 +17,15 @@ description: "分开检验视觉质量、动作遵循和闭环控制收益。"
 
 **当前判断：**视觉质量、动作后果和闭环任务成功是不同证据。末端位姿误差不能代替物体状态、接触力或失败恢复；更好的预测指标也不自动证明策略收益。比较时分别列出数据覆盖、动作查询分布、门控规则和下游任务。
 
+[[harnesseval-w-agentifying-evaluation-of-visual-worlds|HarnessEval-W]] 把评测本身拆成“轴 → skill → 子问题 → 证据树”，用人类 A/B 与 WBench 对照说明分解能提高区分度与稳定性；但它评的是 rollout，不是策略闭环，评委仍是一个 VLM。机制与失败情形见 [[AgentifiedEvaluation|智能体化评测]]。
+
 ## 支撑资料
 
 - [[a-comprehensive-survey-on-world-models-for-embodied-ai|A Comprehensive Survey on World Models for Embodied AI]]
 - [[worldecho-worldsync-action-following|WorldEcho／WorldSync：世界模型是否忠实执行动作]]
 - [[v-jepa-2-understanding-prediction-planning|V-JEPA 2：视频表征怎样接到机器人规划]]
 - [[dino-wm-pretrained-visual-features|DINO-WM：用预训练视觉特征进行目标规划]]
+- [[harnesseval-w-agentifying-evaluation-of-visual-worlds|HarnessEval-W：把世界模型评测变成可审计的证据树]]
 
 ## 机制基础
 

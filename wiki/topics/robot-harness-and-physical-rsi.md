@@ -2,8 +2,8 @@
 title: "机器人 Harness 与 Physical RSI"
 type: topic
 tags: [robotics, agents, embodied-ai, source-backed]
-sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[roboharness-visual-geometric-control]]", "[[robofoundry-system-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[physical-rsi-research-map]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]", "[[dagger-no-regret-imitation-learning]]", "[[hg-dagger-human-experts]]", "[[thriftydagger-budget-aware-interventions]]", "[[sirius-robot-learning-on-the-job]]", "[[sirius-fleet-visual-world-models]]", "[[flowdagger-latent-space-corrections]]", "[[hi-wm-human-in-world-model]]"]
-modified: 2026-10-18
+sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[roboharness-visual-geometric-control]]", "[[robofoundry-system-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[physical-rsi-research-map]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]", "[[dagger-no-regret-imitation-learning]]", "[[hg-dagger-human-experts]]", "[[thriftydagger-budget-aware-interventions]]", "[[sirius-robot-learning-on-the-job]]", "[[sirius-fleet-visual-world-models]]", "[[flowdagger-latent-space-corrections]]", "[[hi-wm-human-in-world-model]]", "[[mirros-physical-rsi-thesis]]"]
+modified: 2026-10-20
 description: "从技能图与物理验收到自主实验、系统演化和递归增益的证据。"
 topics: ["topics/robot-policy-learning", "topics/agent-execution", "topics/evaluation-and-transfer"]
 ---
@@ -109,3 +109,5 @@ flowchart TD
 | 基础回溯：自主学习与程序优化的前史 | [Eureka](https://arxiv.org/abs/2310.12931)；[DrEureka](https://arxiv.org/abs/2406.01967)；[SOAR](https://arxiv.org/abs/2407.20635)；[Code as Policies](https://arxiv.org/abs/2209.07753) | 固定优化循环与可继承程序改进的差别，避免把旧机制因新标签当成首次出现 |
 
 检索还触及模型与世界模型共同改进、长期记忆、自主实验室等邻近方向；本轮没有完整覆盖。更宽资料索引可从 [[physical-rsi-research-map|作者目录]] 找候选，但需要逐篇追溯原始证据，不能把目录视作结果背书。
+
+**2026-10-20 补充：把世界模型也列为可改进对象。** MirroS 的研究提纲 [[mirros-physical-rsi-thesis|Physical RSI]] 把“环境模型解释不了”与“策略不会做”分成 environment gap 与 skill gap，主张 Actor 与世界模型共同进化。该提纲仍是立场文；其四项技术报告分别覆盖可执行表示、代码世界 + 实时渲染器、内部空间读出与智能体化评测，但没有完成真实机器人上的完整八步循环。四份来源的逐项证据与边界集中在 [[topics/executable-world-representations|可执行世界表示与智能体化评测]]，本页不重复。

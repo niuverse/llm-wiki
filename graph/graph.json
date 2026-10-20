@@ -22,6 +22,13 @@
       "path": "wiki/concepts/AgenticSceneTaskGeneration.md"
     },
     {
+      "id": "concepts/AgentifiedEvaluation",
+      "label": "智能体化评测",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/AgentifiedEvaluation.md"
+    },
+    {
       "id": "concepts/ApproximateConvexDecomposition",
       "label": "Approximate Convex Decomposition",
       "type": "concept",
@@ -97,6 +104,13 @@
       "type": "concept",
       "color": "#FF9800",
       "path": "wiki/concepts/DomainRandomization.md"
+    },
+    {
+      "id": "concepts/ExecutableWorldRepresentation",
+      "label": "可执行世界表示",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/ExecutableWorldRepresentation.md"
     },
     {
       "id": "concepts/FlowMatching",
@@ -330,6 +344,13 @@
       "path": "wiki/concepts/SimulationTimeStepping.md"
     },
     {
+      "id": "concepts/SpatialWorkspaceInMLLMs",
+      "label": "多模态模型的空间工作区",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/SpatialWorkspaceInMLLMs.md"
+    },
+    {
       "id": "concepts/SteerableWheels",
       "label": "可转向轮",
       "type": "concept",
@@ -428,6 +449,13 @@
       "path": "wiki/sources/a-comprehensive-survey-on-world-models-for-embodied-ai.md"
     },
     {
+      "id": "sources/agentgarten-code-worlds-evolving-agents",
+      "label": "AgentGarten：代码世界与实时神经渲染器",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/agentgarten-code-worlds-evolving-agents.md"
+    },
+    {
       "id": "sources/agentsdock-releases",
       "label": "AgentsDock Releases",
       "type": "source",
@@ -496,6 +524,13 @@
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/coacd-repository.md"
+    },
+    {
+      "id": "sources/code-as-world-executable-world-representations",
+      "label": "Code-as-World：用可执行代码表示物理世界",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/code-as-world-executable-world-representations.md"
     },
     {
       "id": "sources/contact-models-in-robotics-a-comparative-analysis",
@@ -638,6 +673,13 @@
       "path": "wiki/sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors.md"
     },
     {
+      "id": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "label": "HarnessEval-W：把世界模型评测变成可审计的证据树",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/harnesseval-w-agentifying-evaluation-of-visual-worlds.md"
+    },
+    {
       "id": "sources/hg-dagger-human-experts",
       "label": "HG-DAgger: Interactive Imitation Learning with Human Experts",
       "type": "source",
@@ -748,6 +790,13 @@
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/maniskill-repository.md"
+    },
+    {
+      "id": "sources/mirros-physical-rsi-thesis",
+      "label": "MirroS：Physical RSI 需要同时改进 Actor 与世界模型",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/mirros-physical-rsi-thesis.md"
     },
     {
       "id": "sources/mjlab-repository",
@@ -1044,6 +1093,13 @@
       "path": "wiki/sources/ryanbbrown-retrodict-repository.md"
     },
     {
+      "id": "sources/s-space-spatial-workspace-mllm",
+      "label": "S-Space：多模态模型内部的三维空间工作区",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/s-space-spatial-workspace-mllm.md"
+    },
+    {
       "id": "sources/schema-discovering-unknown-environments-via-agentic-program-induction",
       "label": "Schema: Discovering Unknown Environments via Agentic Program Induction",
       "type": "source",
@@ -1280,6 +1336,13 @@
       "type": "topic",
       "color": "#00897B",
       "path": "wiki/topics/evaluation-and-transfer.md"
+    },
+    {
+      "id": "topics/executable-world-representations",
+      "label": "可执行世界表示与智能体化评测",
+      "type": "topic",
+      "color": "#00897B",
+      "path": "wiki/topics/executable-world-representations.md"
     },
     {
       "id": "topics/future-conditioned-action",
@@ -1581,6 +1644,48 @@
       "id": "concepts/AgenticSceneTaskGeneration--topics/simulation-ready-worlds",
       "from": "concepts/AgenticSceneTaskGeneration",
       "to": "topics/simulation-ready-worlds",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentifiedEvaluation--sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "from": "concepts/AgentifiedEvaluation",
+      "to": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentifiedEvaluation--sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "from": "concepts/AgentifiedEvaluation",
+      "to": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentifiedEvaluation--sources/tycho-active-abstraction-with-programmatic-world-models",
+      "from": "concepts/AgentifiedEvaluation",
+      "to": "sources/tycho-active-abstraction-with-programmatic-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--concepts/AgentifiedEvaluation",
+      "from": "concepts/AgentifiedEvaluation",
+      "to": "concepts/AgentHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentifiedEvaluation--concepts/WorldModelEvaluation",
+      "from": "concepts/AgentifiedEvaluation",
+      "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentifiedEvaluation--topics/executable-world-representations",
+      "from": "concepts/AgentifiedEvaluation",
+      "to": "topics/executable-world-representations",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -2295,6 +2400,55 @@
       "id": "concepts/DomainRandomization--topics/simulation-transfer",
       "from": "concepts/DomainRandomization",
       "to": "topics/simulation-transfer",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableWorldRepresentation--sources/code-as-world-executable-world-representations",
+      "from": "concepts/ExecutableWorldRepresentation",
+      "to": "sources/code-as-world-executable-world-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableWorldRepresentation--sources/agentgarten-code-worlds-evolving-agents",
+      "from": "concepts/ExecutableWorldRepresentation",
+      "to": "sources/agentgarten-code-worlds-evolving-agents",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableWorldRepresentation--sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "from": "concepts/ExecutableWorldRepresentation",
+      "to": "sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableWorldRepresentation--sources/tycho-active-abstraction-with-programmatic-world-models",
+      "from": "concepts/ExecutableWorldRepresentation",
+      "to": "sources/tycho-active-abstraction-with-programmatic-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableWorldRepresentation--concepts/SimulationReady3DWorldGeneration",
+      "from": "concepts/ExecutableWorldRepresentation",
+      "to": "concepts/SimulationReady3DWorldGeneration",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentifiedEvaluation--concepts/ExecutableWorldRepresentation",
+      "from": "concepts/ExecutableWorldRepresentation",
+      "to": "concepts/AgentifiedEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableWorldRepresentation--topics/executable-world-representations",
+      "from": "concepts/ExecutableWorldRepresentation",
+      "to": "topics/executable-world-representations",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4903,6 +5057,48 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/SpatialWorkspaceInMLLMs--sources/s-space-spatial-workspace-mllm",
+      "from": "concepts/SpatialWorkspaceInMLLMs",
+      "to": "sources/s-space-spatial-workspace-mllm",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SpatialWorkspaceInMLLMs--sources/code-as-world-executable-world-representations",
+      "from": "concepts/SpatialWorkspaceInMLLMs",
+      "to": "sources/code-as-world-executable-world-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/ExecutableWorldRepresentation--concepts/SpatialWorkspaceInMLLMs",
+      "from": "concepts/SpatialWorkspaceInMLLMs",
+      "to": "concepts/ExecutableWorldRepresentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentifiedEvaluation--concepts/SpatialWorkspaceInMLLMs",
+      "from": "concepts/SpatialWorkspaceInMLLMs",
+      "to": "concepts/AgentifiedEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SpatialWorkspaceInMLLMs--concepts/WorldModelEvaluation",
+      "from": "concepts/SpatialWorkspaceInMLLMs",
+      "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/SpatialWorkspaceInMLLMs--topics/executable-world-representations",
+      "from": "concepts/SpatialWorkspaceInMLLMs",
+      "to": "topics/executable-world-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/SteerableWheels--sources/structural-properties-and-classification-of-wheeled-mobile-robots",
       "from": "concepts/SteerableWheels",
       "to": "sources/structural-properties-and-classification-of-wheeled-mobile-robots",
@@ -6086,6 +6282,41 @@
       "confidence": 1.0
     },
     {
+      "id": "overview--sources/code-as-world-executable-world-representations",
+      "from": "overview",
+      "to": "sources/code-as-world-executable-world-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "from": "overview",
+      "to": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/s-space-spatial-workspace-mllm",
+      "from": "overview",
+      "to": "sources/s-space-spatial-workspace-mllm",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/agentgarten-code-worlds-evolving-agents",
+      "from": "overview",
+      "to": "sources/agentgarten-code-worlds-evolving-agents",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--sources/mirros-physical-rsi-thesis",
+      "from": "overview",
+      "to": "sources/mirros-physical-rsi-thesis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/CollisionGeometryForRobotSimulation--overview",
       "from": "overview",
       "to": "concepts/CollisionGeometryForRobotSimulation",
@@ -6201,6 +6432,13 @@
       "id": "concepts/PhysicalRecursiveSelfImprovement--overview",
       "from": "overview",
       "to": "concepts/PhysicalRecursiveSelfImprovement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "overview--topics/executable-world-representations",
+      "from": "overview",
+      "to": "topics/executable-world-representations",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -6324,6 +6562,13 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/ExecutableWorldRepresentation--overview",
+      "from": "overview",
+      "to": "concepts/ExecutableWorldRepresentation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/FlowMatching--sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
       "from": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
       "to": "concepts/FlowMatching",
@@ -6362,6 +6607,48 @@
       "id": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai--topics/world-model-evaluation",
       "from": "sources/a-comprehensive-survey-on-world-models-for-embodied-ai",
       "to": "topics/world-model-evaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/agentgarten-code-worlds-evolving-agents--sources/code-as-world-executable-world-representations",
+      "from": "sources/agentgarten-code-worlds-evolving-agents",
+      "to": "sources/code-as-world-executable-world-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/agentgarten-code-worlds-evolving-agents--topics/simulation-ready-worlds",
+      "from": "sources/agentgarten-code-worlds-evolving-agents",
+      "to": "topics/simulation-ready-worlds",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/agentgarten-code-worlds-evolving-agents--sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "from": "sources/agentgarten-code-worlds-evolving-agents",
+      "to": "sources/magicsim-a-unified-infrastructure-for-executable-embodied-interaction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/agentgarten-code-worlds-evolving-agents--sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "from": "sources/agentgarten-code-worlds-evolving-agents",
+      "to": "sources/embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--sources/agentgarten-code-worlds-evolving-agents",
+      "from": "sources/agentgarten-code-worlds-evolving-agents",
+      "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/agentgarten-code-worlds-evolving-agents",
+      "from": "sources/agentgarten-code-worlds-evolving-agents",
+      "to": "concepts/RobotHarness",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -6649,6 +6936,41 @@
       "id": "sources/coacd-repository--topics/collision-geometry",
       "from": "sources/coacd-repository",
       "to": "topics/collision-geometry",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/code-as-world-executable-world-representations--sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "from": "sources/code-as-world-executable-world-representations",
+      "to": "sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/code-as-world-executable-world-representations--sources/tycho-active-abstraction-with-programmatic-world-models",
+      "from": "sources/code-as-world-executable-world-representations",
+      "to": "sources/tycho-active-abstraction-with-programmatic-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/code-as-world-executable-world-representations--topics/world-model-evaluation",
+      "from": "sources/code-as-world-executable-world-representations",
+      "to": "topics/world-model-evaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/code-as-world-executable-world-representations--sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "from": "sources/code-as-world-executable-world-representations",
+      "to": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/code-as-world-executable-world-representations--topics/executable-world-representations",
+      "from": "sources/code-as-world-executable-world-representations",
+      "to": "topics/executable-world-representations",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -7192,6 +7514,41 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/AgentHarness--sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "from": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "to": "concepts/AgentHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "from": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds--sources/worldecho-worldsync-action-following",
+      "from": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "to": "sources/worldecho-worldsync-action-following",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds--sources/v-jepa-2-understanding-prediction-planning",
+      "from": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "to": "sources/v-jepa-2-understanding-prediction-planning",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds--topics/executable-world-representations",
+      "from": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "to": "topics/executable-world-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/hg-dagger-human-experts--sources/thriftydagger-budget-aware-interventions",
       "from": "sources/hg-dagger-human-experts",
       "to": "sources/thriftydagger-budget-aware-interventions",
@@ -7678,6 +8035,69 @@
       "id": "sources/maniskill-repository--topics/robot-learning-systems",
       "from": "sources/maniskill-repository",
       "to": "topics/robot-learning-systems",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/mirros-physical-rsi-thesis",
+      "from": "sources/mirros-physical-rsi-thesis",
+      "to": "concepts/PhysicalRecursiveSelfImprovement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/agentgarten-code-worlds-evolving-agents--sources/mirros-physical-rsi-thesis",
+      "from": "sources/mirros-physical-rsi-thesis",
+      "to": "sources/agentgarten-code-worlds-evolving-agents",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/mirros-physical-rsi-thesis--topics/robot-harness-and-physical-rsi",
+      "from": "sources/mirros-physical-rsi-thesis",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/code-as-world-executable-world-representations--sources/mirros-physical-rsi-thesis",
+      "from": "sources/mirros-physical-rsi-thesis",
+      "to": "sources/code-as-world-executable-world-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds--sources/mirros-physical-rsi-thesis",
+      "from": "sources/mirros-physical-rsi-thesis",
+      "to": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/mirros-physical-rsi-thesis--sources/s-space-spatial-workspace-mllm",
+      "from": "sources/mirros-physical-rsi-thesis",
+      "to": "sources/s-space-spatial-workspace-mllm",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/mirros-physical-rsi-thesis--sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "from": "sources/mirros-physical-rsi-thesis",
+      "to": "sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/mirros-physical-rsi-thesis--sources/tycho-active-abstraction-with-programmatic-world-models",
+      "from": "sources/mirros-physical-rsi-thesis",
+      "to": "sources/tycho-active-abstraction-with-programmatic-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/mirros-physical-rsi-thesis--sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "from": "sources/mirros-physical-rsi-thesis",
+      "to": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -8875,6 +9295,34 @@
       "id": "sources/ryanbbrown-retrodict-repository--topics/arc-agi-3-harness-design",
       "from": "sources/ryanbbrown-retrodict-repository",
       "to": "topics/arc-agi-3-harness-design",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/code-as-world-executable-world-representations--sources/s-space-spatial-workspace-mllm",
+      "from": "sources/s-space-spatial-workspace-mllm",
+      "to": "sources/code-as-world-executable-world-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/s-space-spatial-workspace-mllm--topics/executable-world-representations",
+      "from": "sources/s-space-spatial-workspace-mllm",
+      "to": "topics/executable-world-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/WorldModelEvaluation--sources/s-space-spatial-workspace-mllm",
+      "from": "sources/s-space-spatial-workspace-mllm",
+      "to": "concepts/WorldModelEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds--sources/s-space-spatial-workspace-mllm",
+      "from": "sources/s-space-spatial-workspace-mllm",
+      "to": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -10125,6 +10573,48 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/mirros-physical-rsi-thesis--topics/executable-world-representations",
+      "from": "topics/executable-world-representations",
+      "to": "sources/mirros-physical-rsi-thesis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/agentgarten-code-worlds-evolving-agents--topics/executable-world-representations",
+      "from": "topics/executable-world-representations",
+      "to": "sources/agentgarten-code-worlds-evolving-agents",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "topics/executable-world-representations--topics/world-models-and-representations",
+      "from": "topics/executable-world-representations",
+      "to": "topics/world-models-and-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "topics/executable-world-representations--topics/world-model-evaluation",
+      "from": "topics/executable-world-representations",
+      "to": "topics/world-model-evaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "topics/executable-world-representations--topics/robot-harness-and-physical-rsi",
+      "from": "topics/executable-world-representations",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "topics/executable-world-representations--topics/simulation-ready-worlds",
+      "from": "topics/executable-world-representations",
+      "to": "topics/simulation-ready-worlds",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "topics/future-conditioned-action--topics/world-models-and-representations",
       "from": "topics/future-conditioned-action",
       "to": "topics/world-models-and-representations",
@@ -11021,9 +11511,44 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds--topics/world-model-evaluation",
+      "from": "topics/world-model-evaluation",
+      "to": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentifiedEvaluation--topics/world-model-evaluation",
+      "from": "topics/world-model-evaluation",
+      "to": "concepts/AgentifiedEvaluation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "topics/world-model-evaluation--topics/world-models-and-representations",
       "from": "topics/world-model-evaluation",
       "to": "topics/world-models-and-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/code-as-world-executable-world-representations--topics/world-models-and-representations",
+      "from": "topics/world-models-and-representations",
+      "to": "sources/code-as-world-executable-world-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/s-space-spatial-workspace-mllm--topics/world-models-and-representations",
+      "from": "topics/world-models-and-representations",
+      "to": "sources/s-space-spatial-workspace-mllm",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/agentgarten-code-worlds-evolving-agents--topics/world-models-and-representations",
+      "from": "topics/world-models-and-representations",
+      "to": "sources/agentgarten-code-worlds-evolving-agents",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
