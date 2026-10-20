@@ -820,6 +820,13 @@
       "path": "wiki/sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco.md"
     },
     {
+      "id": "sources/nimi-research-tycho-repository",
+      "label": "NIMI-research/Tycho：证据工作区、可执行模型接口与可复算的跑分",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/nimi-research-tycho-repository.md"
+    },
+    {
       "id": "sources/nvidia-ovrtx",
       "label": "NVIDIA ovrtx",
       "type": "source",
@@ -1030,6 +1037,20 @@
       "path": "wiki/sources/robotics-simulation-infrastructure.md"
     },
     {
+      "id": "sources/ryanbbrown-retrodict-repository",
+      "label": "ryanbbrown/Retrodict：把日志当唯一记忆的 ARC-AGI-3 Harness",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/ryanbbrown-retrodict-repository.md"
+    },
+    {
+      "id": "sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "label": "Schema: Discovering Unknown Environments via Agentic Program Induction",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/schema-discovering-unknown-environments-via-agentic-program-induction.md"
+    },
+    {
       "id": "sources/simex-simulation-integrated-robotics-autoresearch",
       "label": "SimEX：让编程智能体在仿真中开发并修复机器人技能",
       "type": "source",
@@ -1105,6 +1126,13 @@
       "type": "source",
       "color": "#4CAF50",
       "path": "wiki/sources/tobin-domain-randomization.md"
+    },
+    {
+      "id": "sources/tycho-active-abstraction-with-programmatic-world-models",
+      "label": "Tycho: Active Abstraction with Programmatic World Models for ARC-AGI-3",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/tycho-active-abstraction-with-programmatic-world-models.md"
     },
     {
       "id": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
@@ -1210,6 +1238,13 @@
       "type": "topic",
       "color": "#00897B",
       "path": "wiki/topics/agent-execution.md"
+    },
+    {
+      "id": "topics/arc-agi-3-harness-design",
+      "label": "ARC-AGI-3 Harness 设计：记录、程序与视觉证据",
+      "type": "topic",
+      "color": "#00897B",
+      "path": "wiki/topics/arc-agi-3-harness-design.md"
     },
     {
       "id": "topics/asset-representation",
@@ -1378,6 +1413,34 @@
       "id": "concepts/AddressableVisualMemory--concepts/RobotHarness",
       "from": "concepts/AddressableVisualMemory",
       "to": "concepts/RobotHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AddressableVisualMemory--sources/ryanbbrown-retrodict-repository",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "sources/ryanbbrown-retrodict-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AddressableVisualMemory--sources/nimi-research-tycho-repository",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "sources/nimi-research-tycho-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AddressableVisualMemory--sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AddressableVisualMemory--topics/arc-agi-3-harness-design",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "topics/arc-agi-3-harness-design",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -8039,6 +8102,34 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/nimi-research-tycho-repository--sources/tycho-active-abstraction-with-programmatic-world-models",
+      "from": "sources/nimi-research-tycho-repository",
+      "to": "sources/tycho-active-abstraction-with-programmatic-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/nimi-research-tycho-repository--sources/ryanbbrown-retrodict-repository",
+      "from": "sources/nimi-research-tycho-repository",
+      "to": "sources/ryanbbrown-retrodict-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/joshhhhhan-vista-repository--sources/nimi-research-tycho-repository",
+      "from": "sources/nimi-research-tycho-repository",
+      "to": "sources/joshhhhhan-vista-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/nimi-research-tycho-repository--topics/arc-agi-3-harness-design",
+      "from": "sources/nimi-research-tycho-repository",
+      "to": "topics/arc-agi-3-harness-design",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/nvidia-ovrtx--syntheses/ovrtx-api-boundary",
       "from": "sources/nvidia-ovrtx",
       "to": "syntheses/ovrtx-api-boundary",
@@ -8767,6 +8858,34 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/ryanbbrown-retrodict-repository--sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "from": "sources/ryanbbrown-retrodict-repository",
+      "to": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/ryanbbrown-retrodict-repository--sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "from": "sources/ryanbbrown-retrodict-repository",
+      "to": "sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/ryanbbrown-retrodict-repository--topics/arc-agi-3-harness-design",
+      "from": "sources/ryanbbrown-retrodict-repository",
+      "to": "topics/arc-agi-3-harness-design",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/nimi-research-tycho-repository--sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "from": "sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "to": "sources/nimi-research-tycho-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/simex-simulation-integrated-robotics-autoresearch--sources/simopt-adaptive-randomization",
       "from": "sources/simex-simulation-integrated-robotics-autoresearch",
       "to": "sources/simopt-adaptive-randomization",
@@ -9061,6 +9180,13 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/tycho-active-abstraction-with-programmatic-world-models--topics/arc-agi-3-harness-design",
+      "from": "sources/tycho-active-abstraction-with-programmatic-world-models",
+      "to": "topics/arc-agi-3-harness-design",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms--sources/unilab-repository",
       "from": "sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms",
       "to": "sources/unilab-repository",
@@ -9218,6 +9344,13 @@
       "id": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition--topics/collision-geometry",
       "from": "sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition",
       "to": "topics/collision-geometry",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world--topics/arc-agi-3-harness-design",
+      "from": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "to": "topics/arc-agi-3-harness-design",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -9754,6 +9887,34 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/tycho-active-abstraction-with-programmatic-world-models--topics/agent-execution",
+      "from": "topics/agent-execution",
+      "to": "sources/tycho-active-abstraction-with-programmatic-world-models",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/schema-discovering-unknown-environments-via-agentic-program-induction--topics/agent-execution",
+      "from": "topics/agent-execution",
+      "to": "sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/ryanbbrown-retrodict-repository--topics/agent-execution",
+      "from": "topics/agent-execution",
+      "to": "sources/ryanbbrown-retrodict-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "topics/agent-execution--topics/arc-agi-3-harness-design",
+      "from": "topics/agent-execution",
+      "to": "topics/arc-agi-3-harness-design",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "topics/agent-execution--topics/robot-harness-and-physical-rsi",
       "from": "topics/agent-execution",
       "to": "topics/robot-harness-and-physical-rsi",
@@ -9771,6 +9932,34 @@
       "id": "concepts/PhysicalRecursiveSelfImprovement--topics/agent-execution",
       "from": "topics/agent-execution",
       "to": "concepts/PhysicalRecursiveSelfImprovement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/joshhhhhan-vista-repository--topics/arc-agi-3-harness-design",
+      "from": "topics/arc-agi-3-harness-design",
+      "to": "sources/joshhhhhan-vista-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/schema-discovering-unknown-environments-via-agentic-program-induction--topics/arc-agi-3-harness-design",
+      "from": "topics/arc-agi-3-harness-design",
+      "to": "sources/schema-discovering-unknown-environments-via-agentic-program-induction",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--topics/arc-agi-3-harness-design",
+      "from": "topics/arc-agi-3-harness-design",
+      "to": "concepts/RobotHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "topics/arc-agi-3-harness-design--topics/robot-harness-and-physical-rsi",
+      "from": "topics/arc-agi-3-harness-design",
+      "to": "topics/robot-harness-and-physical-rsi",
       "type": "EXTRACTED",
       "confidence": 1.0
     },

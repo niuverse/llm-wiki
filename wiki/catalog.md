@@ -14,6 +14,7 @@ description: ""
 ## Topics
 
 - [[topics/agent-execution|Agent Systems]]
+- [[topics/arc-agi-3-harness-design|ARC-AGI-3 Harness 设计：记录、程序与视觉证据]]
 - [[topics/asset-representation|3D 资产格式]]
 - [[topics/assets-and-world-generation|3D 资产与场景]]
 - [[topics/collision-geometry|Collision Geometry]]
@@ -155,6 +156,7 @@ description: ""
 - [[sources/mujoco-playground-repository|MuJoCo Playground · Code]]
 - [[sources/mujoco-warp-mjwarp-documentation|MuJoCo Warp · Docs]]
 - [[sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]]
+- [[sources/nimi-research-tycho-repository|Tycho · Code]]
 - [[sources/nvidia-ovrtx|ovrtx]]
 - [[sources/nvlabs-aspire-repository|ASPIRE · Code]]
 - [[sources/nvlabs-robolab|RoboLab · Code]]
@@ -185,6 +187,8 @@ description: ""
 - [[sources/robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]]
 - [[sources/robosimstudio-repository|RoboSimStudio · Code]]
 - [[sources/robotics-simulation-infrastructure|Robotics Simulation Infrastructure]]
+- [[sources/ryanbbrown-retrodict-repository|Retrodict]]
+- [[sources/schema-discovering-unknown-environments-via-agentic-program-induction|Schema]]
 - [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX]]
 - [[sources/simopt-adaptive-randomization|SimOpt]]
 - [[sources/sirius-fleet-visual-world-models|Sirius-Fleet：世界模型监控与多任务接管]]
@@ -196,6 +200,7 @@ description: ""
 - [[sources/td-mpc2-scalable-robust-world-models|TD-MPC2]]
 - [[sources/thriftydagger-budget-aware-interventions|ThriftyDAgger]]
 - [[sources/tobin-domain-randomization|Domain Randomization · Tobin]]
+- [[sources/tycho-active-abstraction-with-programmatic-world-models|Tycho]]
 - [[sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]]
 - [[sources/unilab-repository|UniLab · Code]]
 - [[sources/v-hacd-repository|V-HACD · Code]]

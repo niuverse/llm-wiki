@@ -22,6 +22,7 @@ description: ""
 
 ## 专题笔记
 
+- [[topics/arc-agi-3-harness-design|ARC-AGI-3 Harness 设计：记录、程序与视觉证据]]
 - [[topics/asset-representation|3D 资产格式]]
 - [[topics/collision-geometry|Collision Geometry]]
 - [[topics/contact-modeling|接触建模]]

@@ -6964,6 +6964,52 @@
       "bytes": 130956,
       "png_bytes": 246656,
       "image_sha256": "0cb3279d8ede82e3c1665d8315c9b8830480ce8d430e08d8fa46343e83f9aed2"
+    },
+    {
+      "note": "wiki/sources/tycho-active-abstraction-with-programmatic-world-models.md",
+      "source_file": "raw/tycho-active-abstraction-with-programmatic-world-models-2026-10-20-6e3b72ecee72.pdf",
+      "source_sha256": "6e3b72ecee72ea3e2ecb125f4a40fcdbf67948164b0159e3f8778242a0428506",
+      "page": 3,
+      "figures": [
+        "1"
+      ],
+      "crop": [
+        0.1,
+        0.068,
+        0.9,
+        0.382
+      ],
+      "image": "wiki/assets/figures/tycho-active-abstraction-with-programmatic-world-models/fig-1.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1470,
+      "height": 747,
+      "bytes": 59788,
+      "png_bytes": 108215,
+      "image_sha256": "cea34db277fd0e061db71b88a0f19f081390f1d8d5ee5ee41b00b5a947214a59"
+    },
+    {
+      "note": "wiki/sources/schema-discovering-unknown-environments-via-agentic-program-induction.md",
+      "source_file": "raw/schema-discovering-unknown-environments-via-agentic-program-induction-2026-10-20-de1f788d70a7.pdf",
+      "source_sha256": "de1f788d70a786cda6be17db7e3e6e3f2804d20c0685a7cb98b54869a380e75e",
+      "page": 4,
+      "figures": [
+        "2"
+      ],
+      "crop": [
+        0.1,
+        0.07,
+        0.9,
+        0.37
+      ],
+      "image": "wiki/assets/figures/schema-discovering-unknown-environments-via-agentic-program-induction/fig-2.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1430,
+      "height": 759,
+      "bytes": 88998,
+      "png_bytes": 149543,
+      "image_sha256": "96ca14fd85aead8bbc93efcf6044f95cf58fd34c5c97db19b17ae89e76fef96f"
     }
   ]
 }

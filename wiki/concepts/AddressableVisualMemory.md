@@ -69,6 +69,7 @@ VISTA 在 ARC-AGI-3 上的逐层消融给出了一条清晰的曲线：加笔记
 - 对 [[AgentHarness|Agent Harness]]：那里区分“会话历史、模型上下文、执行状态”；可寻址视觉记忆是把“历史”留在上下文之外的一种具体做法，且检索单位是像素区域而非文本片段。
 - 对长任务上下文管理（[[anthropic-long-running-harness|Anthropic 长任务方案]]）：两者都靠“交接文档 + 新上下文”跨窗口，区别是这里的关键证据不在文档里，而在可按坐标回看的图像里。
 - 对 [[RobotHarness|机器人 Harness]]：视觉记忆可用于操作复盘与证据追溯，但物理状态不可回滚——回看一段视频能解释失败，不能撤销失败。
+- 对同一基准上的其他路线：[[ryanbbrown-retrodict-repository|Retrodict]] 把记录换成文本日志、[[nimi-research-tycho-repository|Tycho]] 把它换成类型化事件与可执行模型、[[schema-discovering-unknown-environments-via-agentic-program-induction|Schema]] 把它换成程序；四者共享“记录高于信念”的结构，差别在记录形态。见 [[topics/arc-agi-3-harness-design|ARC-AGI-3 Harness 设计]]。
 
 ## 待验证的问题
 

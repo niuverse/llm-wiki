@@ -1219,3 +1219,33 @@ ASPIRE、Harness VLA、123 轮负结果、Who Improves the Robot 全文、RSI-An
 时间：2026-10-20 15:34（北京时间，UTC+08:00）
 
 归档固定提交 `c97c354`（2026-10-04，MIT）的源码快照 `raw/joshhhhhan-vista-repository-2026-10-20-5b1b16a31113.tgz`，按成员路径逐字解码 104 个文本文件生成读取缓存，新建仓库来源页 [[joshhhhhan-vista-repository|VISTA · Code]]。核查内容包括：`benchmarks`／`core`／`backends` 三层与四个基准的适配边界；一次 `play` 从 MCP bridge 经 Unix socket 到宿主 controller 的完整路径，以及“上一次动作结果未交付前拒绝新动作”的串行闸门；512 显示坐标到 64×64 环境格的映射；全部动画帧按 `turn_XXX_frame_YY.png` 归档而只回最后一帧；`inspect` 从归档 PNG 裁剪并最近邻放大、`read_pixels` 的等分格心采样与两套调色板作用域（ARC 精确色 / 通用截图 4 bit 量化）；以 599 个图像块与 provider 自动压缩为触发、`PreCompact` hook 阻断原生压缩、只放行笔记工具、写完后以 `interrupt_after` 结束回合再开新会话的交接协议；以及只读容器、`--tools ""` 与凭据清理的隔离参数。未运行游戏或模型。
+
+## [2026-10-20] ingest | Tycho: Active Abstraction with Programmatic World Models for ARC-AGI-3
+
+时间：2026-10-20 20:28（北京时间，UTC+08:00）
+
+归档 arXiv 2607.28287v1 原始 PDF（`raw/tycho-active-abstraction-with-programmatic-world-models-2026-10-20-6e3b72ecee72.pdf`）并完整阅读 52 页，新建论文来源页 [[tycho-active-abstraction-with-programmatic-world-models|Tycho]]，嵌入并登记原文图 1。记录其把关卡形式化为带转移发射的渲染确定性 Moore 机、区分可行动帧与动画／终局证据、以及在同一证据接口上比较四种模型维护策略的匹配实验：79.07 / 85.36 / 88.49 / 83.07，选定 orchestrator 后 GPT-5.6 Sol 与 Opus 5 双双 100.00（7,766 / 6,641 动作）。重点写明“自动修复让模拟器更准但分数更低”的原因——transition match 不等于目标识别或动作质量，并摘录 actor 的八个工具与“只有 `take_action` 计分”的协议。
+
+## [2026-10-20] ingest | NIMI-research/Tycho：证据工作区、可执行模型接口与可复算的跑分
+
+时间：2026-10-20 20:28（北京时间，UTC+08:00）
+
+归档固定提交 `f68912a`（2026-07-29，Apache-2.0）源码快照 `raw/nimi-research-tycho-repository-2026-10-20-d3f82c1577bb.tgz`，逐字解码 152 个文本文件生成缓存，新建仓库来源页 [[nimi-research-tycho-repository|Tycho · Code]]。核查证据工作区的目录约定（turn 网格／PNG／JSON、关卡内差分、死亡证据、不可变 attempt、`WorkspaceVersionStore`）、为模型可寻址性测过 token 成本的网格格式（spaced_grid8 比 spaced 多 9% token）、`world_model.py` 的五个入口与 `-1` 弃权语义、六张官方 scorecard 与 `evaluation_integrity.json` 的绑定、151 文件完整性清单与容器隔离。未运行游戏。
+
+## [2026-10-20] ingest | Schema: Discovering Unknown Environments via Agentic Program Induction
+
+时间：2026-10-20 20:28（北京时间，UTC+08:00）
+
+归档 arXiv 2609.39140v1 原始 PDF（`raw/schema-discovering-unknown-environments-via-agentic-program-induction-2026-10-20-de1f788d70a7.pdf`）并完整阅读 33 页，新建论文来源页 [[schema-discovering-unknown-environments-via-agentic-program-induction|Schema]]，嵌入并登记原文图 2。记录交互式程序归纳的四步（假设—认证—规划—带验证执行）、预测接口 $P(z_t,o_t,a_t)\to(\hat o_{t+1},z_{t+1})$、全历史回测的认证判据，以及 ARC-AGI-3 从 58.7% 到 99.2% 的模型对照、72.9→52.4 的消融与四条行为案例。标明 DiG-bench“100%”是 max effort 单次 21/21（三次均值 20.3/21），并注明正文与附录对压缩次数的 20/35 两种说法。
+
+## [2026-10-20] ingest | ryanbbrown/Retrodict：把日志当唯一记忆的 ARC-AGI-3 Harness
+
+时间：2026-10-20 20:28（北京时间，UTC+08:00）
+
+归档固定提交 `71672e8`（2026-08-11，无 LICENSE）源码快照 `raw/ryanbbrown-retrodict-repository-2026-10-20-c49ff487069d.tgz`，新建仓库来源页 [[ryanbbrown-retrodict-repository|Retrodict]]。核查其“日志即唯一记忆”的设计：`log.txt` 的稳定标记块、`[DIFF]` 派生、`playbook.md` 的 checked/assumed 标注、带格子级期望的计划队列与逐步核对、150k token 上下文重置、300 动作／2 次 RESET 后的强制升级、containment venv 与每次运行生成的 `containment.json`。特别标明证据边界：README 声称 99.86%（远程卡 `9c403765`），仓库提交的是更早的 84.52 官方卡；并摘录其维护的 18 个 harness 成本对比。
+
+## [2026-10-20] research | ARC-AGI-3 harness 的四种记录与形式化路线
+
+时间：2026-10-20 20:28（北京时间，UTC+08:00）
+
+在四份来源（[[vista-a-visual-harness-for-reasoning-in-an-interactive-world|VISTA]]、[[tycho-active-abstraction-with-programmatic-world-models|Tycho]]、[[schema-discovering-unknown-environments-via-agentic-program-induction|Schema]]、[[ryanbbrown-retrodict-repository|Retrodict]]）之上新建专题页 [[topics/arc-agi-3-harness-design|ARC-AGI-3 Harness 设计]]，比较记录形态（像素／文本网格／类型化事件／程序）、信念载体（笔记／playbook／world_model.py）与“何时形式化”的四种调度，指出四者收敛到“记录高于信念”，并区分可核查证据（第三方卡／轨迹／无代码）。同步在 [[AddressableVisualMemory|可寻址视觉记忆]] 增加同基准其他路线的对照，在 [[topics/agent-execution|Agent Systems]] 比较表加入该专题入口。横向数字部分依赖 Retrodict 作者维护的对比文档与 Tycho 论文对 Schema 重跑协议的描述，已在页面标注为一方说法。
