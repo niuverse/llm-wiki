@@ -1,6 +1,13 @@
 {
   "nodes": [
     {
+      "id": "concepts/AddressableVisualMemory",
+      "label": "可寻址视觉记忆",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/AddressableVisualMemory.md"
+    },
+    {
       "id": "concepts/AgentHarness",
       "label": "Agent Harness",
       "type": "concept",
@@ -680,6 +687,13 @@
       "path": "wiki/sources/isaac-sim-policy-deployment.md"
     },
     {
+      "id": "sources/joshhhhhan-vista-repository",
+      "label": "joshhhhhan/VISTA 工程实现：视觉记忆、工具桥与上下文交接",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/joshhhhhan-vista-repository.md"
+    },
+    {
       "id": "sources/kpi-promptable-kernel-physical-interaction",
       "label": "KPI：用交互约定连接高层智能体与人形机器人接触控制",
       "type": "source",
@@ -1135,6 +1149,13 @@
       "path": "wiki/sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition.md"
     },
     {
+      "id": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "label": "VISTA: A Visual Harness for Reasoning in an Interactive World",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world.md"
+    },
+    {
       "id": "sources/vr-gs-physical-dynamics-aware-interactive-gaussian-splatting",
       "label": "VR-GS: A Physical Dynamics-Aware Interactive Gaussian Splatting System in Virtual Reality",
       "type": "source",
@@ -1326,6 +1347,41 @@
   ],
   "edges": [
     {
+      "id": "concepts/AddressableVisualMemory--sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AddressableVisualMemory--sources/joshhhhhan-vista-repository",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "sources/joshhhhhan-vista-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AddressableVisualMemory--concepts/AgentHarness",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "concepts/AgentHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AddressableVisualMemory--sources/anthropic-long-running-harness",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "sources/anthropic-long-running-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AddressableVisualMemory--concepts/RobotHarness",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "concepts/RobotHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/AgentHarness--sources/deepseek-harness",
       "from": "concepts/AgentHarness",
       "to": "sources/deepseek-harness",
@@ -1378,6 +1434,13 @@
       "id": "concepts/AgentHarness--sources/regenharness-evidence-gated-self-improvement",
       "from": "concepts/AgentHarness",
       "to": "sources/regenharness-evidence-gated-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "from": "concepts/AgentHarness",
+      "to": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -7262,6 +7325,13 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/joshhhhhan-vista-repository--sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "from": "sources/joshhhhhan-vista-repository",
+      "to": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/PolicyDeploymentContract--sources/kpi-promptable-kernel-physical-interaction",
       "from": "sources/kpi-promptable-kernel-physical-interaction",
       "to": "concepts/PolicyDeploymentContract",
@@ -9673,6 +9743,13 @@
       "id": "sources/robofoundry-system-as-policy--topics/agent-execution",
       "from": "topics/agent-execution",
       "to": "sources/robofoundry-system-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world--topics/agent-execution",
+      "from": "topics/agent-execution",
+      "to": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
       "type": "EXTRACTED",
       "confidence": 1.0
     },

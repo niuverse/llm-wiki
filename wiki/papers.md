@@ -41,6 +41,7 @@ description: "按主题、年份和关键词查找论文；共享基础通过正
 - [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX]] · 2026 · arXiv 预印本
 - [[sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]] · 2026 · arXiv 预印本
 - [[sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]] · 2026 · Eurographics 2026 Short Papers
+- [[sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world|VISTA]] · 2026 · arXiv 技术报告（v1）
 - [[sources/worldecho-worldsync-action-following|WorldEcho／WorldSync]] · 2026 · arXiv 预印本
 - [[sources/a-comprehensive-survey-on-world-models-for-embodied-ai|World Models · 综述]] · 2025 · arXiv 预印本
 - [[sources/dino-wm-pretrained-visual-features|DINO-WM]] · 2025 · ICML

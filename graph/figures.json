@@ -6895,6 +6895,75 @@
       "bytes": 125646,
       "png_bytes": 512571,
       "image_sha256": "2f9ec5065ef9e53bdef98455003a7f13f1a1ee37a7e08172ce29778e9beef7cb"
+    },
+    {
+      "note": "wiki/sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world.md",
+      "source_file": "raw/vista-a-visual-harness-for-reasoning-in-an-interactive-world-2026-10-20-40c95e5ebed5.pdf",
+      "source_sha256": "40c95e5ebed5f50fe696462177a2561352027ef85fd28293dbd5e2cc221e838a",
+      "page": 4,
+      "figures": [
+        "3"
+      ],
+      "crop": [
+        0.1,
+        0.07,
+        0.905,
+        0.437
+      ],
+      "image": "wiki/assets/figures/vista-a-visual-harness-for-reasoning-in-an-interactive-world/fig-3.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1479,
+      "height": 873,
+      "bytes": 142234,
+      "png_bytes": 287760,
+      "image_sha256": "2b1fedb3eb3839ff0d70a92fe7d92e53279d47b8bdeb722df0ade50b2ef893bf"
+    },
+    {
+      "note": "wiki/sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world.md",
+      "source_file": "raw/vista-a-visual-harness-for-reasoning-in-an-interactive-world-2026-10-20-40c95e5ebed5.pdf",
+      "source_sha256": "40c95e5ebed5f50fe696462177a2561352027ef85fd28293dbd5e2cc221e838a",
+      "page": 6,
+      "figures": [
+        "5"
+      ],
+      "crop": [
+        0.1,
+        0.072,
+        0.905,
+        0.243
+      ],
+      "image": "wiki/assets/figures/vista-a-visual-harness-for-reasoning-in-an-interactive-world/fig-5.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1479,
+      "height": 407,
+      "bytes": 31984,
+      "png_bytes": 60766,
+      "image_sha256": "55ebb9534ef06b025fa643a5f0e63d56f76d3a2f016a5163f16365d32af83d30"
+    },
+    {
+      "note": "wiki/sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world.md",
+      "source_file": "raw/vista-a-visual-harness-for-reasoning-in-an-interactive-world-2026-10-20-40c95e5ebed5.pdf",
+      "source_sha256": "40c95e5ebed5f50fe696462177a2561352027ef85fd28293dbd5e2cc221e838a",
+      "page": 8,
+      "figures": [
+        "10"
+      ],
+      "crop": [
+        0.1,
+        0.296,
+        0.905,
+        0.564
+      ],
+      "image": "wiki/assets/figures/vista-a-visual-harness-for-reasoning-in-an-interactive-world/fig-10.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1479,
+      "height": 638,
+      "bytes": 130956,
+      "png_bytes": 246656,
+      "image_sha256": "0cb3279d8ede82e3c1665d8315c9b8830480ce8d430e08d8fa46343e83f9aed2"
     }
   ]
 }

@@ -4,8 +4,8 @@ type: topic
 entry: tools
 nav_order: 1
 tags: [agents, source-backed]
-sources: ["[[deepseek-harness]]", "[[pi-agent-harness]]", "[[opencode-harness]]", "[[langgraph-persistence]]", "[[anthropic-long-running-harness]]", "[[anthropic-managed-agents]]", "[[agentsserver]]", "[[agentsdock-releases]]", "[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[robofoundry-system-as-policy]]"]
-modified: 2026-10-17
+sources: ["[[deepseek-harness]]", "[[pi-agent-harness]]", "[[opencode-harness]]", "[[langgraph-persistence]]", "[[anthropic-long-running-harness]]", "[[anthropic-managed-agents]]", "[[agentsserver]]", "[[agentsdock-releases]]", "[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[robofoundry-system-as-policy]]", "[[vista-a-visual-harness-for-reasoning-in-an-interactive-world]]"]
+modified: 2026-10-20
 description: "从工具循环理解上下文、会话恢复与框架设计。"
 ---
 
@@ -26,6 +26,7 @@ description: "从工具循环理解上下文、会话恢复与框架设计。"
 | [[pi-agent-harness|pi-durable]] | 原子提交、持久任务、任务所有权 | 模型与工具执行也参与恢复，怎样处理不安全重试 | 实验包文档；不能当成普通 CLI 默认实现 |
 | [[anthropic-long-running-harness|Anthropic 长任务方案]] | 环境初始化、逐项推进、验证与交接 | 一个任务跨多个上下文窗口如何保持进度 | Web 开发工程经验；非 SDK 内核解析 |
 | [[anthropic-managed-agents|Anthropic Managed Agents]] | 会话、harness、sandbox 分离 | 三种生命周期怎样分别失败和重建 | 官方架构文章；无服务端代码核验 |
+| [[vista-a-visual-harness-for-reasoning-in-an-interactive-world|VISTA]] | 视觉观测、可寻址视觉记忆、模型主导检查 | 长程视觉证据怎样不靠上下文保留，压缩怎样变成交接协议 | 论文全文与固定提交源码静态核查；未运行游戏 |
 
 **当前判断：**这些系统并不处于完全相同的层级。LangGraph 可以承载一个模型循环；一个完整编码工具也可以把底层循环封装起来。多 agent、MCP、插件和持久化各解决不同问题，不应混成一张“功能越多越先进”的榜单。
 
