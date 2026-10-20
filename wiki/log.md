@@ -1207,3 +1207,15 @@ ASPIRE、Harness VLA、123 轮负结果、Who Improves the Robot 全文、RSI-An
 时间：2026-10-19 17:38（北京时间，UTC+08:00）
 
 围绕用户系统学习 PhysGaussian 及其相关工作的请求，先同步本仓库远端最新 `main` 分支，完整归档并精读 7 篇代表性论文（[[physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics|PhysGaussian]]、[[pac-nerf-physics-augmented-continuum-neural-radiance-fields|PAC-NeRF]]、[[vr-gs-physical-dynamics-aware-interactive-gaussian-splatting|VR-GS]]、[[spring-gaus-reconstruction-and-simulation-of-elastic-objects|Spring-Gaus]]、[[physdreamer-physics-based-interaction-with-3d-objects|PhysDreamer]]、[[gic-gaussian-informed-continuum-physical-property-identification|GIC]]、[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin]]）与 [[physgaussian-repository|XPandora/PhysGaussian 官方仓库]]（共 8 份原始资料，新增并校验 19 幅原文图）。新建跨论文概念页 [[PhysicsIntegrated3DGaussians|物理集成 3D 高斯与连续介质仿真]]，统合四类高斯—物理耦合架构（逐核直接 MPM、双层四面体笼 XPBD、K-Means 驱动粒子可微 MPM、稀疏弹簧质点锚点 IDW/LBS）、局部仿射协方差与球谐演化、三代内部体积填充与形状补全策略，以及从真实视频或视频生成先验反演物理参数的优化设计；同步更新 [[DifferentiablePhysics|可微物理]]、[[SystemIdentificationForSimulation|系统辨识]]、[[topics/physics-simulation|物理仿真]]、[[topics/assets-and-world-generation|3D 资产与场景]]、[[topics/simulation-ready-worlds|Simulation-ready Worlds]] 与 [[topics/simulation-transfer|Sim-to-Real]]。本轮未在本机编译运行 GPU 仿真。
+
+## [2026-10-20] ingest | VISTA: A Visual Harness for Reasoning in an Interactive World
+
+时间：2026-10-20 15:34（北京时间，UTC+08:00）
+
+归档 arXiv 2610.02200v1 原始 PDF（`raw/vista-a-visual-harness-for-reasoning-in-an-interactive-world-2026-10-20-40c95e5ebed5.pdf`）并完整阅读全文 19 页，新建论文来源页 [[vista-a-visual-harness-for-reasoning-in-an-interactive-world|VISTA]]，嵌入并登记原文图 3、图 5 与图 10。记录其把 ARC-AGI-3 从“文本网格 + 程序合成”改写为“渲染像素 + 自然语言推理”的动机：视觉表示在编码时无法预知后续用途，长程交互中早期观测又被上下文淘汰；对应机制是视觉观测、无损视觉记忆与模型主导的 `inspect`／`read_pixels`。整理 RHAE 的逐关平方比与关卡加权公式、13.33 → 47.32 → 51.66 → 65.82 → 70.05 → 94.10 → 99.00 的逐层消融、图像与文本网格的 token 对比（30.7M vs 71.9M 每局）、上下文与输入缩放的平坦曲线、3D 渲染与开源权重结果，以及四个基准的泛化数字。同步新建概念页 [[AddressableVisualMemory|可寻址视觉记忆]]，解释“裁剪才改变有效分辨率”“测量与解释分离”“压缩变成交接协议”三条机制判断，并在 [[AgentHarness|Agent Harness]] 的上下文一节补写像素历史的同构问题、在 [[topics/agent-execution|Agent Systems]] 的比较表新增一行。本轮为阅读与知识整合，未复现实验。
+
+## [2026-10-20] ingest | joshhhhhan/VISTA 工程实现：视觉记忆、工具桥与上下文交接
+
+时间：2026-10-20 15:34（北京时间，UTC+08:00）
+
+归档固定提交 `c97c354`（2026-10-04，MIT）的源码快照 `raw/joshhhhhan-vista-repository-2026-10-20-5b1b16a31113.tgz`，按成员路径逐字解码 104 个文本文件生成读取缓存，新建仓库来源页 [[joshhhhhan-vista-repository|VISTA · Code]]。核查内容包括：`benchmarks`／`core`／`backends` 三层与四个基准的适配边界；一次 `play` 从 MCP bridge 经 Unix socket 到宿主 controller 的完整路径，以及“上一次动作结果未交付前拒绝新动作”的串行闸门；512 显示坐标到 64×64 环境格的映射；全部动画帧按 `turn_XXX_frame_YY.png` 归档而只回最后一帧；`inspect` 从归档 PNG 裁剪并最近邻放大、`read_pixels` 的等分格心采样与两套调色板作用域（ARC 精确色 / 通用截图 4 bit 量化）；以 599 个图像块与 provider 自动压缩为触发、`PreCompact` hook 阻断原生压缩、只放行笔记工具、写完后以 `interrupt_after` 结束回合再开新会话的交接协议；以及只读容器、`--tools ""` 与凭据清理的隔离参数。未运行游戏或模型。

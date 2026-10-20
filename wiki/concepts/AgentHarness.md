@@ -2,8 +2,8 @@
 title: "Agent Harness"
 type: concept
 tags: [agents, source-backed]
-sources: ["[[deepseek-harness]]", "[[pi-agent-harness]]", "[[opencode-harness]]", "[[langgraph-persistence]]", "[[anthropic-long-running-harness]]", "[[anthropic-managed-agents]]", "[[gap-runtime-repository]]", "[[regenharness-evidence-gated-self-improvement]]"]
-modified: 2026-10-15
+sources: ["[[deepseek-harness]]", "[[pi-agent-harness]]", "[[opencode-harness]]", "[[langgraph-persistence]]", "[[anthropic-long-running-harness]]", "[[anthropic-managed-agents]]", "[[gap-runtime-repository]]", "[[regenharness-evidence-gated-self-improvement]]", "[[vista-a-visual-harness-for-reasoning-in-an-interactive-world]]"]
+modified: 2026-10-20
 topics: ["topics/agent-execution"]
 ---
 
@@ -52,6 +52,8 @@ flowchart TD
 常见处理是删去本轮不需要的长输出、为旧阶段生成摘要、保留近期完整交互。压缩应保留目标、约束、已做决定、失败证据和下一步所需信息。它减少的是本轮输入，不应被误认为原历史自然消失；DSH 和 pi 都为摘要／替换另记条目。[[deepseek-harness]]、[[pi-agent-harness]]
 
 **教学例子：**“测试失败，继续修复”太模糊；“修改了配置 A，测试 B 仍因超时失败，尚未检查 C；用户要求不改公共接口”更有利于接续。后者仍是有损摘要，精确错误输出应能按记录重新读取。长期任务还需要可检查的完成标准，不能只靠模型记得自己想做什么。[[anthropic-long-running-harness]]
+
+**当历史是像素时。** 以上讨论默认历史可以写成文字。若观测是截图或视频，压缩损失不只发生在摘要：每张图进入模型时就被编码一次，细节可能已经丢掉，而模型在编码时并不知道后面需要什么。一种应对是不让历史进入上下文——原始帧按回合与帧号存盘，模型在推理中主动取回、裁剪、放大，上下文只保留当前帧和取回的那一块。这同时改变了“压缩”的形态：不再是模型之外的摘要，而是模型自己书写、有长度上限的交接文档。具体证据与实现见 [[AddressableVisualMemory|可寻址视觉记忆]]。
 
 ## 工具调用不是一段任意字符串
 

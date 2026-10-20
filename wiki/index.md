@@ -32,16 +32,16 @@ description: ""
 
 时间为北京时间；旧记录未记时分的只显示日期。
 
+- **2026-10-20 15:34** · joshhhhhan/VISTA 工程实现：视觉记忆、工具桥与上下文交接
+  [[sources/joshhhhhan-vista-repository|VISTA · Code]]
+- **2026-10-20 15:34** · VISTA: A Visual Harness for Reasoning in an Interactive World
+  [[sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world|VISTA]] · [[concepts/AddressableVisualMemory|可寻址视觉记忆]]
 - **2026-10-19 17:38** · PhysGaussian 与物理集成 3D 高斯（Physical 3DGS）体系整合
   [[sources/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics|PhysGaussian]] · [[sources/pac-nerf-physics-augmented-continuum-neural-radiance-fields|PAC-NeRF]]
 - **2026-10-19 17:38** · PhysTwin: Physics-Informed Reconstruction and Simulation of Deformable Objects from Videos
   [[sources/phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin]]
 - **2026-10-19 17:38** · GIC: Gaussian-Informed Continuum for Physical Property Identification and Simulation
   [[sources/gic-gaussian-informed-continuum-physical-property-identification|GIC]]
-- **2026-10-19 17:38** · PhysDreamer: Physics-Based Interaction with 3D Objects via Video Generation
-  [[sources/physdreamer-physics-based-interaction-with-3d-objects|PhysDreamer]]
-- **2026-10-19 17:38** · Reconstruction and Simulation of Elastic Objects with Spring-Mass 3D Gaussians
-  [[sources/spring-gaus-reconstruction-and-simulation-of-elastic-objects|Spring-Gaus]]
 
 [[log|查看完整日志]]
 

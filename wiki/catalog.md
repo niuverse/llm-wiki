@@ -36,6 +36,7 @@ description: ""
 
 ## Concepts
 
+- [[concepts/AddressableVisualMemory|可寻址视觉记忆]]
 - [[concepts/AgentHarness|Agent Harness]]
 - [[concepts/AgenticSceneTaskGeneration|Agentic Scene Generation]]
 - [[concepts/ApproximateConvexDecomposition|Approximate Convex Decomposition]]
@@ -135,6 +136,7 @@ description: ""
 - [[sources/isaac-sim-asset-structure|Isaac Sim · 资产结构 3.0]]
 - [[sources/isaac-sim-core-api-collision-approximation|Isaac Sim · Collision Approximation]]
 - [[sources/isaac-sim-policy-deployment|Isaac Sim · 策略部署]]
+- [[sources/joshhhhhan-vista-repository|VISTA · Code]]
 - [[sources/kpi-promptable-kernel-physical-interaction|KPI]]
 - [[sources/langgraph-persistence|LangGraph]]
 - [[sources/lda-1b-scaling-latent-dynamics-action-model|LDA-1B]]
@@ -200,6 +202,7 @@ description: ""
 - [[sources/v-jepa-2-understanding-prediction-planning|V-JEPA 2]]
 - [[sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]]
 - [[sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]
+- [[sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world|VISTA]]
 - [[sources/vr-gs-physical-dynamics-aware-interactive-gaussian-splatting|VR-GS]]
 - [[sources/worldecho-worldsync-action-following|WorldEcho／WorldSync]]
 

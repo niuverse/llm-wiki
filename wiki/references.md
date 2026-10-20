@@ -70,6 +70,7 @@ description: ""
 - [[sources/unilab-a-heterogeneous-architecture-for-robot-rl-beyond-gpu-dominant-paradigms|UniLab]]
 - [[sources/v-jepa-2-understanding-prediction-planning|V-JEPA 2]]
 - [[sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition|VisACD]]
+- [[sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world|VISTA]]
 - [[sources/vr-gs-physical-dynamics-aware-interactive-gaussian-splatting|VR-GS]]
 - [[sources/worldecho-worldsync-action-following|WorldEcho／WorldSync]]
 
@@ -82,6 +83,7 @@ description: ""
 - [[sources/deepseek-harness|DeepSeek Harness]]
 - [[sources/gap-runtime-repository|GaP 代码核查]]
 - [[sources/isaac-lab-repository|Isaac Lab · Code]]
+- [[sources/joshhhhhan-vista-repository|VISTA · Code]]
 - [[sources/maniskill-repository|ManiSkill · Code]]
 - [[sources/mjlab-repository|mjlab · Code]]
 - [[sources/mujoco-playground-repository|MuJoCo Playground · Code]]

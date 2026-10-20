@@ -8,9 +8,10 @@ code { background: #f4f4f4; padding: 0.1rem 0.25rem; border-radius: 4px; }
 pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 </style>
 <h1>LLM Wiki Graph</h1>
-<p>Nodes: 189. Edges: 1350.</p>
+<p>Nodes: 192. Edges: 1358.</p>
 <h2>Nodes</h2>
-<ul><li><strong>Agent Harness</strong> <code>concepts/AgentHarness</code> <span>concept</span></li>
+<ul><li><strong>可寻址视觉记忆</strong> <code>concepts/AddressableVisualMemory</code> <span>concept</span></li>
+<li><strong>Agent Harness</strong> <code>concepts/AgentHarness</code> <span>concept</span></li>
 <li><strong>Agentic Scene Generation</strong> <code>concepts/AgenticSceneTaskGeneration</code> <span>concept</span></li>
 <li><strong>Approximate Convex Decomposition</strong> <code>concepts/ApproximateConvexDecomposition</code> <span>concept</span></li>
 <li><strong>原子技能与组合泛化评测</strong> <code>concepts/AtomicSkillAndCompositionalEvaluation</code> <span>concept</span></li>
@@ -107,6 +108,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>Asset Structure - Isaac Sim Documentation</strong> <code>sources/isaac-sim-asset-structure</code> <span>source</span></li>
 <li><strong>Isaac Sim Core API Collision Approximation</strong> <code>sources/isaac-sim-core-api-collision-approximation</code> <span>source</span></li>
 <li><strong>Isaac Sim 6.1: Deploying policies in Isaac Sim</strong> <code>sources/isaac-sim-policy-deployment</code> <span>source</span></li>
+<li><strong>joshhhhhan/VISTA 工程实现：视觉记忆、工具桥与上下文交接</strong> <code>sources/joshhhhhan-vista-repository</code> <span>source</span></li>
 <li><strong>KPI：用交互约定连接高层智能体与人形机器人接触控制</strong> <code>sources/kpi-promptable-kernel-physical-interaction</code> <span>source</span></li>
 <li><strong>LangGraph：状态图与 Checkpoints</strong> <code>sources/langgraph-persistence</code> <span>source</span></li>
 <li><strong>LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion</strong> <code>sources/lda-1b-scaling-latent-dynamics-action-model</code> <span>source</span></li>
@@ -172,6 +174,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>V-JEPA 2：视频表征怎样接到机器人规划</strong> <code>sources/v-jepa-2-understanding-prediction-planning</code> <span>source</span></li>
 <li><strong>VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation</strong> <code>sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation</code> <span>source</span></li>
 <li><strong>VisACD：用可见性快速评价凸分解切面</strong> <code>sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition</code> <span>source</span></li>
+<li><strong>VISTA: A Visual Harness for Reasoning in an Interactive World</strong> <code>sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world</code> <span>source</span></li>
 <li><strong>VR-GS: A Physical Dynamics-Aware Interactive Gaussian Splatting System in Virtual Reality</strong> <code>sources/vr-gs-physical-dynamics-aware-interactive-gaussian-splatting</code> <span>source</span></li>
 <li><strong>WorldEcho／WorldSync：世界模型是否忠实执行动作</strong> <code>sources/worldecho-worldsync-action-following</code> <span>source</span></li>
 <li><strong>Isaac Sim 与 MuJoCo 物理和控制笔记</strong> <code>syntheses/isaac-sim-mujoco-control-tuning-notes</code> <span>synthesis</span></li>
@@ -200,7 +203,12 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>World Model 评测</strong> <code>topics/world-model-evaluation</code> <span>topic</span></li>
 <li><strong>World Models</strong> <code>topics/world-models-and-representations</code> <span>topic</span></li></ul>
 <h2>Edges</h2>
-<ul><li><code>concepts/AgentHarness</code> -> <code>sources/deepseek-harness</code></li>
+<ul><li><code>concepts/AddressableVisualMemory</code> -> <code>sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world</code></li>
+<li><code>concepts/AddressableVisualMemory</code> -> <code>sources/joshhhhhan-vista-repository</code></li>
+<li><code>concepts/AddressableVisualMemory</code> -> <code>concepts/AgentHarness</code></li>
+<li><code>concepts/AddressableVisualMemory</code> -> <code>sources/anthropic-long-running-harness</code></li>
+<li><code>concepts/AddressableVisualMemory</code> -> <code>concepts/RobotHarness</code></li>
+<li><code>concepts/AgentHarness</code> -> <code>sources/deepseek-harness</code></li>
 <li><code>concepts/AgentHarness</code> -> <code>sources/pi-agent-harness</code></li>
 <li><code>concepts/AgentHarness</code> -> <code>sources/opencode-harness</code></li>
 <li><code>concepts/AgentHarness</code> -> <code>sources/langgraph-persistence</code></li>
@@ -208,6 +216,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>concepts/AgentHarness</code> -> <code>sources/anthropic-managed-agents</code></li>
 <li><code>concepts/AgentHarness</code> -> <code>sources/gap-runtime-repository</code></li>
 <li><code>concepts/AgentHarness</code> -> <code>sources/regenharness-evidence-gated-self-improvement</code></li>
+<li><code>concepts/AgentHarness</code> -> <code>sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world</code></li>
 <li><code>concepts/AgentHarness</code> -> <code>topics/agent-execution</code></li>
 <li><code>concepts/AgentHarness</code> -> <code>concepts/RobotHarness</code></li>
 <li><code>concepts/AgentHarness</code> -> <code>concepts/PhysicalRecursiveSelfImprovement</code></li>
@@ -1048,6 +1057,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>sources/isaac-sim-policy-deployment</code> -> <code>concepts/ReducedCoordinateArticulations</code></li>
 <li><code>sources/isaac-sim-policy-deployment</code> -> <code>topics/evaluation-and-transfer</code></li>
 <li><code>sources/isaac-sim-policy-deployment</code> -> <code>topics/simulation-transfer</code></li>
+<li><code>sources/joshhhhhan-vista-repository</code> -> <code>sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world</code></li>
 <li><code>sources/kpi-promptable-kernel-physical-interaction</code> -> <code>concepts/PolicyDeploymentContract</code></li>
 <li><code>sources/kpi-promptable-kernel-physical-interaction</code> -> <code>sources/simex-simulation-integrated-robotics-autoresearch</code></li>
 <li><code>sources/kpi-promptable-kernel-physical-interaction</code> -> <code>topics/planning-and-control</code></li>
@@ -1393,6 +1403,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>topics/agent-execution</code> -> <code>sources/gap-graph-as-policy</code></li>
 <li><code>topics/agent-execution</code> -> <code>sources/regenharness-evidence-gated-self-improvement</code></li>
 <li><code>topics/agent-execution</code> -> <code>sources/robofoundry-system-as-policy</code></li>
+<li><code>topics/agent-execution</code> -> <code>sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world</code></li>
 <li><code>topics/agent-execution</code> -> <code>topics/robot-harness-and-physical-rsi</code></li>
 <li><code>topics/agent-execution</code> -> <code>concepts/RobotHarness</code></li>
 <li><code>topics/agent-execution</code> -> <code>concepts/PhysicalRecursiveSelfImprovement</code></li>
@@ -1553,6 +1564,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <h2>Raw Data</h2>
 <pre id="graph-data">{
   "nodes": [
+    {
+      "id": "concepts/AddressableVisualMemory",
+      "label": "可寻址视觉记忆",
+      "type": "concept",
+      "color": "#FF9800",
+      "path": "wiki/concepts/AddressableVisualMemory.md"
+    },
     {
       "id": "concepts/AgentHarness",
       "label": "Agent Harness",
@@ -2233,6 +2251,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "path": "wiki/sources/isaac-sim-policy-deployment.md"
     },
     {
+      "id": "sources/joshhhhhan-vista-repository",
+      "label": "joshhhhhan/VISTA 工程实现：视觉记忆、工具桥与上下文交接",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/joshhhhhan-vista-repository.md"
+    },
+    {
       "id": "sources/kpi-promptable-kernel-physical-interaction",
       "label": "KPI：用交互约定连接高层智能体与人形机器人接触控制",
       "type": "source",
@@ -2688,6 +2713,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "path": "wiki/sources/visacd-visibility-based-gpu-accelerated-approximate-convex-decomposition.md"
     },
     {
+      "id": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "label": "VISTA: A Visual Harness for Reasoning in an Interactive World",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world.md"
+    },
+    {
       "id": "sources/vr-gs-physical-dynamics-aware-interactive-gaussian-splatting",
       "label": "VR-GS: A Physical Dynamics-Aware Interactive Gaussian Splatting System in Virtual Reality",
       "type": "source",
@@ -2879,6 +2911,41 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
   ],
   "edges": [
     {
+      "id": "concepts/AddressableVisualMemory--sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AddressableVisualMemory--sources/joshhhhhan-vista-repository",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "sources/joshhhhhan-vista-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AddressableVisualMemory--concepts/AgentHarness",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "concepts/AgentHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AddressableVisualMemory--sources/anthropic-long-running-harness",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "sources/anthropic-long-running-harness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AddressableVisualMemory--concepts/RobotHarness",
+      "from": "concepts/AddressableVisualMemory",
+      "to": "concepts/RobotHarness",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/AgentHarness--sources/deepseek-harness",
       "from": "concepts/AgentHarness",
       "to": "sources/deepseek-harness",
@@ -2931,6 +2998,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "concepts/AgentHarness--sources/regenharness-evidence-gated-self-improvement",
       "from": "concepts/AgentHarness",
       "to": "sources/regenharness-evidence-gated-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/AgentHarness--sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "from": "concepts/AgentHarness",
+      "to": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -8815,6 +8889,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "sources/joshhhhhan-vista-repository--sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "from": "sources/joshhhhhan-vista-repository",
+      "to": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/PolicyDeploymentContract--sources/kpi-promptable-kernel-physical-interaction",
       "from": "sources/kpi-promptable-kernel-physical-interaction",
       "to": "concepts/PolicyDeploymentContract",
@@ -11226,6 +11307,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "sources/robofoundry-system-as-policy--topics/agent-execution",
       "from": "topics/agent-execution",
       "to": "sources/robofoundry-system-as-policy",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world--topics/agent-execution",
+      "from": "topics/agent-execution",
+      "to": "sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
