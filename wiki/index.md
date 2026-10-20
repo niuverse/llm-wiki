@@ -32,16 +32,16 @@ description: ""
 
 时间为北京时间；旧记录未记时分的只显示日期。
 
-- **2026-10-20 15:34** · joshhhhhan/VISTA 工程实现：视觉记忆、工具桥与上下文交接
-  [[sources/joshhhhhan-vista-repository|VISTA · Code]]
-- **2026-10-20 15:34** · VISTA: A Visual Harness for Reasoning in an Interactive World
-  [[sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world|VISTA]] · [[concepts/AddressableVisualMemory|可寻址视觉记忆]]
-- **2026-10-19 17:38** · PhysGaussian 与物理集成 3D 高斯（Physical 3DGS）体系整合
-  [[sources/physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics|PhysGaussian]] · [[sources/pac-nerf-physics-augmented-continuum-neural-radiance-fields|PAC-NeRF]]
-- **2026-10-19 17:38** · PhysTwin: Physics-Informed Reconstruction and Simulation of Deformable Objects from Videos
-  [[sources/phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects|PhysTwin]]
-- **2026-10-19 17:38** · GIC: Gaussian-Informed Continuum for Physical Property Identification and Simulation
-  [[sources/gic-gaussian-informed-continuum-physical-property-identification|GIC]]
+- **2026-10-20 20:28** · ARC-AGI-3 harness 的四种记录与形式化路线
+  [[sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world|VISTA]] · [[sources/tycho-active-abstraction-with-programmatic-world-models|Tycho]]
+- **2026-10-20 20:28** · ryanbbrown/Retrodict：把日志当唯一记忆的 ARC-AGI-3 Harness
+  [[sources/ryanbbrown-retrodict-repository|Retrodict]]
+- **2026-10-20 20:28** · Schema: Discovering Unknown Environments via Agentic Program Induction
+  [[sources/schema-discovering-unknown-environments-via-agentic-program-induction|Schema]]
+- **2026-10-20 20:28** · NIMI-research/Tycho：证据工作区、可执行模型接口与可复算的跑分
+  [[sources/nimi-research-tycho-repository|Tycho · Code]]
+- **2026-10-20 20:28** · Tycho: Active Abstraction with Programmatic World Models for ARC-AGI-3
+  [[sources/tycho-active-abstraction-with-programmatic-world-models|Tycho]]
 
 [[log|查看完整日志]]
 

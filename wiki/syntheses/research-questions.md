@@ -22,6 +22,7 @@ description: ""
 
 ## 具体专题
 
+- [[topics/arc-agi-3-harness-design#未解问题与优先补证|ARC-AGI-3 Harness 设计：记录、程序与视觉证据]]
 - [[topics/asset-representation#未解问题与优先补证|3D 资产格式]]
 - [[topics/collision-geometry#未解问题与优先补证|Collision Geometry]]
 - [[topics/contact-modeling#未解问题与优先补证|接触建模]]

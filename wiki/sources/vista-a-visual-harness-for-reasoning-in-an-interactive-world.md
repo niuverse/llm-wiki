@@ -181,3 +181,5 @@ BabyVision 这一行提供了一个干净的控制变量：没有交互历史，
 - **对 computer-use agent**：文本派读 DOM/可访问性树，视觉派读截图；VISTA 属于后者，但增加了一条“历史可按坐标回看”的通道，而不是只保留最近几帧。
 - **对游戏 agent**：SIMA、Cradle、JARVIS-1 等同样从画面行动，但通常只维护有界视觉上下文或压缩过的经验；VISTA 的差别是把完整历史留在外部并按需检索。
 - **对通用上下文管理**：[[AgentHarness|Agent Harness]] 讨论的压缩、检查点与交接在这里被具体化为“笔记 + 视觉记忆 + 换上下文”；区别是记忆单位从文本变成了可按区域寻址的像素。共享机制见 [[AddressableVisualMemory|可寻址视觉记忆]]。
+
+与 Tycho（可执行世界模型）、Schema（程序归纳）、Retrodict（文本日志）的横向对照，见 [[topics/arc-agi-3-harness-design|ARC-AGI-3 Harness 设计]]。
