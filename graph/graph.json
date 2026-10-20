@@ -1268,6 +1268,13 @@
       "path": "wiki/syntheses/isaac-sim-mujoco-usda-runtime-semantics.md"
     },
     {
+      "id": "syntheses/mirros-guided-reading",
+      "label": "MirroS 四篇论文逐节带读",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/mirros-guided-reading.md"
+    },
+    {
       "id": "syntheses/ovrtx-api-boundary",
       "label": "ovrtx API 边界",
       "type": "synthesis",
@@ -9950,6 +9957,41 @@
       "confidence": 1.0
     },
     {
+      "id": "sources/mirros-physical-rsi-thesis--syntheses/mirros-guided-reading",
+      "from": "syntheses/mirros-guided-reading",
+      "to": "sources/mirros-physical-rsi-thesis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/code-as-world-executable-world-representations--syntheses/mirros-guided-reading",
+      "from": "syntheses/mirros-guided-reading",
+      "to": "sources/code-as-world-executable-world-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/agentgarten-code-worlds-evolving-agents--syntheses/mirros-guided-reading",
+      "from": "syntheses/mirros-guided-reading",
+      "to": "sources/agentgarten-code-worlds-evolving-agents",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/s-space-spatial-workspace-mllm--syntheses/mirros-guided-reading",
+      "from": "syntheses/mirros-guided-reading",
+      "to": "sources/s-space-spatial-workspace-mllm",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds--syntheses/mirros-guided-reading",
+      "from": "syntheses/mirros-guided-reading",
+      "to": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "syntheses/ovrtx-api-boundary--topics/asset-representation",
       "from": "syntheses/ovrtx-api-boundary",
       "to": "topics/asset-representation",
@@ -10583,6 +10625,13 @@
       "id": "sources/agentgarten-code-worlds-evolving-agents--topics/executable-world-representations",
       "from": "topics/executable-world-representations",
       "to": "sources/agentgarten-code-worlds-evolving-agents",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/mirros-guided-reading--topics/executable-world-representations",
+      "from": "topics/executable-world-representations",
+      "to": "syntheses/mirros-guided-reading",
       "type": "EXTRACTED",
       "confidence": 1.0
     },

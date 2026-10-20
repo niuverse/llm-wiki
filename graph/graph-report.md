@@ -1,7 +1,7 @@
 # Graph Report
 
-- Nodes: 206
-- Edges: 1446
+- Nodes: 207
+- Edges: 1452
 - Orphans: 0
 - Missing referenced pages: 0
 

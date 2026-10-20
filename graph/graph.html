@@ -8,7 +8,7 @@ code { background: #f4f4f4; padding: 0.1rem 0.25rem; border-radius: 4px; }
 pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 </style>
 <h1>LLM Wiki Graph</h1>
-<p>Nodes: 206. Edges: 1446.</p>
+<p>Nodes: 207. Edges: 1452.</p>
 <h2>Nodes</h2>
 <ul><li><strong>可寻址视觉记忆</strong> <code>concepts/AddressableVisualMemory</code> <span>concept</span></li>
 <li><strong>Agent Harness</strong> <code>concepts/AgentHarness</code> <span>concept</span></li>
@@ -191,6 +191,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><strong>WorldEcho／WorldSync：世界模型是否忠实执行动作</strong> <code>sources/worldecho-worldsync-action-following</code> <span>source</span></li>
 <li><strong>Isaac Sim 与 MuJoCo 物理和控制笔记</strong> <code>syntheses/isaac-sim-mujoco-control-tuning-notes</code> <span>synthesis</span></li>
 <li><strong>Isaac Sim `mujoco.usda` 运行时语义</strong> <code>syntheses/isaac-sim-mujoco-usda-runtime-semantics</code> <span>synthesis</span></li>
+<li><strong>MirroS 四篇论文逐节带读</strong> <code>syntheses/mirros-guided-reading</code> <span>synthesis</span></li>
 <li><strong>ovrtx API 边界</strong> <code>syntheses/ovrtx-api-boundary</code> <span>synthesis</span></li>
 <li><strong>机器人仿真评测是否需要仿真数据后训练</strong> <code>syntheses/simulation-post-training-evaluation</code> <span>synthesis</span></li>
 <li><strong>世界模型与机器人仿真：研究覆盖地图</strong> <code>syntheses/world-models-and-simulation-research</code> <span>synthesis</span></li>
@@ -1432,6 +1433,11 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>syntheses/isaac-sim-mujoco-usda-runtime-semantics</code> -> <code>topics/simulation-transfer</code></li>
 <li><code>syntheses/isaac-sim-mujoco-usda-runtime-semantics</code> -> <code>topics/assets-and-world-generation</code></li>
 <li><code>syntheses/isaac-sim-mujoco-usda-runtime-semantics</code> -> <code>topics/evaluation-and-transfer</code></li>
+<li><code>syntheses/mirros-guided-reading</code> -> <code>sources/mirros-physical-rsi-thesis</code></li>
+<li><code>syntheses/mirros-guided-reading</code> -> <code>sources/code-as-world-executable-world-representations</code></li>
+<li><code>syntheses/mirros-guided-reading</code> -> <code>sources/agentgarten-code-worlds-evolving-agents</code></li>
+<li><code>syntheses/mirros-guided-reading</code> -> <code>sources/s-space-spatial-workspace-mllm</code></li>
+<li><code>syntheses/mirros-guided-reading</code> -> <code>sources/harnesseval-w-agentifying-evaluation-of-visual-worlds</code></li>
 <li><code>syntheses/ovrtx-api-boundary</code> -> <code>topics/asset-representation</code></li>
 <li><code>syntheses/ovrtx-api-boundary</code> -> <code>topics/simulation-ready-worlds</code></li>
 <li><code>syntheses/ovrtx-api-boundary</code> -> <code>topics/assets-and-world-generation</code></li>
@@ -1523,6 +1529,7 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
 <li><code>topics/evaluation-and-transfer</code> -> <code>topics/world-models-and-representations</code></li>
 <li><code>topics/executable-world-representations</code> -> <code>sources/mirros-physical-rsi-thesis</code></li>
 <li><code>topics/executable-world-representations</code> -> <code>sources/agentgarten-code-worlds-evolving-agents</code></li>
+<li><code>topics/executable-world-representations</code> -> <code>syntheses/mirros-guided-reading</code></li>
 <li><code>topics/executable-world-representations</code> -> <code>topics/world-models-and-representations</code></li>
 <li><code>topics/executable-world-representations</code> -> <code>topics/world-model-evaluation</code></li>
 <li><code>topics/executable-world-representations</code> -> <code>topics/robot-harness-and-physical-rsi</code></li>
@@ -2932,6 +2939,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "type": "synthesis",
       "color": "#9C27B0",
       "path": "wiki/syntheses/isaac-sim-mujoco-usda-runtime-semantics.md"
+    },
+    {
+      "id": "syntheses/mirros-guided-reading",
+      "label": "MirroS 四篇论文逐节带读",
+      "type": "synthesis",
+      "color": "#9C27B0",
+      "path": "wiki/syntheses/mirros-guided-reading.md"
     },
     {
       "id": "syntheses/ovrtx-api-boundary",
@@ -11616,6 +11630,41 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "confidence": 1.0
     },
     {
+      "id": "sources/mirros-physical-rsi-thesis--syntheses/mirros-guided-reading",
+      "from": "syntheses/mirros-guided-reading",
+      "to": "sources/mirros-physical-rsi-thesis",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/code-as-world-executable-world-representations--syntheses/mirros-guided-reading",
+      "from": "syntheses/mirros-guided-reading",
+      "to": "sources/code-as-world-executable-world-representations",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/agentgarten-code-worlds-evolving-agents--syntheses/mirros-guided-reading",
+      "from": "syntheses/mirros-guided-reading",
+      "to": "sources/agentgarten-code-worlds-evolving-agents",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/s-space-spatial-workspace-mllm--syntheses/mirros-guided-reading",
+      "from": "syntheses/mirros-guided-reading",
+      "to": "sources/s-space-spatial-workspace-mllm",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds--syntheses/mirros-guided-reading",
+      "from": "syntheses/mirros-guided-reading",
+      "to": "sources/harnesseval-w-agentifying-evaluation-of-visual-worlds",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "syntheses/ovrtx-api-boundary--topics/asset-representation",
       "from": "syntheses/ovrtx-api-boundary",
       "to": "topics/asset-representation",
@@ -12249,6 +12298,13 @@ pre { overflow: auto; background: #f8f8f8; padding: 1rem; }
       "id": "sources/agentgarten-code-worlds-evolving-agents--topics/executable-world-representations",
       "from": "topics/executable-world-representations",
       "to": "sources/agentgarten-code-worlds-evolving-agents",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "syntheses/mirros-guided-reading--topics/executable-world-representations",
+      "from": "topics/executable-world-representations",
+      "to": "syntheses/mirros-guided-reading",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
