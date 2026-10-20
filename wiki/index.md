@@ -32,16 +32,16 @@ description: ""
 
 时间为北京时间；旧记录未记时分的只显示日期。
 
-- **2026-10-20 20:28** · ARC-AGI-3 harness 的四种记录与形式化路线
-  [[sources/vista-a-visual-harness-for-reasoning-in-an-interactive-world|VISTA]] · [[sources/tycho-active-abstraction-with-programmatic-world-models|Tycho]]
-- **2026-10-20 20:28** · ryanbbrown/Retrodict：把日志当唯一记忆的 ARC-AGI-3 Harness
-  [[sources/ryanbbrown-retrodict-repository|Retrodict]]
-- **2026-10-20 20:28** · Schema: Discovering Unknown Environments via Agentic Program Induction
-  [[sources/schema-discovering-unknown-environments-via-agentic-program-induction|Schema]]
-- **2026-10-20 20:28** · NIMI-research/Tycho：证据工作区、可执行模型接口与可复算的跑分
-  [[sources/nimi-research-tycho-repository|Tycho · Code]]
-- **2026-10-20 20:28** · Tycho: Active Abstraction with Programmatic World Models for ARC-AGI-3
-  [[sources/tycho-active-abstraction-with-programmatic-world-models|Tycho]]
+- **2026-10-20 22:12** · MirroS 四篇论文逐节带读
+  [[syntheses/mirros-guided-reading|MirroS 四篇论文逐节带读]]
+- **2026-10-20 22:06** · MirroS：Physical RSI 需要同时改进 Actor 与世界模型
+  [[sources/mirros-physical-rsi-thesis|MirroS · Physical RSI 提纲]]
+- **2026-10-20 22:06** · AgentGarten：代码世界与实时神经渲染器
+  [[sources/agentgarten-code-worlds-evolving-agents|AgentGarten]]
+- **2026-10-20 22:06** · S-Space：多模态模型内部的三维空间工作区
+  [[sources/s-space-spatial-workspace-mllm|S-Space]]
+- **2026-10-20 22:06** · HarnessEval-W：把世界模型评测变成可审计的证据树
+  [[sources/harnesseval-w-agentifying-evaluation-of-visual-worlds|HarnessEval-W]]
 
 [[log|查看完整日志]]
 

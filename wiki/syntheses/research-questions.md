@@ -26,6 +26,7 @@ description: ""
 - [[topics/asset-representation#未解问题与优先补证|3D 资产格式]]
 - [[topics/collision-geometry#未解问题与优先补证|Collision Geometry]]
 - [[topics/contact-modeling#未解问题与优先补证|接触建模]]
+- [[topics/executable-world-representations#未解问题与优先补证|可执行世界表示与智能体化评测]]
 - [[topics/future-conditioned-action#未解问题与优先补证|未来预测与动作学习]]
 - [[topics/interactive-policy-improvement#未解问题与优先补证|接管学习与仿真自改进]]
 - [[topics/policy-evaluation#未解问题与优先补证|策略评测]]

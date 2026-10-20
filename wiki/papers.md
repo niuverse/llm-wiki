@@ -11,9 +11,11 @@ description: "按主题、年份和关键词查找论文；共享基础通过正
 
 按核实的文献年份排序；版本、译本及证据范围见各论文页。
 
+- [[sources/agentgarten-code-worlds-evolving-agents|AgentGarten]] · 2026 · arXiv 预印本（v1，MirroS Technical Report）
 - [[sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]] · 2026 · arXiv 预印本
 - [[sources/aspire-agentic-skills-discovery-for-robotics|ASPIRE]] · 2026 · arXiv 预印本（v1）
 - [[sources/atom-bench-atomic-skills-and-compositional-generalization|ATOM-Bench]] · 2026 · arXiv（预印本，v1）
+- [[sources/code-as-world-executable-world-representations|Code-as-World]] · 2026 · arXiv 预印本（v1，MirroS Technical Report）
 - [[sources/convex-primitive-decomposition-for-collision-detection|Convex Primitive Decomposition]] · 2026 · Computer Graphics Forum 45(2), Eurographics 2026
 - [[sources/dexweave-dexterous-humanoid-loco-manipulation|DexWeave]] · 2026 · arXiv 预印本
 - [[sources/disentangled-robot-learning-via-separate-forward-and-inverse-dynamics-pretraining|DeFI]] · 2026 · ICLR 2026
@@ -23,6 +25,7 @@ description: "按主题、年份和关键词查找论文；共享基础通过正
 - [[sources/flowdagger-latent-space-corrections|FlowDAgger]] · 2026 · arXiv 预印本 v1；官方项目页标注 CoRL 2026
 - [[sources/gap-graph-as-policy|GaP]] · 2026 · arXiv 预印本
 - [[sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]] · 2026 · arXiv 预印本
+- [[sources/harnesseval-w-agentifying-evaluation-of-visual-worlds|HarnessEval-W]] · 2026 · arXiv 预印本（v1，MirroS Technical Report）
 - [[sources/hi-wm-human-in-world-model|Hi-WM]] · 2026 · arXiv 预印本 v2
 - [[sources/kpi-promptable-kernel-physical-interaction|KPI]] · 2026 · arXiv 预印本
 - [[sources/lda-1b-scaling-latent-dynamics-action-model|LDA-1B]] · 2026 · arXiv 预印本
@@ -38,6 +41,7 @@ description: "按主题、年份和关键词查找论文；共享基础通过正
 - [[sources/roboharness-visual-geometric-control|RoboHarness]] · 2026 · arXiv 预印本
 - [[sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]] · 2026 · arXiv（预印本）
 - [[sources/robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]] · 2026 · arXiv 预印本（v1）
+- [[sources/s-space-spatial-workspace-mllm|S-Space]] · 2026 · arXiv 预印本（v1，MirroS Technical Report）
 - [[sources/schema-discovering-unknown-environments-via-agentic-program-induction|Schema]] · 2026 · arXiv 预印本（v1）
 - [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX]] · 2026 · arXiv 预印本
 - [[sources/tycho-active-abstraction-with-programmatic-world-models|Tycho]] · 2026 · arXiv 预印本（v1，NIMI Research Group）

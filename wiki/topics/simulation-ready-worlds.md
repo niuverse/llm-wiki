@@ -2,8 +2,8 @@
 title: "Simulation-ready Worlds"
 type: "topic"
 tags: ["simulation", "source-backed"]
-sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]", "[[nvlabs-robolab]]", "[[robotics-simulation-infrastructure]]", "[[mujoco-overview]]", "[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[contact-models-in-robotics-a-comparative-analysis]]", "[[nvidia-ovrtx]]", "[[mujoco-computation-collision-detection]]", "[[modern-robotics-homogeneous-transformations]]", "[[modern-robotics-lagrangian-dynamics]]", "[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[isaac-sim-policy-deployment]]", "[[physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics]]", "[[physgaussian-repository]]", "[[vr-gs-physical-dynamics-aware-interactive-gaussian-splatting]]", "[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects]]"]
-modified: "2026-10-19"
+sources: ["[[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence]]", "[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai]]", "[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction]]", "[[nvlabs-robolab]]", "[[robotics-simulation-infrastructure]]", "[[mujoco-overview]]", "[[openusd-introduction]]", "[[isaac-sim-asset-structure]]", "[[contact-models-in-robotics-a-comparative-analysis]]", "[[nvidia-ovrtx]]", "[[mujoco-computation-collision-detection]]", "[[modern-robotics-homogeneous-transformations]]", "[[modern-robotics-lagrangian-dynamics]]", "[[tobin-domain-randomization]]", "[[peng-dynamics-randomization]]", "[[simopt-adaptive-randomization]]", "[[isaac-sim-policy-deployment]]", "[[physgaussian-physics-integrated-3d-gaussians-for-generative-dynamics]]", "[[physgaussian-repository]]", "[[vr-gs-physical-dynamics-aware-interactive-gaussian-splatting]]", "[[phystwin-physics-informed-reconstruction-and-simulation-of-deformable-objects]]", "[[agentgarten-code-worlds-evolving-agents]]"]
+modified: "2026-10-20"
 description: "沿几何、物理、语义与回放检查生成资产到交互数据的链条。"
 ---
 
@@ -16,6 +16,8 @@ description: "沿几何、物理、语义与回放检查生成资产到交互数
 [[embodiedgen-towards-a-generative-3d-world-engine-for-embodied-intelligence|EmbodiedGen]]与[[embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai|EmbodiedGen V2]]组织生成资产与场景验收；[[magicsim-a-unified-infrastructure-for-executable-embodied-interaction|MagicSim]]连接世界描述、回合执行、回放与数据输出；[[nvlabs-robolab|RoboLab 仓库]]记录场景任务生成的实现。
 
 **当前判断：**可导入、可执行、可重放和可迁移到真实机器人需要不同验收。应在同一任务里分别记录几何、物理、控制和成功判定，而不是把任一演示作为整条流程有效的证明。论文版本与后来仓库功能分别引用。
+
+[[agentgarten-code-worlds-evolving-agents|AgentGarten]] 提供了另一种“就绪”定义：代码世界维护状态与规则，神经渲染器只负责外观，实时性以单卡帧率与流式块延迟衡量。它绕过了精细资产与材质，但没有证明生成帧忠实实现代码状态，也没有真实机器人迁移；与 EmbodiedGen／MagicSim 的资产与执行验收不能互换。
 
 ## 支撑资料
 

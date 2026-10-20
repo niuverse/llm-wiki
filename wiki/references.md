@@ -14,10 +14,12 @@ description: ""
 ## Papers
 
 - [[sources/a-comprehensive-survey-on-world-models-for-embodied-ai|World Models · 综述]]
+- [[sources/agentgarten-code-worlds-evolving-agents|AgentGarten]]
 - [[sources/agile-a-comprehensive-workflow-for-humanoid-loco-manipulation-learning|AGILE]]
 - [[sources/aspire-agentic-skills-discovery-for-robotics|ASPIRE]]
 - [[sources/atom-bench-atomic-skills-and-compositional-generalization|ATOM-Bench]]
 - [[sources/coacd-approximate-convex-decomposition|CoACD]]
+- [[sources/code-as-world-executable-world-representations|Code-as-World]]
 - [[sources/contact-models-in-robotics-a-comparative-analysis|Contact Models · 比较研究]]
 - [[sources/convex-primitive-decomposition-for-collision-detection|Convex Primitive Decomposition]]
 - [[sources/dagger-no-regret-imitation-learning|DAgger]]
@@ -35,6 +37,7 @@ description: ""
 - [[sources/gap-graph-as-policy|GaP]]
 - [[sources/gic-gaussian-informed-continuum-physical-property-identification|GIC]]
 - [[sources/grail-generating-humanoid-loco-manipulation-from-3d-assets-and-video-priors|GRAIL]]
+- [[sources/harnesseval-w-agentifying-evaluation-of-visual-worlds|HarnessEval-W]]
 - [[sources/hg-dagger-human-experts|HG-DAgger]]
 - [[sources/hi-wm-human-in-world-model|Hi-WM]]
 - [[sources/kpi-promptable-kernel-physical-interaction|KPI]]
@@ -58,6 +61,7 @@ description: ""
 - [[sources/roboharness-visual-geometric-control|RoboHarness]]
 - [[sources/robolab-a-high-fidelity-simulation-benchmark-for-analysis-of-task-generalist-policies|RoboLab]]
 - [[sources/robosimstudio-interactive-toolkit-rapid-real2sim|RoboSimStudio]]
+- [[sources/s-space-spatial-workspace-mllm|S-Space]]
 - [[sources/schema-discovering-unknown-environments-via-agentic-program-induction|Schema]]
 - [[sources/simex-simulation-integrated-robotics-autoresearch|SimEX]]
 - [[sources/simopt-adaptive-randomization|SimOpt]]
@@ -131,5 +135,6 @@ description: ""
 
 - [[sources/anthropic-long-running-harness|Anthropic]]
 - [[sources/anthropic-managed-agents|Anthropic Managed Agents]]
+- [[sources/mirros-physical-rsi-thesis|MirroS · Physical RSI 提纲]]
 - [[sources/robotics-simulation-infrastructure|Robotics Simulation Infrastructure]]
 - [[sources/viral-visual-sim-to-real-at-scale-for-humanoid-loco-manipulation|VIRAL]]

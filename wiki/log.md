@@ -1249,3 +1249,51 @@ ASPIRE、Harness VLA、123 轮负结果、Who Improves the Robot 全文、RSI-An
 时间：2026-10-20 20:28（北京时间，UTC+08:00）
 
 在四份来源（[[vista-a-visual-harness-for-reasoning-in-an-interactive-world|VISTA]]、[[tycho-active-abstraction-with-programmatic-world-models|Tycho]]、[[schema-discovering-unknown-environments-via-agentic-program-induction|Schema]]、[[ryanbbrown-retrodict-repository|Retrodict]]）之上新建专题页 [[topics/arc-agi-3-harness-design|ARC-AGI-3 Harness 设计]]，比较记录形态（像素／文本网格／类型化事件／程序）、信念载体（笔记／playbook／world_model.py）与“何时形式化”的四种调度，指出四者收敛到“记录高于信念”，并区分可核查证据（第三方卡／轨迹／无代码）。同步在 [[AddressableVisualMemory|可寻址视觉记忆]] 增加同基准其他路线的对照，在 [[topics/agent-execution|Agent Systems]] 比较表加入该专题入口。横向数字部分依赖 Retrodict 作者维护的对比文档与 Tycho 论文对 Schema 重跑协议的描述，已在页面标注为一方说法。
+
+## [2026-10-20] research | MirroS 的可执行世界表示与智能体化评测
+
+时间：2026-10-20 22:03（北京时间，UTC+08:00）
+
+围绕用户“系统学习 MirroS 近期工作”的请求，先同步本仓库 `main`，确认其公开研究线由一篇 Physical RSI 提纲与四项技术报告组成：[[mirros-physical-rsi-thesis|Building Physical RSI]]（08-06）、[[code-as-world-executable-world-representations|Code-as-World]]（08-31，arXiv 2608.27549）、[[harnesseval-w-agentifying-evaluation-of-visual-worlds|HarnessEval-W]]（08-18，2608.16859）、[[s-space-spatial-workspace-mllm|S-Space]]（10-09，2610.13527）、[[agentgarten-code-worlds-evolving-agents|AgentGarten]]（10-08，2610.12374）。归档 4 份 PDF 与 1 份提纲 HTML（快照与 SHA-256 见各来源页），完整阅读并交叉核对摘要、方法、主表、附录与局限；未运行任何模型或实验。
+
+新建专题 [[topics/executable-world-representations|可执行世界表示与智能体化评测]]，把四条线定位为“表示—环境—机制—评测”：Code-as-World 的 $p=(C,E,A)$ 与 propose–execute–render–verify 循环、AgentGarten 的代码世界 + 实时神经渲染器 + playbook 继承、S-Space 的线性坐标读出与因果干预、HarnessEval-W 的路由—子问题—证据树。新建概念页 [[ExecutableWorldRepresentation|可执行世界表示]]、[[AgentifiedEvaluation|智能体化评测]]、[[SpatialWorkspaceInMLLMs|多模态模型的空间工作区]]，分别沉淀跨来源机制，不复制论文实验。
+
+关键数字与边界：Code-as-World 的 QuantiPhy 是外部 159 题验证集，9B 直答 55.4 略高于 Gemini-3.1 Flash 54.8，27B 58.6 但 2S 仅 48.7；无 C/E/A 与验证器消融。HarnessEval-W 330 case/18 模型，人类排序 Spearman 0.93/0.87，对 WBench 的 Physical pairwise accuracy 31.9%→71.7%，但无成本、无逐 case 人类标签。S-Space 的 SpinBench 60.96→94.52 依赖外部 oracle 旋转；深度轴 Spearman 仅 0.521，多视角深度 steering 57–68%。AgentGarten 的“第 4/10 轮”对照“2,500 万/1 亿回合”是范式差异，四个附加世界每轮仅 1 episode。上述均已写入来源页的“局限”，不进入已验证结论。
+
+同步更新 [[topics/world-models-and-representations|World Models]]、[[topics/world-model-evaluation|World Model 评测]]、[[topics/simulation-ready-worlds|Simulation-ready Worlds]]、[[topics/robot-harness-and-physical-rsi|机器人 Harness 与 Physical RSI]] 与 [[overview|总览]]，加入“表示从预测器变为可操作接口”的跨主题判断及其证据边界。本轮未新增图片；来源页只引用表号与页码，不改写 `raw/`。
+
+## [2026-10-20] ingest | Code-as-World：用可执行代码表示物理世界
+
+时间：2026-10-20 22:06（北京时间，UTC+08:00）
+
+归档 arXiv 2608.27549v1（MirroS/清华/北大/NTU，31 页）并完整阅读，新建论文页 [[code-as-world-executable-world-representations|Code-as-World]]。记录 $p=(C,E,A)$ 的可执行世界表示、propose–execute–render–verify 发现循环（无损失函数、关键帧语言诊断、$K=5$）、两阶段 SFT+GRPO 与 73,335 图像空间 / 1,585 文本世界 / 988 视频世界 VQA。主表 4B/9B/27B 为 50.6/55.4/58.6，9B 略高于 Gemini-3.1 Flash 54.8；同时标注 QuantiPhy 是外部 159 题基准、4B/9B 基座未写明、无成分与验证器消融、原文 Table 4 与正文 56.8 的矛盾。未复现实验。
+
+## [2026-10-20] ingest | HarnessEval-W：把世界模型评测变成可审计的证据树
+
+时间：2026-10-20 22:06（北京时间，UTC+08:00）
+
+归档 arXiv 2608.16859v1（MirroS，17 页）并完整阅读，新建论文页 [[harnesseval-w-agentifying-evaluation-of-visual-worlds|HarnessEval-W]]。记录由 $P(o|s)T(s'|s,a)$ 分解出的三轴八指标、9 个 skill 的路由—子问题—证据树、330 case/18 模型榜单（Seedance 2.0 75.5 至 InSpatio-World 61.4），以及人类对齐（Intentional $\rho=0.93$、Physical $\rho=0.87$）与 WBench 对照（Physical pairwise 31.9%→71.7%，draw 52.2%→1.8%）。标注 Figure 10 与 §5.4.2 正文数值冲突、无成本/无逐 case 人类标签/评委仍是 VLM 等边界。未复现评测。
+
+## [2026-10-20] ingest | S-Space：多模态模型内部的三维空间工作区
+
+时间：2026-10-20 22:06（北京时间，UTC+08:00）
+
+归档 arXiv 2610.13527v1（MirroS/清华/北大，24 页）并完整阅读，新建论文页 [[s-space-spatial-workspace-mllm|S-Space]]。记录从答案 logit 差梯度构造三轴读出方向 $v_g$、坐标读出与写回干预（swap/shift/random）、跨 prompt 与多视角持久性，以及 SpinBench 上 direct 60.96 对 S-Space+rotation 94.52 的“信息够、计算不够”证据。明确标注旋转是外部 oracle、深度轴 Spearman 仅 0.521、多视角深度 steering 57–68%、因果干预只在 Molmo2-ER L17 完成。未复现实验。
+
+## [2026-10-20] ingest | AgentGarten：代码世界与实时神经渲染器
+
+时间：2026-10-20 22:06（北京时间，UTC+08:00）
+
+归档 arXiv 2610.12374v1（MirroS/清华/北大，26 页）并完整阅读，新建论文页 [[agentgarten-code-worlds-evolving-agents|AgentGarten]]。记录代码世界状态 $f_p$ 不接收渲染观测、深度/法线条件的共享渲染器（Cosmos3-Nano 三阶段训练、exact replay 逐位一致），以及单 H100 36.5 FPS/438.8 ms 每 16 帧块、hide-and-seek 第 4/10 轮与四个附加世界的逐轮曲线。标注每轮 1 episode、单模型 GPT-6 Astra、无 playbook 消融、无 FVD/用户研究、渲染器不保证实现代码状态等边界。未运行系统。
+
+## [2026-10-20] ingest | MirroS：Physical RSI 需要同时改进 Actor 与世界模型
+
+时间：2026-10-20 22:06（北京时间，UTC+08:00）
+
+归档 MirroS 研究提纲《Building Physical RSI Beyond the Known World》（2026-08-06，HTML）并完整阅读，新建来源页 [[mirros-physical-rsi-thesis|MirroS · Physical RSI 提纲]]。记录 environment gap / skill gap 的区分、八步循环（遭遇→意外→诊断→抽象→模拟→求解→验证→内化）、四项能力路线图与“评测/可解释性”两项横向要求。明确这是立场文、无实验，不能把八步循环当作已在真实机器人闭环的系统能力。
+
+## [2026-10-20] learn | MirroS 四篇论文逐节带读
+
+时间：2026-10-20 22:12（北京时间，UTC+08:00）
+
+按用户要求，为四项技术报告补写逐节阅读笔记 [[syntheses/mirros-guided-reading|MirroS 四篇论文逐节带读]]，按原文 §1–§7 的顺序解释每节的论证任务、关键公式、变量含义、假设与阅读问题，而不是再建一套学习路径。覆盖 Code-as-World 的 $p=(C,E,A)$、发现循环、像素/世界空间监督与 GRPO；AgentGarten 的状态接口、块因果掩码、DMD、exact replay 与 R1/R2；S-Space 的梯度读出、写回干预、SpinBench 的 oracle 旋转限定与参考系耦合；HarnessEval-W 的 $S/T$ 分解、路由与证据树、人类对齐与 WBench 对照。笔记中所有数字与边界均与来源页一致，未新增实验；冲突（HarnessEval 正文与 Figure 10、Code-as-World 27B 的 2S 子项）按来源页保留。专题页已加入口。

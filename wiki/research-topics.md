@@ -26,6 +26,7 @@ description: ""
 - [[topics/asset-representation|3D 资产格式]]
 - [[topics/collision-geometry|Collision Geometry]]
 - [[topics/contact-modeling|接触建模]]
+- [[topics/executable-world-representations|可执行世界表示与智能体化评测]]
 - [[topics/future-conditioned-action|未来预测与动作学习]]
 - [[topics/interactive-policy-improvement|接管学习与仿真自改进]]
 - [[topics/policy-evaluation|策略评测]]
