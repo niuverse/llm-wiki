@@ -5,7 +5,7 @@ type: source
 source_type: paper
 tags: [world-models, evaluation, agents, benchmark, source-backed]
 sources: []
-modified: 2026-10-20
+modified: 2026-10-21
 source_file: raw/harnesseval-w-agentifying-evaluation-of-visual-worlds-2026-10-20-9650a3c56f26.pdf
 extracted_text: graph/extracts/harnesseval-w-agentifying-evaluation-of-visual-worlds-2026-10-20-9650a3c56f26.md
 source_kind: pdf
@@ -73,7 +73,11 @@ flowchart TD
   G --> H["Case card：问题、答案、分数、支持帧"]
 ```
 
-图为依据论文 §3–§4 重画的流程，不是原文插图。关键设计是**证据先于分数**：每个子分数都能追溯到具体帧与工具输出；父代理还要检查子代理的证据是否真的回答了问题，而不是把子代理的分数直接平均。
+![原文图 2：HarnessEval-W 的评测流水线](../assets/figures/harnesseval-w-agentifying-evaluation-of-visual-worlds/fig-2.webp)
+
+原文图 2：case 先经过 skill routing，再由子代理分别推理，最后聚合成带分项与总分的评分。来源：论文 PDF 第 4 页。[查看原始来源](https://arxiv.org/pdf/2608.16859v1#page=4)
+
+上面的流程图是依据论文 §3–§4 重画的，不是原文插图。关键设计是**证据先于分数**：每个子分数都能追溯到具体帧与工具输出；父代理还要检查子代理的证据是否真的回答了问题，而不是把子代理的分数直接平均。
 
 这套结构与 [[AgentHarness|Agent Harness]] 的思路同源：把“评测”当成一个可编排的智能体系统，而不是一段固定脚本。区别在于 HarnessEval-W 的产物是**评测结论**，不是任务执行；它借用了 harness 的“上下文、工具、子代理、验证”接口，但把动作空间换成了“检查与判断”。
 

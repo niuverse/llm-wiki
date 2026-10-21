@@ -7010,6 +7010,98 @@
       "bytes": 88998,
       "png_bytes": 149543,
       "image_sha256": "96ca14fd85aead8bbc93efcf6044f95cf58fd34c5c97db19b17ae89e76fef96f"
+    },
+    {
+      "note": "wiki/sources/code-as-world-executable-world-representations.md",
+      "source_file": "raw/code-as-world-executable-world-representations-2026-10-20-a8918c304f5d.pdf",
+      "source_sha256": "a8918c304f5dfe713e80db60b3fe1b25d895d1bfc035bfd3a38bbd9bcfff7ee2",
+      "page": 7,
+      "figures": [
+        "3"
+      ],
+      "crop": [
+        0.1,
+        0.078,
+        0.89,
+        0.296
+      ],
+      "image": "wiki/assets/figures/code-as-world-executable-world-representations/fig-3.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1412,
+      "height": 551,
+      "bytes": 108976,
+      "png_bytes": 323149,
+      "image_sha256": "c03f492da6d01e5667e7faa9067e8fa9bf5164e7a61888043463b44ea3b15933"
+    },
+    {
+      "note": "wiki/sources/agentgarten-code-worlds-evolving-agents.md",
+      "source_file": "raw/agentgarten-code-worlds-evolving-agents-2026-10-20-f7c3faada791.pdf",
+      "source_sha256": "f7c3faada791bd24af1c3be59542ba8323dc7dc5567ebdfdb81630acecc8959f",
+      "page": 3,
+      "figures": [
+        "2"
+      ],
+      "crop": [
+        0.1,
+        0.08,
+        0.89,
+        0.24
+      ],
+      "image": "wiki/assets/figures/agentgarten-code-worlds-evolving-agents/fig-2.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1412,
+      "height": 405,
+      "bytes": 46266,
+      "png_bytes": 165825,
+      "image_sha256": "4b38c45a5768212c92619f5bbfe16ffedd662eb901616a1609e4129a5c7a083d"
+    },
+    {
+      "note": "wiki/sources/s-space-spatial-workspace-mllm.md",
+      "source_file": "raw/s-space-spatial-workspace-mllm-2026-10-20-f675006692b1.pdf",
+      "source_sha256": "f675006692b18a6eeeef042071ce963daafbe4affb89994f16d0d35c76f8542f",
+      "page": 3,
+      "figures": [
+        "2"
+      ],
+      "crop": [
+        0.1,
+        0.083,
+        0.89,
+        0.302
+      ],
+      "image": "wiki/assets/figures/s-space-spatial-workspace-mllm/fig-2.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1412,
+      "height": 554,
+      "bytes": 56936,
+      "png_bytes": 144755,
+      "image_sha256": "8a40b4f30d11e73b2ec61cb17b6dd72e034c912a506610006d435a22d5055ff0"
+    },
+    {
+      "note": "wiki/sources/harnesseval-w-agentifying-evaluation-of-visual-worlds.md",
+      "source_file": "raw/harnesseval-w-agentifying-evaluation-of-visual-worlds-2026-10-20-9650a3c56f26.pdf",
+      "source_sha256": "9650a3c56f264521b75272702ee2aa315c5b7adf7f40ffd21c09684ceb9e8f73",
+      "page": 4,
+      "figures": [
+        "2"
+      ],
+      "crop": [
+        0.065,
+        0.05,
+        0.9,
+        0.224
+      ],
+      "image": "wiki/assets/figures/harnesseval-w-agentifying-evaluation-of-visual-worlds/fig-2.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1492,
+      "height": 440,
+      "bytes": 98842,
+      "png_bytes": 275073,
+      "image_sha256": "b9b5b6ea554d008d3ee89f6cc60551371805bec9f0092d1f5fc2903ad1a28351"
     }
   ]
 }

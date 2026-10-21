@@ -5,7 +5,7 @@ type: source
 source_type: paper
 tags: [world-models, simulation, agents, neural-rendering, source-backed]
 sources: []
-modified: 2026-10-20
+modified: 2026-10-21
 source_file: raw/agentgarten-code-worlds-evolving-agents-2026-10-20-f7c3faada791.pdf
 extracted_text: graph/extracts/agentgarten-code-worlds-evolving-agents-2026-10-20-f7c3faada791.md
 source_kind: pdf
@@ -58,7 +58,11 @@ $$
 
 其中 $s_t$ 是代码世界状态，$\pi_t$ 是任务进度，$a_t$ 是动作，$f_p$ 是规则；$c_t$ 是相机几何条件，$R_\theta$ 是渲染器，$x_0$ 是参考帧，$y$ 是文本。关键在 $f_p$ **不接收渲染观测**：渲染误差不会进入状态，录制的状态轨迹可以用不同参考帧或相机重渲而不改变事件。
 
-图为依据论文 Figure 1 与 §2 重画，不是原文插图。关键点是**动作先改变代码世界，渲染器只负责外观**：智能体做一个短动作，代码世界更新状态并导出新的几何条件，渲染器生成下一段观测；智能体看到后果后再决定下一步。因此未来条件依赖智能体对已见观测的回应，而不是预先给定的一整段视频。
+![原文图 2：代码世界与神经渲染器的交互回路](../assets/figures/agentgarten-code-worlds-evolving-agents/fig-2.webp)
+
+原文图 2：智能体提交动作，引擎更新场景状态并导出深度/法线条件，渲染器结合参考帧、文本与视觉历史生成观测。来源：论文 PDF 第 3 页。[查看原始来源](https://arxiv.org/pdf/2610.12374v1#page=3)
+
+上面的流程图是依据论文 Figure 1 与 §2 重画，不是原文插图。关键点是**动作先改变代码世界，渲染器只负责外观**：智能体做一个短动作，代码世界更新状态并导出新的几何条件，渲染器生成下一段观测；智能体看到后果后再决定下一步。因此未来条件依赖智能体对已见观测的回应，而不是预先给定的一整段视频。
 
 条件选深度/法线，而不是 RGB 或文本，原因是获取成本：仿真器可以直接导出；真实视频可以用深度估计器（ViPE）与法线估计器（NormalCrafter）估计；推理时任何有 3D 场景的代码世界都能廉价渲染。代价是几何条件不包含全部状态：一个旋转对称的物体可以自转而不改变深度/法线，材质、颜色、身份也不由几何决定。
 

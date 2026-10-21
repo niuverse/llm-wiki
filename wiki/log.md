@@ -1297,3 +1297,9 @@ ASPIRE、Harness VLA、123 轮负结果、Who Improves the Robot 全文、RSI-An
 时间：2026-10-20 22:12（北京时间，UTC+08:00）
 
 按用户要求，为四项技术报告补写逐节阅读笔记 [[syntheses/mirros-guided-reading|MirroS 四篇论文逐节带读]]，按原文 §1–§7 的顺序解释每节的论证任务、关键公式、变量含义、假设与阅读问题，而不是再建一套学习路径。覆盖 Code-as-World 的 $p=(C,E,A)$、发现循环、像素/世界空间监督与 GRPO；AgentGarten 的状态接口、块因果掩码、DMD、exact replay 与 R1/R2；S-Space 的梯度读出、写回干预、SpinBench 的 oracle 旋转限定与参考系耦合；HarnessEval-W 的 $S/T$ 分解、路由与证据树、人类对齐与 WBench 对照。笔记中所有数字与边界均与来源页一致，未新增实验；冲突（HarnessEval 正文与 Figure 10、Code-as-World 27B 的 2S 子项）按来源页保留。专题页已加入口。
+
+## [2026-10-21] update | 为 MirroS 四篇来源页补原文图
+
+时间：2026-10-21 12:09（北京时间，UTC+08:00）
+
+补充四篇论文页缺失的原文图：[[code-as-world-executable-world-representations|Code-as-World]] 图 3（发现循环，PDF 第 7 页）、[[agentgarten-code-worlds-evolving-agents|AgentGarten]] 图 2（代码世界与渲染器回路，第 3 页）、[[s-space-spatial-workspace-mllm|S-Space]] 图 2（物理空间—激活子空间—读出，第 3 页）、[[harnesseval-w-agentifying-evaluation-of-visual-worlds|HarnessEval-W]] 图 2（评测流水线，第 4 页）。按页内文字块定位边界，从原始 PDF 裁剪并登记到 `graph/figures.json`（新增 4 条，总计 324 张），图注保留图号、来源页与原始链接；未改动论文结论与实验数字。同步把四页 `modified` 更新为 2026-10-21。
