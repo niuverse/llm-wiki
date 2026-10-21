@@ -5,7 +5,7 @@ type: source
 source_type: paper
 tags: [world-models, physical-reasoning, program-induction, agents, source-backed]
 sources: []
-modified: 2026-10-20
+modified: 2026-10-21
 source_file: raw/code-as-world-executable-world-representations-2026-10-20-a8918c304f5d.pdf
 extracted_text: graph/extracts/code-as-world-executable-world-representations-2026-10-20-a8918c304f5d.md
 source_kind: pdf
@@ -53,7 +53,9 @@ $C$ 描述存在什么：对象网格、尺寸、质量、摩擦、重力，地�
 
 这个拆分带来一个实际好处：**改一个成分，其他成分保持**。可以只改初速度看重放，只改相机看另一个视角，只改材质看外观；物理轨迹与渲染外观解耦，反事实视频不需要重新拟合整个世界。
 
-论文第 6 页的流程图把这条链路画成一条闭环：文本或视频先被适配成语义/视觉证据，再进入共享的 propose–instantiate–execute–render–verify 循环，在构成、演化、外观三个成分上迭代。
+![原文图 3：可执行世界表示的智能体发现循环](../assets/figures/code-as-world-executable-world-representations/fig-3.webp)
+
+原文图 3：文本或视频先被适配成语义/视觉证据，再进入共享的 propose–instantiate–execute–render–verify 循环，在构成、演化、外观三个成分上迭代。左侧是 EWR 的三个成分，中间是智能体循环，右侧是文本与视频两种证据。来源：论文 PDF 第 7 页。[查看原始来源](https://arxiv.org/pdf/2608.27549v1#page=7)
 
 ## 发现：验证信号是语言诊断，不是梯度
 

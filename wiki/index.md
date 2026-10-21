@@ -32,6 +32,8 @@ description: ""
 
 时间为北京时间；旧记录未记时分的只显示日期。
 
+- **2026-10-21 12:09** · 为 MirroS 四篇来源页补原文图
+  [[sources/code-as-world-executable-world-representations|Code-as-World]] · [[sources/agentgarten-code-worlds-evolving-agents|AgentGarten]]
 - **2026-10-20 22:12** · MirroS 四篇论文逐节带读
   [[syntheses/mirros-guided-reading|MirroS 四篇论文逐节带读]]
 - **2026-10-20 22:06** · MirroS：Physical RSI 需要同时改进 Actor 与世界模型
@@ -40,8 +42,6 @@ description: ""
   [[sources/agentgarten-code-worlds-evolving-agents|AgentGarten]]
 - **2026-10-20 22:06** · S-Space：多模态模型内部的三维空间工作区
   [[sources/s-space-spatial-workspace-mllm|S-Space]]
-- **2026-10-20 22:06** · HarnessEval-W：把世界模型评测变成可审计的证据树
-  [[sources/harnesseval-w-agentifying-evaluation-of-visual-worlds|HarnessEval-W]]
 
 [[log|查看完整日志]]
 

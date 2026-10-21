@@ -5,7 +5,7 @@ type: source
 source_type: paper
 tags: [multimodal-models, interpretability, spatial-reasoning, representation, source-backed]
 sources: []
-modified: 2026-10-20
+modified: 2026-10-21
 source_file: raw/s-space-spatial-workspace-mllm-2026-10-20-f675006692b1.pdf
 extracted_text: graph/extracts/s-space-spatial-workspace-mllm-2026-10-20-f675006692b1.md
 source_kind: pdf
@@ -42,6 +42,10 @@ v_g^{\text{logit}}=\operatorname{unit}\!\left(\mathbb{E}_p\left[\frac{\nabla_{h_
 $$
 
 对 prompt 模板与物体顺序取平均，减少模板特异的波动。
+
+![原文图 2：S-Space 的物理空间、模型激活空间与读出](../assets/figures/s-space-spatial-workspace-mllm/fig-2.webp)
+
+原文图 2：左侧是物理三维坐标，中间是模型激活中的三维线性子空间 $\mathcal{S}_{\text{space}}=\operatorname{span}\{v_x,v_y,v_z\}$，右侧是沿三个方向读出坐标。来源：论文 PDF 第 3 页。[查看原始来源](https://arxiv.org/pdf/2610.13527v1#page=3)
 
 **结果。** 读出坐标足以直接回答空间关系：在 CV-Bench、EmbSpatial、SpatialTunnel 上，简单比较两个物体的读出坐标，准确率与模型直接生成相当；对 Qwen3.5-4B 这类原生空间能力较弱的模型，读出把 CV-Bench 从 **73.60** 提到 **89.36**。在 SpinBench 的视角变换题上，读出坐标 + 显式旋转把 Molmo2-ER 从 **60.96** 提到 **94.52**（加上前提关系后 **99.31**），远高于模型自己的思维链（Qwen3.6-27B 为 83.56）。干预读出方向可以把“左”变成“右”，而颜色判断基本不受影响。
 
