@@ -2,8 +2,8 @@
 title: "机器人 Harness"
 type: concept
 tags: [robotics, agents, source-backed]
-sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[regenharness-evidence-gated-self-improvement]]", "[[robofoundry-system-as-policy]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[sirius-robot-learning-on-the-job]]", "[[sirius-fleet-visual-world-models]]", "[[flowdagger-latent-space-corrections]]", "[[hi-wm-human-in-world-model]]", "[[embodirsi-data-efficient-robot-adaptation]]"]
-modified: 2026-10-18
+sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[regenharness-evidence-gated-self-improvement]]", "[[robofoundry-system-as-policy]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[sirius-robot-learning-on-the-job]]", "[[sirius-fleet-visual-world-models]]", "[[flowdagger-latent-space-corrections]]", "[[hi-wm-human-in-world-model]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[pyrua-lean-fewer-tokens-better-action]]", "[[pyrua-lean-repository]]"]
+modified: 2026-10-28
 topics: ["topics/robot-harness-and-physical-rsi", "topics/agent-execution", "topics/robot-policy-learning"]
 ---
 
@@ -50,6 +50,14 @@ flowchart TD
 技能图把全任务分成局部生成和可定位的失败；共享技能接口把对象中心与末端目标转换封装起来；上下文规则使模型只看到当前阶段所需的信息。这些分别减少接口混乱、重复几何估计与历史污染，但收益依赖既有工具能力和调用约定。[[gap-graph-as-policy|GaP]] 与 [[robofoundry-system-as-policy|RoboFoundry]] 给出不同改进面，不能仅把提示变长就称作更强 Harness。
 
 状态存储也不是环境回滚。机器人已经松手，恢复旧日志不能让物体自动回到夹爪；跨崩溃重发需要后端去重，资源释放需要真正停止的确认。RegenHarness 明示其取消返回即停止的假设，提醒实现者检查物理后端是否满足。[[regenharness-evidence-gated-self-improvement]]
+
+## 程序内部反馈与模型重规划
+
+[[pyrua-lean-fewer-tokens-better-action|PyRUA-Lean]] 给出了另一种执行分工：Python 处理明确的条件判断、数值计算和局部重试，模型根据代码块返回的结果再规划。持久变量保存数组和辅助函数，选择性反馈决定哪些内容进入对话。它们分别影响“下一次能使用什么”和“下一次模型要重新读取什么”，不能把程序保存状态、模型历史和物理环境状态混为一谈。程序报错不会撤销已完成的动作，回合内变量保留也不等于跨任务学到了技能。
+
+这类接口的效率评估应同时记录模型调用、单次上下文长度、原语次数和物理步数。一次代码块可执行多次原语，因此相同模型调用预算允许不同的物理执行量；该条件下的成功率提升不能直接解释为同样动作预算下的收益。[[pyrua-lean-fewer-tokens-better-action|PyRUA-Lean 的配对实验与成本分母]]提供了具体例子。
+
+还需把反馈的**请求时刻、采样时刻与返回时刻**写进契约。[[pyrua-lean-repository|PyRUA-Lean 固定代码核查]]显示，`show` 在块内登记相机、块末读取最新图像，与论文描述的调用点记录并不完全一致。若程序用运动前的文字说明解释运动后的画面，就可能产生时序混淆；显式保存对应步号或图像才给出可检查的配对。这是基于代码的工程解释，不是新的机器人实验结果。
 
 ## 接管怎样变成下一轮的训练经验
 

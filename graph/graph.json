@@ -1009,6 +1009,20 @@
       "path": "wiki/sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation.md"
     },
     {
+      "id": "sources/pyrua-lean-fewer-tokens-better-action",
+      "label": "Fewer Tokens, Better Action: GPT-6 Astra Robot Agents with 14% Higher Success Rate but 65% Fewer Tokens",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/pyrua-lean-fewer-tokens-better-action.md"
+    },
+    {
+      "id": "sources/pyrua-lean-repository",
+      "label": "PyRUA-Lean 公开实现：交互代码、反馈时序与 RoboDojo 适配",
+      "type": "source",
+      "color": "#4CAF50",
+      "path": "wiki/sources/pyrua-lean-repository.md"
+    },
+    {
       "id": "sources/racap-evolvable-robot-learning",
       "label": "RACaP：演化技能 API，再以冻结代码闭环执行",
       "type": "source",
@@ -3573,6 +3587,20 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/pyrua-lean-fewer-tokens-better-action",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/pyrua-lean-fewer-tokens-better-action",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--sources/pyrua-lean-repository",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "sources/pyrua-lean-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/PhysicalRecursiveSelfImprovement--concepts/RobotHarness",
       "from": "concepts/PhysicalRecursiveSelfImprovement",
       "to": "concepts/RobotHarness",
@@ -3594,6 +3622,13 @@
       "confidence": 1.0
     },
     {
+      "id": "concepts/PhysicalRecursiveSelfImprovement--topics/robot-harness-and-physical-rsi",
+      "from": "concepts/PhysicalRecursiveSelfImprovement",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
       "id": "concepts/PhysicalRecursiveSelfImprovement--sources/regenharness-evidence-gated-self-improvement",
       "from": "concepts/PhysicalRecursiveSelfImprovement",
       "to": "sources/regenharness-evidence-gated-self-improvement",
@@ -3604,13 +3639,6 @@
       "id": "concepts/PhysicalRecursiveSelfImprovement--sources/robofoundry-system-as-policy",
       "from": "concepts/PhysicalRecursiveSelfImprovement",
       "to": "sources/robofoundry-system-as-policy",
-      "type": "EXTRACTED",
-      "confidence": 1.0
-    },
-    {
-      "id": "concepts/PhysicalRecursiveSelfImprovement--topics/robot-harness-and-physical-rsi",
-      "from": "concepts/PhysicalRecursiveSelfImprovement",
-      "to": "topics/robot-harness-and-physical-rsi",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -4003,6 +4031,20 @@
       "id": "concepts/RobotHarness--sources/embodirsi-data-efficient-robot-adaptation",
       "from": "concepts/RobotHarness",
       "to": "sources/embodirsi-data-efficient-robot-adaptation",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/pyrua-lean-fewer-tokens-better-action",
+      "from": "concepts/RobotHarness",
+      "to": "sources/pyrua-lean-fewer-tokens-better-action",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "concepts/RobotHarness--sources/pyrua-lean-repository",
+      "from": "concepts/RobotHarness",
+      "to": "sources/pyrua-lean-repository",
       "type": "EXTRACTED",
       "confidence": 1.0
     },
@@ -9015,6 +9057,41 @@
       "id": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation--topics/future-conditioned-action",
       "from": "sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation",
       "to": "topics/future-conditioned-action",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/pyrua-lean-fewer-tokens-better-action--sources/pyrua-lean-repository",
+      "from": "sources/pyrua-lean-fewer-tokens-better-action",
+      "to": "sources/pyrua-lean-repository",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/aspire-agentic-skills-discovery-for-robotics--sources/pyrua-lean-fewer-tokens-better-action",
+      "from": "sources/pyrua-lean-fewer-tokens-better-action",
+      "to": "sources/aspire-agentic-skills-discovery-for-robotics",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/physevo-physical-recursive-self-improvement--sources/pyrua-lean-fewer-tokens-better-action",
+      "from": "sources/pyrua-lean-fewer-tokens-better-action",
+      "to": "sources/physevo-physical-recursive-self-improvement",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/pyrua-lean-fewer-tokens-better-action--topics/robot-harness-and-physical-rsi",
+      "from": "sources/pyrua-lean-fewer-tokens-better-action",
+      "to": "topics/robot-harness-and-physical-rsi",
+      "type": "EXTRACTED",
+      "confidence": 1.0
+    },
+    {
+      "id": "sources/pyrua-lean-repository--topics/robot-harness-and-physical-rsi",
+      "from": "sources/pyrua-lean-repository",
+      "to": "topics/robot-harness-and-physical-rsi",
       "type": "EXTRACTED",
       "confidence": 1.0
     },

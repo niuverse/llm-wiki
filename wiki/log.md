@@ -1303,3 +1303,30 @@ ASPIRE、Harness VLA、123 轮负结果、Who Improves the Robot 全文、RSI-An
 时间：2026-10-21 12:09（北京时间，UTC+08:00）
 
 补充四篇论文页缺失的原文图：[[code-as-world-executable-world-representations|Code-as-World]] 图 3（发现循环，PDF 第 7 页）、[[agentgarten-code-worlds-evolving-agents|AgentGarten]] 图 2（代码世界与渲染器回路，第 3 页）、[[s-space-spatial-workspace-mllm|S-Space]] 图 2（物理空间—激活子空间—读出，第 3 页）、[[harnesseval-w-agentifying-evaluation-of-visual-worlds|HarnessEval-W]] 图 2（评测流水线，第 4 页）。按页内文字块定位边界，从原始 PDF 裁剪并登记到 `graph/figures.json`（新增 4 条，总计 324 张），图注保留图号、来源页与原始链接；未改动论文结论与实验数字。同步把四页 `modified` 更新为 2026-10-21。
+
+## [2026-10-28] ingest | PyRUA-Lean v2：交互代码、规划器训练与实验口径
+
+时间：2026-10-28 22:01（北京时间，UTC+08:00）
+
+归档并完整阅读 arXiv 2610.01939v2（29 页，含参考文献及附录 A–K），同时保存官方 HTML 用于核对损坏的代码与表格，新建 [[pyrua-lean-fewer-tokens-better-action|PyRUA-Lean 精读]]。逐层解释双重反馈、程序状态、放置几何、GRPO 的训练对象与奖励，保留 700 配对实例、双方成功交集、45 训练实例与 3,840 训练回合、RGB／深度及官方评测种子的区别。嵌入并登记原文图 2、5、7、8；图号采用 PDF，保留 HTML 附录图号差异。没有运行模型或机器人实验。
+
+## [2026-10-28] ingest | PyRUA-Lean 固定版本实现与官方评测记录
+
+时间：2026-10-28 22:01（北京时间，UTC+08:00）
+
+归档官方仓库提交 fdf6e870654254e2c0c891ee407313fa48bdd0f9 的完整受版本控制文件，新建 [[pyrua-lean-repository|实现核查]]，缓存已读文档与定向代码片段。核查代码块执行、反馈配置、RGB 几何、关节动作与 XPolicyLab 通信桥；用实际工具类加最小假后端复现 show 在块末取最新图并按相机去重，与论文调用点记录表述不同。该验证不涉及物理仿真。分别记录 seed 3 官方评测 50.35% 与论文 seed 0 的 51.62%，以及 README 的真机演示说明；PyRUA-RSI 仍为预告，不外推训练代码或真机可靠性。
+
+## [2026-10-28] learn | PyRUA 精读与 Physical RSI 的执行／学习分层
+
+时间：2026-10-28 22:01（北京时间，UTC+08:00）
+
+按用户确认将精读沉淀在两篇来源页，直接补充 [[RobotHarness|机器人 Harness]] 的程序反馈与采样时刻契约、[[PhysicalRecursiveSelfImprovement|Physical RSI]] 的固定学习器参照，并在 [[topics/robot-harness-and-physical-rsi|研究专题]] 对照 Lean、Coder、ASPIRE 和 PhysEvo 的更新对象与验收条件。没有新建重复学习路径，也没有改变总览的跨主题判断；后续 PyRUA-RSI 与独立递归增益仍是待补证问题。
+
+## [2026-10-28] update | PyRUA 两份来源的完整名称与阅读检查
+
+时间：2026-10-28 22:01（北京时间，UTC+08:00）
+
+补全本轮来源的完整名称，便于按书目与日志核对；机制和实验范围见上方 ingest 记录。四张本地图已逐一目视核查，图 5 裁剪边界移除邻栏文字，保留完整图例、数据和图注。
+
+- [[pyrua-lean-fewer-tokens-better-action|Fewer Tokens, Better Action: GPT-6 Astra Robot Agents with 14% Higher Success Rate but 65% Fewer Tokens]]
+- [[pyrua-lean-repository|PyRUA-Lean 公开实现：交互代码、反馈时序与 RoboDojo 适配]]

@@ -2,8 +2,8 @@
 title: "机器人 Harness 与 Physical RSI"
 type: topic
 tags: [robotics, agents, embodied-ai, source-backed]
-sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[roboharness-visual-geometric-control]]", "[[robofoundry-system-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[physical-rsi-research-map]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]", "[[dagger-no-regret-imitation-learning]]", "[[hg-dagger-human-experts]]", "[[thriftydagger-budget-aware-interventions]]", "[[sirius-robot-learning-on-the-job]]", "[[sirius-fleet-visual-world-models]]", "[[flowdagger-latent-space-corrections]]", "[[hi-wm-human-in-world-model]]", "[[mirros-physical-rsi-thesis]]"]
-modified: 2026-10-20
+sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[gap-graph-as-policy]]", "[[gap-runtime-repository]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[roboharness-visual-geometric-control]]", "[[robofoundry-system-as-policy]]", "[[regenharness-evidence-gated-self-improvement]]", "[[physical-rsi-research-map]]", "[[simex-simulation-integrated-robotics-autoresearch]]", "[[robosimstudio-interactive-toolkit-rapid-real2sim]]", "[[robosimstudio-repository]]", "[[dagger-no-regret-imitation-learning]]", "[[hg-dagger-human-experts]]", "[[thriftydagger-budget-aware-interventions]]", "[[sirius-robot-learning-on-the-job]]", "[[sirius-fleet-visual-world-models]]", "[[flowdagger-latent-space-corrections]]", "[[hi-wm-human-in-world-model]]", "[[mirros-physical-rsi-thesis]]", "[[pyrua-lean-fewer-tokens-better-action]]", "[[pyrua-lean-repository]]"]
+modified: 2026-10-28
 description: "从技能图与物理验收到自主实验、系统演化和递归增益的证据。"
 topics: ["topics/robot-policy-learning", "topics/agent-execution", "topics/evaluation-and-transfer"]
 ---
@@ -58,6 +58,19 @@ flowchart TD
 
 同名消歧：此处 RoboHarness 是视觉—几何接口论文 `2610.14018`；另有 *RoboHarness: Memory-driven Orchestration of Heterogeneous Robot Policies for Long-Horizon Planning*（`2607.18060`），以及同名软件包，不能混用作者、代码或实验。编码机器人 RHO（`2606.16458`）也不同于库内 [[rho-efficiently-adaptable-vla-models|Rho VLA]]。
 
+## PyRUA-Lean：执行效率、规划器训练与跨任务积累
+
+2026-10-28 新增 [[pyrua-lean-fewer-tokens-better-action|PyRUA-Lean v2 精读]]与 [[pyrua-lean-repository|固定版本实现核查]]，覆盖代码块组合、程序状态、选择性反馈、GRPO 和官方后续评测。论文使用同一规划器和原语比较执行接口，Coder 则训练规划器；两者都应与跨任务技能积累分别评价。
+
+| 比较对象 | 保留或更新的主要对象 | 比较时应固定什么 |
+| --- | --- | --- |
+| PyRUA-Lean 的回合内代码 | 当前回合的变量、函数与后续动作 | 模型、底层原语、观测、模型调用及物理动作预算 |
+| PyRUA-Lean Coder | 代码规划器权重，底层 VLA 冻结 | 初始化、训练回合数、原语集合、留出实例与评测循环 |
+| [[aspire-agentic-skills-discovery-for-robotics|ASPIRE]] | 跨任务技能与经调试的任务程序 | 技能来源、验证／测试种子、冻结程序与测试时适配条件 |
+| [[physevo-physical-recursive-self-improvement|PhysEvo]] | 任务修复和可继承的诊断工具 | 是否允许修改改进程序、同起点同总预算的继承对照 |
+
+这不是能力排名。PyRUA-Lean 的配对实验提供了执行层参照；其代码能修改并不自动产生跨回合继承。当前 PyRUA-RSI 只有预告，后续补证应检查保留了什么、是否被新任务实际调用，以及是否改变未来改进效率。实现核查还提醒：反馈请求和采样时刻可能不同，不能只依据接口名称判断模型实际看到了哪个状态。
+
 ## 从 GaP 出发，三个最有解释力的对照
 
 **GaP → ASPIRE／RACaP／RoboFoundry：从执行产物到技能库治理与系统更新面。** GaP 将机器人程序限制成可检查技能图；ASPIRE 让编码智能体根据原语级追踪修补程序并把跨任务修复沉淀为上下文技能库（`/skills`），其 [[nvlabs-aspire-repository|v1.0 实现]] 还引入了隔离盲测验证器（Skill Verifier）与静态 AST 检查器（`lint_skills.py`）防止烂技能污染共享库；RACaP 进一步改变技能 API、提示和经验并在部署时保留 ReAct 循环；RoboFoundry 则把保留、检索、使用历史信息的上下文系统也纳入在线修改。它们共同说明能力并不只存储在参数中，但修改自由度增大后，必须区分“冻结单程序评测（ASPIRE）”、“冻结 API + 在线 ReAct（RACaP）”与“测试流在线演化（RoboFoundry）”三类截然不同的计分协议。[[gap-graph-as-policy]]、[[aspire-agentic-skills-discovery-for-robotics]]、[[nvlabs-aspire-repository]]、[[racap-evolvable-robot-learning]]、[[robofoundry-system-as-policy]]
@@ -95,6 +108,8 @@ flowchart TD
 ## 未解问题与优先补证
 
 **当前最值得研究的问题：**能否在有限真实试验预算下证明“诊断／实验选择方法的继承”比固定改进程序带来更多净收益？除了平均成功率，还需测误报成功、旧任务退化、人工介入与被拒绝试验的成本。PhysEvo 的案例、RACaP 的配对接受和 RegenHarness 的发布约束分别提供一部分机制，尚未拼成完整证据。
+
+**PyRUA 方向的下一步补证：** 在相同底层原语下比较逐步调用、回合内代码、跨回合技能库及允许改进诊断程序的系统；同时报告模型调用、物理尝试、人工重置与墙钟成本。还应单独测量反馈采样时刻、选择性观测与持久状态的贡献，避免把三者捆绑后的收益归给一个模块。这是本库研究问题，尚无本次实施结果。
 
 本轮发现但未完成全文收录的候选如下。只核实官方入口／元数据或读到摘要；“待核查问题”是研究计划，不把摘要数值写入上述知识判断。
 

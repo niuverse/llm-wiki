@@ -184,6 +184,8 @@ description: ""
 - [[sources/pi07-steerable-generalist-robotic-foundation-model|π0.7]]
 - [[sources/planet-learning-latent-dynamics|PlaNet]]
 - [[sources/predictive-inverse-dynamics-models-are-scalable-learners-for-robotic-manipulation|Seer]]
+- [[sources/pyrua-lean-fewer-tokens-better-action|PyRUA-Lean]]
+- [[sources/pyrua-lean-repository|PyRUA-Lean 代码核查]]
 - [[sources/racap-evolvable-robot-learning|RACaP]]
 - [[sources/regenharness-evidence-gated-self-improvement|RegenHarness]]
 - [[sources/rho-efficiently-adaptable-vla-models|Rho]]

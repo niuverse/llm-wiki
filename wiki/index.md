@@ -32,16 +32,16 @@ description: ""
 
 时间为北京时间；旧记录未记时分的只显示日期。
 
+- **2026-10-28 22:01** · PyRUA 两份来源的完整名称与阅读检查
+  [[sources/pyrua-lean-fewer-tokens-better-action|PyRUA-Lean]] · [[sources/pyrua-lean-repository|PyRUA-Lean 代码核查]]
+- **2026-10-28 22:01** · PyRUA 精读与 Physical RSI 的执行／学习分层
+  [[concepts/RobotHarness|机器人 Harness]] · [[concepts/PhysicalRecursiveSelfImprovement|Physical RSI：物理世界递归自改进]]
+- **2026-10-28 22:01** · PyRUA-Lean 固定版本实现与官方评测记录
+  [[sources/pyrua-lean-repository|PyRUA-Lean 代码核查]]
+- **2026-10-28 22:01** · PyRUA-Lean v2：交互代码、规划器训练与实验口径
+  [[sources/pyrua-lean-fewer-tokens-better-action|PyRUA-Lean]]
 - **2026-10-21 12:09** · 为 MirroS 四篇来源页补原文图
   [[sources/code-as-world-executable-world-representations|Code-as-World]] · [[sources/agentgarten-code-worlds-evolving-agents|AgentGarten]]
-- **2026-10-20 22:12** · MirroS 四篇论文逐节带读
-  [[syntheses/mirros-guided-reading|MirroS 四篇论文逐节带读]]
-- **2026-10-20 22:06** · MirroS：Physical RSI 需要同时改进 Actor 与世界模型
-  [[sources/mirros-physical-rsi-thesis|MirroS · Physical RSI 提纲]]
-- **2026-10-20 22:06** · AgentGarten：代码世界与实时神经渲染器
-  [[sources/agentgarten-code-worlds-evolving-agents|AgentGarten]]
-- **2026-10-20 22:06** · S-Space：多模态模型内部的三维空间工作区
-  [[sources/s-space-spatial-workspace-mllm|S-Space]]
 
 [[log|查看完整日志]]
 
