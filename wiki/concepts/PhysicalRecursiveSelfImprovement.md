@@ -2,8 +2,8 @@
 title: "Physical RSI：物理世界递归自改进"
 type: concept
 tags: [robotics, agents, embodied-ai, source-backed]
-sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[physical-rsi-research-map]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]", "[[dagger-no-regret-imitation-learning]]", "[[flowdagger-latent-space-corrections]]", "[[hi-wm-human-in-world-model]]"]
-modified: 2026-10-18
+sources: ["[[aspire-agentic-skills-discovery-for-robotics]]", "[[nvlabs-aspire-repository]]", "[[physical-rsi-research-map]]", "[[embodirsi-data-efficient-robot-adaptation]]", "[[physevo-physical-recursive-self-improvement]]", "[[enpire-agentic-robot-policy-self-improvement]]", "[[racap-evolvable-robot-learning]]", "[[dagger-no-regret-imitation-learning]]", "[[flowdagger-latent-space-corrections]]", "[[hi-wm-human-in-world-model]]", "[[pyrua-lean-fewer-tokens-better-action]]", "[[pyrua-lean-repository]]"]
+modified: 2026-10-28
 topics: ["topics/robot-harness-and-physical-rsi", "topics/robot-policy-learning", "topics/evaluation-and-transfer"]
 ---
 
@@ -27,6 +27,12 @@ $\mathcal E$ 是实际交互环境。若每次都用同一训练／搜索程序�
 ## 交互式模仿学习提供一个固定改进程序的参照
 
 [[dagger-no-regret-imitation-learning|DAgger]] 反复执行当前策略、查询专家并聚合数据；[[flowdagger-latent-space-corrections|FlowDAgger]] 改变纠正的监督空间；[[hi-wm-human-in-world-model|Hi-WM]] 改变纠正发生的环境并支持回退分支。它们可以使下一版策略更好，却不能仅凭循环和参数更新说明改进程序 $U_t$ 本身更好。[[InteractiveImitationLearning|交互式模仿学习]] 因而是研究外层智能体收益时有意义的参照：在相同策略起点和总成本下，比较自动诊断、采集选择或工具继承是否优于固定纠正程序。具体联合设计仍属于 [[topics/interactive-policy-improvement|待验证研究问题]]。
+
+## 代码执行与代码规划器训练提供的参照
+
+[[pyrua-lean-fewer-tokens-better-action|PyRUA-Lean]] 的两部分应分别映射到上述模型：交互代码在一次回合中修正动作、复用变量，属于执行闭环；PyRUA-Lean Coder 通过固定 GRPO 程序，用任务成败更新代码规划器参数，属于改进 $S_t$。主接口实验关闭跨回合记忆，Coder 实验也未让 GRPO 或诊断程序自行演化。因此二者提供了执行与固定学习器的实证参照，没有分离出 $U_t$ 继承带来的递归增益。[[pyrua-lean-repository|截至 2026-10-28 的公开仓库]]仍将 PyRUA-RSI 标为预告，不能用该名称替代已发布机制。
+
+这个区分不否定代码作为改进载体的价值：可执行程序便于记录、修改和验证；要进一步证明累积效果，仍需明确哪些技能或诊断资源跨回合保留，以及在相同起点与总预算下如何影响后续改进。与 [[aspire-agentic-skills-discovery-for-robotics|跨任务技能库]]、[[physevo-physical-recursive-self-improvement|诊断工具继承]] 的比较集中在 [[topics/robot-harness-and-physical-rsi|研究专题]]。
 
 ## 可观察的四种证据
 

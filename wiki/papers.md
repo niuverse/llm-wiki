@@ -33,6 +33,7 @@ description: "按主题、年份和关键词查找论文；共享基础通过正
 - [[sources/mujocouni-persistent-batched-runtime-primitives-for-mujoco|MuJoCoUni]] · 2026 · arXiv 技术报告
 - [[sources/physevo-physical-recursive-self-improvement|PhysEvo]] · 2026 · arXiv 预印本
 - [[sources/pi07-steerable-generalist-robotic-foundation-model|π0.7]] · 2026 · Physical Intelligence 技术报告
+- [[sources/pyrua-lean-fewer-tokens-better-action|PyRUA-Lean]] · 2026 · arXiv 技术报告（v2）
 - [[sources/racap-evolvable-robot-learning|RACaP]] · 2026 · arXiv 预印本
 - [[sources/regenharness-evidence-gated-self-improvement|RegenHarness]] · 2026 · arXiv 预印本
 - [[sources/rho-efficiently-adaptable-vla-models|Rho]] · 2026 · arXiv 预印本

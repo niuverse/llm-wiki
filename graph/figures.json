@@ -7102,6 +7102,98 @@
       "bytes": 98842,
       "png_bytes": 275073,
       "image_sha256": "b9b5b6ea554d008d3ee89f6cc60551371805bec9f0092d1f5fc2903ad1a28351"
+    },
+    {
+      "note": "wiki/sources/pyrua-lean-fewer-tokens-better-action.md",
+      "source_file": "raw/pyrua-lean-fewer-tokens-better-action-2026-10-28-28a6fb59556f.pdf",
+      "source_sha256": "28a6fb59556f8cc55de75eb2d786396a57073044bef01935708ba402fa5848ff",
+      "page": 4,
+      "figures": [
+        "2"
+      ],
+      "crop": [
+        0.11274509803921569,
+        0.09343434343434344,
+        0.8872549019607843,
+        0.4722222222222222
+      ],
+      "image": "wiki/assets/figures/pyrua-lean-fewer-tokens-better-action/fig-2.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1422,
+      "height": 900,
+      "bytes": 260978,
+      "png_bytes": 368651,
+      "image_sha256": "a2349b3d35d0cd93fc4a8c794e027b230d2929626a2cf6fcea6c0bf506560066"
+    },
+    {
+      "note": "wiki/sources/pyrua-lean-fewer-tokens-better-action.md",
+      "source_file": "raw/pyrua-lean-fewer-tokens-better-action-2026-10-28-28a6fb59556f.pdf",
+      "source_sha256": "28a6fb59556f8cc55de75eb2d786396a57073044bef01935708ba402fa5848ff",
+      "page": 7,
+      "figures": [
+        "5"
+      ],
+      "crop": [
+        0.5261437908496732,
+        0.5315656565656566,
+        0.8888888888888888,
+        0.8333333333333334
+      ],
+      "image": "wiki/assets/figures/pyrua-lean-fewer-tokens-better-action/fig-5.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 666,
+      "height": 717,
+      "bytes": 54310,
+      "png_bytes": 88351,
+      "image_sha256": "84929e7628227c6a59e75be609b0c0dd2900e5af775f472245cf3e0c5a06dd42"
+    },
+    {
+      "note": "wiki/sources/pyrua-lean-fewer-tokens-better-action.md",
+      "source_file": "raw/pyrua-lean-fewer-tokens-better-action-2026-10-28-28a6fb59556f.pdf",
+      "source_sha256": "28a6fb59556f8cc55de75eb2d786396a57073044bef01935708ba402fa5848ff",
+      "page": 14,
+      "figures": [
+        "7"
+      ],
+      "crop": [
+        0.11437908496732026,
+        0.2777777777777778,
+        0.8872549019607843,
+        0.47474747474747475
+      ],
+      "image": "wiki/assets/figures/pyrua-lean-fewer-tokens-better-action/fig-7.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1419,
+      "height": 468,
+      "bytes": 36196,
+      "png_bytes": 59729,
+      "image_sha256": "00f9824b61be077e8f79303fe0f5d9839764c7ccc027b3018d7e3fdacac27242"
+    },
+    {
+      "note": "wiki/sources/pyrua-lean-fewer-tokens-better-action.md",
+      "source_file": "raw/pyrua-lean-fewer-tokens-better-action-2026-10-28-28a6fb59556f.pdf",
+      "source_sha256": "28a6fb59556f8cc55de75eb2d786396a57073044bef01935708ba402fa5848ff",
+      "page": 19,
+      "figures": [
+        "8"
+      ],
+      "crop": [
+        0.11274509803921569,
+        0.3421717171717172,
+        0.8872549019607843,
+        0.63510101010101
+      ],
+      "image": "wiki/assets/figures/pyrua-lean-fewer-tokens-better-action/fig-8.webp",
+      "quality": 92,
+      "scale": 3,
+      "width": 1422,
+      "height": 696,
+      "bytes": 108668,
+      "png_bytes": 221635,
+      "image_sha256": "7ada8f95704b73111fab75292a7861bbfe9c02d92b30862e3afda153c1aac5df"
     }
   ]
 }
